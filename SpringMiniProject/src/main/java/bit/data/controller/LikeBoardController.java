@@ -8,5 +8,5 @@ import org.springframework.stereotype.Controller;
 public class LikeBoardController {
 
     @Autowired
-    LikeBoardServiceInter LikeBoardService;
+    LikeBoardServiceInter likeBoardService;
 }

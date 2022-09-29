@@ -8,5 +8,5 @@ import org.springframework.stereotype.Controller;
 public class LockerController {
 
     @Autowired
-    LockerServiceInter LockerService;
+    LockerServiceInter lockerService;
 }

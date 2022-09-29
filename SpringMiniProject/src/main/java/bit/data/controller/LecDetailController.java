@@ -8,5 +8,5 @@ import org.springframework.stereotype.Controller;
 public class LecDetailController {
 
     @Autowired
-    LecDetailServiceInter LecDetailService;
+    LecDetailServiceInter lecDetailService;
 }
