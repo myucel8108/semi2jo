@@ -1,4 +1,4 @@
-package com.bit.mini;
+package bit.data.mini;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
