@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+    <definition name="layoutMain" template="/WEB-INF/views/layoutMain/layoutMain.jsp">
+        <put-attribute name="change" value="/WEB-INF/views/layoutMain/change.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/layoutMain/footer.jsp"/>
+        <put-attribute name="header" value="/WEB-INF/views/layoutMain/header.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/views/layoutMain/menu.jsp"/>
+    </definition>
+    <!-- macro -->
+    <definition name="/main/*/*" extends="layoutMain">
+        <put-attribute name="change" value="/WEB-INF/views/{1}/{2}.jsp"/>
+    </definition>
+
+    <definition name="layoutManager" template="/WEB-INF/views/layoutManager/layoutManager.jsp">
+        <put-attribute name="change" value="/WEB-INF/views/layoutManager/change.jsp"/>
+        <put-attribute name="header" value="/WEB-INF/views/layoutManager/header.jsp"/>
+        <put-attribute name="icon" value="/WEB-INF/views/layoutManager/icon.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/views/layoutManager/menu.jsp"/>
+    </definition>
+    <!-- macro -->
+    <definition name="/manager/*/*" extends="layoutManager">
+        <put-attribute name="change" value="/WEB-INF/views/{1}/{2}.jsp"/>
+    </definition>
+
+    <definition name="layoutMypage" template="/WEB-INF/views/layoutMypage/layoutMypage.jsp">
+        <put-attribute name="change" value="/WEB-INF/views/layoutMypage/change.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/layoutMypage/footer.jsp"/>
+        <put-attribute name="header" value="/WEB-INF/views/layoutMypage/header.jsp"/>
+        <put-attribute name="info" value="/WEB-INF/views/layoutMypage/info.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/views/layoutMypage/menu.jsp"/>
+    </definition>
+    <!-- macro -->
+    <definition name="/mypage/*/*" extends="layoutMypage">
+        <put-attribute name="change" value="/WEB-INF/views/{1}/{2}.jsp"/>
+    </definition>
+</tiles-definitions>
