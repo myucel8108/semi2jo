@@ -11,7 +11,6 @@
         <property name="username" value="adminej2"></property>
         <property name="password" value="java0711"></property>
     </bean>
-   
    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
       <property name="dataSource" ref="dataSource"/>
       <property name="configLocation"  value="classpath:mybatis-config.xml"/>

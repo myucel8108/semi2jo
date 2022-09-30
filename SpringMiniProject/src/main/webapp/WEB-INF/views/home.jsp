@@ -19,5 +19,9 @@
 </head>
 <body>
 <div>home file testing</div>
+<button>
+	<c:set var="root" value="<%=request.getContextPath()%>"/>
+<a href="${root}/lecture/lectureList">가자!</a>
+</button>
 </body>
 </html>
