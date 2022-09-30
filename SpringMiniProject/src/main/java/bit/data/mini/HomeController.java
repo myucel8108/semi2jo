@@ -9,6 +9,7 @@ public class HomeController {
 	public String home() {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return "home";
 =======
 		return "/mypage/layoutMypage/change";
@@ -16,6 +17,9 @@ public class HomeController {
 =======
 		return "home";
 >>>>>>> origin/taemin
+=======
+		return "/manager/layoutManager/change";
+>>>>>>> origin/Joonmin
 	}
 
 }
