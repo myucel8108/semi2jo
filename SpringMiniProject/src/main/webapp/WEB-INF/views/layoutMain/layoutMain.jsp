@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-<div>Mian layout</div>
+<div>메인 layout</div>
 
 </body>
 </html>
