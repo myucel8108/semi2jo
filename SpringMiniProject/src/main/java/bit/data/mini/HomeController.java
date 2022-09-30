@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 	@GetMapping("/")
 	public String home() {
+<<<<<<< HEAD
 		return "home";
+=======
+		return "/mypage/layoutMypage/change";
+>>>>>>> origin/woojin
 	}
 
 }

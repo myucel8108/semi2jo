@@ -5,6 +5,7 @@ import bit.data.service.UserServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,6 +18,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+=======
+>>>>>>> origin/woojin
 
 @Controller
 public class UserController {
@@ -24,6 +27,7 @@ public class UserController {
     @Autowired
     UserServiceInter userService;
 
+<<<<<<< HEAD
     @GetMapping("/loginF")
     public String loginF(){
         return "account/accountForm";
@@ -82,4 +86,19 @@ public class UserController {
         return "account/accountAddForm";
         //return "redirect:list";//	/member/list 매핑주소 호출-컨트롤러메서드 호출
     }
+=======
+    @GetMapping("/student/updateStudent")
+    public String updateStudent()
+    {
+        return "/mypage/student/updateStudent";
+    }
+
+    @GetMapping("/student/timeTable")
+    public String time(){
+
+        return "/mypage/student/timeTable";
+
+    }
+
+>>>>>>> origin/woojin
 }

@@ -18,6 +18,50 @@
     </style>
 </head>
 <body>
+    <div style="margin-top: 100px;">
+        <h1>나의 정보</h1>
+        <table class="table table-bordered" style="background-color: #bac9e0; width: 500px; text-align: center;" >
+            <tr>
+                <th>회원명</th>
+                <td>username</td>
+                <td rowspan="4">
+                프사
+                    <br>
+                    <button>사진변경</button>
+                </td>
+            </tr>
+            <tr>
+                <th>아이디</th>
+                <td>userid</td>
+            </tr>
+            <tr>
+                <th>닉네임</th>
+                <td>nickname</td>
+            </tr>
+            <tr>
+                <th>생년월일</th>
+                <td>birth</td>
+            </tr>
+            <tr>
+                <th>핸드폰</th>
+                <td colspan="2">hp</td>
+            </tr>
+            <tr>
+                <th>이메일</th>
+                <td colspan="2">email</td>
+            </tr>
+            <tr>
+                <th>주소</th>
+                <td colspan="2">addr</td>
+            </tr>
+            <tr>
+               <td colspan="3">
+                   <button>수정하기</button>
+                   <button>삭제하기</button>
+               </td>
+            </tr>
+        </table>
 
+    </div>
 </body>
 </html>
