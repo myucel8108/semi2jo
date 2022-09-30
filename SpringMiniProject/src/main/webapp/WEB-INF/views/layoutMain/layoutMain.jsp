@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-<div>메인 layout</div>
+<div>메인 레이아웃</div>
 
 </body>
 </html>
