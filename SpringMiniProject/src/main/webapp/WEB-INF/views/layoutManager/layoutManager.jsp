@@ -27,23 +27,11 @@
 	div.mainlayout1 div.main{
     	border: 1px solid gray;
     }
-
-    #logo {
-    	font-weight: bold;
-    	width: 20%;
-    	height: 200px;
-    	line-height: 200px;
-    	background-color: white;
-    	display: flex;
-    	justify-content: center;
-    	float: left;
-    	border: 1px solid red;
-    }
     
     #header {
-    	width: 80%;
-    	height: 200px;
-    	line-height: 200px;
+    	width: 100%;
+    	height: 100px;
+    	line-height: 100px;
     	display: flex;
     	justify-content: center;
     	float: right;
@@ -51,20 +39,21 @@
     }
     
     #menu {
+    	font-size: 26px;
     	float: left;
-    	width: 20%;
-    	height: 760px;
+    	width: 10%;
+    	height: 840px;
+    	line-height: 150px;
     	display: flex;
     	align-items: center;
-    	color: gray;
     	border: 1px solid magenta;
     	justify-content: center;
     }
     
     #change {
     	float: right;
-    	width: 80%;
-    	height: 760px;
+    	width: 90%;
+    	height: 840px;
     	border: 1px solid aqua;
     }
     
@@ -79,9 +68,6 @@
 </head>
 <body>
 	<div class="layoutManager">
-		<div class="change" id="logo">
-			<tiles:insertAttribute name="logo"/>
-		</div>
 		<div class="change" id="header">
 			<tiles:insertAttribute name="header"/>
 		</div>
