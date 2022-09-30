@@ -15,9 +15,47 @@
         *{
             font-family: 'Jua';
         }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header div {
+            flex: 1;
+        }
+
+        .logo {
+            flex: 1;
+            color: white;
+            height: 150px;
+            margin-left: 60px;
+        }
+
+        .header-mid {
+            flex: 5;
+        }
+
+        .header-right {
+            flex: 1;
+            font-size: 20px;
+            color: white;
+        }
     </style>
 </head>
 <body>
-
+<div class="header">
+    <div class="logo">
+        <h1 id="main-text">학원이름</h1>
+    </div>
+    <div class="header-mid"></div>
+    <div class="header-right">
+            <span>수능 D-Day</span>
+            <span>username님 화이팅</span>
+        <a href="account/accountForm">
+            <button class="logout-btn sub-header-btn">로그인</button>
+        </a>
+    </div>
+</div>
 </body>
 </html>
