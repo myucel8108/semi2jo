@@ -19,5 +19,11 @@
 </head>
 <body>
 <div>home file testing</div>
+<c:set var="root" value="<%=request.getContextPath() %>"></c:set>
+
+
+<button onclick="location.href='${root }/login'">로그인</button>
+<button onclick="location.href='${root }/addAccount'">회원가입</button>
+
 </body>
 </html>
