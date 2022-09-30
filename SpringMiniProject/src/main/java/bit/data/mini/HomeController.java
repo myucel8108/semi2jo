@@ -8,10 +8,14 @@ public class HomeController {
 	@GetMapping("/")
 	public String home() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return "home";
 =======
 		return "/mypage/layoutMypage/change";
 >>>>>>> origin/woojin
+=======
+		return "home";
+>>>>>>> origin/taemin
 	}
 
 }
