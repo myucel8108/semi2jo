@@ -15,9 +15,27 @@
         *{
             font-family: 'Jua';
         }
+        .footerdiv{
+        	text-align: center;
+
+        }
+        .footera{	
+        	text-decoration: none;
+        	color: black;
+        	margin-left: 10px;
+        }
+        
     </style>
 </head>
 <body>
+
+<div class="footerdiv">
+<a class="footera">회사소개</a>
+<a class="footera">인재채용 </a>
+<a class="footera">제휴제안</a>
+<a class="footera">이용약관 </a>
+<a class="footera">개인정보처리방침</a>
+</div>
 
 </body>
 </html>

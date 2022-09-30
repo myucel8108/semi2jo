@@ -9,5 +9,11 @@ public class HomeController {
 	public String home() {
 		return "/main/layoutMain/change";
 	}
+		
+		@GetMapping("/student/myCart")
+		public String Cart() {
+			return "/main/student/myCart";
+		}
+			
 	
 }
