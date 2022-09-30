@@ -26,22 +26,21 @@
 <body>
         <div id="mypagelist">
             <c:set var="root" value="<%=request.getContextPath() %>"/>
-            <ul>
+            <h1 style="text-align: center;">마이페이지</h1>
                 <ul>
                     <li>
-                        <a href="${root}/student/updateStudent">정보수정</a>
+                        <a href="${root}/student/updateStudent">나의 정보</a>
                             <ul>
-                                <li>나의 정보 조회</li>
+                                <li>정보 수정</li>
                                 <li>비밀번호 변경</li>
                                 <li>뭐하지</li>
                             </ul>
                     </li>
                     <li>
-                        <a>시간표</a>
+                        <a href="${root}/student/timeTable">시간표</a>
                         <ul>
-                            <li>나의 정보 조회</li>
-                            <li>비밀번호 변경</li>
-                            <li>뭐하지</li>
+                            <li>시간표 조회</li>
+                            <li>시간표 꾸미기</li>
                         </ul>
                     </li>
                     <li>
