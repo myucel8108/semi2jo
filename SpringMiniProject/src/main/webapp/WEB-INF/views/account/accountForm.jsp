@@ -67,16 +67,15 @@
                         </a>
                     </div>
                 </div>
-
-                <div class="container-login100-form-btn">
-                    <button class="login100-form-btn" id="btnlogin">
-                        Login
-                    </button>
-                    <button class="login100-form-btn" id="btnCreateAccount" onclick="location.href='/mini/insertAccountF'">
-                        Create Account
-                    </button>
-                </div>
             </form>
+            <div class="container-login100-form-btn">
+                <button class="login100-form-btn" id="btnlogin">
+                    Login
+                </button>
+                <button class="login100-form-btn" class="btnCreateAccount" onclick="location.href='insertAccountF'">
+                    Create Account
+                </button>
+            </div>
         </div>
     </div>
 </div>
@@ -104,6 +103,9 @@
             },
         });
     });
+
+    //회원가입 버튼 클릭
+
 
 </script>
 <!--===============================================================================================-->

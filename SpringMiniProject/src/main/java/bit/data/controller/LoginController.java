@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import util.ChangeName;
@@ -18,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/")
 public class LoginController {
 
     @Autowired
@@ -32,7 +34,8 @@ public class LoginController {
 
     //회원가입 페이지로 이동
     @GetMapping("/insertAccountF")
-    public String addAccount(){
+    public String insertAccount(){
+
         return "/mypage/account/accountAddForm";
     }
 

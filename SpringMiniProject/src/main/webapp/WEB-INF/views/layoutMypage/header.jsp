@@ -64,7 +64,9 @@
         </c:if>
     </div>
 </div>
-
+<button class="login100-form-btn" class="btnCreateAccount" onclick="location.href='insertAccountF'">
+    Create Account
+</button>
 <script>
     $("#btnloginMain").click(function () {
         location.href="${root}/loginF";
@@ -73,7 +75,7 @@
     $("#btnlogoutMain").click(function () {
         $.ajax({
             type:"get",
-            url:"${root}/logout",
+            url:"logout",
             dataType:"text",
             success:function(res){
                 location.reload();
