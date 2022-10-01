@@ -44,6 +44,7 @@
     </style>
 </head>
 <body>
+<c:set var="root" value="<%=request.getContextPath() %>"></c:set>
 <div class="header">
     <div class="logo">
         <h1 id="main-text">학원이름</h1>
@@ -52,10 +53,33 @@
     <div class="header-right">
             <span>수능 D-Day</span>
             <span>username님 화이팅</span>
-        <a href="account/accountForm">
-            <button class="logout-btn sub-header-btn">로그인</button>
-        </a>
+        <c:if test="${sessionScope.loginok==null }">
+            <button type="button" id="btnloginMain">로그인</button>
+        </c:if>
+
+        <c:if test="${sessionScope.loginok!=null }">
+            <b>${sessionScope.loginname}님</b>
+            &nbsp;&nbsp;
+            <button type="button" id="btnlogoutMain" >로그아웃</button>
+        </c:if>
     </div>
 </div>
+
+<script>
+    $("#btnloginMain").click(function () {
+        location.href="${root}/loginF";
+    });
+
+    $("#btnlogoutMain").click(function () {
+        $.ajax({
+            type:"get",
+            url:"${root}/logout",
+            dataType:"text",
+            success:function(res){
+                location.reload();
+            },
+        });
+    })
+</script>
 </body>
 </html>
