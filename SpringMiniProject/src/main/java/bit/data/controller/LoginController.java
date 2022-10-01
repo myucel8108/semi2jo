@@ -72,25 +72,25 @@ public class LoginController {
 
 
     //회원가입 insert
-    @PostMapping("/insert")
-    public void insert(HttpServletRequest request, UserDto dto, MultipartFile photo) {
-        //톰켓에 올라간 upload 폴더 경로 구하기
-        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
-        System.out.println(path);
-        //저장할 파일명 구하기
-        String fileName = ChangeName.getChangeFileName(photo.getOriginalFilename());
-        //dto의 photo의 경로
-        dto.setPhoto(fileName);
+    @PostMapping("/insertAccountA")
+    public String insert(UserDto dto) {
+//        //톰켓에 올라간 upload 폴더 경로 구하기
+//        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
+//        System.out.println(path);
+//        //저장할 파일명 구하기
+//        String fileName = ChangeName.getChangeFileName(photo.getOriginalFilename());
+//        //dto의 photo의 경로
+//        dto.setPhoto(fileName);
 
         //upload
-        try {
-            photo.transferTo(new File(path+"/"+fileName));
+//        try {
+//            photo.transferTo(new File(path+"/"+fileName));
             userService.insertUser(dto);
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        //return "redirect:/loginF";
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+        return "redirect:loginF";
 
         //return "redirect:list";//	/member/list 매핑주소 호출-컨트롤러메서드 호출
     }

@@ -30,7 +30,85 @@
     <link rel="stylesheet" type="text/css" href="css/account.css">
     <!--===============================================================================================-->
 </head>
+<style>
+    .checkid{
+        cursor: pointer;
+    }
+
+</style>
 <body>
+<script type="text/javascript">
+    $(function () {
+        //버튼 클릭시 사진 불러오는 이벤트 추가
+        $("#btnAccountPhoto").click(function () {
+            $(".userphoto").trigger("click");
+        });
+
+        //사진 불러오면 미리보기 하기
+        $("#myphoto").change(function(){
+            /* console.log("1:"+$(this)[0].files.length);
+            console.log("2:"+$(this)[0].files[0]); */
+            //정규표현식
+            var reg = /(.*?)\/(jpg|jpeg|png|bmp|gif)$/;
+            var f=$(this)[0].files[0];//현재 선택한 파일
+            if(!f.type.match(reg)){
+                alert("확장자가 이미지파일이 아닙니다");
+                return;
+            }
+            if($(this)[0].files[0]){
+                var reader=new FileReader();
+                reader.onload=function(e){
+                    $("#showimg").attr("src",e.target.result);
+                }
+                reader.readAsDataURL($(this)[0].files[0]);
+            }
+        });
+
+        //아이디 중복체크 버튼 이벤트
+        $("#btnidcheck").click(function () {
+            $.ajax({
+                type:"get",
+                dataType:"json",
+                url:"idcheck",
+                data:{"id":$("#loginid").val()},
+                success:function(res){
+                    if(res.count==0){
+                        $("div.idsuccess").text("ok");
+                    }else{
+                        $("div.idsuccess").text("fail");
+                    }
+                }
+            });
+        });
+
+        //2번째 비밀번호 입력시 체크
+        $("#pass2").keyup(function () {
+            var p1 = $("#pass").val();
+            var p2 = $(this).val();
+            if(p1==p2){
+                $("div.passsuccess").text("ok");
+            }else{
+                $("div.passsuccess").text("");
+            }
+        });
+    });//function
+
+    //submit 전에 호출
+    function check() {
+
+        //중복체크
+        if($("div.idsuccess").text()!='ok'){
+            alert("아이디 중복체크를 해주세요");
+            return false;
+        }
+
+        //비밀번호
+        if($("div.passsuccess").text()!='ok'){
+            alert("비밀번호가 다릅니다.");
+            return false;
+        }
+    }
+</script>
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
@@ -39,50 +117,46 @@
 						Create Account
 					</span>
             </div>
-
-            <form class="login100-form validate-form" >
+            <form class="login100-form validate-form" action="insertAccountA" method="post"
+                  enctype="multipart/form-data" onsubmit="return check()">
                 <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
                     <span class="label-input100">UserId</span>
-                    <input class="input100 userid" type="text" placeholder="Enter username">
+                    <input class="input100 " type="text" placeholder="Enter id" name="userid">
+                    <button type="button" class="checkid">check id</button>
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
                     <span class="label-input100">Password</span>
-                    <input class="input100 userpass" type="password" placeholder="Enter password">
+                    <input class="input100 " type="password" placeholder="Enter password" name="userpass">
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-                    <span class="label-input100">Password</span>
-                    <input class="input100 userpass" type="password" placeholder="Enter password">
+                    <span class="label-input100">Password Check</span>
+                    <input class="input100" type="password" placeholder="Enter password">
+                    <span class="checkpass"></span>
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-                    <span class="label-input100">Password</span>
-                    <input class="input100 userpass" type="password" placeholder="Enter password">
+                    <span class="label-input100">Name</span>
+                    <input class="input100 userpass" type="text" placeholder="Enter name" name="username">
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="flex-sb-m w-full p-b-30">
-                    <div class="contact100-form-checkbox">
-                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                        <label class="label-checkbox100" for="ckb1">
-                            Remember me
-                        </label>
-                    </div>
-
-                    <div>
-                        <a href="#" class="txt1">
-                            Forgot Password?
-                        </a>
-                    </div>
+                <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+                    <span class="label-input100">Photo</span>
+                    <input class="input100 userphoto" type="file" name="photo" style="display: none;">
+                    <button type="button" id="btnAccountPhoto" class="btn btn-secondary">사진선택</button>
+                    <br><br>
+                    <img id="showimg">
+                    <span class="focus-input100"></span>
                 </div>
 
                 <div class="container-login100-form-btn">
-                    <button class="login100-form-btn" id="btnlogin">
-                        Login
+                    <button class="login100-form-btn" id="btnlogin" type="submit">
+                        Create Account
                     </button>
                 </div>
             </form>
@@ -91,26 +165,6 @@
 </div>
 <script>
 
-    // 로그인 버튼 클릭 이벤트
-    $("#btnlogin").click(function () {
-        //아이디와 비번 읽기
-        var loginid = $(".loginid").val();
-        var loginpass = $(".loginpass").val();
-        var root = '${root}';
-        $.ajax({
-            type:"get",
-            url:root+"/loginA",
-            dataType:"json",
-            data:{"loginid":loginid,"loginpass":loginpass},
-            success:function(res){
-                if(res.result=='fail'){
-                    alert("아이디나 비번이 맞지 않습니다");
-                }else {
-                    location.reload();
-                }
-            },
-        });
-    });
 
 </script>
 <!--===============================================================================================-->
@@ -128,7 +182,7 @@
 <%--<!--===============================================================================================-->--%>
 <%--<script src="vendor/countdowntime/countdowntime.js"></script>--%>
 <!--===============================================================================================-->
-<script src="js/account.js"></script>
+<%--<script src="js/account.js"></script>--%>
 
 </body>
 </html>
