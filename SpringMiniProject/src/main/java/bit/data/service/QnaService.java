@@ -24,7 +24,7 @@ public class QnaService implements QnaServiceInter{
 	@Override
 	public int getTotalCount(String searchcolumn, String searchword) {
 		// TODO Auto-generated method stub
-		Map<String, String> map = new HashMap<>();
+		Map<String, String> map = new HashMap<String,String>();
 		map.put("searchcolumn", searchcolumn);
 		map.put("searchword", searchword);
 		
@@ -34,7 +34,7 @@ public class QnaService implements QnaServiceInter{
 	@Override
 	public List<QnaDto> getPagingList(String searchcolumn, String searchword, int startnum, int perpage) {
 		// TODO Auto-generated method stub
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<String,Object>();
 		map.put("searchcolumn", searchcolumn);
 		map.put("searchword", searchword);
 		map.put("startnum", startnum);
@@ -46,24 +46,24 @@ public class QnaService implements QnaServiceInter{
 	@Override
 	public void insertBoard(QnaDto dto) {
 		// TODO Auto-generated method stub
-		//»õ±ÛÀÎÁö ´ä±ÛÀÎÁö ÆÇ´ÜÇØ¼­ ·ÎÁ÷À» Â§´Ù
-		int num = dto.getQnanum(); //»õ ±ÛÀÏ °æ¿ì´Â 0ÀÌ µé¾î°¡ÀÖ´Ù
+		//ìƒˆê¸€ì¸ì§€ ë‹µê¸€ì¸ì§€ íŒë‹¨í•´ì„œ ë¡œì§ì„ ì§ ë‹¤
+		int num = dto.getQnanum(); //ìƒˆ ê¸€ì¼ ê²½ìš°ëŠ” 0ì´ ë“¤ì–´ê°€ìˆë‹¤
 		int regroup = dto.getRegroup();
 		int restep = dto.getRestep();
 		int relevel = dto.getRelevel();
 		
-		if(num==0) { //»õ ±ÛÀÎ °æ¿ì
+		if(num==0) { //ìƒˆ ê¸€ì¸ ê²½ìš°
 			regroup = this.getMaxNum()+1;
 			restep = 0;
 			relevel = 0;
-		} else { //´ä±ÛÀÏ °æ¿ì
-			//°°Àº ±×·ì Áß Àü´Ş ¹ŞÀº restepº¸´Ù Å« °ªµéÀº ¸ğµÎ ÀÏ°ıÀûÀ¸·Î +1À» ÇØÁØ´Ù
+		} else { //ë‹µê¸€ì¼ ê²½ìš°
+			//ê°™ì€ ê·¸ë£¹ ì¤‘ ì „ë‹¬ ë°›ì€ restepë³´ë‹¤ í° ê°’ë“¤ì€ ëª¨ë‘ ì¼ê´„ì ìœ¼ë¡œ +1ì„ í•´ì¤€ë‹¤
 			this.updateRestep(regroup, restep);
-			//±×¸®°í³ª¼­ Àü´Ş ¹ŞÀº °ªº¸´Ù 1 Å©°Ô db¿¡ ÀúÀåÇÑ´Ù
+			//ê·¸ë¦¬ê³ ë‚˜ì„œ ì „ë‹¬ ë°›ì€ ê°’ë³´ë‹¤ 1 í¬ê²Œ dbì— ì €ì¥í•œë‹¤
 			restep++;
 			relevel++;
 		}
-		//º¯°æµÈ °ªµéÀ» ´Ù½Ã dto¿¡ ³Ö´Â´Ù
+		//ë³€ê²½ëœ ê°’ë“¤ì„ ë‹¤ì‹œ dtoì— ë„£ëŠ”ë‹¤
 		dto.setRegroup(regroup);
 		dto.setRestep(restep);
 		dto.setRelevel(relevel);
@@ -74,7 +74,7 @@ public class QnaService implements QnaServiceInter{
 	@Override
 	public void updateRestep(int regroup, int restep) {
 		// TODO Auto-generated method stub
-		Map<String, Integer> map = new HashMap<>();
+		Map<String, Integer> map = new HashMap<String,Integer>();
 		map.put("regroup", regroup);
 		map.put("restep", restep);
 				
