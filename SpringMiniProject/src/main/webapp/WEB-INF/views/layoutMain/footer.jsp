@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
+
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,15 +17,10 @@
             font-family: 'Jua';
         }
     </style>
-=======
 
->>>>>>> origin/ldh
 </head>
 <body>
-         <!-- Footer Links -->
 
-<<<<<<< HEAD
-=======
             <!-- Copyright -->
             <div class="footer-copyright text-center">
                 <div class="gradient"></div>
@@ -40,6 +35,6 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   
->>>>>>> origin/ldh
+
 </body>
 </html>

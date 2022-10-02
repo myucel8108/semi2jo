@@ -1,109 +1,109 @@
-package bit.data.service;
-
-import bit.data.dao.QnaDaoInter;
-import bit.data.dto.QnaDto;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-@Service
-public class QnaService implements QnaServiceInter{
-
-    @Autowired
-    QnaDaoInter qnaDao;
-    @Override
-	public int getMaxNum() {
-		// TODO Auto-generated method stub
-		return qnaDao.getMaxNum();
-	}
-
-	@Override
-	public int getTotalCount(String searchcolumn, String searchword) {
-		// TODO Auto-generated method stub
-		Map<String, String> map = new HashMap<>();
-		map.put("searchcolumn", searchcolumn);
-		map.put("searchword", searchword);
-		
-		return qnaDao.getTotalCount(map);
-	}
-
-	@Override
-	public List<QnaDto> getPagingList(String searchcolumn, String searchword, int startnum, int perpage) {
-		// TODO Auto-generated method stub
-		Map<String, Object> map = new HashMap<>();
-		map.put("searchcolumn", searchcolumn);
-		map.put("searchword", searchword);
-		map.put("startnum", startnum);
-		map.put("perpage", perpage);
-		
-		return qnaDao.getPagingList(map);
-	}
-
-	@Override
-	public void insertBoard(QnaDto dto) {
-		// TODO Auto-generated method stub
-		//»õ±ÛÀÎÁö ´ä±ÛÀÎÁö ÆÇ´ÜÇØ¼­ ·ÎÁ÷À» Â§´Ù
-		int num = dto.getQnanum(); //»õ ±ÛÀÏ °æ¿ì´Â 0ÀÌ µé¾î°¡ÀÖ´Ù
-		int regroup = dto.getRegroup();
-		int restep = dto.getRestep();
-		int relevel = dto.getRelevel();
-		
-		if(num==0) { //»õ ±ÛÀÎ °æ¿ì
-			regroup = this.getMaxNum()+1;
-			restep = 0;
-			relevel = 0;
-		} else { //´ä±ÛÀÏ °æ¿ì
-			//°°Àº ±×·ì Áß Àü´Þ ¹ÞÀº restepº¸´Ù Å« °ªµéÀº ¸ðµÎ ÀÏ°ýÀûÀ¸·Î +1À» ÇØÁØ´Ù
-			this.updateRestep(regroup, restep);
-			//±×¸®°í³ª¼­ Àü´Þ ¹ÞÀº °ªº¸´Ù 1 Å©°Ô db¿¡ ÀúÀåÇÑ´Ù
-			restep++;
-			relevel++;
-		}
-		//º¯°æµÈ °ªµéÀ» ´Ù½Ã dto¿¡ ³Ö´Â´Ù
-		dto.setRegroup(regroup);
-		dto.setRestep(restep);
-		dto.setRelevel(relevel);
-		
-		qnaDao.insertBoard(dto);
-	}
-
-	@Override
-	public void updateRestep(int regroup, int restep) {
-		// TODO Auto-generated method stub
-		Map<String, Integer> map = new HashMap<>();
-		map.put("regroup", regroup);
-		map.put("restep", restep);
-				
-		qnaDao.updateRestep(map);
-	}
-
-	@Override
-	public QnaDto getData(int qnanum) {
-		// TODO Auto-generated method stub
-		return qnaDao.getData(qnanum);
-	}
-
-	@Override
-	public void updateBoard(QnaDto dto) {
-		// TODO Auto-generated method stub
-		qnaDao.updateBoard(dto);
-	}
-
-	@Override
-	public void deleteBoard(int qnanum) {
-		// TODO Auto-generated method stub
-		qnaDao.deleteBoard(qnanum);
-	}
-
-	@Override
-	public void updateReadCount(int qnanum) {
-		// TODO Auto-generated method stub
-		
-	}
-
-    
-}
+//package bit.data.service;
+//
+//import bit.data.dao.QnaDaoInter;
+//import bit.data.dto.QnaDto;
+//
+//import java.util.HashMap;
+//import java.util.List;
+//import java.util.Map;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Service;
+//
+//@Service
+//public class QnaService implements QnaServiceInter{
+//
+//    @Autowired
+//    QnaDaoInter qnaDao;
+//    @Override
+//	public int getMaxNum() {
+//		// TODO Auto-generated method stub
+//		return qnaDao.getMaxNum();
+//	}
+//
+//	@Override
+//	public int getTotalCount(String searchcolumn, String searchword) {
+//		// TODO Auto-generated method stub
+//		Map<String, String> map = new HashMap<>();
+//		map.put("searchcolumn", searchcolumn);
+//		map.put("searchword", searchword);
+//
+//		return qnaDao.getTotalCount(map);
+//	}
+//
+//	@Override
+//	public List<QnaDto> getPagingList(String searchcolumn, String searchword, int startnum, int perpage) {
+//		// TODO Auto-generated method stub
+//		Map<String, Object> map = new HashMap<>();
+//		map.put("searchcolumn", searchcolumn);
+//		map.put("searchword", searchword);
+//		map.put("startnum", startnum);
+//		map.put("perpage", perpage);
+//
+//		return qnaDao.getPagingList(map);
+//	}
+//
+//	@Override
+//	public void insertBoard(QnaDto dto) {
+//		// TODO Auto-generated method stub
+//		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Â§ï¿½ï¿½
+//		int num = dto.getQnanum(); //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ ï¿½ï¿½î°¡ï¿½Ö´ï¿½
+//		int regroup = dto.getRegroup();
+//		int restep = dto.getRestep();
+//		int relevel = dto.getRelevel();
+//
+//		if(num==0) { //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+//			regroup = this.getMaxNum()+1;
+//			restep = 0;
+//			relevel = 0;
+//		} else { //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+//			//ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ restepï¿½ï¿½ï¿½ï¿½ Å« ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ï°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ +1ï¿½ï¿½ ï¿½ï¿½ï¿½Ø´ï¿½
+//			this.updateRestep(regroup, restep);
+//			//ï¿½×¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1 Å©ï¿½ï¿½ dbï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
+//			restep++;
+//			relevel++;
+//		}
+//		//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ dtoï¿½ï¿½ ï¿½Ö´Â´ï¿½
+//		dto.setRegroup(regroup);
+//		dto.setRestep(restep);
+//		dto.setRelevel(relevel);
+//
+//		qnaDao.insertBoard(dto);
+//	}
+//
+//	@Override
+//	public void updateRestep(int regroup, int restep) {
+//		// TODO Auto-generated method stub
+//		Map<String, Integer> map = new HashMap<>();
+//		map.put("regroup", regroup);
+//		map.put("restep", restep);
+//
+//		qnaDao.updateRestep(map);
+//	}
+//
+//	@Override
+//	public QnaDto getData(int qnanum) {
+//		// TODO Auto-generated method stub
+//		return qnaDao.getData(qnanum);
+//	}
+//
+//	@Override
+//	public void updateBoard(QnaDto dto) {
+//		// TODO Auto-generated method stub
+//		qnaDao.updateBoard(dto);
+//	}
+//
+//	@Override
+//	public void deleteBoard(int qnanum) {
+//		// TODO Auto-generated method stub
+//		qnaDao.deleteBoard(qnanum);
+//	}
+//
+//	@Override
+//	public void updateReadCount(int qnanum) {
+//		// TODO Auto-generated method stub
+//
+//	}
+//
+//
+//}

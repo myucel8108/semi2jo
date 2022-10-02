@@ -1,237 +1,237 @@
-package bit.data.controller;
-
-import bit.data.dto.QnaDto;
-import bit.data.service.QnaServiceInter;
-import util.ChangeName;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-
-@Controller
-public class QnaController {
-
-    @Autowired
-    QnaServiceInter qnaService;
-	@GetMapping("/qna/qnaList")
-	public String board(@RequestParam(defaultValue = "1") int currentPage, //nullÀÏ °æ¿ì ±âº»ÆäÀÌÁö¸¦ 1
-						@RequestParam(value = "searchcolumn", required = false) String sc, //required = false : °ªÀÌ ¾øÀ» °æ¿ì null
-						@RequestParam(value = "searchword", required = false) String sw,
-						Model model) {
-		//ÆäÀÌÂ¡ Ã³¸®¿¡ ÇÊ¿äÇÑ º¯¼öµé
-		//ÀüÃ¼ °¹¼ö
-		int totalCount = qnaService.getTotalCount(sc, sw);
-		int perPage=10;//ÇÑÆäÀÌÁö´ç º¸¿©Áú ±ÛÀÇ °¹¼ö
-		int perBlock=5;//ÇÑºí·°´ç º¸¿©Áú ÆäÀÌÁöÀÇ °¹¼ö
-		int startNum;//db¿¡¼­ °¡Á®¿Ã ±ÛÀÇ ½ÃÀÛ¹øÈ£(mysqlÀº Ã¹±ÛÀÌ 0¹ø,¿À¶óÅ¬Àº 1¹ø)
-		int startPage;//°¢ºí·°´ç º¸¿©Áú ½ÃÀÛÆäÀÌÁö
-		int endPage;//°¢ ºí·°´ç º¸¿©Áú ³¡ÆäÀÌÁö
-		int totalPage;//ÃÑ ÆäÀÌÁö¼ö
-		int no;//°¢ ÆäÀÌÁö´ç Ãâ·ÂÇÒ ½ÃÀÛ¹øÈ£
-		
-		//ÃÑ ÆäÀÌÁö¼ö¸¦ ±¸ÇÑ´Ù
-		//ÃÑ±ÛÀÇ°¹¼ö/ÇÑÆäÀÌÁö´çº¸¿©Áú°¹¼ö·Î ³ª´®(7/5=1)
-		//³ª¸ÓÁö°¡ 1ÀÌ¶óµµ ÀÖÀ¸¸é ¹«Á¶°Ç 1ÆäÀÌÁö Ãß°¡(1+1=2ÆäÀÌÁö°¡ ÇÊ¿ä)
-		totalPage=totalCount/perPage+(totalCount%perPage==0?0:1);
-		
-		//°¢ ºí·°´ç º¸¿©Áú ½ÃÀÛÆäÀÌÁö
-		//perBlock=5 ÀÏ°æ¿ì ÇöÀçÆäÀÌÁö°¡ 1~5 ÀÏ°æ¿ì´Â ½ÃÀÛÆäÀÌÁö°¡ 1, ³¡ÆäÀÌÁö°¡ 5
-		//¸¸¾à ÇöÀçÆäÀÌÁö°¡ 13 ÀÏ°æ¿ì´Â ½ÃÀÛÆäÀÌÁö°¡ 11, ³¡ÆäÀÌÁö°¡ 15
-		startPage=(currentPage-1)/perBlock*perBlock+1;
-		endPage=startPage+perBlock-1;
-		//ÃÑÆäÀÌÁö¼ö°¡ 23°³ÀÏ°æ¿ì ¸¶Áö¸· ºí·°Àº ³¡ÆäÀÌÁö°¡ 25°¡ ¾Æ´Ï¶ó 23ÀÌ¶ó¾ßÇÑ´Ù
-		if(endPage>totalPage)
-			endPage=totalPage;
-		
-		//°¢ ÆäÀÌÁö¿¡¼­ º¸¿©Áú ½ÃÀÛ¹øÈ£
-		//¿¹: 1ÆäÀÌÁö->0, 2ÆäÀÌÁö:5, 3ÆäÀÌÁö : 10...
-		startNum=(currentPage-1)*perPage;
-		
-		//°¢ÆäÀÌÁö´ç Ãâ·ÂÇÒ ½ÃÀÛ¹øÈ£ ±¸ÇÏ±â
-		//¿¹: ÃÑ±Û°¹¼ö°¡ 23ÀÌ¶ó¸é  1ÆäÀÌÁö´Â 23,2ÆäÀÌÁö´Â 18,3ÆäÀÌÁö´Â 13...
-		no=totalCount-(currentPage-1)*perPage;
-		
-		//ÆäÀÌÁö¿¡¼­ º¸¿©Áú ±Û¸¸ °¡Á®¿À±â
-		List<QnaDto> list = qnaService.getPagingList(sc, sw, startNum, perPage);
-		
-
-		//request¿¡ Ãâ·Â ½Ã ÇÊ¿äÇÑ º¯¼öµéÀ» ³Ö¾îÁØ´Ù
-		model.addAttribute("list",list);
-		model.addAttribute("totalCount", totalCount);
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("no", no);
-		model.addAttribute("totalPage", totalPage);
-		
-		System.out.println("totalCount="+totalCount);
-		return "/bit/board/boardlist";
-	}
-	
-	
-	@GetMapping("/qna/qnaform")
-	public String bform(@RequestParam(defaultValue = "0") int qnanum,
-						@RequestParam(defaultValue = "0") int regroup,
-						@RequestParam(defaultValue = "0") int restep,
-						@RequestParam(defaultValue = "0") int relevel,
-						@RequestParam(defaultValue = "1") int currentPage,
-						Model model) {
-		//´ä±ÛÀÏ °æ¿ì¸¸ ³Ñ¾î¿À´Â °ªµé
-		//»õ ±ÛÀÏ °æ¿ì´Â ¸ðµÎ null ÀÌ¹Ç·Î defaultValue °ªÀ¸·Î Àü´Þ
-		model.addAttribute("qnanum", qnanum);
-		model.addAttribute("regroup", regroup);
-		model.addAttribute("restep", restep);
-		model.addAttribute("relevel", relevel);
-		model.addAttribute("currentPage", currentPage);
-		
-		//Á¦¸ñ¿¡ »õ ±ÛÀÏ °æ¿ì "", ´ä±ÛÀÏ °æ¿ì ÇØ´ç Á¦¸ñÀ» ³Ö¾îº¸ÀÚ
-		String subject = "";
-		if(qnanum>0) {
-			subject = qnaService.getData(qnanum).getSubject();
-		}
-		model.addAttribute("subject", subject);
-		
-		return "/bit/board/boardform";
-	}
-	
-	@PostMapping("/qna/insert")
-	public String insert(QnaDto dto, int currentPage, List<MultipartFile> upload, HttpServletRequest request) {
-		
-		//¾÷·Îµå °æ·Î
-		String path = request.getSession().getServletContext().getRealPath("/resources/upload");
-		System.out.println(path);
-		
-		//¾÷·Îµå¸¦ ¾ÈÇßÀ» °æ¿ì 0¹øÁöÀÇ ÆÄÀÏ¸íÀÌ ""ÀÌ µÈ´Ù
-		//¾÷·Îµå ¾ÈÇØµµ upload size°¡ 1ÀÌ µÈ´Ù
-		System.out.println(upload.size());
-		
-		if(upload.get(0).getOriginalFilename().equals("")) {
-			dto.setPhoto("no");
-		} else {
-			String photo = "";
-			int idx = 0;
-			for(MultipartFile multi:upload) {
-				//ÆÄÀÏ¸íÀ» ÇöÀç ³¯Â¥·Î º¯°æ ÈÄ ,·Î ¿¬°á
-				String newName = idx++ + "_" + ChangeName.getChangeFileName(multi.getOriginalFilename());
-				photo += newName + ",";
-				
-				//¾÷·Îµå
-				try {
-					multi.transferTo(new File(path + "/" + newName));
-				} catch (IllegalStateException | IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}			
-			//¸¶Áö¸· ÄÄ¸¶ Á¦°Å
-			photo = photo.substring(0, photo.length()-1);
-			//dto¿¡ ÀúÀå
-			dto.setPhoto(photo);
-		}
-		
-		//db¿¡ insert
-		qnaService.insertBoard(dto);
-		
-		return "redirect:list?currentPage=" + currentPage;
-	}
-	
-	@GetMapping("/board/detail")
-	public ModelAndView detail(int num, int currentPage) {
-		ModelAndView mview = new ModelAndView();
-		//Á¶È¸¼ö Áõ°¡
-		qnaService.updateReadCount(num);		
-		//num¿¡ ÇØ´çÇÏ´Â dto ¾ò±â
-		QnaDto dto = qnaService.getData(num);
-		//±Û¾´ »ç¶÷ÀÇ »çÁøÀ» memphoto
-		//ÀÌ ¶§ ±Û¾´ »ç¶÷ÀÌ Å»ÅðÇßÀ» °æ¿ì ³ÎÆ÷ÀÎÅÍ ¿¡·¯°¡ ¹ß»ý
-		String memphoto="";
-		try {
-		} catch(NullPointerException e) {
-			memphoto = "no";
-			dto.setUsername("Å»ÅðÇÑ È¸¿ø");
-		}
-		
-		mview.addObject("dto", dto);
-		mview.addObject("memphoto", memphoto);
-		mview.addObject("currentPage", currentPage);
-		
-		mview.setViewName("/bit/board/boarddetail");
-		return mview;
-	}
-	
-	
-	
-	@GetMapping("/board/delete")
-	public String delete(int qnanum, int currentPage) {
-		qnaService.deleteBoard(qnanum);
-		//»èÁ¦ ÈÄ º¸´ø ÆäÀÌÁö·Î ÀÌµ¿
-		return "redirect:list?currentPage="+currentPage;
-	}
-	
-	@PostMapping("/board/update")
-	public String update(QnaDto dto, int currentPage, List<MultipartFile> upload, HttpServletRequest request) {
-		
-		//¾÷·Îµå °æ·Î
-		String path = request.getSession().getServletContext().getRealPath("/resources/upload");
-		System.out.println(path);
-		
-		//¾÷·Îµå¸¦ ¾ÈÇßÀ» °æ¿ì 0¹øÁöÀÇ ÆÄÀÏ¸íÀÌ ""ÀÌ µÈ´Ù
-		//¾÷·Îµå ¾ÈÇØµµ upload size°¡ 1ÀÌ µÈ´Ù
-		System.out.println(upload.size());
-		
-		if(upload.get(0).getOriginalFilename().equals("")) {
-			dto.setPhoto(null); //±âÁ¸ »çÁøµéÀ» ¼öÁ¤ ¾ÈÇÑ´Ù			
-		} else {
-			String photo = "";
-			int idx = 0;
-			for(MultipartFile multi:upload) {
-				//ÆÄÀÏ¸íÀ» ÇöÀç ³¯Â¥·Î º¯°æ ÈÄ ,·Î ¿¬°á
-				String newName = idx++ + "_" + ChangeName.getChangeFileName(multi.getOriginalFilename());
-				photo += newName + ",";
-				
-				//¾÷·Îµå
-				try {
-					multi.transferTo(new File(path + "/" + newName));
-				} catch (IllegalStateException | IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}			
-			//¸¶Áö¸· ÄÄ¸¶ Á¦°Å
-			photo = photo.substring(0, photo.length()-1);
-			//dto¿¡ ÀúÀå
-			dto.setPhoto(photo);
-		}
-		
-		//db¿¡ insert
-		qnaService.updateBoard(dto);
-		
-		return "redirect:list?currentPage=" + currentPage + "&num=" + dto.getQnanum();
-	}
-	
-	@GetMapping("/board/updateform")
-	public String updateform(Model model, int num, int currentPage) {
-		//num¿¡ ÇØ´çÇÏ´Â dto ¾ò±â
-		QnaDto dto = qnaService.getData(num);
-		//model¿¡ ÀúÀå
-		model.addAttribute("dto", dto);
-		model.addAttribute("currentPage", currentPage);
-		
-		return "/bit/board/updateform";
-	}
-    
-}
+//package bit.data.controller;
+//
+//import bit.data.dto.QnaDto;
+//import bit.data.service.QnaServiceInter;
+//import util.ChangeName;
+//
+//import java.io.File;
+//import java.io.IOException;
+//import java.util.HashMap;
+//import java.util.List;
+//import java.util.Map;
+//
+//import javax.servlet.http.HttpServletRequest;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Controller;
+//import org.springframework.ui.Model;
+//import org.springframework.web.bind.annotation.GetMapping;
+//import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.ResponseBody;
+//import org.springframework.web.multipart.MultipartFile;
+//import org.springframework.web.servlet.ModelAndView;
+//
+//@Controller
+//public class QnaController {
+//
+//    @Autowired
+//    QnaServiceInter qnaService;
+//	@GetMapping("/qna/qnaList")
+//	public String board(@RequestParam(defaultValue = "1") int currentPage, //nullï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1
+//						@RequestParam(value = "searchcolumn", required = false) String sc, //required = false : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ null
+//						@RequestParam(value = "searchword", required = false) String sw,
+//						Model model) {
+//		//ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//		//ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
+//		int totalCount = qnaService.getTotalCount(sc, sw);
+//		int perPage=10;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//		int perBlock=5;//ï¿½Ñºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//		int startNum;//dbï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¹ï¿½È£(mysqlï¿½ï¿½ Ã¹ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Å¬ï¿½ï¿½ 1ï¿½ï¿½)
+//		int startPage;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//		int endPage;//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//		int totalPage;//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//		int no;//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¹ï¿½È£
+//
+//		//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½
+//		//ï¿½Ñ±ï¿½ï¿½Ç°ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½çº¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(7/5=1)
+//		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½Ì¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½(1+1=2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½)
+//		totalPage=totalCount/perPage+(totalCount%perPage==0?0:1);
+//
+//		//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//		//perBlock=5 ï¿½Ï°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1~5 ï¿½Ï°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 5
+//		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 13 ï¿½Ï°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 11, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 15
+//		startPage=(currentPage-1)/perBlock*perBlock+1;
+//		endPage=startPage+perBlock-1;
+//		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 23ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 25ï¿½ï¿½ ï¿½Æ´Ï¶ï¿½ 23ï¿½Ì¶ï¿½ï¿½ï¿½Ñ´ï¿½
+//		if(endPage>totalPage)
+//			endPage=totalPage;
+//
+//		//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¹ï¿½È£
+//		//ï¿½ï¿½: 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½->0, 2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:5, 3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : 10...
+//		startNum=(currentPage-1)*perPage;
+//
+//		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¹ï¿½È£ ï¿½ï¿½ï¿½Ï±ï¿½
+//		//ï¿½ï¿½: ï¿½Ñ±Û°ï¿½ï¿½ï¿½ï¿½ï¿½ 23ï¿½Ì¶ï¿½ï¿½  1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 23,2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 18,3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 13...
+//		no=totalCount-(currentPage-1)*perPage;
+//
+//		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//		List<QnaDto> list = qnaService.getPagingList(sc, sw, startNum, perPage);
+//
+//
+//		//requestï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½Ø´ï¿½
+//		model.addAttribute("list",list);
+//		model.addAttribute("totalCount", totalCount);
+//		model.addAttribute("currentPage", currentPage);
+//		model.addAttribute("startPage", startPage);
+//		model.addAttribute("endPage", endPage);
+//		model.addAttribute("no", no);
+//		model.addAttribute("totalPage", totalPage);
+//
+//		System.out.println("totalCount="+totalCount);
+//		return "/bit/board/boardlist";
+//	}
+//
+//
+//	@GetMapping("/qna/qnaform")
+//	public String bform(@RequestParam(defaultValue = "0") int qnanum,
+//						@RequestParam(defaultValue = "0") int regroup,
+//						@RequestParam(defaultValue = "0") int restep,
+//						@RequestParam(defaultValue = "0") int relevel,
+//						@RequestParam(defaultValue = "1") int currentPage,
+//						Model model) {
+//		//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¸¸ ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//		//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ null ï¿½Ì¹Ç·ï¿½ defaultValue ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//		model.addAttribute("qnanum", qnanum);
+//		model.addAttribute("regroup", regroup);
+//		model.addAttribute("restep", restep);
+//		model.addAttribute("relevel", relevel);
+//		model.addAttribute("currentPage", currentPage);
+//
+//		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ "", ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾îº¸ï¿½ï¿½
+//		String subject = "";
+//		if(qnanum>0) {
+//			subject = qnaService.getData(qnanum).getSubject();
+//		}
+//		model.addAttribute("subject", subject);
+//
+//		return "/bit/board/boardform";
+//	}
+//
+//	@PostMapping("/qna/insert")
+//	public String insert(QnaDto dto, int currentPage, List<MultipartFile> upload, HttpServletRequest request) {
+//
+//		//ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½
+//		String path = request.getSession().getServletContext().getRealPath("/resources/upload");
+//		System.out.println(path);
+//
+//		//ï¿½ï¿½ï¿½Îµå¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ ""ï¿½ï¿½ ï¿½È´ï¿½
+//		//ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½Øµï¿½ upload sizeï¿½ï¿½ 1ï¿½ï¿½ ï¿½È´ï¿½
+//		System.out.println(upload.size());
+//
+//		if(upload.get(0).getOriginalFilename().equals("")) {
+//			dto.setPhoto("no");
+//		} else {
+//			String photo = "";
+//			int idx = 0;
+//			for(MultipartFile multi:upload) {
+//				//ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ,ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//				String newName = idx++ + "_" + ChangeName.getChangeFileName(multi.getOriginalFilename());
+//				photo += newName + ",";
+//
+//				//ï¿½ï¿½ï¿½Îµï¿½
+//				try {
+//					multi.transferTo(new File(path + "/" + newName));
+//				} catch (IllegalStateException | IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
+//			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+//			photo = photo.substring(0, photo.length()-1);
+//			//dtoï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//			dto.setPhoto(photo);
+//		}
+//
+//		//dbï¿½ï¿½ insert
+//		qnaService.insertBoard(dto);
+//
+//		return "redirect:list?currentPage=" + currentPage;
+//	}
+//
+//	@GetMapping("/board/detail")
+//	public ModelAndView detail(int num, int currentPage) {
+//		ModelAndView mview = new ModelAndView();
+//		//ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//		qnaService.updateReadCount(num);
+//		//numï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ dto ï¿½ï¿½ï¿½
+//		QnaDto dto = qnaService.getData(num);
+//		//ï¿½Û¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ memphoto
+//		//ï¿½ï¿½ ï¿½ï¿½ ï¿½Û¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Å»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½
+//		String memphoto="";
+//		try {
+//		} catch(NullPointerException e) {
+//			memphoto = "no";
+//			dto.setUsername("Å»ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½");
+//		}
+//
+//		mview.addObject("dto", dto);
+//		mview.addObject("memphoto", memphoto);
+//		mview.addObject("currentPage", currentPage);
+//
+//		mview.setViewName("/bit/board/boarddetail");
+//		return mview;
+//	}
+//
+//
+//
+//	@GetMapping("/board/delete")
+//	public String delete(int qnanum, int currentPage) {
+//		qnaService.deleteBoard(qnanum);
+//		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
+//		return "redirect:list?currentPage="+currentPage;
+//	}
+//
+//	@PostMapping("/board/update")
+//	public String update(QnaDto dto, int currentPage, List<MultipartFile> upload, HttpServletRequest request) {
+//
+//		//ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½
+//		String path = request.getSession().getServletContext().getRealPath("/resources/upload");
+//		System.out.println(path);
+//
+//		//ï¿½ï¿½ï¿½Îµå¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ ""ï¿½ï¿½ ï¿½È´ï¿½
+//		//ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½Øµï¿½ upload sizeï¿½ï¿½ 1ï¿½ï¿½ ï¿½È´ï¿½
+//		System.out.println(upload.size());
+//
+//		if(upload.get(0).getOriginalFilename().equals("")) {
+//			dto.setPhoto(null); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½
+//		} else {
+//			String photo = "";
+//			int idx = 0;
+//			for(MultipartFile multi:upload) {
+//				//ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ,ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//				String newName = idx++ + "_" + ChangeName.getChangeFileName(multi.getOriginalFilename());
+//				photo += newName + ",";
+//
+//				//ï¿½ï¿½ï¿½Îµï¿½
+//				try {
+//					multi.transferTo(new File(path + "/" + newName));
+//				} catch (IllegalStateException | IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
+//			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+//			photo = photo.substring(0, photo.length()-1);
+//			//dtoï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//			dto.setPhoto(photo);
+//		}
+//
+//		//dbï¿½ï¿½ insert
+//		qnaService.updateBoard(dto);
+//
+//		return "redirect:list?currentPage=" + currentPage + "&num=" + dto.getQnanum();
+//	}
+//
+//	@GetMapping("/board/updateform")
+//	public String updateform(Model model, int num, int currentPage) {
+//		//numï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ dto ï¿½ï¿½ï¿½
+//		QnaDto dto = qnaService.getData(num);
+//		//modelï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//		model.addAttribute("dto", dto);
+//		model.addAttribute("currentPage", currentPage);
+//
+//		return "/bit/board/updateform";
+//	}
+//
+//}

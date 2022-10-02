@@ -7,9 +7,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<<<<<<< HEAD
 
-=======
   <span class="position-absolute trigger"><!-- hidden trigger to apply 'stuck' styles --></span>
     <nav class="navbar navbar-expand-sm sticky-top navbar-dark">
         <div class="container">
@@ -44,6 +42,6 @@
         </div>
         <!--container end-->
     </nav>
->>>>>>> origin/ldh
+
 </body>
 </html>

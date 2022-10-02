@@ -7,11 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 	@GetMapping("/")
 	public String home() {
-		return "/manager/manager/addLectureForm";
+		return "/main/layoutMain/change";
 	}
-<<<<<<< HEAD
-}
-=======
+
 		
 		@GetMapping("/student/myCart")
 		public String Cart() {
@@ -22,4 +20,3 @@ public class HomeController {
 		
 		
 }
->>>>>>> origin/ldh

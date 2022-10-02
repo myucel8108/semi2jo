@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-<<<<<<< HEAD
+
     <title>Insert title here</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link
@@ -17,10 +17,7 @@
             font-family: 'Jua';
         }
     </style>
-</head>
-<body>
 
-=======
  
 </head>
 <body>
@@ -352,6 +349,6 @@
                 <!-- Grid row -->
 
             </div>
->>>>>>> origin/ldh
+
 </body>
 </html>

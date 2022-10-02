@@ -18,10 +18,8 @@
         }
     </style>
 </head>
-<body>
 
-=======
-</head>
+
 <body>
  <header class="header bg">
         <div class="container text-white">
@@ -45,6 +43,6 @@
         </div>
         <!--container-->
     </header>
->>>>>>> origin/ldh
+
 </body>
 </html>

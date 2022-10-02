@@ -12,12 +12,7 @@ public class UserController {
     @Autowired
     UserServiceInter userService;
 
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> origin/Joonmin
     @GetMapping("/student/updateStudent")
     public String updateStudent()
     {
