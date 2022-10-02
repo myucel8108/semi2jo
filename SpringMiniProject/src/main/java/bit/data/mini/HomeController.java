@@ -7,9 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 	@GetMapping("/")
 	public String home() {
-
-		return "/mypage/layoutMypage/change";
-
+		return "/manager/manager/addLectureForm";
 	}
-
 }
