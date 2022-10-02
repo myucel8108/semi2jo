@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bit.data.dao.BoardDao">
-
+    <insert id="insertBoard" parameterType="boardDto">
+        insert into board (boardtype, usernum, userid, nickname, subject, content, photo, readcount, likes, report, writeday)
+        values (#{boardtype}, #{usernum}, #{userid}, #{nickname}, #{subject}, #{content}, #{photo}, 0, 0, 0, now())
+    </insert>
+    <select id="getTotalCount" parameterType="Map" resultType="int">
+        select count(*) from board
+        <if test="searchcolumn!=null and searchword!=null">
+            where ${searchcolumn} like concat('%',#{searchword},'%')
+        </if>
+    </select>
+    <select id="getPagingList" parameterType="Map" resultType="boardDto">
+        select * from board
+        <if test="searchcolumn!=null and searchword!=null">
+            where ${searchcolumn} like concat('%',#{searchword},'%')
+        </if>
+        order by boardnum desc limit #{startnum},#{perpage}
+    </select>
+    <select id="selectByNum" parameterType="int" resultType="boardDto">
+        select * from board where boardnum = #{boardnum}
+    </select>
+    <update id="updateReadCount" parameterType="int">
+        update board set
+            readcount = readcount+1 where boardnum = #{boardnum}
+    </update>
+    <update id="updateBoard" parameterType="boardDto">
+        update board set subject = #{subject}, content = #{content}
+        <if test="photo!=null">
+            ,photo = #{photo}
+        </if>
+        where boardnum = #{boardnum}
+    </update>
+    <delete id="deleteBoard" parameterType="int">
+        delete from board where boardnum = #{boardnum}
+    </delete>
 </mapper>
