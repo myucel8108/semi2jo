@@ -31,12 +31,98 @@
     <!--===============================================================================================-->
 </head>
 <style>
-    .checkid{
+    #check-id{
         cursor: pointer;
     }
 
 </style>
 <body>
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-form-title" >
+					<span class="login100-form-title-1">
+						Create Account
+					</span>
+            </div>
+            <form class="login100-form validate-form" action="insertAccountA" method="post"
+                  enctype="multipart/form-data" onsubmit="return check()">
+                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                    <span class="label-input100">UserId</span>
+                    <input class="input100 userid" type="text" placeholder="Enter id" name="userid" required="required">
+                    <span id="check-id">check id</span>
+
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+                    <span class="label-input100">Password</span>
+                    <input class="input100 check-pass-one" type="password" placeholder="Enter password" name="userpass" required="required">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+                    <span class="label-input100">Password Check</span>
+                    <input class="input100 check-pass-two" type="password" placeholder="Enter password" required="required">
+                    <span id="check-pass"></span>
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+                    <span class="label-input100">Name</span>
+                    <input class="input100 userpass" type="text" placeholder="Enter name" name="username">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+                    <span class="label-input100">Photo</span>
+                    <input class="input100 userphoto" type="file" name="photo" style="display: none;">
+                    <button type="button" id="btnAccountPhoto" class="btn btn-secondary">사진선택</button>
+                    <br><br>
+                    <img id="showimg">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+                    <span class="label-input100">nick Name</span>
+                    <input class="input100" type="text" placeholder="Enter name" name="nickname">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+                    <span class="label-input100">email</span>
+                    <input class="input100" type="text" placeholder="Enter name" name="email">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+                    <span class="label-input100">addr</span>
+                    <input class="input100" type="text" placeholder="Enter name" name="addr">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+                    <span class="label-input100">hp</span>
+                    <input class="input100" type="text" placeholder="Enter name" name="hp" pattern="[0-9]{11,}">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+                    <span class="label-input100">birth</span>
+                    <input class="input100" type="date" placeholder="Enter name" name="birth">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn" id="btnlogin" type="submit">
+                        Create Account
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <script type="text/javascript">
     $(function () {
         //버튼 클릭시 사진 불러오는 이벤트 추가
@@ -45,7 +131,7 @@
         });
 
         //사진 불러오면 미리보기 하기
-        $("#myphoto").change(function(){
+        $(".userphoto").change(function(){
             /* console.log("1:"+$(this)[0].files.length);
             console.log("2:"+$(this)[0].files[0]); */
             //정규표현식
@@ -65,30 +151,46 @@
         });
 
         //아이디 중복체크 버튼 이벤트
-        $("#btnidcheck").click(function () {
+        $("#check-id").click(function () {
+            // var temp = document.getElementById("check-id");
             $.ajax({
                 type:"get",
                 dataType:"json",
-                url:"idcheck",
-                data:{"id":$("#loginid").val()},
+                url:"/mini/checkId",
+                data:{"userid":$(".userid").val()},
                 success:function(res){
-                    if(res.count==0){
-                        $("div.idsuccess").text("ok");
+                    console.log("checkajax");
+                    if(res.result==0){
+                        // $("span#check-id").text("ok");
+                        // temp.style.display ='none';
+                        var temp = document.getElementById("check-id");
+                        temp.style.display ='none';
+                        $("span#check-id").text("ok");
                     }else{
-                        $("div.idsuccess").text("fail");
+                        $("span#check-id").text("try again");
                     }
                 }
             });
         });
 
+        //아이디 입력 혹은 수정시 무조건 check id 하라고 알려줌
+        $(".userid").keyup(function () {
+            console.log("btn");
+            $("span#check-id").text("check id");
+            var temp = document.getElementById("check-id");
+            temp.style.display ='block';
+        });
+
         //2번째 비밀번호 입력시 체크
-        $("#pass2").keyup(function () {
-            var p1 = $("#pass").val();
+        $(".check-pass-two").keyup(function () {
+            var p1 = $(".check-pass-one").val();
             var p2 = $(this).val();
             if(p1==p2){
-                $("div.passsuccess").text("ok");
+                var temp = document.getElementById("check-pass");
+                temp.style.display ='none';
+                $("#check-pass").text("ok");
             }else{
-                $("div.passsuccess").text("");
+                $("#check-pass").text("incorrect");
             }
         });
     });//function
@@ -97,75 +199,17 @@
     function check() {
 
         //중복체크
-        if($("div.idsuccess").text()!='ok'){
+        if($("#check-id").text()!='ok'){
             alert("아이디 중복체크를 해주세요");
             return false;
         }
 
         //비밀번호
-        if($("div.passsuccess").text()!='ok'){
+        if($("#check-pass").text()!='ok'){
             alert("비밀번호가 다릅니다.");
             return false;
         }
     }
-</script>
-<div class="limiter">
-    <div class="container-login100">
-        <div class="wrap-login100">
-            <div class="login100-form-title" >
-					<span class="login100-form-title-1">
-						Create Account
-					</span>
-            </div>
-            <form class="login100-form validate-form" action="insertAccountA" method="post"
-                  enctype="multipart/form-data" onsubmit="return check()">
-                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                    <span class="label-input100">UserId</span>
-                    <input class="input100 " type="text" placeholder="Enter id" name="userid">
-                    <button type="button" class="checkid">check id</button>
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-                    <span class="label-input100">Password</span>
-                    <input class="input100 " type="password" placeholder="Enter password" name="userpass">
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-                    <span class="label-input100">Password Check</span>
-                    <input class="input100" type="password" placeholder="Enter password">
-                    <span class="checkpass"></span>
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-                    <span class="label-input100">Name</span>
-                    <input class="input100 userpass" type="text" placeholder="Enter name" name="username">
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-                    <span class="label-input100">Photo</span>
-                    <input class="input100 userphoto" type="file" name="photo" style="display: none;">
-                    <button type="button" id="btnAccountPhoto" class="btn btn-secondary">사진선택</button>
-                    <br><br>
-                    <img id="showimg">
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="container-login100-form-btn">
-                    <button class="login100-form-btn" id="btnlogin" type="submit">
-                        Create Account
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<script>
-
-
 </script>
 <!--===============================================================================================-->
 <%--<script src="vendor/jquery/jquery-3.2.1.min.js"></script>--%>
