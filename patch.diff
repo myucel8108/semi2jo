@@ -1,0 +1,887 @@
+From 20ec0f53f8284cf5b80fb7c44747c201ec710d10 Mon Sep 17 00:00:00 2001
+From: LDH <wizget0508@gmail.com>
+Date: Sun, 2 Oct 2022 13:23:07 +0900
+Subject: [PATCH] =?UTF-8?q?Revert=20"=EC=9A=B0=EC=A7=84"?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+This reverts commit aa0fb65841770394fcb2b85be44b3e5b43bc10e4.
+---
+ SpringMiniProject/pom.xml                     |   7 +-
+ .../bit/data/controller/BoardController.java  | 111 ------------------
+ .../bit/data/controller/UserController.java   |  99 ++++++++--------
+ .../src/main/java/bit/data/dao/BoardDao.java  |  32 -----
+ .../main/java/bit/data/dao/BoardDaoInter.java |  18 ---
+ .../src/main/java/bit/data/dto/BoardDto.java  |  15 ---
+ .../java/bit/data/mini/HomeController.java    |   2 -
+ .../java/bit/data/service/BoardService.java   |  40 -------
+ .../bit/data/service/BoardServiceInter.java   |  14 ---
+ .../src/main/resources/mapper/BoardMapper.xml |  25 +---
+ .../spring/appServlet/servlet-context.xml     |  11 +-
+ .../WEB-INF/views/board/boardDetail.jsp       |  67 +----------
+ .../webapp/WEB-INF/views/board/boardForm.jsp  |  60 +---------
+ .../webapp/WEB-INF/views/board/boardFree.jsp  |  72 +-----------
+ .../views/layoutMypage/layoutMypage.jsp       |   8 +-
+ .../WEB-INF/views/student/updateStudent.jsp   |   2 +-
+ .../main/webapp/resources/upload/delete.html  |  13 ++
+ 17 files changed, 85 insertions(+), 511 deletions(-)
+ create mode 100644 SpringMiniProject/src/main/webapp/resources/upload/delete.html
+
+diff --git a/SpringMiniProject/pom.xml b/SpringMiniProject/pom.xml
+index 9a79bc4..d91c82e 100644
+--- a/SpringMiniProject/pom.xml
++++ b/SpringMiniProject/pom.xml
+@@ -69,8 +69,7 @@
+ 		    <artifactId>commons-fileupload</artifactId>
+ 		    <version>1.2.2</version>
+ 		</dependency>
+-
+-
++		
+ 		<!-- db setting -->
+ 		<dependency>
+ 			<groupId>org.springframework</groupId>
+@@ -207,8 +206,8 @@
+                 <artifactId>maven-compiler-plugin</artifactId>
+                 <version>2.5.1</version>
+                 <configuration>
+-                    <source>7</source>
+-                    <target>7</target>
++                    <source>1.6</source>
++                    <target>1.6</target>
+                     <compilerArgument>-Xlint:all</compilerArgument>
+                     <showWarnings>true</showWarnings>
+                     <showDeprecation>true</showDeprecation>
+diff --git a/SpringMiniProject/src/main/java/bit/data/controller/BoardController.java b/SpringMiniProject/src/main/java/bit/data/controller/BoardController.java
+index b1fea45..45be2e5 100644
+--- a/SpringMiniProject/src/main/java/bit/data/controller/BoardController.java
++++ b/SpringMiniProject/src/main/java/bit/data/controller/BoardController.java
+@@ -1,123 +1,12 @@
+ package bit.data.controller;
+ 
+-import bit.data.dto.BoardDto;
+ import bit.data.service.BoardServiceInter;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Controller;
+-import org.springframework.ui.Model;
+-import org.springframework.web.bind.annotation.GetMapping;
+-import org.springframework.web.bind.annotation.PostMapping;
+-import org.springframework.web.bind.annotation.RequestParam;
+-import org.springframework.web.multipart.MultipartFile;
+-import org.springframework.web.servlet.ModelAndView;
+-import util.ChangeName;
+-
+-import javax.servlet.http.HttpServletRequest;
+-import java.io.File;
+-import java.io.IOException;
+-import java.nio.file.Path;
+-import java.nio.file.Paths;
+-import java.util.List;
+ 
+ @Controller
+ public class BoardController {
+ 
+     @Autowired
+     BoardServiceInter boardService;
+-
+-    @GetMapping("/board/boardForm")
+-    public String boardForm(){
+-
+-        return "/mypage/board/boardForm";
+-    }
+-
+-    @GetMapping("/board/boardDetail")
+-    public ModelAndView boardDetail(int boardnum, int currentPage){
+-
+-        ModelAndView mview = new ModelAndView();
+-
+-        boardService.updateReadCount(boardnum);
+-
+-        BoardDto dto = boardService.selectByNum(boardnum);
+-
+-        mview.addObject("dto", dto);
+-        mview.addObject("currentPage", currentPage);
+-
+-        mview.setViewName("/mypage/board/boardDetail");
+-
+-        return mview;
+-    }
+-
+-    @PostMapping("/board/insert")
+-    public String insert(BoardDto dto, List<MultipartFile>upload, HttpServletRequest request)
+-    {
+-        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
+-
+-        System.out.println(path);
+-        System.out.println(upload.size());
+-
+-        if (upload.get(0).getOriginalFilename().equals("")) {
+-            dto.setPhoto("no");
+-        } else {
+-            String photo = "";
+-          for(MultipartFile multi:upload)
+-            {
+-                String newName = ChangeName.getChangeFileName(multi.getOriginalFilename());
+-                photo+=newName+",";
+-
+-                try {
+-                    Path paths= Paths.get(path+"/"+newName);
+-                    multi.transferTo(paths);
+-                } catch (Exception e) {
+-                   // throw new RuntimeException(e);
+-                    System.out.println("파일오류:"+e.getMessage());
+-                }
+-            }
+-            photo = photo.substring(0, photo.length()-1);
+-            dto.setPhoto(photo);
+-        }
+-        boardService.insertBoard(dto);
+-        return "redirect:boardFree";
+-    }
+-
+-    @GetMapping("/board/boardFree")
+-    public String board(
+-            @RequestParam(defaultValue = "1") int currentPage,
+-            @RequestParam(value = "searchcolumn" ,required = false) String sc,
+-            @RequestParam(value = "searchword" ,required = false) String sw,
+-            Model model
+-    )
+-    {
+-        int totalCount=boardService.getTotalCount(sc,sw);
+-        int perPage=10;
+-        int perBlock=10;
+-        int startNum;
+-        int startPage;
+-        int endPage;
+-        int totalPage;
+-        int no;
+-        totalPage=totalCount/perPage+(totalCount%perPage==0?0:1);
+-
+-        startPage=(currentPage-1)/perBlock*perBlock+1;
+-        endPage=startPage+perBlock-1;
+-
+-        if(endPage>totalPage)
+-            endPage=totalPage;
+-
+-        startNum=(currentPage-1)*perPage;
+-
+-        no=totalCount-(currentPage-1)*perPage;
+-
+-        List<BoardDto> list = boardService.getPagingList(sc, sw, startNum, perPage);
+-        model.addAttribute("list", list);
+-        model.addAttribute("totalCount", totalCount);
+-        model.addAttribute("currentPage", currentPage);
+-        model.addAttribute("startPage", startPage);
+-        model.addAttribute("endPage", endPage);
+-        model.addAttribute("no", no);
+-        model.addAttribute("totalPage", totalPage);
+-
+-        return "/mypage/board/boardFree";
+-    }
+-
+ }
+diff --git a/SpringMiniProject/src/main/java/bit/data/controller/UserController.java b/SpringMiniProject/src/main/java/bit/data/controller/UserController.java
+index fec16a8..037e8ed 100644
+--- a/SpringMiniProject/src/main/java/bit/data/controller/UserController.java
++++ b/SpringMiniProject/src/main/java/bit/data/controller/UserController.java
+@@ -27,15 +27,15 @@ public class UserController {
+     UserServiceInter userService;
+ 
+ 
+-//    @GetMapping("/loginF")
+-//    public String loginF(){
+-//        return "account/accountForm";
+-//    }
+-
+-//    @GetMapping(value = "/loginA")
+-//    @ResponseBody
+-//    public Map<String, String> loginprocess(String id, String pass, HttpSession session){
+-//        Map<String, String> map=new HashMap<String, String>();
++    @GetMapping("/loginF")
++    public String loginF(){
++        return "account/accountForm";
++    }
++
++    @GetMapping("/loginA")
++    @ResponseBody
++    public Map<String, String> loginprocess(String id, String pass, HttpSession session){
++        Map<String, String> map=new HashMap<String, String>();
+ //        int result=userService.getIdPassCheck(id, pass);
+ //        if(result==1){//아이디와 패스가 모두 맞는 경우
+ //            //유지 시간 설정
+@@ -48,12 +48,12 @@ public class UserController {
+ //            session.setAttribute("loginphoto", mdto.getPhoto());
+ //        }
+ //        map.put("result",result==1?"success":"fail");
+-//
+-//        return map;
+-//    }
++
++        return map;
++    }
+ 
+ 
+-   /* @GetMapping("/addAccount")
++    @GetMapping("/addAccount")
+     public String addAccount(){
+         return "account/accountAddForm";
+     }
+@@ -61,43 +61,42 @@ public class UserController {
+     @PostMapping("/createAccount")
+     public String createAccount(){
+         return "account/accountForm";
+-    }*/
+-//
+-//    //회원가입 insert
+-//    @PostMapping("/insert")
+-//    public String insert(HttpServletRequest request, UserDto dto, MultipartFile photo) {
+-//        //톰켓에 올라간 upload 폴더 경로 구하기
+-//        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
+-//        System.out.println(path);
+-//        //저장할 파일명 구하기
+-//        String fileName = ChangeName.getChangeFileName(photo.getOriginalFilename());
+-//        //dto의 photo의 경로
+-//        dto.setPhoto(fileName);
+-//
+-//        //upload
+-//        try {
+-//            photo.transferTo(new File(path+"/"+fileName));
+-//            userService.insertUser(dto);
+-//
+-//        } catch (IOException e) {
+-//            throw new RuntimeException(e);
+-//        }
+-//        return "account/accountAddForm";
+-//        //return "redirect:list";//	/member/list 매핑주소 호출-컨트롤러메서드 호출
+-//    }
+-//    @GetMapping("/student/updateStudent")
+-//    public String updateStudent()
+-//    {
+-//        return "/mypage/student/updateStudent";
+-//    }
+-//
+-//    @GetMapping("/student/timeTable")
+-//    public String time(){
+-//
+-//        return "/mypage/student/timeTable";
+-//
+-//    }
+-//
++    }
++
++    //회원가입 insert
++    @PostMapping("/insert")
++    public String insert(HttpServletRequest request, UserDto dto, MultipartFile photo) {
++        //톰켓에 올라간 upload 폴더 경로 구하기
++        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
++        System.out.println(path);
++        //저장할 파일명 구하기
++        String fileName = ChangeName.getChangeFileName(photo.getOriginalFilename());
++        //dto의 photo의 경로
++        dto.setPhoto(fileName);
++
++        //upload
++        try {
++            photo.transferTo(new File(path+"/"+fileName));
++            userService.insertUser(dto);
+ 
++        } catch (IOException e) {
++            throw new RuntimeException(e);
++        }
++        return "account/accountAddForm";
++        //return "redirect:list";//	/member/list 매핑주소 호출-컨트롤러메서드 호출
++    }
++
++    @GetMapping("/student/updateStudent")
++    public String updateStudent()
++    {
++        return "/mypage/student/updateStudent";
++    }
++
++    @GetMapping("/student/timeTable")
++    public String time(){
++
++        return "/mypage/student/timeTable";
++
++    }
+ 
+ }
+diff --git a/SpringMiniProject/src/main/java/bit/data/dao/BoardDao.java b/SpringMiniProject/src/main/java/bit/data/dao/BoardDao.java
+index 5dff06a..d4153a6 100644
+--- a/SpringMiniProject/src/main/java/bit/data/dao/BoardDao.java
++++ b/SpringMiniProject/src/main/java/bit/data/dao/BoardDao.java
+@@ -1,45 +1,13 @@
+ package bit.data.dao;
+ 
+-import bit.data.dto.BoardDto;
+ import org.apache.ibatis.session.SqlSession;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Repository;
+ 
+-import java.util.List;
+-import java.util.Map;
+-
+ @Repository
+ public class BoardDao implements BoardDaoInter{
+ 
+     @Autowired
+     SqlSession session;
+ 
+-    String ns = "bit.data.dao.BoardDao.";
+-
+-    @Override
+-    public void insertBoard(BoardDto dto) {
+-        session.insert(ns+"insertBoard", dto);
+-    }
+-
+-    @Override
+-    public int getTotalCount(Map<String, String> map) {
+-        // TODO Auto-generated method stub
+-        return session.selectOne(ns+"getTotalCount", map);
+-    }
+-
+-    @Override
+-    public List<BoardDto> getPagingList(Map<String, Object> map) {
+-        // TODO Auto-generated method stub
+-        return session.selectList(ns+"getPagingList", map);
+-    }
+-    @Override
+-    public BoardDto selectByNum(int boardnum) {
+-        // TODO Auto-generated method stub
+-        return session.selectOne(ns+"selectByNum", boardnum);
+-    }
+-
+-    @Override
+-    public void updateReadCount(int boardnum) {
+-        session.update(ns+"updateReadCount", boardnum);
+-    }
+ }
+diff --git a/SpringMiniProject/src/main/java/bit/data/dao/BoardDaoInter.java b/SpringMiniProject/src/main/java/bit/data/dao/BoardDaoInter.java
+index ccbd17b..47e092d 100644
+--- a/SpringMiniProject/src/main/java/bit/data/dao/BoardDaoInter.java
++++ b/SpringMiniProject/src/main/java/bit/data/dao/BoardDaoInter.java
+@@ -1,22 +1,4 @@
+ package bit.data.dao;
+ 
+-import bit.data.dto.BoardDto;
+-
+-import java.util.List;
+-import java.util.Map;
+-
+ public interface BoardDaoInter {
+-
+-    public void insertBoard(BoardDto dto);
+-
+-    public List<BoardDto> getPagingList(Map<String, Object> map);
+-    public int getTotalCount(Map<String, String>map);
+-
+-    public BoardDto selectByNum(int boardnum);
+-    public void updateReadCount(int boardnum);
+-
+-
+-
+-
+-
+ }
+diff --git a/SpringMiniProject/src/main/java/bit/data/dto/BoardDto.java b/SpringMiniProject/src/main/java/bit/data/dto/BoardDto.java
+index 26b4f21..c31dde9 100644
+--- a/SpringMiniProject/src/main/java/bit/data/dto/BoardDto.java
++++ b/SpringMiniProject/src/main/java/bit/data/dto/BoardDto.java
+@@ -2,22 +2,7 @@ package bit.data.dto;
+ 
+ import lombok.Data;
+ 
+-import java.sql.Timestamp;
+-
+ @Data
+ public class BoardDto {
+ 
+-    private int boardnum;
+-    private String boardtype;
+-    private int usernum;
+-    private String userid;
+-    private String nickname;
+-    private String subject;
+-    private String content;
+-    private String photo;
+-    private int readcount;
+-    private int likes;
+-    private int report;
+-    private Timestamp writeday;
+-
+ }
+diff --git a/SpringMiniProject/src/main/java/bit/data/mini/HomeController.java b/SpringMiniProject/src/main/java/bit/data/mini/HomeController.java
+index 2271c39..c337180 100644
+--- a/SpringMiniProject/src/main/java/bit/data/mini/HomeController.java
++++ b/SpringMiniProject/src/main/java/bit/data/mini/HomeController.java
+@@ -8,9 +8,7 @@ public class HomeController {
+ 	@GetMapping("/")
+ 	public String home() {
+ 
+-		//return "/main/layoutMain/layoutMain";
+ 		return "/mypage/layoutMypage/change";
+-		//return "/manager/layoutManager/change";
+ 
+ 	}
+ 
+diff --git a/SpringMiniProject/src/main/java/bit/data/service/BoardService.java b/SpringMiniProject/src/main/java/bit/data/service/BoardService.java
+index 2abae53..cdb51e2 100644
+--- a/SpringMiniProject/src/main/java/bit/data/service/BoardService.java
++++ b/SpringMiniProject/src/main/java/bit/data/service/BoardService.java
+@@ -1,52 +1,12 @@
+ package bit.data.service;
+ 
+ import bit.data.dao.BoardDaoInter;
+-import bit.data.dto.BoardDto;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Service;
+ 
+-import java.util.HashMap;
+-import java.util.List;
+-import java.util.Map;
+-
+ @Service
+ public class BoardService implements BoardServiceInter{
+ 
+     @Autowired
+     BoardDaoInter boardDao;
+-
+-    @Override
+-    public void insertBoard(BoardDto dto) {
+-        // TODO Auto-generated method stub
+-        boardDao.insertBoard(dto);
+-    }
+-    @Override
+-    public List<BoardDto> getPagingList(String searchcolumn, String searchword, int startnum, int perpage) {
+-        // TODO Auto-generated method stub
+-        Map<String, Object>map = new HashMap<String, Object>();
+-        map.put("searchcolumn", searchcolumn);
+-        map.put("searchword", searchword);
+-        map.put("startnum", startnum);
+-        map.put("perpage", perpage);
+-        return boardDao.getPagingList(map);
+-    }
+-
+-    @Override
+-    public int getTotalCount(String searchcolumn, String searchword) {
+-        // TODO Auto-generated method stub
+-        Map<String, String>map = new HashMap<String, String>();
+-        map.put("searchcolumn", searchcolumn);
+-        map.put("searchword", searchword);
+-        return boardDao.getTotalCount(map);
+-    }
+-
+-    @Override
+-    public BoardDto selectByNum(int boardnum) {
+-        return boardDao.selectByNum(boardnum);
+-    }
+-
+-    @Override
+-    public void updateReadCount(int boardnum) {
+-        boardDao.updateReadCount(boardnum);
+-    }
+ }
+diff --git a/SpringMiniProject/src/main/java/bit/data/service/BoardServiceInter.java b/SpringMiniProject/src/main/java/bit/data/service/BoardServiceInter.java
+index de8c904..a03e916 100644
+--- a/SpringMiniProject/src/main/java/bit/data/service/BoardServiceInter.java
++++ b/SpringMiniProject/src/main/java/bit/data/service/BoardServiceInter.java
+@@ -1,18 +1,4 @@
+ package bit.data.service;
+ 
+-import bit.data.dto.BoardDto;
+-
+-import java.util.List;
+-import java.util.Map;
+-
+ public interface BoardServiceInter {
+-
+-    public void insertBoard(BoardDto dto);
+-    public List<BoardDto> getPagingList(String searchcolumn, String searchword, int startnum, int perpage);
+-    public int getTotalCount(String searchcolumn, String searchword);
+-    public BoardDto selectByNum(int boardnum);
+-    public void updateReadCount(int boardnum);
+-
+-
+-
+ }
+diff --git a/SpringMiniProject/src/main/resources/mapper/BoardMapper.xml b/SpringMiniProject/src/main/resources/mapper/BoardMapper.xml
+index 849aa38..a10ea83 100644
+--- a/SpringMiniProject/src/main/resources/mapper/BoardMapper.xml
++++ b/SpringMiniProject/src/main/resources/mapper/BoardMapper.xml
+@@ -1,28 +1,5 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="bit.data.dao.BoardDao">
+-    <insert id="insertBoard" parameterType="boardDto">
+-        insert into board (boardtype, usernum, userid, nickname, subject, content, photo, readcount, likes, report, writeday)
+-        values (#{boardtype}, #{usernum}, #{userid}, #{nickname}, #{subject}, #{content}, #{photo}, 0, 0, 0, now())
+-    </insert>
+-    <select id="getTotalCount" parameterType="Map" resultType="int">
+-        select count(*) from board
+-        <if test="searchcolumn!=null and searchword!=null">
+-            where ${searchcolumn} like concat('%',#{searchword},'%')
+-        </if>
+-    </select>
+-    <select id="getPagingList" parameterType="Map" resultType="boardDto">
+-        select * from board
+-        <if test="searchcolumn!=null and searchword!=null">
+-            where ${searchcolumn} like concat('%',#{searchword},'%')
+-        </if>
+-         order by boardnum desc limit #{startnum},#{perpage}
+-    </select>
+-    <select id="selectByNum" parameterType="int" resultType="boardDto">
+-        select * from board where boardnum = #{boardnum}
+-    </select>
+-    <update id="updateReadCount" parameterType="int">
+-        update board set
+-            readcount = readcount+1 where boardnum = #{boardnum}
+-    </update>
++
+ </mapper>
+\ No newline at end of file
+diff --git a/SpringMiniProject/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml b/SpringMiniProject/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml
+index 046a7dc..31d66c2 100644
+--- a/SpringMiniProject/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml
++++ b/SpringMiniProject/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml
+@@ -13,11 +13,12 @@
+ 	<annotation-driven />
+ 
+ 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+-	<resources mapping="/resources/**" location="/resources/"/>
+-	<resources mapping="/upload/**" location="/resources/upload/"/>
+-	<resources mapping="/image/**" location="/resources/image/"/>
+-	<resources mapping="/css/**" location="/resources/css/"/>
+-	<resources mapping="/js/**" location="/resources/javascript/"/>
++	<resources mapping="/resources/**" location="/resources/" />
++<!--	<resources mapping="/upload/**" location="/resources/upload/" />-->
++	<resources mapping="/upload/**" location="/resources/upload/" />
++	<resources mapping="/image/**" location="/resources/image/" />
++	<resources mapping="/css/**" location="/resources/css/" />
++	<resources mapping="/js/**" location="/resources/javascript/" />
+ 
+ <!--	 Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory-->
+ <!--	 <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+diff --git a/SpringMiniProject/src/main/webapp/WEB-INF/views/board/boardDetail.jsp b/SpringMiniProject/src/main/webapp/WEB-INF/views/board/boardDetail.jsp
+index 1795c9e..f5a5479 100644
+--- a/SpringMiniProject/src/main/webapp/WEB-INF/views/board/boardDetail.jsp
++++ b/SpringMiniProject/src/main/webapp/WEB-INF/views/board/boardDetail.jsp
+@@ -10,77 +10,14 @@
+     <link
+             href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap"
+             rel="stylesheet">
+-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+     <style type="text/css">
+-
+-        span.likes {
+-            cursor: pointer;
+-        }
+-        div.alist pre{
+-            text-indent: 10px; /*들여쓰기*/
+-            color: black;
+-        }
+-        div.alist img{
+-            width: 40px;
+-            height: 40px;
+-            cursor: pointer;
+-            border: 1px solid gray;
+-            border-radius: 10px;
+-            margin-left: 10px;
++        *{
++            font-family: 'Jua';
+         }
+     </style>
+ </head>
+ <body>
+-<body>
+-    <div style="margin: 50px;">
+-        <table class="table table-bordered" style="width: 600px;">
+-            <tr>
+-                <td>
+-                    <h2><b>${dto.subject}</b></h2>
+-                    <b>${dto.nickname}(${dto.userid})</b>
+-                    <span style="color: gray; font-size: 12px;">
+-					<fmt:formatDate value="${dto.writeday}" pattern="yyyy-MM-dd HH:mm"/>
+-					&nbsp;&nbsp;
+-					조회&nbsp; ${dto.readcount}
+-				</span>
+-                </td>
+-            </tr>
+-            <tr height="200">
+-                <td>
+-                    <p>${dto.content}</p>
+-                    <c:if test="${dto.photo!='no'}">
+-                        <c:forTokens var="photo" items="${dto.photo}" delims=",">
+-                            <img src="../upload/${photo}" width="250"
+-                                 onerror="this.style.display='none'">
+-                        </c:forTokens>
+-                    </c:if>
+-                    <br>
+-                    <span class="likes">
+-                <i class='far fa-thumbs-up'></i>
+-				좋아요<b>${dto.likes}</b></span>&nbsp;&nbsp;
+ 
+-                    <i class="far fa-comment-dots"></i>
+-                    &nbsp;<b class="banswer">0</b>
+-                    <br>
+-                    <div class="alist">
+-                        댓글목록
+-                    </div>
+-                        <div class="aform">
+-                            <form id="aform">
+-                                <input type="hidden" name="num" value="${dto.boardnum}">
+-                                <input type="hidden" name="id" value="${sessionScope.loginid}">
+-                                <input type="hidden" name="name" value="${sessionScope.loginname}">
+-                                <div class="input-group">
+-                                    <textarea name="message" id="message" style="width: 400px; height: 60px;" class="form-control"></textarea>
+-                                    <button type="button" class="btn btn-secondary" id="btnasave">등록</button>
+-                                </div>
+-                            </form>
+-                        </div>
+-                </td>
+-            </tr>
+-        </table>
+-    </div>
+-</body>
+ </body>
+ </html>
+\ No newline at end of file
+diff --git a/SpringMiniProject/src/main/webapp/WEB-INF/views/board/boardForm.jsp b/SpringMiniProject/src/main/webapp/WEB-INF/views/board/boardForm.jsp
+index cc0c9f7..f5a5479 100644
+--- a/SpringMiniProject/src/main/webapp/WEB-INF/views/board/boardForm.jsp
++++ b/SpringMiniProject/src/main/webapp/WEB-INF/views/board/boardForm.jsp
+@@ -11,63 +11,13 @@
+             href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap"
+             rel="stylesheet">
+     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+-
++    <style type="text/css">
++        *{
++            font-family: 'Jua';
++        }
++    </style>
+ </head>
+ <body>
+-<form action="insert" method="post" enctype="multipart/form-data">
+-    <table class="table table-bordered" style="width: 500px;">
+-        <tr>
+-            <th style="width: 100px;">제목</th>
+-            <td>
+-                <input type="text" name="subject" class="form-control" required="required">
+-            </td>
+-        </tr>
+-        <tr>
+-            <th style="width: 100px;">사진</th>
+-            <td>
+-                <div class="phototag">
+-                    <div class="input-group">
+-                        <input type="file" name="upload" class="form-control" multiple="multiple" id="upload">
+-                        &nbsp;
+-                        <i class="fa fa-plus photoadd" style="font-size:14px"></i>
+-                    </div>
+-                </div>
+-                <script>
+-                    $("i.photoadd").click(function(){
+-                        if($("input[name='upload']").length==4){
+-                            alert("더이상 추가할수 없습니다");
+-                            return;
+-                        }
+-                        var tag="";
+-                        tag=' <div class="input-group">';
+-                        tag+='<input type="file" name="upload" class="form-control" multiple="multiple" >';
+-                        tag+="<i class='fas fa-minus-square photodel' style='font-size:24px'></i>";
+-                        tag+="</div>";
+-                        $("div.phototag").append(tag);
+-                    });
+-
+-                    $(document).on("click",".photodel",function(){
+-                       $(this).prev().remove();
+-                       $(this).remove();
+-                    });
+ 
+-                </script>
+-            </td>
+-        </tr>
+-        <tr>
+-            <td colspan="2">
+-					<textarea name="content" class="form-control" required="required"
+-                              style="width: 500px; height: 400px;"></textarea>
+-            </td>
+-        </tr>
+-        <tr>
+-            <td colspan="2" align="center">
+-                <button type="submit">업로드</button>
+-            </td>
+-        </tr>
+-    </table>
+-</form>
+ </body>
+ </html>
+\ No newline at end of file
+diff --git a/SpringMiniProject/src/main/webapp/WEB-INF/views/board/boardFree.jsp b/SpringMiniProject/src/main/webapp/WEB-INF/views/board/boardFree.jsp
+index b672496..b204aa2 100644
+--- a/SpringMiniProject/src/main/webapp/WEB-INF/views/board/boardFree.jsp
++++ b/SpringMiniProject/src/main/webapp/WEB-INF/views/board/boardFree.jsp
+@@ -18,76 +18,6 @@
+     </style>
+ </head>
+ <body>
+-<div>
+-    <table>
+-        <tr>
+-            <th colspan="4">인기게시물</th>
+-        </tr>
+-        <tr>
+-            <td></td>
+-            <td></td>
+-        </tr>
+-    </table>
+-</div>
+-<div class="boardlist" style="margin: 10px;">
+-    <c:set var="root" value="<%=request.getContextPath() %>"/>
+-    <table class="table table-bordered" style="width: 900px;">
+-        <tr style="background-color: #ddd; text-align: center;">
+-            <th style="width:50px;">번호</th>
+-            <th style="width: 300px;">제목</th>
+-            <th style="width: 80px;">작성자</th>
+-            <th style="width: 120px;">작성일</th>
+-            <th style="width: 50px;">조회</th>
+-        </tr>
+-            <c:forEach var="dto" items="${list}">
+-                <tr>
+-                    <td style="text-align: center;">${no}</td>
+-                    <c:set var="no" value="${no-1}"/>
+-                    <td><a href="${root}/board/boardDetail?boardnum=${dto.boardnum}&currentPage=${currentPage}">${dto.subject}</a></td>
+-                    <td>${dto.nickname}</td>
+-                    <td style="text-align: center;">
+-                        <fmt:formatDate value="${dto.writeday}" pattern="yyyy-MM-dd"/>
+-                    </td>
+-                    <td style="text-align: center;">${dto.readcount}</td>
+-                </tr>
+-            </c:forEach>
+-    </table>
+-</div>
+-<div class="searcharea" style="width: 100%; margin: 10px;">
+-    <form action="">
+-        <div class="input-group" style="width: 500px;">
+-            <select class="form-select" style="width: 150px;" name="searchcolumn">
+-                <option value="subject">제목</option>
+-                <option value="name">닉네임</option>
+-                <option value="content">내용</option>
+-            </select>
+-            &nbsp;&nbsp;&nbsp;
+-            <input type="text" name="searchword" class="form-control" style="width: 140px;" placeholder="검색어" value="${param.searchword}">
+-            <button type="submit">검색</button>
+-        </div>
+-    </form>
+-    <button onclick="location.href='${root}/board/boardForm'">글쓰기</button>
+-</div>
+-<div class="paging" style="margin-left: 600px;">
+-    <ul class="pagination">
+-        <c:if test="${startPage>1}">
+-            <li class="page-item"><a href="boardFree?currentPage=${startPage-1}" class="page-link">이전</a></li>
+-        </c:if>
+-
+-        <!-- 페이지번호 -->
+-        <c:forEach var="pp" begin="${startPage}" end="${endPage}">
+-            <c:if test="${pp==currentPage}">
+-                <li class="page-item active"><a class="page-link" href="boardFree?currentPage=${pp}">${pp}</a></li>
+-            </c:if>
+-            <c:if test="${pp!=currentPage}">
+-                <li class="page-item"><a class="page-link" href="boardFree?currentPage=${pp}">${pp}</a></li>
+-            </c:if>
+-        </c:forEach>
+-
+-        <c:if test="${endPage<totalPage}">
+-            <li class="page-item"><a href="boardFree?currentPage=${endPage+1}" class="page-link">다음</a></li>
+-        </c:if>
+-    </ul>
+-</div>
++    <h1>자유</h1>
+ </body>
+ </html>
+\ No newline at end of file
+diff --git a/SpringMiniProject/src/main/webapp/WEB-INF/views/layoutMypage/layoutMypage.jsp b/SpringMiniProject/src/main/webapp/WEB-INF/views/layoutMypage/layoutMypage.jsp
+index cd32a19..d24955e 100644
+--- a/SpringMiniProject/src/main/webapp/WEB-INF/views/layoutMypage/layoutMypage.jsp
++++ b/SpringMiniProject/src/main/webapp/WEB-INF/views/layoutMypage/layoutMypage.jsp
+@@ -30,7 +30,7 @@
+ 
+         #info {
+             width: 15%;
+-            height: 1000px;
++            height: 2000px;
+             background-color: #97b0d1;
+             position: absolute;
+         }
+@@ -47,13 +47,12 @@
+             height: 200px;
+             width: 100%;
+             position: absolute;
+-            top: 1100px;
++            top: 2100px;
+         }
+ 
+     </style>
+ </head>
+ <body style="background-color: #dce4f0">
+-<c:set var="root" value="<%=request.getContextPath() %>"/>
+ <div class="main" id="header">
+     <tiles:insertAttribute name="header"/>
+ </div>
+@@ -79,7 +78,7 @@
+             <td style="cursor:pointer;" onclick="location.href='lecture/lectureList'">수강신청</td>
+         </tr>
+         <tr>
+-            <td style="cursor:pointer;" onclick="location.href='${root}/board/boardFree'">커뮤니티</td>
++            <td style="cursor:pointer;" onclick="location.href='board/boardFree'">커뮤니티</td>
+         </tr>
+         <tr>
+             <td style="cursor:pointer;" onclick="location.href='qna/qnaList'">관리자문의</td>
+@@ -96,6 +95,7 @@
+             var position = $(window).scrollTop()+200; // 현재 스크롤바의 위치값을 반환
+             $("#Quick").stop().animate({top:position+"px"}, 400); //해당 오브젝트 위치값 재설정
+         });
++
+     });
+ </script>
+ </body>
+diff --git a/SpringMiniProject/src/main/webapp/WEB-INF/views/student/updateStudent.jsp b/SpringMiniProject/src/main/webapp/WEB-INF/views/student/updateStudent.jsp
+index 9f2674a..0c3fc41 100644
+--- a/SpringMiniProject/src/main/webapp/WEB-INF/views/student/updateStudent.jsp
++++ b/SpringMiniProject/src/main/webapp/WEB-INF/views/student/updateStudent.jsp
+@@ -29,7 +29,7 @@
+                 var reg = /(.*?)\/(jpg|jpeg|png|bmp)$/;
+                 var f=$(this)[0].files[0];
+                 if(!f.type.match(reg)){
+-                    alert("이미지파일이 아닙니다");
++                    alert("확장자가 이미지파일이 아닙니다");
+                     return;
+                 }
+                 if($(this)[0].files[0]){
+diff --git a/SpringMiniProject/src/main/webapp/resources/upload/delete.html b/SpringMiniProject/src/main/webapp/resources/upload/delete.html
+new file mode 100644
+index 0000000..c015a5d
+--- /dev/null
++++ b/SpringMiniProject/src/main/webapp/resources/upload/delete.html
+@@ -0,0 +1,13 @@
++<!DOCTYPE html>
++<html l
++      class="" ang="en">
++<head>
++    <meta charset="UTF-8">
++    <title>Title</title>
++</head>
++DFD
++<body>
++ㅋㅋㅋ
++<ƒƒFFfF/
++body>
++</html>Ô
+\ No newline at end of file
+-- 
+2.37.3.windows.1
+
