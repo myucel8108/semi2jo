@@ -3,6 +3,7 @@
 
 <configuration>
 	<typeAliases>
+<<<<<<< HEAD
 		<typeAlias type="bit.data.dto.BoardDto" alias="boardDto"/>
 		<typeAlias type="bit.data.dto.LecDetailDto" alias="lecDetailDto"/>
 		<typeAlias type="bit.data.dto.LectureDto" alias="lectureDto"/>
@@ -17,5 +18,22 @@
 		<typeAlias type="bit.data.dto.ReboardDto" alias="reboardDto"/>
 		<typeAlias type="bit.data.dto.RoomDto" alias="roomDto"/>
 		<typeAlias type="bit.data.dto.UserDto" alias="userDto"/>
+=======
+		<typeAlias type="bit.data.dto.BoardDto" alias="BoardDto"/>
+		<typeAlias type="bit.data.dto.LecDetailDto" alias="LecDetailDto"/>
+		<typeAlias type="bit.data.dto.LectureDto" alias="LectureDto"/>
+		<typeAlias type="bit.data.dto.LecTypeDto" alias="LecTypeDto"/>
+		<typeAlias type="bit.data.dto.LikeBoardDto" alias="LikeBoardDto"/>
+		<typeAlias type="bit.data.dto.LockerDto" alias="LockerDto"/>
+		<typeAlias type="bit.data.dto.ManagerDto" alias="ManagerDto"/>
+		<typeAlias type="bit.data.dto.MyLectureDto" alias="MyLectureDto"/>
+		<typeAlias type="bit.data.dto.NoticeDto" alias="NoticeDto"/>
+		<typeAlias type="bit.data.dto.PayDto" alias="PayDto"/>
+		<typeAlias type="bit.data.dto.QnaDto" alias="QnaDto"/>
+		<typeAlias type="bit.data.dto.QnaAnswerDto" alias="QnaADto"/>
+		<typeAlias type="bit.data.dto.ReboardDto" alias="ReboardDto"/>
+		<typeAlias type="bit.data.dto.RoomDto" alias="RoomDto"/>
+		<typeAlias type="bit.data.dto.UserDto" alias="UserDto"/>
+>>>>>>> origin/ldh
 	</typeAliases>
 </configuration>

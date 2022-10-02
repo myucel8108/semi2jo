@@ -9,4 +9,17 @@ public class HomeController {
 	public String home() {
 		return "/manager/manager/addLectureForm";
 	}
+<<<<<<< HEAD
 }
+=======
+		
+		@GetMapping("/student/myCart")
+		public String Cart() {
+			return "/main/student/myCart";
+		}
+			
+	
+		
+		
+}
+>>>>>>> origin/ldh
