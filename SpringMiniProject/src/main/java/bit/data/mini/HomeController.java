@@ -8,9 +8,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String home() {
 
-		//return "/main/layoutMain/layoutMain";
 		return "/mypage/layoutMypage/change";
-		//return "/manager/layoutManager/change";
 
 	}
 
