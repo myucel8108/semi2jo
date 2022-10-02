@@ -25,11 +25,6 @@ public class UserController {
         return "/mypage/student/timeTable";
 
     }*/
-    @GetMapping("/student/timeTable")
-    public String timeTable(){
 
-        return "/mypage/student/timeTable";
-
-    }
 
 }

@@ -67,6 +67,7 @@ public class LoginController {
         System.out.println("logoutcontroller");
         session.removeAttribute("loginok");
         session.removeAttribute("loginid");
+        session.removeAttribute("usernum");
     }
 
 

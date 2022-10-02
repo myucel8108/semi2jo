@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <c:set var="root" value="<%=request.getContextPath() %>"/>
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -14,21 +15,21 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/TeachMeStyle.css" />
+    <link rel="stylesheet" type="text/css" href="${root}/resources/css/TeachMeStyle.css" />
     <style type="text/css">
         *{
             font-family: 'Jua';
         }
 
         #header{
-            background-color: #17344f;
+            background-color: rgb(247, 249, 250);
             height: 150px;
             width: 100%;
         }
 
         #menu{
-            background-color: #bac9e0;
-            height: 100px;
+            background-color: #e0e3ec;
+            height: 150px;
         }
 
         #info {
@@ -41,7 +42,7 @@
         #change {
             width: 75%;
             float: right;
-            background-color: #dce4f0;
+            background-color: rgb(241, 247, 250);
             height: 600px;
         }
 
@@ -55,7 +56,7 @@
 
     </style>
 </head>
-<body style="background-color: #dce4f0">
+<body style="background-color: #fff">
 <div class="main" id="header">
     <tiles:insertAttribute name="header"/>
 </div>

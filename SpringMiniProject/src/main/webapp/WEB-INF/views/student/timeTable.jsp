@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +19,24 @@
     </style>
 </head>
 <body>
-    <h1>시간표</h1>
+<h1>수강목록</h1>
+<table class="table table-bordered">
+    <c:forEach var="dto" items="${list}">
+        <c:forEach var="i" begin="0" end="13">
+            <tr>
+            <c:forEach var="j" begin="0" end="7">
+                <td>
+                    <c:if test="${fn:contains(dto.lectime,i)&&fn:contains(dto.lecday,j)}">
+                        <a>${dto.lecname}</a><br>
+                        ${dto.teaname}
+                        [${dto.roomnum}호]
+                    </c:if>
+                </td>
+            </c:forEach>
+            </tr>
+        </c:forEach>
+    </c:forEach>
+</table>
+
 </body>
 </html>

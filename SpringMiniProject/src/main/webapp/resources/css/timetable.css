@@ -1,0 +1,27 @@
+.container {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.7fr 60px 60px 60px 60px 60px 60px 60px 60px 60px 60px 60px 60px 60px;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "tablehead tablehead tablehead tablehead tablehead tablehead tablehead tablehead"
+    "lectime tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent"
+    "lectime tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent"
+    "lectime tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent"
+    "lectime tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent"
+    "lectime tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent"
+    "lectime tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent"
+    "lectime tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent"
+    "lectime tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent"
+    "lectime tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent"
+    "lectime tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent"
+    "lectime tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent"
+    "lectime tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent"
+    "lectime tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent tablecontent";
+}
+
+.tablehead { grid-area: tablehead; }
+
+.lectime { grid-area: lectime; }
+
+.tablecontent { grid-area: tablecontent; }

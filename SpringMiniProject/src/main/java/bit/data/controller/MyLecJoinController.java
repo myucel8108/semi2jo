@@ -31,4 +31,17 @@ public class MyLecJoinController {
         return "/mypage/student/stuLectureList";
 
     }
+
+    @GetMapping("/student/timeTable")
+    public String stuTimeTable(Model model, HttpServletRequest request){
+
+        HttpSession session =request.getSession();
+        int usernum= Integer.parseInt(session.getAttribute("usernum").toString());
+        List<MyLecJoinDto> list=myLecJoinService.getMyLecListByNum(usernum);
+
+        model.addAttribute("list",list);
+
+        return "/mypage/student/timeTable";
+
+    }
 }

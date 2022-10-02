@@ -27,9 +27,10 @@
         }
 
         .logo {
-            flex: 1;
+            display: flex;
+            justify-content: center;
             height: 150px;
-            margin-left: 60px;
+            line-height: 150px;
         }
 
         .header-mid {
@@ -39,7 +40,7 @@
         .header-right {
             flex: 1;
             font-size: 20px;
-            color: white;
+            color: #3f86ed;
         }
     </style>
 </head>
@@ -51,22 +52,19 @@
     </div>
     <div class="header-mid"></div>
     <div class="header-right">
-            <span>수능 D-Day</span>
-            <span>username님 화이팅</span>
         <c:if test="${sessionScope.loginok==null }">
-            <button type="button" class="bt1">로그인</button>
+            <button type="button" class="bt1" id="btnloginMain">로그인</button>
         </c:if>
 
         <c:if test="${sessionScope.loginok!=null }">
+            <span>수능 D-Day</span>
             <b>${sessionScope.loginname}님</b>
             &nbsp;&nbsp;
-            <button type="button" id="btnlogoutMain" >로그아웃</button>
+            <button type="button" class="bt1" id="btnlogoutMain" >로그아웃</button>
         </c:if>
     </div>
 </div>
-<button class="login100-form-btn" class="btnCreateAccount" onclick="location.href='insertAccountF'">
-    Create Account
-</button>
+
 <script>
     $("#btnloginMain").click(function () {
         location.href="${root}/loginF";
@@ -75,10 +73,10 @@
     $("#btnlogoutMain").click(function () {
         $.ajax({
             type:"get",
-            url:"logout",
+            url:"${root}/logout",
             dataType:"text",
             success:function(res){
-                location.reload();
+                location.href="${root}";
             },
         });
     })
