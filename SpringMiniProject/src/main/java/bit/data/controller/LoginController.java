@@ -52,6 +52,7 @@ public class LoginController {
             session.setAttribute("loginok", "yes");
             session.setAttribute("loginid", loginid);
             session.setAttribute("loginname", udto.getUsername());
+            session.setAttribute("usernum", udto.getUsernum());
         }
         String temp = (result==1?"success":"fail");
         map.put("result",temp);
