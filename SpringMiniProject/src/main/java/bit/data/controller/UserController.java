@@ -27,15 +27,15 @@ public class UserController {
     UserServiceInter userService;
 
 
-    @GetMapping("/loginF")
-    public String loginF(){
-        return "account/accountForm";
-    }
+//    @GetMapping("/loginF")
+//    public String loginF(){
+//        return "account/accountForm";
+//    }
 
-    @GetMapping("/loginA")
-    @ResponseBody
-    public Map<String, String> loginprocess(String id, String pass, HttpSession session){
-        Map<String, String> map=new HashMap<String, String>();
+//    @GetMapping(value = "/loginA")
+//    @ResponseBody
+//    public Map<String, String> loginprocess(String id, String pass, HttpSession session){
+//        Map<String, String> map=new HashMap<String, String>();
 //        int result=userService.getIdPassCheck(id, pass);
 //        if(result==1){//아이디와 패스가 모두 맞는 경우
 //            //유지 시간 설정
@@ -48,12 +48,12 @@ public class UserController {
 //            session.setAttribute("loginphoto", mdto.getPhoto());
 //        }
 //        map.put("result",result==1?"success":"fail");
+//
+//        return map;
+//    }
 
-        return map;
-    }
 
-
-    @GetMapping("/addAccount")
+   /* @GetMapping("/addAccount")
     public String addAccount(){
         return "account/accountAddForm";
     }
@@ -61,42 +61,43 @@ public class UserController {
     @PostMapping("/createAccount")
     public String createAccount(){
         return "account/accountForm";
-    }
+    }*/
+//
+//    //회원가입 insert
+//    @PostMapping("/insert")
+//    public String insert(HttpServletRequest request, UserDto dto, MultipartFile photo) {
+//        //톰켓에 올라간 upload 폴더 경로 구하기
+//        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
+//        System.out.println(path);
+//        //저장할 파일명 구하기
+//        String fileName = ChangeName.getChangeFileName(photo.getOriginalFilename());
+//        //dto의 photo의 경로
+//        dto.setPhoto(fileName);
+//
+//        //upload
+//        try {
+//            photo.transferTo(new File(path+"/"+fileName));
+//            userService.insertUser(dto);
+//
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return "account/accountAddForm";
+//        //return "redirect:list";//	/member/list 매핑주소 호출-컨트롤러메서드 호출
+//    }
+//    @GetMapping("/student/updateStudent")
+//    public String updateStudent()
+//    {
+//        return "/mypage/student/updateStudent";
+//    }
+//
+//    @GetMapping("/student/timeTable")
+//    public String time(){
+//
+//        return "/mypage/student/timeTable";
+//
+//    }
+//
 
-    //회원가입 insert
-    @PostMapping("/insert")
-    public String insert(HttpServletRequest request, UserDto dto, MultipartFile photo) {
-        //톰켓에 올라간 upload 폴더 경로 구하기
-        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
-        System.out.println(path);
-        //저장할 파일명 구하기
-        String fileName = ChangeName.getChangeFileName(photo.getOriginalFilename());
-        //dto의 photo의 경로
-        dto.setPhoto(fileName);
-
-        //upload
-        try {
-            photo.transferTo(new File(path+"/"+fileName));
-            userService.insertUser(dto);
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return "account/accountAddForm";
-        //return "redirect:list";//	/member/list 매핑주소 호출-컨트롤러메서드 호출
-    }
-
-    @GetMapping("/student/updateStudent")
-    public String updateStudent()
-    {
-        return "/mypage/student/updateStudent";
-    }
-
-    @GetMapping("/student/timeTable")
-    public String time(){
-
-        return "/mypage/student/timeTable";
-
-    }
 
 }
