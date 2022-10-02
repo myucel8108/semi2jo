@@ -2,6 +2,7 @@ package bit.data.controller;
 
 import bit.data.dto.BoardDto;
 import bit.data.service.BoardServiceInter;
+import bit.data.service.UserServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,8 @@ public class BoardController {
 
     @Autowired
     BoardServiceInter boardService;
+    @Autowired
+    UserServiceInter userService;
 
     @GetMapping("/board/boardForm") //게시판 작성폼
     public String boardForm(){
@@ -51,6 +54,12 @@ public class BoardController {
     public String insert(BoardDto dto, List<MultipartFile>upload, HttpServletRequest request)
     {
         String path = request.getSession().getServletContext().getRealPath("/resources/upload");
+
+        //loginid 에 해당하는 nickname 얻기
+        String nickname=userService.getDataById(dto.getUserid()).getNickname();
+        int usernum=userService.getDataById(dto.getUserid()).getUsernum();
+        dto.setUsernum(usernum);
+        dto.setNickname(nickname);
 
         if (upload.get(0).getOriginalFilename().equals("")) {
             dto.setPhoto("no");

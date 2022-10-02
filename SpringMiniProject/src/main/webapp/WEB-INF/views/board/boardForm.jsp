@@ -17,6 +17,7 @@
 </head>
 <body>
 <form action="insert" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="userid" value="${sessionScope.loginid}">
     <table class="table table-bordered" style="width: 500px;">
         <tr>
             <th style="width: 100px;">제목</th>
