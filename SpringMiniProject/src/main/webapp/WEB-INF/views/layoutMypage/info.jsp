@@ -44,7 +44,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a>수강목록</a>
+                        <a href="${root}/student/stuLectureList">수강목록</a>
                         <ul>
                             <li>현재 수강 중</li>
                             <li>수강 완료</li>
