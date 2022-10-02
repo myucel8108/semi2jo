@@ -19,7 +19,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/")
 public class LoginController {
 
     @Autowired

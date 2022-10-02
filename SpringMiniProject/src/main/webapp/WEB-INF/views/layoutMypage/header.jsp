@@ -11,6 +11,7 @@
             href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap"
             rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <style type="text/css">
         *{
             font-family: 'Jua';
@@ -27,7 +28,6 @@
 
         .logo {
             flex: 1;
-            color: white;
             height: 150px;
             margin-left: 60px;
         }
@@ -47,14 +47,14 @@
 <c:set var="root" value="<%=request.getContextPath() %>"></c:set>
 <div class="header">
     <div class="logo">
-        <h1 id="main-text">학원이름</h1>
+        <b class="teachMeLogo">TeachMe</b>
     </div>
     <div class="header-mid"></div>
     <div class="header-right">
             <span>수능 D-Day</span>
             <span>username님 화이팅</span>
         <c:if test="${sessionScope.loginok==null }">
-            <button type="button" id="btnloginMain">로그인</button>
+            <button type="button" class="bt1">로그인</button>
         </c:if>
 
         <c:if test="${sessionScope.loginok!=null }">

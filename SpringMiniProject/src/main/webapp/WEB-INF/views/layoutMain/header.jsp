@@ -50,6 +50,7 @@
          <b>${sessionScope.loginname}님</b>
          &nbsp;&nbsp;
          <button type="button" id="btnlogoutMain" >로그아웃</button>
+         <a href="${root}/student/timeTable">마이페이지</a>
      </c:if>
         <!--container-->
     </header>
