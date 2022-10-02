@@ -12,7 +12,7 @@ public class UserDao implements UserDaoInter{
 
     @Autowired
     SqlSession session;
-    String ns = "bit.bit.data.UserDao.";
+    String ns = "bit.data.dao.UserDao.";
 
     @Override
     public void insertUser(UserDto dto) {

@@ -25,7 +25,7 @@ public class UserService implements UserServiceInter{
         Map<String,String> map = new HashMap<String, String>();
         map.put("loginid",loginid);
         map.put("loginpass",loginpass);
-        return 0;
+        return userDao.checkLoginIdPass(map);
     }
 
     @Override
