@@ -1,23 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link
-            href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap"
-            rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-    <style type="text/css">
-        *{
-            font-family: 'Jua';
+    <style>
+        div>div{
+        	width: 100%;        	
+        }
+        
+        .atag{
+        	text-decoration: none;
+        	color: gray;
+        }
+        
+        .menu {
+        	vertical-align: middle;
+        	text-align:center;
         }
     </style>
+    <script>
+        $(function(){
+            $(".agag").hover(function(){
+                $(this).css("color","orange");
+            },function(){
+                $(this).css("color","black");
+            });
+       });
+    </script>
 </head>
 <body>
-
+	<c:set var="root" value="<%=request.getContextPath()%>"/> <!-- 자기 주소 얻어오기 -->
+	<div class="menu">		
+		<div><a class="atag">학생 관리</a></div>	
+		<div><a class="atag" href="${root}/manager/lecturelist">강의 관리</a></div>
+		<div><a class="atag">게시판 관리</a></div>		        
+		<div><a class="atag">Q&A 관리</a></div>
+	</div>
 </body>
 </html>
+

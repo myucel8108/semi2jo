@@ -18,7 +18,6 @@
     <definition name="layoutManager" template="/WEB-INF/views/layoutManager/layoutManager.jsp">
         <put-attribute name="change" value="/WEB-INF/views/layoutManager/change.jsp"/>
         <put-attribute name="header" value="/WEB-INF/views/layoutManager/header.jsp"/>
-        <put-attribute name="icon" value="/WEB-INF/views/layoutManager/icon.jsp"/>
         <put-attribute name="menu" value="/WEB-INF/views/layoutManager/menu.jsp"/>
     </definition>
     <!-- macro -->

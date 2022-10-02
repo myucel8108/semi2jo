@@ -19,6 +19,9 @@
 </head>
 <body>
 <div>메인 레이아웃</div>
+<button>
+    <a href="lectureList.jsp">뿅</a>
 
+</button>
 </body>
 </html>
