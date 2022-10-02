@@ -29,7 +29,7 @@
                 var reg = /(.*?)\/(jpg|jpeg|png|bmp)$/;
                 var f=$(this)[0].files[0];
                 if(!f.type.match(reg)){
-                    alert("확장자가 이미지파일이 아닙니다");
+                    alert("이미지파일이 아닙니다");
                     return;
                 }
                 if($(this)[0].files[0]){
