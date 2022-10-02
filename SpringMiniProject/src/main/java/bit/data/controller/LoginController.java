@@ -25,30 +25,30 @@ public class LoginController {
     @Autowired
     UserServiceInter userService;
 
-    //로그인 페이지로 이동
+    //濡쒓렇�씤 �럹�씠吏�濡� �씠�룞
     @GetMapping("/loginF")
     public String loginF(){
-        return "/mypage/account/accountForm";
+        return "/main/account/accountForm";
     }
 
 
-    //회원가입 페이지로 이동
+    //�쉶�썝媛��엯 �럹�씠吏�濡� �씠�룞
     @GetMapping("/insertAccountF")
     public String insertAccount(){
 
-        return "/mypage/account/accountAddForm";
+        return "/main/account/accountAddForm";
     }
 
-    //로그인 (id, pass 입력 후 버튼)
+    //濡쒓렇�씤 (id, pass �엯�젰 �썑 踰꾪듉)
     @GetMapping("/loginA")
     @ResponseBody
     public Map<String, Object> loginprocess(String loginid, String loginpass, HttpSession session){
         Map<String, Object> map=new HashMap<String, Object>();
         int result=userService.checkLoginIdPass(loginid, loginpass);
-        if(result==1){//아이디와 패스가 모두 맞는 경우
-            //유지 시간 설정
-            session.setMaxInactiveInterval(60*60*4);//4시간
-            //로그인한 아이디에 대한 정보를 얻어서 session에 저장
+        if(result==1){//�븘�씠�뵒�� �뙣�뒪媛� 紐⑤몢 留욌뒗 寃쎌슦
+            //�쑀吏� �떆媛� �꽕�젙
+            session.setMaxInactiveInterval(60*60*4);//4�떆媛�
+            //濡쒓렇�씤�븳 �븘�씠�뵒�뿉 ���븳 �젙蹂대�� �뼸�뼱�꽌 session�뿉 ���옣
             UserDto udto=userService.getDataById(loginid);
             session.setAttribute("loginok", "yes");
             session.setAttribute("loginid", loginid);
@@ -60,7 +60,7 @@ public class LoginController {
         return map;
     }
 
-    // 로그아웃
+    // 濡쒓렇�븘�썐
     @GetMapping("/logout")
     @ResponseBody
     public void logout(HttpSession session) {
@@ -71,15 +71,15 @@ public class LoginController {
 
 
 
-    //회원가입 insert
+    //�쉶�썝媛��엯 insert
     @PostMapping("/insertAccountA")
     public String insert(UserDto dto) {
-//        //톰켓에 올라간 upload 폴더 경로 구하기
+//        //�넱耳볦뿉 �삱�씪媛� upload �뤃�뜑 寃쎈줈 援ы븯湲�
 //        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
 //        System.out.println(path);
-//        //저장할 파일명 구하기
+//        //���옣�븷 �뙆�씪紐� 援ы븯湲�
 //        String fileName = ChangeName.getChangeFileName(photo.getOriginalFilename());
-//        //dto의 photo의 경로
+//        //dto�쓽 photo�쓽 寃쎈줈
 //        dto.setPhoto(fileName);
 
         //upload
@@ -92,6 +92,7 @@ public class LoginController {
 //        }
         return "redirect:loginF";
 
-        //return "redirect:list";//	/member/list 매핑주소 호출-컨트롤러메서드 호출
+        //return "redirect:list";//	/member/list 留ㅽ븨二쇱냼 �샇異�-而⑦듃濡ㅻ윭硫붿꽌�뱶 �샇異�
     }
 }
+

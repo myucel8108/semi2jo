@@ -18,6 +18,29 @@
   </style>
 </head>
 <body>
-<h2>수업목록</h2>
+<h1>수강목록</h1>
+<table class="table table-bordered">
+  <tr style="background-color: #ddd">
+    <th style="width: 80px">과목분류</th>
+    <th style="width: 350px">강의명</th>
+    <th style="width: 80px">강사</th>
+    <th style="width: 80px">강의실</th>
+    <th style="width: 100px">강의교시</th>
+    <th style="width: 100px">강의일</th>
+    <th style="width: 50px">수강월</th>
+  </tr>
+  <c:forEach var="dto" items="${list }">
+    <tr>
+      <td>${dto.lectypea}</td>
+      <td>${dto.lecname}</td>
+      <td>${dto.teaname}</td>
+      <td>${dto.roomnum}</td>
+      <td>${dto.lectime}</td>
+      <td>${dto.lecday}</td>
+      <td>${dto.lecmonth}</td>
+    </tr>
+  </c:forEach>
+</table>
+
 </body>
 </html>
