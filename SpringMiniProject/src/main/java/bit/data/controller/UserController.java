@@ -20,7 +20,13 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public String time(){
+    public String myPageChange(){
+
+        return "/mypage/student/timeTable";
+
+    }
+    @GetMapping("/student/timeTable")
+    public String timeTable(){
 
         return "/mypage/student/timeTable";
 

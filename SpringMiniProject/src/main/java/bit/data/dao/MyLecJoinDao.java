@@ -16,6 +16,6 @@ public class MyLecJoinDao implements MyLecJoinDaoInter{
 
     @Override
     public List<MyLecJoinDto> getMyLecListByNum(int usernum) {
-        return session.selectList(ns+"getMyLecListByNum");
+        return session.selectList(ns+"getMyLecListByNum",usernum);
     }
 }
