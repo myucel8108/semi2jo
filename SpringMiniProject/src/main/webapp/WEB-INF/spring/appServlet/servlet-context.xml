@@ -20,7 +20,13 @@
 	<resources mapping="/css/**" location="/resources/css/" />
 	<resources mapping="/js/**" location="/resources/javascript/" />
 
+
 <!--	 Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory-->
+
+	<resources mapping="/scss/**" location="/resources/scss/" />
+	<resources mapping="/font/**" location="/resources/font/" />
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+
 <!--	 <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
 <!--		<beans:property name="prefix" value="/WEB-INF/views/" />-->
 <!--		<beans:property name="suffix" value=".jsp" />-->
@@ -50,3 +56,4 @@
 	<context:component-scan base-package="bit.data.mini, bit.data.*"/>
 	
 </beans:beans>
+

@@ -7,9 +7,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 	@GetMapping("/")
 	public String home() {
-
-		return "/mypage/layoutMypage/change";
-
+		return "/main/layoutMain/change";
 	}
 
+
+
+		
+		@GetMapping("/student/myCart")
+		public String Cart() {
+			return "/main/student/myCart";
+		}
+			
+	
+		
 }
+
