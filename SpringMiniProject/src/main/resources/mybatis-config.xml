@@ -17,5 +17,6 @@
 		<typeAlias type="bit.data.dto.ReboardDto" alias="reboardDto"/>
 		<typeAlias type="bit.data.dto.RoomDto" alias="roomDto"/>
 		<typeAlias type="bit.data.dto.UserDto" alias="userDto"/>
+		<typeAlias type="bit.data.dto.MyLecJoinDto" alias="myLecJoinDto"/>
 	</typeAliases>
 </configuration>
