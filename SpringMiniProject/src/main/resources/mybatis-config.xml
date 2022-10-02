@@ -14,6 +14,7 @@
 		<typeAlias type="bit.data.dto.NoticeDto" alias="NoticeDto"/>
 		<typeAlias type="bit.data.dto.PayDto" alias="PayDto"/>
 		<typeAlias type="bit.data.dto.QnaDto" alias="QnaDto"/>
+		<typeAlias type="bit.data.dto.QnaAnswerDto" alias="QnaADto"/>
 		<typeAlias type="bit.data.dto.ReboardDto" alias="ReboardDto"/>
 		<typeAlias type="bit.data.dto.RoomDto" alias="RoomDto"/>
 		<typeAlias type="bit.data.dto.UserDto" alias="UserDto"/>

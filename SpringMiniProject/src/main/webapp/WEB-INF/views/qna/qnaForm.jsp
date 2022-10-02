@@ -18,6 +18,40 @@
     </style>
 </head>
 <body>
-
+<form action="insert" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="id" value="${sessionScope.loginid}">
+		<input type="hidden" name="name" value="${sessionScope.loginname}">
+		<input type="hidden" name="num" value="${num}">
+		<input type="hidden" name="regroup" value="${regroup}">
+		<input type="hidden" name="relevel" value="${relevel}">
+		<input type="hidden" name="restep" value="${restep}">
+		<input type="hidden" name="currentPage" value="${currentPage}">
+		
+		<table class="table table-bordered" style="width: 500ox;">
+			<tr>
+				<th style="width: 100px;">제목</th>
+				<td>
+					<input type="text" name="subject" class="form-control" required="required"
+					value="${subject}">					
+				</td>
+			</tr>
+			<tr>
+				<th style="width: 100px;">사진</th>
+				<td>
+					<input type="file" name="upload" class="form-control" multiple="multiple">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<textarea name="content" class="form-control" required="required" style="width: 500px; height: 150px;"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<button type="submit" class="btn btn-outline-secondary">게시글 저장</button>
+				</td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>
