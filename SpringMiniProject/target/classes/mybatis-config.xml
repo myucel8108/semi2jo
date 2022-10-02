@@ -4,7 +4,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="bit.data.dto.BoardDto" alias="boardDto"/>
-		<typeAlias type="bit.data.dto.LecDetailDto" alias="lecDetailDto"/>
 		<typeAlias type="bit.data.dto.LectureDto" alias="lectureDto"/>
 		<typeAlias type="bit.data.dto.LecTypeDto" alias="lecTypeDto"/>
 		<typeAlias type="bit.data.dto.LikeBoardDto" alias="likeBoardDto"/>
