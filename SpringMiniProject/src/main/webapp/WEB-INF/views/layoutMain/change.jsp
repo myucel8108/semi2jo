@@ -70,7 +70,7 @@
                 <div class="col-lg-5 col-md-12 p-0" data-aos="fade-right" data-aos-delay="300">
                     <h2> 왜 TeachMe <span>선택해야 하는가?</span></h2>
                     <ul>
-                        <li><a href="services.html"><i class="fa fa-angle-right" aria-hidden="true"></i>학원 자체의 모의고사를 실전처럼</a> </li>
+                        <li><a href="services.html"><i class="fa fa-angle-right" aria-hidden="true"></i>학원 자체의 모의고사를 실전처럼</a></li>
                         <li><a href="services.html"><i class="fa fa-angle-right" aria-hidden="true"></i>다른 학생들과 커뮤니티를 통한 정보교환</a></li>
                         <li><a href="services.html"><i class="fa fa-angle-right" aria-hidden="true"></i>자유로운 수강 선택</a></li>
                         <li><a href="services.html"><i class="fa fa-angle-right" aria-hidden="true"></i>책임감과 노하우가 있는 강사진과 시스템</a></li>                    

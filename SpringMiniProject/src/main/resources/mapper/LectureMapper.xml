@@ -6,4 +6,7 @@
         insert into lecture (lecnum, teaname, lecname, lectypea, lectypeb)
         values (null, #{teaname}, #{lecname}, #{lectypea}, #{lectypeb})
     </insert>
+    <select id="getAllLecture" resultType="LectureDto">
+		select * from lecture order by lectypea asc
+	</select>
 </mapper>
