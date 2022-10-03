@@ -25,5 +25,11 @@ public class UserController {
         return "/mypage/student/timeTable";
 
     }
+    @GetMapping("layoutMypage/change")
+    public String myPageHome() {
+    	
+    	return "/mypage/layoutMypage/change"; 
+    }
+    
 
 }

@@ -12,11 +12,6 @@
             href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap"
             rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-    <style type="text/css">
-        *{
-            font-family: 'Jua';
-        }
-    </style>
 
 </head>
 <body>
@@ -24,7 +19,7 @@
             <!-- Copyright -->
             <div class="footer-copyright text-center">
                 <div class="gradient"></div>
-                <p>© 2017, All Rights reserved. more theme, designed by<a href="https://www.template.net/editable/websites/html5"> tEMPLATE.net</a></p>
+                <p>©  2022, All Rights reserved.<a href="https://github.com/myucel8108/semi2jo">.git</a></p>
             </div>
             <!-- Copyright -->
 

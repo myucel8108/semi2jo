@@ -19,36 +19,35 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/")
 public class LoginController {
 
     @Autowired
     UserServiceInter userService;
 
-    //濡쒓렇�씤 �럹�씠吏�濡� �씠�룞
+    //嚥≪뮄�젃占쎌뵥 占쎈읂占쎌뵠筌욑옙嚥∽옙 占쎌뵠占쎈짗
     @GetMapping("/loginF")
     public String loginF(){
         return "/main/account/accountForm";
     }
 
 
-    //�쉶�썝媛��엯 �럹�씠吏�濡� �씠�룞
+    //占쎌돳占쎌뜚揶쏉옙占쎌뿯 占쎈읂占쎌뵠筌욑옙嚥∽옙 占쎌뵠占쎈짗
     @GetMapping("/insertAccountF")
     public String insertAccount(){
 
         return "/main/account/accountAddForm";
     }
 
-    //濡쒓렇�씤 (id, pass �엯�젰 �썑 踰꾪듉)
+    //嚥≪뮄�젃占쎌뵥 (id, pass 占쎌뿯占쎌젾 占쎌뜎 甕곌쑵�뱣)
     @GetMapping("/loginA")
     @ResponseBody
     public Map<String, Object> loginprocess(String loginid, String loginpass, HttpSession session){
         Map<String, Object> map=new HashMap<String, Object>();
         int result=userService.checkLoginIdPass(loginid, loginpass);
-        if(result==1){//�븘�씠�뵒�� �뙣�뒪媛� 紐⑤몢 留욌뒗 寃쎌슦
-            //�쑀吏� �떆媛� �꽕�젙
-            session.setMaxInactiveInterval(60*60*4);//4�떆媛�
-            //濡쒓렇�씤�븳 �븘�씠�뵒�뿉 ���븳 �젙蹂대�� �뼸�뼱�꽌 session�뿉 ���옣
+        if(result==1){//占쎈툡占쎌뵠占쎈탵占쏙옙 占쎈솭占쎈뮞揶쏉옙 筌뤴뫀紐� 筌띿쉶�뮉 野껋럩�뒭
+            //占쎌�筌욑옙 占쎈뻻揶쏉옙 占쎄퐬占쎌젟
+            session.setMaxInactiveInterval(60*60*4);//4占쎈뻻揶쏉옙
+            //嚥≪뮄�젃占쎌뵥占쎈립 占쎈툡占쎌뵠占쎈탵占쎈퓠 占쏙옙占쎈립 占쎌젟癰귣�占쏙옙 占쎈섯占쎈선占쎄퐣 session占쎈퓠 占쏙옙占쎌삢
             UserDto udto=userService.getDataById(loginid);
             session.setAttribute("loginok", "yes");
             session.setAttribute("loginid", loginid);
@@ -60,7 +59,7 @@ public class LoginController {
         return map;
     }
 
-    // 濡쒓렇�븘�썐
+    // 嚥≪뮄�젃占쎈툡占쎌뜍
     @GetMapping("/logout")
     @ResponseBody
     public void logout(HttpSession session) {
@@ -71,15 +70,15 @@ public class LoginController {
 
 
 
-    //�쉶�썝媛��엯 insert
+    //占쎌돳占쎌뜚揶쏉옙占쎌뿯 insert
     @PostMapping("/insertAccountA")
     public String insert(UserDto dto) {
-//        //�넱耳볦뿉 �삱�씪媛� upload �뤃�뜑 寃쎈줈 援ы븯湲�
+//        //占쎈꽦�노낌肉� 占쎌궞占쎌뵬揶쏉옙 upload 占쎈쨨占쎈쐭 野껋럥以� �뤃�뗫릭疫뀐옙
 //        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
 //        System.out.println(path);
-//        //���옣�븷 �뙆�씪紐� 援ы븯湲�
+//        //占쏙옙占쎌삢占쎈막 占쎈솁占쎌뵬筌륅옙 �뤃�뗫릭疫뀐옙
 //        String fileName = ChangeName.getChangeFileName(photo.getOriginalFilename());
-//        //dto�쓽 photo�쓽 寃쎈줈
+//        //dto占쎌벥 photo占쎌벥 野껋럥以�
 //        dto.setPhoto(fileName);
 
         //upload
@@ -92,7 +91,7 @@ public class LoginController {
 //        }
         return "redirect:loginF";
 
-        //return "redirect:list";//	/member/list 留ㅽ븨二쇱냼 �샇異�-而⑦듃濡ㅻ윭硫붿꽌�뱶 �샇異�
+        //return "redirect:list";//	/member/list 筌띲끋釉ⓧ틠�눘�꺖 占쎌깈�빊占�-�뚢뫂�뱜嚥▲끇�쑎筌롫뗄苑뚳옙諭� 占쎌깈�빊占�
     }
 }
 

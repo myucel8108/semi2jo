@@ -14,7 +14,7 @@ public class LectureController {
     @GetMapping("/lecture/lectureList")
     public String sibal()
     {
-        return "/lecture/lectureList";
+        return "/main/lecture/lectureList";
     }
 
 

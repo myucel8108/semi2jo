@@ -55,7 +55,7 @@ a {
 }
 
 a:focus {
-	outline: none !important;
+	outline: none ;
 }
 
 a:hover {
@@ -105,7 +105,7 @@ textarea {
 }
 
 textarea:focus, input:focus {
-  border-color: transparent !important;
+  border-color: transparent ;
 }
 
 input:focus::-webkit-input-placeholder { color:transparent; }
@@ -135,7 +135,7 @@ label {
 
 /*---------------------------------------------*/
 button {
-	outline: none !important;
+	outline: none ;
 	border: none;
 	background: transparent;
 }
@@ -145,7 +145,7 @@ button:hover {
 }
 
 iframe {
-	border: none !important;
+	border: none ;
 }
 
 
