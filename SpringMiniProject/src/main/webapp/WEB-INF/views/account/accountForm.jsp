@@ -42,8 +42,7 @@
 <div class="limiter" >
     <div class="container-login100">
         <%--        <div class="wrap-login100">--%>
-        <form class="login100-form validate-form" action="insertAccountA" method="post"
-              enctype="multipart/form-data" onsubmit="return check()" style="justify-content: center">
+        <div class="login100-form validate-form" style="justify-content: center">
 					<span class="login100-form-title p-b-43">
 						Login
 					</span>
@@ -110,7 +109,7 @@
 
 
 
-        </form>
+        </div>
 
     </div>
 </div>

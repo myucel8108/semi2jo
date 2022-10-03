@@ -47,7 +47,7 @@ public class LoginController {
         Map<String, Object> map=new HashMap<String, Object>();
         String result=loginService.checkLoginIdPass(loginid, loginpass);
         System.out.println("test1");
-        if(result!=""){
+        if(result!=null){
             System.out.println(result);
             int usernum = Integer.parseInt(result);
             System.out.println(usernum);
@@ -60,7 +60,7 @@ public class LoginController {
             session.setAttribute("usernum", usernum);
             session.setAttribute("photo", udto.getPhoto());
         }
-        String temp = (result!=""?"success":"fail");
+        String temp = (result!=null?"success":"fail");
         map.put("result",temp);
         System.out.println("test"+temp);
         return map;
