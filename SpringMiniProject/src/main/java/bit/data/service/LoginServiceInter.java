@@ -9,8 +9,10 @@ public interface LoginServiceInter {
 
 
 
-    public int checkLoginIdPass(String loginid, String loginpass);
-    public UserDto getDataById(String id);
+    public String checkLoginIdPass(String loginid, String loginpass);
+    public UserDto getDataByNum(int usernum);
 
     public int checkId(String userid);
+
+    public String checkLoginId(String userid);
 }

@@ -7,8 +7,10 @@ import java.util.Map;
 public interface LoginDaoInter {
 
     public void insertUser(UserDto dto);
-    public int checkLoginIdPass(Map<String, String> map);
-    public UserDto getDataById(String id);
+    public String checkLoginIdPass(Map<String, String> map);
+    public UserDto getDataByNum(int usernum);
     public int checkId(String userid);
+
+    public String checkLoginId(String userid);
 }
 

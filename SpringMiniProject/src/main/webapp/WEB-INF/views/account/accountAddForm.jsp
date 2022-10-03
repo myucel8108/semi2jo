@@ -32,9 +32,20 @@
     <!--===============================================================================================-->
 </head>
 <style>
-    #check-id{
+    #div-check-id{
         cursor: pointer;
     }
+    /*#check-id{*/
+    /*    !*position: absolute;*!*/
+    /*    color: red;*/
+    /*    !*vertical-align: center;*!*/
+    /*    margin-right: auto;*/
+    /*    display: block;*/
+    /*}*/
+    /*.div-check-id{*/
+    /*    display: flex;*/
+    /*    justify-content: right;*/
+    /*}*/
 
 </style>
 <body style="background-color: #666666;">
@@ -45,41 +56,66 @@
         <form class="login100-form validate-form" action="insertAccountA" method="post"
               enctype="multipart/form-data" onsubmit="return check()" style="justify-content: center">
 					<span class="login100-form-title p-b-43">
-						Login
+						Create Account
 					</span>
 
 <%--            아이디 입력--%>
-            <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                <input class="input100 loginid" type="text" >
+            <div class="wrap-input100 validate-input" data-validate = "Id is required">
+                <input class="input100 userid" type="text" name="userid">
                 <span class="focus-input100"></span>
                 <span class="label-input100 userid">Id</span>
-                <span id="check-id">check id</span>
             </div>
+
+            <div style="margin-bottom: 10px; display: none" id="div-check-id" >
+                <span style="margin-left: 10px;" id="result-check-id">Check Id</span>
+            </div>
+
 
 <%--            비밀번호 입력--%>
             <div class="wrap-input100 validate-input" data-validate="Password is required">
-                <input class="input100 loginpass check-pass-one" type="password" >
+                <input class="input100 loginpass check-pass-one" type="password" name="userpass">
                 <span class="focus-input100"></span>
                 <span class="label-input100 ">Password</span>
-                <span id="check-pass"></span>
             </div>
             <div class="wrap-input100 validate-input" data-validate="Password is required">
                 <input class="input100 loginpass check-pass-two" type="password" >
                 <span class="focus-input100"></span>
-                <span class="label-input100">Password</span>
+                <span class="label-input100">Check Password</span>
+            </div>
+            <div style="margin-bottom: 10px;" id="div-check-pass" >
+                <span style="margin-left: 10px;" id="result-check-pass">Incorrect</span>
             </div>
 
-            <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                <input class="input100 loginid" type="text" name="">
+<%--            이름--%>
+            <div class="wrap-input100 validate-input" data-validate = "Name is required">
+                <input class="input100" type="text" name="username">
                 <span class="focus-input100"></span>
-                <span class="label-input100 userid">Id</span>
+                <span class="label-input100 userid">Name</span>
             </div>
-
-            <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                <input class="input100 loginid" type="text" >
+<%--            이메일--%>
+            <div class="wrap-input100 validate-input" data-validate = "Email is required">
+                <input class="input100" type="text" name="email">
                 <span class="focus-input100"></span>
-                <span class="label-input100 userid">Id</span>
+                <span class="label-input100 userid">email</span>
             </div>
+<%--            주소--%>
+            <div class="wrap-input100 validate-input" data-validate = "Address is required">
+                <input class="input100" type="text" name="addr">
+                <span class="focus-input100"></span>
+                <span class="label-input100 userid">Address</span>
+            </div>
+<%--            핸드폰버호--%>
+            <div class="wrap-input100 validate-input" data-validate = "Phone Number is required">
+                <input class="input100" type="text" name="hp">
+                <span class="focus-input100"></span>
+                <span class="label-input100 userid">Phone Number</span>
+            </div>
+<%--            생일--%>
+<%--            <div class="wrap-input100 validate-input div-input-birth" data-validate = "Valid email is required: ex@abc.xyz">--%>
+<%--                <input class="input100" id="birth" type="date" style="display: none">--%>
+<%--                <span class="focus-input100"></span>--%>
+<%--                <span class="label-input100 userid">Birth Day</span>--%>
+<%--            </div>--%>
 
 <%--            프로필 사진--%>
 <%--            <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">--%>
@@ -91,25 +127,12 @@
 <%--                <span class="focus-input100"></span>--%>
 <%--            </div>--%>
 
-            <div class="flex-sb-m w-full p-t-3 p-b-32">
-                <div class="contact100-form-checkbox">
-                    <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                    <label class="label-checkbox100" for="ckb1">
-                        Remember me
-                    </label>
-                </div>
 
-                <div>
-                    <a href="#" class="txt1">
-                        Forgot Password?
-                    </a>
-                </div>
-            </div>
 
 
             <div class="container-login100-form-btn">
-                <button class="login100-form-btn" id="btnlogin" type="submit">
-                    Sing In
+                <button class="login100-form-btn" id="btn-sign-up" type="submit">
+                    Sing Up
                 </button>
             </div>
 
@@ -119,33 +142,33 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        //버튼 클릭시 사진 불러오는 이벤트 추가
-        $("#btnAccountPhoto").click(function () {
-            $(".userphoto").trigger("click");
-        });
-
-        //사진 불러오면 미리보기 하기
-        $(".userphoto").change(function(){
-            /* console.log("1:"+$(this)[0].files.length);
-            console.log("2:"+$(this)[0].files[0]); */
-            //정규표현식
-            var reg = /(.*?)\/(jpg|jpeg|png|bmp|gif)$/;
-            var f=$(this)[0].files[0];//현재 선택한 파일
-            if(!f.type.match(reg)){
-                alert("확장자가 이미지파일이 아닙니다");
-                return;
-            }
-            if($(this)[0].files[0]){
-                var reader=new FileReader();
-                reader.onload=function(e){
-                    $("#showimg").attr("src",e.target.result);
-                }
-                reader.readAsDataURL($(this)[0].files[0]);
-            }
-        });
+        // //버튼 클릭시 사진 불러오는 이벤트 추가
+        // $("#btnAccountPhoto").click(function () {
+        //     $(".userphoto").trigger("click");
+        // });
+        //
+        // //사진 불러오면 미리보기 하기
+        // $(".userphoto").change(function(){
+        //     /* console.log("1:"+$(this)[0].files.length);
+        //     console.log("2:"+$(this)[0].files[0]); */
+        //     //정규표현식
+        //     var reg = /(.*?)\/(jpg|jpeg|png|bmp|gif)$/;
+        //     var f=$(this)[0].files[0];//현재 선택한 파일
+        //     if(!f.type.match(reg)){
+        //         alert("확장자가 이미지파일이 아닙니다");
+        //         return;
+        //     }
+        //     if($(this)[0].files[0]){
+        //         var reader=new FileReader();
+        //         reader.onload=function(e){
+        //             $("#showimg").attr("src",e.target.result);
+        //         }
+        //         reader.readAsDataURL($(this)[0].files[0]);
+        //     }
+        // });
 
         //아이디 중복체크 버튼 이벤트
-        $("#check-id").click(function () {
+        $("#div-check-id").click(function () {
             // var temp = document.getElementById("check-id");
             $.ajax({
                 type:"get",
@@ -153,15 +176,16 @@
                 url:"/mini/checkId",
                 data:{"userid":$(".userid").val()},
                 success:function(res){
-                    console.log("checkajax");
                     if(res.result==0){
                         // $("span#check-id").text("ok");
                         // temp.style.display ='none';
-                        var temp = document.getElementById("check-id");
-                        temp.style.display ='none';
-                        $("span#check-id").text("ok");
+
+                        $("#result-check-id").text("ok");
+                        document.getElementById("div-check-id").style.display='none';
+
                     }else{
-                        $("span#check-id").text("try again");
+                        $("#result-check-id").text("try again");
+
                     }
                 }
             });
@@ -170,36 +194,58 @@
         //아이디 입력 혹은 수정시 무조건 check id 하라고 알려줌
         $(".userid").keyup(function () {
             console.log("btn");
-            $("span#check-id").text("check id");
-            var temp = document.getElementById("check-id");
+            $("#result-check-id").text("check id");
+            var temp = document.getElementById("div-check-id");
             temp.style.display ='block';
         });
 
-        //2번째 비밀번호 입력시 체크
+        //1번째 비밀번호 입력시 체크
         $(".check-pass-two").keyup(function () {
+            var temp = document.getElementById("result-check-pass");
             var p1 = $(".check-pass-one").val();
             var p2 = $(this).val();
             if(p1==p2){
-                var temp = document.getElementById("check-pass");
                 temp.style.display ='none';
-                $("#check-pass").text("ok");
+                $("#result-check-pass").text("ok");
             }else{
-                $("#check-pass").text("incorrect");
+                $("#result-check-pass").text("incorrect");
+                temp.style.display='block';
             }
         });
+        //2번째 비밀번호 입력시 체크(1번과 코드 동일)
+        $(".check-pass-one").keyup(function () {
+            var temp = document.getElementById("result-check-pass");
+            var p1 = $(".check-pass-two").val();
+            var p2 = $(this).val();
+            if(p1==p2){
+                temp.style.display ='none';
+                $("#result-check-pass").text("ok");
+            }else{
+                $("#result-check-pass").text("incorrect");
+                temp.style.display='block';
+            }
+        });
+
+
+        //birth 입력하는 div 클릭시 input tag 활성화
+        // $(".div-input-birth").click(function () {
+        //     console.log("teset click");
+        //     document.getElementById("birth").style.display='block';
+        //     $("#birth").trigger("click");
+        // });
     });//function
 
     //submit 전에 호출
     function check() {
 
         //중복체크
-        if($("#check-id").text()!='ok'){
+        if($("#result-check-id").text()!='ok'){
             alert("아이디 중복체크를 해주세요");
             return false;
         }
 
         //비밀번호
-        if($("#check-pass").text()!='ok'){
+        if($("#result-check-pass").text()!='ok'){
             alert("비밀번호가 다릅니다.");
             return false;
         }
@@ -226,6 +272,7 @@
 <%--<script src="../../../../../../../../../Downloads/Login_v18/vendor/countdowntime/countdowntime.js"></script>--%>
 <!--===============================================================================================-->
 <script src="js/account.js"></script>
-
+<%--jquery cdn--%>
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 </body>
 </html>

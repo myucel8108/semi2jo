@@ -19,17 +19,22 @@ public class LoginDao implements LoginDaoInter{
     }
 
     @Override
-    public int checkLoginIdPass(Map<String, String> map) {
+    public String checkLoginIdPass(Map<String, String> map) {
         return session.selectOne(ns+"checkLoginIdPass",map);
     }
 
     @Override
-    public UserDto getDataById(String loginid) {
-        return session.selectOne(ns+"getDataById", loginid);
+    public UserDto getDataByNum(int usernum) {
+        return session.selectOne(ns+"getDataByNum", usernum);
     }
 
     @Override
     public int checkId(String userid) {
         return session.selectOne(ns+"checkId",userid);
+    }
+
+    @Override
+    public String checkLoginId(String userid) {
+        return session.selectOne(ns+"checkLoginId",userid);
     }
 }

@@ -21,7 +21,7 @@ public class LoginService implements LoginServiceInter{
     }
 
     @Override
-    public int checkLoginIdPass(String loginid, String loginpass) {
+    public String checkLoginIdPass(String loginid, String loginpass) {
         Map<String,String> map = new HashMap<String, String>();
         map.put("loginid",loginid);
         map.put("loginpass",loginpass);
@@ -29,13 +29,20 @@ public class LoginService implements LoginServiceInter{
     }
 
     @Override
-    public UserDto getDataById(String id) {
+    public UserDto getDataByNum(int usernum) {
         // TODO Auto-generated method stub
-        return loginDao.getDataById(id);
+        return loginDao.getDataByNum(usernum);
     }
 
     @Override
     public int checkId(String userid) {
         return loginDao.checkId(userid);
     }
+
+    @Override
+    public String checkLoginId(String userid) {
+        return loginDao.checkLoginId(userid);
+    }
 }
+
+

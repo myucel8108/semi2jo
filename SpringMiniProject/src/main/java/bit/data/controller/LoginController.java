@@ -45,19 +45,46 @@ public class LoginController {
     @ResponseBody
     public Map<String, Object> loginprocess(String loginid, String loginpass, HttpSession session){
         Map<String, Object> map=new HashMap<String, Object>();
-        int result=loginService.checkLoginIdPass(loginid, loginpass);
-        if(result==1){//�븘�씠�뵒�� �뙣�뒪媛� 紐⑤몢 留욌뒗 寃쎌슦
-            //�쑀吏� �떆媛� �꽕�젙
-            session.setMaxInactiveInterval(60*60*4);//4�떆媛�
-            //濡쒓렇�씤�븳 �븘�씠�뵒�뿉 ���븳 �젙蹂대�� �뼸�뼱�꽌 session�뿉 ���옣
-            UserDto udto=loginService.getDataById(loginid);
+        String result=loginService.checkLoginIdPass(loginid, loginpass);
+        System.out.println("test1");
+        if(result!=""){
+            System.out.println(result);
+            int usernum = Integer.parseInt(result);
+            System.out.println(usernum);
+            session.setMaxInactiveInterval(60*60*4);
+            UserDto udto=loginService.getDataByNum(usernum);
+            System.out.println("test3");
             session.setAttribute("loginok", "yes");
             session.setAttribute("loginid", loginid);
             session.setAttribute("loginname", udto.getUsername());
-            session.setAttribute("usernum", udto.getUsernum());
+            session.setAttribute("usernum", usernum);
             session.setAttribute("photo", udto.getPhoto());
         }
-        String temp = (result==1?"success":"fail");
+        String temp = (result!=""?"success":"fail");
+        map.put("result",temp);
+        System.out.println("test"+temp);
+        return map;
+    }
+
+//    간편 로그인
+    @GetMapping("/loginByApi")
+    @ResponseBody
+    public Map<String, Object> loginByApi(String userid, HttpSession session){
+        System.out.println(userid);
+
+        Map<String, Object> map=new HashMap<String, Object>();
+        String result = loginService.checkLoginId(userid);
+        int usernum = Integer.parseInt(result);
+        if(result!=null){
+            System.out.println("controller if");
+            session.setMaxInactiveInterval(60*60*4);
+            UserDto udto=loginService.getDataByNum(usernum);
+            session.setAttribute("loginok", "yes");
+            session.setAttribute("loginid", udto.getUserid());
+            session.setAttribute("loginname", udto.getUsername());
+            session.setAttribute("usernum", udto.getUsernum());
+        }
+        String temp = (result!=null?"success":"fail");
         map.put("result",temp);
         System.out.println("test"+temp);
         return map;
@@ -70,6 +97,7 @@ public class LoginController {
         System.out.println("logoutcontroller");
         session.removeAttribute("loginok");
         session.removeAttribute("loginid");
+        session.removeAttribute("usernum");
     }
 
 
@@ -77,23 +105,26 @@ public class LoginController {
     //회원가입
     @PostMapping("/insertAccountA")
     @ResponseBody
-    public String insert(UserDto dto,MultipartFile photo, HttpServletRequest request, HttpSession session) {
+    public String insert(UserDto dto) {
+        System.out.println("acountA");
         //톰켓에 올라간 upload 폴더 경로 구하기
-        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
-        System.out.println(path);
-        //저장할 파일명 구하기
-        String fileName = ChangeName.getChangeFileName(photo.getOriginalFilename());
-        //dto�쓽 photo�쓽 寃쎈줈
-        dto.setPhoto(fileName);
+//        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
+//        System.out.println(path);
+//        //저장할 파일명 구하기
+//        String fileName = ChangeName.getChangeFileName(photo.getOriginalFilename());
+//        //dto�쓽 photo�쓽 寃쎈줈
+//        dto.setPhoto(fileName);
 
-        //upload
-        try {
-            photo.transferTo(new File(path+"/"+fileName));
-            loginService.insertUser(dto);
-            session.setAttribute("loginphoto", fileName);	//세션의 사진 변경
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
+        loginService.insertUser(dto);
+//
+//        //upload
+//        try {
+//            photo.transferTo(new File(path+"/"+fileName));
+//            session.setAttribute("loginphoto", fileName);	//세션의 사진 변경
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
         return "redirect:loginF";
     }
 
