@@ -98,7 +98,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <c:set var="root" value="<%=request.getContextPath() %>"/>
-    <link rel="stylesheet" type="text/css" href="${root }/css/header2.css">
+    <link rel="stylesheet" type="text/css" href="${root }/css/header.css">
 
     <script type="text/javascript">
         $(function () {

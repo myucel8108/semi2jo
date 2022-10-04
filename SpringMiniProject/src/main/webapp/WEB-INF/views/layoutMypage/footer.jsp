@@ -45,7 +45,7 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <c:set var="root" value="<%=request.getContextPath() %>"/>
-    <link rel="stylesheet" type="text/css" href="${root }/css/footer2.css">
+    <link rel="stylesheet" type="text/css" href="${root }/css/footer.css">
 
 </head>
 <body>
