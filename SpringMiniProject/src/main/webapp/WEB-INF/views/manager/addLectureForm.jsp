@@ -34,7 +34,6 @@
 		.sort {
 			width: 50%;
 			border: 1px solid blue;
-			background-color: ;
 			display: flex;
 			float: left;
 			justify-content: center;
@@ -56,11 +55,19 @@
 			text-align: center;
 			line-height: 110px;
 		}
+
+		#insertbutton{
+			display: none;
+		}
+
+		#insertspan{
+			cursor: pointer;
+		}
 	</style>
 </head>
 <body>
 <div id="addform">
-	<form action="insertLecture" method="post" enctype="multipart/form-data" onsubmit="return check()">
+	<form action="insertlecture" method="post" enctype="multipart/form-data">
 		<div class="title">
 			강의 등록
 		</div>
@@ -87,13 +94,13 @@
 				강의 대분류
 			</div>
 			<div class="input">
-				<select id="typea" name="typea">
+				<select id="lectypea" name="lectypea">
 					<option value="none" selected>대분류</option>
-					<option value="1">국어</option>
-					<option value="2">수학</option>
-					<option value="3">사회</option>
-					<option value="4">과학</option>
-					<option value="5">영어</option>
+					<option value="국어">국어</option>
+					<option value="수학">수학</option>
+					<option value="사회">사회</option>
+					<option value="과학">과학</option>
+					<option value="영어">영어</option>
 				</select>
 			</div>
 		</div>
@@ -102,13 +109,13 @@
 				강의 중분류
 			</div>
 			<div class="input">
-				<select id="typeb" name="typeb">
+				<select id="lectypeb" name="lectypeb">
 					<option value="none" selected>중분류</option>
 				</select>
 			</div>
 
 			<script>
-				$("#typea").change(function(){
+				$("#lectypea").change(function(){
 					var korean = ["문학", "비문학"];
 					var math = ["수학1", "수학2", "미적분"];
 					var society = ["경제", "사회문화"];
@@ -116,15 +123,15 @@
 					var english = ["독해", "문법"];
 					var none = ["중분류"]; //중분류 원래값으로 못돌려놔서 짜치는 방법으로 어거지로 쑤셔박았음. 수정 요망.
 					var selected;
-					if($(this).val() == 1){
+					if($(this).val() == "국어"){
 						selected = korean;
-					} else if($(this).val() == 2){
+					} else if($(this).val() == "수학"){
 						selected = math;
-					} else if($(this).val() == 3){
+					} else if($(this).val() == "사회"){
 						selected = society;
-					} else if($(this).val() == 4){
+					} else if($(this).val() == "과학"){
 						selected = science;
-					} else if($(this).val() == 5){
+					} else if($(this).val() == "영어"){
 						selected = english;
 					} else if($(this).val() == "none"){ //중분류 원래값으로 못돌려놔서 짜치는 방법으로 어거지로 쑤셔박았음. 수정 요망.
 						selected = none;
@@ -132,21 +139,31 @@
 					option(selected);
 				});
 
-				function option(selected){
-					var s="";
+				function option(selected) {
+					var s = "";
 
-					$.each(selected, function(i, subject){
-						s+="<option class='a'>" + subject + "</option>";
+					$.each(selected, function (i, subject) {
+						s += "<option class='a' value='" + subject + "'>" + subject + "</option>";
 					});
 
-					$("#typeb").html(s);
+					$("#lectypeb").html(s);
 				}
 			</script>
 
-		</div>
+		</div
+
 		<div class="addinner">
-			<button type="submit">강의 등록</button>
+			<span id="insertspan">강의 등록</span>
+			<button type="submit" id="insertbutton">강의 등록</button>
 		</div>
+
+		<script>
+			$("#insertspan").click(function () {
+				$("#insertbutton").click();
+				alert("강의가 등록되었습니다");
+			});
+		</script>
+
 	</form>
 </div>
 </body>
