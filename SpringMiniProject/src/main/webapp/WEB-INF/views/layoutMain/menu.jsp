@@ -48,7 +48,9 @@
 			     <c:if test="${sessionScope.loginok!=null }">
 			         <b>${sessionScope.loginname}님</b>
 			         &nbsp;&nbsp;
-			         <button type="button" id="btnlogoutMain" style=" margin-right: 110px;" >로그아웃</button>
+                     <a href="${root}/student/timeTable">마이페이지</a>
+                     &nbsp;&nbsp;
+                     <button type="button" id="btnlogoutMain" style=" margin-right: 110px;" >로그아웃</button>
 			     </c:if>
     </nav>
      <script>

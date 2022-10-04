@@ -54,15 +54,13 @@ public class BoardController {
         return mview;
     }
 
-    /*@PostMapping("/board/insert") //게시판 추가
+    @PostMapping("/board/insert") //게시판 추가
     public String insert(BoardDto dto, List<MultipartFile>upload, HttpServletRequest request)
     {
         String path = request.getSession().getServletContext().getRealPath("/resources/upload");
 
-        //loginid 에 해당하는 nickname 얻기
-        String nickname=userService.getDataById(dto.getUserid()).getNickname();
-        int usernum=userService.getDataById(dto.getUserid()).getUsernum();
-        dto.setUsernum(usernum);
+        //loging한 usernum에 해당하는 nickname 얻어서 dto에 넣기
+        String nickname=userService.getDataByNum(dto.getUsernum()).getNickname();
         dto.setNickname(nickname);
 
         if (upload.get(0).getOriginalFilename().equals("")) {
@@ -87,7 +85,7 @@ public class BoardController {
         }
         boardService.insertBoard(dto);
         return "redirect:boardFree";
-    }*/
+    }
 
     @GetMapping("/board/boardFree") //게시판 리스트 출력
     public String board(

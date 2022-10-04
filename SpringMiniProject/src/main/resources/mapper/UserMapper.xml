@@ -1,33 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bit.data.dao.UserDao">
-<!--    회원가입-->
+    <!--회원가입-->
     <insert id="insertUser" parameterType="userDto">
         insert into user (usernum,userid,userpass,username,
                           nickname,photo,email,addr,hp,lastlogin,birth)
         values (null,#{userid},#{userpass},#{username},#{nickname},#{photo},#{email},#{addr},#{hp},now(),#{birth})
     </insert>
-
-<!--    로그인 아이디 패스워드 체크 후 usernum 가져오기-->
-    <select id="checkLoginIdPass" parameterType="Map" resultType="String">
-        select usernum from user where userid=#{loginid} and userpass=#{loginpass}
-    </select>
-
-    <!--    간편 로그인시  아이디로 pk값을 가져옴-->
-    <select id="checkLoginId" parameterType="String" resultType="String">
-        select usernum from user where userid=#{userid}
-    </select>
-
-    <!--    usernum으로 데이터 가져와 세션에 저장-->
-    <select id="getDataByNum" parameterType="int" resultType="userDto">
-        select * from user where usernum=#{usernum}
-    </select>
-
-    <!--    회원가입시 아이디 중복체크-->
+    <!--회원가입시 아이디 중복체크-->
     <select id="checkId" parameterType="String" resultType="int">
         select count(*) from user where userid=#{userid}
     </select>
 
+    <!--로그인 아이디 패스워드 체크 후 usernum 가져오기-->
+    <select id="checkLoginIdPass" parameterType="Map" resultType="String">
+        select usernum from user where userid=#{loginid} and userpass=#{loginpass}
+    </select>
+    <!--간편 로그인시  아이디로 pk값을 가져옴-->
+    <select id="checkLoginId" parameterType="String" resultType="String">
+        select usernum from user where userid=#{userid}
+    </select>
+    <!--usernum으로 회원 데이터 가져옴-->
+    <!--가져온 데이터 로그인 세션에 저장-->
+    <select id="getDataByNum" parameterType="int" resultType="userDto">
+        select * from user where usernum=#{usernum}
+    </select>
+    <!--userid로 회원 데이터 가져옴-->
+    <select id="getDataById" parameterType="String" resultType="userDto">
+        select * from user where userid=#{userid}
+    </select>
+
+    <!--전체회원 수 출력-->
+    <select id="getUserTotalCount" resultType="int">
+        select count(*) from user
+    </select>
+    <!--회원목록 전체 출력-->
+    <select id="getAllUsers" resultType="userDto">
+        select * from user order by usernum asc
+    </select>
+
+    <!--회원 프로필사진변경 (usernum)으로 가져옴-->
+    <update id="updateUserPhoto" parameterType="Map">
+        update user set photo=#{photo} where usernum=#{usernum}
+    </update>
+    <!--회원 정보변경 (usernum)으로 가져옴-->
+    <update id="updateUser" parameterType="userDto">
+        update user set username=#{username},nickname=#{nickname},email=#{email},
+                        addr=#{addr},hp=#{hp},birth=#{birth} where usernum=#{usernum}
+    </update>
+    <!--회원 삭제 (usernum)으로 가져옴-->
+    <delete id="deleteUser" parameterType="int">
+        delete from user where usernum=#{usernum}
+    </delete>
 
 </mapper>
 

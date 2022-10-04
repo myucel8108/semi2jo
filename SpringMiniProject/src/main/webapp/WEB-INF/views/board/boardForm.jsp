@@ -154,6 +154,7 @@
 </head>
 <body>
 <form action="insert" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="usernum" value="${sessionScope.usernum}">
     <input type="hidden" name="userid" value="${sessionScope.loginid}">
     <div class="title">
         글쓰기
