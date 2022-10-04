@@ -16,24 +16,8 @@
     </style>
 </head>
 <body>
-<div class="searcharea" style="width: 100%; text-align:center; ">
-    <form action="list">
-        <div class="input-group" style="width: 450px;">
-            <select class="form-select" style="width:150px;" name="searchcolumn">
-                <option value="subject">제목</option>
-                <option value="id">아이디</option>
-                <option value="name">작성자</option>
-                <option value="content">내용</option>
-            </select>
-            &nbsp;&nbsp;&nbsp;
-            <input type="text" name="searchword" class="form-control" style="width: 140px;"
-                   placeholder="검색단어" value="${param.searchword}">
 
-            <button type="submit" class="btn btn-success">검색</button>
-        </div>
-    </form>
-
-    <%--    <a href="list?searchcolumn=id&searchword=${sessionScope.loginid }">내가쓴글</a>--%>
+        <a href="qnaList?searchcolumn=id&searchword=${sessionScope.loginid }">나의문의</a>
 </div>
 
 <div class="qnalist" style="margin-top: 10px; width:1000px;">
@@ -43,7 +27,7 @@
         <tr style="background-color: #ddd">
             <th style="width: 50px; text-align:center;">번호</th>
             <th style="width: 250px;text-align:center;">제목</th>
-            <th style="width: 80px;text-align:center;">작성자</th>
+            <th style="width: 80px;text-align:center;">이름</th>
             <th style="width: 110px;text-align:center;">작성일</th>
         </tr>
         <c:if test="${totalCount==0 }">

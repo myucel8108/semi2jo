@@ -66,3 +66,6 @@ public class QnaDao implements QnaDaoInter{
         session.delete(ns+"deleteQnaRegroup",regroup);
     }
 }
+
+
+
