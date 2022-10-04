@@ -14,8 +14,8 @@
     </select>
 
 <!--    id 로 데이터 가져와 세션에 저장-->
-    <select id="getDataById" parameterType="String" resultType="userDto">
-        select * from user where userid=#{loginid}
+    <select id="getDataByNum" parameterType="int" resultType="userDto">
+        select * from user where usernum=#{usernum}
     </select>
 
 </mapper>
