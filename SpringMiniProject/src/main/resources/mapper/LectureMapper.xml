@@ -14,4 +14,7 @@
     <select id="getLectureList" parameterType="Map" resultType="lectureDto">
         select * from lecture order by lecnum desc
     </select>
+     <select id="getAllLecture" resultType="LectureDto">
+		select * from lecture order by lectypea asc
+	</select>
 </mapper>
