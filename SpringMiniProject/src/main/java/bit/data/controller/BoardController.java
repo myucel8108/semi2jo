@@ -30,7 +30,7 @@ public class BoardController {
     @GetMapping("/board/boardForm") //게시판 작성폼
     public String boardForm(){
 
-        return "/board/boardForm";
+        return "/main/board/boardForm";
     }
 
     @GetMapping("/board/boardDetail") //게시판 디테일
@@ -45,7 +45,7 @@ public class BoardController {
         mview.addObject("dto", dto);
         mview.addObject("currentPage", currentPage);
 
-        mview.setViewName("/board/boardDetail");
+        mview.setViewName("/main/board/boardDetail");
 
         return mview;
     }
@@ -122,7 +122,7 @@ public class BoardController {
         model.addAttribute("no", no);
         model.addAttribute("totalPage", totalPage);
 
-        return "/board/boardFree";
+        return "/main/board/boardFree";
     }
 
     @GetMapping("/board/delete")
@@ -168,7 +168,7 @@ public class BoardController {
         model.addAttribute("dto", dto);
         model.addAttribute("currentPage", currentPage);
 
-        return "/board/boardUpdate";
+        return "/main/board/boardUpdate";
     }
 
 }
