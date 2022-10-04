@@ -35,4 +35,10 @@
     <delete id="deleteBoard" parameterType="int">
         delete from board where boardnum = #{boardnum}
     </delete>
+    <update id="updateIncreLikeCount" parameterType="int"> /*좋아요 증가*/
+        update board set likes=likes+1 where boardnum=#{boardnum}
+    </update>
+    <update id="updateDecreLikeCount" parameterType="int"> /*좋아요 감소*/
+        update board set likes=likes-1 where boardnum=#{boardnum}
+    </update>
 </mapper>
