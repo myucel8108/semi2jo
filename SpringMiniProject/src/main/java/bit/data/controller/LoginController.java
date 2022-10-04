@@ -51,6 +51,7 @@ public class LoginController {
             UserDto udto=userService.getDataById(loginid);
             session.setAttribute("loginok", "yes");
             session.setAttribute("loginid", loginid);
+            System.out.println("session="+session.getAttribute("loginid"));
             session.setAttribute("loginname", udto.getUsername());
             session.setAttribute("usernum", udto.getUsernum());
         }

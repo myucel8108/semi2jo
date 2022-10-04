@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bit.data.dao.LikeBoardDao">
-
+  <select id="checkBoardLike" parameterType="Map" resultType="int">
+    select count(*) from likeboard where boardnum=#{boardnum} and userid=#{userid}
+  </select>
+<select id="stateBoardLike" parameterType="Map" resultType="int">
+    select likestate from likeboard where boardnum=#{boardnum} and userid=#{userid}
+</select>
+<insert id="insertLikeBoard" parameterType="likeBoardDto">
+    insert into likeboard values (null,#{userid}, #{boardnum}, #{likestate});
+</insert>
+<update id="updateLikeState" parameterType="Map">
+    update likeboard set likestate=#{likestate} where boardnum=#{boardnum} and userid=#{userid}
+</update>
+    <select id="likeUserAll" parameterType="int" resultType="String">
+        select userid from likeboard where boardnum=#{boardnum} and likestate=1
+    </select>
 </mapper>

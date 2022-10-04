@@ -43,13 +43,13 @@
             <form class="login100-form validate-form">
                 <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
                     <span class="label-input100">Username</span>
-                    <input class="input100 loginid" type="text" placeholder="Enter username">
+                    <input class="input100 loginid" type="text" placeholder="Enter username" value="woojin">
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
                     <span class="label-input100">Password</span>
-                    <input class="input100 loginpass" type="password" placeholder="Enter password">
+                    <input class="input100 loginpass" type="password" placeholder="Enter password" value="1111">
                     <span class="focus-input100"></span>
                 </div>
 
