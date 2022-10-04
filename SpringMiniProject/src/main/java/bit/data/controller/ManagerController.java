@@ -66,9 +66,16 @@ public class ManagerController {
         return "/manager/manager/lectureList";
     }
 
+    //강의 등록 폼으로 이동
+    @GetMapping("/addlectureform")
+    public String addLecture(){
+        return "/manager/manager/addLectureForm";
+    }
+
+    //강의 등록 후 강의 리스트로 이동
     @PostMapping("/insertlecture")
     public String insertLecture(LectureDto dto) { //강의 등록
         lectureService.insertLecture(dto);
-        return "/manager/manager/addLectureForm";
+        return "redirect:/lecturelist";
     }
 }

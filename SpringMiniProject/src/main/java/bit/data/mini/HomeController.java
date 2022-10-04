@@ -21,13 +21,13 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String home() {
-		return "/main/layoutMain/change";
+		return "/manager/layoutManager/change";
 	}
 
-		@GetMapping("/student/myCart")
-		public String Cart() {
-			return "/main/student/myCart";
-		}
+	@GetMapping("/student/myCart")
+	public String Cart() {
+		return "/main/student/myCart";
+	}
 			
 	
 	

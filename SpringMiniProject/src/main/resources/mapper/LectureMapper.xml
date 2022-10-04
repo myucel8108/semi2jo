@@ -12,9 +12,13 @@
     </select>
     <!-- 강의 목록 출력 -->
     <select id="getLectureList" parameterType="Map" resultType="lectureDto">
-        select * from lecture order by lecnum desc
+        select * from lecture
+        <if test="searchcolumn!=null and searchword!=null">
+            where ${searchcolumn} like concat('%',#{searchword},'%')
+        </if>
+        order by lecnum desc limit #{startnum},#{perpage}
     </select>
-     <select id="getAllLecture" resultType="LectureDto">
+    <select id="getAllLecture" resultType="LectureDto">
 		select * from lecture order by lectypea asc
 	</select>
 </mapper>

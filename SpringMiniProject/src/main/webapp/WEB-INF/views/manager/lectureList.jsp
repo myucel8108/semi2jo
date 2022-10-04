@@ -12,16 +12,78 @@
             rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <style type="text/css">
-        *{
-            font-family: 'Jua';
-        }
-
         .searchdiv{
             width: 450px;
+        }
+
+        ul.pagination{
+            justify-content: center;
+        }
+
+        .adddiv{
+            display: flex;
+            float: right;
+        }
+
+        .clickdetail{
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
+<div class="card-body">
+    <h4 class="card-title">Striped Table</h4>
+    <p class="card-description">
+        Add class <code>.table-striped</code>
+    </p>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>
+                    번호
+                </th>
+                <th>
+                    강의명
+                </th>
+                <th>
+                    강사
+                </th>
+                <th>
+                    강의 대분류
+                </th>
+                <th>
+                    강의 중분류
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="py-1">
+                    <img src="../../images/faces/face1.jpg" alt="image"/>
+                </td>
+                <td>
+                    Herman Beck
+                </td>
+                <td>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </td>
+                <td>
+                    $ 77.99
+                </td>
+                <td>
+                    May 15, 2015
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
     <!-- 검색창 -->
     <div class="searcharea">
         <form action="lecturelist">
@@ -48,7 +110,7 @@
                 <th align="center" style="width: 200px;">강의명</th>
                 <th align="center" style="width: 80px;">강사</th>
                 <th align="center" style="width: 80px;">강의 대분류</th>
-                <th align="center" style="width: 90px;">강의 소분류</th>
+                <th align="center" style="width: 90px;">강의 중분류</th>
             </tr>
             <c:if test="${totalCount==0}">
                 <tr>
@@ -64,7 +126,7 @@
                     <tr>
                         <td align="center">${no}</td>
                         <c:set var="no" value="${no-1}"/>
-                        <td align="center">${dto.lecname}</td>
+                        <td align="center" class="clickdetail" name="${dto.lecname}">${dto.lecname}</td>
                         <td align="center">${dto.teaname}</td>
                         <td align="center">${dto.lectypea}</td>
                         <td align="center">${dto.lectypeb}</td>
@@ -85,26 +147,36 @@
     <div class="paging">
         <ul class="pagination">
             <c:if test="${startPage>1}">
-                <li class="page-item"><a href="list?currentPage=${startPage-1}" class="page-link">이전</a></li>
+                <li class="page-item"><a href="lecturelist?currentPage=${startPage-1}" class="page-link">이전</a></li>
             </c:if>
 
             <!-- 페이지 번호 -->
             <c:forEach var="pp" begin="${startPage}" end="${endPage}">
                 <c:if test="${pp==currentPage}">
-                    <li class="page-item active"><a href="list?currentPage=${pp}" class="page-link">${pp}</a></li>
+                    <li class="page-item active"><a href="lecturelist?currentPage=${pp}" class="page-link">${pp}</a></li>
                 </c:if>
                 <c:if test="${pp!=currentPage}">
-                    <li class="page-item"><a href="list?currentPage=${pp}" class="page-link">${pp}</a></li>
+                    <li class="page-item"><a href="lecturelist?currentPage=${pp}" class="page-link">${pp}</a></li>
                 </c:if>
             </c:forEach>
 
             <c:if test="${endPage<totalPage}">
-                <li class="page-item"><a href="list?currentPage=${endPage+1}" class="page-link">다음</a></li>
+                <li class="page-item"><a href="lecturelist?currentPage=${endPage+1}" class="page-link">다음</a></li>
             </c:if>
         </ul>
     </div>
 
-</body>
-</html>
+    <div class="adddiv">
+        <button type="btn btn-primary button" onclick="location.href='/mini/addlectureform'">강의 등록</button>
+    </div>
+
+    <script>
+        $(".clickdetail").click(function () {
+            var s = $(this).attr("name");
+            alert(s);
+        });
+    </script>
+
+
 </body>
 </html>
