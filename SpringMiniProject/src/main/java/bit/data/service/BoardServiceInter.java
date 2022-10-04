@@ -15,6 +15,7 @@ public interface BoardServiceInter {
     public void updateBoard(BoardDto dto);
     public void deleteBoard(int boardnum);
 
-
+    public void updateIncreLikeCount(int boardnum);
+    public void updateDecreLikeCount(int boardnum);
 
 }

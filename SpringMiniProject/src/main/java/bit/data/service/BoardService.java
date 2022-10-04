@@ -61,4 +61,14 @@ public class BoardService implements BoardServiceInter{
         // TODO Auto-generated method stub
         boardDao.deleteBoard(boardnum);
     }
+
+    @Override
+    public void updateIncreLikeCount(int boardnum) {
+        boardDao.updateIncreLikeCount(boardnum);
+    }
+
+    @Override
+    public void updateDecreLikeCount(int boardnum) {
+        boardDao.updateDecreLikeCount(boardnum);
+    }
 }

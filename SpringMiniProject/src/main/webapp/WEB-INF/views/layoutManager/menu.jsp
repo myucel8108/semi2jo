@@ -41,7 +41,7 @@
 	<c:set var="root" value="<%=request.getContextPath()%>"/> <!-- 자기 주소 얻어오기 -->
 	<div class="menu">		
 		<div><a class="atag">학생 관리</a></div>	
-		<div><a class="atag" href="${root}/manager/lecturelist">강의 관리</a></div>
+		<div><a class="atag" href="${root}/lecturelist">강의 관리</a></div>
 		<div><a class="atag">게시판 관리</a></div>		        
 		<div><a class="atag">Q&A 관리</a></div>
 	</div>

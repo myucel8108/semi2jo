@@ -54,4 +54,14 @@ public class BoardDao implements BoardDaoInter{
         // TODO Auto-generated method stub
         session.delete(ns+"deleteBoard", boardnum);
     }
+
+    @Override
+    public void updateIncreLikeCount(int boardnum) {
+        session.update(ns+"updateIncreLikeCount", boardnum);
+    }
+
+    @Override
+    public void updateDecreLikeCount(int boardnum) {
+        session.update(ns+"updateDecreLikeCount", boardnum);
+    }
 }

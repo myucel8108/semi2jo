@@ -27,4 +27,6 @@
     <select id="checkId" parameterType="String" resultType="int">
         select count(*) from user where userid=#{userid}
     </select>
+
 </mapper>
+

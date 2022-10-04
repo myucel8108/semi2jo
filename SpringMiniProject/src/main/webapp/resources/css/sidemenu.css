@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+/* sidebar css 시작 */
+div.sidebar_title {
+    font-family: "Noto Sans KR";
+    position: absolute;
+    width: 330px;
+    height: 35px;
+    font-size: 24px;
+    font-weight: 500;
+    color: #191919;
+    margin: 20px 10px 0 0;
+    /* margin: 50px 10px 0 335px; */
+}
+
+#sidebar_hr {
+    position: absolute;
+    width: 300px;
+    height: 1px;
+    background-color: #191919;
+    margin: 70px 10px 0 0;
+    /* margin: 100px 10px 0 335px; */
+}
+
+div.sidebar_content {
+    position: absolute;
+    width: 300px;
+    height: 500px;
+    margin: 70px 10px 0 0;
+    /* margin: 100px 10px 0 335px; */
+}
+
+div.sidebar_detail {
+    font-family: "Noto Sans KR";
+    font-size: 20px;
+    font-weight: 400;
+    color: #191919;
+    letter-spacing: -0.5px;
+    text-align: left;
+    width: 300px;
+    height: 40px;
+    margin: 15px 0 0 0;
+}
+
+div.sidebar_detail:hover {
+    color: #ff4b4e;
+}
+
+span.side_main_span_main,.side_main_span_write,.side_main_span_market,.side_main_span_challenge,.side_main_span_scrap {
+    width: 72px;
+    height: 29px;
+    margin: 20px 0 0 15px;
+    cursor: pointer;
+}
+/* sidebar css 끝 */

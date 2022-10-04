@@ -1,6 +1,8 @@
 package bit.data.controller;
 
+import bit.data.dao.LoginDaoInter;
 import bit.data.dto.UserDto;
+import bit.data.service.LoginServiceInter;
 import bit.data.service.UserServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,81 +21,120 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/")
 public class LoginController {
 
     @Autowired
-    UserServiceInter userService;
+    LoginServiceInter loginService;
 
-    //濡쒓렇�씤 �럹�씠吏�濡� �씠�룞
+    //로그인 페이지로 이동
     @GetMapping("/loginF")
     public String loginF(){
         return "/main/account/accountForm";
     }
 
 
-    //�쉶�썝媛��엯 �럹�씠吏�濡� �씠�룞
+    //회원가입 페이지 이동
     @GetMapping("/insertAccountF")
     public String insertAccount(){
 
         return "/main/account/accountAddForm";
     }
 
-    //濡쒓렇�씤 (id, pass �엯�젰 �썑 踰꾪듉)
+    //로그인 하기
     @GetMapping("/loginA")
     @ResponseBody
     public Map<String, Object> loginprocess(String loginid, String loginpass, HttpSession session){
         Map<String, Object> map=new HashMap<String, Object>();
-        int result=userService.checkLoginIdPass(loginid, loginpass);
-        if(result==1){//�븘�씠�뵒�� �뙣�뒪媛� 紐⑤몢 留욌뒗 寃쎌슦
-            //�쑀吏� �떆媛� �꽕�젙
-            session.setMaxInactiveInterval(60*60*4);//4�떆媛�
-            //濡쒓렇�씤�븳 �븘�씠�뵒�뿉 ���븳 �젙蹂대�� �뼸�뼱�꽌 session�뿉 ���옣
-            UserDto udto=userService.getDataById(loginid);
+        String result=loginService.checkLoginIdPass(loginid, loginpass);
+        System.out.println("test1");
+        if(result!=null){
+            System.out.println(result);
+            int usernum = Integer.parseInt(result);
+            System.out.println(usernum);
+            session.setMaxInactiveInterval(60*60*4);
+            UserDto udto=loginService.getDataByNum(usernum);
+            System.out.println("test3");
             session.setAttribute("loginok", "yes");
             session.setAttribute("loginid", loginid);
-            System.out.println("session="+session.getAttribute("loginid"));
             session.setAttribute("loginname", udto.getUsername());
+            session.setAttribute("usernum", usernum);
+            session.setAttribute("photo", udto.getPhoto());
         }
-        String temp = (result==1?"success":"fail");
+        String temp = (result!=null?"success":"fail");
         map.put("result",temp);
         System.out.println("test"+temp);
         return map;
     }
 
-    // 濡쒓렇�븘�썐
+//    간편 로그인
+    @GetMapping("/loginByApi")
+    @ResponseBody
+    public Map<String, Object> loginByApi(String userid, HttpSession session){
+        System.out.println(userid);
+
+        Map<String, Object> map=new HashMap<String, Object>();
+        String result = loginService.checkLoginId(userid);
+        int usernum = Integer.parseInt(result);
+        if(result!=null){
+            System.out.println("controller if");
+            session.setMaxInactiveInterval(60*60*4);
+            UserDto udto=loginService.getDataByNum(usernum);
+            session.setAttribute("loginok", "yes");
+            session.setAttribute("loginid", udto.getUserid());
+            session.setAttribute("loginname", udto.getUsername());
+            session.setAttribute("usernum", udto.getUsernum());
+        }
+        String temp = (result!=null?"success":"fail");
+        map.put("result",temp);
+        System.out.println("test"+temp);
+        return map;
+    }
+
+    // 로그아웃
     @GetMapping("/logout")
     @ResponseBody
     public void logout(HttpSession session) {
         System.out.println("logoutcontroller");
         session.removeAttribute("loginok");
         session.removeAttribute("loginid");
+        session.removeAttribute("usernum");
     }
 
 
 
-    //�쉶�썝媛��엯 insert
+    //회원가입
     @PostMapping("/insertAccountA")
+    @ResponseBody
     public String insert(UserDto dto) {
-//        //�넱耳볦뿉 �삱�씪媛� upload �뤃�뜑 寃쎈줈 援ы븯湲�
+        System.out.println("acountA");
+        //톰켓에 올라간 upload 폴더 경로 구하기
 //        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
 //        System.out.println(path);
-//        //���옣�븷 �뙆�씪紐� 援ы븯湲�
+//        //저장할 파일명 구하기
 //        String fileName = ChangeName.getChangeFileName(photo.getOriginalFilename());
 //        //dto�쓽 photo�쓽 寃쎈줈
 //        dto.setPhoto(fileName);
 
-        //upload
+
+        loginService.insertUser(dto);
+//
+//        //upload
 //        try {
 //            photo.transferTo(new File(path+"/"+fileName));
-            userService.insertUser(dto);
-
+//            session.setAttribute("loginphoto", fileName);	//세션의 사진 변경
 //        } catch (IOException e) {
 //            throw new RuntimeException(e);
 //        }
         return "redirect:loginF";
+    }
 
-        //return "redirect:list";//	/member/list 留ㅽ븨二쇱냼 �샇異�-而⑦듃濡ㅻ윭硫붿꽌�뱶 �샇異�
+    @GetMapping("/checkId")
+    @ResponseBody
+    public Map<String, Integer> checkId(String userid){
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        int result = loginService.checkId(userid);
+        map.put("result",result);
+        return map;
     }
 }
 

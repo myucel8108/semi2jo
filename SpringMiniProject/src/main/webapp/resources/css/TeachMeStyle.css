@@ -1,0 +1,107 @@
+/* 전체 글꼴 폰트는 추후 변경 예정 */
+/*
+
+각 파일에 부트스트랩 링크 넣어주세요
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  */
+
+*{
+    font-family: jua;
+}
+
+
+/* 로그인 및 로그아웃 버튼 적용 값 */
+
+.bt1{
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+
+}
+
+
+.bt1 {
+    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+}
+
+
+/* 메인 로고 디자인 글꼴 및 색상 값 */
+
+
+/* 로고에 들어갈 폰트는 카톡에 올려둔 font파일 프로젝트에 추가 후 사용 바랍니다 */
+/* 폰트 진아추가-css안에 추가했음 */
+
+@font-face {
+    font-family: abster;
+    src: url('abster-webfont.woff') format('woff');
+}
+
+.teachMeLogo{
+    font-family: abster;
+    font-size: 50px;
+    color: rgb(0,172,238);
+}
+
+
+/* 드롭다운 메뉴 css 값 */
+
+
+body {
+
+    color : #222;
+    line-height: 1.5em;
+}
+
+a {
+    color : #222;
+    text-decoration: none;
+}
+
+.dropdown {
+
+    display: inline-block;
+}
+.dropdown-btn {
+    width: 200px;
+
+    padding : 10px;
+    font-size: 18px;
+    background-color:rgb(0,172,238);
+    color : #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-submenu{
+
+    width:200px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.192);
+    display: none;
+}
+
+.dropdown-submenu a {
+    display: block;
+    padding: 7px;
+    text-align: center;
+}
+
+.dropdown-submenu a:hover{
+    background-color: white;
+    text-decoration: none;
+}
+
+.dropdown:hover .dropdown-submenu {
+    display: block;
+
+}
