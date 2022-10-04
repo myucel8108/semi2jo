@@ -12,6 +12,9 @@ public interface QnaServiceInter {
 	public QnaDto selectByNum(int qnanum);
 	public void updateQna(QnaDto dto);
 
+	public int getMaxNum();
+
+	public void updateRestep(int regroup, int restep);
 	public void deleteQna(int qnanum);
 
 

@@ -33,7 +33,7 @@
         </div>
     </form>
 
-<%--    <a href="list?searchcolumn=id&searchword=${sessionScope.loginid }">내가쓴글</a>--%>
+    <%--    <a href="list?searchcolumn=id&searchword=${sessionScope.loginid }">내가쓴글</a>--%>
 </div>
 
 <div class="qnalist" style="margin-top: 10px; width:1000px;">
@@ -65,7 +65,7 @@
                         </c:forEach>
                         <!-- 답글일 경우 답글 이미지 넣기 -->
                         <c:if test="${dto.relevel>0}">
-                            <img src="../image/re.png">
+                            <img src="../image/ree.png">
                         </c:if>
                         <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}">
                                 ${dto.subject}
@@ -98,21 +98,21 @@
 <div class="paging">
     <ul class="pagination" >
         <c:if test="${startPage>1}">
-            <li class="page-item"><a href="list?currentPage=${startPage-1}"
+            <li class="page-item"><a href="qnaList?currentPage=${startPage-1}"
                                      class="page-link">이전</a></li>
         </c:if>
 
         <!--  페이지 번호  -->
         <c:forEach var="pp" begin="${startPage}" end="${endPage}">
             <c:if test="${pp==currentPage}">
-                <li class="page-item active"><a class="page-link" href="list?currentPage=${pp}">${pp}</a></li>
+                <li class="page-item active"><a class="page-link" href="qnaList?currentPage=${pp}">${pp}</a></li>
             </c:if>
             <c:if test="${pp!=currentPage}">
-                <li class="page-item"><a class="page-link" href="list?currentPage=${pp}">${pp}</a></li>
+                <li class="page-item"><a class="page-link" href="qnaList?currentPage=${pp}">${pp}</a></li>
             </c:if>
         </c:forEach>
         <c:if test="${endPage<totalPage}">
-            <li class="page-item"><a href="list?currentPage=${endPage+1}"
+            <li class="page-item"><a href="qnaList?currentPage=${endPage+1}"
                                      class="page-link">다음</a></li>
         </c:if>
     </ul>

@@ -13,7 +13,7 @@
       text-align:center;
       width:550px;
       height:550px;
-      box-sizing: box;
+      box-sizing:box;
       flex-direction: row;
       align-items: center;
       justify-content: center;
@@ -68,8 +68,8 @@
 
     <tr>
       <td colspan="2">
-				<textarea name="content" class="form-control" required="required"
-                          style="width: 500px; height: 150px;">${dto.content}</textarea>
+            <textarea name="content" class="form-control" required="required"
+                      style="width: 500px; height: 150px;">${dto.content}</textarea>
       </td>
     </tr>
 

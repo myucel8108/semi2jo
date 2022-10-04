@@ -49,4 +49,15 @@ public class QnaDao implements QnaDaoInter{
         // TODO Auto-generated method stub
         session.delete(ns+"deleteQna", qnanum);
     }
+
+    @Override
+    public void updateRestep(Map<String, Integer> map) {
+        // TODO Auto-generated method stub
+        session.update(ns+"updateRestep",map);
+    }
+
+    @Override
+    public int getMaxNum() {
+        return session.selectOne(ns+"getMaxNum");
+    }
 }

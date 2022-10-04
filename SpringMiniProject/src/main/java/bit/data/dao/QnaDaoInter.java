@@ -18,8 +18,8 @@ public interface QnaDaoInter {
 
     public void deleteQna(int qnanum);
 
+    public void updateRestep(Map<String, Integer> map);
 
-
-
+    public int getMaxNum();
 
 }
