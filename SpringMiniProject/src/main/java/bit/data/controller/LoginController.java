@@ -19,7 +19,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/")
 public class LoginController {
 
     @Autowired
@@ -54,6 +53,7 @@ public class LoginController {
             session.setAttribute("loginid", loginid);
             System.out.println("session="+session.getAttribute("loginid"));
             session.setAttribute("loginname", udto.getUsername());
+            session.setAttribute("usernum", udto.getUsernum());
         }
         String temp = (result==1?"success":"fail");
         map.put("result",temp);
@@ -68,6 +68,7 @@ public class LoginController {
         System.out.println("logoutcontroller");
         session.removeAttribute("loginok");
         session.removeAttribute("loginid");
+        session.removeAttribute("usernum");
     }
 
 

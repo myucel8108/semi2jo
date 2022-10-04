@@ -19,12 +19,13 @@ public class UserController {
         return "/mypage/student/updateStudent";
     }
 
-    @GetMapping("/student/timeTable")
-    public String time(){
+/*    @GetMapping("/")
+    public String myPageChange(){
 
         return "/mypage/student/timeTable";
 
-    }
+    }*/
+
 
     @GetMapping("/layoutMypage/change")
     public String mypage(){
