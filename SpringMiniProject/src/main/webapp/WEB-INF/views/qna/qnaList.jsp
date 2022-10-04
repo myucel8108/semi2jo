@@ -89,7 +89,7 @@
             <tr>
                 <td colspan="6" align="right" style= "text-align:center" >
                     <button type="button" class="btn btn-outline-success"
-                            onclick="location.href='form'">글쓰기</button>
+                            onclick="location.href='qnaForm'">글쓰기</button>
                 </td>
             </tr>
         </c:if>
