@@ -2,11 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bit.data.dao.LectureDao">
     <!-- 강의 등록 -->
-    <insert id="insertLecture" parameterType="LectureDto">
+    <insert id="insertLecture" parameterType="lectureDto">
         insert into lecture (lecnum, teaname, lecname, lectypea, lectypeb)
         values (null, #{teaname}, #{lecname}, #{lectypea}, #{lectypeb})
     </insert>
-    <select id="getAllLecture" resultType="LectureDto">
+    <!-- 강의 총 개수 출력 -->
+    <select id="getTotalLectureCount" parameterType="Map" resultType="int">
+        select count(*) from lecture
+    </select>
+    <!-- 강의 목록 출력 -->
+    <select id="getLectureList" parameterType="Map" resultType="lectureDto">
+        select * from lecture order by lecnum desc
+    </select>
+     <select id="getAllLecture" resultType="LectureDto">
 		select * from lecture order by lectypea asc
 	</select>
 </mapper>

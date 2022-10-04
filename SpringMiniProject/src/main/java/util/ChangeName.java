@@ -6,10 +6,10 @@ public class ChangeName {
 	
 	public static String getChangeFileName(String fileName) {
 		int dotLoc = fileName.indexOf('.');
-		String fname = fileName.substring(0,dotLoc); //파일명 (가나다라마바사)
-		String ext = fileName.substring(dotLoc); //확장자 (.jpg)
+		String fname = fileName.substring(0,dotLoc); //�뙆�씪紐� (媛��굹�떎�씪留덈컮�궗)
+		String ext = fileName.substring(dotLoc); //�솗�옣�옄 (.jpg)
 		
-		//날짜를 구해서 연월일시분초 + 1000분의1초.jpg 이런식으로 파일명 변경하기
+		//�궇吏쒕�� 援ы빐�꽌 �뿰�썡�씪�떆遺꾩큹 + 1000遺꾩쓽1珥�.jpg �씠�윴�떇�쑝濡� �뙆�씪紐� 蹂�寃쏀븯湲�
 		Calendar cal = Calendar.getInstance();
 		int y = cal.get(Calendar.YEAR);
 		int m = cal.get(Calendar.MONTH)+1;
@@ -19,7 +19,7 @@ public class ChangeName {
 		int ss = cal.get(Calendar.SECOND);
 		int ms = cal.get(Calendar.MILLISECOND);
 		
-		//숫자계산을 막기 위해 맨 앞은 ""로 문자열 처리
+		//�닽�옄怨꾩궛�쓣 留됯린 �쐞�빐 留� �븵�� ""濡� 臾몄옄�뿴 泥섎━
 		fileName = "" + y + (m<10?"0"+m:m) + (d<10?"0"+d:d) + (hh<10?"0"+hh:hh) + (mm<10?"0"+mm:mm) + (ss<10?"0"+ss:ss) + ms + ext;
 		
 		return fileName;

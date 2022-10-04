@@ -54,7 +54,7 @@
 <body>
 	<div class="container" style=" display: flex;">
 	<div style="width: 300px;">
-		 ㅁㄴㅇㄹ                                               ㅁㄴㅇㄹ
+		                  
 	</div>
 		<table class="table table-bordered">
 		<c:forEach var="dto" items="${list}">
@@ -77,7 +77,7 @@
 			<tr>
 				<td>주소 :</td>
 			</tr>
-		</c:forEach>
+		</c:forEach>	
 	</table>
 	</div>
 </body>
