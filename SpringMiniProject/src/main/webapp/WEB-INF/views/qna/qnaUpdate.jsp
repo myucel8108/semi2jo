@@ -35,12 +35,12 @@
   </style>
 </head>
 <body>
-<%--<c:if test="${sessionScope.loginok==null}">--%>
-<%--  <script type="text/javascript">--%>
-<%--    alert("먼저 로그인해주세요");--%>
-<%--    history.back();--%>
-<%--  </script>--%>
-<%--</c:if>--%>
+<c:if test="${sessionScope.loginok==null}">
+  <script type="text/javascript">
+    alert("먼저 로그인해주세요");
+    history.back();
+  </script>
+</c:if>
 
 
 

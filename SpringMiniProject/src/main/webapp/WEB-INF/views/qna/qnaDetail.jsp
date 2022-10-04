@@ -64,7 +64,7 @@
                     <form id="aform">
                         <input type="hidden" name="num" value="${dto.qnanum}">
                         <input type="hidden" name="id" value="${sessionScope.loginid}">
-                        <input type="hidden" name="name" value="${sessionScope.loginname}">
+                        <input type="hidden" name="name" value="${sessionScope.username}">
                         <%--                        <div class="input-group">--%>
                         <%--                            <textarea name="message" id="message" style="width: 400px; height: 60px;" class="form-control"></textarea>--%>
                         <%--                            <button type="button" class="btn btn-secondary" id="btnasave">등록</button>--%>
@@ -75,9 +75,10 @@
         </tr>
     </table>
     <button type="button" onclick="location.href='qnaUpdate?qnanum=${dto.qnanum}&currentPage=${currentPage}'">수정</button>
+    <!--  로그인중이면서 세션의 아디디와 글의 아이디가 같을 경우에만 수정,삭제 가능 -->
+<%--    <c:if test="${sessionScope.loginok!=null && sessionScope.loginid==dto.username || sessionScope.loginid=="관리자아이디" }">--%>
     <button type="button" onclick="location.href='delete?qnanum=${dto.qnanum}&currentPage=${currentPage}'">삭제</button>
-    <%--    <!--  로그인중이면서 세션의 아디디와 글의 아이디가 같을 경우에만 수정,삭제 가능 -->--%>
-    <%--    <c:if test="${sessionScope.loginok!=null && sessionScope.loginid==dto.userid }">--%>
+<%--    </c:if>--%>
     <button type="button" onclick="location.href='qnaForm?qnanum=${dto.qnanum}&regroup=${dto.regroup}&restep=${dto.restep}&relevel=${dto.relevel}&currentPage=${currentPage}'">답글</button>
     <button type="button" onclick="location.href='qnaList?currentPage=${currentPage}'">목록</button>
 </div>

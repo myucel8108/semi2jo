@@ -151,7 +151,17 @@ public class QnaController {
     @GetMapping("/qna/delete")
     public String delete(int qnanum, int currentPage)
     {
-        qnaService.deleteQna(qnanum);
+        QnaDto dto=qnaService.selectByNum(qnanum);
+        int restep=dto.getRestep();
+        int regroup=dto.getRegroup();
+        if(restep==0){
+            qnaService.deleteQnaRegroup(regroup);
+        }else{
+            qnaService.deleteQna(qnanum);
+        }
+                //restep이 0이면 원글 regroup을 파라미터로 보내서  regroup을 지우자
+                //num에 해당하는  dto 얻고
+
         return "redirect:qnaList?currentPage="+currentPage;
     }
 

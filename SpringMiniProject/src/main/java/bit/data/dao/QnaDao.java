@@ -60,4 +60,9 @@ public class QnaDao implements QnaDaoInter{
     public int getMaxNum() {
         return session.selectOne(ns+"getMaxNum");
     }
+
+    @Override
+    public void deleteQnaRegroup(int regroup) {
+        session.delete(ns+"deleteQnaRegroup",regroup);
+    }
 }

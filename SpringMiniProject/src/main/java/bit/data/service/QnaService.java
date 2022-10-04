@@ -86,6 +86,7 @@ public class QnaService implements QnaServiceInter{
     @Override
     public void deleteQna(int qnanum) {
         // TODO Auto-generated method stub
+
         qnaDao.deleteQna(qnanum);
     }
 
@@ -98,6 +99,11 @@ public class QnaService implements QnaServiceInter{
 
         qnaDao.updateRestep(map);
 
+    }
+
+    @Override
+    public void deleteQnaRegroup(int regroup) {
+        qnaDao.deleteQnaRegroup(regroup);
     }
 }
 

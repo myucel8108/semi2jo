@@ -16,6 +16,6 @@ public interface QnaServiceInter {
 
 	public void updateRestep(int regroup, int restep);
 	public void deleteQna(int qnanum);
-
+	public void deleteQnaRegroup(int regroup);
 
 }
