@@ -30,8 +30,10 @@
     <script>
 
         $(function(){
-           initlike();
 
+            list();
+
+           initlike();
            //좋아요 숫자 클릭시 좋아요 누른 아이디+닉네임 보이게 하기
           $(".likeusericon").click(function(){
                var boardnum=${dto.boardnum};
@@ -58,8 +60,6 @@
                        });
                    }
                });
-
-
            });
         });
         function initlike(){
@@ -76,6 +76,37 @@
                     if(res==1){
                         $(".fa-thumbs-up").attr("class","fas fa-thumbs-up").css("color","red");
                     }
+                }
+            });
+        }
+        function list(){
+            var loginok = '${sessionScope.loginok}';
+            var loginid = '${sessionScope.loginid}';
+            var writeid = '${dto.userid}';
+
+            var s = "";
+            $.ajax({
+                type : "get",
+                url : "../reboard/list",
+                dataType : "json",
+                data : {"boardnum":boardnum},
+                success : function(res) {
+                    $("b.banswer").text(res.length);
+                    $.each(res, function (i, elt){
+                        s+="<div>"+elt.nickname;
+
+                        if (writeid==elt.userid){
+                            s+="<span class='writer'>작성자</span><br>";
+                        }
+                        s+="<br>";
+                        s+="<pre>"+elt.recontent;
+                        s+="<span class='day'>"+elt.writeday;
+                        if(loginok=='yes' && loginid==elt.userid){
+                            s+='<i class="fa fa-close adel" style="font-size:17px" reboardnum='+elt.reboardnum+'></i>';
+                        }
+                        s+="</span></pre></div>"
+                    });
+                    $("div.alist").html(s);
                 }
             });
         }
@@ -139,23 +170,29 @@
                    ${dto.likes}</b>
                 &nbsp;&nbsp;
                 <i class="far fa-comment-dots"></i>
-                댓글
-                <b class="banswer">$</b>
+                <b class="banswer">0</b>
                 <br>
+                <div class="alist">
+                    댓글
+                </div>
+                <c:if test="${sessionScope.loginok!=null}">
                 <div class="aform">
                     <form id="aform">
-                        <input type="hidden" name="num" value="${dto.boardnum}">
-                        <input type="hidden" name="id" value="${sessionScope.loginid}">
-                        <input type="hidden" name="name" value="${sessionScope.loginname}">
+                        <input type="hidden" name="boardnum" value="${dto.boardnum}">
+                        <input type="hidden" name="userid" value="${sessionScope.loginid}">
+                        <input type="hidden" name="nickname" value="${sessionScope.loginname}">
                         <div class="input-group">
-                            <textarea name="message" id="message" style="width: 400px; height: 60px;" class="form-control"></textarea>
-                            <button type="button" id="btnasave">등록</button>
+                            <textarea name="recontent" id="recontent" style="width: 400px; height: 60px;" class="form-control"></textarea>
+                            <button type="button" id="btnreboard">등록</button>
                         </div>
                     </form>
                 </div>
+                </c:if>
                 <button type="button" onclick="location.href='boardFree?currentPage=${currentPage}'">목록</button>
+                <c:if test="${sessionScope.loginok!=null && sessionScope.loginid==dto.userid}">
                 <button type="button" onclick="location.href='boardUpdate?boardnum=${dto.boardnum}&currentPage=${currentPage}'">수정</button>
-            <button type="button" onclick="location.href='delete?boardnum=${dto.boardnum}&currentPage=${currentPage}'">삭제</button>
+                <button type="button" onclick="location.href='delete?boardnum=${dto.boardnum}&currentPage=${currentPage}'">삭제</button>
+                </c:if>
             </td>
         </tr>
     </table>
@@ -186,6 +223,21 @@
                 success : function(res) {
                       //  alert(res);
                         $("b.likesuser").text(res);
+                }
+            });
+        });
+        //댓글저장
+        $("#btnreboard").click(function() {
+            var fdata = $("#aform").serialize();
+            $.ajax({
+                type : "post",
+                url : "../reboard/insert",
+
+                dataType : "text",
+                data : fdata,
+                success : function(res) {
+                   // list();
+                    $("#recontent").val("");
                 }
             });
         });
