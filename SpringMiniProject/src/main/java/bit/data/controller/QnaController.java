@@ -117,7 +117,9 @@ public class QnaController {
     )
     {
         int totalCount=qnaService.getTotalCount(sc,sw);
+
         int perPage=10;
+        
         int perBlock=5;
         int startNum;
         int startPage;
@@ -183,7 +185,9 @@ public class QnaController {
             dto.setPhoto(photo);
         }
         qnaService.updateQna(dto);
+
         return "redirect:qnaList?currentPage="+currentPage+"&qnanum="+dto.getQnanum();
+
     }
     @GetMapping("/qna/qnaUpdate")
     public String updateform(Model model, int qnanum, int currentPage)
