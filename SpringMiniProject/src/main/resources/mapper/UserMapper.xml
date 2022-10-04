@@ -5,17 +5,26 @@
     <insert id="insertUser" parameterType="userDto">
         insert into user (usernum,userid,userpass,username,
                           nickname,photo,email,addr,hp,lastlogin,birth)
-        values (null,#{userid},#{userpass},#{username},null,null,null,null,null,now(),null)
+        values (null,#{userid},#{userpass},#{username},#{nickname},#{photo},#{email},#{addr},#{hp},now(),#{birth})
     </insert>
 
-<!--    아이디 패스워드 체크-->
-    <select id="checkLoginIdPass" parameterType="Map" resultType="int">
-        select count(*) from user where userid=#{loginid} and userpass=#{loginpass}
+<!--    로그인 아이디 패스워드 체크 후 usernum 가져오기-->
+    <select id="checkLoginIdPass" parameterType="Map" resultType="String">
+        select usernum from user where userid=#{loginid} and userpass=#{loginpass}
     </select>
 
-<!--    id 로 데이터 가져와 세션에 저장-->
-    <select id="getDataById" parameterType="String" resultType="userDto">
-        select * from user where userid=#{loginid}
+    <!--    간편 로그인시  아이디로 pk값을 가져옴-->
+    <select id="checkLoginId" parameterType="String" resultType="String">
+        select usernum from user where userid=#{userid}
     </select>
 
+<!--    usernum으로 데이터 가져와 세션에 저장-->
+    <select id="getDataByNum" parameterType="int" resultType="userDto">
+        select * from user where usernum=#{usernum}
+    </select>
+
+<!--    회원가입시 아이디 중복체크-->
+    <select id="checkId" parameterType="String" resultType="int">
+        select count(*) from user where userid=#{userid}
+    </select>
 </mapper>
