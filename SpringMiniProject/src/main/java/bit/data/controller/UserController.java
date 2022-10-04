@@ -32,5 +32,11 @@ public class UserController {
 
         return "/mypage/layoutMypage/change";
     }
+    @GetMapping("layoutMypage/change")
+    public String myPageHome() {
+    	
+    	return "/mypage/layoutMypage/change"; 
+    }
+    
 
 }

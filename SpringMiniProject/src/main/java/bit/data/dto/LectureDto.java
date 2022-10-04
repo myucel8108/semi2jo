@@ -10,4 +10,6 @@ public class LectureDto {
     public String lecname;
     public String lectypea;
     public String lectypeb;
+    public String lecphoto;
+    
 }
