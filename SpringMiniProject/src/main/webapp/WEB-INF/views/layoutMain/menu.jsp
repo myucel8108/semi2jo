@@ -43,15 +43,14 @@
         </div>
         <!--container end-->
        <c:if test="${sessionScope.loginok==null }">
-			<button type="button" id="btnloginMain" >로그인</button>
+			<button type="button" id="btnloginMain" style=" margin-right: 110px;">로그인</button>
 			    </c:if>		
 			     <c:if test="${sessionScope.loginok!=null }">
 			         <b>${sessionScope.loginname}님</b>
 			         &nbsp;&nbsp;
-			         <button type="button" id="btnlogoutMain"  >로그아웃</button>
+			         <button type="button" id="btnlogoutMain" style=" margin-right: 110px;" >로그아웃</button>
 			     </c:if>
     </nav>
-    
      <script>
      $("#btnloginMain").click(function () {
          location.href="${root}/loginF";
