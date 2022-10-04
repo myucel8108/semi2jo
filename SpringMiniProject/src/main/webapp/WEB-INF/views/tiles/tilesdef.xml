@@ -25,15 +25,34 @@
         <put-attribute name="change" value="/WEB-INF/views/{1}/{2}.jsp"/>
     </definition>
 
+<!--    <definition name="layoutMypage" template="/WEB-INF/views/layoutMypage/layoutMypage.jsp">-->
+<!--        <put-attribute name="change" value="/WEB-INF/views/layoutMypage/change.jsp"/>-->
+<!--        <put-attribute name="footer" value="/WEB-INF/views/layoutMypage/footer2.jsp"/>-->
+<!--        <put-attribute name="header" value="/WEB-INF/views/layoutMypage/header2.jsp"/>-->
+<!--        <put-attribute name="info" value="/WEB-INF/views/layoutMypage/info.jsp"/>-->
+<!--        <put-attribute name="menu" value="/WEB-INF/views/layoutMypage/menu2.jsp"/>-->
+<!--    </definition>-->
+    <!-- layout3: challenge -->
     <definition name="layoutMypage" template="/WEB-INF/views/layoutMypage/layoutMypage.jsp">
-        <put-attribute name="change" value="/WEB-INF/views/layoutMypage/change.jsp"/>
-        <put-attribute name="footer" value="/WEB-INF/views/layoutMypage/footer.jsp"/>
-        <put-attribute name="header" value="/WEB-INF/views/layoutMypage/header.jsp"/>
-        <put-attribute name="info" value="/WEB-INF/views/layoutMypage/info.jsp"/>
-        <put-attribute name="menu" value="/WEB-INF/views/layoutMypage/menu.jsp"/>
+        <put-attribute name="header" value="/WEB-INF/views/layoutMypage/header.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/layoutMypage/menu.jsp" />
+        <put-attribute name="change" value="/WEB-INF/views/layoutMypage/change.jsp" />
+        <put-attribute name="a_sidemenu" value="/WEB-INF/views/layoutMypage/a_sidemenu.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/views/layoutMypage/footer.jsp" />
     </definition>
     <!-- macro -->
     <definition name="/mypage/*/*" extends="layoutMypage">
+        <put-attribute name="change" value="/WEB-INF/views/{1}/{2}.jsp"/>
+    </definition>
+    <!--사이드바 없는레이아웃-->
+    <definition name="noSideMenu" template="/WEB-INF/views/layoutMypage/noSideMenu.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/layoutMypage/header.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/layoutMypage/menu.jsp" />
+        <put-attribute name="change" value="/WEB-INF/views/layoutMypage/change.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/views/layoutMypage/footer.jsp" />
+    </definition>
+    <!-- macro -->
+    <definition name="/*/*" extends="noSideMenu">
         <put-attribute name="change" value="/WEB-INF/views/{1}/{2}.jsp"/>
     </definition>
 </tiles-definitions>
