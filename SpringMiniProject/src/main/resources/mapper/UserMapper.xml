@@ -18,15 +18,16 @@
         select usernum from user where userid=#{userid}
     </select>
 
-<!--    usernum으로 데이터 가져와 세션에 저장-->
+    <!--    usernum으로 데이터 가져와 세션에 저장-->
     <select id="getDataByNum" parameterType="int" resultType="userDto">
         select * from user where usernum=#{usernum}
     </select>
 
-<!--    회원가입시 아이디 중복체크-->
+    <!--    회원가입시 아이디 중복체크-->
     <select id="checkId" parameterType="String" resultType="int">
         select count(*) from user where userid=#{userid}
     </select>
+
 
 </mapper>
 

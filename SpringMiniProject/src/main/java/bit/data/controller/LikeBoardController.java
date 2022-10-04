@@ -54,7 +54,7 @@ public class LikeBoardController {
         int likestate=likeBoardService.stateBoardLike(boardnum,userid);
         return likestate;
     }
-    @GetMapping("/board/likesuser")
+    /*@GetMapping("/board/likesuser")
     @ResponseBody
     public List<String> likeUser(int boardnum)
     {
@@ -68,7 +68,7 @@ public class LikeBoardController {
           list.add(s);
       }
       return  list;
-    }
+    }*/
 
 
 }

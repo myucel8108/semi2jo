@@ -2,6 +2,7 @@ package bit.data.controller;
 
 import bit.data.dto.BoardDto;
 import bit.data.service.BoardServiceInter;
+import bit.data.service.LoginService;
 import bit.data.service.UserServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,9 @@ public class BoardController {
     @Autowired
     UserServiceInter userService;
 
+    @Autowired
+    LoginService loginService;
+
     @GetMapping("/board/boardForm") //게시판 작성폼
     public String boardForm(){
 
@@ -50,7 +54,7 @@ public class BoardController {
         return mview;
     }
 
-    @PostMapping("/board/insert") //게시판 추가
+    /*@PostMapping("/board/insert") //게시판 추가
     public String insert(BoardDto dto, List<MultipartFile>upload, HttpServletRequest request)
     {
         String path = request.getSession().getServletContext().getRealPath("/resources/upload");
@@ -83,7 +87,7 @@ public class BoardController {
         }
         boardService.insertBoard(dto);
         return "redirect:boardFree";
-    }
+    }*/
 
     @GetMapping("/board/boardFree") //게시판 리스트 출력
     public String board(

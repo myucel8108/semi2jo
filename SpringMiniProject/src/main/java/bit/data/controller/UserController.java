@@ -13,18 +13,18 @@ public class UserController {
     UserServiceInter userService;
 
 
-    @GetMapping("/student/updateStudent")
+  /*  @GetMapping("/student/updateStudent")
     public String updateStudent()
     {
         return "/mypage/student/updateStudent";
     }
 
-/*    @GetMapping("/")
+*//*    @GetMapping("/")
     public String myPageChange(){
 
         return "/mypage/student/timeTable";
 
-    }*/
+    }*//*
 
 
     @GetMapping("/layoutMypage/change")
@@ -36,7 +36,7 @@ public class UserController {
     public String myPageHome() {
     	
     	return "/mypage/layoutMypage/change"; 
-    }
+    }*/
     
 
 }
