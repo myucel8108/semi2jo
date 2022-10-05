@@ -34,8 +34,10 @@
 <body>
 <div class="container" style="width: 100%;">
         <div class="myaskbox">
-           <a href="qnaList?searchcolumn=usernum&searchword=${sessionScope.loginid}" class="myask">나의문의보기</a>
+            <button type="button" onclick="location.href='qnaList?'" class="myask2">전체글보기</button>&nbsp;
+            <button type="button" onclick="location.href='qnaList?searchcolumn=usernum&searchword=${sessionScope.loginid}'" class="myask">나의문의보기</button>
         </div>
+    <br>
 <div class="qnalist" style="margin-top: 10px; ">
     <h3 class="hname-tm">총 ${totalCount} 개의 글이 있습니다</h3>
 </div>
