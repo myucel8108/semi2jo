@@ -37,11 +37,16 @@
       	  method: "POST",
         	headers: { "Content-Type": "application/json" },
       	  data: {
+      		  
             imp_uid: rsp.imp_uid,            //결제 고유번호     
             merchant_uid: rsp.merchant_uid   //주문번호
-        }
+            //관리자 페이지랑 
+            //마이페이지에서 결재내역 payok ok로
+            //마이페이지 반환하는 신호
+    		//만들어진 데이터를 관리자 페이지로 넘겨주는거
    	 }).done(function (data) {
-       
+     	//마이페이지 반환하는 신호
+    	 //만들어진 데이터를 관리자 페이지로 넘겨주는거
        console.log(data);
       // 가맹점 서버 결제 API 성공시 로직
 
@@ -59,10 +64,10 @@
 	<div  style="display: flex;  justify-content: center; align-items: center; ">    
 	 <img alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReSrvKEoni0lh83iBv2RaoBWH3upjHMsg4JHdN8OYkrA&s">
 	 <div>
-	 야 여기 써야하는 곳이야 저리 비켜
-	<br>
+	${lectypeb} ,${lectypea}
+ 
 	
-	 <button onclick="requestPay()">장바구니 담기</button> <!-- 결제하기 버튼 생성 -->
+	 <button onclick="requestPay()">${dto.lectypeb}  ${dto.lectypea}</button> <!-- 결제하기 버튼 생성 -->
 	 
 	 <button onclick="requestPay()">결제하기</button> <!-- 결제하기 버튼 생성 -->
 	 </div>
@@ -70,9 +75,10 @@
 	<div style="display: flex; justify-content: center; align-items: center;">
 	 <img alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReSrvKEoni0lh83iBv2RaoBWH3upjHMsg4JHdN8OYkrA&s">
 	 <div>
-	 여기가 컨텐츠 부분입니다
+
 	 </div>
 	</div>
+	
 </div>
 </body>
 </html>

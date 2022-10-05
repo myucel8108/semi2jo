@@ -111,7 +111,7 @@
 		<c:forEach var="dto" items="${list}">
 			<tr>
 				<td style="width: 250px" align="center" rowspan="5">
-					<a href="lectureDetail?num=${dto.lecnum}" style="color: black;">
+					<a href="lectureDetail?lecdenum=${dto.lecdenum}" style="color: black;">
 					<img src=" " width="230px" height="250" border="1" id="showimg">
 					</a>
 					<br>					
