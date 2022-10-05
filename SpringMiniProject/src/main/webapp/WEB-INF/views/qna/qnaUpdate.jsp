@@ -62,9 +62,9 @@
     </tr>
 
     <tr>
-      <th style="width: 100px;">사진</th>
+      <th style="width: 100px; height: 100px;">사진</th>
       <td>
-        <h5 style="font-size: 15px;">사진 선택은 안하면 기존사진이 유지됩니다</h5>
+        <h5 style="font-size: 15px; margin-top: 5px; margin-bottom: 15px; font-style: italic; color: grey;" >사진 선택 없을 시 기존사진이 유지됩니다</h5>
         <input type="file" name="upload" class="form-control" multiple="multiple" value="${dto.photo}">
       </td>
     </tr>
