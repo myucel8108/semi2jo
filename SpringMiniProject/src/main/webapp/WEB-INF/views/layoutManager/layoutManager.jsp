@@ -44,7 +44,7 @@
     	font-size: 26px;
     	float: left;
     	width: 10%;
-    	height: 840px;
+    	height: 80%;
     	line-height: 150px;
     	display: flex;
     	align-items: center;
@@ -55,8 +55,9 @@
     #change {
     	float: right;
     	width: 90%;
-    	height: 840px;
+    	height: 80%;
     	border: 1px solid aqua;
+		background-color: lightgray;
     }
     
     a:link a:visited {

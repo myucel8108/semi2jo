@@ -24,10 +24,10 @@ public class HomeController {
 		return "/manager/layoutManager/change";
 	}
 
-		@GetMapping("/student/myCart")
-		public String Cart() {
-			return "/main/student/myCart";
-		}
+	@GetMapping("/student/myCart")
+	public String Cart() {
+		return "/main/student/myCart";
+	}
 			
 	
 	
