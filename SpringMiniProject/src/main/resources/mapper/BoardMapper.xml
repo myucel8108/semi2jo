@@ -41,4 +41,7 @@
     <update id="updateDecreLikeCount" parameterType="int"> /*좋아요 감소*/
         update board set likes=likes-1 where boardnum=#{boardnum}
     </update>
+<!--    <select id="nextBoard" parameterType="">-->
+<!--        select MIN(#{boardnum}), * from board where boardnum>#{boardnum} and -->
+<!--    </select>-->
 </mapper>

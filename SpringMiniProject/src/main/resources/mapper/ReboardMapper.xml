@@ -6,6 +6,12 @@
         values (#{boardnum}, #{userid}, #{nickname}, #{recontent}, 0,0,0, now())
     </insert>
     <select id="getAllReboards" parameterType="int" resultType="reboardDto">
-        select * from reboard where boardnum=#{boardnum} order by reboardnum desc
+        select * from reboard where boardnum=#{boardnum} order by reboardnum asc
     </select>
+    <delete id="deleteByReboardnum" parameterType="int">
+        delete from reboard where reboardnum=#{reboardnum}
+    </delete>
+<!--    <select id="selectByNum" parameterType="int" resultType="reboardDto">-->
+<!--        select * from reboard where reboardnum = #{reboardnum}-->
+<!--    </select>-->
 </mapper>

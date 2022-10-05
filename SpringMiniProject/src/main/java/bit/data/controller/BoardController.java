@@ -3,6 +3,7 @@ package bit.data.controller;
 import bit.data.dto.BoardDto;
 import bit.data.service.BoardServiceInter;
 import bit.data.service.LoginService;
+import bit.data.service.ReboardServiceInter;
 import bit.data.service.UserServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,8 @@ public class BoardController {
     @Autowired
     BoardServiceInter boardService;
     @Autowired
+    ReboardServiceInter reboardService;
+    @Autowired
     UserServiceInter userService;
 
     @Autowired
@@ -46,8 +49,15 @@ public class BoardController {
 
         BoardDto dto = boardService.selectByNum(boardnum);
 
+        String userphoto;
+        try {
+            userphoto = userService.getDataById(dto.getUserid()).getPhoto();
+        }catch (NullPointerException e){
+            userphoto="no";
+        }
         mview.addObject("dto", dto);
         mview.addObject("currentPage", currentPage);
+        mview.addObject("userphoto", userphoto);
 
         mview.setViewName("/main/board/boardDetail");
 
@@ -116,6 +126,11 @@ public class BoardController {
         no=totalCount-(currentPage-1)*perPage;
 
         List<BoardDto> list = boardService.getPagingList(sc, sw, startNum, perPage);
+        for(BoardDto dto:list)
+        {
+            int reboardcount = reboardService.getAllReboards(dto.getBoardnum()).size();
+            dto.setReboardcount(reboardcount);
+        }
         model.addAttribute("list", list);
         model.addAttribute("totalCount", totalCount);
         model.addAttribute("currentPage", currentPage);

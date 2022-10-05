@@ -37,7 +37,7 @@
            //좋아요 숫자 클릭시 좋아요 누른 아이디+닉네임 보이게 하기
           $(".likeusericon").click(function(){
                var boardnum=${dto.boardnum};
-                console.log("boardnum="+boardnum);
+                //console.log("boardnum="+boardnum);
                $.ajax({
                    type : "get",
                    url : "likesuser",
@@ -61,6 +61,21 @@
                    }
                });
            });
+          $(document).on("click",".redelete", function (){
+              var reboardnum=$(this).attr("reboardnum");
+              var ans=confirm("댓글을 삭제하시겠습니까?");
+              if(ans){
+                  $.ajax({
+                      type:"get",
+                      url:"../reboard/delete",
+                      dataType:"text",
+                      data:{"reboardnum":reboardnum},
+                      success:function(res){
+                          list();
+                      }
+                  });
+              }
+          });
         });
         function initlike(){
             var boardnum=${dto.boardnum};
@@ -83,6 +98,7 @@
             var loginok = '${sessionScope.loginok}';
             var loginid = '${sessionScope.loginid}';
             var writeid = '${dto.userid}';
+            var boardnum = ${dto.boardnum};
 
             var s = "";
             $.ajax({
@@ -93,18 +109,24 @@
                 success : function(res) {
                     $("b.banswer").text(res.length);
                     $.each(res, function (i, elt){
-                        s+="<div>"+elt.nickname;
-
+                        s+="<div>"
+                        if(elt.photo!=null) {
+                            s+="<img src='../upload/${userphoto}' style='width: 30px; height: 30px;' class='rounded-circle' hspace='10'>";
+                        }
+                        if(elt.photo==null) {
+                            s+="<img src='../image/noprofilepicture.png' style='width: 30px; height: 30px;' class='rounded-circle' hspace='10'>";
+                        }
+                        s+="<b>"+elt.nickname+"</b>"
                         if (writeid==elt.userid){
-                            s+="<span class='writer'>작성자</span><br>";
+                            s+="<span class='writer'>(작성자)</span><br>";
                         }
                         s+="<br>";
-                        s+="<pre>"+elt.recontent;
-                        s+="<span class='day'>"+elt.writeday;
+                        s+="<p>"+elt.recontent+"&nbsp;&nbsp;";
+                        s+="<span class='day' style='color:gray;'>"+elt.writeday+"&nbsp;";
                         if(loginok=='yes' && loginid==elt.userid){
-                            s+='<i class="fa fa-close adel" style="font-size:17px" reboardnum='+elt.reboardnum+'></i>';
+                            s+='<i class="fa fa-close redelete" style="font-size:15px; color: black" reboardnum='+elt.reboardnum+'></i>';
                         }
-                        s+="</span></pre></div>"
+                        s+="</span></p></div><hr>"
                     });
                     $("div.alist").html(s);
                 }
@@ -136,10 +158,14 @@
 </div>--%>
 
 <div class="container" style="width: 100%; padding: 100px;">
-    <table class="table table-bordered" style="width: 600px;">
+    <table class="table table-bordered" style="width: 100%;">
         <tr>
             <td>
                 <h2><b>${dto.subject}</b></h2>
+                <c:if test="${userphoto!='no'}">
+                    <img src="../upload/${userphoto}" width="40" height="40" class="rounded-circle"
+                         onerror="this.src='../image/noprofilepicture.png'" hspace="10">
+                </c:if>
                 <b>${dto.nickname}(${dto.userid})</b>
                 <span style="color: gray; font-size: 12px;">
 					<fmt:formatDate value="${dto.writeday}" pattern="yyyy-MM-dd HH:mm"/>
@@ -166,12 +192,12 @@
                 <span class="likeusericon" data-bs-toggle="modal" data-bs-target="#likeuserModal">
                 <i class='fas fa-user-alt' style='font-size:16px'></i>
                 </span>
-                <b  class="likesuser">
+                <b class="likesuser">
                    ${dto.likes}</b>
                 &nbsp;&nbsp;
                 <i class="far fa-comment-dots"></i>
                 <b class="banswer">0</b>
-                <br>
+                <br><br>
                 <div class="alist">
                     댓글
                 </div>
@@ -182,7 +208,7 @@
                         <input type="hidden" name="userid" value="${sessionScope.loginid}">
                         <input type="hidden" name="nickname" value="${sessionScope.loginname}">
                         <div class="input-group">
-                            <textarea name="recontent" id="recontent" style="width: 400px; height: 60px;" class="form-control"></textarea>
+                            <textarea name="recontent" id="recontent" style="width: 400px; height: 100px;" class="form-control"></textarea>
                             <button type="button" id="btnreboard">등록</button>
                         </div>
                     </form>
@@ -236,7 +262,7 @@
                 dataType : "text",
                 data : fdata,
                 success : function(res) {
-                   // list();
+                   list();
                     $("#recontent").val("");
                 }
             });

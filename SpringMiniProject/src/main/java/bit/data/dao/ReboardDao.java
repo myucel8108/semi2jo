@@ -22,4 +22,14 @@ public class ReboardDao implements ReboardDaoInter{
     public List<ReboardDto> getAllReboards(int boardnum) {
         return session.selectList("getAllReboards", boardnum);
     }
+
+    @Override
+    public void deleteByReboardnum(int reboardnum) {
+        session.delete("deleteByReboardnum", reboardnum);
+    }
+
+//    @Override
+//    public ReboardDto selectByNum(int reboardnum) {
+//        return session.selectOne("selectByNum", reboardnum);
+//    }
 }

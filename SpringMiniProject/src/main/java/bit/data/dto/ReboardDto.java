@@ -1,5 +1,6 @@
 package bit.data.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.sql.Timestamp;
@@ -14,5 +15,6 @@ public class ReboardDto {
     private int regroup;
     private int restep;
     private int relevel;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "Asia/Seoul")
     private Timestamp writeday;
 }

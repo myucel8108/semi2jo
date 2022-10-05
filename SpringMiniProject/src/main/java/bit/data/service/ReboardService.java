@@ -21,4 +21,14 @@ public class ReboardService implements ReboardServiceInter{
     public List<ReboardDto> getAllReboards(int boardnum) {
         return reboardDao.getAllReboards(boardnum);
     }
+
+    @Override
+    public void deleteByReboardnum(int reboardnum) {
+        reboardDao.deleteByReboardnum(reboardnum);
+    }
+
+//    @Override
+//    public ReboardDto selectByNum(int reboardnum) {
+//        return reboardDao.selectByNum(reboardnum);
+//    }
 }

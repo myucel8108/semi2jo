@@ -19,5 +19,6 @@ public class BoardDto {
     private int likes;
     private int report;
     private Timestamp writeday;
+    private int reboardcount;
 
 }
