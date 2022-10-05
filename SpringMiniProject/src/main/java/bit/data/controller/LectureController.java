@@ -24,7 +24,11 @@ public class LectureController {
     		
         return "/main/lecture/lectureList";
     }
-
-
+    //과목 상세 보기
+    @GetMapping("/lecture/lectureDetail")
+    public String lecturedetail(Model model)
+    {
+        return "/main/lecture/lectureDetail";
+    }
 
 }
