@@ -24,10 +24,10 @@
     <div class="sidebar_detail" id="d1" onclick="location.href='#'">
         <span class="side_main_span_main">마이정보</span>
     </div>
-    <div class="sidebar_detail" id="d2" onclick="location.href='#'">
+    <div class="sidebar_detail" id="d2" onclick="location.href='${root}/student/timeTable'">
         <span class="side_main_span_write">마이시간표</span>
     </div>
-    <div class="sidebar_detail" id="d3" onclick="location.href='#'">
+    <div class="sidebar_detail" id="d3" onclick="location.href='${root}/student/stuLectureList'">
         <span class="side_main_span_market">마이강의</span>
     </div>
     <div class="sidebar_detail" id="d4" onclick="location.href='#'">

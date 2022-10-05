@@ -117,7 +117,7 @@
     <style type="text/css">
         /* layout 테스트 환경일 경우 border 1px 지정 */
         div.layout div{
-            border: 0px solid black;
+            border: 3px solid black;
         }
 
         div.layout div.header{
