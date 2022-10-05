@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,8 +27,8 @@
     <th style="width: 80px">강사</th>
     <th style="width: 80px">강의실</th>
     <th style="width: 100px">강의교시</th>
-    <th style="width: 100px">강의일</th>
-    <th style="width: 50px">수강월</th>
+    <th style="width: 100px">강의요일</th>
+    <th style="width: 50px">수강연월</th>
   </tr>
   <c:forEach var="dto" items="${list }">
     <tr>
@@ -35,9 +36,31 @@
       <td>${dto.lecname}</td>
       <td>${dto.teaname}</td>
       <td>${dto.roomnum}</td>
-      <td>${dto.lectime}</td>
-      <td>${dto.lecday}</td>
-      <td>${dto.lecmonth}</td>
+      <td>${dto.lectime}교시</td>
+      <td>
+        <c:if test="${fn:contains(dto.lecday,1)}">
+          월
+        </c:if>
+        <c:if test="${fn:contains(dto.lecday,2)}">
+          화
+        </c:if>
+        <c:if test="${fn:contains(dto.lecday,3)}">
+          수
+        </c:if>
+        <c:if test="${fn:contains(dto.lecday,4)}">
+          목
+        </c:if>
+        <c:if test="${fn:contains(dto.lecday,5)}">
+          금
+        </c:if>
+        <c:if test="${fn:contains(dto.lecday,6)}">
+          토
+        </c:if>
+        <c:if test="${fn:contains(dto.lecday,7)}">
+          일
+        </c:if>
+      </td>
+      <td>${dto.lecyear}/${dto.lecmonth}</td>
     </tr>
   </c:forEach>
 </table>

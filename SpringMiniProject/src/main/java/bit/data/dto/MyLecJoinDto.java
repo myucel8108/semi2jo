@@ -11,7 +11,8 @@ public class MyLecJoinDto {
     public String teaname;
     public int roomnum;
     public String lectime;
-    public int lecmonth;
     public String lecday;
+    public int lecmonth;
+    public int lecyear;
 
 }
