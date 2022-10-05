@@ -2,4 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bit.data.dao.LecDetailDao">
 
+    <!--    이번달에 개설된 강의 총 수 반환-->
+    <select id="getLecTotalCountMonth" parameterType="Map" resultType="int">
+        select count(*) from lecdetail where lecyear=#{lecyear} and lecmonth=#{lecmonth}
+    </select>
 </mapper>

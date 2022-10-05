@@ -1,6 +1,7 @@
 package bit.data.controller;
 
 import bit.data.dto.LectureDto;
+import bit.data.service.LecDetailServiceInter;
 import bit.data.service.LectureServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.sql.SQLOutput;
 import java.util.List;
 
 @Controller
@@ -16,6 +19,9 @@ public class ManagerController {
 
     @Autowired
     LectureServiceInter lectureService;
+
+    @Autowired
+    LecDetailServiceInter lecDetailService;
 
     @GetMapping("/lecturelist")
     public String getLecturelist(@RequestParam(defaultValue = "1") int currentPage,
@@ -70,5 +76,16 @@ public class ManagerController {
     public String insertLecture(LectureDto dto) { //강의 등록
         lectureService.insertLecture(dto);
         return "/manager/manager/addLectureForm";
+    }
+
+    //    이번달에 개설된 강의 총 수 반환
+    @GetMapping("/manager/totalLecture")
+    @ResponseBody
+    public int getLecTotalCountMonth(int lecyear, int lecmonth){
+//        System.out.println("lecyear"+lecyear);
+//        System.out.println("lecmonth"+lecmonth);
+        int result = lecDetailService.getLecTotalCountMonth(lecyear, lecmonth);
+        System.out.println("result"+result);
+        return result;
     }
 }

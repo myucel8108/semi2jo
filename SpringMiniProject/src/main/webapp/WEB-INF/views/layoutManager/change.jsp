@@ -26,8 +26,8 @@
     <meta name="author" content="">
     <link href="img/logo/logo.png" rel="icon">
     <title>RuangAdmin - Dashboard</title>
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<%--    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">--%>
+<%--    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">--%>
     <link href="css/manager/manager.css" rel="stylesheet">
 </head>
 
@@ -45,15 +45,16 @@
             <div class="container-fluid" id="container-wrapper">
 
                 <div class="row mb-3">
-                    <!-- Incom Card-->
+                    <!-- Card Example-->
 
+                    <!-- 올 한해의 전체 소득 출력 칸-->
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card h-100">
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-uppercase mb-1">
-                                            Incom : <span id ="nowYear"></span>
+                                            Incom (<span id ="nowYear"></span> year)
                                             <script>
                                                 data = new Date();
                                                 var year = data.getFullYear();
@@ -73,23 +74,18 @@
                             </div>
                         </div>
                     </div>
-                    <!-- User Card -->
+                    <!-- 일반 회원 수 출력 란 -->
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card h-100">
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-uppercase mb-1">
-                                            Incom
-                                            <script>
-                                                data.getFullYear();
-                                            </script>
-                                        </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">650</div>
-                                        <div class="mt-2 mb-0 text-muted text-xs">
-                                            <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                                            <span>Since last years</span>
-                                        </div>
+                                        <div class="text-xs font-weight-bold text-uppercase mb-1">User</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="print-total-user"></div>
+<%--                                        <div class="mt-2 mb-0 text-muted text-xs">--%>
+<%--                                            <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>--%>
+<%--                                            <span>Since last years</span>--%>
+<%--                                        </div>--%>
                                     </div>
                                     <div class="col-auto">
                                         <i class="fas fa-shopping-cart fa-2x text-success"></i>
@@ -98,18 +94,25 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Lecture Card -->
+                    <!-- 진행중인 강좌 수 출력 란 -->
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card h-100">
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-uppercase mb-1">New User</div>
-                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">366</div>
-                                        <div class="mt-2 mb-0 text-muted text-xs">
-                                            <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
-                                            <span>Since last month</span>
+                                        <div class="text-xs font-weight-bold text-uppercase mb-1">
+                                            Lecture (<span id ="nowMonth"></span> month)
+                                            <script>
+                                                data = new Date();
+                                                var month = data.getMonth();
+                                                document.getElementById("nowMonth").innerText=month;
+                                            </script>
                                         </div>
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="print-total-lectures"></div>
+<%--                                        <div class="mt-2 mb-0 text-muted text-xs">--%>
+<%--                                            <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>--%>
+<%--                                            <span>Since last month</span>--%>
+<%--                                        </div>--%>
                                     </div>
                                     <div class="col-auto">
                                         <i class="fas fa-users fa-2x text-info"></i>
@@ -118,26 +121,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Pending Requests Card Example -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card h-100">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-uppercase mb-1">Pending Requests</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                        <div class="mt-2 mb-0 text-muted text-xs">
-                                            <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                                            <span>Since yesterday</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-comments fa-2x text-warning"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
 
                     <!-- Area Chart -->
                     <div class="col-xl-8 col-lg-7">
@@ -389,23 +373,51 @@
 </a>
 
 <script>
+    //페이지 로드 되자마자 출력되는 함수들
     $(function () {
-        printIncom();   //처음 출력시 매출출력
+        // totalIncom();      //올해의 수익
+        // totalUser();       //전체 학생수
+        totalLecture();
+        console.log("test2");//이번달에 개설된 강좌수
     })
-    
-    function printIncom() {
+
+    // //올해의 수익
+    // function totalIncom() {
+    //     $.ajax({
+    //         type:"get",
+    //         url:"/mini/manager/totalIncom",
+    //         dataType:"json",
+    //         success:function(res) {
+    //             alert("print-total-incom");
+    //             alert(res.result);
+    //             $("#print-total-incom").html(res.result);
+    //             }
+    //     })
+    // }
+    // function totalUser() {
+    //     $.ajax({
+    //         type:"get",
+    //         url:"/mini/manager/totalUser",
+    //         dataType:"json",
+    //         success:function(res) {
+    //             alert("print-total-user");
+    //             alert(res.result);
+    //             $("#print-total-user").html(res.result);
+    //         }
+    //     })
+    // }
+    function totalLecture() {
         $.ajax({
             type:"get",
-            url:"/mini/manager/incomyear",
+            url:"/mini/manager/totalLecture",
             dataType:"json",
+            data:{"lecyear":year,"lecmonth":month},
             success:function(res) {
-                alert("print-total-incom");
+                console.log("test3");
                 alert(res.result);
-                $("#print-total-incom").html(res.result);
-                }
+                $("#print-total-lecutre").html(res.result);
+            }
         })
-
-
     }
 </script>
 
