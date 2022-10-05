@@ -61,7 +61,7 @@
             </span>
                 </td>
             </tr>
-            <tr height="200">
+            <tr height="500">
                 <td>
                     <p>${dto.content}</p>
                     <c:if test="${dto.photo!='no'}">
@@ -77,24 +77,30 @@
                             <input type="hidden" name="username" value="${sessionScope.username}">
                         </form>
                     </div>
+                    <tr>
+            <td style="text-align: center; padding: 20px;" >
+                    <c:if test="${sessionScope.loginok!=null && sessionScope.usernum==dto.usernum || sessionScope.loginid=='admin'}">
+                    <div id="buttonbox" style="width: 200px; margin-top:10px; margin-bottom: 10px;">
+                        <button type="button" onclick="location.href='qnaUpdate?qnanum=${dto.qnanum}&currentPage=${currentPage}'">수정</button>
+                        <button type="button" onclick="location.href='delete?qnanum=${dto.qnanum}&currentPage=${currentPage}'">삭제</button>
+                        </c:if>
+                        <c:if test="${dto.restep==0 && sessionScope.loginid=='admin'}">
+                            <button type="button" onclick="location.href='qnaForm?qnanum=${dto.qnanum}&regroup=${dto.regroup}&restep=${dto.restep}&relevel=${dto.relevel}&currentPage=${currentPage}'">답글</button>
+                        </c:if>
+                        <%--        <div id="listing">--%>
+                        <button type="button" onclick="location.href='qnaList?currentPage=${currentPage}'">목록</button>
+                        <%--        </div>--%>
+                    </div>
+            </td>
+                    </tr>
+
                 </td>
             </tr>
 
         </table>
     </div>
 
-    <c:if test="${sessionScope.loginok!=null && sessionScope.usernum==dto.usernum || sessionScope.loginid=='admin'}">
-    <div id="buttonbox" style="width: 200px;">
-        <button type="button" onclick="location.href='qnaUpdate?qnanum=${dto.qnanum}&currentPage=${currentPage}'">수정</button>
-        <button type="button" onclick="location.href='delete?qnanum=${dto.qnanum}&currentPage=${currentPage}'">삭제</button>
-        </c:if>
-        <c:if test="${dto.restep==0 && sessionScope.loginid=='admin'}">
-            <button type="button" onclick="location.href='qnaForm?qnanum=${dto.qnanum}&regroup=${dto.regroup}&restep=${dto.restep}&relevel=${dto.relevel}&currentPage=${currentPage}'">답글</button>
-        </c:if>
-        <div id="listing">
-        <button type="button" onclick="location.href='qnaList?currentPage=${currentPage}'">목록</button>
-        </div>
-    </div>
+
 </div>
 </body>
 </html>
