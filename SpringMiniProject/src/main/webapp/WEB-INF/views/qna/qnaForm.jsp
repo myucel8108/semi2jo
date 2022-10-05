@@ -107,7 +107,7 @@
         </tr>
         <tr>
             <td colspan="2" align="center">
-                <button type="submit" >업로드</button>
+                <button type="submit" class="btn btn-outline" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" >문의등록</button>
             </td>
         </tr>
     </table>
