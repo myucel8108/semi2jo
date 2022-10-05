@@ -45,6 +45,12 @@
             text-align: center;
             margin-bottom: 20px;
         }
+        #tpst{
+            font-size: 15px;
+            text-decoration: none;
+            color: grey;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -57,8 +63,8 @@
                     <b>${dto.username}</b>
                     <span style="color: gray; font-size: 12px;">
                <fmt:formatDate value="${dto.writeday}" pattern="yyyy-MM-dd HH:mm"/>
-               &nbsp;&nbsp;
             </span>
+                    <b id="tpst">${dto.qnatype}</b>
                 </td>
             </tr>
             <tr height="500">

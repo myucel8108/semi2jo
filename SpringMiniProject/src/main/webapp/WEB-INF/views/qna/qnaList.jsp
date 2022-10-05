@@ -44,6 +44,7 @@
         <tr class="listbox-tm">
             <th style="width: 50px; text-align:center;">번호</th>
             <th style="width: 250px;text-align:center;">제목</th>
+            <th style="width: 80px;text-align:center;">문의유형</th>
             <th style="width: 80px;text-align:center;">이름</th>
             <th style="width: 110px;text-align:center;">작성일</th>
         </tr>
@@ -78,6 +79,7 @@
 
 
                     </td>
+                    <td align="center">${dto.qnatype}</td>
                     <td align="center">${dto.username}</td>
                     <td align="center">
                         <fmt:formatDate value="${dto.writeday}" pattern="yyyy-MM-dd"/>
