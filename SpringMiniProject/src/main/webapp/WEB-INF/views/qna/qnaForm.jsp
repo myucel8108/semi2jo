@@ -27,7 +27,7 @@
 <form action="insert" method="post" enctype="multipart/form-data">
 
         <input type="hidden" name="usernum" value="${sessionScope.usernum}">
-        <input type="hidden" name="name" value="${sessionScope.username}">
+        <input type="hidden" name="username" value="${sessionScope.username}">
     <input type="hidden" name="qnanum" value="${qnanum}">
     <input type="hidden" name="regroup" value="${regroup}">
     <input type="hidden" name="relevel" value="${relevel}">

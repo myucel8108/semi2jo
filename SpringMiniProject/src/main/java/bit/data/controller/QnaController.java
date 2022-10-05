@@ -28,6 +28,8 @@ public class QnaController {
     UserServiceInter userService;
 
 
+
+
     @GetMapping("/qna/qnaForm") //게시판 작성폼
     public String qnaForm(
             @RequestParam(defaultValue="0") int qnanum,
@@ -80,10 +82,10 @@ public class QnaController {
         String path = request.getSession().getServletContext().getRealPath("/resources/upload");
 
 //        loginid 에 해당하는 username 얻기
-//        String nickname=userService.getDataById(dto.getUserid()).getNickname();
-//        int usernum=userService.getDataById(dto.getUserid()).getUsernum();
+        String username=userService.getDataByNum(dto.getUsernum()).getUsername();
+//        int usernum=userService.getDataById(dto.getUsername()).getUsernum();
 //        dto.setUsernum(usernum);
-//        dto.setNickname(nickname);
+        dto.setUsername(username);
 
         if (upload.get(0).getOriginalFilename().equals("")) {
             dto.setPhoto("no");
