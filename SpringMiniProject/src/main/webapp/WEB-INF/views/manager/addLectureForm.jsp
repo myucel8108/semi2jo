@@ -150,7 +150,7 @@
 				}
 			</script>
 
-		</div
+		</div>
 
 		<div class="addinner">
 			<span id="insertspan">강의 등록</span>

@@ -6,4 +6,11 @@
     <select id="getLecTotalCountMonth" parameterType="Map" resultType="int">
         select count(*) from lecdetail where lecyear=#{lecyear} and lecmonth=#{lecmonth}
     </select>
+
+
+	<!--  강의 번호 출력-> 강의 상세보기 하기 위한 sql문 -->
+	<select id="selectByNum" parameterType="String" resultType="LecDetailDto">
+		SELECT * from lecture, lecdetail where lecture.lecnum = lecdetail.lecnum AND lecdenum =#{lecdenum};
+	</select>
+	
 </mapper>
