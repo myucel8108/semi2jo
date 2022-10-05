@@ -28,13 +28,7 @@
 	<select id="selectByCategori2" parameterType="String" resultType="LectureDto">
 		select * from lecture where lectypeb = #{lectypeb}
 	</select>
-	
-	<!--  강의 번호 출력-> 강의 상세보기 하기 위한 sql문 -->
-	<select id="selectByNum" parameterType="String" resultType="LectureDto">
-		SELECT * from lecture, lecdetail where lecture.lecnum = lecdetail.lecnum;
-	</select>
-	
-	<!-- 	  강의 번호 출력-> 강의 상세보기 하기 위한 sql문 
+	<!--강의 번호 출력-> 강의 상세보기 하기 위한 sql문 
 	<select id="selectByNum" parameterType="int" resultType="LectureDto">
 		select * from lecture where lecnum = #{lecnum}
 	</select> -->
