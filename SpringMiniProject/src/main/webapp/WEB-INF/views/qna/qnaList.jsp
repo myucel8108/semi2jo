@@ -70,12 +70,17 @@
                         <!-- 답글일 경우 답글 이미지 넣기 -->
                         <c:if test="${dto.relevel>0}">
                             <img src="../image/ree.png" width="20px;" style="background-color: white">
-                            <img src="../image/lock2.png" width="20px;" style="background-color: white">
+
                             <img src="../image/ans.jpg" width="20px;" style="background-color: white">
                             <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm">&nbsp;답변드립니다</a>
-
+                            <img src="../image/lock2.png" width="10px;" style="background-color: white">
                         </c:if>
+
+
                         <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm">
+                            <c:if test="${dto.relevel==0}">
+                            <img src="../image/lockimg.jpg" width="10px;" style="background-color: white">
+                            </c:if>
                                 ${dto.subject}
                             <c:if test="${dto.photo!='no'}">
                                 <i class="fa fa-picture-o"></i>
@@ -83,9 +88,10 @@
                         </a>
                     </td>
 
+
                     <td align='center'>
                         <c:if test="${dto.relevel>0}">
-                                <b style="color:orangered; text-decoration: none;">답변완료</b>
+                                <b style="color: orange; text-decoration: none;">답변완료</b>
                         </c:if>
                             ${dto.qnatype}
                     </td>
