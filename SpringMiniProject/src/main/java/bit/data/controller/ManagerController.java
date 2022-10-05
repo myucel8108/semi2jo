@@ -2,13 +2,14 @@ package bit.data.controller;
 
 import bit.data.dto.LectureDto;
 import bit.data.service.LectureServiceInter;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -23,7 +24,7 @@ public class ManagerController {
                                  @RequestParam(value = "searchword", required = false) String sw,
                                  Model model) { //강의 목록 출력
         int totalCount = lectureService.getTotalLectureCount(sc,sw);
-        int perPage=10;//한 페이지 당 보여질 글의 갯수
+        int perPage=12;//한 페이지 당 보여질 글의 갯수
         int perBlock=5;//한 블럭당 보여질 페이지의 갯수
         int startNum;//db에서 가져올 글의 시작번호(mysql은 첫글이 0번,오라클은 1번)
         int startPage;//각 블럭당 보여질 시작페이지
@@ -77,5 +78,31 @@ public class ManagerController {
     public String insertLecture(LectureDto dto) { //강의 등록
         lectureService.insertLecture(dto);
         return "redirect:/lecturelist";
+    }
+
+    @GetMapping("/searchWordConn")
+    @ResponseBody
+    public HashMap<String, String> searchWordConn(HttpServletRequest req) { //강의 등록
+
+        System.out.println("###### req : " + req.getParameter("searchWord"));
+        String selectCol = req.getParameter("searchcolumn");
+        System.out.println(selectCol);
+
+        if(selectCol.equals("1")){
+            System.out.println("###### searchcolumn : 1 ");
+
+           // select * from table where date >= today(날짜만)(sysdate=초까지)
+            // TO_CHAR(ADD_MONTHS(SYSDATE),'yyyy-MM-dd')
+        } else if (selectCol.equals("2")){
+            System.out.println("###### searchcolumn : 2 ");
+        } else {
+            System.out.println("###### 오류입니다.");
+        }
+
+
+        HashMap<String, String> msg = new HashMap<String, String>();
+        msg.put("result", "성공!!");
+
+        return msg;
     }
 }
