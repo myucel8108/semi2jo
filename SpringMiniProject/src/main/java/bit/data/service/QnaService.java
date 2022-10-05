@@ -2,6 +2,7 @@ package bit.data.service;
 
 import bit.data.dao.QnaDaoInter;
 import bit.data.dto.QnaDto;
+import bit.data.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

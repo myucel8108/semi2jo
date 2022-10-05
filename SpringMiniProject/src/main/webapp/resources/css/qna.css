@@ -51,11 +51,6 @@
     cursor: pointer;
 }
 
-.myask:hover{
-    font-size: 30px;
-    color: black;
-}
-
 .myaskbox{
     margin-top: 40px;
 }

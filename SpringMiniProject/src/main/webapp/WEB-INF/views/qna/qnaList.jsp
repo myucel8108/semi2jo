@@ -34,7 +34,7 @@
 <body>
 <div class="container" style="width: 100%;">
         <div class="myaskbox">
-           <a href="qnaList?searchcolumn=id&searchword=${sessionScope.loginid }" class="myask">나의문의</a>
+           <a href="qnaList?searchcolumn=usernum&searchword=${sessionScope.loginid}" class="myask">나의문의보기</a>
         </div>
 <div class="qnalist" style="margin-top: 10px; ">
     <h3 class="hname-tm">총 ${totalCount} 개의 글이 있습니다</h3>
@@ -50,7 +50,7 @@
         <c:if test="${totalCount==0 }">
             <tr>
                 <td colspan="6" align="center">
-                    <h4> 등록된 글이 없습니다 </h4>
+                    <h5> 등록된 문의글이 없습니다 </h5>
                 </td>
             </tr>
         </c:if>

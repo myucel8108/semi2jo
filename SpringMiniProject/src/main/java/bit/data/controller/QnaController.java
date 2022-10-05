@@ -27,6 +27,7 @@ public class QnaController {
     @Autowired
     UserServiceInter userService;
 
+
     @GetMapping("/qna/qnaForm") //게시판 작성폼
     public String qnaForm(
             @RequestParam(defaultValue="0") int qnanum,
@@ -116,7 +117,13 @@ public class QnaController {
             Model model
     )
     {
-        int totalCount=qnaService.getTotalCount(sc,sw);
+        //sw는 유저 아이디임으로 usernum을 얻어야한다
+        String usernum=null;
+        if(sw!=null){
+             usernum=String.valueOf(userService.getDataById(sw).getUsernum());
+//            System.out.println("111="+sw+","+usernum);
+        }
+        int totalCount=qnaService.getTotalCount(sc,usernum);
         int perPage=10;
         int perBlock=5;
         int startNum;
@@ -136,7 +143,7 @@ public class QnaController {
 
         no=totalCount-(currentPage-1)*perPage;
 
-        List<QnaDto> list = qnaService.getPagingList(sc, sw, startNum, perPage);
+        List<QnaDto> list = qnaService.getPagingList(sc, usernum, startNum, perPage);
         model.addAttribute("list", list);
         model.addAttribute("totalCount", totalCount);
         model.addAttribute("currentPage", currentPage);
