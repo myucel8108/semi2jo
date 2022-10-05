@@ -36,20 +36,24 @@
 
 
     <table class="table table-bordered" style="width: 500px;" id="formbox">
-        <tr>
-            <th style="width: 100px;">제목</th>
-            <td>
-                <input type="text" name="subject" class="form-control" required="required">
-            </td>
-        </tr>
-        <tr>
-            <th style="width: 100px;">비밀번호</th>
-            <td>
-                <input type="password" name="pass" class="form-control" required="required">
-            </td>
-        </tr>
+
+
+
 
         <c:if test="${qnanum==0}">
+            <tr>
+                <th style="width: 100px;">제목</th>
+                <td>
+                    <input type="text" name="subject" class="form-control" required="required">
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 100px;">비밀번호</th>
+                <td>
+                    <input type="password" name="pass" class="form-control" required="required">
+                </td>
+            </tr>
+
             <tr>
                 <th style="width: 100px;">문의유형</th>
                 <td>
@@ -65,7 +69,9 @@
         </c:if>
 
         <c:if test="${qnanum>0}">
+            <input type="hidden" name="pass">
             <input type="hidden" name="qnatype">
+
         </c:if>
         <tr>
             <th style="width: 100px;">사진</th>
