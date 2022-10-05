@@ -71,7 +71,7 @@
                         <c:if test="${dto.relevel>0}">
                             <img src="../image/ree.png" width="20px;" style="background-color: white">
                             <img src="../image/lock2.png" width="20px;" style="background-color: white">
-                            답변드립니다
+                            <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm"> 답변드립니다</a>
                         </c:if>
                         <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm">
                                 ${dto.subject}
