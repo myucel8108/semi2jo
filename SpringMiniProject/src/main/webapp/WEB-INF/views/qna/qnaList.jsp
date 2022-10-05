@@ -66,7 +66,7 @@
                         </c:forEach>
                         <!-- 답글일 경우 답글 이미지 넣기 -->
                         <c:if test="${dto.relevel>0}">
-                            <img src="../image/ree.png">
+                            <img src="../image/lock2.png" width="20px;" style="background-color: white">
                         </c:if>
                         <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm">
                                 ${dto.subject}
