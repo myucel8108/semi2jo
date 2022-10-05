@@ -11,12 +11,11 @@
             href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap"
             rel="stylesheet">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <style type="text/css">
 
-        span.likes {
-            cursor: pointer;
-        }
+
         div.alist pre{
             text-indent: 10px; /*들여쓰기*/
             color: black;
@@ -29,20 +28,32 @@
             border-radius: 10px;
             margin-left: 10px;
         }
+        #detailbox
+        {
+        margin: auto;
+        margin-bottom: 0px;
+        }
+
+        #buttonbox{
+            margin: auto;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 40px;
+        }
     </style>
 </head>
 <body>
-<body>
+<div class="container" style="width: 100%;">
 <div style="margin: 50px;">
-    <table class="table table-bordered" style="width: 600px;">
+    <table class="table table-bordered" style="width: 600px" id="detailbox">
         <tr>
             <td>
                 <h2><b>${dto.subject}</b></h2>
-                <b>${dto.username}(${dto.username})</b>
+                <b>${dto.username}</b>
                 <span style="color: gray; font-size: 12px;">
-					<fmt:formatDate value="${dto.writeday}" pattern="yyyy-MM-dd HH:mm"/>
-					&nbsp;&nbsp;
-				</span>
+               <fmt:formatDate value="${dto.writeday}" pattern="yyyy-MM-dd HH:mm"/>
+               &nbsp;&nbsp;
+            </span>
             </td>
         </tr>
         <tr height="200">
@@ -54,30 +65,42 @@
                              onerror="this.style.display='none'">
                     </c:forTokens>
                 </c:if>
-                <br>
+                <%--                <br>--%>
 
-                <i class="far fa-comment-dots"></i>
-                &nbsp;<b class="banswer">0</b>
-                <br>
-                <div class="alist">
-                    댓글목록
-                </div>
+                <%--                <i class="far fa-comment-dots"></i>--%>
+                <%--                &nbsp;<b class="banswer">0</b>--%>
+                <%--                <br>--%>
+                <%--                <div class="alist">--%>
+                <%--                    댓글목록--%>
+                <%--                </div>--%>
                 <div class="aform">
                     <form id="aform">
-                        <input type="hidden" name="num" value="${dto.qnanum}">
-                        <input type="hidden" name="id" value="${sessionScope.loginid}">
-                        <input type="hidden" name="name" value="${sessionScope.loginname}">
-                        <div class="input-group">
-                            <textarea name="message" id="message" style="width: 400px; height: 60px;" class="form-control"></textarea>
-                            <button type="button" class="btn btn-secondary" id="btnasave">등록</button>
-                        </div>
+                        <input type="hidden" name="qnanum" value="${dto.qnanum}">
+                        <input type="hidden" name="loginid" value="${sessionScope.loginid}">
+                        <input type="hidden" name="username" value="${sessionScope.username}">
+                        <%--                        <div class="input-group">--%>
+                        <%--                            <textarea name="message" id="message" style="width: 400px; height: 60px;" class="form-control"></textarea>--%>
+                        <%--                            <button type="button" class="btn btn-secondary" id="btnasave">등록</button>--%>
+                        <%--                        </div>--%>
                     </form>
                 </div>
             </td>
-            <button type="button" onclick="location.href='qnaUpdate?qnanum=${dto.qnanum}&currentPage=${currentPage}'">수정</button>
-            <button type="button" onclick="location.href='delete?qnanum=${dto.qnanum}&currentPage=${currentPage}'">삭제</button>
         </tr>
     </table>
+    </div>
+
+    <!--  로그인중이면서 세션의 아이디와 글의 아이디가 같을 경우에만 수정,삭제 가능 -->
+<c:if test="${sessionScope.loginok!=null && sessionScope.usernum==dto.usernum}">
+    <div id="buttonbox">
+    <button type="button" onclick="location.href='qnaUpdate?qnanum=${dto.qnanum}&currentPage=${currentPage}'">수정</button>
+    <button type="button" onclick="location.href='delete?qnanum=${dto.qnanum}&currentPage=${currentPage}'">삭제</button>
+    </c:if>
+    <c:if test="${dto.restep==0}">
+    <button type="button" onclick="location.href='qnaForm?qnanum=${dto.qnanum}&regroup=${dto.regroup}&restep=${dto.restep}&relevel=${dto.relevel}&currentPage=${currentPage}'">답글</button>
+    </c:if>
+    <button type="button" onclick="location.href='qnaList?currentPage=${currentPage}'">목록</button>
+    </div>
+</div>
 </div>
 </body>
 </html>
