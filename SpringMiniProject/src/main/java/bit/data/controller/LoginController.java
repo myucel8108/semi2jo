@@ -128,6 +128,7 @@ public class LoginController {
         return "redirect:loginF";
     }
 
+    //회원가입 시 아이디 중복체크
     @GetMapping("/checkId")
     @ResponseBody
     public Map<String, Integer> checkId(String userid){

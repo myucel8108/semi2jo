@@ -16,6 +16,7 @@ table.lectable td{
     border: 1px solid lightgray;
     vertical-align: middle;
     text-align: center;
+    font-size: 12px;
 }
 
 div.mylec{

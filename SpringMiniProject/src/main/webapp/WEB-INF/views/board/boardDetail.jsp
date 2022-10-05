@@ -30,12 +30,14 @@
     <script>
 
         $(function(){
-           initlike();
 
+            list();
+
+           initlike();
            //좋아요 숫자 클릭시 좋아요 누른 아이디+닉네임 보이게 하기
           $(".likeusericon").click(function(){
                var boardnum=${dto.boardnum};
-                console.log("boardnum="+boardnum);
+                //console.log("boardnum="+boardnum);
                $.ajax({
                    type : "get",
                    url : "likesuser",
@@ -58,9 +60,22 @@
                        });
                    }
                });
-
-
            });
+          $(document).on("click",".redelete", function (){
+              var reboardnum=$(this).attr("reboardnum");
+              var ans=confirm("댓글을 삭제하시겠습니까?");
+              if(ans){
+                  $.ajax({
+                      type:"get",
+                      url:"../reboard/delete",
+                      dataType:"text",
+                      data:{"reboardnum":reboardnum},
+                      success:function(res){
+                          list();
+                      }
+                  });
+              }
+          });
         });
         function initlike(){
             var boardnum=${dto.boardnum};
@@ -76,6 +91,44 @@
                     if(res==1){
                         $(".fa-thumbs-up").attr("class","fas fa-thumbs-up").css("color","red");
                     }
+                }
+            });
+        }
+        function list(){
+            var loginok = '${sessionScope.loginok}';
+            var loginid = '${sessionScope.loginid}';
+            var writeid = '${dto.userid}';
+            var boardnum = ${dto.boardnum};
+
+            var s = "";
+            $.ajax({
+                type : "get",
+                url : "../reboard/list",
+                dataType : "json",
+                data : {"boardnum":boardnum},
+                success : function(res) {
+                    $("b.banswer").text(res.length);
+                    $.each(res, function (i, elt){
+                        s+="<div>"
+                        if(elt.photo!=null) {
+                            s+="<img src='../upload/${userphoto}' style='width: 30px; height: 30px;' class='rounded-circle' hspace='10'>";
+                        }
+                        if(elt.photo==null) {
+                            s+="<img src='../image/noprofilepicture.png' style='width: 30px; height: 30px;' class='rounded-circle' hspace='10'>";
+                        }
+                        s+="<b>"+elt.nickname+"</b>"
+                        if (writeid==elt.userid){
+                            s+="<span class='writer'>(작성자)</span><br>";
+                        }
+                        s+="<br>";
+                        s+="<p>"+elt.recontent+"&nbsp;&nbsp;";
+                        s+="<span class='day' style='color:gray;'>"+elt.writeday+"&nbsp;";
+                        if(loginok=='yes' && loginid==elt.userid){
+                            s+='<i class="fa fa-close redelete" style="font-size:15px; color: black" reboardnum='+elt.reboardnum+'></i>';
+                        }
+                        s+="</span></p></div><hr>"
+                    });
+                    $("div.alist").html(s);
                 }
             });
         }
@@ -105,10 +158,14 @@
 </div>--%>
 
 <div class="container" style="width: 100%; padding: 100px;">
-    <table class="table table-bordered" style="width: 600px;">
+    <table class="table table-bordered" style="width: 100%;">
         <tr>
             <td>
                 <h2><b>${dto.subject}</b></h2>
+                <c:if test="${userphoto!='no'}">
+                    <img src="../upload/${userphoto}" width="40" height="40" class="rounded-circle"
+                         onerror="this.src='../image/noprofilepicture.png'" hspace="10">
+                </c:if>
                 <b>${dto.nickname}(${dto.userid})</b>
                 <span style="color: gray; font-size: 12px;">
 					<fmt:formatDate value="${dto.writeday}" pattern="yyyy-MM-dd HH:mm"/>
@@ -135,27 +192,33 @@
                 <span class="likeusericon" data-bs-toggle="modal" data-bs-target="#likeuserModal">
                 <i class='fas fa-user-alt' style='font-size:16px'></i>
                 </span>
-                <b  class="likesuser">
+                <b class="likesuser">
                    ${dto.likes}</b>
                 &nbsp;&nbsp;
                 <i class="far fa-comment-dots"></i>
-                댓글
-                <b class="banswer">$</b>
-                <br>
+                <b class="banswer">0</b>
+                <br><br>
+                <div class="alist">
+                    댓글
+                </div>
+                <c:if test="${sessionScope.loginok!=null}">
                 <div class="aform">
                     <form id="aform">
-                        <input type="hidden" name="num" value="${dto.boardnum}">
-                        <input type="hidden" name="id" value="${sessionScope.loginid}">
-                        <input type="hidden" name="name" value="${sessionScope.loginname}">
+                        <input type="hidden" name="boardnum" value="${dto.boardnum}">
+                        <input type="hidden" name="userid" value="${sessionScope.loginid}">
+                        <input type="hidden" name="nickname" value="${sessionScope.loginname}">
                         <div class="input-group">
-                            <textarea name="message" id="message" style="width: 400px; height: 60px;" class="form-control"></textarea>
-                            <button type="button" id="btnasave">등록</button>
+                            <textarea name="recontent" id="recontent" style="width: 400px; height: 100px;" class="form-control"></textarea>
+                            <button type="button" id="btnreboard">등록</button>
                         </div>
                     </form>
                 </div>
+                </c:if>
                 <button type="button" onclick="location.href='boardFree?currentPage=${currentPage}'">목록</button>
+                <c:if test="${sessionScope.loginok!=null && sessionScope.loginid==dto.userid}">
                 <button type="button" onclick="location.href='boardUpdate?boardnum=${dto.boardnum}&currentPage=${currentPage}'">수정</button>
-            <button type="button" onclick="location.href='delete?boardnum=${dto.boardnum}&currentPage=${currentPage}'">삭제</button>
+                <button type="button" onclick="location.href='delete?boardnum=${dto.boardnum}&currentPage=${currentPage}'">삭제</button>
+                </c:if>
             </td>
         </tr>
     </table>
@@ -186,6 +249,21 @@
                 success : function(res) {
                       //  alert(res);
                         $("b.likesuser").text(res);
+                }
+            });
+        });
+        //댓글저장
+        $("#btnreboard").click(function() {
+            var fdata = $("#aform").serialize();
+            $.ajax({
+                type : "post",
+                url : "../reboard/insert",
+
+                dataType : "text",
+                data : fdata,
+                success : function(res) {
+                   list();
+                    $("#recontent").val("");
                 }
             });
         });

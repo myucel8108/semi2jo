@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="bit.data.dao.RoboardDao">
-    <select id="getAllReboardList" parameterType="int" resultType="reboardDto">
-        select * from reboard where boardnum=#{boardnum} order by reboardnum desc
-    </select>
+<mapper namespace="bit.data.dao.ReboardDao">
     <insert id="insertReboard" parameterType="reboardDto">
         insert into reboard (boardnum, userid, nickname, recontent, regroup, restep, relevel, writeday)
-        values (#{boardnum}, #{userid}, #{nickname}, #{recontent}, #{regroup}, #{restep}, #{relevel}, now())
+        values (#{boardnum}, #{userid}, #{nickname}, #{recontent}, 0,0,0, now())
     </insert>
-    <!--    <select id="getReboard" parameterType="int" resultType="reboardDto">-->
-    <!--        select * from reboard where reboardnum=#{reboardnum}-->
-    <!--    </select>-->
-    <delete id="deleteReboard" parameterType="int">
+    <select id="getAllReboards" parameterType="int" resultType="reboardDto">
+        select * from reboard where boardnum=#{boardnum} order by reboardnum asc
+    </select>
+    <delete id="deleteByReboardnum" parameterType="int">
         delete from reboard where reboardnum=#{reboardnum}
     </delete>
+<!--    <select id="selectByNum" parameterType="int" resultType="reboardDto">-->
+<!--        select * from reboard where reboardnum = #{reboardnum}-->
+<!--    </select>-->
 </mapper>

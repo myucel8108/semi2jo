@@ -153,7 +153,9 @@
     </script>
 </head>
 <body>
+<div class="container" style="width: 100%;">
 <form action="insert" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="usernum" value="${sessionScope.usernum}">
     <input type="hidden" name="userid" value="${sessionScope.loginid}">
     <div class="title">
         글쓰기
@@ -220,5 +222,6 @@
         </div>
     </div>
 </form>
+</div>
 </body>
 </html>

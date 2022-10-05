@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Yeon+Sung&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <style type="text/css">
         *{
@@ -20,18 +21,18 @@
 <body>
 
 <div class="container" style="width: 100%; padding: 50px;">
+    <c:set var="root" value="<%=request.getContextPath() %>"/>
     <h1>커뮤니티</h1>
         <ul class="nav nav-tabs tab-menu">
             <li class="active"><a data-toggle="tab" href="#home">자유게시판</a></li>
             <li><a data-toggle="tab" href="#menu1">질문게시판</a></li>
         </ul>
-
-
         <div class="tab-content">
-            <div id="home" class="tab-pane fade in active">
-                <h3>자유게시판</h3>
+            <div id="home" class="tab-pane fade in active"><br>
+                <h2>자유게시판</h2>
+                <button onclick="location.href='${root}/board/boardForm'" style="float: right;">글쓰기</button>
                 <div style="margin: 10px;">
-                    <table class="table table-bordered" style="width: 900px;">
+                    <table class="table table-bordered" style="width: 100%;">
                         <tr style="background-color: #ccc">
                             <th colspan="2">인기게시물 (어케만드는거야...)</th>
                         </tr>
@@ -60,7 +61,7 @@
                 <br>
                 <div class="boardlist" style="margin: 10px;">
                     <c:set var="root" value="<%=request.getContextPath() %>"/>
-                    <table class="table table-bordered" style="width: 900px;">
+                    <table class="table table-bordered" style="width: 100%;">
                         <tr style="background-color: #ccc;">
                             <th style="width:50px; text-align: center;">번호</th>
                             <th style="width: 300px; text-align: center;">제목</th>
@@ -73,9 +74,12 @@
                                 <td style="text-align: center;">${no}</td>
                                 <c:set var="no" value="${no-1}"/>
                                 <td>
-                                    <a href="${root}/board/boardDetail?boardnum=${dto.boardnum}&currentPage=${currentPage}">${dto.subject}</a>
+                                    <a href="${root}/board/boardDetail?boardnum=${dto.boardnum}&currentPage=${currentPage}" style="text-decoration: none; color: black;">${dto.subject}</a>
                                     <c:if test="${dto.photo!='no'}">
-                                        <i class='far fa-image' style='font-size:20px'></i>
+                                        <i class='far fa-image' style='font-size:15px'></i>
+                                    </c:if>
+                                    <c:if test="${dto.reboardcount>0}">
+                                        <b style="color: blue">[${dto.reboardcount}]</b>
                                     </c:if>
                                 </td>
                                 <td style="text-align: center;">${dto.nickname}</td>
@@ -100,7 +104,6 @@
                             <button type="submit">검색</button>
                         </div>
                     </form>
-                    <button onclick="location.href='${root}/board/boardForm'">글쓰기</button>
                 </div>
                 <!--페이징-->
                 <div class="paging" style="margin-left: 600px;">
@@ -125,10 +128,11 @@
                     </ul>
                 </div>
             </div>
-            <div id="menu1" class="tab-pane fade">
-                <h3>질문게시판</h3>
+            <div id="menu1" class="tab-pane fade"><br>
+                <h2>질문게시판</h2>
+                <button onclick="location.href='${root}/board/boardForm'" style="float: right;">글쓰기</button>
                 <div style="margin: 10px;">
-                    <table class="table table-bordered" style="width: 900px;">
+                    <table class="table table-bordered" style="width: 100%;">
                         <tr style="background-color: #ccc">
                             <th colspan="2">인기게시물 (어케만드는거야...)</th>
                         </tr>
@@ -157,7 +161,7 @@
                 <br>
                 <div class="boardlist" style="margin: 10px;">
                     <c:set var="root" value="<%=request.getContextPath() %>"/>
-                    <table class="table table-bordered" style="width: 900px;">
+                    <table class="table table-bordered" style="width: 100%;">
                         <tr style="background-color: #ccc;">
                             <th style="width:50px; text-align: center;">번호</th>
                             <th style="width: 300px; text-align: center;">제목</th>
@@ -197,7 +201,6 @@
                             <button type="submit">검색</button>
                         </div>
                     </form>
-                    <button onclick="location.href='${root}/board/boardForm'">글쓰기</button>
                 </div>
                 <!--페이징-->
                 <div class="paging" style="margin-left: 600px;">

@@ -3,6 +3,7 @@ package bit.data.controller;
 import bit.data.dto.BoardDto;
 import bit.data.service.BoardServiceInter;
 import bit.data.service.LoginService;
+import bit.data.service.ReboardServiceInter;
 import bit.data.service.UserServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,8 @@ public class BoardController {
     @Autowired
     BoardServiceInter boardService;
     @Autowired
+    ReboardServiceInter reboardService;
+    @Autowired
     UserServiceInter userService;
 
     @Autowired
@@ -46,23 +49,28 @@ public class BoardController {
 
         BoardDto dto = boardService.selectByNum(boardnum);
 
+        String userphoto;
+        try {
+            userphoto = userService.getDataById(dto.getUserid()).getPhoto();
+        }catch (NullPointerException e){
+            userphoto="no";
+        }
         mview.addObject("dto", dto);
         mview.addObject("currentPage", currentPage);
+        mview.addObject("userphoto", userphoto);
 
         mview.setViewName("/main/board/boardDetail");
 
         return mview;
     }
 
-    /*@PostMapping("/board/insert") //게시판 추가
+    @PostMapping("/board/insert") //게시판 추가
     public String insert(BoardDto dto, List<MultipartFile>upload, HttpServletRequest request)
     {
         String path = request.getSession().getServletContext().getRealPath("/resources/upload");
 
-        //loginid 에 해당하는 nickname 얻기
-        String nickname=userService.getDataById(dto.getUserid()).getNickname();
-        int usernum=userService.getDataById(dto.getUserid()).getUsernum();
-        dto.setUsernum(usernum);
+        //loging한 usernum에 해당하는 nickname 얻어서 dto에 넣기
+        String nickname=userService.getDataByNum(dto.getUsernum()).getNickname();
         dto.setNickname(nickname);
 
         if (upload.get(0).getOriginalFilename().equals("")) {
@@ -87,7 +95,7 @@ public class BoardController {
         }
         boardService.insertBoard(dto);
         return "redirect:boardFree";
-    }*/
+    }
 
     @GetMapping("/board/boardFree") //게시판 리스트 출력
     public String board(
@@ -118,6 +126,11 @@ public class BoardController {
         no=totalCount-(currentPage-1)*perPage;
 
         List<BoardDto> list = boardService.getPagingList(sc, sw, startNum, perPage);
+        for(BoardDto dto:list)
+        {
+            int reboardcount = reboardService.getAllReboards(dto.getBoardnum()).size();
+            dto.setReboardcount(reboardcount);
+        }
         model.addAttribute("list", list);
         model.addAttribute("totalCount", totalCount);
         model.addAttribute("currentPage", currentPage);

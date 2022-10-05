@@ -70,7 +70,6 @@
     </div>
     <c:if test="${sessionScope.loginOK==null }">
         <div class="menuitem_member" style="width:700px; text-align:right; padding: 18px 1px 10px 0;" >
-            <a href="${root}/layoutMypage/change">마이페이지</a>
       <span class="membermenu_color"   style="border-radius: 20px 0 0 20px;" onclick="location.href='#'">
       로그인
       </span>
