@@ -71,19 +71,26 @@
                         <c:if test="${dto.relevel>0}">
                             <img src="../image/ree.png" width="20px;" style="background-color: white">
                             <img src="../image/lock2.png" width="20px;" style="background-color: white">
-                            <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm"> 답변드립니다</a>
+                            <img src="../image/ans.jpg" width="20px;" style="background-color: white">
+                            <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm">&nbsp;답변드립니다</a>
+
                         </c:if>
                         <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm">
                                 ${dto.subject}
                             <c:if test="${dto.photo!='no'}">
                                 <i class="fa fa-picture-o"></i>
                             </c:if>
-
                         </a>
-
-
                     </td>
-                    <td align="center">${dto.qnatype}</td>
+
+                    <td align='center'>
+                        <c:if test="${dto.relevel>0}">
+                                <b style="color:orangered; text-decoration: none;">답변완료</b>
+                        </c:if>
+                            ${dto.qnatype}
+                    </td>
+
+
                     <td align="center">${dto.username}</td>
                     <td align="center">
                         <fmt:formatDate value="${dto.writeday}" pattern="yyyy-MM-dd"/>
