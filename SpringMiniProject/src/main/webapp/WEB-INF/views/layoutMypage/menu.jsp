@@ -68,28 +68,7 @@
       <a href="#" style="text-decoration: none;">Q&A</a>
       </span>
     </div>
-    <c:if test="${sessionScope.loginOK==null }">
-        <div class="menuitem_member" style="width:700px; text-align:right; padding: 18px 1px 10px 0;" >
-      <span class="membermenu_color"   style="border-radius: 20px 0 0 20px;" onclick="location.href='#'">
-      로그인
-      </span>
-            <span class="membermenu_color" style="margin-left:3px; border-radius: 0 20px 20px 0;" onclick="location.href='#'">
-      회원가입
-      </span>
-        </div>
-    </c:if>
-    <c:if test="${sessionScope.loginOK!=null }">
 
-        <div class="menuitem_member" style="width:700px; text-align:right; padding: 18px 5px 10px 0px;">
-
-      <span class="membermenu_color" style="border-radius: 20px 0 0 20px;">
-      <b>${sessionScope.userNickname }</b>님
-      </span>
-            <span class="membermenu_color" style="margin-left:3px; border-radius: 0 20px 20px 0;" onclick="location.href='#'">
-      로그아웃
-      </span>
-        </div>
-    </c:if>
 
 </div>
 <div class="dropmenu" style="z-index: 9999;">

@@ -99,6 +99,7 @@
 
     <c:set var="root" value="<%=request.getContextPath() %>"/>
     <link rel="stylesheet" type="text/css" href="${root }/css/header.css">
+    <link rel="stylesheet" type="text/css" href="${root }/css/TeachMeStyle.css">
 
     <script type="text/javascript">
         $(function () {
@@ -124,15 +125,44 @@
 </head>
 <body>
 <div class="headerarea">
-    <a href="/" style="text-decoration: none;">
-        <img alt="" src="${root }/image/header/teachme.png" class="logo">
-    </a>
 
-    <c:if test="${sessionScope.loginOK!=null }">
+    <%--헤더 좌측 로고--%>
+    <div class="logobox">
+        <a href="${root}" style="color: #ff4b4e;" class="teachMeLogo">
+           TeachMe
+        </a>
+    </div>
+
+    <%--헤더 우측 로그인/회원가입--%>
+    <c:if test="${sessionScope.loginok==null }">
+        <div class="menuitem_member" style="width:700px; text-align:right; padding: 18px 1px 10px 0;">
+          <span class="membermenu_color" style="border-radius: 20px 0 0 20px;" onclick="location.href='#'">
+            로그인
+          </span>
+          <span class="membermenu_color" style="margin-left:3px; border-radius: 0 20px 20px 0;"
+                onclick="location.href='#'">
+            회원가입
+          </span>
+        </div>
+    </c:if>
+    <c:if test="${sessionScope.loginok!=null }">
+        <div class="menuitem_member" style="width:700px; text-align:right; padding: 18px 5px 10px 0px;">
+          <span class="membermenu_color" style="border-radius: 20px 0 0 20px;">
+            <b>${sessionScope.loginname}</b>님
+          </span>
+            <span class="membermenu_color" style="margin-left:3px; border-radius: 0 20px 20px 0;"
+                  onclick="location.href='#'">
+          로그아웃
+          </span>
+        </div>
+    </c:if>
+
+    <%--헤더 우측 아이콘--%>
+<%--<c:if test="${sessionScope.loginok!=null }">
         <img alt="" src="${root }/element/icon_myinfo.png" class="icon_myinfo" onclick="location.href='/activity/mypage'">
         <img alt="" src="${root }/element/icon_myactivity.png" class="icon_myactivity" onclick="location.href='/activity'">
         <img alt="" src="${root }/element/icon_myscrap.png" class="icon_myscrap" onclick="location.href='/activity/myscrap'">
-    </c:if>
+    </c:if>--%>
     <hr style="margin: 0;">
 </div>
 </body>

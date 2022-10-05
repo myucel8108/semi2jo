@@ -50,26 +50,34 @@
 </head>
 <body>
 <div class="footerhead">
-   <span class="option_intro_bold">
-      회사소개
-   </span>
-    <font style="font-size:10px; color:#dbdbdb">│</font>
-    <span class="option_intro">
-      이용약관
-   </span>
-    <font style="font-size:10px; color:#dbdbdb">│</font>
-    <span class="option_intro_highlight">
-      개인정보처리방침
-   </span>
-    <font style="font-size:10px; color:#dbdbdb">│</font>
-    <span class="option_intro" style="color:#808080">
-      <font style="color:#000000 !important">ErrorJava</font>
-      &emsp;&emsp;이준민&emsp;&emsp;유희준&emsp;&emsp;김태민&emsp;&emsp;이동형&emsp;&emsp;최진아&emsp;&emsp;정우진
-   </span>
+    <div>
+       <span class="option_intro_bold">
+          회사소개
+       </span>
+        <font style="font-size:10px; color:#dbdbdb">│</font>
+        <span class="option_intro">
+          이용약관
+       </span>
+        <font style="font-size:10px; color:#dbdbdb">│</font>
+        <span class="option_intro_highlight">
+          개인정보처리방침
+       </span>
+        <font style="font-size:10px; color:#dbdbdb">│</font>
+        <span class="option_intro" style="color:#808080">
+          <font style="color:#000000 !important">ErrorJava</font>
+          &emsp;&emsp;이준민&emsp;&emsp;유희준&emsp;&emsp;김태민&emsp;&emsp;이동형&emsp;&emsp;최진아&emsp;&emsp;정우진
+       </span>
+    </div>
 </div>
 <hr noshade="noshade" style="margin: 0;">
 <div class="footerarea">
-   <span class="footer_text">
+    <%--footer 좌측 로고--%>
+    <div class="logofooterbox">
+        <b style="color: #191919; font-size: 40px" class="teachMeLogo">
+            TeachMe
+        </b>
+    </div>
+   <div class="footer_text">
       <b>(주)티치미아카데미</b>
       <br>
       대표이사 : 유희준
@@ -82,8 +90,8 @@
          <font style="font-size:10px; color:#dbdbdb">&nbsp;│&nbsp;</font>
       E-mail : teachme@academy.com
       <br>
-      COPYRIGHT 2022. DEVEL Co., Ltd. ALL RIGHTS RESERVED.
-   </span>
+      COPYRIGHT 2022. TeachMe Co., Ltd. ALL RIGHTS RESERVED.
+   </div>
 </div>
 
 </body>

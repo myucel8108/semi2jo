@@ -115,20 +115,28 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style type="text/css">
+
+        div.layout{
+            position: absolute;
+            left: 50%;
+            transform:translate(-50%);
+            margin-top: 30px;
+        }
+
         /* layout 테스트 환경일 경우 border 1px 지정 */
         div.layout div{
-            border: 3px solid black;
+            border: 0px dotted gray;
         }
 
         div.layout div.header{
             position: relative;
-            width: 1920px;
+            width: 100%;
             height: 90px;
         }
 
         div.layout div.menu{
             position: relative;
-            width: 1920px;
+            width: 100%;
             height: 56px;
             z-index: 10;
         }
@@ -137,9 +145,9 @@
         div.layout div.side_menu{
             position: relative;
             margin-top: -5px;
-            padding: 30px 15px 30px 315px; /* 상단, 우측, 하단, 좌측 */
-            width: 550px;
-            height: 1250px;
+            padding: 30px 30px 30px 50px; /* 상단, 우측, 하단, 좌측 */
+            width: 300px;
+            height: 1000px;
             z-index: 1;
             float: left;
             clear: both;
@@ -147,9 +155,10 @@
 
         div.layout div.change{
             position: relative;
-            margin-left:550px;
-            width: 1370px;
-            height: 1250px;
+            margin-left: 300px;
+            padding: 30px 30px 30px 30px;
+            width: 800px;
+            height: 1000px;
             z-index: 1;
         }
 

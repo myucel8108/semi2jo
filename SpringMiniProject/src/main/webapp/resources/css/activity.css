@@ -4,7 +4,7 @@
 div.sidebar_title {
     font-family: "Noto Sans KR";
     position: absolute;
-    width: 330px;
+    width: 170px;
     height: 35px;
     font-size: 24px;
     font-weight: 500;
@@ -15,7 +15,7 @@ div.sidebar_title {
 
 #sidebar_hr {
     position: absolute;
-    width: 300px;
+    width: 170px;
     height: 1px;
     background-color: #191919;
     margin: 70px 10px 0 0;
@@ -24,7 +24,7 @@ div.sidebar_title {
 
 div.sidebar_content {
     position: absolute;
-    width: 300px;
+    width: 170px;
     height: 500px;
     margin: 70px 10px 0 0;
     /* margin: 100px 10px 0 335px; */
@@ -37,7 +37,7 @@ div.sidebar_detail {
     color: #191919;
     letter-spacing: -0.5px;
     text-align: left;
-    width: 300px;
+    width: 170px;
     height: 40px;
     margin: 15px 0 0 0;
 }
