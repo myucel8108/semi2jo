@@ -40,6 +40,11 @@
             margin-top: 0;
             margin-bottom: 40px;
         }
+        #listing{
+            margin: auto;
+            text-align: center;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -65,42 +70,31 @@
                                  onerror="this.style.display='none'">
                         </c:forTokens>
                     </c:if>
-                    <%--                <br>--%>
-
-                    <%--                <i class="far fa-comment-dots"></i>--%>
-                    <%--                &nbsp;<b class="banswer">0</b>--%>
-                    <%--                <br>--%>
-                    <%--                <div class="alist">--%>
-                    <%--                    댓글목록--%>
-                    <%--                </div>--%>
                     <div class="aform">
                         <form id="aform">
                             <input type="hidden" name="qnanum" value="${dto.qnanum}">
                             <input type="hidden" name="loginid" value="${sessionScope.loginid}">
                             <input type="hidden" name="username" value="${sessionScope.username}">
-                            <%--                        <div class="input-group">--%>
-                            <%--                            <textarea name="message" id="message" style="width: 400px; height: 60px;" class="form-control"></textarea>--%>
-                            <%--                            <button type="button" class="btn btn-secondary" id="btnasave">등록</button>--%>
-                            <%--                        </div>--%>
                         </form>
                     </div>
                 </td>
             </tr>
+
         </table>
     </div>
 
-    <!--  로그인중이면서 세션의 아이디와 글의 아이디가 같을 경우에만 수정,삭제 가능 -->
     <c:if test="${sessionScope.loginok!=null && sessionScope.usernum==dto.usernum || sessionScope.loginid=='admin'}">
-    <div id="buttonbox">
+    <div id="buttonbox" style="width: 200px;">
         <button type="button" onclick="location.href='qnaUpdate?qnanum=${dto.qnanum}&currentPage=${currentPage}'">수정</button>
         <button type="button" onclick="location.href='delete?qnanum=${dto.qnanum}&currentPage=${currentPage}'">삭제</button>
         </c:if>
         <c:if test="${dto.restep==0 && sessionScope.loginid=='admin'}">
             <button type="button" onclick="location.href='qnaForm?qnanum=${dto.qnanum}&regroup=${dto.regroup}&restep=${dto.restep}&relevel=${dto.relevel}&currentPage=${currentPage}'">답글</button>
         </c:if>
+        <div id="listing">
         <button type="button" onclick="location.href='qnaList?currentPage=${currentPage}'">목록</button>
+        </div>
     </div>
-</div>
 </div>
 </body>
 </html>
