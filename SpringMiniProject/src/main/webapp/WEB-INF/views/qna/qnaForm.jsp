@@ -42,19 +42,6 @@
 
         <c:if test="${qnanum==0}">
             <tr>
-                <th style="width: 100px;">제목</th>
-                <td>
-                    <input type="text" name="subject" class="form-control" required="required">
-                </td>
-            </tr>
-            <tr>
-                <th style="width: 100px;">비밀번호</th>
-                <td>
-                    <input type="password" name="pass" class="form-control" required="required">
-                </td>
-            </tr>
-
-            <tr>
                 <th style="width: 100px;">문의유형</th>
                 <td>
                     <select type="select" name="qnatype" required="required">
@@ -66,6 +53,14 @@
                     </select>
                 </td>
             </tr>
+            <tr>
+                <th style="width: 100px;">비밀번호</th>
+                <td>
+                    <input type="password" name="pass" class="form-control" required="required">
+                </td>
+            </tr>
+
+
         </c:if>
 
         <c:if test="${qnanum>0}">

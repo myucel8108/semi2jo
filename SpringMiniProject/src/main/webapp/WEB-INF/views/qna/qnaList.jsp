@@ -45,9 +45,8 @@
     <table class="table table-bordered">
         <tr class="listbox-tm">
             <th style="width: 50px; text-align:center;">번호</th>
-            <th style="width: 250px;text-align:center;">제목</th>
-            <th style="width: 80px;text-align:center;">문의유형</th>
-            <th style="width: 80px;text-align:center;">이름</th>
+            <th style="width: 150px;text-align:center;">제목</th>
+            <th style="width: 50px;text-align:center;">이름</th>
             <th style="width: 110px;text-align:center;">작성일</th>
         </tr>
         <c:if test="${totalCount==0 }">
@@ -69,15 +68,17 @@
                         </c:forEach>
                         <!-- 답글일 경우 답글 이미지 넣기 -->
                         <c:if test="${dto.relevel>0}">
+
                             <img src="../image/ree.png" width="20px;" style="background-color: white">
 
                             <img src="../image/ans.jpg" width="20px;" style="background-color: white">
-                            <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm">&nbsp;답변드립니다</a>
+                            <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm"></a>
                             <img src="../image/lock2.png" width="10px;" style="background-color: white">
                         </c:if>
 
 
                         <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm">
+
                             <c:if test="${dto.relevel==0}">
                             <img src="../image/lockimg.jpg" width="10px;" style="background-color: white">
                             </c:if>
@@ -85,16 +86,20 @@
                             <c:if test="${dto.photo!='no'}">
                                 <i class="fa fa-picture-o"></i>
                             </c:if>
+                            <c:if test="${dto.relevel>0}">
+                                <b style="color: orange; text-decoration: none;">답변완료</b>
+                            </c:if>
+                                ${dto.qnatype}
                         </a>
                     </td>
 
 
-                    <td align='center'>
-                        <c:if test="${dto.relevel>0}">
-                                <b style="color: orange; text-decoration: none;">답변완료</b>
-                        </c:if>
-                            ${dto.qnatype}
-                    </td>
+<%--                    <td align='center'>--%>
+<%--                        <c:if test="${dto.relevel>0}">--%>
+<%--                                <b style="color: orange; text-decoration: none;">답변완료</b>--%>
+<%--                        </c:if>--%>
+<%--                            ${dto.qnatype}--%>
+<%--                    </td>--%>
 
 
                     <td align="center">${dto.username}</td>
@@ -109,7 +114,7 @@
             <tr>
                 <td colspan="6" align="right" style= "text-align:center" >
                     <button type="button" class="btn btn-outline"
-                            onclick="location.href='qnaForm'" id="writecolor" >글쓰기</button>
+                            onclick="location.href='qnaForm'" id="writecolor" >문의하기</button>
 
                 </td>
             </tr>
