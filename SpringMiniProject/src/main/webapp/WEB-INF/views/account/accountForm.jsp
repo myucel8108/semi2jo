@@ -28,7 +28,8 @@
     <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/vendor/daterangepicker/daterangepicker.css">--%>
     <%--    <!--===============================================================================================-->--%>
     <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/css/util.css">--%>
-    <link rel="stylesheet" type="text/css" href="css/account.css">
+    <c:set var="root" value="<%=request.getContextPath() %>"></c:set>
+    <link rel="stylesheet" type="text/css" href="${root}/css/account.css">
     <!--===============================================================================================-->
 </head>
 <style>

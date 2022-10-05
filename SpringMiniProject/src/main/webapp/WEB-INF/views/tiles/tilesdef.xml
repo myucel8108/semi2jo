@@ -25,6 +25,16 @@
         <put-attribute name="change" value="/WEB-INF/views/{1}/{2}.jsp"/>
     </definition>
 
+    <definition name="test" template="/WEB-INF/views/test/layoutManager.jsp">
+        <put-attribute name="change" value="/WEB-INF/views/layoutManager/change.jsp"/>
+        <put-attribute name="header" value="/WEB-INF/views/layoutManager/header.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/views/layoutManager/menu.jsp"/>
+    </definition>
+    <!-- macro -->
+    <definition name="/test/*/*" extends="test">
+        <put-attribute name="change" value="/WEB-INF/views/{1}/{2}.jsp"/>
+    </definition>
+
 <!--    <definition name="layoutMypage" template="/WEB-INF/views/layoutMypage/layoutMypage.jsp">-->
 <!--        <put-attribute name="change" value="/WEB-INF/views/layoutMypage/change.jsp"/>-->
 <!--        <put-attribute name="footer" value="/WEB-INF/views/layoutMypage/footer.jsp"/>-->
