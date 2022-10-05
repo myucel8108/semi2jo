@@ -9,41 +9,42 @@
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <c:set var="root" value="<%=request.getContextPath() %>"/>
+    <link rel="stylesheet" type="text/css" href="${root}/css/qna.css">
     <style>
         li>a.page-link{
-            left:500px;
+            display: block;
+            justify-content: center;
+            align-items: center;
+            vertical-align: middle;
+            text-align: center;
+            margin: auto;
+            background-color: white;
+            width: 50px;
+        }
+        ul.pagination{
+            justify-content: center;
+        }
+        table>td>a{
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-<div class="searcharea" style="width: 100%; text-align:center; ">
-    <form action="list">
-        <div class="input-group" style="width: 450px;">
-            <select class="form-select" style="width:150px;" name="searchcolumn">
-                <option value="subject">제목</option>
-                <option value="id">아이디</option>
-                <option value="name">작성자</option>
-                <option value="content">내용</option>
-            </select>
-            &nbsp;&nbsp;&nbsp;
-            <input type="text" name="searchword" class="form-control" style="width: 140px;"
-                   placeholder="검색단어" value="${param.searchword}">
-
-            <button type="submit" class="btn btn-success">검색</button>
+<div class="container" style="width: 100%;">
+        <div class="myaskbox">
+           <a href="qnaList?searchcolumn=id&searchword=${sessionScope.loginid }" class="myask">나의문의</a>
         </div>
-    </form>
-
-<%--    <a href="list?searchcolumn=id&searchword=${sessionScope.loginid }">내가쓴글</a>--%>
+<div class="qnalist" style="margin-top: 10px; ">
+    <h3 class="hname-tm">총 ${totalCount} 개의 글이 있습니다</h3>
 </div>
-
-<div class="qnalist" style="margin-top: 10px; width:1000px;">
-    <h3 class="alert alert-danger">총 ${totalCount} 개의 글이 있습니다</h3>
     <br><br>
     <table class="table table-bordered">
-        <tr style="background-color: #ddd">
+        <tr class="listbox-tm">
             <th style="width: 50px; text-align:center;">번호</th>
             <th style="width: 250px;text-align:center;">제목</th>
-            <th style="width: 80px;text-align:center;">작성자</th>
+            <th style="width: 80px;text-align:center;">이름</th>
             <th style="width: 110px;text-align:center;">작성일</th>
         </tr>
         <c:if test="${totalCount==0 }">
@@ -65,9 +66,9 @@
                         </c:forEach>
                         <!-- 답글일 경우 답글 이미지 넣기 -->
                         <c:if test="${dto.relevel>0}">
-                            <img src="../image/re.png">
+                            <img src="../image/ree.png">
                         </c:if>
-                        <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}">
+                        <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm">
                                 ${dto.subject}
                             <c:if test="${dto.photo!='no'}">
                                 <i class="fa fa-picture-o"></i>
@@ -88,34 +89,38 @@
         <c:if test="${sessionScope.loginok!=null}">
             <tr>
                 <td colspan="6" align="right" style= "text-align:center" >
-                    <button type="button" class="btn btn-outline-success"
-                            onclick="location.href='form'">글쓰기</button>
+                    <button type="button" class="btn btn-outline"
+                            onclick="location.href='qnaForm'" id="writecolor" >글쓰기</button>
+
                 </td>
             </tr>
         </c:if>
     </table>
 </div>
+    <div class="container" style="width: 100%;">
 <div class="paging">
-    <ul class="pagination" >
+    <ul class="pagination">
         <c:if test="${startPage>1}">
-            <li class="page-item"><a href="list?currentPage=${startPage-1}"
+            <li class="page-item"><a href="qnaList?currentPage=${startPage-1}"
                                      class="page-link">이전</a></li>
         </c:if>
 
         <!--  페이지 번호  -->
         <c:forEach var="pp" begin="${startPage}" end="${endPage}">
             <c:if test="${pp==currentPage}">
-                <li class="page-item active"><a class="page-link" href="list?currentPage=${pp}">${pp}</a></li>
+                <li class="page-item active"><a class="page-link" id="page-button-tm" href="qnaList?currentPage=${pp}">${pp}</a></li>
             </c:if>
             <c:if test="${pp!=currentPage}">
-                <li class="page-item"><a class="page-link" href="list?currentPage=${pp}">${pp}</a></li>
+                <li class="page-item"><a class="page-link" id="page-button-tm2" href="qnaList?currentPage=${pp}">${pp}</a></li>
             </c:if>
         </c:forEach>
         <c:if test="${endPage<totalPage}">
-            <li class="page-item"><a href="list?currentPage=${endPage+1}"
-                                     class="page-link">다음</a></li>
+            <li class="page-item"><a href="qnaList?currentPage=${endPage+1}"
+                                     class="page-link" id="page-button-tm3">다음</a></li>
         </c:if>
     </ul>
+</div>
+</div>
 </div>
 </body>
 </html>

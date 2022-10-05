@@ -29,12 +29,12 @@ public class QnaController {
 
     @GetMapping("/qna/qnaForm") //게시판 작성폼
     public String qnaForm(
-                          @RequestParam(defaultValue="0") int qnanum,
-                          @RequestParam(defaultValue="0") int regroup,
-                          @RequestParam(defaultValue="0") int restep,
-                          @RequestParam(defaultValue="0") int relevel,
-                          @RequestParam(defaultValue="1") int currentPage,
-                          Model model
+            @RequestParam(defaultValue="0") int qnanum,
+            @RequestParam(defaultValue="0") int regroup,
+            @RequestParam(defaultValue="0") int restep,
+            @RequestParam(defaultValue="0") int relevel,
+            @RequestParam(defaultValue="1") int currentPage,
+            Model model
     )
     {
         //답글일 경우만 넘어오는 값들. 새글일 경우 모두 null이므로 defaultValue값으로 전달
@@ -78,7 +78,7 @@ public class QnaController {
     {
         String path = request.getSession().getServletContext().getRealPath("/resources/upload");
 
-        //loginid 에 해당하는 nickname 얻기
+//        loginid 에 해당하는 username 얻기
 //        String nickname=userService.getDataById(dto.getUserid()).getNickname();
 //        int usernum=userService.getDataById(dto.getUserid()).getUsernum();
 //        dto.setUsernum(usernum);
@@ -117,9 +117,7 @@ public class QnaController {
     )
     {
         int totalCount=qnaService.getTotalCount(sc,sw);
-
         int perPage=10;
-        
         int perBlock=5;
         int startNum;
         int startPage;
@@ -153,7 +151,17 @@ public class QnaController {
     @GetMapping("/qna/delete")
     public String delete(int qnanum, int currentPage)
     {
-        qnaService.deleteQna(qnanum);
+        QnaDto dto=qnaService.selectByNum(qnanum);
+        int restep=dto.getRestep();
+        int regroup=dto.getRegroup();
+        if(restep==0){
+            qnaService.deleteQnaRegroup(regroup);
+        }else{
+            qnaService.deleteQna(qnanum);
+        }
+                //restep이 0이면 원글 regroup을 파라미터로 보내서  regroup을 지우자
+                //num에 해당하는  dto 얻고
+
         return "redirect:qnaList?currentPage="+currentPage;
     }
 
@@ -185,9 +193,7 @@ public class QnaController {
             dto.setPhoto(photo);
         }
         qnaService.updateQna(dto);
-
         return "redirect:qnaList?currentPage="+currentPage+"&qnanum="+dto.getQnanum();
-
     }
     @GetMapping("/qna/qnaUpdate")
     public String updateform(Model model, int qnanum, int currentPage)

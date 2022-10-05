@@ -1,15 +1,24 @@
 package bit.data.controller;
 
 import bit.data.dto.LectureDto;
+import bit.data.service.LecDetailServiceInter;
 import bit.data.service.LectureServiceInter;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.sql.SQLOutput;
 import java.util.List;
 
 @Controller
@@ -17,6 +26,9 @@ public class ManagerController {
 
     @Autowired
     LectureServiceInter lectureService;
+
+    @Autowired
+    LecDetailServiceInter lecDetailService;
 
     @GetMapping("/lecturelist")
     public String getLecturelist(@RequestParam(defaultValue = "1") int currentPage,
@@ -104,5 +116,16 @@ public class ManagerController {
         msg.put("result", "성공!!");
 
         return msg;
+    }
+
+    //    이번달에 개설된 강의 총 수 반환
+    @GetMapping("/manager/totalLecture")
+    @ResponseBody
+    public int getLecTotalCountMonth(int lecyear, int lecmonth){
+//        System.out.println("lecyear"+lecyear);
+//        System.out.println("lecmonth"+lecmonth);
+        int result = lecDetailService.getLecTotalCountMonth(lecyear, lecmonth);
+        System.out.println("result"+result);
+        return result;
     }
 }

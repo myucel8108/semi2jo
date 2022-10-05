@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-    
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,17 +25,17 @@
         }
 
         div>div{
-        	width: 100%;        	
+            width: 100%;
         }
-        
+
         .atag{
-        	text-decoration: none;
-        	color: gray;
+            text-decoration: none;
+            color: gray;
         }
-        
+
         .menu {
-        	vertical-align: middle;
-        	text-align:center;
+            vertical-align: middle;
+            text-align:center;
         }
     </style>
     <script>
@@ -45,17 +45,17 @@
             },function(){
                 $(this).css("color","black");
             });
-       });
+        });
     </script>
 </head>
 <body>
-	<c:set var="root" value="<%=request.getContextPath()%>"/> <!-- 자기 주소 얻어오기 -->
-	<div class="menu">		
-		<div><a class="atag">학생 관리</a></div>	
-		<div><a class="atag" href="${root}/lecturelist">강의 관리</a></div>
-		<div><a class="atag">게시판 관리</a></div>		        
-		<div><a class="atag">Q&A 관리</a></div>
-	</div>
+<c:set var="root" value="<%=request.getContextPath()%>"/> <!— 자기 주소 얻어오기 —>
+<div class="menu">
+    <div><a class="atag">학생 관리</a></div>
+    <div><a class="atag" href="${root}/lecturelist">강의 관리</a></div>
+    <div><a class="atag">게시판 관리</a></div>
+    <div><a class="atag">Q&A 관리</a></div>
+</div>
 </body>
 </html>
 
