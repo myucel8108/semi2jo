@@ -78,7 +78,7 @@ public class QnaController {
     {
         String path = request.getSession().getServletContext().getRealPath("/resources/upload");
 
-        //loginid 에 해당하는 nickname 얻기
+//        loginid 에 해당하는 username 얻기
 //        String nickname=userService.getDataById(dto.getUserid()).getNickname();
 //        int usernum=userService.getDataById(dto.getUserid()).getUsernum();
 //        dto.setUsernum(usernum);

@@ -7,33 +7,37 @@
 <head>
   <meta charset="UTF-8">
   <title>Insert title here</title>
-  <style>
-    .four{
-      font-family: cursive;
-      text-align:center;
-      width:550px;
-      height:550px;
-      box-sizing:box;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      display: flex;
-      top:35%;
-      left:35%;
-      position:absolute;
-      border: 1px solid gray;
-    }
-
-    .four h1{
-      height:20px;
-      background-color:;
-      line-height: 20px;
-      text-align:center;
-
-
-    }
-  </style>
 </head>
+<style>
+  .four{
+    font-family: cursive;
+    text-align:center;
+    width:550px;
+    height:550px;
+    box-sizing:box;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    top:35%;
+    left:35%;
+    position:absolute;
+    border: 1px solid gray;
+  }
+
+  .four h1{
+    height:20px;
+    background-color:;
+    line-height: 20px;
+    text-align:center;
+  }
+
+  #updatebox{
+    margin: auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+</style>
 <body>
 <c:if test="${sessionScope.loginok==null}">
   <script type="text/javascript">
@@ -48,7 +52,7 @@
   <input type="hidden" name="qnanum" value="${dto.qnanum}">
   <input type="hidden" name="currentPage" value="${currentPage}">
 
-  <table class="table table-bordered" style="width: 500px;">
+  <table class="table table-bordered" style="width: 500px;" id="updatebox">
     <tr>
       <th style="width: 100px;">제목</th>
       <td>
@@ -61,7 +65,7 @@
     <tr>
       <th style="width: 100px;">사진</th>
       <td>
-        <h5>사진 선택은 안하면 기존사진이 유지됩니다</h5>
+        <h5 style="font-size: 15px;">사진 선택은 안하면 기존사진이 유지됩니다</h5>
         <input type="file" name="upload" class="form-control" multiple="multiple" value="${photo}">
       </td>
     </tr>

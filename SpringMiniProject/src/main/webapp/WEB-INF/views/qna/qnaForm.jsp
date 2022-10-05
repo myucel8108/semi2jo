@@ -13,8 +13,16 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
+<style>
+    #formbox{
+        margin: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+</style>
 <body>
 <form action="insert" method="post" enctype="multipart/form-data">
 
@@ -27,8 +35,7 @@
     <input type="hidden" name="currentPage" value="${currentPage}">
 
 
-
-    <table class="table table-bordered" style="width: 500px;">
+    <table class="table table-bordered" style="width: 500px;" id="formbox">
         <tr>
             <th style="width: 100px;">제목</th>
             <td>
@@ -41,13 +48,8 @@
                 <input type="password" name="pass" class="form-control" required="required">
             </td>
         </tr>
-        <tr>
-            <th style="width: 100px;">이름</th>
-            <td>
-                <input type="text" name="username" class="form-control" required="required">
-            </td>
-        </tr>
-        <c:if test="${dto.qnanum==0}">
+
+        <c:if test="${qnanum==0}">
             <tr>
                 <th style="width: 100px;">문의유형</th>
                 <td>
@@ -55,15 +57,15 @@
                         <option>결제문의</option>
                         <option>상품문의</option>
                         <option>강사문의</option>
-                        <option>학웜문의</option>
+                        <option>학원문의</option>
                         <option>취소문의</option>
                     </select>
                 </td>
             </tr>
         </c:if>
-        <c:if test="${dto.qnanum>0}">
-            <input type="hidden" name="qnatype" value="${dto.qnatype}">
 
+        <c:if test="${qnanum>0}">
+            <input type="hidden" name="qnatype">
         </c:if>
         <tr>
             <th style="width: 100px;">사진</th>
@@ -105,7 +107,7 @@
         </tr>
         <tr>
             <td colspan="2" align="center">
-                <button type="submit">업로드</button>
+                <button type="submit" >업로드</button>
             </td>
         </tr>
     </table>

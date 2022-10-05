@@ -1,0 +1,70 @@
+/*.listbox-tm{*/
+/*    background-color:white ;*/
+/*    text-align: center;*/
+/*    margin: 0 auto;*/
+/*}*/
+
+
+/*.qnalist{*/
+/*    margin: 0 auto;*/
+/*}*/
+
+/*.hname-tm{*/
+/*    font-size: 15px;*/
+/*}*/
+
+#page-button-tm {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    text-align: center;
+    margin: auto;
+    background-color: white;
+}
+#page-button-tm2{
+    color: black;
+    border: 1px solid black;
+}
+
+#page-button-tm3{
+    color: black;
+    border: 1px solid black;
+}
+
+.subject-tm{
+    text-decoration: none;
+    color: black;
+}
+
+.hname-tm{
+    font-size: 15px;
+}
+
+.myask{
+    font-size: 15px;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.myask:hover{
+    font-size: 30px;
+    color: black;
+}
+
+.myaskbox{
+    margin-top: 40px;
+}
+
+.qnalist{
+}
+
+
+#writecolor{
+    color: black;
+    border: 1px solid black;
+}
