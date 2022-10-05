@@ -12,6 +12,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+	<link href="css/manager/manager/css" rel="stylesheet">
+	<script src="js/manager/manager.js"></script>
     <style type="text/css">
     @font-face {
 	    font-family: 'MICEGothic Bold';
