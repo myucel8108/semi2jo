@@ -40,6 +40,7 @@ public class BoardController {
         return "/main/board/boardForm";
     }
 
+
     @GetMapping("/board/boardDetail") //게시판 디테일
     public ModelAndView boardDetail(int boardnum, int currentPage){
 
@@ -63,6 +64,7 @@ public class BoardController {
 
         return mview;
     }
+
 
     @PostMapping("/board/insert") //게시판 추가
     public String insert(BoardDto dto, List<MultipartFile>upload, HttpServletRequest request)

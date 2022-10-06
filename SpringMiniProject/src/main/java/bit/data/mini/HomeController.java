@@ -28,8 +28,12 @@ public class HomeController {
 	public String Cart() {
 		return "/main/student/myCart";
 	}
-			
-	
+
+
+	@GetMapping("/manager/main")
+	public String managerMain() {
+		return "/manager/layoutManager/change";
+	}
 	
 		
 }
