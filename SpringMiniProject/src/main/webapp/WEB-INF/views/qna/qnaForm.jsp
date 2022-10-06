@@ -103,7 +103,7 @@
         <tr>
             <td colspan="2">
                <textarea name="content" class="form-control" required="required"
-                         style="width: 500px; height: 400px;"></textarea>
+                         style="width: 500px; height: 400px;">${content}</textarea>
             </td>
         </tr>
         <tr>

@@ -33,11 +33,11 @@
     </style>
 </head>
 <body>
-<div class="container" style="width: 100%;">
+<div class="container" style="width: 100%;" >
         <div class="myaskbox">
             <button type="button" onclick="location.href='qnaList?'" class="myask2">전체글보기</button>&nbsp;
             <c:if test="${sessionScope.loginok!=null}">
-            <button type="button" onclick="location.href='qnaList?searchcolumn=usernum&searchword=${sessionScope.loginid}'" class="myask">나의문의보기</button>
+            <button type="button" onclick="location.href='qnaList?searchcolumn=usernum&searchword=${sessionScope.}'" class="myask">나의문의보기</button>
             </c:if>
         </div>
     <br>
@@ -45,12 +45,12 @@
     <h3 class="hname-tm">총 ${totalCount} 개의 글이 있습니다</h3>
 </div>
     <br><br>
-    <table class="table table-bordered">
+    <table class="table table-bordered" >
         <tr class="listbox-tm">
-            <th style="width: 30px; text-align:center;">번호</th>
-            <th style="width: 100px;text-align:center;">제목</th>
-            <th style="width: 30px;text-align:center;">작성자</th>
-            <th style="width: 50px;text-align:center;">작성일</th>
+            <th style="width: 30px; text-align:center; color: grey;">번호</th>
+            <th style="width: 150px;text-align:center; color: grey">제목</th>
+            <th style="width: 50px;text-align:center; color: grey">작성자</th>
+            <th style="width: 20px;text-align:center; color: grey">작성일</th>
         </tr>
         <c:if test="${totalCount==0 }">
             <tr>
@@ -106,6 +106,7 @@
 
                     <c:if test="${dto.username=='티치미'}"><c:out value="${dto.username}"/>
                     </c:if>
+
 
 
 
