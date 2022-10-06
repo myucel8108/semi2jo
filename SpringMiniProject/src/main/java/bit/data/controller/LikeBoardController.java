@@ -32,8 +32,10 @@ public class LikeBoardController {
         int cnt=likeBoardService.checkBoardLike(dto.getBoardnum(),dto.getUsernum());
 
         if(cnt==0){
+            //System.out.println("insert="+dto.getUsernum()+","+dto.getLikestate());
             likeBoardService.insertLikeBoard(dto);
         }else{
+            //System.out.println("update="+dto.getUsernum()+","+dto.getLikestate());
             likeBoardService.updateLikeState(dto);
         }
         if(dto.getLikestate()==0){
@@ -45,16 +47,18 @@ public class LikeBoardController {
         return totallike;
     }
 
-    @GetMapping("/board/likesstate")
+    @GetMapping("/board/likesstate") //좋아요 돼있는지 안돼있는지
     @ResponseBody
     public int likeStateBoardUser(int boardnum, HttpSession session)
     {
+
         int usernum=((int)session.getAttribute("usernum"));
 
         int likestate=likeBoardService.stateBoardLike(boardnum,usernum);
+        //System.out.println("likestate="+likestate);
         return likestate;
     }
-    @GetMapping("/board/likesuser")
+    @GetMapping("/board/likesuser") //좋아요 누른 회원들 출력
     @ResponseBody
     public List<String> likeUser(int boardnum)
     {
@@ -63,8 +67,8 @@ public class LikeBoardController {
      String s="";
       for(int num:usernums){
           String nickname=userService.getDataByNum(num).getNickname();
-          String userphoto=userService.getDataByNum(num).getUserphoto();
-          //s="<img src='../upload/"+userphoto+"' width=40 height=40 class='rounded-circle'>"+nickname;
+//          String userphoto=userService.getDataByNum(num).getUserphoto();
+//          s="<img src='../upload/"+userphoto+"' width=40 height=40 class='rounded-circle'>"+nickname;
           s=nickname;
           list.add(s);
       }

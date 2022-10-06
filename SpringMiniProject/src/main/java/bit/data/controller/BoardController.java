@@ -188,10 +188,17 @@ public class BoardController {
 
         return "/main/board/boardUpdate";
     }
-//    @GetMapping("/board/preboard")
-//    public String moveToPrevBoard(BoardDto dto, int currentPage, int boardnum)
-//    {
-//        return "redirect:boardDetail?boardnum="+dto.getBoardnum()+"&currentPage="+currentPage;
-//    }
+
+    @GetMapping("/board/preboard")
+    public String moveToPrevBoard(int currentPage, int boardnum)
+    {
+        boardnum=boardService.moveToPrevBoard(boardnum);
+        return "redirect:boardDetail?boardnum="+boardnum+"&currentPage="+currentPage;
+    }
+    @GetMapping("/board/nextboard")
+    public String moveToNextBoard(int currentPage, int boardnum)
+    {
+        boardnum=boardService.moveToNextBoard(boardnum);
+        return "redirect:boardDetail?boardnum="+boardnum+"&currentPage="+currentPage;    }
 
 }

@@ -91,8 +91,10 @@
                 dataType : "json",
                 data : {"boardnum":boardnum},
                 success : function(res) {
+                   // alert(res);
                     if(res==1){
-                        $(".fa fa-thumbs-up").attr("class","fa fa-thumbs-up").css("color","red");
+                      //  $(".fa fa-thumbs-o-up").attr("class","fa fa-thumbs-up").css("color","red");
+                        $("span.likes i").attr("class","fa fa-thumbs-up").css("color","red");
                     }
                 }
             });
@@ -225,10 +227,12 @@
             </td>
         </tr>
     </table>
-    <c:if test="${boardnum!=max}">
-    <a>다음글&nbsp;<i class="fa fa-chevron-up" style="font-size:24px"></i></a><hr>
-    </c:if>
-    <a>이전글&nbsp;<i class="fa fa-chevron-down" style="font-size:24px"></i></a>
+<%--    <c:if test="${boardnum!=max}">--%>
+    <a href="nextboard?boardnum=${dto.boardnum}&currentPage=${currentPage}" style="color: black; text-decoration: none;">다음글&nbsp;
+        <i class="fa fa-chevron-up" style="font-size:24px"></i>&nbsp;&nbsp;${dto.subject}</a><hr>
+<%--    </c:if>--%>
+    <a href="preboard?boardnum=${dto.boardnum}&currentPage=${currentPage}" style="color: black; text-decoration: none;">이전글&nbsp;
+        <i class="fa fa-chevron-down" style="font-size:24px;cursor: pointer"></i>&nbsp;&nbsp;${dto.subject}</a>
     <script>
         $("span.likes").click(function() {
             var a='${sessionScope.loginok}';
@@ -247,7 +251,7 @@
             }
 
             var boardnum=${dto.boardnum};
-
+            //console.log(boardnum+","+likestate);
             $.ajax({
                 type : "get",
                 url : "likes",

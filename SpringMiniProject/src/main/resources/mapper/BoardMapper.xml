@@ -47,5 +47,10 @@
     <select id="moveToNextBoard" parameterType="int" resultType="int"> /*게시물보다 큰 넘버중 제일 작은 넘버를 가진 게시물 (다음게시물)*/
         select MIN(boardnum) from board where boardnum &gt; #{boardnum}
     </select>
-
+    <select id="getMinNum" resultType="int">
+        SELECT MAX(boardnum) from board
+    </select>
+    <select id="getMaxNum" resultType="int">
+        SELECT MIN(boardnum) from board
+    </select>
 </mapper>
