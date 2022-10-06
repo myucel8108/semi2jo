@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bit.data.dao.BoardDao">
     <insert id="insertBoard" parameterType="boardDto">
-        insert into board (boardtype, usernum, userid, nickname, subject, content, photo, readcount, likes, report, writeday)
-        values (#{boardtype}, #{usernum}, #{userid}, #{nickname}, #{subject}, #{content}, #{photo}, 0, 0, 0, now())
+        insert into board (boardtype, usernum, nickname, subject, content, photo, readcount, likes, report, writeday)
+        values (#{boardtype}, #{usernum}, #{nickname}, #{subject}, #{content}, #{photo}, 0, 0, 0, now())
     </insert>
     <select id="getTotalCount" parameterType="Map" resultType="int">
         select count(*) from board

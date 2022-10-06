@@ -40,29 +40,31 @@ public class BoardController {
         return "/main/board/boardForm";
     }
 
-//    @GetMapping("/board/boardDetail") //게시판 디테일
-//    public ModelAndView boardDetail(int boardnum, int currentPage){
-//
-//        ModelAndView mview = new ModelAndView();
-//
-//        boardService.updateReadCount(boardnum);
-//
-//        BoardDto dto = boardService.selectByNum(boardnum);
-//
-//        String userphoto;
-//        try {
-//            userphoto = userService.getDataById(dto.getUserid()).getPhoto();
-//        }catch (NullPointerException e){
-//            userphoto="no";
-//        }
-//        mview.addObject("dto", dto);
-//        mview.addObject("currentPage", currentPage);
-//        mview.addObject("userphoto", userphoto);
-//
-//        mview.setViewName("/main/board/boardDetail");
-//
-//        return mview;
-//    }
+
+    @GetMapping("/board/boardDetail") //게시판 디테일
+    public ModelAndView boardDetail(int boardnum, int currentPage){
+
+        ModelAndView mview = new ModelAndView();
+
+        boardService.updateReadCount(boardnum);
+
+        BoardDto dto = boardService.selectByNum(boardnum);
+
+        String userphoto;
+        try {
+            userphoto = userService.getDataByNum(dto.getUsernum()).getUserphoto(); //프사임
+        }catch (NullPointerException e){
+            userphoto="no";
+        }
+        mview.addObject("dto", dto);
+        mview.addObject("currentPage", currentPage);
+        mview.addObject("userphoto", userphoto);
+
+        mview.setViewName("/main/board/boardDetail");
+
+        return mview;
+    }
+
 
     @PostMapping("/board/insert") //게시판 추가
     public String insert(BoardDto dto, List<MultipartFile>upload, HttpServletRequest request)

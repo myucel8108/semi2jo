@@ -26,8 +26,8 @@
 <body>
 <form action="insert" method="post" enctype="multipart/form-data">
 
-        <input type="hidden" name="usernum" value="${sessionScope.usernum}">
-        <input type="hidden" name="username" value="${sessionScope.username}">
+    <input type="hidden" name="usernum" value="${sessionScope.usernum}">
+    <input type="hidden" name="username" value="${sessionScope.username}">
     <input type="hidden" name="qnanum" value="${qnanum}">
     <input type="hidden" name="regroup" value="${regroup}">
     <input type="hidden" name="relevel" value="${relevel}">
@@ -36,9 +36,6 @@
 
 
     <table class="table table-bordered" style="width: 500px;" id="formbox">
-
-
-
 
         <c:if test="${qnanum==0}">
             <tr>
@@ -103,12 +100,12 @@
         <tr>
             <td colspan="2">
                <textarea name="content" class="form-control" required="required"
-                         style="width: 500px; height: 400px;"></textarea>
+                         style="width: 500px; height: 400px;">${content}</textarea>
             </td>
         </tr>
         <tr>
             <td colspan="2" align="center">
-                <button type="submit" class="btn btn-outline" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" >문의등록</button>
+                <button type="submit" class="btn btn-outline" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" >등록</button>
             </td>
         </tr>
     </table>

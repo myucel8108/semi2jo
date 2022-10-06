@@ -31,8 +31,8 @@ public class UserDao implements UserDaoInter{
     }
 
     @Override
-    public UserDto getDataById(String userid) {
-        return session.selectOne(ns+"getDataById", userid);
+    public UserDto getDataById(String email) {
+        return session.selectOne(ns+"getDataById", email);
     }
 
     @Override

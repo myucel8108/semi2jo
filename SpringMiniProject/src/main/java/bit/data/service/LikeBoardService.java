@@ -16,18 +16,18 @@ public class LikeBoardService implements LikeBoardServiceInter{
     LikeBoardDaoInter likeBoardDao;
 
     @Override
-    public int checkBoardLike(int boardnum, String userid) {
+    public int checkBoardLike(int boardnum, int usernum) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("boardnum", boardnum);
-        map.put("userid", userid);
+        map.put("usernum", usernum);
         return likeBoardDao.checkBoardLike(map);
     }
 
     @Override
-    public int stateBoardLike(int boardnum, String userid) {
+    public int stateBoardLike(int boardnum, int usernum) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("boardnum", boardnum);
-        map.put("userid", userid);
+        map.put("usernum", usernum);
         return likeBoardDao.stateBoardLike(map);
     }
 
@@ -40,13 +40,13 @@ public class LikeBoardService implements LikeBoardServiceInter{
     public void updateLikeState(LikeBoardDto dto) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("boardnum",dto.getBoardnum());
-        map.put("userid", dto.getUserid());
+        map.put("usernum", dto.getUsernum());
         map.put("likestate",dto.getLikestate());
         likeBoardDao.updateLikeState(map);
     }
 
     @Override
-    public List<String> likeUserAll(int boardnum) {
+    public List<Integer> likeUserAll(int boardnum) {
         return likeBoardDao.likeUserAll(boardnum);
     }
 }

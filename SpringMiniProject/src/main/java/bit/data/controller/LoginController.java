@@ -60,6 +60,7 @@ public class LoginController {
             session.setAttribute("loginname", udto.getUsername());
             session.setAttribute("usernum", usernum);
             session.setAttribute("photo", udto.getUserphoto());
+
             session.setAttribute("email",email);
             session.setAttribute("usertype",udto.getUsertype());
         }
@@ -83,6 +84,7 @@ public class LoginController {
             session.setMaxInactiveInterval(60*60*4);
             UserDto udto=loginService.getDataByNum(usernum);
             session.setAttribute("loginok", "yes");
+            session.setAttribute("loginid", udto.getEmail());
             session.setAttribute("loginname", udto.getUsername());
             session.setAttribute("usernum", udto.getUsernum());
         }

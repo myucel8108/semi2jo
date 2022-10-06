@@ -11,6 +11,6 @@ public interface LikeBoardDaoInter {
     public int stateBoardLike(Map<String, Object> map);
     public void insertLikeBoard(LikeBoardDto dto);
     public void updateLikeState(Map<String, Object> map);
-    public List<String> likeUserAll(int boardnum);
+    public List<Integer> likeUserAll(int boardnum);
 
 }
