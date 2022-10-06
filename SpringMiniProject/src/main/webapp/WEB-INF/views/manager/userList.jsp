@@ -17,8 +17,8 @@
         }
     </style>
 </head>
-<body>
-    <div class="container bootstrap snippets bootdey">
+<%--<body>--%>
+    <div class="container bootstrap snippets bootdey" style="width: 100%">
         <div class="row">
             <div class="col-lg-12">
                 <div class="main-box no-header clearfix">
@@ -108,5 +108,8 @@
             </c:if>
         </ul>
     </div>
+</div>
+</div>
+</div>
 </body>
 </html>
