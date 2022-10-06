@@ -18,6 +18,7 @@
 
 <body>
 <!-- sidebar -->
+
 <div class="sidebar_title">마이페이지</div>
 <hr id="sidebar_hr">
 <div class="sidebar_content">
@@ -37,6 +38,7 @@
         <span class="side_main_span_scrap">마이장바구니</span>
     </div>
 </div>
+
 
 </body>
 </html>

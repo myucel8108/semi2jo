@@ -52,9 +52,11 @@
                             <c:if test="${dto.mylecnum%6==0}">
                                 <c:set var="bgcolor" value="#f8ece9"/>
                             </c:if>
-                            <div class="mylec" style="background-color:${bgcolor};">
-                                <a>${dto.lecname}</a><br>
-                                    ${dto.teaname}
+                            <div class="mylecname" style="background-color:${bgcolor};">
+                                <a>${dto.lecname}</a>
+                            </div>
+                            <div style="color: #6d6d6d;">
+                                ${dto.teaname}
                                 [${dto.roomnum}호]
                             </div>
                         </c:if>

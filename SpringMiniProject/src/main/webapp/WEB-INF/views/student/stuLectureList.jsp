@@ -16,14 +16,24 @@
     *{
       font-family: 'Jua';
     }
+    .lectd th,td{
+      text-align: center;
+    }
+    .lectdbox{
+      width: 850px;
+      height: auto;
+      background-color: #f2f2f2;
+      padding: 10px 10px 10px 10px;
+    }
   </style>
 </head>
 <body>
 <h1>수강목록</h1>
-<table class="table table-bordered">
-  <tr style="background-color: #ddd">
+<div class="lectdbox">
+<table class="table table lectd">
+  <tr>
     <th style="width: 80px">과목분류</th>
-    <th style="width: 350px">강의명</th>
+    <th style="width: 150px">강의명</th>
     <th style="width: 80px">강사</th>
     <th style="width: 80px">강의실</th>
     <th style="width: 100px">강의교시</th>
@@ -32,7 +42,7 @@
   </tr>
   <c:forEach var="dto" items="${list }">
     <tr>
-      <td>${dto.lectypea}</td>
+      <td align="center">${dto.lectypea}</td>
       <td>${dto.lecname}</td>
       <td>${dto.teaname}</td>
       <td>${dto.roomnum}</td>
@@ -64,6 +74,6 @@
     </tr>
   </c:forEach>
 </table>
-
+</div>
 </body>
 </html>
