@@ -28,7 +28,8 @@
     <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/vendor/daterangepicker/daterangepicker.css">--%>
     <%--    <!--===============================================================================================-->--%>
     <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/css/util.css">--%>
-    <link rel="stylesheet" type="text/css" href="css/account.css">
+    <c:set var="root" value="<%=request.getContextPath() %>"></c:set>
+    <link rel="stylesheet" type="text/css" href="${root}/css/account.css">
     <!--===============================================================================================-->
 </head>
 <style>
@@ -64,12 +65,12 @@
 
 
             <div class="flex-sb-m w-full p-t-3 p-b-32">
-<%--                <div class="contact100-form-checkbox">--%>
-<%--                    <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">--%>
-<%--                    <label class="label-checkbox100" for="ckb1">--%>
-<%--                        Remember me--%>
-<%--                    </label>--%>
-<%--                </div>--%>
+                <div class="contact100-form-checkbox">
+                    <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                    <label class="label-checkbox100" for="ckb1">
+                        관리자 로그인
+                    </label>
+                </div>
 
 <%--                <div>--%>
 <%--                    <a href="#" class="txt1">--%>
@@ -138,7 +139,6 @@
         });
     });
 </script>
-카카오 스크립트
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
     Kakao.init('c500f46a6b2ae4e0ca63896f364bf927'); //발급받은 키 중 javascript키를 사용해준다.
@@ -162,6 +162,8 @@
                             success:function(res){
                                 console.log("test2"+res.result);
                                 if(res.result=='fail'){
+                                    //fail 일 경우 회원가입 폼으로 이동
+
                                     alert("아이디나 비번이 맞지 않습니다");
                                 }else {
                                     alert("로그인 성공!");
