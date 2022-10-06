@@ -14,7 +14,6 @@
     text-align:center;
     width:550px;
     height:550px;
-    box-sizing:box;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -57,16 +56,16 @@
       <th style="width: 100px;">제목</th>
       <td>
         <input type="text" name="subject" class="form-control" required="required"
-               value="${subject }">
+               value="${dto.subject}">
       </td>
 
     </tr>
 
     <tr>
-      <th style="width: 100px;">사진</th>
+      <th style="width: 100px; height: 100px;">사진</th>
       <td>
-        <h5 style="font-size: 15px;">사진 선택은 안하면 기존사진이 유지됩니다</h5>
-        <input type="file" name="upload" class="form-control" multiple="multiple" value="${photo}">
+        <h5 style="font-size: 15px; margin-top: 5px; margin-bottom: 15px; font-style: italic; color: grey;" >사진 선택 없을 시 기존사진이 유지됩니다</h5>
+        <input type="file" name="upload" class="form-control" multiple="multiple" value="${dto.photo}">
       </td>
     </tr>
 
@@ -79,7 +78,7 @@
 
     <tr>
       <td colspan="2" align="center">
-        <button type="submit" class="btn btn-outline-secondary">게시물 수정</button>
+        <button type="submit" class="btn btn-outline" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;">게시물 수정</button>
       </td>
     </tr>
   </table>
