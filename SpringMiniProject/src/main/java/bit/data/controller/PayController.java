@@ -27,18 +27,18 @@ public class PayController {
     @RequestMapping("/verifyIamport")
     public class VerifyController {
 
-        /** Iamport °áÁ¦ °ËÁõ ÄÁÆ®·Ñ·¯ **/
+        /** Iamport ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ **/
         private final IamportClient iamportClient;
 
-        // »ý¼ºÀÚ¸¦ ÅëÇØ REST API ¿Í REST API secret ÀÔ·Â
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ REST API ï¿½ï¿½ REST API secret ï¿½Ô·ï¿½
         public VerifyController(){
             this.iamportClient = new IamportClient("...", "...");
         }
 
-        /** ÇÁ·ÐÆ®¿¡¼­ ¹ÞÀº PG»ç °á±£°ªÀ» ÅëÇØ ¾ÆÀÓÆ÷Æ® ÅäÅ« ¹ßÇà **/
+        /** ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ PGï¿½ï¿½ ï¿½á±£ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½Å« ï¿½ï¿½ï¿½ï¿½ **/
         @PostMapping("/{imp_uid}")
         public IamportResponse<Payment> paymentByImpUid(@PathVariable String imp_uid) throws IamportResponseException, IOException{
-            log.info("paymentByImpUid ÁøÀÔ");
+            log.info("paymentByImpUid ï¿½ï¿½ï¿½ï¿½");
             return iamportClient.paymentByImpUid(imp_uid);
         }
 

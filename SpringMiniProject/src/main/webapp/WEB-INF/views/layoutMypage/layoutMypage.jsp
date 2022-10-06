@@ -124,9 +124,9 @@
         }
 
         /* layout 테스트 환경일 경우 border 1px 지정 */
-        div.layout div{
-            border: 0px dotted gray;
-        }
+        /*div.layout div{
+            border: 2px dotted gray;
+        }*/
 
         div.layout div.header{
             position: relative;
@@ -147,7 +147,7 @@
             margin-top: -5px;
             padding: 30px 30px 30px 50px; /* 상단, 우측, 하단, 좌측 */
             width: 300px;
-            height: 1000px;
+            height: 800px;
             z-index: 1;
             float: left;
             clear: both;
@@ -156,9 +156,10 @@
         div.layout div.change{
             position: relative;
             margin-left: 300px;
+            margin-bottom: 100px;
             padding: 30px 30px 30px 30px;
             width: 800px;
-            height: 1000px;
+            height: 800px;
             z-index: 1;
         }
 
