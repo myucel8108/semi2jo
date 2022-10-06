@@ -95,14 +95,19 @@
                                 ${dto.qnatype}
                         </a>
                     </td>
-
                     <c:set var="username" value="${resultInfo.dto.username}"/>
                     <c:set var="totalLength" value="${fn:length(dto.username)}"/>
                     <c:set var="first" value="${fn:substring(dto.username, 0, 1)}"/>
                     <c:set var="last" value="${fn:substring(dto.username, 3, totalLength)}"/>
-                    <td align="center"><c:if test="${!empty dto.username}"><c:out value="${first}**${last}"/>
-<%--                    ${dto.username}</td>--%>
+                    <td align="center">
+                    <c:if test="${!empty dto.username and dto.username!='테스트'}"><c:out value="${first}**${last}"/>
                     </c:if>
+
+                    <c:if test="${dto.username=='테스트'}"><c:out value="${dto.username}"/>
+                    </c:if>
+
+
+
                     <td align="center">
                         <fmt:formatDate value="${dto.writeday}" pattern="yyyy-MM-dd"/>
                     </td>
