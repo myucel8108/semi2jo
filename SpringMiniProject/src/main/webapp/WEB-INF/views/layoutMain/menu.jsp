@@ -29,9 +29,6 @@
                         <a class="nav-link" href="${root}/board/boardFree">community</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="${root}/layoutMypage/change">My page</a>
-                    </li>
-                    <li class="nav-item active">
                         <a class="nav-link" href="${root}/qna/qnaList">Q & A</a>
                     </li>
                     <li class="nav-item">
