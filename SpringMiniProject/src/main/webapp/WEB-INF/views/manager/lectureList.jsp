@@ -11,22 +11,11 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/magager/lectureList.css">
     <style type="text/css">
-        .searchdiv{
-            margin-left: 128px;
-            width: 500px;
-        }
-
-        .searcharea{
-            width: 20%;
-            ;
-        }
-
         ul.pagination{
             justify-content: center;
         }
 
-        .possiblelist{
-            text-align: center;
+        .possible-list{
             margin-top: 30px;
             margin-bottom: 30px;
             font-size: 33px;
@@ -36,59 +25,62 @@
             margin-bottom: 10%;
         }
 
-        #addbutton{
-            margin-left: 100px;
+        .search-container{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .search-item1{
+            display: flex;
+            flex-grow: 1;
+        }
+
+        .search-item2{
+            display: flex;
+            flex-grow: 2;
+        }
+
+        .search-item3{
+            display: flex;
+            flex-grow: 1;
+        }
+
+        .lecture-count{
+            display: flex;
+            flex-direction: row-reverse;
         }
     </style>
-    <script>
-        function doSearch(){
-            $.ajax({
-                type : "get",
-                url : "/mini/searchWordConn",
-                data : { "searchWord" : $("#searchword").val(),
-                         "searchcolumn" : $("#searchcolumn").val()
-                        },
-                dataType : 'json',
-                success : function (res){
-                    alert(res.result);
-                }
-            });
-        };
-
-    </script>
 </head>
 
 <body>
-    <div class="possiblelist">
+    <div class="possible-list">
         개설 가능한 강의 목록
     </div>
     <!-- 검색창 -->
-    <div class="searcharea">
+    <div>
         <form action="lecturelist">
-            <div class="input-group searchdiv">
-                <select class="form-select" style="width: 150px;" name="searchcolumn" id="searchcolumn">
-                    <option value="1">현재 진행 중인 강의</option>
-                    <option value="2">기간 만료된 강의</option>
-                </select>
-                &nbsp;&nbsp;&nbsp;
-                <input type="text" id="searchword" name="searchword" class="form-control" style="width: 100px;"
-                       value="${param.searchword}">
-                <!--<button type="submit" class="btn btn-primary">날짜검색</button> -->
-                <button type="button" class="btn btn-primary" onclick="doSearch()">검색</button>
-
-                <!-- 강의 등록 버튼 -->
-                <span>
-                    <button type="button" class="btn btn-primary" onclick="location.href='/mini/addlectureform'" id="addbutton">강의 등록</button>
-                </span>
+            <div class="search-container">
+                <div class="search-item1"> <!-- 기간 선택 -->
+                    <select class="form-select" style="width: 150px;" name="searchcolumn">
+                        <option value="1">전체 강의</option>
+                        <option value="2">현재 진행 중인 강의</option>
+                        <option value="3">기간 만료된 강의</option>
+                    </select>
+                </div>
+                <div class="input-group search-item2"> <!-- 검색 -->
+                    <input type="text" name="searchword" class="form-control" style="width: 100px;">
+                    <button type="submit" class="btn btn-primary">검색</button>
+                </div>
+                <div class="search-item3"> <!-- 강의 등록 버튼 -->
+                    <button type="button" class="btn btn-primary" onclick="location.href='/mini/addlectureform'">강의 등록</button>
+                </div>
             </div>
         </form>
     </div>
-
-
     <br>
     <!-- 리스트 출력 창 -->
-    <div class="lecturecount">
-        총 강의 수 : ${totalCount}
+    <div class="lecture-count">
+        총 과목 수 : ${totalCount}
     </div>
     <br>
     <div class="container">
@@ -179,15 +171,5 @@
             </c:if>
         </ul>
     </div>
-
-
-    <script>
-        $(".clickdetail").click(function () {
-            var s = $(this).attr("name");
-            alert(s);
-        });
-    </script>
-
-
 </body>
 </html>

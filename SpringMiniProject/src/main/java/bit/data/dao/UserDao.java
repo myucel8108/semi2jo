@@ -16,13 +16,13 @@ public class UserDao implements UserDaoInter{
     String ns = "bit.data.dao.UserDao.";
 
     @Override
-    public int getUserTotalCount() {
-        return session.selectOne(ns+"getUserTotalCount");
+    public int getTotalUserCount(Map<String, String> map) {
+        return session.selectOne(ns + "getTotalUserCount", map);
     }
 
     @Override
-    public List<UserDto> getAllUsers() {
-        return session.selectList(ns+"getAllUsers");
+    public List<UserDto> getUserList(Map<String, Object> map) {
+        return session.selectList(ns + "getUserList", map);
     }
 
     @Override
