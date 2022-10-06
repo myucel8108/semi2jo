@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +36,9 @@
 <div class="container" style="width: 100%;">
         <div class="myaskbox">
             <button type="button" onclick="location.href='qnaList?'" class="myask2">전체글보기</button>&nbsp;
+            <c:if test="${sessionScope.loginok!=null}">
             <button type="button" onclick="location.href='qnaList?searchcolumn=usernum&searchword=${sessionScope.loginid}'" class="myask">나의문의보기</button>
+            </c:if>
         </div>
     <br>
 <div class="qnalist" style="margin-top: 10px; ">
@@ -44,10 +47,10 @@
     <br><br>
     <table class="table table-bordered">
         <tr class="listbox-tm">
-            <th style="width: 50px; text-align:center;">번호</th>
-            <th style="width: 150px;text-align:center;">제목</th>
-            <th style="width: 50px;text-align:center;">이름</th>
-            <th style="width: 110px;text-align:center;">작성일</th>
+            <th style="width: 30px; text-align:center;">번호</th>
+            <th style="width: 100px;text-align:center;">제목</th>
+            <th style="width: 30px;text-align:center;">작성자</th>
+            <th style="width: 50px;text-align:center;">작성일</th>
         </tr>
         <c:if test="${totalCount==0 }">
             <tr>
@@ -93,16 +96,13 @@
                         </a>
                     </td>
 
-
-<%--                    <td align='center'>--%>
-<%--                        <c:if test="${dto.relevel>0}">--%>
-<%--                                <b style="color: orange; text-decoration: none;">답변완료</b>--%>
-<%--                        </c:if>--%>
-<%--                            ${dto.qnatype}--%>
-<%--                    </td>--%>
-
-
-                    <td align="center">${dto.username}</td>
+                    <c:set var="username" value="${resultInfo.dto.username}"/>
+                    <c:set var="totalLength" value="${fn:length(dto.username)}"/>
+                    <c:set var="first" value="${fn:substring(dto.username, 0, 1)}"/>
+                    <c:set var="last" value="${fn:substring(dto.username, 3, totalLength)}"/>
+                    <td align="center"><c:if test="${!empty dto.username}"><c:out value="${first}**${last}"/>
+<%--                    ${dto.username}</td>--%>
+                    </c:if>
                     <td align="center">
                         <fmt:formatDate value="${dto.writeday}" pattern="yyyy-MM-dd"/>
                     </td>
@@ -111,13 +111,14 @@
         </c:if>
         <!-- 글쓰기 버튼은 로그인을 해야만 보인다 -->
         <c:if test="${sessionScope.loginok!=null}">
-            <tr>
+        <tr>
                 <td colspan="6" align="right" style= "text-align:center" >
                     <button type="button" class="btn btn-outline"
                             onclick="location.href='qnaForm'" id="writecolor" >문의하기</button>
 
                 </td>
-            </tr>
+        </tr>
+
         </c:if>
     </table>
 </div>
