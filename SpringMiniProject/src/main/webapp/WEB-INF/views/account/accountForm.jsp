@@ -50,9 +50,9 @@
 
 <%--            id 입력--%>
             <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                <input class="input100 loginid" type="text" >
+                <input class="input100 loginemail" type="text" >
                 <span class="focus-input100"></span>
-                <span class="label-input100">Id</span>
+                <span class="label-input100">Email</span>
             </div>
 
 <%--            pass 입력--%>
@@ -119,14 +119,14 @@
     // 로그인 버튼 클릭 이벤트
     $("#btn-sign-in").click(function () {
         //아이디와 비번 읽기
-        var loginid = $(".loginid").val();
-        var loginpass = $(".loginpass").val();
+        var email = $(".loginemail").val();
+        var userpass = $(".loginpass").val();
         console.log("btnclick");
         $.ajax({
             type:"get",
             url:"/mini/loginA",
             dataType:"json",
-            data:{"loginid":loginid,"loginpass":loginpass},
+            data:{"email":email,"userpass":userpass},
             success:function(res){
                 console.log("test2"+res.result);
                 if(res.result=='fail'){
