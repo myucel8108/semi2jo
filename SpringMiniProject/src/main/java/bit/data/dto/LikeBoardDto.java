@@ -6,7 +6,7 @@ import lombok.Data;
 public class LikeBoardDto {
 
     private int likeboardnum;
-    private String userid;
+    private int usernum;
     private int boardnum;
     private int likestate;
 }

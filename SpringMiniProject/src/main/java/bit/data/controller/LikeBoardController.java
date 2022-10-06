@@ -28,8 +28,8 @@ public class LikeBoardController {
     @ResponseBody
     public int likeBoardUser(LikeBoardDto dto, HttpSession session)
     {
-        dto.setUserid((String)session.getAttribute("loginid"));
-        int cnt=likeBoardService.checkBoardLike(dto.getBoardnum(),dto.getUserid());
+        dto.setUsernum((int)session.getAttribute("usernum"));
+        int cnt=likeBoardService.checkBoardLike(dto.getBoardnum(),dto.getUsernum());
 
         if(cnt==0){
             likeBoardService.insertLikeBoard(dto);
@@ -49,9 +49,9 @@ public class LikeBoardController {
     @ResponseBody
     public int likeStateBoardUser(int boardnum, HttpSession session)
     {
-        String userid=(String)session.getAttribute("loginid");
+        int usernum=((int)session.getAttribute("usernum"));
 
-        int likestate=likeBoardService.stateBoardLike(boardnum,userid);
+        int likestate=likeBoardService.stateBoardLike(boardnum,usernum);
         return likestate;
     }
     @GetMapping("/board/likesuser")
@@ -59,12 +59,13 @@ public class LikeBoardController {
     public List<String> likeUser(int boardnum)
     {
 
-      List<String> userids=likeBoardService.likeUserAll(boardnum);
+      List<Integer> usernums=likeBoardService.likeUserAll(boardnum);
       List<String> list=new ArrayList<>();
      String s="";
-      for(String id:userids){
-          String nickname=userService.getDataById(id).getNickname();
-          s=nickname+"("+id+")";
+      for(int num:usernums){
+          String nickname=userService.getDataByNum(num).getNickname();
+          String email=userService.getDataByNum(num).getEmail();
+          s=nickname+"("+email+")";
           list.add(s);
       }
       return  list;

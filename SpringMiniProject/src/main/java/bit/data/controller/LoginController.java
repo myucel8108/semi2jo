@@ -58,7 +58,7 @@ public class LoginController {
             session.setAttribute("loginid", loginid);
             session.setAttribute("loginname", udto.getUsername());
             session.setAttribute("usernum", usernum);
-            session.setAttribute("photo", udto.getPhoto());
+            session.setAttribute("photo", udto.getUserphoto());
         }
         String temp = (result!=null?"success":"fail");
         map.put("result",temp);
@@ -80,7 +80,7 @@ public class LoginController {
             session.setMaxInactiveInterval(60*60*4);
             UserDto udto=loginService.getDataByNum(usernum);
             session.setAttribute("loginok", "yes");
-            session.setAttribute("loginid", udto.getUserid());
+            session.setAttribute("loginid", udto.getEmail());
             session.setAttribute("loginname", udto.getUsername());
             session.setAttribute("usernum", udto.getUsernum());
         }

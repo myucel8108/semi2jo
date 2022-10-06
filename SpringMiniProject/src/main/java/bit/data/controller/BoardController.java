@@ -51,7 +51,7 @@ public class BoardController {
 
         String userphoto;
         try {
-            userphoto = userService.getDataById(dto.getUserid()).getPhoto();
+            userphoto = userService.getDataByNum(dto.getUsernum()).getUserphoto(); //프사임
         }catch (NullPointerException e){
             userphoto="no";
         }

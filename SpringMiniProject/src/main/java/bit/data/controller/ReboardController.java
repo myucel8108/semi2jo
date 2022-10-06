@@ -28,10 +28,10 @@ public class ReboardController {
     public void insert(ReboardDto dto)
     {
         //loging한 usernum에 해당하는 nickname 얻어서 dto에 넣기
-        String nickname=userService.getDataById(dto.getUserid()).getNickname();
+        String nickname=userService.getDataByNum(dto.getUsernum()).getNickname();
         dto.setNickname(nickname);
-        String profile = userService.getDataById(dto.getUserid()).getPhoto();
-        dto.setPhoto(profile);
+        String userphoto = userService.getDataByNum(dto.getUsernum()).getUserphoto();
+        dto.setPhoto(userphoto);
         reboardService.insertReboard(dto);
     }
     @GetMapping("/list")

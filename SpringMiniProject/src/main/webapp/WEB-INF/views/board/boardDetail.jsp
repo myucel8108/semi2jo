@@ -99,8 +99,8 @@
         }
         function list(){
             var loginok = '${sessionScope.loginok}';
-            var loginid = '${sessionScope.loginid}';
-            var writeid = '${dto.userid}';
+            var usernum = '${sessionScope.usernum}';
+            var writeuser = '${dto.usernum}';
             var boardnum = ${dto.boardnum};
 
             var s = "";
@@ -117,16 +117,16 @@
                             s+="<img src='../image/noprofilepicture.png' style='width: 30px; height: 30px;' class='rounded-circle' hspace='10'>";
                         }
                         if(elt.photo!=null) {
-                            s+="<img src='../upload/"+"'elt.profile'"+"' style='width: 30px; height: 30px;' class='rounded-circle' hspace='10'>";
+                            s+="<img src='../upload/"+"'elt.userphoto'"+"' style='width: 30px; height: 30px;' class='rounded-circle' hspace='10'>";
                         }
-                        s+="<b>"+elt.nickname+"("+elt.userid+")"+"</b>";
-                        if (writeid==elt.userid){
+                        s+="<b>"+elt.nickname+"</b>";
+                        if (writeuser==elt.usernum){
                             s+="<span class='writer'>(작성자)</span>";
                         }
                         s+="<br><br>";
                         s+="<pre>&nbsp;&nbsp;<b>"+elt.recontent+"&nbsp;&nbsp;";
                         s+="</b><span class='day' style='color:gray;'>"+elt.writeday+"&nbsp;";
-                        if(loginok=='yes' && loginid==elt.userid){
+                        if(loginok=='yes' && usernum==elt.usernum){
                             s+='<i class="fa fa-close redelete" style="font-size:15px; color: black" reboardnum='+elt.reboardnum+'></i>';
                         }
                         s+="</span></pre></div><hr>"
@@ -168,7 +168,7 @@
                     <img src="../upload/${userphoto}" width="40" height="40" class="rounded-circle"
                          onerror="this.src='../image/noprofilepicture.png'" hspace="10">
                 </c:if>
-                <b>${dto.nickname}(${dto.userid})</b>
+                <b>${dto.nickname}</b>
                 <span style="color: gray; font-size: 12px;">
 					<fmt:formatDate value="${dto.writeday}" pattern="yyyy-MM-dd HH:mm"/>
 					&nbsp;&nbsp;
@@ -207,7 +207,7 @@
                         <input type="hidden" name="boardnum" value="${dto.boardnum}">
                         <input type="hidden" name="userid" value="${sessionScope.loginid}">
                         <input type="hidden" name="nickname" value="${dto.nickname}">
-                        <input type="hidden" name="profile" value="${dto.photo}">
+                        <input type="hidden" name="userphoto" value="${dto.userphoto}">
                         <div class="input-group">
                             <textarea name="recontent" id="recontent" style="width: 400px; height: 100px;" class="form-control"></textarea>
                             <button type="button" id="btnreboard">등록</button>

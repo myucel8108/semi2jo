@@ -92,7 +92,7 @@
   <c:set var="root" value="<%=request.getContextPath() %>"/>
   <link rel="stylesheet" type="text/css" href="${root}/css/board/boardform.css">
 
-  <title>DEVEL :: 게시글 작성</title>
+  <title></title>
   <script type="text/javascript">
     $(function () {
       //'글 유형-자유'가 기본값으로 '질문작성' 폼 숨기기
