@@ -103,7 +103,7 @@
             <td colspan="2">
 
                 <c:if test="${qnanum>0}">
-                    <div name="content" class="form-control" style="width: 500px; height: 100px; margin-bottom: 20px;">${content}</div>
+                    <div name="content" class="form-control" style="width: 500px; height: 100px; margin-bottom: 15px;">${content}</div>
                 </c:if>
 
                <textarea name="content" class="form-control" required="required"
