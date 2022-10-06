@@ -11,7 +11,7 @@ public interface UserServiceInter {
     public List<UserDto> getUserList(String searchword, int startnum, int perpage);
 
     public UserDto getDataByNum(int usernum);
-    public UserDto getDataById(String userid);
+    public UserDto getDataById(String email);
 
     public void updateUserPhoto(int usernum, String photo);
     public void updateUser(UserDto dto);
