@@ -8,8 +8,8 @@ import java.util.List;
 public interface QnaServiceInter {
 
 	public void insertQna(QnaDto dto);
-	public List<QnaDto> getPagingList(int usernum, int startnum, int perpage);
-	public int getTotalCount(int usernum);
+	public List<QnaDto> getPagingList(String searchcolumn, String searchword, int startnum, int perpage);
+	public int getTotalCount(String searchcolumn, String searchword);
 	public QnaDto selectByNum(int qnanum);
 
 	public void updateQna(QnaDto dto);

@@ -11,7 +11,7 @@ public interface QnaDaoInter {
     public void insertQna(QnaDto dto);
 
     public List<QnaDto> getPagingList(Map<String, Object> map);
-    public int getTotalCount(int usernum);
+    public int getTotalCount(Map<String, String>map);
 
     public QnaDto selectByNum(int qnanum);
 

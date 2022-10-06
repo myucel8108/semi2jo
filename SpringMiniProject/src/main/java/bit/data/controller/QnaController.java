@@ -50,7 +50,7 @@ public class QnaController {
         //제목에 새글일경우 "", 답글일 경우 해당 제목을 넣어보자
         String content="";
         if(qnanum>0) {
-            content=qnaService.selectByNum(qnanum).getContent()+"\n==================원글==================\n\n";
+            content=qnaService.selectByNum(qnanum).getContent();
         }
         model.addAttribute("content",content);
 
@@ -114,7 +114,8 @@ public class QnaController {
     @GetMapping("/qna/qnaList") //게시판 리스트 출력
     public String qna(
             @RequestParam(defaultValue = "1") int currentPage,
-            @RequestParam(defaultValue = "0") int usernum,
+            @RequestParam(value = "searchcolumn" ,required = false) String sc,
+            @RequestParam(value = "searchword" ,required = false) String sw,
             Model model
     )
     {
@@ -125,7 +126,7 @@ public class QnaController {
 ////            System.out.println("111="+sw+","+usernum);
 //        }
 
-        int totalCount=qnaService.getTotalCount(usernum);
+        int totalCount=qnaService.getTotalCount(sc,sw);
         int perPage=10;
         int perBlock=5;
         int startNum;
@@ -145,7 +146,7 @@ public class QnaController {
 
         no=totalCount-(currentPage-1)*perPage;
 
-        List<QnaDto> list = qnaService.getPagingList(usernum, startNum, perPage);
+        List<QnaDto> list = qnaService.getPagingList(sc, sw, startNum, perPage);
         model.addAttribute("list", list);
         model.addAttribute("totalCount", totalCount);
         model.addAttribute("currentPage", currentPage);

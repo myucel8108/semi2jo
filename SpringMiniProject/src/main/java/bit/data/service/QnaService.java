@@ -48,19 +48,23 @@ public class QnaService implements QnaServiceInter{
     }
 
     @Override
-    public List<QnaDto> getPagingList(int usernum, int startnum, int perpage) {
+    public List<QnaDto> getPagingList(String searchcolumn, String searchword, int startnum, int perpage) {
         // TODO Auto-generated method stub
-        Map<String, Object>map = new HashMap<>();
-        map.put("usernum", usernum);
+        Map<String, Object>map = new HashMap<String, Object>();
+        map.put("searchcolumn", searchcolumn);
+        map.put("searchword", searchword);
         map.put("startnum", startnum);
         map.put("perpage", perpage);
         return qnaDao.getPagingList(map);
     }
 
     @Override
-    public int getTotalCount(int usernum) {
+    public int getTotalCount(String searchcolumn, String searchword) {
         // TODO Auto-generated method stub
-        return qnaDao.getTotalCount(usernum);
+        Map<String, String>map = new HashMap<String, String>();
+        map.put("searchcolumn", searchcolumn);
+        map.put("searchword", searchword);
+        return qnaDao.getTotalCount(map);
     }
 
     @Override
