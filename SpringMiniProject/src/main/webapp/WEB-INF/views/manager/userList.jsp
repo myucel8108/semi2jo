@@ -39,7 +39,7 @@
                                     <c:forEach var="dto" items="${list}">
                                         <tr>
                                             <td>
-                                                <c:if test="${dto.photo!=null}"
+                                                <c:if test="${dto.photo!=null}">
                                                     <img src="https://bootdey.com/img/Content/user_1.jpg">
                                                 </c:if>
                                                 <c:if test="${dto.photo==null}">
