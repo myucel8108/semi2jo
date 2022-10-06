@@ -100,12 +100,12 @@
         <tr>
             <td colspan="2">
                <textarea name="content" class="form-control" required="required"
-                         style="width: 500px; height: 400px;"></textarea>
+                         style="width: 500px; height: 400px;">${content}</textarea>
             </td>
         </tr>
         <tr>
             <td colspan="2" align="center">
-                <button type="submit" class="btn btn-outline" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" >문의등록</button>
+                <button type="submit" class="btn btn-outline" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" >등록</button>
             </td>
         </tr>
     </table>

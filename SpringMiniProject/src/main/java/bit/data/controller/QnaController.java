@@ -48,11 +48,11 @@ public class QnaController {
         model.addAttribute("currentPage",currentPage);
 
         //제목에 새글일경우 "", 답글일 경우 해당 제목을 넣어보자
-        String subject="";
+        String content="";
         if(qnanum>0) {
-            subject=qnaService.selectByNum(qnanum).getSubject();
+            content=qnaService.selectByNum(qnanum).getContent();
         }
-        model.addAttribute("subject",subject);
+        model.addAttribute("content",content);
 
         return "/main/qna/qnaForm";
     }
@@ -119,13 +119,14 @@ public class QnaController {
             Model model
     )
     {
-        //sw는 유저 아이디임으로 usernum을 얻어야한다
-        String usernum=null;
-        if(sw!=null){
-             usernum=String.valueOf(userService.getDataById(sw).getUsernum());
-//            System.out.println("111="+sw+","+usernum);
-        }
-        int totalCount=qnaService.getTotalCount(sc,usernum);
+//        //sw는 유저 아이디임으로 usernum을 얻어야한다
+//        String usernum=null;
+//        if(sw!=null){
+//             usernum=String.valueOf(userService.getDataById(sw).getUsernum());
+////            System.out.println("111="+sw+","+usernum);
+//        }
+
+        int totalCount=qnaService.getTotalCount(sc,sw);
         int perPage=10;
         int perBlock=5;
         int startNum;
@@ -145,7 +146,7 @@ public class QnaController {
 
         no=totalCount-(currentPage-1)*perPage;
 
-        List<QnaDto> list = qnaService.getPagingList(sc, usernum, startNum, perPage);
+        List<QnaDto> list = qnaService.getPagingList(sc, sw, startNum, perPage);
         model.addAttribute("list", list);
         model.addAttribute("totalCount", totalCount);
         model.addAttribute("currentPage", currentPage);

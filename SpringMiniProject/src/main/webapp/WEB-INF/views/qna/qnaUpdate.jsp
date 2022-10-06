@@ -52,17 +52,17 @@
   <input type="hidden" name="currentPage" value="${currentPage}">
 
   <table class="table table-bordered" style="width: 500px;" id="updatebox">
-    <tr>
-      <th style="width: 100px;">제목</th>
-      <td>
-        <input type="text" name="subject" class="form-control" required="required"
-               value="${dto.subject}">
-      </td>
+<%--    <tr>--%>
+<%--      <th style="width: 100px;">제목</th>--%>
+<%--      <td>--%>
+<%--        <input type="text" name="subject" class="form-control" required="required"--%>
+<%--               value="${dto.subject}">--%>
+<%--      </td>--%>
 
-    </tr>
+<%--    </tr>--%>
 
     <tr>
-      <th style="width: 100px; height: 100px;">사진</th>
+      <th style="width: 100px; text-align: center; padding-top: 30px;" >사진</th>
       <td>
         <h5 style="font-size: 15px; margin-top: 5px; margin-bottom: 15px; font-style: italic; color: grey;" >사진 선택 없을 시 기존사진이 유지됩니다</h5>
         <input type="file" name="upload" class="form-control" multiple="multiple" value="${dto.photo}">
