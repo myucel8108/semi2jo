@@ -3,18 +3,21 @@
 <mapper namespace="bit.data.dao.LectureDao">
     <!-- 강의 등록 -->
     <insert id="insertLecture" parameterType="lectureDto">
-        insert into lecture (lecnum, teaname, lecname, lectypea, lectypeb)
-        values (null, #{teaname}, #{lecname}, #{lectypea}, #{lectypeb})
+        insert into lecture (lecnum, teaname, lecname, lectypea, lectypeb, lecphoto)
+        values (null, #{teaname}, #{lecname}, #{lectypea}, #{lectypeb}, #{lecphoto})
     </insert>
-    <!-- 강의 총 개수 출력 -->
+    <!-- 강의 총 개수 출력 (검색 기능 O) -->
     <select id="getTotalLectureCount" parameterType="Map" resultType="int">
         select count(*) from lecture
+        <if test="searchword!=null">
+            where lecname like concat('%',#{searchword},'%')
+        </if>
     </select>
-    <!-- 강의 목록 출력 -->
+    <!-- 강의 목록 출력 (검색 기능 O) -->
     <select id="getLectureList" parameterType="Map" resultType="lectureDto">
         select * from lecture
-        <if test="searchcolumn!=null and searchword!=null">
-            where ${searchcolumn} like concat('%',#{searchword},'%')
+        <if test="searchword!=null">
+            where lecname like concat('%',#{searchword},'%')
         </if>
         order by lecnum desc limit #{startnum},#{perpage}
     </select>

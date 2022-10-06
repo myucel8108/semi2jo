@@ -57,7 +57,7 @@
     	width: 90%;
     	height: 80%;
     	border: 1px solid aqua;
-		background-color: lightgray;
+		background-color: rgb(250, 250, 250);
     }
     
     a:link a:visited {

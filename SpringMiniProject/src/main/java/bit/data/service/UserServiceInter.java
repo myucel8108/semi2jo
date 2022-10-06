@@ -7,8 +7,9 @@ import java.util.Map;
 
 public interface UserServiceInter {
 
-    public int getUserTotalCount();
-    public List<UserDto> getAllUsers();
+    public int getUserTotalCount(String searchword);
+    public List<UserDto> getUserList(String searchword, int startnum, int perpage);
+
     public UserDto getDataByNum(int usernum);
     public UserDto getDataById(String userid);
 

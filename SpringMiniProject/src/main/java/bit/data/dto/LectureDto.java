@@ -11,5 +11,4 @@ public class LectureDto {
     public String lectypea;
     public String lectypeb;
     public String lecphoto;
-    
 }
