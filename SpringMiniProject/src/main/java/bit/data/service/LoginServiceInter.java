@@ -9,7 +9,7 @@ public interface LoginServiceInter {
 
 
 
-    public String checkLoginIdPass(String loginid, String loginpass);
+    public String checkLoginIdPass(String email, String loginpass);
     public UserDto getDataByNum(int usernum);
 
     public int checkId(String userid);
