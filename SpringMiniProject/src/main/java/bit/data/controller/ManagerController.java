@@ -85,8 +85,6 @@ public class ManagerController {
 
     }
 
-    @Autowired
-    UserServiceInter userService;
 
     @GetMapping("/lecturelist")
     public String getLecturelist(@RequestParam(defaultValue = "1") int currentPage,
@@ -179,12 +177,12 @@ public class ManagerController {
         return result;
     }
 
-    @GetMapping("/manager/usertotalCount")
+/*    @GetMapping("/manager/usertotalCount")
     @ResponseBody
     public int getUserTotalCount(){
         int result = userService.getUserTotalCount();
         if(!(result>0)) result=0;
         System.out.println(result);//sql 에서 해당 값이 없는 경우 0을 넣어줌
         return result;
-    }
+    }*/
 }
