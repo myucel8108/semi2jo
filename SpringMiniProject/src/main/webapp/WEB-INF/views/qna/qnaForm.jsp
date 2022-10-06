@@ -66,7 +66,7 @@
 
         </c:if>
         <tr>
-            <th style="width: 100px;">사진</th>
+            <th style="width: 100px;  text-align: center; padding-top: 15px;">사진</th>
             <td>
                 <div class="phototag">
                     <div class="input-group">
@@ -98,11 +98,22 @@
             </td>
         </tr>
         <tr>
+
+
+
             <td colspan="2">
+                <textarea name="content" class="form-control" style="width: 500px; height: 100px;">${content}</textarea>
                <textarea name="content" class="form-control" required="required"
-                         style="width: 500px; height: 400px;">${content}</textarea>
+                         style="width: 500px; height: 400px;"></textarea>
+
+
+                <div style="text-align: center; margin-bottom: 10px;">
+                <input type="radio" name="opens" id="open" value="Y" class="radio"/><span class="ml_10">&nbsp;게시물 공개</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="opens" id="open" value="N" class="radio"/><span class="ml_10">&nbsp;게시물 비공개</span>
+                </div>
             </td>
         </tr>
+
         <tr>
             <td colspan="2" align="center">
                 <button type="submit" class="btn btn-outline" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" >등록</button>

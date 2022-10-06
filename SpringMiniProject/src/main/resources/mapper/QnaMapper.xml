@@ -11,16 +11,16 @@
 		insert into qna (usernum, username, qnatype, subject, content, photo,pass,writeday,regroup,restep,relevel)
 		values (#{usernum}, #{username}, #{qnatype}, #{subject}, #{content}, #{photo},#{pass},now(),#{regroup},#{restep},#{relevel})
 	</insert>
-	<select id="getTotalCount" parameterType="Map" resultType="int">
+	<select id="getTotalCount" parameterType="int" resultType="int">
 		select count(*) from qna
-		<if test="searchcolumn!=null and searchword!=null">
-			where ${searchcolumn} like concat('%',#{searchword},'%')
+		<if test="usernum!=0">
+			where usernum=#{usernum}
 		</if>
 	</select>
 	<select id="getPagingList" parameterType="Map" resultType="qnaDto">
 		select * from qna
-		<if test="searchcolumn!=null and searchword!=null">
-			where ${searchcolumn} like concat('%',#{searchword},'%')
+		<if test="usernum!=0">
+			where usernum=#{usernum}
 		</if>
 		order by regroup desc, restep asc limit #{startnum},#{perpage}
 	</select>
