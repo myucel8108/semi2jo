@@ -41,11 +41,11 @@
     <update id="updateDecreLikeCount" parameterType="int"> /*좋아요 감소*/
         update board set likes=likes-1 where boardnum=#{boardnum}
     </update>
-<!--    <select id="moveToPrevBoard" parameterType="int" resultType="int">-->
-<!--        select MAX(boardnum) from board where boardnum < #{boardnum}-->
-<!--    </select>-->
-<!--    <select id="moveToNextBoard" parameterType="int" resultType="int">-->
-<!--        select MIN(boardnum) from board where boardnum > #{boardnum}-->
-<!--    </select>-->
+    <select id="moveToPrevBoard" parameterType="int" resultType="int"> /*게시물보다 작은 넘버중 제일 큰 넘버를 가진 게시물 (이전게시물)*/
+        select MAX(boardnum) from board where boardnum &lt; #{boardnum}
+    </select>
+    <select id="moveToNextBoard" parameterType="int" resultType="int"> /*게시물보다 큰 넘버중 제일 작은 넘버를 가진 게시물 (다음게시물)*/
+        select MIN(boardnum) from board where boardnum &gt; #{boardnum}
+    </select>
 
 </mapper>

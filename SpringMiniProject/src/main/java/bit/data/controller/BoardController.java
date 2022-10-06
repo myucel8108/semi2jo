@@ -40,7 +40,6 @@ public class BoardController {
         return "/main/board/boardForm";
     }
 
-
     @GetMapping("/board/boardDetail") //게시판 디테일
     public ModelAndView boardDetail(int boardnum, int currentPage){
 
@@ -50,7 +49,7 @@ public class BoardController {
 
         BoardDto dto = boardService.selectByNum(boardnum);
 
-        String userphoto;
+        String userphoto="";
         try {
             userphoto = userService.getDataByNum(dto.getUsernum()).getUserphoto(); //프사임
         }catch (NullPointerException e){

@@ -130,9 +130,8 @@
             success:function(res){
                 console.log("test2"+res.result);
                 if(res.result=='fail'){
-                    alert("아이디나 비번이 맞지 않습니다");
+                    alert("아이디나 비밀번호가 맞지 않습니다");
                 }else {
-                    alert("로그인 성공!");
                     location.href="/mini";
                 }
             },

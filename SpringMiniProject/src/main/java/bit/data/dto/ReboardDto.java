@@ -11,7 +11,7 @@ public class ReboardDto {
     private int boardnum;
     private int usernum;
     private String nickname;
-    private String photo;
+    private String userphoto;
     private String recontent;
     private int regroup;
     private int restep;

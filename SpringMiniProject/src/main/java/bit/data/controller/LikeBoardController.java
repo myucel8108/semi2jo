@@ -58,18 +58,16 @@ public class LikeBoardController {
     @ResponseBody
     public List<String> likeUser(int boardnum)
     {
-
       List<Integer> usernums=likeBoardService.likeUserAll(boardnum);
       List<String> list=new ArrayList<>();
      String s="";
       for(int num:usernums){
           String nickname=userService.getDataByNum(num).getNickname();
-          String email=userService.getDataByNum(num).getEmail();
-          s=nickname+"("+email+")";
+          String userphoto=userService.getDataByNum(num).getUserphoto();
+          //s="<img src='../upload/"+userphoto+"' width=40 height=40 class='rounded-circle'>"+nickname;
+          s=nickname;
           list.add(s);
       }
       return  list;
     }
-
-
 }

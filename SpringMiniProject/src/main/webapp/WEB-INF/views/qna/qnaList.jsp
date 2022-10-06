@@ -37,7 +37,7 @@
         <div class="myaskbox">
             <button type="button" onclick="location.href='qnaList?'" class="myask2">전체글보기</button>&nbsp;
             <c:if test="${sessionScope.loginok!=null}">
-            <button type="button" onclick="location.href='qnaList?searchcolumn=usernum&searchword=${sessionScope.}'" class="myask">나의문의보기</button>
+            <button type="button" onclick="location.href='qnaList?searchcolumn=email&searchword=${sessionScope.email}'" class="myask">나의문의보기</button>
             </c:if>
         </div>
     <br>
