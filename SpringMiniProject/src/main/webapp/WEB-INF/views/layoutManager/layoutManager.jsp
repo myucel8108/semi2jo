@@ -12,9 +12,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-	<link href="css/manager/manager/css" rel="stylesheet">
+<%--	<link href="css/manager/manager.css" rel="stylesheet">--%>
 	<script src="js/manager/manager.js"></script>
-    <style type="text/css">
+	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="css/manager/manager.css" rel="stylesheet">
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script src="js/ruang-admin.min.js"></script>
+	<script src="vendor/chart.js/Chart.min.js"></script>
+	<script src="js/manager/manager.js"></script>
+	<style type="text/css">
+
     @font-face {
 	    font-family: 'MICEGothic Bold';
 	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic Bold.woff2') format('woff2');
@@ -30,27 +40,27 @@
     	border: 1px solid gray;
     }
     
-    #header {
-    	width: 100%;
-    	height: 100px;
-    	line-height: 100px;
-    	display: flex;
-    	justify-content: center;
-    	float: right;
-    	border: 1px solid blue;
-    }
+    /*#header {*/
+    /*	width: 100%;*/
+    /*	height: 100px;*/
+    /*	line-height: 100px;*/
+    /*	display: flex;*/
+    /*	justify-content: center;*/
+    /*	float: right;*/
+    /*	border: 1px solid blue;*/
+    /*}*/
     
-    #menu {
-    	font-size: 26px;
-    	float: left;
-    	width: 10%;
-    	height: 80%;
-    	line-height: 150px;
-    	display: flex;
-    	align-items: center;
-    	border: 1px solid magenta;
-    	justify-content: center;
-    }
+    /*#menu {*/
+    /*	font-size: 26px;*/
+    /*	float: left;*/
+    /*	width: 10%;*/
+    /*	height: 80%;*/
+    /*	line-height: 150px;*/
+    /*	display: flex;*/
+    /*	align-items: center;*/
+    /*	border: 1px solid magenta;*/
+    /*	justify-content: center;*/
+    /*}*/
     
     #change {
     	float: right;
@@ -71,15 +81,16 @@
 </head>
 <body>
 	<div class="layoutManager">
-		<div class="change" id="header">
-			<tiles:insertAttribute name="header"/>
-		</div>
-		<div class="change" id="menu">
+		<span class="change" id="menu">
 			<tiles:insertAttribute name="menu"/>
-		</div>
-		<div class="change" id="change">
+		</span>
+		<sapn class="change" id="header">
+			<tiles:insertAttribute name="header"/>
+		</sapn>
+
+		<span class="change" id="change">
 			<tiles:insertAttribute name="change"/>
-		</div>
+		</span>
 	</div>
 </body>
 </html>

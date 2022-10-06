@@ -5,8 +5,9 @@ url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;
 
 /* 메뉴 전체 영역 */
 .menuarea {
+    width: 100%;
     font-family: Noto Sans KR;
-    margin: 0 0 0 300px;
+    margin: 0 0 0 0px;
 }
 
 a:link {
@@ -33,12 +34,13 @@ div.dropmenu a:hover {
 div.category {
     width: 180px;
     padding: 16px 20px 0 20px;
+    margin-left: 30px;
     height: 56px;
     float: left;
 }
 
 div.category:hover {
-    background-color: #ff4b4e;
+    background-color: rgba(255, 75, 78, 0.9);
     cursor: pointer;
 }
 
@@ -52,7 +54,7 @@ div.category:hover img.icon_category {
 
 /* jQuery Class */
 .over_bg {
-    background-color: #ff4b4e;
+    background-color: rgba(255, 75, 78, 0.9);
 }
 
 .over_text {
@@ -112,77 +114,15 @@ div.menuitem:hover span.menu {
     color: #ff4b4e;
 }
 
-/* 로그인, 회원가입 버튼 */
-div.menuitem_member {
-    padding: 17px 10px 0 10px;
-    height: 56px;
-    float: left;
-}
-
-span.membermenu {
-    padding: 5px 25px 5px 25px;
-    color: #fff;
-    background-color: #ff4b4e;
-    border-radius: 20px 0px 0px 20px;
-}
-
-span.membermenu_color {
-    padding: 5px 25px 5px 25px;
-    color: #fff;
-    background-color: #ff4b4e;
-    border-radius: 20px 0 0 20px;
-    cursor: pointer;
-    height: 55px;
-    text-align: center;
-    border: none;
-    background-size: 300% 100%;
-    moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-    background-image: linear-gradient(to right, #ff4b4e, #f15e64, #e14e53, #e2373f);
-    box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
-}
-
-.membermenu_color:hover  {
-    background-position: 100% 0;
-    moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-}
-
-
-span.signupmenu {
-    padding: 5px 25px 5px 25px;
-    color:#fff;
-    background-color: #ff4b4e;
-    border-radius: 0 20px 20px 0;
-    cursor: pointer;
-    height: 55px;
-    text-align: center;
-    border: none;
-    background-size: 300% 100%;
-    moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-    background-image: linear-gradient(to right, #ff4b4e, #f15e64, #e14e53, #e2373f);
-    box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
-}
-
-.membermenu:hover {
-    text-shadow: 1px 1px 5px black;
-}
 
 /* 드롭다운 메뉴 */
 div.dropmenu {
     position:absolute;
     font-family: Noto Sans KR;
-    margin: 56px 6px 5px 300px;
+    margin: 56px 6px 5px 30px;
     padding: 16px 25px 0 25px;
     height: 250px;
-    background-color: #ff4b4e;
+    background-color: rgba(255, 75, 78, 0.9);
     color: #fff;
     display: none;
     z-index: 12;
@@ -195,7 +135,7 @@ ul {
 }
 
 #dropmenu_ul {
-    background-color: #ff4b4e;
+    background-color: rgba(255, 75, 78, 0.9);
     text-align: center;
 }
 
@@ -211,7 +151,6 @@ a.dm_main {
 
 .dropmenu ul ul li {
     display: block;
-    background-color: #ff4b4e;
     color: white;
 }
 
@@ -228,5 +167,5 @@ a.dm_main {
 }
 
 .dropmenu ul li a:hover {
-    text-shadow: 3px 3px 5px black;
+    text-shadow: 3px 3px 3px beige;
 }

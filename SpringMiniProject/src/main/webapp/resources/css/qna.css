@@ -49,18 +49,29 @@
     text-decoration: none;
     color: black;
     cursor: pointer;
+    background-color: white;
+    border-radius: 15px;
+    border: 1px solid black;
 }
-
-.myask:hover{
-    font-size: 30px;
+.myask2{
+    font-size: 15px;
+    text-decoration: none;
     color: black;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 15px;
+    border: 1px solid black;
+    margin: auto;
 }
 
 .myaskbox{
-    margin-top: 40px;
+    margin-top: 80px;
+    display: block;
+    text-align: center;
 }
 
 .qnalist{
+    text-align: center;
 }
 
 

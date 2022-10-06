@@ -30,8 +30,8 @@
         }
         #detailbox
         {
-        margin: auto;
-        margin-bottom: 0px;
+            margin: auto;
+            margin-bottom: 0px;
         }
 
         #buttonbox{
@@ -40,67 +40,75 @@
             margin-top: 0;
             margin-bottom: 40px;
         }
+        #listing{
+            margin: auto;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #tpst{
+            font-size: 15px;
+            text-decoration: none;
+            color: grey;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
 <div class="container" style="width: 100%;">
-<div style="margin: 50px;">
-    <table class="table table-bordered" style="width: 600px" id="detailbox">
-        <tr>
-            <td>
-                <h2><b>${dto.subject}</b></h2>
-                <b>${dto.username}</b>
-                <span style="color: gray; font-size: 12px;">
+    <div style="margin: 50px;">
+        <table class="table table-bordered" style="width: 600px" id="detailbox">
+            <tr>
+                <td>
+                    <h2><b>${dto.subject}</b></h2>
+                    <b>${dto.username}</b>
+                    <span style="color: gray; font-size: 12px;">
                <fmt:formatDate value="${dto.writeday}" pattern="yyyy-MM-dd HH:mm"/>
-               &nbsp;&nbsp;
             </span>
+                    <b id="tpst">${dto.qnatype}</b>
+                </td>
+            </tr>
+            <tr height="500">
+                <td>
+                    <p>${dto.content}</p>
+                    <c:if test="${dto.photo!='no'}">
+                        <c:forTokens var="photo" items="${dto.photo}" delims=",">
+                            <img src="../upload/${photo}" width="250"
+                                 onerror="this.style.display='none'">
+                        </c:forTokens>
+                    </c:if>
+                    <div class="aform">
+                        <form id="aform">
+                            <input type="hidden" name="qnanum" value="${dto.qnanum}">
+                            <input type="hidden" name="loginid" value="${sessionScope.loginid}">
+                            <input type="hidden" name="username" value="${sessionScope.username}">
+                        </form>
+                    </div>
+                    <tr>
+            <td style="text-align: center; padding: 20px;" >
+                    <c:if test="${sessionScope.loginok!=null && sessionScope.usernum==dto.usernum}">
+                    <div id="buttonbox" style="width: 250px; margin-top:10px; margin-bottom: 10px;">
+                        <button type="button" class="btn btn-outline" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" onclick="location.href='qnaUpdate?qnanum=${dto.qnanum}&currentPage=${currentPage}'">수정</button>
+                        </c:if>
+                        <c:if test="${sessionScope.loginok!=null && sessionScope.usernum==dto.usernum || sessionScope.loginid=='admin'}">
+                        <button type="button" class="btn btn-outline" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" onclick="location.href='delete?qnanum=${dto.qnanum}&currentPage=${currentPage}'">삭제</button>
+                        </c:if>
+                        <c:if test="${dto.restep==0 && sessionScope.loginid=='test'}">
+                            <button type="button" class="btn btn-outline"  style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" onclick="location.href='qnaForm?qnanum=${dto.qnanum}&regroup=${dto.regroup}&restep=${dto.restep}&relevel=${dto.relevel}&currentPage=${currentPage}'">답글</button>
+                        </c:if>
+                        <%--        <div id="listing">--%>
+                        <button type="button" class="btn btn-outline"  style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" onclick="location.href='qnaList?currentPage=${currentPage}'">목록</button>
+                        <%--        </div>--%>
+                    </div>
             </td>
-        </tr>
-        <tr height="200">
-            <td>
-                <p>${dto.content}</p>
-                <c:if test="${dto.photo!='no'}">
-                    <c:forTokens var="photo" items="${dto.photo}" delims=",">
-                        <img src="../upload/${photo}" width="250"
-                             onerror="this.style.display='none'">
-                    </c:forTokens>
-                </c:if>
-                <%--                <br>--%>
+                    </tr>
 
-                <%--                <i class="far fa-comment-dots"></i>--%>
-                <%--                &nbsp;<b class="banswer">0</b>--%>
-                <%--                <br>--%>
-                <%--                <div class="alist">--%>
-                <%--                    댓글목록--%>
-                <%--                </div>--%>
-                <div class="aform">
-                    <form id="aform">
-                        <input type="hidden" name="qnanum" value="${dto.qnanum}">
-                        <input type="hidden" name="loginid" value="${sessionScope.loginid}">
-                        <input type="hidden" name="username" value="${sessionScope.username}">
-                        <%--                        <div class="input-group">--%>
-                        <%--                            <textarea name="message" id="message" style="width: 400px; height: 60px;" class="form-control"></textarea>--%>
-                        <%--                            <button type="button" class="btn btn-secondary" id="btnasave">등록</button>--%>
-                        <%--                        </div>--%>
-                    </form>
-                </div>
-            </td>
-        </tr>
-    </table>
+                </td>
+            </tr>
+
+        </table>
     </div>
 
-    <!--  로그인중이면서 세션의 아이디와 글의 아이디가 같을 경우에만 수정,삭제 가능 -->
-<c:if test="${sessionScope.loginok!=null && sessionScope.usernum==dto.usernum}">
-    <div id="buttonbox">
-    <button type="button" onclick="location.href='qnaUpdate?qnanum=${dto.qnanum}&currentPage=${currentPage}'">수정</button>
-    <button type="button" onclick="location.href='delete?qnanum=${dto.qnanum}&currentPage=${currentPage}'">삭제</button>
-    </c:if>
-    <c:if test="${dto.restep==0}">
-    <button type="button" onclick="location.href='qnaForm?qnanum=${dto.qnanum}&regroup=${dto.regroup}&restep=${dto.restep}&relevel=${dto.relevel}&currentPage=${currentPage}'">답글</button>
-    </c:if>
-    <button type="button" onclick="location.href='qnaList?currentPage=${currentPage}'">목록</button>
-    </div>
-</div>
+
 </div>
 </body>
 </html>

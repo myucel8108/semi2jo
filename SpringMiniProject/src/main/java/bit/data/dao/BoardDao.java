@@ -64,4 +64,13 @@ public class BoardDao implements BoardDaoInter{
     public void updateDecreLikeCount(int boardnum) {
         session.update(ns+"updateDecreLikeCount", boardnum);
     }
+
+    @Override
+    public int moveToPrevBoard(int boardnum) {
+        return session.selectOne(ns+"moveToPrevBoard", boardnum);
+    }
+    @Override
+    public int moveToNextBoard(int boardnum) {
+        return session.selectOne(ns+"moveToNextBoard", boardnum);
+    }
 }

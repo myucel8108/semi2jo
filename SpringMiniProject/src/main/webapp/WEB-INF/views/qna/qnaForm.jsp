@@ -27,7 +27,7 @@
 <form action="insert" method="post" enctype="multipart/form-data">
 
         <input type="hidden" name="usernum" value="${sessionScope.usernum}">
-        <input type="hidden" name="username" value="${sessionScope.username }">
+        <input type="hidden" name="username" value="${sessionScope.username}">
     <input type="hidden" name="qnanum" value="${qnanum}">
     <input type="hidden" name="regroup" value="${regroup}">
     <input type="hidden" name="relevel" value="${relevel}">
@@ -36,18 +36,9 @@
 
 
     <table class="table table-bordered" style="width: 500px;" id="formbox">
-        <tr>
-            <th style="width: 100px;">제목</th>
-            <td>
-                <input type="text" name="subject" class="form-control" required="required">
-            </td>
-        </tr>
-        <tr>
-            <th style="width: 100px;">비밀번호</th>
-            <td>
-                <input type="password" name="pass" class="form-control" required="required">
-            </td>
-        </tr>
+
+
+
 
         <c:if test="${qnanum==0}">
             <tr>
@@ -62,10 +53,20 @@
                     </select>
                 </td>
             </tr>
+            <tr>
+                <th style="width: 100px;">비밀번호</th>
+                <td>
+                    <input type="password" name="pass" class="form-control" required="required">
+                </td>
+            </tr>
+
+
         </c:if>
 
         <c:if test="${qnanum>0}">
+            <input type="hidden" name="pass">
             <input type="hidden" name="qnatype">
+
         </c:if>
         <tr>
             <th style="width: 100px;">사진</th>
@@ -107,7 +108,7 @@
         </tr>
         <tr>
             <td colspan="2" align="center">
-                <button type="submit" >업로드</button>
+                <button type="submit" class="btn btn-outline" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" >문의등록</button>
             </td>
         </tr>
     </table>

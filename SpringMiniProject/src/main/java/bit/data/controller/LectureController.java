@@ -16,19 +16,5 @@ public class LectureController {
     @Autowired
     LectureServiceInter lectureService;
 
-    @GetMapping("/lecture/lectureList")
-    public String lecturelist(Model model)
-    {
-    		List<LectureDto> list= lectureService.getAllLecture();
-    		model.addAttribute("list",list);
-    		
-        return "/main/lecture/lectureList";
-    }
-    //과목 상세 보기
-    @GetMapping("/lecture/lectureDetail")
-    public String lecturedetail(Model model)
-    {
-        return "/main/lecture/lectureDetail";
-    }
-
+    
 }

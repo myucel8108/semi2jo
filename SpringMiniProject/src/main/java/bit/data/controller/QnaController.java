@@ -27,6 +27,9 @@ public class QnaController {
     @Autowired
     UserServiceInter userService;
 
+
+
+
     @GetMapping("/qna/qnaForm") //게시판 작성폼
     public String qnaForm(
             @RequestParam(defaultValue="0") int qnanum,
@@ -79,10 +82,10 @@ public class QnaController {
         String path = request.getSession().getServletContext().getRealPath("/resources/upload");
 
 //        loginid 에 해당하는 username 얻기
-//        String nickname=userService.getDataById(dto.getUserid()).getNickname();
-//        int usernum=userService.getDataById(dto.getUserid()).getUsernum();
+        String username=userService.getDataByNum(dto.getUsernum()).getUsername();
+//        int usernum=userService.getDataById(dto.getUsername()).getUsernum();
 //        dto.setUsernum(usernum);
-//        dto.setNickname(nickname);
+        dto.setUsername(username);
 
         if (upload.get(0).getOriginalFilename().equals("")) {
             dto.setPhoto("no");
@@ -116,7 +119,13 @@ public class QnaController {
             Model model
     )
     {
-        int totalCount=qnaService.getTotalCount(sc,sw);
+        //sw는 유저 아이디임으로 usernum을 얻어야한다
+        String usernum=null;
+        if(sw!=null){
+             usernum=String.valueOf(userService.getDataById(sw).getUsernum());
+//            System.out.println("111="+sw+","+usernum);
+        }
+        int totalCount=qnaService.getTotalCount(sc,usernum);
         int perPage=10;
         int perBlock=5;
         int startNum;
@@ -136,7 +145,7 @@ public class QnaController {
 
         no=totalCount-(currentPage-1)*perPage;
 
-        List<QnaDto> list = qnaService.getPagingList(sc, sw, startNum, perPage);
+        List<QnaDto> list = qnaService.getPagingList(sc, usernum, startNum, perPage);
         model.addAttribute("list", list);
         model.addAttribute("totalCount", totalCount);
         model.addAttribute("currentPage", currentPage);

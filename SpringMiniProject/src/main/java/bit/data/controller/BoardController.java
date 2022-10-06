@@ -106,7 +106,7 @@ public class BoardController {
     )
     {
         int totalCount=boardService.getTotalCount(sc,sw);
-        int perPage=10;
+        int perPage=15;
         int perBlock=5;
         int startNum;
         int startPage;
@@ -187,5 +187,10 @@ public class BoardController {
 
         return "/main/board/boardUpdate";
     }
+//    @GetMapping("/board/preboard")
+//    public String moveToPrevBoard(BoardDto dto, int currentPage, int boardnum)
+//    {
+//        return "redirect:boardDetail?boardnum="+dto.getBoardnum()+"&currentPage="+currentPage;
+//    }
 
 }

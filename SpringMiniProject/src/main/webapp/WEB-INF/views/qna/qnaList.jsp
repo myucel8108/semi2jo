@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,23 +35,27 @@
 <body>
 <div class="container" style="width: 100%;">
         <div class="myaskbox">
-           <a href="qnaList?searchcolumn=id&searchword=${sessionScope.loginid }" class="myask">나의문의</a>
+            <button type="button" onclick="location.href='qnaList?'" class="myask2">전체글보기</button>&nbsp;
+            <c:if test="${sessionScope.loginok!=null}">
+            <button type="button" onclick="location.href='qnaList?searchcolumn=usernum&searchword=${sessionScope.loginid}'" class="myask">나의문의보기</button>
+            </c:if>
         </div>
+    <br>
 <div class="qnalist" style="margin-top: 10px; ">
     <h3 class="hname-tm">총 ${totalCount} 개의 글이 있습니다</h3>
 </div>
     <br><br>
     <table class="table table-bordered">
         <tr class="listbox-tm">
-            <th style="width: 50px; text-align:center;">번호</th>
-            <th style="width: 250px;text-align:center;">제목</th>
-            <th style="width: 80px;text-align:center;">이름</th>
-            <th style="width: 110px;text-align:center;">작성일</th>
+            <th style="width: 30px; text-align:center;">번호</th>
+            <th style="width: 100px;text-align:center;">제목</th>
+            <th style="width: 30px;text-align:center;">작성자</th>
+            <th style="width: 50px;text-align:center;">작성일</th>
         </tr>
         <c:if test="${totalCount==0 }">
             <tr>
                 <td colspan="6" align="center">
-                    <h4> 등록된 글이 없습니다 </h4>
+                    <h5> 등록된 문의글이 없습니다 </h5>
                 </td>
             </tr>
         </c:if>
@@ -66,19 +71,38 @@
                         </c:forEach>
                         <!-- 답글일 경우 답글 이미지 넣기 -->
                         <c:if test="${dto.relevel>0}">
-                            <img src="../image/ree.png">
+
+                            <img src="../image/ree.png" width="20px;" style="background-color: white">
+
+                            <img src="../image/ans.jpg" width="20px;" style="background-color: white">
+                            <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm"></a>
+                            <img src="../image/lock2.png" width="10px;" style="background-color: white">
                         </c:if>
+
+
                         <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm">
+
+                            <c:if test="${dto.relevel==0}">
+                            <img src="../image/lockimg.jpg" width="10px;" style="background-color: white">
+                            </c:if>
                                 ${dto.subject}
                             <c:if test="${dto.photo!='no'}">
                                 <i class="fa fa-picture-o"></i>
                             </c:if>
-
+                            <c:if test="${dto.relevel>0}">
+                                <b style="color: orange; text-decoration: none;">답변완료</b>
+                            </c:if>
+                                ${dto.qnatype}
                         </a>
-
-
                     </td>
-                    <td align="center">${dto.username}</td>
+
+                    <c:set var="username" value="${resultInfo.dto.username}"/>
+                    <c:set var="totalLength" value="${fn:length(dto.username)}"/>
+                    <c:set var="first" value="${fn:substring(dto.username, 0, 1)}"/>
+                    <c:set var="last" value="${fn:substring(dto.username, 3, totalLength)}"/>
+                    <td align="center"><c:if test="${!empty dto.username}"><c:out value="${first}**${last}"/>
+<%--                    ${dto.username}</td>--%>
+                    </c:if>
                     <td align="center">
                         <fmt:formatDate value="${dto.writeday}" pattern="yyyy-MM-dd"/>
                     </td>
@@ -87,13 +111,14 @@
         </c:if>
         <!-- 글쓰기 버튼은 로그인을 해야만 보인다 -->
         <c:if test="${sessionScope.loginok!=null}">
-            <tr>
+        <tr>
                 <td colspan="6" align="right" style= "text-align:center" >
                     <button type="button" class="btn btn-outline"
-                            onclick="location.href='qnaForm'" id="writecolor" >글쓰기</button>
+                            onclick="location.href='qnaForm'" id="writecolor" >문의하기</button>
 
                 </td>
-            </tr>
+        </tr>
+
         </c:if>
     </table>
 </div>

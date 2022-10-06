@@ -71,4 +71,13 @@ public class BoardService implements BoardServiceInter{
     public void updateDecreLikeCount(int boardnum) {
         boardDao.updateDecreLikeCount(boardnum);
     }
+
+    @Override
+    public int moveToPrevBoard(int boardnum) {
+        return boardDao.moveToPrevBoard(boardnum);
+    }
+    @Override
+    public int moveToNextBoard(int boardnum) {
+        return boardDao.moveToNextBoard(boardnum);
+    }
 }
