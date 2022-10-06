@@ -3,6 +3,7 @@ package bit.data.controller;
 import bit.data.dto.ReboardDto;
 import bit.data.service.ReboardService;
 import bit.data.service.ReboardServiceInter;
+import bit.data.service.UserServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,13 +20,18 @@ public class ReboardController {
     @Autowired
     ReboardServiceInter reboardService;
 
+    @Autowired
+    UserServiceInter userService;
+
     @PostMapping("/insert")
     @ResponseBody
     public void insert(ReboardDto dto)
     {
         //loging한 usernum에 해당하는 nickname 얻어서 dto에 넣기
-//        String nickname=reboardService.selectByNum(dto.getUserid()).getNickname();
-//        dto.setNickname(nickname);
+        String nickname=userService.getDataById(dto.getUserid()).getNickname();
+        dto.setNickname(nickname);
+        String profile = userService.getDataById(dto.getUserid()).getPhoto();
+        dto.setPhoto(profile);
         reboardService.insertReboard(dto);
     }
     @GetMapping("/list")

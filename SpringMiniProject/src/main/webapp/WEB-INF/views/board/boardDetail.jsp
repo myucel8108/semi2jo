@@ -8,9 +8,7 @@
     <title>Insert title here</title>
 
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link
-            href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap"
-            rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Yeon+Sung&display=swap" rel="stylesheet">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <%--     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>--%>
@@ -18,12 +16,17 @@
 
 
     <style type="text/css">
-
+        *{
+            font-family: Noto Sans KR;
+        }
         span.likes {
             cursor: pointer;
         }
 
         .likeusericon{
+            cursor: pointer;
+        }
+        .redelete{
             cursor: pointer;
         }
     </style>
@@ -110,30 +113,29 @@
                     $("b.banswer").text(res.length);
                     $.each(res, function (i, elt){
                         s+="<div>"
-                        if(elt.photo!=null) {
-                            s+="<img src='../upload/${userphoto}' style='width: 30px; height: 30px;' class='rounded-circle' hspace='10'>";
-                        }
                         if(elt.photo==null) {
                             s+="<img src='../image/noprofilepicture.png' style='width: 30px; height: 30px;' class='rounded-circle' hspace='10'>";
                         }
-                        s+="<b>"+elt.nickname+"</b>"
-                        if (writeid==elt.userid){
-                            s+="<span class='writer'>(작성자)</span><br>";
+                        if(elt.photo!=null) {
+                            s+="<img src='../upload/"+"'elt.profile'"+"' style='width: 30px; height: 30px;' class='rounded-circle' hspace='10'>";
                         }
-                        s+="<br>";
-                        s+="<p>"+elt.recontent+"&nbsp;&nbsp;";
-                        s+="<span class='day' style='color:gray;'>"+elt.writeday+"&nbsp;";
+                        s+="<b>"+elt.nickname+"("+elt.userid+")"+"</b>";
+                        if (writeid==elt.userid){
+                            s+="<span class='writer'>(작성자)</span>";
+                        }
+                        s+="<br><br>";
+                        s+="<pre>&nbsp;&nbsp;<b>"+elt.recontent+"&nbsp;&nbsp;";
+                        s+="</b><span class='day' style='color:gray;'>"+elt.writeday+"&nbsp;";
                         if(loginok=='yes' && loginid==elt.userid){
                             s+='<i class="fa fa-close redelete" style="font-size:15px; color: black" reboardnum='+elt.reboardnum+'></i>';
                         }
-                        s+="</span></p></div><hr>"
+                        s+="</span></pre></div><hr>"
                     });
                     $("div.alist").html(s);
                 }
             });
         }
     </script>
-
 </head>
 <body>
 
@@ -157,7 +159,7 @@
     </div>
 </div>--%>
 
-<div class="container" style="width: 100%; padding: 100px;">
+<div class="container" style="width: 1000px; padding: 100px;">
     <table class="table table-bordered" style="width: 100%;">
         <tr>
             <td>
@@ -176,18 +178,18 @@
         </tr>
         <tr height="200">
             <td>
-                <p>${dto.content}</p>
+                <pre><b>${dto.content}</b></pre>
                 <c:if test="${dto.photo!='no'}">
                     <c:forTokens var="photo" items="${dto.photo}" delims=",">
-                        <img src="../upload/${photo}" width="250"
+                        <img src="../upload/${photo}" width="400"
                              onerror="this.style.display='none'">
                     </c:forTokens>
                 </c:if>
                 <br><br>
                 <span class="likes">
                 <i class='far fa-thumbs-up'></i>
-				</span>
-                좋아요
+				</span><b>
+                좋아요</b>
                 &nbsp;
                 <span class="likeusericon" data-bs-toggle="modal" data-bs-target="#likeuserModal">
                 <i class='fas fa-user-alt' style='font-size:16px'></i>
@@ -197,16 +199,15 @@
                 &nbsp;&nbsp;
                 <i class="far fa-comment-dots"></i>
                 <b class="banswer">0</b>
-                <br><br>
-                <div class="alist">
-                    댓글
-                </div>
+                <br><hr>
+                <div class="alist"></div>
                 <c:if test="${sessionScope.loginok!=null}">
                 <div class="aform">
                     <form id="aform">
                         <input type="hidden" name="boardnum" value="${dto.boardnum}">
                         <input type="hidden" name="userid" value="${sessionScope.loginid}">
-                        <input type="hidden" name="nickname" value="${sessionScope.loginname}">
+                        <input type="hidden" name="nickname" value="${dto.nickname}">
+                        <input type="hidden" name="profile" value="${dto.photo}">
                         <div class="input-group">
                             <textarea name="recontent" id="recontent" style="width: 400px; height: 100px;" class="form-control"></textarea>
                             <button type="button" id="btnreboard">등록</button>
@@ -214,11 +215,13 @@
                     </form>
                 </div>
                 </c:if>
+                <div style="text-align: center; float: bottom;">
                 <button type="button" onclick="location.href='boardFree?currentPage=${currentPage}'">목록</button>
                 <c:if test="${sessionScope.loginok!=null && sessionScope.loginid==dto.userid}">
                 <button type="button" onclick="location.href='boardUpdate?boardnum=${dto.boardnum}&currentPage=${currentPage}'">수정</button>
                 <button type="button" onclick="location.href='delete?boardnum=${dto.boardnum}&currentPage=${currentPage}'">삭제</button>
                 </c:if>
+                </div>
             </td>
         </tr>
     </table>

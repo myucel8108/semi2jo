@@ -19,6 +19,10 @@ public interface BoardDaoInter {
 
     public void updateIncreLikeCount(int boardnum);
     public void updateDecreLikeCount(int boardnum);
+    public int moveToPrevBoard(int boardnum);
+    public int moveToNextBoard(int boardnum);
+
+
 
 
 
