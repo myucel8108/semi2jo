@@ -8,17 +8,25 @@
     <title>Insert title here</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/manager/userlist.css">
+    <link rel="stylesheet" href="css/manager/userList.css">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-    <link rel="stylesheet" href="css/manager/ruang-admin.min.css">
     <style type="text/css">
         td>a{
             text-decoration: none;
         }
+
+        .container{
+            height: 85vh;
+        }
+
+        ul.pagination{
+            justify-content: right;
+        }
     </style>
 </head>
-<%--<body>--%>
-    <div class="container bootstrap snippets bootdey" style="width: 100%">
+<body>
+<c:set var="root" value="<%=request.getContextPath()%>"></c:set>
+    <div class="container bootstrap snippets bootdey">
         <div class="row">
             <div class="col-lg-12">
                 <div class="main-box no-header clearfix">
@@ -39,14 +47,14 @@
                                     <c:forEach var="dto" items="${list}">
                                         <tr>
                                             <td>
-                                                <c:if test="${dto.photo!=null}">
+                                                <c:if test="${dto.userphoto!=null}">
                                                     <img src="https://bootdey.com/img/Content/user_1.jpg">
                                                 </c:if>
-                                                <c:if test="${dto.photo==null}">
+                                                <c:if test="${dto.userphoto==null}">
                                                     <img src="resources/image/noimage2.png">
                                                 </c:if>
                                                 <a href="#" class="user-link">${dto.username}</a>
-                                                <span class="user-subhead">${dto.userid}</span>
+                                                <span class="user-subhead">${dto.nickname}</span>
                                             </td>
                                             <td>${dto.hp}</td>
                                             <td class="text-center">
@@ -56,13 +64,13 @@
                                                 <a href="#">${dto.email}</a>
                                             </td>
                                             <td style="width: 20%;">
-                                                <a href="#" class="table-link text-warning">
+                                                <a href="${root}/userdetail" class="table-link text-warning">
                                                         <span class="fa-stack">
                                                             <i class="fa fa-square fa-stack-2x"></i>
                                                             <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
                                                         </span>
                                                 </a>
-                                                <a href="#" class="table-link text-info">
+                                                <a href="${root}/updateuserform" class="table-link text-info">
                                                         <span class="fa-stack">
                                                             <i class="fa fa-square fa-stack-2x"></i>
                                                             <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>

@@ -54,7 +54,7 @@
     /*	border: 1px solid magenta;*/
     /*	justify-content: center;*/
     /*}*/
-    
+
     /*#change {*/
     /*	float: right;*/
     /*	width: 90%;*/
