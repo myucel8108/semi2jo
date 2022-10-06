@@ -69,6 +69,7 @@
             </tr>
             <tr height="500">
                 <td>
+<%--                    <c:if test="${qnanum}"--%>
                     <p>${dto.content}</p>
                     <c:if test="${dto.photo!='no'}">
                         <c:forTokens var="photo" items="${dto.photo}" delims=",">
