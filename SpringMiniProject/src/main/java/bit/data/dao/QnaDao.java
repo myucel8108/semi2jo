@@ -22,9 +22,9 @@ public class QnaDao implements QnaDaoInter{
     }
 
     @Override
-    public int getTotalCount(Map<String, String> map) {
+    public int getTotalCount(int usernum) {
         // TODO Auto-generated method stub
-        return session.selectOne(ns+"getTotalCount", map);
+        return session.selectOne(ns+"getTotalCount", usernum);
     }
 
     @Override
