@@ -22,8 +22,8 @@
     <select id="checkLoginId" parameterType="String" resultType="String">
         select usernum from user where userid=#{userid}
     </select>
-    <!--usernum으로 회원 데이터 가져옴-->
 
+    <!--usernum으로 회원 데이터 가져옴-->
     <!--가져온 데이터 로그인 세션에 저장-->
     <select id="getDataByNum" parameterType="int" resultType="userDto">
         select * from user where usernum=#{usernum}
@@ -48,18 +48,18 @@
         <if test="searchword!=null">
             where username like concat('%',#{searchword},'%')
         </if>
-        order by usernum desc limit #{startnum},#{perpage}
+        order by username asc limit #{startnum},#{perpage}
     </select>
 
     <!--회원 프로필사진변경 (usernum)으로 가져옴-->
     <update id="updateUserPhoto" parameterType="Map">
-        update user set photo=#{photo} where usernum=#{usernum}
+        update user set userphoto=#{userphoto} where usernum=#{usernum}
     </update>
 
     <!--회원 정보변경 (usernum)으로 가져옴-->
     <update id="updateUser" parameterType="userDto">
-        update user set username=#{username},nickname=#{nickname},email=#{email},
-                        addr=#{addr},hp=#{hp},birth=#{birth} where usernum=#{usernum}
+        update user set email=#{email}, userpass=#{userpass}, username=#{username}, nickname=#{nickname},
+                        userphoto=#{userphoto}, addr=#{addr}, hp=#{hp}, birth=#{birth} where usernum=#{usernum}
     </update>
 
     <!--회원 삭제 (usernum)으로 가져옴-->

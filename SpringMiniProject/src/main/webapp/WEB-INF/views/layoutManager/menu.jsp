@@ -79,7 +79,7 @@
     </div>
 <%--    User 메뉴--%>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
+        <a class="nav-link collapsed" href="${root}/userlist" data-toggle="collapse" data-target="#collapseBootstrap"
            aria-expanded="true" aria-controls="collapseBootstrap">
             <i class="far fa-fw fa-window-maximize"></i>
             <span>회원관리</span>
@@ -93,7 +93,7 @@
     </li>
 <%--    Lecture 메뉴--%>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
+        <a class="nav-link collapsed" href="${root}/lecturelist" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
            aria-controls="collapseForm">
             <i class="fab fa-fw fa-wpforms"></i>
             <span>강좌</span>

@@ -66,8 +66,6 @@
     	float: right;
     	width: 90%;
     	height: 80%;
-    	border: 1px solid aqua;
-		background-color: rgb(250, 250, 250);
     }
     
     a:link a:visited {
@@ -84,13 +82,13 @@
 		<span class="change" id="menu">
 			<tiles:insertAttribute name="menu"/>
 		</span>
-		<sapn class="change" id="header">
+		<div class="change" id="header">
 			<tiles:insertAttribute name="header"/>
-		</sapn>
+		</div>
 
-		<span class="change" id="change">
+		<div class="change" id="change">
 			<tiles:insertAttribute name="change"/>
-		</span>
+		</div>
 	</div>
 </body>
 </html>

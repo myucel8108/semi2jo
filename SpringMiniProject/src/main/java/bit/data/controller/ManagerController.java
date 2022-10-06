@@ -85,6 +85,15 @@ public class ManagerController {
 
     }
 
+    @GetMapping("/userdetail")
+    public String userDetail(){
+        return "/manager/manager/userDetail";
+    }
+    @GetMapping("/updateuserform")
+    public String updateUser(){
+        return "/manager/manager/updateUserForm";
+    }
+
 
     @GetMapping("/lecturelist")
     public String getLecturelist(@RequestParam(defaultValue = "1") int currentPage,
