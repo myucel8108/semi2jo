@@ -9,20 +9,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Management Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<c:set var="root" value="<%=request.getContextPath() %>"></c:set>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-<%--	<link href="css/manager/manager.css" rel="stylesheet">--%>
-	<script src="js/manager/manager.js"></script>
-	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="css/manager/manager.css" rel="stylesheet">
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-	<script src="js/ruang-admin.min.js"></script>
-	<script src="vendor/chart.js/Chart.min.js"></script>
-	<script src="js/manager/manager.js"></script>
+	<script src="${root}/js/manager/manager.js"></script>
+<%--	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">--%>
+	<link href="${root}/css/manager/manager.css" rel="stylesheet">
 	<style type="text/css">
 
     @font-face {
@@ -61,12 +54,14 @@
     /*	border: 1px solid magenta;*/
     /*	justify-content: center;*/
     /*}*/
-    
-    #change {
-    	float: right;
-    	width: 90%;
-    	height: 80%;
-    }
+
+    /*#change {*/
+    /*	float: right;*/
+    /*	width: 90%;*/
+    /*	height: 80%;*/
+    /*	border: 1px solid aqua;*/
+	/*	background-color: rgb(250, 250, 250);*/
+    /*}*/
     
     a:link a:visited {
     	text-decoration: none;

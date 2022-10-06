@@ -21,10 +21,10 @@ public class LoginService implements LoginServiceInter{
     }
 
     @Override
-    public String checkLoginIdPass(String loginid, String loginpass) {
+    public String checkLoginIdPass(String email, String userpass) {
         Map<String,String> map = new HashMap<String, String>();
-        map.put("loginid",loginid);
-        map.put("loginpass",loginpass);
+        map.put("email",email);
+        map.put("userpass",userpass);
         return loginDao.checkLoginIdPass(map);
     }
 

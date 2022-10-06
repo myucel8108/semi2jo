@@ -40,6 +40,7 @@ public class BoardController {
         return "/main/board/boardForm";
     }
 
+
     @GetMapping("/board/boardDetail") //게시판 디테일
     public ModelAndView boardDetail(int boardnum, int currentPage){
 
@@ -51,7 +52,7 @@ public class BoardController {
 
         String userphoto;
         try {
-            userphoto = userService.getDataById(dto.getUserid()).getPhoto();
+            userphoto = userService.getDataByNum(dto.getUsernum()).getUserphoto(); //프사임
         }catch (NullPointerException e){
             userphoto="no";
         }
@@ -63,6 +64,7 @@ public class BoardController {
 
         return mview;
     }
+
 
     @PostMapping("/board/insert") //게시판 추가
     public String insert(BoardDto dto, List<MultipartFile>upload, HttpServletRequest request)

@@ -2,18 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bit.data.dao.LikeBoardDao">
   <select id="checkBoardLike" parameterType="Map" resultType="int"> /**/
-    select count(*) from likeboard where boardnum=#{boardnum} and userid=#{userid}
+    select count(*) from likeboard where boardnum=#{boardnum} and usernum=#{usernum}
   </select>
 <select id="stateBoardLike" parameterType="Map" resultType="int"> /*좋아요상태: 좋아요가 눌러져있는지 안눌러져있는지*/
-    select likestate from likeboard where boardnum=#{boardnum} and userid=#{userid}
+    select likestate from likeboard where boardnum=#{boardnum} and usernum=#{usernum}
 </select>
 <insert id="insertLikeBoard" parameterType="likeBoardDto"> /*좋아요하기*/
-    insert into likeboard values (null,#{userid}, #{boardnum}, #{likestate});
+    insert into likeboard values (null,#{usernum}, #{boardnum}, #{likestate});
 </insert>
 <update id="updateLikeState" parameterType="Map"> /*좋아요 수정*/
-    update likeboard set likestate=#{likestate} where boardnum=#{boardnum} and userid=#{userid}
+    update likeboard set likestate=#{likestate} where boardnum=#{boardnum} and usernum=#{usernum}
 </update>
-    <select id="likeUserAll" parameterType="int" resultType="String"> /*좋아요 누른사람 출력*/
-        select userid from likeboard where boardnum=#{boardnum} and likestate=1
+    <select id="likeUserAll" parameterType="int" resultType="int"> /*좋아요 누른사람 출력*/
+        select usernum from likeboard where boardnum=#{boardnum} and likestate=1
     </select>
 </mapper>

@@ -39,15 +39,15 @@ public class UserService implements UserServiceInter{
     }
 
     @Override
-    public UserDto getDataById(String userid) {
-        return userDao.getDataById(userid);
+    public UserDto getDataById(String email) {
+        return userDao.getDataById(email);
     }
 
     @Override
-    public void updateUserPhoto(int usernum, String photo) {
+    public void updateUserPhoto(int usernum, String userphoto) {
         Map<String, Object> map= new HashMap<>();
         map.put("usernum",usernum);
-        map.put("photo", photo);
+        map.put("userphoto",userphoto);
         userDao.updateUserPhoto(map);
     }
 

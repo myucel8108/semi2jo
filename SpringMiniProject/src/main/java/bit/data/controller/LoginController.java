@@ -43,10 +43,12 @@ public class LoginController {
     //로그인 하기
     @GetMapping("/loginA")
     @ResponseBody
-    public Map<String, Object> loginprocess(String loginid, String loginpass, HttpSession session){
+    public Map<String, Object> loginprocess(String email, String userpass, HttpSession session){
         Map<String, Object> map=new HashMap<String, Object>();
-        String result=loginService.checkLoginIdPass(loginid, loginpass);
-        System.out.println("test1");
+        String result=loginService.checkLoginIdPass(email, userpass);
+        System.out.println(email);
+        System.out.println(userpass);
+        System.out.println(result);
         if(result!=null){
             System.out.println(result);
             int usernum = Integer.parseInt(result);
@@ -55,10 +57,12 @@ public class LoginController {
             UserDto udto=loginService.getDataByNum(usernum);
             System.out.println("test3");
             session.setAttribute("loginok", "yes");
-            session.setAttribute("loginid", loginid);
             session.setAttribute("loginname", udto.getUsername());
             session.setAttribute("usernum", usernum);
-            session.setAttribute("photo", udto.getPhoto());
+            session.setAttribute("photo", udto.getUserphoto());
+
+            session.setAttribute("email",email);
+            session.setAttribute("usertype",udto.getUsertype());
         }
         String temp = (result!=null?"success":"fail");
         map.put("result",temp);
@@ -80,7 +84,7 @@ public class LoginController {
             session.setMaxInactiveInterval(60*60*4);
             UserDto udto=loginService.getDataByNum(usernum);
             session.setAttribute("loginok", "yes");
-            session.setAttribute("loginid", udto.getUserid());
+            session.setAttribute("loginid", udto.getEmail());
             session.setAttribute("loginname", udto.getUsername());
             session.setAttribute("usernum", udto.getUsernum());
         }
