@@ -35,7 +35,7 @@ public class LikeBoardDao implements LikeBoardDaoInter{
     }
 
     @Override
-    public List<String> likeUserAll(int boardnum) {
+    public List<Integer> likeUserAll(int boardnum) {
         return session.selectList("likeUserAll", boardnum);
     }
 }

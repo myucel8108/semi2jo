@@ -21,7 +21,7 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String home() {
-		return "/manager/layoutManager/change";
+		return "/main/layoutMain/change";
 	}
 
 	@GetMapping("/student/myCart")

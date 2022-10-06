@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 public class ReboardDto {
     private int reboardnum;
     private int boardnum;
-    private String userid;
+    private int usernum;
     private String nickname;
     private String photo;
     private String recontent;
