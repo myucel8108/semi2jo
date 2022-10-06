@@ -26,21 +26,20 @@ public class LoginController {
     @Autowired
     LoginServiceInter loginService;
 
-    //로그인 페이지로 이동
+
     @GetMapping("/loginF")
     public String loginF(){
         return "/main/account/accountForm";
     }
 
 
-    //회원가입 페이지 이동
+
     @GetMapping("/insertAccountF")
     public String insertAccount(){
 
         return "/main/account/accountAddForm";
     }
 
-    //로그인 하기
     @GetMapping("/loginA")
     @ResponseBody
     public Map<String, Object> loginprocess(String email, String userpass, HttpSession session){
@@ -70,7 +69,7 @@ public class LoginController {
         return map;
     }
 
-//    간편 로그인
+
     @GetMapping("/loginByApi")
     @ResponseBody
     public Map<String, Object> loginByApi(String userid, HttpSession session){
@@ -94,7 +93,7 @@ public class LoginController {
         return map;
     }
 
-    // 로그아웃
+
     @GetMapping("/logout")
     @ResponseBody
     public void logout(HttpSession session) {
@@ -106,18 +105,12 @@ public class LoginController {
 
 
 
-    //회원가입
+
     @PostMapping("/insertAccountA")
     @ResponseBody
     public String insert(UserDto dto) {
         System.out.println("acountA");
-        //톰켓에 올라간 upload 폴더 경로 구하기
-//        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
-//        System.out.println(path);
-//        //저장할 파일명 구하기
-//        String fileName = ChangeName.getChangeFileName(photo.getOriginalFilename());
-//        //dto�쓽 photo�쓽 寃쎈줈
-//        dto.setPhoto(fileName);
+
 
 
         loginService.insertUser(dto);
@@ -125,14 +118,14 @@ public class LoginController {
 //        //upload
 //        try {
 //            photo.transferTo(new File(path+"/"+fileName));
-//            session.setAttribute("loginphoto", fileName);	//세션의 사진 변경
+//            session.setAttribute("loginphoto", fileName);	//�꽭�뀡�쓽 �궗吏� 蹂�寃�
 //        } catch (IOException e) {
 //            throw new RuntimeException(e);
 //        }
         return "redirect:loginF";
     }
 
-    //회원가입 시 아이디 중복체크
+
     @GetMapping("/checkId")
     @ResponseBody
     public Map<String, Integer> checkId(String userid){
