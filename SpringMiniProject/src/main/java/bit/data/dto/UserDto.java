@@ -16,5 +16,5 @@ public class UserDto {
     private String addr;
     private String hp;
     private Timestamp lastlogin;
-    private Timestamp birth;
+    private String birth;
 }
