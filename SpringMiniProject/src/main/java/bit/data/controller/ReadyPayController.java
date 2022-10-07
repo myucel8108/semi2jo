@@ -27,27 +27,43 @@ import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
 import bit.data.dto.BoardDto;
 import bit.data.dto.LectureDto;
+import bit.data.dto.MyLectureDto;
 import bit.data.dto.ReadyPayDto;
+import bit.data.service.LecDetailServiceInter;
+import bit.data.service.MyLectureServiceInter;
 import bit.data.service.ReadyPayService;
+import bit.data.service.UserServiceInter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 public class ReadyPayController {
 
-	 @Autowired ReadyPayService readypayservice;
+	  @Autowired
+	  MyLectureServiceInter myLectureService;    
+	  @Autowired
+	  LecDetailServiceInter lecDetailService;
+	  @Autowired
+	  UserServiceInter userService;
+	 @Autowired 
+	 ReadyPayService readypayservice;
+	 
+	 MyLectureDto dto = new MyLectureDto();
+	 
 	  
-	 @GetMapping("/lecture/lectureDetail") public ModelAndView detail(int
-	  lecdenum) { ModelAndView mview = new ModelAndView();
+	 @GetMapping("/lecture/lectureDetail")
+	 public ModelAndView detail(int lecdenum) {
+		 
+		 ModelAndView mview = new ModelAndView();
 	  
-	  //num에서 dto 로 보내기 
-	  ReadyPayDto dto =  readypayservice.selectByLecdeNum(lecdenum);
+	 	ReadyPayDto dto =  readypayservice.selectByLecdeNum(lecdenum);
 	 
 	  	mview.addObject("dto", dto);
 	 
 	  	mview.setViewName("/main/lecture/lectureDetail");
 	  
 	  return mview; 
+	  
 	  }
 	  
 	  @GetMapping("/lecture/lectureList") public String lecturelist(Model model) {
@@ -87,8 +103,11 @@ public class ReadyPayController {
 	  System.out.println("success:"+success);
 	  
 	  if(success == true) {
-	  //db select (select amount from oder_table where merchant_uid=?)
-		 
+	  
+	
+		myLectureService.updatePayok(dto);
+		    	
+		    
 
 	  String api_key ="4743784663216508"; 
 	  String api_secret= "jvIqx7xwB2bVbp7T4XGai7r32NnRx6vRvLcUhfQTngSnnYMdqVEjG7a98sIiiatXtapTUMtA5bqz8dhQ";
@@ -98,6 +117,7 @@ public class ReadyPayController {
 	  IamportResponse<Payment> response =ic.paymentByImpUid(imp_uid);
 	  BigDecimal import_amount = response.getResponse().getAmount();
 	  //dbsave 
+	  
 	  
 	  } 
 	  else { 
