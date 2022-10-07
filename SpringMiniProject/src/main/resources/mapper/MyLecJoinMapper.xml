@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bit.data.dao.MyLecJoinDao">
-    <select id="getMyLecListByNum" parameterType="int" resultType="myLecJoinDto">
-        SELECT c.mylecnum, c.usernum, a.lectypea, a.lecname, a.teaname, b.roomnum, b.lectime, b.lecday, b.lecmonth, b.lecyear
-            from lecture a, lecdetail b, mylecture c
-            where a.lecnum=b.lecnum and b.lecdenum=c.lecdenum
-            and c.usernum=#{usernum}
+    <select id="getMyLecListByNum" parameterType="Map" resultType="myLecJoinDto">
+        SELECT c.mylecnum, c.usernum, c.lecdenum, c.payok, b.price, a.lectypea, a.lectypeb, a.lecname, a.teaname, b.roomnum, b.lectime, b.lecday, b.lecmonth, b.lecyear
+        from lecture a, lecdetail b, mylecture c
+        where a.lecnum=b.lecnum and b.lecdenum=c.lecdenum
+            and c.usernum=#{usernum} and c.payok=#{payok}
     </select>
 </mapper>

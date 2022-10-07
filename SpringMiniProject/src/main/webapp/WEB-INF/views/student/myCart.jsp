@@ -1,63 +1,147 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<!-- jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-<!-- iamport.payment.js -->
-<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<!DOCTYPE html>
+<html>
 <head>
-    <!-- jQuery -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-    <!-- iamport.payment.js -->
-    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-    <script>
-        var IMP = window.IMP; 
-        IMP.init("imp32541741"); 
-
-        function requestPay() {
-            IMP.request_pay({
-                pg : 'kcp',
-                pay_method : 'card',
-                merchant_uid: "57008833-33004", 
-                name : '당근 10kg',
-                amount : 1004,
-                buyer_email : 'Iamport@chai.finance',
-                buyer_name : '아임포트 기술지원팀',
-                buyer_tel : '010-1234-5678',
-                buyer_addr : '서울특별시 강남구 삼성동',
-                buyer_postcode : '123-456'
-            }, function (rsp) { // callback
-     // jQuery로 HTTP 요청
-        $.ajax({
-            url: "{서버의 결제 정보를 받는 가맹점 endpoint}", 
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            data: {
-                imp_uid: rsp.imp_uid,            //결제 고유번호     
-                merchant_uid: rsp.merchant_uid   //주문번호
-            }
-        }).done(function (data) {
-          // 가맹점 서버 결제 API 성공시 로직
-        }); else {
-                    console.log(rsp);
-                }
-            });
-        }
-    </script>
     <meta charset="UTF-8">
-    <title>Sample Payment</title>
+    <title>Insert title here</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Yeon+Sung&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <style type="text/css">
+        *{
+            font-family: 'Noto Sans KR';
+        }
+        .lectd th,td{
+            text-align: center;
+        }
+        .lectdbox{
+            width: 850px;
+            height: auto;
+
+            padding: 10px 10px 10px 10px;
+        }
+        .total{
+            text-align: end;
+            padding-right: 15px !important;
+            font-size: 20px;
+        }
+    </style>
+
+
+    <script type="text/javascript">
+
+        var IMP = window.IMP;
+
+        var price ="${dto.price}";
+        var name = "${sessionScope.loginname}";
+        var email = "${sessionScope.email}"
+
+        function payment(pg_provider,mode,payment_method) {
+            IMP.init("imp32541741");
+            var pg_mid;
+            if(pg_provider =='kcp'){
+                if(mode=='test'){
+                    pg_mid ='kcp';
+                }
+                else{
+
+                    pg_mid ='kcp.IOfds34' ;
+
+                }
+
+            }
+
+            const data = {
+                pg: pg_mid ,
+                pay_method:  payment_method,
+                merchant_uid: "${dto.lecname}+${sessionScope.loginname}",
+                name : "${totalLecname}",
+                amount : ${totalPrice},
+                buyer_email : '${sessionScope.email}',
+                buyer_name : '${sessionScope.loginname}',
+            };
+
+            IMP.request_pay(data, response => {
+                alert('callback!:' +JSON.stringify(response)),
+                    $.ajax({
+                        url: "/payment/callback_receive",
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        data: JSON.stringify(response)
+                    }).done(function (data) {
+                        // 가맹점 서버 결제 API 성공시 로직'
+                        alert("성공");
+
+                    })
+            })
+        };
+
+    </script>
+
 </head>
 <body>
-    <button onclick="requestPay()">결제하기</button> <!-- 결제하기 버튼 생성 -->
+<h1>장바구니</h1>
+<div class="lectdbox">
+    <table class="table table-bordered lectd">
+        <tr>
+            <th style="width: 80px">과목분류</th>
+            <th style="width: 150px">강의명</th>
+            <th style="width: 80px">강사</th>
+            <th style="width: 80px">강의실</th>
+            <th style="width: 100px">강의교시</th>
+            <th style="width: 100px">강의요일</th>
+            <th style="width: 50px">수강연월</th>
+            <th style="width: 50px">가격</th>
+        </tr>
+        <c:set var="totalPrice" value="0"/>
+        <c:set var="totalLecname" value=""/>
+        <c:forEach var="dto" items="${list }">
+            <tr>
+                <td>${dto.lectypea}</td>
+                <td>${dto.lecname}</td>
+                <td>${dto.teaname}</td>
+                <td>${dto.roomnum}</td>
+                <td>${dto.lectime}교시</td>
+                <td>
+                    <c:if test="${fn:contains(dto.lecday,1)}">
+                        월
+                    </c:if>
+                    <c:if test="${fn:contains(dto.lecday,2)}">
+                        화
+                    </c:if>
+                    <c:if test="${fn:contains(dto.lecday,3)}">
+                        수
+                    </c:if>
+                    <c:if test="${fn:contains(dto.lecday,4)}">
+                        목
+                    </c:if>
+                    <c:if test="${fn:contains(dto.lecday,5)}">
+                        금
+                    </c:if>
+                    <c:if test="${fn:contains(dto.lecday,6)}">
+                        토
+                    </c:if>
+                    <c:if test="${fn:contains(dto.lecday,7)}">
+                        일
+                    </c:if>
+                </td>
+                <td>${dto.lecyear}/${dto.lecmonth}</td>
+                <td><fmt:formatNumber type="currency" value="${dto.price}"/></td>
+            </tr>
+            <c:set var="totalPrice" value="${totalPrice+dto.price}"/>
+            <c:set var="totalLecname" value="${totalLecname} [${dto.lecname}]"/>
+        </c:forEach>
+        <tr>
+            <td colspan="8" class="total">
+                총 결제 예정 금액 :  <fmt:formatNumber type="currency" value="${totalPrice}"/>
+                강의이름들: ${totalLecname}
+            </td>
+        </tr>
+    </table>
+    <button type="button" onclick="payment('kcp','test','card')">결제하기</button>
+</div>
 </body>
 </html>

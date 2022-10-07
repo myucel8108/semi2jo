@@ -30,6 +30,8 @@ public class ReboardController {
         //loging한 usernum에 해당하는 nickname 얻어서 dto에 넣기
         String nickname=userService.getDataByNum(dto.getUsernum()).getNickname();
         dto.setNickname(nickname);
+
+        // reboard DB의 photo에 user DB의 userphoto 넣기
         String userphoto = userService.getDataByNum(dto.getUsernum()).getUserphoto();
         dto.setUserphoto(userphoto);
         reboardService.insertReboard(dto);

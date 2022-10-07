@@ -6,7 +6,9 @@ import bit.data.dto.MyLecJoinDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class MyLecJoinService implements MyLecJoinServiceInter{
@@ -16,7 +18,11 @@ public class MyLecJoinService implements MyLecJoinServiceInter{
 
 
     @Override
-    public List<MyLecJoinDto> getMyLecListByNum(int usernum) {
-        return myLecJoinDao.getMyLecListByNum(usernum);
+    public List<MyLecJoinDto> getMyLecListByNum(int usernum, String payok) {
+        Map<String, Object> map= new HashMap<>();
+        map.put("usernum",usernum);
+        map.put("payok",payok);
+
+        return myLecJoinDao.getMyLecListByNum(map);
     }
 }
