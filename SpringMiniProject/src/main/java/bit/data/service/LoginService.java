@@ -13,7 +13,7 @@ public class LoginService implements LoginServiceInter{
 
     @Autowired
     LoginDaoInter loginDao;
-
+    //회원가입
     @Override
     public void insertUser(UserDto dto) {
 
@@ -39,9 +39,10 @@ public class LoginService implements LoginServiceInter{
         return loginDao.checkId(userid);
     }
 
+    //api로 로그인시 email로 판단
     @Override
-    public String checkLoginId(String userid) {
-        return loginDao.checkLoginId(userid);
+    public String checkLoginId(String email) {
+        return loginDao.checkLoginId(email);
     }
 }
 

@@ -8,26 +8,6 @@
     <title>Login V18</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%--    <!--===============================================================================================-->--%>
-    <%--    <link rel="icon" type="image/png" href="../../../../../../../../../Downloads/Login_v18/images/icons/favicon.ico"/>--%>
-    <%--    <!--===============================================================================================-->--%>
-    <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/vendor/bootstrap/css/bootstrap.min.css">--%>
-    <!--===============================================================================================-->
-    <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/fonts/font-awesome-4.7.0/css/font-awesome.min.css">--%>
-    <%--    <!--===============================================================================================-->--%>
-    <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">--%>
-    <%--    <!--===============================================================================================-->--%>
-    <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/vendor/animate/animate.css">--%>
-    <%--    <!--===============================================================================================-->--%>
-    <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/vendor/css-hamburgers/hamburgers.min.css">--%>
-    <%--    <!--===============================================================================================-->--%>
-    <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/vendor/animsition/css/animsition.min.css">--%>
-    <%--    <!--===============================================================================================-->--%>
-    <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/vendor/select2/select2.min.css">--%>
-    <%--    <!--===============================================================================================-->--%>
-    <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/vendor/daterangepicker/daterangepicker.css">--%>
-    <%--    <!--===============================================================================================-->--%>
-    <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/css/util.css">--%>
     <link rel="stylesheet" type="text/css" href="css/account.css">
     <!--===============================================================================================-->
 </head>
@@ -48,25 +28,36 @@
     /*}*/
 
 </style>
+<c:set var="root" value="<%=request.getContextPath() %>"></c:set>
 <body style="background-color: #666666;">
 
 <div class="limiter" >
     <div class="container-login100">
         <%--        <div class="wrap-login100">--%>
-        <form class="login100-form validate-form" action="insertAccountA" method="post"
+        <form class="login100-form validate-form" action="${root}/insertAccountA" method="post"
               enctype="multipart/form-data" onsubmit="return check()" style="justify-content: center">
 					<span class="login100-form-title p-b-43">
 						Create Account
 					</span>
-
-<%--            아이디 입력--%>
-            <div class="wrap-input100 validate-input" data-validate = "Id is required">
-                <input class="input100 userid" type="text" name="userid">
-                <span class="focus-input100"></span>
-                <span class="label-input100 userid">Id</span>
+<%--            이메일--%>
+            <%--   api 회원가입시 기존 정보를 가져와 입력한다--%>
+            <div class="wrap-input100 validate-input" data-validate = "Email is required">
+                <c:if test="${email!=null}">
+                    <input class="input100 userid" type="email" name="email" value="${email}" readonly>
+                    <span class="focus-input100"></span>
+                    <span class="label-input100 userid"></span>
+                    <script>
+                        $("#result-check-id").text("ok");
+                    </script>
+                </c:if>
+                <c:if test="${email==null}">
+                    <input class="input100 userid" type="text" name="email" data-validate = "Valid email is required: ex@abc.xyz">
+                    <span class="focus-input100"></span>
+                    <span class="label-input100 userid">email</span>
+                </c:if>
             </div>
 
-            <div style="margin-bottom: 10px; display: none" id="div-check-id" >
+            <div style="margin-bottom: 10px;" id="div-check-id" >
                 <span style="margin-left: 10px;" id="result-check-id">Check Id</span>
             </div>
 
@@ -92,12 +83,7 @@
                 <span class="focus-input100"></span>
                 <span class="label-input100 userid">Name</span>
             </div>
-<%--            이메일--%>
-            <div class="wrap-input100 validate-input" data-validate = "Email is required">
-                <input class="input100" type="text" name="email">
-                <span class="focus-input100"></span>
-                <span class="label-input100 userid">email</span>
-            </div>
+
 <%--            주소--%>
             <div class="wrap-input100 validate-input" data-validate = "Address is required">
                 <input class="input100" type="text" name="addr">
@@ -111,11 +97,11 @@
                 <span class="label-input100 userid">Phone Number</span>
             </div>
 <%--            생일--%>
-<%--            <div class="wrap-input100 validate-input div-input-birth" data-validate = "Valid email is required: ex@abc.xyz">--%>
-<%--                <input class="input100" id="birth" type="date" style="display: none">--%>
-<%--                <span class="focus-input100"></span>--%>
-<%--                <span class="label-input100 userid">Birth Day</span>--%>
-<%--            </div>--%>
+            <div class="wrap-input100 validate-input div-input-birth" >
+                <input class="input100" id="birth" type="date" name="birth">
+                <span class="focus-input100"></span>
+                <span class="label-input100 userid">Birth Day</span>
+            </div>
 
 <%--            프로필 사진--%>
 <%--            <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">--%>
@@ -256,21 +242,6 @@
 
 
 
-<%--<!--===============================================================================================-->--%>
-<%--<script src="../../../../../../../../../Downloads/Login_v18/vendor/jquery/jquery-3.2.1.min.js"></script>--%>
-<%--<!--===============================================================================================-->--%>
-<%--<script src="../../../../../../../../../Downloads/Login_v18/vendor/animsition/js/animsition.min.js"></script>--%>
-<%--<!--===============================================================================================-->--%>
-<%--<script src="../../../../../../../../../Downloads/Login_v18/vendor/bootstrap/js/popper.js"></script>--%>
-<%--<script src="../../../../../../../../../Downloads/Login_v18/vendor/bootstrap/js/bootstrap.min.js"></script>--%>
-<%--<!--===============================================================================================-->--%>
-<%--<script src="../../../../../../../../../Downloads/Login_v18/vendor/select2/select2.min.js"></script>--%>
-<%--<!--===============================================================================================-->--%>
-<%--<script src="../../../../../../../../../Downloads/Login_v18/vendor/daterangepicker/moment.min.js"></script>--%>
-<%--<script src="../../../../../../../../../Downloads/Login_v18/vendor/daterangepicker/daterangepicker.js"></script>--%>
-<%--<!--===============================================================================================-->--%>
-<%--<script src="../../../../../../../../../Downloads/Login_v18/vendor/countdowntime/countdowntime.js"></script>--%>
-<!--===============================================================================================-->
 <script src="js/account.js"></script>
 <%--jquery cdn--%>
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>

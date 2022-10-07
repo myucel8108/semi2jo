@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import util.ChangeName;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,11 +35,20 @@ public class LoginController {
 
 
     //회원가입 페이지 이동
+//    @GetMapping("/insertAccountF")
+//    public String insertAccount(){
+//
+//        return "/main/account/accountAddForm";
+//    }
     @GetMapping("/insertAccountF")
-    public String insertAccount(){
-
-        return "/main/account/accountAddForm";
+    public ModelAndView insertAccount(String email){
+        ModelAndView mview = new ModelAndView();
+        mview.addObject("email",email);
+        mview.setViewName("/main/account/accountAddForm");
+        return mview;
     }
+
+
 
     //로그인 하기
     @GetMapping("/loginA")
@@ -46,51 +56,45 @@ public class LoginController {
     public Map<String, Object> loginprocess(String email, String userpass, HttpSession session){
         Map<String, Object> map=new HashMap<String, Object>();
         String result=loginService.checkLoginIdPass(email, userpass);
-        System.out.println(email);
-        System.out.println(userpass);
-        System.out.println(result);
         if(result!=null){
             System.out.println(result);
             int usernum = Integer.parseInt(result);
-            System.out.println(usernum);
             session.setMaxInactiveInterval(60*60*4);
             UserDto udto=loginService.getDataByNum(usernum);
-            System.out.println("test3");
             session.setAttribute("loginok", "yes");
             session.setAttribute("loginname", udto.getUsername());
             session.setAttribute("usernum", usernum);
             session.setAttribute("photo", udto.getUserphoto());
-
             session.setAttribute("email",email);
             session.setAttribute("usertype",udto.getUsertype());
         }
         String temp = (result!=null?"success":"fail");
         map.put("result",temp);
-        System.out.println("test"+temp);
         return map;
     }
 
 //    간편 로그인
     @GetMapping("/loginByApi")
     @ResponseBody
-    public Map<String, Object> loginByApi(String userid, HttpSession session){
-        System.out.println(userid);
+    public Map<String, Object> loginByApi(String email, HttpSession session){
+        System.out.println(email);
 
         Map<String, Object> map=new HashMap<String, Object>();
-        String result = loginService.checkLoginId(userid);
-        int usernum = Integer.parseInt(result);
+        String result = loginService.checkLoginId(email);
+
         if(result!=null){
             System.out.println("controller if");
+            int usernum = Integer.parseInt(result);
             session.setMaxInactiveInterval(60*60*4);
             UserDto udto=loginService.getDataByNum(usernum);
             session.setAttribute("loginok", "yes");
-            session.setAttribute("loginid", udto.getEmail());
+            session.setAttribute("email", email);
             session.setAttribute("loginname", udto.getUsername());
-            session.setAttribute("usernum", udto.getUsernum());
+            session.setAttribute("usernum", usernum);
+            session.setAttribute("usertype",udto.getUsertype());
         }
         String temp = (result!=null?"success":"fail");
         map.put("result",temp);
-        System.out.println("test"+temp);
         return map;
     }
 
@@ -98,9 +102,8 @@ public class LoginController {
     @GetMapping("/logout")
     @ResponseBody
     public void logout(HttpSession session) {
-        System.out.println("logoutcontroller");
         session.removeAttribute("loginok");
-        session.removeAttribute("loginid");
+        session.removeAttribute("email");
         session.removeAttribute("usernum");
     }
 
@@ -108,9 +111,8 @@ public class LoginController {
 
     //회원가입
     @PostMapping("/insertAccountA")
-    @ResponseBody
+//    @ResponseBody
     public String insert(UserDto dto) {
-        System.out.println("acountA");
         //톰켓에 올라간 upload 폴더 경로 구하기
 //        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
 //        System.out.println(path);

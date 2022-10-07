@@ -13,6 +13,7 @@ public class LoginDao implements LoginDaoInter{
     SqlSession session;
     String ns = "bit.data.dao.UserDao.";
 
+    //회원가입
     @Override
     public void insertUser(UserDto dto) {
         session.insert(ns+"insertUser",dto);
@@ -34,7 +35,7 @@ public class LoginDao implements LoginDaoInter{
     }
 
     @Override
-    public String checkLoginId(String userid) {
-        return session.selectOne(ns+"checkLoginId",userid);
+    public String checkLoginId(String email) {
+        return session.selectOne(ns+"checkLoginId",email);
     }
 }
