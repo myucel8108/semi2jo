@@ -6,6 +6,6 @@ public interface MyLectureServiceInter {
 	
 	
 	  public void insertMyLecture(MyLectureDto mylecdto);
-	  public void updatePayok(MyLectureDto mylecdto);
+	  public void updatePayok(int usernum);
 	  
 }

@@ -63,6 +63,7 @@
                 amount : ${totalPrice},
                 buyer_email : '${sessionScope.email}',
                 buyer_name : '${sessionScope.loginname}',
+                usernum: "${dto.usernum}",
             };
 
             IMP.request_pay(data, response => {

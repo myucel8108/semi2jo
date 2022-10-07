@@ -20,10 +20,10 @@ public class MyLectureDao implements MyLectureDaoInter{
         session.insert(ns+"insertMyLecture", mylecDto);
     }
     @Override
-    public void updatePayok(MyLectureDto mylecDto) {
+    public void updatePayok(int usernum) {
     	
     	
-    	session.update(ns+"updatePayok", mylecDto);
+    	session.update(ns+"updatePayok", usernum);
     }
     
 }

@@ -94,18 +94,18 @@ public class ReadyPayController {
 	  String merchant_uid =(String)model.get("merchant_uid");
 	  boolean success =  (boolean)model.get("success"); 
 	  String error_msg =  (String)model.get("error_msg");
-	  
+	  int usernum = (int)model.get("usernum");
 	  
 	  System.out.println("--callback--receive--");
 	  System.out.println("----------------------");
 	  System.out.println("imp_uid: "+imp_uid);
 	  System.out.println("merchant_uid"+ merchant_uid); 
 	  System.out.println("success:"+success);
-	  
+	  System.out.println("usernum:"+ usernum);
 	  if(success == true) {
 	  
 	
-		myLectureService.updatePayok(dto);
+		myLectureService.updatePayok(usernum);
 		    	
 		    
 
