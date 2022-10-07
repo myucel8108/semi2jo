@@ -3,7 +3,13 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.tagext.TryCatchFinally;
+
+import org.apache.tiles.request.Request;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -17,9 +23,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.mysql.cj.Session;
 import com.mysql.cj.log.Log;
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
@@ -48,6 +57,7 @@ public class ReadyPayController {
 	 @Autowired 
 	 ReadyPayService readypayservice;
 	 
+	 private HttpSession session;
 	 MyLectureDto dto = new MyLectureDto();
 	 
 	  
@@ -74,58 +84,52 @@ public class ReadyPayController {
 	  
 	  }
 	  
-	  
-	  @RequestMapping("/payment/callback_receive") 
-	  
-	  public ResponseEntity<?> callback_receive(@RequestBody Map<String, Object> model){  
-		  
+
+	// 둘다 받기
+	@RequestMapping(value = "/payment/callback_receive")
+	  @ResponseBody
+	  public ResponseEntity<?> callback_receive(@RequestBody Map<String, Object> model, HttpServletRequest request ){  
+		HttpSession session = request.getSession();
+		int usernum = (int) session.getAttribute("usernum");
+		System.out.println(usernum);
 	  String process_result="결제성공";
-	  
-	  HttpHeaders responseHeaders = new HttpHeaders(); 
-	  
+	  System.out.println(process_result);
+	  JSONObject responseobj = new JSONObject();
+	  HttpHeaders responseHeaders = new HttpHeaders();
 	  responseHeaders.add("Content-Type","application/json; charset=UTF-8");
 	  
-	  JSONObject responseobj = new JSONObject();
-	  
-	  
-	  try {
-		  
-	  String imp_uid = (String)model.get("imp_uid"); 
-	  String merchant_uid =(String)model.get("merchant_uid");
-	  boolean success =  (boolean)model.get("success"); 
-	  String error_msg =  (String)model.get("error_msg");
-	  int usernum = (int)model.get("usernum");
-	  
-	  System.out.println("--callback--receive--");
-	  System.out.println("----------------------");
-	  System.out.println("imp_uid: "+imp_uid);
-	  System.out.println("merchant_uid"+ merchant_uid); 
-	  System.out.println("success:"+success);
-	  System.out.println("usernum:"+ usernum);
+	  try { 
+		  String imp_uid = (String)model.get("imp_uid"); 
+		  String merchant_uid =(String)model.get("merchant_uid");
+		  boolean success =  (boolean)model.get("success"); 
+		  String error_msg =  (String)model.get("error_msg");
+		  System.out.println("--callback--receive--");
+		  System.out.println("----------------------");
+		  System.out.println("imp_uid: "+imp_uid);
+		  System.out.println("merchant_uid"+ merchant_uid); 
+		  System.out.println("success:"+success);
+		 
 	  if(success == true) {
 	  
 	
-		myLectureService.updatePayok(usernum);
-		    	
-		    
 
-	  String api_key ="4743784663216508"; 
-	  String api_secret= "jvIqx7xwB2bVbp7T4XGai7r32NnRx6vRvLcUhfQTngSnnYMdqVEjG7a98sIiiatXtapTUMtA5bqz8dhQ";
+
+		String api_key ="4743784663216508"; 
+		String api_secret= "jvIqx7xwB2bVbp7T4XGai7r32NnRx6vRvLcUhfQTngSnnYMdqVEjG7a98sIiiatXtapTUMtA5bqz8dhQ";
 
 	  
-	  IamportClient ic = new IamportClient(api_key, api_secret);
-	  IamportResponse<Payment> response =ic.paymentByImpUid(imp_uid);
-	  BigDecimal import_amount = response.getResponse().getAmount();
-	  //dbsave 
-	  
+		IamportClient ic = new IamportClient(api_key, api_secret);
+		IamportResponse<Payment> response =ic.paymentByImpUid(imp_uid);
+		BigDecimal import_amount = response.getResponse().getAmount();
+		//dbsave 
+	  myLectureService.updatePayok(usernum);
 	  
 	  } 
 	  else { 
 		  
 		  System.out.println("error_msg: "+error_msg);
 	  	  responseobj.put("process_result", "결제실패"); 
-	  
-	  
+
 	  } 
 	  
 	  
@@ -143,3 +147,4 @@ public class ReadyPayController {
 	  }
 	
 }
+

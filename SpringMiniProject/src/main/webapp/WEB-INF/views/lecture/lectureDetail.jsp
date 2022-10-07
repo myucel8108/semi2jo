@@ -37,8 +37,7 @@
 			var ans = confirm("장바구니에 저장하시겠습니까?");
 			var usernum= "${sessionScope.usernum}";
 			usernum *=1;
-			console.log(${dto.lecdenum});
-			console.log(usernum);
+
 			
 			if(ans){
                		$.ajax({
