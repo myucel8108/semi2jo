@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,15 +15,22 @@
         .container{
             display: flex;
             justify-content: center;
+            height: 90vh;
         }
 
         .last-div{
             margin-bottom: 50px;
         }
     </style>
+    <script>
+        const autoHyphen = (target) => {
+            target.value = target.value
+                .replace(/[^0-9]/g, '')
+                .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+        }
+    </script>
 </head>
 <body>
-<c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -32,140 +40,88 @@
                 <hr>
             </div>
             <!-- Form START -->
-            <form class="file-upload">
+            <form class="file-upload" action="updateuser?usernum=${dto.usernum}" method="post">
                 <div class="row mb-5 gx-5">
                     <!-- Contact detail -->
                     <div class="col-xxl-8 mb-5 mb-xxl-0">
                         <div class="bg-secondary-soft px-4 py-5 rounded">
                             <div class="row g-3">
+                                    <input type="text" hidden="hidden" value="${dto.usernum}">
                                 <h4 class="mb-4 mt-0">연락처 상세 정보</h4>
-                                <!-- First Name -->
-                                <div class="col-md-6">
-                                    <label class="form-label">First Name *</label>
-                                    <input type="text" class="form-control" placeholder="" aria-label="First name" value="Scaralet">
-                                </div>
-                                <!-- Last name -->
-                                <div class="col-md-6">
-                                    <label class="form-label">Last Name *</label>
-                                    <input type="text" class="form-control" placeholder="" aria-label="Last name" value="Doe">
-                                </div>
-                                <!-- Phone number -->
-                                <div class="col-md-6">
-                                    <label class="form-label">Phone number *</label>
-                                    <input type="text" class="form-control" placeholder="" aria-label="Phone number" value="(333) 000 555">
-                                </div>
-                                <!-- Mobile number -->
-                                <div class="col-md-6">
-                                    <label class="form-label">Mobile number *</label>
-                                    <input type="text" class="form-control" placeholder="" aria-label="Phone number" value="+91 9852 8855 252">
-                                </div>
                                 <!-- Email -->
                                 <div class="col-md-6">
-                                    <label for="inputEmail4" class="form-label">Email *</label>
-                                    <input type="email" class="form-control" id="inputEmail4" value="example@homerealty.com">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" name="email" class="form-control border-info" readonly placeholder="" value="${dto.email}">
                                 </div>
-                                <!-- Skype -->
+                                <!-- name -->
                                 <div class="col-md-6">
-                                    <label class="form-label">Skype *</label>
-                                    <input type="text" class="form-control" placeholder="" aria-label="Phone number" value="Scaralet D">
+                                    <label class="form-label">성명</label>
+                                    <input type="text" name="username" class="form-control border-info" placeholder="" value="${dto.username}">
+                                </div>
+                                <!-- nickname -->
+                                <div class="col-md-6">
+                                    <label class="form-label">닉네임</label>
+                                    <input type="text" name="nickname" class="form-control border-info" placeholder="" value="${dto.nickname}">
+                                </div>
+                                <!-- addr -->
+                                <div class="col-md-6">
+                                    <label class="form-label">주소</label>
+                                    <input type="text" name="addr" class="form-control border-info" placeholder="" value="${dto.addr}">
+                                </div>
+                                <!-- hp -->
+                                <div class="col-md-6">
+                                    <label class="form-label">휴대전화</label>
+                                    <input type="text" name="hp" oninput="autoHyphen(this)" maxlength="13" class="form-control border-info" value="${dto.hp}">
+                                </div>
+                                <!-- birth -->
+                                <div class="col-md-6">
+                                    <label class="form-label">생일</label>
+
+                                    <input type="date" name="birth" class="form-control border-info" placeholder="" value="${dto.birth}">
                                 </div>
                             </div> <!-- Row END -->
                         </div>
                     </div>
-                    <!-- Upload profile -->
+                    <!-- Upload photo -->
                     <div class="col-xxl-4">
                         <div class="bg-secondary-soft px-4 py-5 rounded">
                             <div class="row g-3">
-                                <h4 class="mb-4 mt-0">Upload your profile photo</h4>
+                                <h4 class="mb-4 mt-0">회원 사진</h4>
                                 <div class="text-center">
                                     <!-- Image upload -->
                                     <div class="square position-relative display-2 mb-3">
-                                        <i class="fas fa-fw fa-user position-absolute top-50 start-50 translate-middle text-secondary"></i>
+                                        <c:if test="${dto.userphoto==null}">
+                                            <i class="fas fa-fw fa-user position-absolute top-50 start-50 translate-middle text-secondary"></i>
+                                        </c:if>
+                                        <c:if test="${dto.userphoto!=null}">
+                                            <img src="${dto.userphoto}">
+                                        </c:if>
                                     </div>
                                     <!-- Button -->
                                     <input type="file" id="customFile" name="file" hidden="">
                                     <label class="btn btn-success-soft btn-block" for="customFile">Upload</label>
                                     <button type="button" class="btn btn-danger-soft">Remove</button>
                                     <!-- Content -->
-                                    <p class="text-muted mt-3 mb-0"><span class="me-1">Note:</span>Minimum size 300px x 300px</p>
+                                    <p class="text-muted mt-3 mb-0"><span class="me-1">최소 사이즈 : </span>300(px) x 300(px) </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div> <!-- Row END -->
 
-                <!-- Social media detail -->
-                <div class="row mb-5 gx-5">
-                    <div class="col-xxl-6 mb-5 mb-xxl-0">
-                        <div class="bg-secondary-soft px-4 py-5 rounded">
-                            <div class="row g-3">
-                                <h4 class="mb-4 mt-0">Social media detail</h4>
-                                <!-- Facebook -->
-                                <div class="col-md-6">
-                                    <label class="form-label"><i class="fab fa-fw fa-facebook me-2 text-facebook"></i>Facebook *</label>
-                                    <input type="text" class="form-control" placeholder="" aria-label="Facebook" value="http://www.facebook.com">
-                                </div>
-                                <!-- Twitter -->
-                                <div class="col-md-6">
-                                    <label class="form-label"><i class="fab fa-fw fa-twitter text-twitter me-2"></i>Twitter *</label>
-                                    <input type="text" class="form-control" placeholder="" aria-label="Twitter" value="http://www.twitter.com">
-                                </div>
-                                <!-- Linkedin -->
-                                <div class="col-md-6">
-                                    <label class="form-label"><i class="fab fa-fw fa-linkedin-in text-linkedin me-2"></i>Linkedin *</label>
-                                    <input type="text" class="form-control" placeholder="" aria-label="Linkedin" value="http://www.linkedin.com">
-                                </div>
-                                <!-- Instragram -->
-                                <div class="col-md-6">
-                                    <label class="form-label"><i class="fab fa-fw fa-instagram text-instagram me-2"></i>Instagram *</label>
-                                    <input type="text" class="form-control" placeholder="" aria-label="Instragram" value="http://www.instragram.com">
-                                </div>
-                                <!-- Dribble -->
-                                <div class="col-md-6">
-                                    <label class="form-label"><i class="fas fa-fw fa-basketball-ball text-dribbble me-2"></i>Dribble *</label>
-                                    <input type="text" class="form-control" placeholder="" aria-label="Dribble" value="http://www.dribble.com">
-                                </div>
-                                <!-- Pinterest -->
-                                <div class="col-md-6">
-                                    <label class="form-label"><i class="fab fa-fw fa-pinterest text-pinterest"></i>Pinterest *</label>
-                                    <input type="text" class="form-control" placeholder="" aria-label="Pinterest" value="http://www.pinterest.com">
-                                </div>
-                            </div> <!-- Row END -->
-                        </div>
-                    </div>
-
-                    <!-- change password -->
-                    <div class="col-xxl-6">
-                        <div class="bg-secondary-soft px-4 py-5 rounded">
-                            <div class="row g-3">
-                                <h4 class="my-4">Change Password</h4>
-                                <!-- Old password -->
-                                <div class="col-md-6">
-                                    <label for="exampleInputPassword1" class="form-label">Old password *</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1">
-                                </div>
-                                <!-- New password -->
-                                <div class="col-md-6">
-                                    <label for="exampleInputPassword2" class="form-label">New password *</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword2">
-                                </div>
-                                <!-- Confirm password -->
-                                <div class="col-md-12">
-                                    <label for="exampleInputPassword3" class="form-label">Confirm Password *</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword3">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> <!-- Row END -->
                 <!-- button -->
                 <div class="gap-3 d-md-flex justify-content-md-end text-center last-div">
-                    <button type="button" class="btn btn-danger btn-lg">Delete profile</button>
-                    <button type="button" class="btn btn-primary btn-lg">Update profile</button>
+                    <button type="submit" class="btn btn-success-soft btn-lg">Update profile</button>
+                    <button type="button" class="btn btn-danger-soft btn-lg" id="cancelbutton">Cancel</button>
                 </div>
             </form> <!-- Form END -->
         </div>
     </div>
 </div>
+<script>
+    $("#cancelbutton").click(function () {
+        history.back();
+    });
+</script>
 </body>
 </html>

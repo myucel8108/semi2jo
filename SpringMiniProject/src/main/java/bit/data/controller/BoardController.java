@@ -40,7 +40,6 @@ public class BoardController {
         return "/main/board/boardForm";
     }
 
-
     @GetMapping("/board/boardDetail") //게시판 디테일
     public ModelAndView boardDetail(int boardnum, int currentPage){
 
@@ -50,8 +49,17 @@ public class BoardController {
 
         BoardDto dto = boardService.selectByNum(boardnum);
 
-        //닉네임 옆에 프로필 사진 나오게 하기
-        String userphoto;
+        int prevboardnum=boardService.moveToPrevBoard(boardnum); //이전글 넘버
+        String prevboardsub=boardService.selectByNum(prevboardnum).getSubject(); //이전글 제목
+
+        int nextboardnum=boardService.moveToNextBoard(boardnum); //다음글 넘버
+        String nextboardsub=boardService.selectByNum(nextboardnum).getSubject(); //다음글 제목
+
+        int maxboardnum=boardService.getMaxNum(); //가장 최신글 보드넘버
+        int minboardnum=boardService.getMinNum(); //가장 오래된글 보드넘버
+
+
+        String userphoto="";
         try {
             userphoto = userService.getDataByNum(dto.getUsernum()).getUserphoto(); //프사임
         }catch (NullPointerException e){
@@ -60,6 +68,10 @@ public class BoardController {
         mview.addObject("dto", dto);
         mview.addObject("currentPage", currentPage);
         mview.addObject("userphoto", userphoto);
+        mview.addObject("prevboardsub", prevboardsub);
+        mview.addObject("nextboardsub", nextboardsub);
+        mview.addObject("maxboardnum", maxboardnum);
+        mview.addObject("minboardnum", minboardnum);
 
         mview.setViewName("/main/board/boardDetail");
 
@@ -190,10 +202,18 @@ public class BoardController {
 
         return "/main/board/boardUpdate";
     }
-//    @GetMapping("/board/preboard")
-//    public String moveToPrevBoard(BoardDto dto, int currentPage, int boardnum)
-//    {
-//        return "redirect:boardDetail?boardnum="+dto.getBoardnum()+"&currentPage="+currentPage;
-//    }
+
+    @GetMapping("/board/prevboard")
+    public String moveToPrevBoard(int currentPage, int boardnum)
+    {
+        boardnum=boardService.moveToPrevBoard(boardnum); //이전글 보드넘버
+
+        return "redirect:boardDetail?boardnum="+boardnum+"&currentPage="+currentPage;
+    }
+    @GetMapping("/board/nextboard")
+    public String moveToNextBoard(int currentPage, int boardnum)
+    {
+        boardnum=boardService.moveToNextBoard(boardnum);
+        return "redirect:boardDetail?boardnum="+boardnum+"&currentPage="+currentPage;    }
 
 }

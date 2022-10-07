@@ -22,6 +22,10 @@
         ul.pagination{
             justify-content: right;
         }
+
+        .deleteuser{
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -45,45 +49,50 @@
                                 <tbody>
                                 <c:if test="${totalCount>0}">
                                     <c:forEach var="dto" items="${list}">
+                                        <c:if test="${dto.usertype=='user'}">
                                         <tr>
                                             <td>
                                                 <c:if test="${dto.userphoto!=null}">
-                                                    <img src="https://bootdey.com/img/Content/user_1.jpg">
+                                                    <img src="/upload/${dto.userphoto}">
                                                 </c:if>
                                                 <c:if test="${dto.userphoto==null}">
                                                     <img src="resources/image/noimage2.png">
                                                 </c:if>
-                                                <a href="#" class="user-link">${dto.username}</a>
+                                                <a href="${root}/userdetail?usernum=${dto.usernum}" class="user-link">${dto.username}</a>
                                                 <span class="user-subhead">${dto.nickname}</span>
                                             </td>
-                                            <td>${dto.hp}</td>
+                                            <td>
+                                                ${dto.hp}
+                                            </td>
                                             <td class="text-center">
                                                 <span class="label label-default">${dto.addr}</span>
                                             </td>
                                             <td>
-                                                <a href="#">${dto.email}</a>
+                                                ${dto.email}
                                             </td>
                                             <td style="width: 20%;">
-                                                <a href="${root}/userdetail" class="table-link text-warning">
+                                                <a href="${root}/userdetail?usernum=${dto.usernum}" class="table-link text-warning">
                                                         <span class="fa-stack">
                                                             <i class="fa fa-square fa-stack-2x"></i>
                                                             <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
                                                         </span>
                                                 </a>
-                                                <a href="${root}/updateuserform" class="table-link text-info">
+                                                <a href="${root}/updateuserform?usernum=${dto.usernum}" class="table-link text-info">
                                                         <span class="fa-stack">
                                                             <i class="fa fa-square fa-stack-2x"></i>
                                                             <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
                                                         </span>
                                                 </a>
-                                                <a href="#" class="table-link danger">
+                                                <span class="table-link text-danger deleteuser">
                                                         <span class="fa-stack">
                                                             <i class="fa fa-square fa-stack-2x"></i>
                                                             <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
                                                         </span>
-                                                </a>
+                                                        <span class="readusernum" style="display: none">${dto.usernum}</span>
+                                                </span>
                                             </td>
                                         </tr>
+                                        </c:if>
                                     </c:forEach>
                                 </c:if>
                                 </tbody>
@@ -98,21 +107,21 @@
     <div class="paging">
         <ul class="pagination">
             <c:if test="${startPage>1}">
-                <li class="page-item"><a href="lecturelist?currentPage=${startPage-1}" class="page-link">이전</a></li>
+                <li class="page-item"><a href="userlist?currentPage=${startPage-1}" class="page-link">이전</a></li>
             </c:if>
 
             <!-- 페이지 번호 -->
             <c:forEach var="pp" begin="${startPage}" end="${endPage}">
                 <c:if test="${pp==currentPage}">
-                    <li class="page-item active"><a href="lecturelist?currentPage=${pp}" class="page-link">${pp}</a></li>
+                    <li class="page-item active"><a href="userlist?currentPage=${pp}" class="page-link">${pp}</a></li>
                 </c:if>
                 <c:if test="${pp!=currentPage}">
-                    <li class="page-item"><a href="lecturelist?currentPage=${pp}" class="page-link">${pp}</a></li>
+                    <li class="page-item"><a href="userlist?currentPage=${pp}" class="page-link">${pp}</a></li>
                 </c:if>
             </c:forEach>
 
             <c:if test="${endPage<totalPage}">
-                <li class="page-item"><a href="lecturelist?currentPage=${endPage+1}" class="page-link">다음</a></li>
+                <li class="page-item"><a href="userlist?currentPage=${endPage+1}" class="page-link">다음</a></li>
             </c:if>
         </ul>
     </div>
@@ -120,4 +129,15 @@
 </div>
 </div>
 </body>
+<script>
+    $(function () {
+        $(".deleteuser").click(function () {
+            var cf = confirm("삭제하시겠습니까?");
+            var num = $(this).children(".readusernum").text();
+            if(cf){
+                location.href="${root}/deleteuser?usernum="+num;
+            }
+        });
+    })
+</script>
 </html>

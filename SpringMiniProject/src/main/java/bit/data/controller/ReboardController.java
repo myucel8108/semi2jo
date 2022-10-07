@@ -33,7 +33,7 @@ public class ReboardController {
 
         // reboard DB의 photo에 user DB의 userphoto 넣기
         String userphoto = userService.getDataByNum(dto.getUsernum()).getUserphoto();
-        dto.setPhoto(userphoto);
+        dto.setUserphoto(userphoto);
         reboardService.insertReboard(dto);
     }
     @GetMapping("/list")

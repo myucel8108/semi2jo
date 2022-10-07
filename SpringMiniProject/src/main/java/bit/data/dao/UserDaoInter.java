@@ -8,6 +8,7 @@ import java.util.Map;
 public interface UserDaoInter {
     public int getTotalUserCount(Map<String, String> map);
     public List<UserDto> getUserList(Map<String, Object> map);
+    public UserDto getUserDetailbyManager(int usernum);
     public UserDto getDataByNum(int usernum);
     public UserDto getDataById(String email);
     public void updateUserPhoto(Map<String, Object> map);

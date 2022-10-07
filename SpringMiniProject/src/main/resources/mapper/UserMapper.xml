@@ -5,7 +5,7 @@
     <insert id="insertUser" parameterType="userDto">
         insert into user (usernum,usertype,email,userpass,username,
                           nickname,userphoto,addr,hp,lastlogin,birth)
-        values (null,#{usertype},#{email},#{userpass},#{username},#{nickname},#{userphoto},#{addr},#{hp},now(),#{birth})
+        values (null,"user",#{email},#{userpass},#{username},null,#{userphoto},#{addr},#{hp},now(),#{birth})
     </insert>
 
     <!--회원가입시 아이디(email) 중복체크-->
@@ -49,6 +49,11 @@
             where username like concat('%',#{searchword},'%')
         </if>
         order by username asc limit #{startnum},#{perpage}
+    </select>
+
+    <!--관리자에서 회원 정보 가져오기-->
+    <select id="getUserDetailbyManager" parameterType="int" resultType="userDto">
+        select usernum, email, username, nickname, userphoto, addr, hp, birth from user where usernum=#{usernum}
     </select>
 
     <!--회원 프로필사진변경 (usernum)으로 가져옴-->

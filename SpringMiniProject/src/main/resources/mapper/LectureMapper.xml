@@ -19,7 +19,7 @@
         <if test="searchword!=null">
             where lecname like concat('%',#{searchword},'%')
         </if>
-        order by lecnum desc limit #{startnum},#{perpage}
+        order by lectypea desc limit #{startnum},#{perpage}
     </select>
     <!--강의 목록 전체 출력  과목 이름 순-->
      <select id="getAllLecture" resultType="lectureDto">

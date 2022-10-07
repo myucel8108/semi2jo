@@ -63,7 +63,7 @@
      $("#btnlogoutMain").click(function () {
          $.ajax({
              type:"get",
-             url:"logout",
+             url:"${root}/logout",
              dataType:"text",
              success:function(res){
                  location.reload();
