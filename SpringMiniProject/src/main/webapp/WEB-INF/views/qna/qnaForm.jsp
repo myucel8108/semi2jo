@@ -24,6 +24,7 @@
         margin-bottom: 20px;
     }
 </style>
+
 <body>
 <form action="insert" method="post" enctype="multipart/form-data">
 
@@ -123,13 +124,51 @@
 
         <tr>
             <td colspan="2" align="center">
-                <button type="submit" class="btn btn-outline" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" >등록</button>
+                <button type="submit" class="btn btn-outline insert2" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" >등록</button>
                 <button type="button" class="btn btn-outline"  style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" onclick="location.href='qnaList?currentPage=${currentPage}'">취소</button>
             </td>
 
 
         </tr>
     </table>
+
+
+    <script>
+
+
+            //등록 이벤트
+            $(document).on("click", ".insert2", function () {
+                var idx = $(this).attr("idx");
+                var a = alert("등록되었습니다");
+                if (a) {
+                    var idx = $(this).attr("idx");
+
+                    $.ajax({
+                        type: "get",
+                        url: "../qna/insert",
+                        dataType: "text",
+                        data: {"idx": idx},
+                        success: function (res) {
+                            list();
+                        }//success
+                    });//ajax
+
+                }//if
+
+
+            });//onclick
+
+
+
+
+
+
+
+
+
+
+
+    </script>
 </form>
 </body>
 </html>
