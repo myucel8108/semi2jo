@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class MyLecJoinDao implements MyLecJoinDaoInter{
@@ -15,7 +16,7 @@ public class MyLecJoinDao implements MyLecJoinDaoInter{
     String ns="bit.data.dao.MyLecJoinDao.";
 
     @Override
-    public List<MyLecJoinDto> getMyLecListByNum(int usernum) {
-        return session.selectList(ns+"getMyLecListByNum",usernum);
+    public List<MyLecJoinDto> getMyLecListByNum(Map<String,Object> map) {
+        return session.selectList(ns+"getMyLecListByNum",map);
     }
 }

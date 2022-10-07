@@ -45,7 +45,7 @@
                                 <c:set var="bgcolor" value="#d2eadd"/>
                             </c:if>
                             <c:if test="${dto.mylecnum%6==5}">
-                                <c:set var="bgcolor" value="#ece5cf"/>
+                                <c:set var="bgcolor" value="#fff5d5"/>
                             </c:if>
                             <c:if test="${dto.mylecnum%6==0}">
                                 <c:set var="bgcolor" value="#f8ece9"/>
