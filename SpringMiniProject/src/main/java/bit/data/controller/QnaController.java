@@ -50,7 +50,7 @@ public class QnaController {
         //제목에 새글일경우 "", 답글일 경우 해당 제목을 넣어보자
         String content="";
         if(qnanum>0) {
-            content=qnaService.selectByNum(qnanum).getContent()+"\n==================원글==================\n\n";
+            content=qnaService.selectByNum(qnanum).getContent();
         }
         model.addAttribute("content",content);
 
@@ -93,15 +93,15 @@ public class QnaController {
             String photo = "";
             for(MultipartFile multi:upload)
             {
-                String newName = ChangeName.getChangeFileName(multi.getOriginalFilename());
-                photo+=newName+",";
+                //String newName = ChangeName.getChangeFileName(multi.getOriginalFilename());
+                photo+=multi.getOriginalFilename()+",";
 
                 try {
-                    Path paths= Paths.get(path+"/"+newName);
+                    Path paths= Paths.get(path+"/"+multi.getOriginalFilename());
                     multi.transferTo(paths);
-                    // multi.transferTo(new File(path+"/"+newName));
+//                     multi.transferTo(new File(path+"/"+newName));
                 } catch (Exception e) {
-                    // throw new RuntimeException(e);
+//                     throw new RuntimeException(e);
                 }
             }
             photo = photo.substring(0, photo.length()-1);
@@ -201,15 +201,23 @@ public class QnaController {
             photo = photo.substring(0, photo.length()-1);
             dto.setPhoto(photo);
         }
+
+
+
         qnaService.updateQna(dto);
+
+
+
         return "redirect:qnaList?currentPage="+currentPage+"&qnanum="+dto.getQnanum();
     }
     @GetMapping("/qna/qnaUpdate")
-    public String updateform(Model model, int qnanum, int currentPage)
+    public String updateform(Model model, int qnanum, int currentPage, String content)
     {
         QnaDto dto = qnaService.selectByNum(qnanum);
         model.addAttribute("dto", dto);
         model.addAttribute("currentPage", currentPage);
+        model.addAttribute("content", content);
+
         return "/main/qna/qnaUpdate";
 
 
