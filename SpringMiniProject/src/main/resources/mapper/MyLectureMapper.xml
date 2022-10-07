@@ -7,7 +7,7 @@
 	
 	</insert>
 	
-	<update id="updatePayok" parameterType="myLectureDto">
+	<update id="updatePayok" parameterType="int">
 	
 			update mylecture set payok = "ok", paytime = now()  where usernum = #{usernum} AND payok ="no";
 		

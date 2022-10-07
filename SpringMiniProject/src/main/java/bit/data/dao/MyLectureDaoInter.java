@@ -9,5 +9,5 @@ import bit.data.dto.MyLectureDto;
 public interface MyLectureDaoInter {
 	
 	   public void insertMyLecture(MyLectureDto mylecDto);
-	   public void updatePayok(MyLectureDto mylecDto);
+	   public void updatePayok(int usernum);
 }
