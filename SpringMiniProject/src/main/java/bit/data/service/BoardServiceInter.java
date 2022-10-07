@@ -14,10 +14,8 @@ public interface BoardServiceInter {
     public void updateReadCount(int boardnum);
     public void updateBoard(BoardDto dto);
     public void deleteBoard(int boardnum);
-
     public void updateIncreLikeCount(int boardnum);
     public void updateDecreLikeCount(int boardnum);
-
     public int moveToPrevBoard(int boardnum);
     public int moveToNextBoard(int boardnum);
     public int getMinNum();

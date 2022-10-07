@@ -7,6 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -45,6 +51,10 @@ public class MyLecJoinController {
 
     }
 
+    
+    
+
+
     //장바구니 출력(payok=="no")
     @GetMapping("/student/myCart")
     public String Cart(Model model, HttpServletRequest request){
@@ -56,4 +66,5 @@ public class MyLecJoinController {
         model.addAttribute("list",list);
         return "/mypage/student/myCart";
     }
+
 }
