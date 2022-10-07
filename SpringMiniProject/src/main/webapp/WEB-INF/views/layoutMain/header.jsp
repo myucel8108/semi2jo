@@ -17,7 +17,9 @@
                     <h6>errjava</h6>
                 </div>
                 <div class="col-sm-4 col-12 align-self-center box-1 text-center">
-                    <a class="navbar-brand" href="/mini/"><img src="${root}/image/header-logo.png" alt="logo"></a>
+                    <a class="navbar-brand" href="/mini/"><b style="color: #191919; font-size: 40px" class="teachMeLogo">
+                        TeachMe
+                    </b></a>
                 </div>
                 <div class="col-sm-4 align-self-center text-right">
                     <div class="social-icons">

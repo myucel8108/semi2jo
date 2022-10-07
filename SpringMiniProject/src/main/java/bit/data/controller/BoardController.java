@@ -55,6 +55,10 @@ public class BoardController {
         int nextboardnum=boardService.moveToNextBoard(boardnum); //다음글 넘버
         String nextboardsub=boardService.selectByNum(nextboardnum).getSubject(); //다음글 제목
 
+        int maxboardnum=boardService.getMaxNum(); //가장 최신글 보드넘버
+        int minboardnum=boardService.getMinNum(); //가장 오래된글 보드넘버
+
+
         String userphoto="";
         try {
             userphoto = userService.getDataByNum(dto.getUsernum()).getUserphoto(); //프사임
@@ -66,6 +70,8 @@ public class BoardController {
         mview.addObject("userphoto", userphoto);
         mview.addObject("prevboardsub", prevboardsub);
         mview.addObject("nextboardsub", nextboardsub);
+        mview.addObject("maxboardnum", maxboardnum);
+        mview.addObject("minboardnum", minboardnum);
 
         mview.setViewName("/main/board/boardDetail");
 

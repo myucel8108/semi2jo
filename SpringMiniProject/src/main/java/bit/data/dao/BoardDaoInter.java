@@ -23,6 +23,9 @@ public interface BoardDaoInter {
     public int moveToPrevBoard(int boardnum);
     public int moveToNextBoard(int boardnum);
 
+    public int getMinNum();
+    public int getMaxNum();
+
 
 
 

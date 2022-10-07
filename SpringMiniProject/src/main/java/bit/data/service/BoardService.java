@@ -80,4 +80,14 @@ public class BoardService implements BoardServiceInter{
     public int moveToNextBoard(int boardnum) {
         return boardDao.moveToNextBoard(boardnum);
     }
+
+    @Override
+    public int getMinNum() {
+        return boardDao.getMinNum();
+    }
+
+    @Override
+    public int getMaxNum() {
+        return boardDao.getMaxNum();
+    }
 }
