@@ -9,7 +9,7 @@
 	
 	<update id="updatePayok" parameterType="myLectureDto">
 	
-			update mylecture set payok = 'ok', paytime = now()  where usernum = #{usernum} AND payok ='no';
+			update mylecture set payok = "ok", paytime = now()  where usernum = #{usernum} AND payok ="no";
 		
 	</update>
 	
