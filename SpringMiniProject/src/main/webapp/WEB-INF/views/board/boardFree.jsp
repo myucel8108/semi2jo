@@ -13,10 +13,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">--%>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" type="text/css" href="${root}/css/board/boardForm.css">
     <style type="text/css">
         *{
             font-family: Noto Sans KR;
         }
+        /*li>a.page-link{*/
+        /*    display: block;*/
+        /*    justify-content: center;*/
+        /*    align-items: center;*/
+        /*    vertical-align: middle;*/
+        /*    text-align: center;*/
+        /*    margin: auto;*/
+        /*    background-color: white;*/
+        /*    width: 50px;*/
+        /*}*/
+        /*ul.pagination{*/
+        /*    justify-content: center;*/
+        /*}*/
+        /*table>td>a{*/
+        /*    text-decoration: none;*/
+        /*}*/
     </style>
 </head>
 <body>
@@ -24,10 +41,10 @@
     <c:set var="root" value="<%=request.getContextPath() %>"/>
     <h1>커뮤니티</h1><br>
                 <h3>자유게시판</h3>
-                <button onclick="location.href='${root}/board/boardForm'" style="float: right;">글쓰기</button>
+                <button onclick="location.href='${root}/board/boardForm'" style="float: right;">글쓰기</button><br>
                 <div style="margin: 10px;">
-                    <table class="table table-bordered" style="width: 100%;">
-                        <tr style="background-color: #ccc">
+                    <table class="table" style="width: 100%; border-collapse: separate; border-radius: 15px; border: 1px solid black;">
+                        <tr>
                             <th colspan="2">인기게시물 (어케만드는거야...)</th>
                         </tr>
                         <tr>
@@ -55,8 +72,8 @@
                 <br>
                 <div class="boardlist" style="margin: 10px;">
                     <c:set var="root" value="<%=request.getContextPath() %>"/>
-                    <table class="table table-bordered" style="width: 100%;">
-                        <tr style="background-color: #ccc;">
+                    <table class="table" style="width: 100%; border-collapse: separate; border-radius: 10px; border: 1px solid black;">
+                        <tr>
                             <th style="width:50px; text-align: center;">번호</th>
                             <th style="width: 300px; text-align: center;">제목</th>
                             <th style="width: 80px; text-align: center;">작성자</th>
@@ -73,7 +90,7 @@
                                         <i class="fa fa-image" style="font-size:20px"></i>
                                     </c:if>
                                     <c:if test="${dto.reboardcount>0}">
-                                        <b style="color: blue">[${dto.reboardcount}]</b>
+                                        <b>[${dto.reboardcount}]</b>
                                     </c:if>
                                 </td>
                                 <td style="text-align: center;">${dto.nickname}</td>

@@ -12,7 +12,8 @@
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <%--     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>--%>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<%--    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>--%>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style type="text/css">
@@ -49,18 +50,21 @@
                    success : function(res) {
                        var s="";
                        $.each(res,function(i,ids){
-                           s+=ids+"\n";
+                           s+=ids+"<br><br>";
                         });
-
                         if(res.length==0){
                            s="좋아요한 회원이 없습니다";
                         }
-                       swal({
-                           title: "이 게시물을 좋아요한 회원들",
-                           text: s,
-                           icon: "success",
-                           button: "닫기",
+                       Swal.fire({
+
+                           title: "이 게시물을 좋아요한 회원들<br>",
+
+                           html:s,
+
+                           confirmButtonText: "닫기",
+
                        });
+
                    }
                });
            });
@@ -221,7 +225,8 @@
                 <button type="button" onclick="location.href='boardFree?currentPage=${currentPage}'">목록</button>
                 <c:if test="${sessionScope.loginok!=null && sessionScope.usernum==dto.usernum}">
                 <button type="button" onclick="location.href='boardUpdate?boardnum=${dto.boardnum}&currentPage=${currentPage}'">수정</button>
-                <button type="button" onclick="location.href='delete?boardnum=${dto.boardnum}&currentPage=${currentPage}'">삭제</button>
+                <button type="button" onclick="if(confirm('게시글을 삭제하시겠습니까?')) location.href='delete?boardnum=${dto.boardnum}&currentPage=${currentPage}'">삭제</button>
+<%--                    <button class="boarddelete" type="button">삭제</button>--%>
                 </c:if>
                 </div>
             </td>
@@ -233,6 +238,10 @@
         <a href="nextboard?boardnum=${dto.boardnum}&currentPage=${currentPage}" style="color: black; text-decoration: none;">다음글&nbsp;
             <i class="fa fa-chevron-up" style="font-size:24px"></i>&nbsp;&nbsp;${nextboardsub}</a><hr>
     </c:if>
+
+
+
+
     <c:if test="${dto.boardnum>minboardnum}">
     <a href="prevboard?boardnum=${dto.boardnum}&currentPage=${currentPage}" style="color: black; text-decoration: none;">이전글&nbsp;
         <i class="fa fa-chevron-down" style="font-size:24px;cursor: pointer"></i>&nbsp;&nbsp;${prevboardsub}</a>

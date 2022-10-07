@@ -210,7 +210,6 @@
                         </div>
                     </td>
                 </tr>
-
                 <tr>
                     <td colspan="4" style="text-align: right;">
                         <button type="button" class="btn-large2" style="margin-right: 20px;" onclick="location.href='board/boardFree'">뒤로가기</button>
