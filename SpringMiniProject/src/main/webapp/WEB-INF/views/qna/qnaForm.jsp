@@ -157,11 +157,11 @@
                 <th style="width: 100px; text-align: center;">문의유형</th>
                 <td>
                     <select type="select" name="qnatype" required="required">
+                        <option value="" selected disabled hidden>선택해주세요</option>
                         <option>결제문의</option>
-                        <option>상품문의</option>
-                        <option>강사문의</option>
+                        <option>강의문의</option>
                         <option>학원문의</option>
-                        <option>취소문의</option>
+                        <option>상담문의</option>
                         <option>기타문의</option>
                     </select>
                 </td>
