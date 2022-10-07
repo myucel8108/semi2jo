@@ -49,6 +49,12 @@ public class BoardController {
 
         BoardDto dto = boardService.selectByNum(boardnum);
 
+        int prevboardnum=boardService.moveToPrevBoard(boardnum); //이전글 넘버
+        String prevboardsub=boardService.selectByNum(prevboardnum).getSubject(); //이전글 제목
+
+        int nextboardnum=boardService.moveToNextBoard(boardnum); //다음글 넘버
+        String nextboardsub=boardService.selectByNum(nextboardnum).getSubject(); //다음글 제목
+
         String userphoto="";
         try {
             userphoto = userService.getDataByNum(dto.getUsernum()).getUserphoto(); //프사임
@@ -58,6 +64,8 @@ public class BoardController {
         mview.addObject("dto", dto);
         mview.addObject("currentPage", currentPage);
         mview.addObject("userphoto", userphoto);
+        mview.addObject("prevboardsub", prevboardsub);
+        mview.addObject("nextboardsub", nextboardsub);
 
         mview.setViewName("/main/board/boardDetail");
 
@@ -189,10 +197,11 @@ public class BoardController {
         return "/main/board/boardUpdate";
     }
 
-    @GetMapping("/board/preboard")
+    @GetMapping("/board/prevboard")
     public String moveToPrevBoard(int currentPage, int boardnum)
     {
-        boardnum=boardService.moveToPrevBoard(boardnum);
+        boardnum=boardService.moveToPrevBoard(boardnum); //이전글 보드넘버
+
         return "redirect:boardDetail?boardnum="+boardnum+"&currentPage="+currentPage;
     }
     @GetMapping("/board/nextboard")

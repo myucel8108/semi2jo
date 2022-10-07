@@ -229,10 +229,10 @@
     </table>
 <%--    <c:if test="${boardnum!=max}">--%>
     <a href="nextboard?boardnum=${dto.boardnum}&currentPage=${currentPage}" style="color: black; text-decoration: none;">다음글&nbsp;
-        <i class="fa fa-chevron-up" style="font-size:24px"></i>&nbsp;&nbsp;${dto.subject}</a><hr>
+        <i class="fa fa-chevron-up" style="font-size:24px"></i>&nbsp;&nbsp;${nextboardsub}</a><hr>
 <%--    </c:if>--%>
-    <a href="preboard?boardnum=${dto.boardnum}&currentPage=${currentPage}" style="color: black; text-decoration: none;">이전글&nbsp;
-        <i class="fa fa-chevron-down" style="font-size:24px;cursor: pointer"></i>&nbsp;&nbsp;${dto.subject}</a>
+    <a href="prevboard?boardnum=${dto.boardnum}&currentPage=${currentPage}" style="color: black; text-decoration: none;">이전글&nbsp;
+        <i class="fa fa-chevron-down" style="font-size:24px;cursor: pointer"></i>&nbsp;&nbsp;${prevboardsub}</a>
     <script>
         $("span.likes").click(function() {
             var a='${sessionScope.loginok}';
