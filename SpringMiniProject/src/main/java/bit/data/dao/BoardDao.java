@@ -73,4 +73,13 @@ public class BoardDao implements BoardDaoInter{
     public int moveToNextBoard(int boardnum) {
         return session.selectOne(ns+"moveToNextBoard", boardnum);
     }
+
+    @Override
+    public int getMaxNum() {
+        return session.selectOne(ns+"getMaxNum");
+    }
+    @Override
+    public int getMinNum() {
+        return session.selectOne(ns+"getMinNum");
+    }
 }

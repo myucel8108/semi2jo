@@ -37,7 +37,8 @@
         <div class="myaskbox">
             <button type="button" onclick="location.href='qnaList?'" class="myask2">전체글보기</button>&nbsp;
             <c:if test="${sessionScope.loginok!=null}">
-            <button type="button" onclick="location.href='qnaList?searchcolumn=usernum&searchword=${sessionScope.}'" class="myask">나의문의보기</button>
+
+            <button type="button" onclick="location.href='qnaList?usernum=${sessionScope.usernum}'" class="myask">나의문의보기</button>
             </c:if>
         </div>
     <br>
@@ -47,10 +48,10 @@
     <br><br>
     <table class="table table-bordered" >
         <tr class="listbox-tm">
-            <th style="width: 30px; text-align:center; color: grey;">번호</th>
-            <th style="width: 150px;text-align:center; color: grey">제목</th>
-            <th style="width: 50px;text-align:center; color: grey">작성자</th>
-            <th style="width: 20px;text-align:center; color: grey">작성일</th>
+            <th style="width: 30px; text-align:center; ">번호</th>
+            <th style="width: 150px;text-align:center; ">제목</th>
+            <th style="width: 50px;text-align:center; ">작성자</th>
+            <th style="width: 20px;text-align:center; ">작성일</th>
         </tr>
         <c:if test="${totalCount==0 }">
             <tr>
@@ -85,7 +86,7 @@
                             <c:if test="${dto.relevel==0}">
                             <img src="../image/lockimg.jpg" width="10px;" style="background-color: white">
                             </c:if>
-                                ${dto.subject}
+                                ${dto.subject}&nbsp;&nbsp;
                                 ${dto.qnatype}
                             <c:if test="${dto.photo!='no'}">
                                 <i class="fa fa-picture-o"></i>
@@ -93,19 +94,17 @@
                             <c:if test="${dto.relevel>0}">
                                 <b style="color: orange; text-decoration: none;">답변완료</b>
                             </c:if>
-<%--                                ${dto.qnatype}--%>
                         </a>
                     </td>
                     <c:set var="username" value="${resultInfo.dto.username}"/>
                     <c:set var="totalLength" value="${fn:length(dto.username)}"/>
                     <c:set var="first" value="${fn:substring(dto.username, 0, 1)}"/>
                     <c:set var="last" value="${fn:substring(dto.username, 3, totalLength)}"/>
-                    <td align="center">
-                    <c:if test="${!empty dto.username and dto.username!='티치미'}"><c:out value="${first}**${last}"/>
-                    </c:if>
 
-                    <c:if test="${dto.username=='티치미'}"><c:out value="${dto.username}"/>
+                    <td align="center"><c:if test="${!empty dto.username and dto.username!='티치미'}"><c:out value="${first}**${last}"/>
                     </c:if>
+                    <c:if test="${dto.username=='티치미'}"><c:out value="${dto.username}"/>
+                        </c:if>
 
 
 
@@ -120,9 +119,10 @@
         <c:if test="${sessionScope.loginok!=null}">
         <tr>
                 <td colspan="6" align="right" style= "text-align:center" >
+                    <c:if test="${sessionScope.email!='admin@gmail.com'}">
                     <button type="button" class="btn btn-outline"
                             onclick="location.href='qnaForm'" id="writecolor" >문의하기</button>
-
+                    </c:if>
                 </td>
         </tr>
 

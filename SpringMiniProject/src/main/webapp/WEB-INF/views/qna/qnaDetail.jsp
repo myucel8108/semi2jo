@@ -69,10 +69,11 @@
             </tr>
             <tr height="500">
                 <td>
+<%--                    <c:if test="${qnanum}"--%>
                     <p>${dto.content}</p>
                     <c:if test="${dto.photo!='no'}">
                         <c:forTokens var="photo" items="${dto.photo}" delims=",">
-                            <img src="../upload/${photo}" width="250"
+                            <img src="../upload/${photo}" width="100"
                                  onerror="this.style.display='none'">
                         </c:forTokens>
                     </c:if>
@@ -89,10 +90,10 @@
                     <div id="buttonbox" style="width: 250px; margin-top:10px; margin-bottom: 10px;">
                         <button type="button" class="btn btn-outline" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" onclick="location.href='qnaUpdate?qnanum=${dto.qnanum}&currentPage=${currentPage}'">수정</button>
                         </c:if>
-                        <c:if test="${sessionScope.loginok!=null && sessionScope.usernum==dto.usernum || sessionScope.loginid=='test'}">
+                        <c:if test="${sessionScope.loginok!=null && sessionScope.usernum==dto.usernum || sessionScope.email=='admin@gmail.com'}">
                         <button type="button" class="btn btn-outline" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" onclick="location.href='delete?qnanum=${dto.qnanum}&currentPage=${currentPage}'">삭제</button>
                         </c:if>
-                        <c:if test="${dto.restep==0 && sessionScope.loginid=='test'}">
+                        <c:if test="${dto.restep==0 && sessionScope.email=='admin@gmail.com'}">
                             <button type="button" class="btn btn-outline"  style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" onclick="location.href='qnaForm?qnanum=${dto.qnanum}&regroup=${dto.regroup}&restep=${dto.restep}&relevel=${dto.relevel}&currentPage=${currentPage}'">답글</button>
                         </c:if>
                         <%--        <div id="listing">--%>

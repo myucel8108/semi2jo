@@ -9,7 +9,6 @@ public class ChangeName {
 		String fname = fileName.substring(0,dotLoc); //�뙆�씪紐� (媛��굹�떎�씪留덈컮�궗)
 		String ext = fileName.substring(dotLoc); //�솗�옣�옄 (.jpg)
 		
-		//�궇吏쒕�� 援ы빐�꽌 �뿰�썡�씪�떆遺꾩큹 + 1000遺꾩쓽1珥�.jpg �씠�윴�떇�쑝濡� �뙆�씪紐� 蹂�寃쏀븯湲�
 		Calendar cal = Calendar.getInstance();
 		int y = cal.get(Calendar.YEAR);
 		int m = cal.get(Calendar.MONTH)+1;

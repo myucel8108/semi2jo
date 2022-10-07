@@ -32,36 +32,7 @@
 	div.mainlayout1 div.main{
     	border: 1px solid gray;
     }
-    
-    /*#header {*/
-    /*	width: 100%;*/
-    /*	height: 100px;*/
-    /*	line-height: 100px;*/
-    /*	display: flex;*/
-    /*	justify-content: center;*/
-    /*	float: right;*/
-    /*	border: 1px solid blue;*/
-    /*}*/
-    
-    /*#menu {*/
-    /*	font-size: 26px;*/
-    /*	float: left;*/
-    /*	width: 10%;*/
-    /*	height: 80%;*/
-    /*	line-height: 150px;*/
-    /*	display: flex;*/
-    /*	align-items: center;*/
-    /*	border: 1px solid magenta;*/
-    /*	justify-content: center;*/
-    /*}*/
 
-    /*#change {*/
-    /*	float: right;*/
-    /*	width: 90%;*/
-    /*	height: 80%;*/
-    /*	border: 1px solid aqua;*/
-	/*	background-color: rgb(250, 250, 250);*/
-    /*}*/
     
     a:link a:visited {
     	text-decoration: none;

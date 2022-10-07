@@ -62,23 +62,54 @@
 <%--    </tr>--%>
 
     <tr>
-      <th style="width: 100px; text-align: center; padding-top: 30px;" >사진</th>
-      <td>
-        <h5 style="font-size: 15px; margin-top: 5px; margin-bottom: 15px; font-style: italic; color: grey;" >사진 선택 없을 시 기존사진이 유지됩니다</h5>
-        <input type="file" name="upload" class="form-control" multiple="multiple" value="${dto.photo}">
-      </td>
-    </tr>
 
+      <th style="width: 100px; text-align: center; padding-top: 15px;" >사진</th>
+
+      <td>
+          <div class="phototag">
+              <div class="input-group">
+
+        <input type="file" name="upload" class="form-control" multiple="multiple" value="${dto.photo}">
+
+          <i class="fa fa-plus photoadd" style="font-size:14px; margin-left: 8px; margin-top: 10px;"></i>
+              </div>
+          </div>
+          <script>
+              $("i.photoadd").click(function(){
+                  if($("input[name='upload']").length==4){
+                      alert("더이상 추가할수 없습니다");
+                      return;
+                  }
+                  var tag="";
+                  tag=' <div class="input-group">';
+                  tag+='<input type="file" name="upload" class="form-control" multiple="multiple" >';
+                  tag+="<i class='fa fa-minus photodel' style='font-size:14px; margin-left: 8px; margin-top: 10px;' ></i>";
+                  tag+="</div>";
+                  $("div.phototag").append(tag);
+              });
+
+              $(document).on("click",".photodel",function(){
+                  $(this).prev().remove();
+                  $(this).remove();
+              });
+
+          </script>
+        <tr>
+<%--    <td style="width: 100px; text-align: center; padding-top: 5px; font-style: ">기존사진</td>--%>
+    <td colspan="2" style="text-align: center; font-style: italic; color: grey"  >사진 선택 없을 시 기존사진이 저장됩니다</td>
+</tr>
+    </tr>
+<%--    <td>${dto.content}</td>--%>
     <tr>
       <td colspan="2">
             <textarea name="content" class="form-control" required="required"
-                      style="width: 500px; height: 150px;">${dto.content}</textarea>
+                      style="width: 500px; height: 350px;" value="${dto.content}">${dto.content}</textarea>
       </td>
     </tr>
 
     <tr>
       <td colspan="2" align="center">
-        <button type="submit" class="btn btn-outline" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;">게시물 수정</button>
+        <button type="submit" class="btn btn-outline" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;">수정등록</button>
       </td>
     </tr>
   </table>

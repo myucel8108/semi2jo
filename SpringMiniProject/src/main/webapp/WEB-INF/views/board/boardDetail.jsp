@@ -13,7 +13,7 @@
 <%--     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>--%>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style type="text/css">
         *{
@@ -91,8 +91,10 @@
                 dataType : "json",
                 data : {"boardnum":boardnum},
                 success : function(res) {
+                   // alert(res);
                     if(res==1){
-                        $(".fa-thumbs-up").attr("class","fas fa-thumbs-up").css("color","red");
+                      //  $(".fa fa-thumbs-o-up").attr("class","fa fa-thumbs-up").css("color","red");
+                        $("span.likes i").attr("class","fa fa-thumbs-up").css("color","red");
                     }
                 }
             });
@@ -104,7 +106,7 @@
             var boardnum = ${dto.boardnum};
 
             var s = "";
-            $.ajax({
+            $.ajax({ //댓글댓글댓글댓글댓글댓글
                 type : "get",
                 url : "../reboard/list",
                 dataType : "json",
@@ -113,11 +115,11 @@
                     $("b.banswer").text(res.length);
                     $.each(res, function (i, elt){
                         s+="<div>"
-                        if(elt.photo==null) {
+                        if(elt.userphoto==null) { //댓글프사 없으면 기본프사
                             s+="<img src='../image/noprofilepicture.png' style='width: 30px; height: 30px;' class='rounded-circle' hspace='10'>";
                         }
-                        if(elt.photo!=null) {
-                            s+="<img src='../upload/"+"'elt.userphoto'"+"' style='width: 30px; height: 30px;' class='rounded-circle' hspace='10'>";
+                        if(elt.userphoto!=null) { //댓글프사 있으면 특정프사
+                            s+="<img src='../upload/"+elt.userphoto+"' style='width: 30px; height: 30px;' class='rounded-circle' hspace='10'>";
                         }
                         s+="<b>"+elt.nickname+"</b>";
                         if (writeuser==elt.usernum){
@@ -164,7 +166,7 @@
         <tr>
             <td>
                 <h2><b>${dto.subject}</b></h2>
-                <c:if test="${userphoto!='no'}">
+                <c:if test="${userphoto!='no'}"> <!--작성자의 프사-->
                     <img src="../upload/${userphoto}" width="40" height="40" class="rounded-circle"
                          onerror="this.src='../image/noprofilepicture.png'" hspace="10">
                 </c:if>
@@ -178,8 +180,8 @@
         </tr>
         <tr height="200">
             <td>
-                <pre><b>${dto.content}</b></pre>
-                <c:if test="${dto.photo!='no'}">
+                <pre><b>${dto.content}</b></pre> <!--작성글 내용-->
+                <c:if test="${dto.photo!='no'}">    <!--작성글 첨부사진-->
                     <c:forTokens var="photo" items="${dto.photo}" delims=",">
                         <img src="../upload/${photo}" width="400"
                              onerror="this.style.display='none'">
@@ -187,17 +189,19 @@
                 </c:if>
                 <br><br>
                 <span class="likes">
-                <i class='far fa-thumbs-up'></i>
+                <%--<i class='far fa-thumbs-up'></i>--%>
+                    <i class="fa fa-thumbs-o-up" style="font-size:24px"></i>
 				</span><b>
                 좋아요</b>
                 &nbsp;
                 <span class="likeusericon" data-bs-toggle="modal" data-bs-target="#likeuserModal">
-                <i class='fas fa-user-alt' style='font-size:16px'></i>
+                <%--<i class='fas fa-user-alt' style='font-size:16px'></i>--%>
+                    <i class="fa fa-user luser" style="font-size:24px"></i>
                 </span>
                 <b class="likesuser">
                    ${dto.likes}</b>
                 &nbsp;&nbsp;
-                <i class="far fa-comment-dots"></i>
+                <i class="far fa-comment-dots" style="font-size:24px"></i>
                 <b class="banswer">0</b>
                 <br><hr>
                 <div class="alist"></div>
@@ -205,9 +209,7 @@
                 <div class="aform">
                     <form id="aform">
                         <input type="hidden" name="boardnum" value="${dto.boardnum}">
-                        <input type="hidden" name="userid" value="${sessionScope.loginid}">
-                        <input type="hidden" name="nickname" value="${dto.nickname}">
-                        <input type="hidden" name="userphoto" value="${dto.userphoto}">
+                        <input type="hidden" name="usernum" value="${sessionScope.usernum}">
                         <div class="input-group">
                             <textarea name="recontent" id="recontent" style="width: 400px; height: 100px;" class="form-control"></textarea>
                             <button type="button" id="btnreboard">등록</button>
@@ -215,9 +217,9 @@
                     </form>
                 </div>
                 </c:if>
-                <div style="text-align: center; float: bottom;">
+                <div style="text-align: center; float: bottom;"><hr>
                 <button type="button" onclick="location.href='boardFree?currentPage=${currentPage}'">목록</button>
-                <c:if test="${sessionScope.loginok!=null && sessionScope.loginid==dto.userid}">
+                <c:if test="${sessionScope.loginok!=null && sessionScope.usernum==dto.usernum}">
                 <button type="button" onclick="location.href='boardUpdate?boardnum=${dto.boardnum}&currentPage=${currentPage}'">수정</button>
                 <button type="button" onclick="location.href='delete?boardnum=${dto.boardnum}&currentPage=${currentPage}'">삭제</button>
                 </c:if>
@@ -225,6 +227,16 @@
             </td>
         </tr>
     </table>
+<%--    <h1>${minboardnum},${dto.boardnum},${maxboardnum}</h1>--%>
+
+    <c:if test="${dto.boardnum<maxboardnum}">
+        <a href="nextboard?boardnum=${dto.boardnum}&currentPage=${currentPage}" style="color: black; text-decoration: none;">다음글&nbsp;
+            <i class="fa fa-chevron-up" style="font-size:24px"></i>&nbsp;&nbsp;${nextboardsub}</a><hr>
+    </c:if>
+    <c:if test="${dto.boardnum>minboardnum}">
+    <a href="prevboard?boardnum=${dto.boardnum}&currentPage=${currentPage}" style="color: black; text-decoration: none;">이전글&nbsp;
+        <i class="fa fa-chevron-down" style="font-size:24px;cursor: pointer"></i>&nbsp;&nbsp;${prevboardsub}</a>
+    </c:if>
     <script>
         $("span.likes").click(function() {
             var a='${sessionScope.loginok}';
@@ -234,16 +246,16 @@
             }
             var thumbs = $(this).find("i").attr("class");
             var likestate;
-            if(thumbs=='far fa-thumbs-up'){
-                $(this).find("i").attr("class","fas fa-thumbs-up").css("color","red");
+            if(thumbs=='fa fa-thumbs-o-up'){ //좋아요없음
+                $(this).find("i").attr("class","fa fa-thumbs-up").css("color","red");
                 likestate=1;
-            } else {
-                $(this).find("i").attr("class","far fa-thumbs-up").css("color","black");
+            } else { //좋아요있음
+                $(this).find("i").attr("class","fa fa-thumbs-o-up").css("color","black");
                 likestate=0;
             }
 
             var boardnum=${dto.boardnum};
-
+            //console.log(boardnum+","+likestate);
             $.ajax({
                 type : "get",
                 url : "likes",
@@ -261,7 +273,6 @@
             $.ajax({
                 type : "post",
                 url : "../reboard/insert",
-
                 dataType : "text",
                 data : fdata,
                 success : function(res) {

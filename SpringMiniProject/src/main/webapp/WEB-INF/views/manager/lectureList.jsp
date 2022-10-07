@@ -54,7 +54,7 @@
 
 <body>
     <div class="possible-list">
-        개설 가능한 강의 목록
+        유형별 과목
     </div>
     <!-- 검색창 -->
     <div>

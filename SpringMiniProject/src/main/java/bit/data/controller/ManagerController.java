@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import util.ChangeName;
 
 import java.sql.SQLOutput;
@@ -36,9 +38,10 @@ public class ManagerController {
     @Autowired
     UserServiceInter userService;
 
+    //메뉴에서 회원관리 클릭 시 회원 목록 출력
     @GetMapping("/userlist")
     public String getUserList(@RequestParam(defaultValue = "1") int currentPage,
-                              @RequestParam(value = "searchword", required = false) String sw,
+                              @RequestParam(value = "searchword", required = false) String sw, //value: userlist의 name(url에서 ? 뒤에 오는 텍스트)과 일치 시킬 것 String 변수명이 일치되면 value는 생략가능
                               Model model){
         int totalCount = userService.getUserTotalCount(sw);
         int perPage=10;//한 페이지 당 보여질 글의 갯수
@@ -85,16 +88,50 @@ public class ManagerController {
 
     }
 
+    //회원관리에서 돋보기 아이콘 클릭 시 회원상세정보로 이동
     @GetMapping("/userdetail")
-    public String userDetail(){
-        return "/manager/manager/userDetail";
+    public ModelAndView userDetail(int usernum){
+        ModelAndView mview = new ModelAndView();
+
+        UserDto dto = userService.getUserDetailbyManager(usernum);
+        mview.addObject("dto", dto);
+
+        mview.setViewName("/manager/manager/userDetail");
+        return mview;
     }
+
+    //회원 정보 수정폼으로 가기
     @GetMapping("/updateuserform")
-    public String updateUser(){
-        return "/manager/manager/updateUserForm";
+    public ModelAndView updateUserForm(int usernum){
+        ModelAndView mview = new ModelAndView();
+
+        UserDto dto = userService.getUserDetailbyManager(usernum);
+
+//        DB(type:date)에서 timestamp로 불러올 때 형식 변경해서 읽을 수 있게 해주기
+//        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+//        dto.setBirthday(sdf.format(dto.getBirth()));
+//        System.out.println("birth:"+dto.getBirthday());
+
+        mview.addObject("dto", dto);
+
+        mview.setViewName("/manager/manager/updateUserForm");
+        return mview;
     }
 
+    //회원 정보 수정 후 회원 목록으로 이동
+    @PostMapping("/updateuser")
+    public String updateUser(UserDto dto){
+        userService.updateUser(dto);
+        return "redirect:userlist";
+    }
 
+    @GetMapping("/deleteuser")
+    public String deleteUser(int usernum){
+        userService.deleteUser(usernum);
+        return "redirect:userlist";
+    }
+
+    //강좌 목록 출력
     @GetMapping("/lecturelist")
     public String getLecturelist(@RequestParam(defaultValue = "1") int currentPage,
                                  @RequestParam(value = "searchcolomn", required = false) String sc,
@@ -175,10 +212,10 @@ public class ManagerController {
     }
 
     //    이번달에 개설된 강의 총 수 반환
-    @GetMapping("/manager/totalLecture")
+    @GetMapping("/manager/totalLectureCount")
     @ResponseBody
     public int getLecTotalCountMonth(int lecyear, int lecmonth){
-//        System.out.println("lecyear"+lecyear);
+        System.out.println("lecyear"+lecyear);
 //        System.out.println("lecmonth"+lecmonth);
         int result = lecDetailService.getLecTotalCountMonth(lecyear, lecmonth);
         if(!(result>0)) result=0;

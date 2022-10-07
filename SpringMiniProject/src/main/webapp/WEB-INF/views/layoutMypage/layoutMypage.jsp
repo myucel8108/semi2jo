@@ -109,13 +109,16 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Hi+Melody&family=Nanum+Brush+Script&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Yeon+Sung&display=swap" rel="stylesheet">
 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style type="text/css">
 
+        *{
+            font-family: "Noto Sans KR";
+        }
         div.layout{
             position: absolute;
             left: 50%;
@@ -127,6 +130,10 @@
         /*div.layout div{
             border: 2px dotted gray;
         }*/
+
+        div.layoutbox{
+            position: relative;
+        }
 
         div.layout div.header{
             position: relative;
@@ -164,7 +171,6 @@
         }
 
         div.layout div.footer{
-            position: relative;
             width: auto;
             height: 250px;
         }
@@ -173,20 +179,22 @@
 <body>
 <!-- 사이드 메뉴가 존재하는 challenge layout -->
 <div class="layout">
-    <div class="header">
-        <tiles:insertAttribute name="header"/>
-    </div>
-    <div class="menu">
-        <tiles:insertAttribute name="menu"/>
-    </div>
-    <div class="side_menu">
-        <tiles:insertAttribute name="a_sidemenu"/>
-    </div>
-    <div class="change">
-        <tiles:insertAttribute name="change"/>
-    </div>
-    <div class="footer">
-        <tiles:insertAttribute name="footer"/>
+    <div class="layoutbox">
+        <div class="header">
+            <tiles:insertAttribute name="header"/>
+        </div>
+        <div class="menu">
+            <tiles:insertAttribute name="menu"/>
+        </div>
+        <div class="side_menu">
+            <tiles:insertAttribute name="a_sidemenu"/>
+        </div>
+        <div class="change">
+            <tiles:insertAttribute name="change"/>
+        </div>
+        <div class="footer">
+            <tiles:insertAttribute name="footer"/>
+        </div>
     </div>
 </div>
 </body>

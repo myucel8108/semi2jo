@@ -22,7 +22,7 @@
 <div class="sidebar_title">마이페이지</div>
 <hr id="sidebar_hr">
 <div class="sidebar_content">
-    <div class="sidebar_detail" id="d1" onclick="location.href='#'">
+    <div class="sidebar_detail" id="d1" onclick="location.href='${root}/student/updateStudent'">
         <span class="side_main_span_main">마이정보</span>
     </div>
     <div class="sidebar_detail" id="d2" onclick="location.href='${root}/student/timeTable'">
@@ -34,7 +34,7 @@
     <div class="sidebar_detail" id="d4" onclick="location.href='#'">
         <span class="side_main_span_challenge">마이커뮤니티</span>
     </div>
-    <div class="sidebar_detail" id="d5" onclick="location.href='#'">
+    <div class="sidebar_detail" id="d5" onclick="location.href='${root}/student/myCart'">
         <span class="side_main_span_scrap">마이장바구니</span>
     </div>
 </div>
