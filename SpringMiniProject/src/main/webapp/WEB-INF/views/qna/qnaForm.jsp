@@ -40,7 +40,7 @@
 
         <c:if test="${qnanum==0}">
             <tr>
-                <th style="width: 100px;">문의유형</th>
+                <th style="width: 100px; text-align: center;">문의유형</th>
                 <td>
                     <select type="select" name="qnatype" required="required">
                         <option>결제문의</option>
@@ -52,7 +52,7 @@
                 </td>
             </tr>
             <tr>
-                <th style="width: 100px;">비밀번호</th>
+                <th style="width: 100px; text-align: center; padding-top: 12px;">비밀번호</th>
                 <td>
                     <input type="password" name="pass" class="form-control" required="required">
                 </td>
@@ -74,7 +74,7 @@
 <%--                        <input type="file" name="upload" class="form-control" multiple="multiple" id="upload">--%>
                         <input type="file" name="upload" class="form-control" id="upload">
                         &nbsp;
-                        <i class="fa fa-plus photoadd" style="font-size:14px"></i>
+                        <i class="fa fa-plus photoadd" style="font-size:14px; margin-left: 3px; margin-right:0px; margin-top: 10px;"></i>
                     </div>
                 </div>
                 <script>
@@ -86,7 +86,7 @@
                         var tag="";
                         tag=' <div class="input-group">';
                         tag+='<input type="file" name="upload" class="form-control" multiple="multiple" >';
-                        tag+="<i class='fa fa-minus photodel' style='font-size:24px'></i>";
+                        tag+="<i class='fa fa-minus photodel' style='font-size:14px; margin-left: 8px; margin-top: 10px;'></i>"
                         tag+="</div>";
                         $("div.phototag").append(tag);
                     });
