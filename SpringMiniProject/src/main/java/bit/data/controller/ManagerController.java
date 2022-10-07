@@ -93,8 +93,8 @@ public class ManagerController {
     public ModelAndView userDetail(int usernum){
         ModelAndView mview = new ModelAndView();
 
-        UserDto dto = userService.getUserDetailbyManager(usernum);
-        mview.addObject("dto", dto);
+        UserDto userdto = userService.getUserDetailbyManager(usernum);
+        mview.addObject("userdto", userdto);
 
         mview.setViewName("/manager/manager/userDetail");
         return mview;
@@ -120,7 +120,24 @@ public class ManagerController {
 
     //회원 정보 수정 후 회원 목록으로 이동
     @PostMapping("/updateuser")
-    public String updateUser(UserDto dto){
+    public String updateUser(UserDto dto, MultipartFile uploadphoto, HttpServletRequest request){
+
+        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
+        System.out.println(path); //저장되는 실제 경로 확인
+        String photo = uploadphoto.getOriginalFilename(); //photo는 실제 파일명
+        System.out.println(uploadphoto.getOriginalFilename()); //실제 파일명 확인
+        if(uploadphoto.getOriginalFilename().equals("")) {
+            dto.setUserphoto(null);
+        } else {
+            //String newName = ChangeName.getChangeFileName(upload.getOriginalFilename()); //파일 이름을 시간으로 변경할 때 사용
+            try {
+                uploadphoto.transferTo(new File(path + "/" + photo));
+                dto.setUserphoto(photo);
+            } catch (IllegalStateException | IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
         userService.updateUser(dto);
         return "redirect:userlist";
     }
@@ -128,6 +145,12 @@ public class ManagerController {
     @GetMapping("/deleteuser")
     public String deleteUser(int usernum){
         userService.deleteUser(usernum);
+        return "redirect:userlist";
+    }
+
+    @GetMapping("/deleteuserphoto")
+    public String deleteUserPhoto(int usernum){
+        userService.deleteUserPhoto(usernum);
         return "redirect:userlist";
     }
 
@@ -194,7 +217,7 @@ public class ManagerController {
         String path = request.getSession().getServletContext().getRealPath("/resources/upload");
 //        System.out.println(path); //저장되는 실제 경로 확인
         String photo = photoupload.getOriginalFilename(); //photo는 실제 파일명
-//        System.out.println(upload.getOriginalFilename()); //실제 파일명 확인
+//        System.out.println(photoupload.getOriginalFilename()); //실제 파일명 확인
         if(photoupload.getOriginalFilename().equals("")) {
             dto.setLecphoto("no");
         } else {

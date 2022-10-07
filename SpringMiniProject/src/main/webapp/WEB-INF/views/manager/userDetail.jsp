@@ -25,23 +25,23 @@
                     <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
                         <div class="row align-items-center">
                             <div class="col-lg-6 mb-4 mb-lg-0">
-                                <c:if test="${dto.userphoto!=null}">
-                                  <img src="${dto.userphoto}">
+                                <c:if test="${userdto.userphoto!=null}">
+                                  <img src="${root}/upload/${userdto.userphoto}" width="400" height="300">
                                 </c:if>
-                                <c:if test="${dto.userphoto==null}">
-                                    <img src="/image/noimage2.png" alt="이미지가 없습니다.">
+                                <c:if test="${userdto.userphoto==null}">
+                                    <img src="${root}/image/noimage2.png" alt="이미지가 없습니다." width="300" height="300">
                                 </c:if>
                             </div>
                             <div class="col-lg-6 px-xl-10">
                                 <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
-                                    <h3 class="h2 text-white mb-0">${dto.username}</h3>
-                                    <span class="text-primary">${dto.nickname}</span>
+                                    <h3 class="h2 text-white mb-0">${userdto.username}</h3>
+                                    <span class="text-primary">${userdto.nickname}</span>
                                 </div>
                                 <ul class="list-unstyled mb-1-9">
-                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Email :</span> ${dto.email}</li>
-                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">연락처 :</span> ${dto.hp}</li>
-                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">주소 :</span> ${dto.addr}</li>
-                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">생년월일 :</span> ${dto.birth}</li>
+                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Email :</span> ${userdto.email}</li>
+                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">연락처 :</span> ${userdto.hp}</li>
+                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">주소 :</span> ${userdto.addr}</li>
+                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">생년월일 :</span> ${userdto.birth}</li>
                                 </ul>
                                 <ul class="social-icon-style1 list-unstyled mb-0 ps-0">
                                     <li><a href="#!"><i class="ti-twitter-alt"></i></a></li>
@@ -56,7 +56,7 @@
             </div>
             <div class="col-lg-12 mb-4 mb-sm-5">
                 <div>
-                    <span class="section-title text-primary mb-3 mb-sm-4">About Me</span>
+                    <span class="section-title text-primary mb-3 mb-sm-4">수강 중인 강의</span>
                     <p>Edith is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                     <p class="mb-0">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed.</p>
                 </div>

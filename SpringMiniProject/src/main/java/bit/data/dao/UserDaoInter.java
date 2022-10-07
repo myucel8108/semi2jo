@@ -12,6 +12,7 @@ public interface UserDaoInter {
     public UserDto getDataByNum(int usernum);
     public UserDto getDataById(String email);
     public void updateUserPhoto(Map<String, Object> map);
+    public void deleteUserPhoto(int usernum);
     public void updateUser(UserDto dto);
     public void deleteUser(int usernum);
 

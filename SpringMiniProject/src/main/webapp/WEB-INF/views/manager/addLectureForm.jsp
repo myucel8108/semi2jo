@@ -16,7 +16,7 @@
     <style type="text/css">
         .mb-4 {
             font-size: 19px;
-            width: 30%;
+            width: 70%;
         }
 
         .m-0 {
@@ -65,7 +65,7 @@
 				</div>
 				<div class="form-group">
 					<label for="photoupload">사진</label>
-					<input type="file" class="form-control btn-outline-primary" id="photoupload" name="upload">
+					<input type="file" class="form-control btn-outline-primary" id="photoupload" name="photoupload">
 				</div>
 				<br>
 				<div class="button-container">

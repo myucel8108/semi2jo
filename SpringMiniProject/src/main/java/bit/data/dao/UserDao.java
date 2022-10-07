@@ -46,6 +46,11 @@ public class UserDao implements UserDaoInter{
     }
 
     @Override
+    public void deleteUserPhoto(int usernum) {
+        session.selectOne(ns + "deleteUserPhoto", usernum);
+    }
+
+    @Override
     public void updateUser(UserDto dto) {
         session.selectOne(ns+"updateUser",dto);
     }

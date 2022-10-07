@@ -57,6 +57,11 @@ public class UserService implements UserServiceInter{
     }
 
     @Override
+    public void deleteUserPhoto(int usernum) {
+        userDao.deleteUserPhoto(usernum);
+    }
+
+    @Override
     public void updateUser(UserDto dto) {
         userDao.updateUser(dto);
     }

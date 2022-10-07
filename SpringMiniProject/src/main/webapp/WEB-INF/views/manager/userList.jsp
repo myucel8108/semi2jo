@@ -20,7 +20,7 @@
         }
 
         ul.pagination{
-            justify-content: right;
+            justify-content: center;
         }
 
         .deleteuser{
@@ -41,7 +41,6 @@
                                 <tr>
                                     <th><span>회원</span></th>
                                     <th><span>연락처</span></th>
-                                    <th class="text-center"><span>주소</span></th>
                                     <th><span>Email</span></th>
                                     <th>관리</th>
                                 </tr>
@@ -53,7 +52,7 @@
                                         <tr>
                                             <td>
                                                 <c:if test="${dto.userphoto!=null}">
-                                                    <img src="/upload/${dto.userphoto}">
+                                                    <img src="upload/${dto.userphoto}" width="50" height="50">
                                                 </c:if>
                                                 <c:if test="${dto.userphoto==null}">
                                                     <img src="resources/image/noimage2.png">
@@ -63,10 +62,6 @@
                                             </td>
                                             <td>
                                                 ${dto.hp}
-                                            </td>
-                                            <td class="text-center">
-                                                <span class="label label-default">${dto.addr}</span>
-                                            </td>
                                             <td>
                                                 ${dto.email}
                                             </td>
@@ -103,6 +98,8 @@
             </div>
         </div>
     </div>
+    <br>
+    <br>
     <!-- 페이징 -->
     <div class="paging">
         <ul class="pagination">

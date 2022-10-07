@@ -13,6 +13,7 @@ public interface UserServiceInter {
     public UserDto getDataByNum(int usernum);
     public UserDto getDataById(String email);
     public void updateUserPhoto(int usernum, String photo);
+    public  void deleteUserPhoto(int usernum);
     public void updateUser(UserDto dto);
     public void deleteUser(int usernum);
 
