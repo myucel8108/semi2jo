@@ -44,4 +44,16 @@ public class MyLecJoinController {
         return "/mypage/student/timeTable";
 
     }
+
+    //장바구니 출력(payok=="no")
+    @GetMapping("/student/myCart")
+    public String Cart(Model model, HttpServletRequest request){
+
+        HttpSession session =request.getSession();
+        int usernum= Integer.parseInt(session.getAttribute("usernum").toString());
+        List<MyLecJoinDto> list=myLecJoinService.getMyLecListByNum(usernum,"no");
+
+        model.addAttribute("list",list);
+        return "/mypage/student/myCart";
+    }
 }

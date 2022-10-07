@@ -34,7 +34,7 @@
     <div class="sidebar_detail" id="d4" onclick="location.href='#'">
         <span class="side_main_span_challenge">마이커뮤니티</span>
     </div>
-    <div class="sidebar_detail" id="d5" onclick="location.href='#'">
+    <div class="sidebar_detail" id="d5" onclick="location.href='${root}/student/myCart'">
         <span class="side_main_span_scrap">마이장바구니</span>
     </div>
 </div>
