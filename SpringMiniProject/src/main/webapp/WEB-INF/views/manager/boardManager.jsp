@@ -35,7 +35,7 @@
 
 
 
-        <div class="table-responsive custom-table-responsive" style="width: 80%">
+        <div class="table-responsive custom-table-responsive" id="free-board-control">
 
             <h2 class="mb-5">자유 커뮤니티</h2>
             <table class="table custom-table">
@@ -56,25 +56,25 @@
                     <th scope="col">Readcount</th>
                 </tr>
                 </thead>
-                <tbody>
-                    <tr class="ajax-input-freeboard">
+                <tbody class="ajax-input-freeboard">
+<%--                    <tr class="">--%>
 <%--                        <th scope="row">--%>
 <%--                            <label class="control control--checkbox">--%>
 <%--                                <input type="checkbox"/>--%>
 <%--                                <div class="control__indicator"></div>--%>
 <%--                            </label>--%>
 <%--                        </th>--%>
-                        <td>
-                            1392
-                        </td>
-                        <td><a href="#">James Yates</a></td>
-                        <td>
-                            Web Designer
-                            <small class="d-block">Far far away, behind the word mountains</small>
-                        </td>
-                        <td>+63 983 0962 971</td>
-                        <td>NY University</td>
-                    </tr>
+<%--                        <td>--%>
+<%--                            1392--%>
+<%--                        </td>--%>
+<%--                        <td><a href="#">James Yates</a></td>--%>
+<%--                        <td>--%>
+<%--                            Web Designer--%>
+<%--                            <small class="d-block">Far far away, behind the word mountains</small>--%>
+<%--                        </td>--%>
+<%--                        <td>+63 983 0962 971</td>--%>
+<%--                        <td>NY University</td>--%>
+<%--                    </tr>--%>
 
 <%--                <tr class="spacer"><td colspan="100"></td></tr>--%>
 <%--                <tr>--%>
@@ -100,15 +100,30 @@
         </div>
 
 
+<div class="table-responsive custom-table-responsive" id="ask-board-control">
+    <h2 class="mb-5">질문 커뮤니티</h2>
+    <table class="table custom-table">
+        <thead>
+        <tr>
+            <th scope="col">Number</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Writer</th>
+            <th scope="col">Writeday</th>
+            <th scope="col">Readcount</th>
+        </tr>
+        </thead>
+        <tbody class="ajax-input-askboard">
+
+<%--        여기에 ajax로 불러드린 값을 넣는다--%>
+        </tbody>
+    </table>
+</div>
+
+
 <%--    </div>--%>
 
 <%--</div>--%>
 
-
-
-<%--<script src="js/jquery-3.3.1.min.js"></script>--%>
-<%--<script src="js/popper.min.js"></script>--%>
-<%--<script src="js/bootstrap.min.js"></script>--%>
 <script src="${root}/js/boardManager.js"></script>
 </body>
 <script>
@@ -117,16 +132,25 @@
     })
 
     function freeBoardList(){
-        var ajaxdata;
+        var temp = "";
+        var page = "";
         $.ajax({
             type:"get",
-            url:"${root}/manager/freeBoardManager",
+            url:"${root}/manager/freeBoardList",
             dataType:"json",
             success:function(res){
-                $.each(res,function (idx,ele) {
-                    ajaxdata+="<td>";
-                })
+                $.each(res.list,function (idx,ele) {
+                    var num = idx+1;
+                    temp+="<tr>";
+                    temp+="<td>"+num+"</td>";
+                    temp+="<td>"+ele.subject+"</td>";
+                    temp+="<td>"+ele.nickname+"</td>";
+                    temp+="<td>"+ele.writeday+"</td>";
+                    temp+="<td>"+ele.readcount+"</td>";
+                    temp+="</tr>";
+                })//반복으로 데이터 출력
 
+                $(".ajax-input-freeboard").html(temp);
             },
         });
     }
