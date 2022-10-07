@@ -55,10 +55,12 @@ public class ReadyPayController {
 	  model.addAttribute("list",list);
 	  
 	  return "/main/lecture/lectureList"; 
+	  
 	  }
 	  
 	  
 	  @RequestMapping("/payment/callback_receive") 
+	  
 	  public ResponseEntity<?> callback_receive(@RequestBody Map<String, Object> model){  
 		  
 	  String process_result="결제성공";

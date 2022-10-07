@@ -7,11 +7,5 @@
             where a.lecnum=b.lecnum and b.lecdenum=c.lecdenum
             and c.usernum=#{usernum}
     </select>
-	
-	<insert id="insertMylecList" parameterType="map" >
-	
-		insert into mylecture (usernum, lecdenum)  values (#{usernum},#{lecdenum});
-	
-	</insert>
-	
+		
 </mapper>

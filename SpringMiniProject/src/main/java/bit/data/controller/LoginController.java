@@ -45,9 +45,6 @@ public class LoginController {
     public Map<String, Object> loginprocess(String email, String userpass, HttpSession session){
         Map<String, Object> map=new HashMap<String, Object>();
         String result=loginService.checkLoginIdPass(email, userpass);
-        System.out.println(email);
-        System.out.println(userpass);
-        System.out.println(result);
         if(result!=null){
             System.out.println(result);
             int usernum = Integer.parseInt(result);
