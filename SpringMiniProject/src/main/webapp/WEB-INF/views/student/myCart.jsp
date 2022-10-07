@@ -141,6 +141,7 @@
                 }).done(function (data) {
                     // 가맹점 서버 결제 API 성공시 로직'
                     alert("성공");
+                    location.reload();
 
                 })
         })
