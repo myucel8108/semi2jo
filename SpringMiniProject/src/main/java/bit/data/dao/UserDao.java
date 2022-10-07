@@ -26,6 +26,11 @@ public class UserDao implements UserDaoInter{
     }
 
     @Override
+    public UserDto getUserDetailbyManager(int usernum) {
+        return session.selectOne(ns + "getUserDetailbyManager", usernum);
+    }
+
+    @Override
     public UserDto getDataByNum(int usernum) {
         return session.selectOne(ns+"getDataByNum", usernum);
     }

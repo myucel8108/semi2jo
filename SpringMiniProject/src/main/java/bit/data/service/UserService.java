@@ -34,6 +34,11 @@ public class UserService implements UserServiceInter{
     }
 
     @Override
+    public UserDto getUserDetailbyManager(int usernum) {
+        return userDao.getUserDetailbyManager(usernum);
+    }
+
+    @Override
     public UserDto getDataByNum(int usernum) {
         return userDao.getDataByNum(usernum);
     }
