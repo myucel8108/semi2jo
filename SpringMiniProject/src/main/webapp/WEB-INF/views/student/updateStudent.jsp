@@ -53,7 +53,7 @@
                         <td class="text1"><div style="padding-bottom: 10px;">비밀번호 확인</div></td>
                         <td colspan="3" class="text2">
                             <div class="wrapper">
-                                <input type="text" class="input" name="subject" placeholder="새 비밀번호 입력" required="required" style="width: 200px;">
+                                <input type="text" class="input" name="subject" placeholder="새 비밀번호 확인" required="required" style="width: 200px;">
                                 <span class="underline"></span>
                             </div>
                         </td>
