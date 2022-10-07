@@ -33,7 +33,6 @@
 
 
  <script type="text/javascript">
-
 		 function gocart() {	
 			var ans = confirm("장바구니에 저장하시겠습니까?");
 			var usernum= "${sessionScope.usernum}";
@@ -45,28 +44,20 @@
                		$.ajax({
                			url:"../student/myCart",
                			method:"POST",
-               		 	dataType :"json",
-               			data: {"lecdenum": ${dto.lecdenum}, "usernum": usernum}
-    
-               		}),
-               		success(function data() {
-               				
+               		 	dataType :"text",
+               			data: {"lecdenum": ${dto.lecdenum}, "usernum": usernum},
+    					success: function(res) {
 							var ans2 = confirm("장바구니로 이동하시겠습니까?");
 							
                				if (ans2) {
                					
-               					return "../student/stuLectureList";
-							};
+               				 location.href='${root}/student/myCart';
+							}
 
-						});	
+						}
+		 			})                  		
 			}
-			else{
-				
-				
-			};
-			
 		}
-            	   
    </script>    
 </body>
 </html>
