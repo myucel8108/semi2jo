@@ -31,7 +31,7 @@ public class ReboardController {
         String nickname=userService.getDataByNum(dto.getUsernum()).getNickname();
         dto.setNickname(nickname);
         String userphoto = userService.getDataByNum(dto.getUsernum()).getUserphoto();
-        dto.setPhoto(userphoto);
+        dto.setUserphoto(userphoto);
         reboardService.insertReboard(dto);
     }
     @GetMapping("/list")
