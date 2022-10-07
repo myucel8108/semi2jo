@@ -33,9 +33,6 @@
         }
     </style>
 
-
-
-
 </head>
 <body>
 <h1>장바구니</h1>
@@ -92,7 +89,6 @@
         <tr>
             <td colspan="8" class="total">
                 총 결제 예정 금액 :  <fmt:formatNumber type="currency" value="${totalPrice}"/>
-                강의이름들: ${totalLecname}
             </td>
         </tr>
     </table>
