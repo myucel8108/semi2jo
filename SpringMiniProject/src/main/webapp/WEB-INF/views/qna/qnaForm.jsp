@@ -120,7 +120,10 @@
         <tr>
             <td colspan="2" align="center">
                 <button type="submit" class="btn btn-outline" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" >등록</button>
+                <button type="button" class="btn btn-outline"  style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" onclick="location.href='qnaList?currentPage=${currentPage}'">취소</button>
             </td>
+
+
         </tr>
     </table>
 </form>

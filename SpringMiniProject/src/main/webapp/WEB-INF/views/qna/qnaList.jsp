@@ -118,9 +118,10 @@
         <c:if test="${sessionScope.loginok!=null}">
         <tr>
                 <td colspan="6" align="right" style= "text-align:center" >
+                    <c:if test="${sessionScope.email!='admin@gmail.com'}">
                     <button type="button" class="btn btn-outline"
                             onclick="location.href='qnaForm'" id="writecolor" >문의하기</button>
-
+                    </c:if>
                 </td>
         </tr>
 
