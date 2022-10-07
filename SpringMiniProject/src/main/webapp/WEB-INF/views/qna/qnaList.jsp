@@ -39,18 +39,18 @@
 <body>
 <h1 style="text-align: center; font-size: 30px; margin-top: 80px; padding-bottom: 0px; font-family: abster;" >TeachMe 지원</h1>
 <div class="container" style="width: 100%;" >
-        <div class="myaskbox">
+        <div class="myaskbox" style="margin-bottom: 5px;">
             <button type="button" onclick="location.href='qnaList?'" class="myask2">전체글보기</button>&nbsp;
             <c:if test="${sessionScope.loginok!=null}">
 
             <button type="button" onclick="location.href='qnaList?usernum=${sessionScope.usernum}'" class="myask">나의문의보기</button>
+                <button type="button" onclick="location.href='qnaList?usernum=${sessionScope.usernum}'" class="myask" style="margin-left: 3px;">문의유형별보기</button>
             </c:if>
         </div>
     <br>
-<div class="qnalist" style="margin-top: 10px; ">
-    <h3 class="hname-tm">총 ${totalCount} 개의 글이 있습니다</h3>
+<div class="qnalist" style="margin-top: 0px; margin-right: 10px; margin-bottom: 10px;">
+    <h3 class="hname-tm" style="text-align: right; margin-bottom: 0; color: grey;">총 ${totalCount} 개의 글이 있습니다</h3>
 </div>
-    <br><br>
     <table class="table table-bordered" >
         <tr class="listbox-tm">
             <th style="width: 30px; text-align:center; ">번호</th>
@@ -123,7 +123,8 @@
         <!-- 글쓰기 버튼은 로그인을 해야만 보인다 -->
         <c:if test="${sessionScope.loginok!=null}">
         <tr>
-                <td colspan="6" align="right" style= "text-align:center" >
+                <td colspan="6" align="right" style= "text-align:center; padding-top: 20px; padding-bottom: 25px;" >
+
                     <c:if test="${sessionScope.email!='admin@gmail.com'}">
                     <button type="button" class="btn btn-outline"
                             onclick="location.href='qnaForm'" id="writecolor" >문의하기</button>
