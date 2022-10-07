@@ -201,15 +201,23 @@ public class QnaController {
             photo = photo.substring(0, photo.length()-1);
             dto.setPhoto(photo);
         }
+
+
+
         qnaService.updateQna(dto);
+
+
+
         return "redirect:qnaList?currentPage="+currentPage+"&qnanum="+dto.getQnanum();
     }
     @GetMapping("/qna/qnaUpdate")
-    public String updateform(Model model, int qnanum, int currentPage)
+    public String updateform(Model model, int qnanum, int currentPage, String content)
     {
         QnaDto dto = qnaService.selectByNum(qnanum);
         model.addAttribute("dto", dto);
         model.addAttribute("currentPage", currentPage);
+        model.addAttribute("content", content);
+
         return "/main/qna/qnaUpdate";
 
 
