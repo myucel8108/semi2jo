@@ -8,26 +8,6 @@
     <title>Login V18</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%--    <!--===============================================================================================-->--%>
-    <%--    <link rel="icon" type="image/png" href="../../../../../../../../../Downloads/Login_v18/images/icons/favicon.ico"/>--%>
-    <%--    <!--===============================================================================================-->--%>
-    <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/vendor/bootstrap/css/bootstrap.min.css">--%>
-    <!--===============================================================================================-->
-    <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/fonts/font-awesome-4.7.0/css/font-awesome.min.css">--%>
-    <%--    <!--===============================================================================================-->--%>
-    <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">--%>
-    <%--    <!--===============================================================================================-->--%>
-    <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/vendor/animate/animate.css">--%>
-    <%--    <!--===============================================================================================-->--%>
-    <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/vendor/css-hamburgers/hamburgers.min.css">--%>
-    <%--    <!--===============================================================================================-->--%>
-    <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/vendor/animsition/css/animsition.min.css">--%>
-    <%--    <!--===============================================================================================-->--%>
-    <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/vendor/select2/select2.min.css">--%>
-    <%--    <!--===============================================================================================-->--%>
-    <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/vendor/daterangepicker/daterangepicker.css">--%>
-    <%--    <!--===============================================================================================-->--%>
-    <%--    <link rel="stylesheet" type="text/css" href="../../../../../../../../../Downloads/Login_v18/css/util.css">--%>
     <c:set var="root" value="<%=request.getContextPath() %>"></c:set>
     <link rel="stylesheet" type="text/css" href="${root}/css/account.css">
     <!--===============================================================================================-->
@@ -64,13 +44,12 @@
 
 
 
-            <div class="flex-sb-m w-full p-t-3 p-b-32">
-                <div class="contact100-form-checkbox">
-                    <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                    <label class="label-checkbox100" for="ckb1">
-                        관리자 로그인
-                    </label>
-                </div>
+<%--            <div class="flex-sb-m w-full p-t-3 p-b-32">--%>
+<%--                <div class="contact100-form-checkbox">--%>
+<%--                    <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">--%>
+<%--                    <label class="label-checkbox100" for="ckb1">--%>
+<%--                    </label>--%>
+<%--                </div>--%>
 
 <%--                <div>--%>
 <%--                    <a href="#" class="txt1">--%>
@@ -88,14 +67,14 @@
                     카카오 로그인
                 </li>
             </ul>
-            <ul>
-                <li onclick="kakaoLogout();">
-                    <%--                    <a href="javascript:void(0)">--%>
-                    <%--                        <span>카카오 로그인</span>--%>
-                    <%--                    </a>--%>
-                    카카오 로그아웃
-                </li>
-            </ul>
+<%--            <ul>--%>
+<%--                <li onclick="kakaoLogout();">--%>
+<%--                    &lt;%&ndash;                    <a href="javascript:void(0)">&ndash;%&gt;--%>
+<%--                    &lt;%&ndash;                        <span>카카오 로그인</span>&ndash;%&gt;--%>
+<%--                    &lt;%&ndash;                    </a>&ndash;%&gt;--%>
+<%--                    카카오 로그아웃--%>
+<%--                </li>--%>
+<%--            </ul>--%>
 
 
             <div class="container-login100-form-btn">
@@ -103,7 +82,7 @@
                     Sign In
                 </button>
                 <button class="login100-form-btn" style="width: 40%; margin-left: 5%"
-                        onclick="location.href='insertAccountF'">
+                        onclick="location.href='${root}/insertAccountF'">
                     Sign Up
                 </button>
             </div>
@@ -124,7 +103,7 @@
         console.log("btnclick");
         $.ajax({
             type:"get",
-            url:"/mini/loginA",
+            url:"${root}/loginA",
             dataType:"json",
             data:{"email":email,"userpass":userpass},
             success:function(res){
@@ -133,12 +112,13 @@
                     alert("아이디나 비번이 맞지 않습니다");
                 }else {
                     alert("로그인 성공!");
-                    location.href="/mini";
+                    location.href="${root}/";
                 }
             },
         });
     });
 </script>
+<%--    카카오 api 로그인--%>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
     Kakao.init('c500f46a6b2ae4e0ca63896f364bf927'); //발급받은 키 중 javascript키를 사용해준다.
@@ -156,18 +136,17 @@
                         console.log("email"+email);
                         $.ajax({
                             type:"get",
-                            url:"/mini/loginByApi",
+                            url:"${root}/loginByApi",
                             dataType:"json",
-                            data:{"userid":email},
+                            data:{"email":email},
                             success:function(res){
                                 console.log("test2"+res.result);
                                 if(res.result=='fail'){
                                     //fail 일 경우 회원가입 폼으로 이동
-
-                                    alert("아이디나 비번이 맞지 않습니다");
+                                    location.href='${root}/insertAccountF?email='+email;
                                 }else {
-                                    alert("로그인 성공!");
-                                    // location.href="/mini";
+                                    // alert("로그인 성공!");
+                                    location.href="/mini";
                                 }
                             },
                         });

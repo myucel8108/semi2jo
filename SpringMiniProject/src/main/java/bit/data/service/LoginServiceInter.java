@@ -4,7 +4,7 @@ import bit.data.dto.UserDto;
 import org.springframework.stereotype.Service;
 
 public interface LoginServiceInter {
-
+    //회원가입
     public void insertUser(UserDto dto);
 
 
@@ -14,5 +14,6 @@ public interface LoginServiceInter {
 
     public int checkId(String userid);
 
+    //api 로 로그인시 email 로 판단
     public String checkLoginId(String userid);
 }

@@ -175,10 +175,10 @@ public class ManagerController {
     }
 
     //    이번달에 개설된 강의 총 수 반환
-    @GetMapping("/manager/totalLecture")
+    @GetMapping("/manager/totalLectureCount")
     @ResponseBody
     public int getLecTotalCountMonth(int lecyear, int lecmonth){
-//        System.out.println("lecyear"+lecyear);
+        System.out.println("lecyear"+lecyear);
 //        System.out.println("lecmonth"+lecmonth);
         int result = lecDetailService.getLecTotalCountMonth(lecyear, lecmonth);
         if(!(result>0)) result=0;

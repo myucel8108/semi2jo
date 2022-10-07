@@ -50,6 +50,7 @@
 <%--    <link href="css/manager/manager.css" rel="stylesheet">--%>
 
 </head>
+<c:set var="root" value="<%=request.getContextPath() %>"></c:set>
 
     <!-- Sidebar -->
 
@@ -391,11 +392,15 @@
 <script>
     //페이지 로드 되자마자 출력되는 함수들
     $(function () {
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = data.getMonth();
+        console.log(year);
         // totalIncom();      //올해의 수익
         // totalUser();       //전체 학생수
         totalLecture();
         console.log("test2");//이번달에 개설된 강좌수
-    })
+    });
 
     // //올해의 수익
     // function totalIncom() {
@@ -425,7 +430,7 @@
     function totalLecture() {
         $.ajax({
             type:"get",
-            url:"/mini/manager/totalLecture",
+            url:"${root}/manager/totalLectureCount",
             dataType:"json",
             data:{"lecyear":year,"lecmonth":month},
             success:function(res) {
@@ -434,7 +439,7 @@
                 $("#print-total-lecutre").html(res.result);
             }
         })
-    }
+    };
 </script>
 
 <%--<script src="vendor/jquery/jquery.min.js"></script>--%>
