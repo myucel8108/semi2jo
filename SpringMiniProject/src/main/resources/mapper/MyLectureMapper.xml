@@ -6,4 +6,12 @@
 		insert into mylecture (usernum, lecdenum,review, payok)  values (#{usernum},#{lecdenum},null,"no");
 	
 	</insert>
+	
+	<update id="updatePayok" parameterType="myLectureDto">
+	
+			update mylecture set payok = 'ok', paytime = now()  where usernum = #{usernum} AND payok ='no';
+		
+	</update>
+	
+	
 </mapper>

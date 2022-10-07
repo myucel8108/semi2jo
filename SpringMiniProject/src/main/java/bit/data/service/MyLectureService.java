@@ -19,4 +19,10 @@ public class MyLectureService implements MyLectureServiceInter{
       
     	myLectureDao.insertMyLecture(mylecDto);
     }
+    
+    @Override
+    public void updatePayok(MyLectureDto mylecDto) {
+      
+    	myLectureDao.updatePayok(mylecDto);
+    }
 }

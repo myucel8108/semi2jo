@@ -19,5 +19,11 @@ public class MyLectureDao implements MyLectureDaoInter{
     	
         session.insert(ns+"insertMyLecture", mylecDto);
     }
+    @Override
+    public void updatePayok(MyLectureDto mylecDto) {
+    	
+    	
+    	session.update(ns+"updatePayok", mylecDto);
+    }
     
 }

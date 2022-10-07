@@ -30,4 +30,9 @@ public class MyLectureController {
     public void insertMyLecture(MyLectureDto dto) {
     	myLectureService.insertMyLecture(dto);
     }
+    
+    
+    
+    
+    
 }
