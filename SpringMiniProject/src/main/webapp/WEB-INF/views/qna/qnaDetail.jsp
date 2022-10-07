@@ -104,6 +104,7 @@
 
 </head>
 <body>
+
 <div class="container" style="width: 100%;">
     <div style="margin: 50px;">
         <table class="table table-bordered" style="width: 600px" id="detailbox">
@@ -123,7 +124,7 @@
                     <p>${dto.content}</p>
                     <c:if test="${dto.photo!='no'}">
                         <c:forTokens var="photo" items="${dto.photo}" delims=",">
-                            <img src="../upload/${photo}" width="100"
+                            <img src="../upload/${photo}" width="150"
                                  onerror="this.style.display='none'">
                         </c:forTokens>
                     </c:if>

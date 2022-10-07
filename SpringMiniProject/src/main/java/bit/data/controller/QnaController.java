@@ -109,7 +109,7 @@ public class QnaController {
             dto.setPhoto(photo);
         }
         qnaService.insertQna(dto);
-        return "redirect:qnaList?currentPage=1";
+        return "/main/qna/successQna";
     }
 
     @GetMapping("/qna/qnaList") //게시판 리스트 출력

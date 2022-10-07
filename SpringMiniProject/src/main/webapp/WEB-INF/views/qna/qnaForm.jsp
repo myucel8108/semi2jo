@@ -49,6 +49,7 @@
                         <option>강사문의</option>
                         <option>학원문의</option>
                         <option>취소문의</option>
+                        <option>기타문의</option>
                     </select>
                 </td>
             </tr>
@@ -133,33 +134,30 @@
     </table>
 
 
-    <script>
+<%--    <script>--%>
 
 
-            //등록 이벤트
-            $(document).on("click", ".insert2", function () {
-                var idx = $(this).attr("idx");
-                var a = alert("등록되었습니다");
-                if (a) {
-                    var idx = $(this).attr("idx");
+<%--            //등록 이벤트--%>
+<%--            $(document).on("click", ".insert2", function () {--%>
+<%--                var idx = $(this).attr("idx");--%>
+<%--                var a = alert("등록되었습니다");--%>
+<%--                if (a) {--%>
+<%--                    var idx = $(this).attr("idx");--%>
 
-                    $.ajax({
-                        type: "get",
-                        url: "../qna/insert",
-                        dataType: "text",
-                        data: {"idx": idx},
-                        success: function (res) {
-                            list();
-                        }//success
-                    });//ajax
+<%--                    $.ajax({--%>
+<%--                        type: "get",--%>
+<%--                        url: "../qna/insert",--%>
+<%--                        dataType: "text",--%>
+<%--                        data: {"idx": idx},--%>
+<%--                        success: function (res) {--%>
+<%--                            list();--%>
+<%--                        }//success--%>
+<%--                    });//ajax--%>
 
-                }//if
-
-
-            });//onclick
+<%--                }//if--%>
 
 
-
+<%--            });//onclick--%>
 
 
 
@@ -168,7 +166,10 @@
 
 
 
-    </script>
+
+
+
+<%--    </script>--%>
 </form>
 </body>
 </html>
