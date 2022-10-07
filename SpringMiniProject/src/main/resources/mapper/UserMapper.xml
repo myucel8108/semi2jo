@@ -58,7 +58,7 @@
 
     <!--회원 정보변경 (usernum)으로 가져옴-->
     <update id="updateUser" parameterType="userDto">
-        update user set userpass=#{userpass}, username=#{username}, nickname=#{nickname},
+        update user set userpass=#{userpass}, username=#{username}, nickname=#{nickname}, userphoto=#{userphoto},
                         addr=#{addr}, hp=#{hp}, birth=#{birth} where usernum=#{usernum}
     </update>
 

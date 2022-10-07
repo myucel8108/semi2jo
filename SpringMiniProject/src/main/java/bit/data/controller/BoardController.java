@@ -50,6 +50,7 @@ public class BoardController {
 
         BoardDto dto = boardService.selectByNum(boardnum);
 
+        //닉네임 옆에 프로필 사진 나오게 하기
         String userphoto;
         try {
             userphoto = userService.getDataByNum(dto.getUsernum()).getUserphoto(); //프사임

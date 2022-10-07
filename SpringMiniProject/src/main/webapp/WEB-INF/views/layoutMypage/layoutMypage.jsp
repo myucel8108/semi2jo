@@ -131,6 +131,10 @@
             border: 2px dotted gray;
         }*/
 
+        div.layoutbox{
+            position: relative;
+        }
+
         div.layout div.header{
             position: relative;
             width: 100%;
@@ -167,7 +171,6 @@
         }
 
         div.layout div.footer{
-            position: relative;
             width: auto;
             height: 250px;
         }
@@ -176,20 +179,22 @@
 <body>
 <!-- 사이드 메뉴가 존재하는 challenge layout -->
 <div class="layout">
-    <div class="header">
-        <tiles:insertAttribute name="header"/>
-    </div>
-    <div class="menu">
-        <tiles:insertAttribute name="menu"/>
-    </div>
-    <div class="side_menu">
-        <tiles:insertAttribute name="a_sidemenu"/>
-    </div>
-    <div class="change">
-        <tiles:insertAttribute name="change"/>
-    </div>
-    <div class="footer">
-        <tiles:insertAttribute name="footer"/>
+    <div class="layoutbox">
+        <div class="header">
+            <tiles:insertAttribute name="header"/>
+        </div>
+        <div class="menu">
+            <tiles:insertAttribute name="menu"/>
+        </div>
+        <div class="side_menu">
+            <tiles:insertAttribute name="a_sidemenu"/>
+        </div>
+        <div class="change">
+            <tiles:insertAttribute name="change"/>
+        </div>
+        <div class="footer">
+            <tiles:insertAttribute name="footer"/>
+        </div>
     </div>
 </div>
 </body>
