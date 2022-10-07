@@ -85,14 +85,14 @@
                             <c:if test="${dto.relevel==0}">
                             <img src="../image/lockimg.jpg" width="10px;" style="background-color: white">
                             </c:if>
-                                ${dto.subject}
+                                ${dto.subject}&nbsp;&nbsp;
+                                ${dto.qnatype}
                             <c:if test="${dto.photo!='no'}">
                                 <i class="fa fa-picture-o"></i>
                             </c:if>
                             <c:if test="${dto.relevel>0}">
                                 <b style="color: orange; text-decoration: none;">답변완료</b>
                             </c:if>
-                                ${dto.qnatype}
                         </a>
                     </td>
                     <c:set var="username" value="${resultInfo.dto.username}"/>

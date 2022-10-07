@@ -93,15 +93,15 @@ public class QnaController {
             String photo = "";
             for(MultipartFile multi:upload)
             {
-                String newName = ChangeName.getChangeFileName(multi.getOriginalFilename());
-                photo+=newName+",";
+                //String newName = ChangeName.getChangeFileName(multi.getOriginalFilename());
+                photo+=multi.getOriginalFilename()+",";
 
                 try {
-                    Path paths= Paths.get(path+"/"+newName);
+                    Path paths= Paths.get(path+"/"+multi.getOriginalFilename());
                     multi.transferTo(paths);
-                    // multi.transferTo(new File(path+"/"+newName));
+//                     multi.transferTo(new File(path+"/"+newName));
                 } catch (Exception e) {
-                    // throw new RuntimeException(e);
+//                     throw new RuntimeException(e);
                 }
             }
             photo = photo.substring(0, photo.length()-1);

@@ -73,7 +73,7 @@
                     <p>${dto.content}</p>
                     <c:if test="${dto.photo!='no'}">
                         <c:forTokens var="photo" items="${dto.photo}" delims=",">
-                            <img src="../upload/${photo}" width="250"
+                            <img src="../upload/${photo}" width="100"
                                  onerror="this.style.display='none'">
                         </c:forTokens>
                     </c:if>
