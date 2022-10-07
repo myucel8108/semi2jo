@@ -21,8 +21,8 @@ public class MyLectureService implements MyLectureServiceInter{
     }
     
     @Override
-    public void updatePayok(MyLectureDto mylecDto) {
+    public void updatePayok(int usernum) {
       
-    	myLectureDao.updatePayok(mylecDto);
+    	myLectureDao.updatePayok(usernum);
     }
 }
