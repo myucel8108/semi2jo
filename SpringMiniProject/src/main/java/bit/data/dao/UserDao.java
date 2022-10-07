@@ -16,8 +16,8 @@ public class UserDao implements UserDaoInter{
     String ns = "bit.data.dao.UserDao.";
 
     @Override
-    public int getTotalUserCount(Map<String, String> map) {
-        return session.selectOne(ns + "getTotalUserCount", map);
+    public int getUserTotalCount() {
+        return session.selectOne(ns + "getUserTotalCount");
     }
 
     @Override

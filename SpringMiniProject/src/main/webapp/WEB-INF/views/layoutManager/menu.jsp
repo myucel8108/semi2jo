@@ -86,8 +86,8 @@
             <span>강좌</span>
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
+    <li class="nav-item" onclick="location.href='${root}/manager/boardControl'">
+        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
            aria-controls="collapseTable">
             <i class="fas fa-fw fa-table"></i>
             <span>커뮤니티 관리</span>

@@ -2,6 +2,7 @@ package bit.data.controller;
 
 import bit.data.dto.LectureDto;
 import bit.data.dto.UserDto;
+import bit.data.service.BoardServiceInter;
 import bit.data.service.LecDetailServiceInter;
 import bit.data.service.LectureServiceInter;
 import bit.data.service.UserServiceInter;
@@ -38,12 +39,27 @@ public class ManagerController {
     @Autowired
     UserServiceInter userService;
 
+    @Autowired
+    BoardServiceInter boardService;
+
+    //관리자 페이지로 이동
+    @GetMapping("/manager/main")
+    public String managerMain() {
+        return "/manager/layoutManager/change";
+    }
+
+    //커뮤니티 관리 페이지로 이동
+    @GetMapping("/manager/boardControl")
+    public String boardControl(){
+        return "/manager/manager/boardManager";
+    }
+
     //메뉴에서 회원관리 클릭 시 회원 목록 출력
     @GetMapping("/userlist")
     public String getUserList(@RequestParam(defaultValue = "1") int currentPage,
                               @RequestParam(value = "searchword", required = false) String sw, //value: userlist의 name(url에서 ? 뒤에 오는 텍스트)과 일치 시킬 것 String 변수명이 일치되면 value는 생략가능
                               Model model){
-        int totalCount = userService.getUserTotalCount(sw);
+        int totalCount = userService.getUserTotalCount();
         int perPage=10;//한 페이지 당 보여질 글의 갯수
         int perBlock=5;//한 블럭당 보여질 페이지의 갯수
         int startNum;//db에서 가져올 글의 시작번호(mysql은 첫글이 0번,오라클은 1번)
@@ -215,20 +231,23 @@ public class ManagerController {
     @GetMapping("/manager/totalLectureCount")
     @ResponseBody
     public int getLecTotalCountMonth(int lecyear, int lecmonth){
-        System.out.println("lecyear"+lecyear);
-//        System.out.println("lecmonth"+lecmonth);
         int result = lecDetailService.getLecTotalCountMonth(lecyear, lecmonth);
         if(!(result>0)) result=0;
-        System.out.println(result);
         return result;
     }
 
-/*    @GetMapping("/manager/usertotalCount")
+    @GetMapping("/manager/usertotalCount")
     @ResponseBody
     public int getUserTotalCount(){
+        System.out.println("start controller");
         int result = userService.getUserTotalCount();
         if(!(result>0)) result=0;
-        System.out.println(result);//sql 에서 해당 값이 없는 경우 0을 넣어줌
+        System.out.println("user"+result);//sql 에서 해당 값이 없는 경우 0을 넣어줌
         return result;
-    }*/
+    }
+
+//    @GetMapping("/manager/freeBoardList")
+//    @ResponseBody
+//    public List<>
+
 }

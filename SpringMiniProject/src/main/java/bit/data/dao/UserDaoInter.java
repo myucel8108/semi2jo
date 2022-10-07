@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface UserDaoInter {
-    public int getTotalUserCount(Map<String, String> map);
+    public int getUserTotalCount();
     public List<UserDto> getUserList(Map<String, Object> map);
     public UserDto getUserDetailbyManager(int usernum);
     public UserDto getDataByNum(int usernum);

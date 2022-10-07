@@ -27,10 +27,7 @@ public class HomeController {
 
 
 
-	@GetMapping("/manager/main")
-	public String managerMain() {
-		return "/manager/layoutManager/change";
-	}
+
 	
 		
 }

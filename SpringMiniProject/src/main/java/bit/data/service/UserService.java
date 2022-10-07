@@ -16,11 +16,8 @@ public class UserService implements UserServiceInter{
     UserDaoInter userDao;
 
     @Override
-    public int getUserTotalCount(String searchword) {
-        Map<String, String> map = new HashMap<>();
-        map.put("searchword", searchword);
-
-        return userDao.getTotalUserCount(map);
+    public int getUserTotalCount() {
+        return userDao.getUserTotalCount();
     }
 
     @Override

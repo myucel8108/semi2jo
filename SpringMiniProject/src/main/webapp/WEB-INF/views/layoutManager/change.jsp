@@ -72,11 +72,6 @@
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-uppercase mb-1">
                                             Incom (<span id ="nowYear"></span> year)
-                                            <script>
-                                                data = new Date();
-                                                var year = data.getFullYear();
-                                                document.getElementById("nowYear").innerText=year;
-                                            </script>
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800" id="print-total-incom"></div>
 <%--                                        <div class="mt-2 mb-0 text-muted text-xs">--%>
@@ -119,11 +114,6 @@
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-uppercase mb-1">
                                             Lecture (<span id ="nowMonth"></span> month)
-                                            <script>
-                                                data = new Date();
-                                                var month = data.getMonth();
-                                                document.getElementById("nowMonth").innerText=month;
-                                            </script>
                                         </div>
                                         <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="print-total-lectures"></div>
 <%--                                        <div class="mt-2 mb-0 text-muted text-xs">--%>
@@ -390,14 +380,18 @@
 </a>
 
 <script>
+
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth();
+    document.getElementById("nowMonth").innerText=month;
+    document.getElementById("nowYear").innerText=year;
+
+
     //페이지 로드 되자마자 출력되는 함수들
     $(function () {
-        var date = new Date();
-        var year = date.getFullYear();
-        var month = data.getMonth();
-        console.log(year);
         // totalIncom();      //올해의 수익
-        // totalUser();       //전체 학생수
+        totalUser();       //전체 학생수
         totalLecture();
         console.log("test2");//이번달에 개설된 강좌수
     });
@@ -415,18 +409,17 @@
     //             }
     //     })
     // }
-    // function totalUser() {
-    //     $.ajax({
-    //         type:"get",
-    //         url:"/mini/manager/totalUser",
-    //         dataType:"json",
-    //         success:function(res) {
-    //             alert("print-total-user");
-    //             alert(res.result);
-    //             $("#print-total-user").html(res.result);
-    //         }
-    //     })
-    // }
+    function totalUser() {
+        $.ajax({
+            type:"get",
+            url:"${root}/manager/usertotalCount",
+            dataType:"json",
+            success:function(res) {
+                alert("print-total-user");
+                $("#print-total-user").html(res);
+            }
+        })
+    }
     function totalLecture() {
         $.ajax({
             type:"get",
@@ -434,9 +427,7 @@
             dataType:"json",
             data:{"lecyear":year,"lecmonth":month},
             success:function(res) {
-                console.log("test3");
-                alert(res.result);
-                $("#print-total-lecutre").html(res.result);
+                $("#print-total-lectures").html(res);
             }
         })
     };
