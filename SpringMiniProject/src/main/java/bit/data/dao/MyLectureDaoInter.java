@@ -4,5 +4,5 @@ import bit.data.dto.MyLectureDto;
 
 public interface MyLectureDaoInter {
 	
-	   public void insertMyLecture(MyLectureDto mylecdto);
+	   public void insertMyLecture(MyLectureDto mylecDto);
 }

@@ -1,5 +1,6 @@
 package bit.data.controller;
 
+import bit.data.dao.MyLectureDao;
 import bit.data.dto.MyLectureDto;
 import bit.data.service.LecDetailServiceInter;
 import bit.data.service.MyLectureServiceInter;
@@ -25,15 +26,8 @@ public class MyLectureController {
     UserServiceInter userService;
     
     @PostMapping("/student/myCart")
-    
     @ResponseBody
-    public String insertMyLecture(MyLectureDto dto) {
-
-        myLectureService.insertMyLecture(dto);
-
-    	return " ";
+    public void insertMyLecture(MyLectureDto dto) {
+    	myLectureService.insertMyLecture(dto);
     }
-    
-    
-    
 }
