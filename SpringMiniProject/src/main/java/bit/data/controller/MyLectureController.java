@@ -27,11 +27,10 @@ public class MyLectureController {
     @PostMapping("/student/myCart")
     
     @ResponseBody
-    public String insertMyLecture(@RequestParam int lecdenum ,@RequestParam int usernum ) {
-    	
-    	
-    	
-    	
+    public String insertMyLecture(MyLectureDto dto) {
+
+        myLectureService.insertMyLecture(dto);
+
     	return " ";
     }
     
