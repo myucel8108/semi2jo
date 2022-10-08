@@ -1,7 +1,9 @@
 package bit.data.controller;
 
+import bit.data.dto.BoardDto;
 import bit.data.dto.LectureDto;
 import bit.data.dto.UserDto;
+import bit.data.service.BoardServiceInter;
 import bit.data.dto.UserLecJoinDto;
 import bit.data.service.LecDetailServiceInter;
 import bit.data.service.LectureServiceInter;
@@ -29,6 +31,7 @@ import util.ChangeName;
 
 import java.sql.SQLOutput;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ManagerController {
@@ -39,12 +42,27 @@ public class ManagerController {
     @Autowired
     UserServiceInter userService;
 
+    @Autowired
+    BoardServiceInter boardService;
+
+    //관리자 페이지로 이동
+    @GetMapping("/manager/main")
+    public String managerMain() {
+        return "/manager/layoutManager/change";
+    }
+
+    //커뮤니티 관리 페이지로 이동
+    @GetMapping("/manager/boardControl")
+    public String boardControl(){
+        return "/manager/manager/boardManager";
+    }
+
     //메뉴에서 회원관리 클릭 시 회원 목록 출력
     @GetMapping("/userlist")
     public String getUserList(@RequestParam(defaultValue = "1") int currentPage,
                               @RequestParam(value = "searchword", required = false) String sw, //value: userlist의 name(url에서 ? 뒤에 오는 텍스트)과 일치 시킬 것 String 변수명이 일치되면 value는 생략가능
                               Model model){
-        int totalCount = userService.getUserTotalCount(sw);
+        int totalCount = userService.getUserTotalCount();
         int perPage=10;//한 페이지 당 보여질 글의 갯수
         int perBlock=5;//한 블럭당 보여질 페이지의 갯수
         int startNum;//db에서 가져올 글의 시작번호(mysql은 첫글이 0번,오라클은 1번)
@@ -241,20 +259,76 @@ public class ManagerController {
     @GetMapping("/manager/totalLectureCount")
     @ResponseBody
     public int getLecTotalCountMonth(int lecyear, int lecmonth){
-        System.out.println("lecyear"+lecyear);
-//        System.out.println("lecmonth"+lecmonth);
         int result = lecDetailService.getLecTotalCountMonth(lecyear, lecmonth);
         if(!(result>0)) result=0;
-        System.out.println(result);
         return result;
     }
 
-/*    @GetMapping("/manager/usertotalCount")
+    //관리자 메인화면에서 - 총유저수 출력
+    @GetMapping("/manager/usertotalCount")
     @ResponseBody
     public int getUserTotalCount(){
+        System.out.println("start controller");
         int result = userService.getUserTotalCount();
         if(!(result>0)) result=0;
-        System.out.println(result);//sql 에서 해당 값이 없는 경우 0을 넣어줌
+        System.out.println("user"+result);//sql 에서 해당 값이 없는 경우 0을 넣어줌
         return result;
-    }*/
+    }
+    //커뮤니티 관리
+    @GetMapping("/manager/freeBoardList")
+    @ResponseBody
+    public Map<String, Object> freeBoardList(@RequestParam(defaultValue = "1")int currentPage,
+                                             @RequestParam(value = "searchcolumn", required = false) String sc,	/*required = false: 값이 없을 겨우 null*/
+                                             @RequestParam(value = "searchword", required = false) String sw){
+        System.out.println("test2");
+        //페이징 처리에 필요한 변수들
+        //전체 갯수
+        int totalCount=boardService.getTotalCount(sc, sw);
+        int perPage=3;//한페이지당 보여질 글의 갯수
+        int perBlock=3;//한블럭당 보여질 페이지의 갯수
+        int startNum;//db에서 가져올 글의 시작번호(mysql은 첫글이 0번,오라클은 1번)
+        int startPage;//각블럭당 보여질 시작페이지
+        int endPage;//각 블럭당 보여질 끝페이지
+        int totalPage;//총 페이지수
+        int no;//각 페이지당 출력할 시작번호
+
+        //총 페이지수를 구한다
+        //총글의갯수/한페이지당보여질갯수로 나눔(7/5=1)
+        //나머지가 1이라도 있으면 무조건 1페이지 추가(1+1=2페이지가 필요)
+        totalPage=totalCount/perPage+(totalCount%perPage==0?0:1);
+
+        //각 블럭당 보여질 시작페이지
+        //perBlock=5 일경우 현재페이지가 1~5 일경우는 시작페이지가 1, 끝페이지가 5
+        //만약 현재페이지가 13 일경우는 시작페이지가 11, 끝페이지가 15
+        startPage=(currentPage-1)/perBlock*perBlock+1;
+        endPage=startPage+perBlock-1;
+        //총페이지수가 23개일경우 마지막 블럭은 끝페이지가 25가 아니라 23이라야한다
+        if(endPage>totalPage)
+            endPage=totalPage;
+
+        //각 페이지에서 보여질 시작번호
+        //예: 1페이지->0, 2페이지:5, 3페이지 : 10...
+        startNum=(currentPage-1)*perPage;
+
+        //각페이지당 출력할 시작번호 구하기
+        //예: 총글갯수가 23이라면  1페이지는 23,2페이지는 18,3페이지는 13...
+        no=totalCount-(currentPage-1)*perPage;
+
+        //페이지에서 보여질 글만 가져오기
+        List<BoardDto> list = boardService.getPagingList(sc, sw, startNum, perPage);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("list",list);
+        map.put("totalCount",totalCount);
+        map.put("currentPage",currentPage);
+        map.put("startPage",startPage);
+        map.put("endPage",endPage);
+        map.put("no",no);
+        map.put("totalPage",totalPage);
+
+        System.out.println("totalCount="+totalCount);
+
+        return map;
+    }
+
 }

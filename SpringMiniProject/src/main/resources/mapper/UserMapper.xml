@@ -35,10 +35,10 @@
     </select>
 
     <!--전체 회원 수 출력-->
-    <select id="getTotalUserCount" parameterType="Map" resultType="int">
+    <select id="getUserTotalCount" resultType="int">
         select count(*) from user
         <if test="searchword!=null">
-            where username like concat('%',#{searchword},'%')
+            where usertype="user"
         </if>
     </select>
 

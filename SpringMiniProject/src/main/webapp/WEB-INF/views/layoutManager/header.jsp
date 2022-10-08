@@ -57,7 +57,7 @@
             <li class="nav-item dropdown no-arrow">
                 <span class="nav-link dropdown-toggle" id="btn-logout-manager" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    <img class="img-profile rounded-circle" src="img/boy.png" style="max-width: 60px">
+<%--                    <img class="img-profile rounded-circle" src="img/boy.png" style="max-width: 60px">--%>
                     로그아웃
 <%--                    <span class="ml-2 d-none d-lg-inline text-white small">Maman Ketoprak</span>--%>
                 </span>

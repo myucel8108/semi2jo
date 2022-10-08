@@ -56,7 +56,7 @@
 <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
-            <img src="img/logo/logo2.png">
+<%--            <img src="img/logo/logo2.png">--%>
         </div>
         <div class="sidebar-brand-text mx-3">로고 위치</div>
     </a>
@@ -86,8 +86,8 @@
             <span>강좌</span>
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
+    <li class="nav-item" onclick="location.href='${root}/manager/boardControl'">
+        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
            aria-controls="collapseTable">
             <i class="fas fa-fw fa-table"></i>
             <span>커뮤니티 관리</span>
