@@ -45,8 +45,8 @@
 			<button type="button" id="btnloginMain" style=" margin-right: 110px;">로그인</button>
        </c:if>
         <c:if test="${sessionScope.loginok!=null && sessionScope.usertype=='user'}">
-             <b>${sessionScope.loginname}님</b>	            &nbsp;&nbsp;
-             <a href="${root}/student/timeTable">마이페이지</a>
+             <b>${sessionScope.loginname}님</b>&nbsp;&nbsp;
+             <a href="${root}/student/timeTable" style="text-decoration: none; color: black;">마이페이지</a>&nbsp;
             <button type="button" id="btnlogoutMain" style=" margin-right: 110px;" >로그아웃</button>
         </c:if>
         <c:if test="${sessionScope.loginok!=null && sessionScope.usertype=='manager'}">
