@@ -21,6 +21,7 @@
 	 <div>
 
 	 <button type="button" onclick='gocart()'>장바구니로 가기</button> 
+	 
 	 </div>
 	</div>
 	<div style="display: flex; justify-content: center; align-items: center;">
