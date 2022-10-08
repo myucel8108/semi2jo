@@ -52,8 +52,59 @@
             font-style: italic;
         }
     </style>
+
+
+    <script>
+
+        var qnanum = "${dto.qnanum}";
+
+        $(function () {
+
+            //삭제 이벤트
+            $(document).on("click", ".adel", function () {
+                // var qnanum = $(this).attr("qnanum");
+                // alert(qnanum);
+                var a = confirm("정말 삭제하시겠습니까?");
+                if (a) {
+                    // return "../qna/delete";
+
+                    // alert(a);
+
+
+                    $.ajax({
+                        type: "get",
+                        url: "delete",
+                        dataType: "text",
+                        data: {"qnanum": qnanum},
+                        success: function (res) {
+                            // list();
+                            location.href="qnaList?currentPage="+${currentPage};
+                        }//success
+                    });//ajax
+
+                }//if
+
+
+            });//onclick
+
+        });
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
 </head>
 <body>
+
 <div class="container" style="width: 100%;">
     <div style="margin: 50px;">
         <table class="table table-bordered" style="width: 600px" id="detailbox">
@@ -73,7 +124,7 @@
                     <p>${dto.content}</p>
                     <c:if test="${dto.photo!='no'}">
                         <c:forTokens var="photo" items="${dto.photo}" delims=",">
-                            <img src="../upload/${photo}" width="100"
+                            <img src="../upload/${photo}" width="150"
                                  onerror="this.style.display='none'">
                         </c:forTokens>
                     </c:if>
@@ -91,7 +142,8 @@
                         <button type="button" class="btn btn-outline" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" onclick="location.href='qnaUpdate?qnanum=${dto.qnanum}&currentPage=${currentPage}'">수정</button>
                         </c:if>
                         <c:if test="${sessionScope.loginok!=null && sessionScope.usernum==dto.usernum || sessionScope.email=='admin@gmail.com'}">
-                        <button type="button" class="btn btn-outline" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" onclick="location.href='delete?qnanum=${dto.qnanum}&currentPage=${currentPage}'">삭제</button>
+                        <button type="button" class="btn btn-outline adel" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" >삭제</button>
+<%--                        <button type="button" class="btn btn-outline adel" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" onclick="location.href='delete?qnanum=${dto.qnanum}&currentPage=${currentPage}'">삭제</button>--%>
                         </c:if>
                         <c:if test="${dto.restep==0 && sessionScope.email=='admin@gmail.com'}">
                             <button type="button" class="btn btn-outline"  style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" onclick="location.href='qnaForm?qnanum=${dto.qnanum}&regroup=${dto.regroup}&restep=${dto.restep}&relevel=${dto.relevel}&currentPage=${currentPage}'">답글</button>

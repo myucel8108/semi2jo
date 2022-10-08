@@ -11,6 +11,9 @@
     <title>Insert title here</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">--%>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     <c:set var="root" value="<%=request.getContextPath() %>"/>
     <link rel="stylesheet" type="text/css" href="${root}/css/qna.css">
     <style>
@@ -30,22 +33,25 @@
         table>td>a{
             text-decoration: none;
         }
+
+
     </style>
 </head>
 <body>
+<h1 style="text-align: center; font-size: 30px; margin-top: 80px; padding-bottom: 0px; font-family: abster;" >TeachMe 지원</h1>
 <div class="container" style="width: 100%;" >
-        <div class="myaskbox">
+        <div class="myaskbox" style="margin-bottom: 5px;">
             <button type="button" onclick="location.href='qnaList?'" class="myask2">전체글보기</button>&nbsp;
             <c:if test="${sessionScope.loginok!=null}">
 
             <button type="button" onclick="location.href='qnaList?usernum=${sessionScope.usernum}'" class="myask">나의문의보기</button>
+
             </c:if>
         </div>
     <br>
-<div class="qnalist" style="margin-top: 10px; ">
-    <h3 class="hname-tm">총 ${totalCount} 개의 글이 있습니다</h3>
+<div class="qnalist" style="margin-top: 0px; margin-right: 10px; margin-bottom: 10px;">
+    <h3 class="hname-tm" style="text-align: right; margin-bottom: 0; color: grey;">총 ${totalCount} 개의 글이 있습니다</h3>
 </div>
-    <br><br>
     <table class="table table-bordered" >
         <tr class="listbox-tm">
             <th style="width: 30px; text-align:center; ">번호</th>
@@ -79,7 +85,6 @@
                             <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm"></a>
                             <img src="../image/lock2.png" width="10px;" style="background-color: white">
                         </c:if>
-
 
                         <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm">
 
@@ -115,23 +120,26 @@
                 </tr>
             </c:forEach>
         </c:if>
+    </table>
+</div><br>
         <!-- 글쓰기 버튼은 로그인을 해야만 보인다 -->
         <c:if test="${sessionScope.loginok!=null}">
-        <tr>
-                <td colspan="6" align="right" style= "text-align:center" >
+<%--        <tr>--%>
+<%--                <td colspan="6" align="right" style= "text-align:center; padding-top: 20px; padding-bottom: 25px;" >--%>
+
                     <c:if test="${sessionScope.email!='admin@gmail.com'}">
                     <button type="button" class="btn btn-outline"
-                            onclick="location.href='qnaForm'" id="writecolor" >문의하기</button>
+                            onclick="location.href='qnaForm'" id="writecolor" style="text-align: center;" >문의하기</button>
                     </c:if>
-                </td>
-        </tr>
+            <br><br>
+<%--                </td>--%>
+<%--        </tr>--%>
 
         </c:if>
-    </table>
-</div>
+
     <div class="container" style="width: 100%;">
 <div class="paging">
-    <ul class="pagination">
+    <ul class="pagination" style="margin-bottom: 60px; ">
         <c:if test="${startPage>1}">
             <li class="page-item"><a href="qnaList?currentPage=${startPage-1}" class="page-link">이전</a></li>
         </c:if>
