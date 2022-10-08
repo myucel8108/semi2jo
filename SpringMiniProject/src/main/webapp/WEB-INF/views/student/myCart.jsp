@@ -120,7 +120,7 @@
         const data = {
             pg: pg_mid ,
             pay_method:  payment_method,
-            merchant_uid: "${dto.lecname}+${sessionScope.loginname}",
+            merchant_uid: "${totalLecname} ${sessionScope.loginname}",
             name : "${totalLecname}",
             amount : "${totalPrice}",
             buyer_email : '${sessionScope.email}',
