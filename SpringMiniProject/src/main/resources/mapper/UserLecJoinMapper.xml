@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bit.data.dao.UserDao">
+    <select id="getUserLecJoin" parameterType="int" resultType="userLecJoinDto">
+        select lec.teaname, lec.lecname, lec.lectypea, lec.lectypeb, de.roomnum, de.lectime, de.lecday
+        from lecture lec, lecdetail de, mylecture my
+        where de.lecnum = lec.lecnum and my.lecdenum = de.lecdenum and my.usernum = #{usernum}
+    </select>
+
+</mapper>

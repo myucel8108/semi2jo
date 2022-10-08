@@ -2,6 +2,7 @@ package bit.data.service;
 
 import bit.data.dao.UserDaoInter;
 import bit.data.dto.UserDto;
+import bit.data.dto.UserLecJoinDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +47,11 @@ public class UserService implements UserServiceInter{
     @Override
     public UserDto getDataById(String email) {
         return userDao.getDataById(email);
+    }
+
+    @Override
+    public List<UserLecJoinDto> getUserLecJoin(int usernum) {
+        return userDao.getUserLecJoin(usernum);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package bit.data.dao;
 
 import bit.data.dto.UserDto;
+import bit.data.dto.UserLecJoinDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -38,6 +39,13 @@ public class UserDao implements UserDaoInter{
     @Override
     public UserDto getDataById(String email) {
         return session.selectOne(ns+"getDataById", email);
+    }
+
+    @Override
+    public List<UserLecJoinDto> getUserLecJoin(int usernum) {
+//        List<UserLecJoinDto> list = session.selectList(ns + "getUserLecJoin", usernum);
+//        System.out.println(list);
+        return session.selectList(ns + "getUserLecJoin", usernum);
     }
 
     @Override

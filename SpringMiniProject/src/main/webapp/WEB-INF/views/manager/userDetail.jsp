@@ -13,6 +13,9 @@
         .detail-section{
             width: 87vw;
         }
+        .userdetailphoto{
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -24,7 +27,7 @@
                 <div class="card card-style1 border-0">
                     <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
                         <div class="row align-items-center">
-                            <div class="col-lg-6 mb-4 mb-lg-0">
+                            <div class="col-lg-6 mb-4 mb-lg-0 userdetailphoto">
                                 <c:if test="${userdto.userphoto!=null}">
                                   <img src="${root}/upload/${userdto.userphoto}" width="400" height="300">
                                 </c:if>
@@ -57,7 +60,11 @@
             <div class="col-lg-12 mb-4 mb-sm-5">
                 <div>
                     <span class="section-title text-primary mb-3 mb-sm-4">수강 중인 강의</span>
-                    <p>Edith is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                    <p>
+                        <c:forEach var="joinlist" items="${joinlist}">
+                            ${joinlist.teaname}
+                        </c:forEach>
+                    </p>
                     <p class="mb-0">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed.</p>
                 </div>
             </div>
@@ -65,7 +72,7 @@
                 <div class="row">
                     <div class="col-lg-12 mb-4 mb-sm-5">
                         <div class="mb-4 mb-sm-5">
-                            <span class="section-title text-primary mb-3 mb-sm-4">Skill</span>
+                            <span class="section-title text-primary mb-3 mb-sm-4">만료된 강의</span>
                             <div class="progress-text">
                                 <div class="row">
                                     <div class="col-6">Driving range</div>
