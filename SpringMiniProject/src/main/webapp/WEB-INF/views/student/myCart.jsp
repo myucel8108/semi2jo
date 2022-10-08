@@ -32,6 +32,7 @@
             font-size: 20px;
         }
     </style>
+
 </head>
 <body>
 <h1>장바구니</h1>
@@ -122,7 +123,7 @@
         const data = {
             pg: pg_mid ,
             pay_method:  payment_method,
-            merchant_uid: "${dto.lecname}+${sessionScope.loginname}112341234123 ",
+            merchant_uid: "${totalLecname} ${sessionScope.loginname}",
             name : "${totalLecname}",
             amount : "${totalPrice}",
             buyer_email : '${sessionScope.email}',
