@@ -53,4 +53,7 @@
     <select id="getMinNum" resultType="int">--  제일 오래된글에 이전글버튼 안보이게 하기
         SELECT MIN(boardnum) from board
     </select>
+    <select id="getBoardType" parameterType="String" resultType="BoardDto">--  자유 질문 나누기
+        select * from board where boardtype=#{boardtype}
+    </select>
 </mapper>

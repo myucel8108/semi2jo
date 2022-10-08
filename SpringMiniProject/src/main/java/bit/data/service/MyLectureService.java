@@ -15,8 +15,14 @@ public class MyLectureService implements MyLectureServiceInter{
     
     
     @Override
-    public void insertMyLecture(MyLectureDto mylecdto) {
+    public void insertMyLecture(MyLectureDto mylecDto) {
       
-    	myLectureDao.insertMyLecture(mylecdto);
+    	myLectureDao.insertMyLecture(mylecDto);
+    }
+    
+    @Override
+    public void updatePayok(int usernum) {
+      
+    	myLectureDao.updatePayok(usernum);
     }
 }

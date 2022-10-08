@@ -37,6 +37,36 @@
     margin-top: 20px;
   }
 </style>
+<script>
+
+    $(function () {
+
+        //수정 이벤트
+        $(document).on("click", ".fix", function () {
+            var idx = $(this).attr("idx");
+            var a = alert("수정되었습니다");
+            if (a) {
+                var idx = $(this).attr("idx");
+
+                $.ajax({
+                    type: "get",
+                    url: "../qna/update",
+                    dataType: "text",
+                    data: {"idx": idx},
+                    success: function (res) {
+                        list();
+                    }//success
+                });//ajax
+
+            }//if
+
+
+        });//onclick
+
+    });
+
+
+</script>
 <body>
 <c:if test="${sessionScope.loginok==null}">
   <script type="text/javascript">
@@ -109,7 +139,7 @@
 
     <tr>
       <td colspan="2" align="center">
-        <button type="submit" class="btn btn-outline" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;">수정등록</button>
+        <button type="submit" class="btn btn-outline fix" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;">수정등록</button>
       </td>
     </tr>
   </table>

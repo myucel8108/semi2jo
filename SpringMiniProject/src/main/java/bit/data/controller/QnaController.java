@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import util.ChangeName;
@@ -108,7 +109,7 @@ public class QnaController {
             dto.setPhoto(photo);
         }
         qnaService.insertQna(dto);
-        return "redirect:qnaList?currentPage=1";
+        return "/main/qna/successQna";
     }
 
     @GetMapping("/qna/qnaList") //게시판 리스트 출력
@@ -158,8 +159,11 @@ public class QnaController {
     }
 
     @GetMapping("/qna/delete")
-    public String delete(int qnanum, int currentPage)
+    @ResponseBody
+//    public String delete(int qnanum, int currentPage)
+    public void delete(int qnanum)
     {
+        System.out.println("hi");
         QnaDto dto=qnaService.selectByNum(qnanum);
         int restep=dto.getRestep();
         int regroup=dto.getRegroup();
@@ -168,10 +172,9 @@ public class QnaController {
         }else{
             qnaService.deleteQna(qnanum);
         }
-                //restep이 0이면 원글 regroup을 파라미터로 보내서  regroup을 지우자
-                //num에 해당하는  dto 얻고
-
-        return "redirect:qnaList?currentPage="+currentPage;
+//                restep이 0이면 원글 regroup을 파라미터로 보내서  regroup을 지우자
+//                num에 해당하는  dto 얻고
+//        return "redirect:qnaList?currentPage="+currentPage;
     }
 
     @PostMapping("/qna/update")
@@ -208,7 +211,7 @@ public class QnaController {
 
 
 
-        return "redirect:qnaList?currentPage="+currentPage+"&qnanum="+dto.getQnanum();
+        return "redirect:qnaDetail?currentPage="+currentPage+"&qnanum="+dto.getQnanum();
     }
     @GetMapping("/qna/qnaUpdate")
     public String updateform(Model model, int qnanum, int currentPage, String content)
