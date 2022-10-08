@@ -65,7 +65,7 @@
 }
 
 .myaskbox{
-    margin-top: 80px;
+    margin-top: 70px;
     display: block;
     text-align: center;
 }
@@ -78,6 +78,9 @@
 #writecolor{
     color: black;
     border: 1px solid black;
+    text-align: center;
+    display: block;
+    margin: auto;
 }
 @font-face {
     font-family: abster;

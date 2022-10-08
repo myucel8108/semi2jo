@@ -19,6 +19,7 @@ public class QnaDto {
 	private int regroup;
 	private int restep;
 	private int relevel;
+	private boolean secret;
 
 
 }

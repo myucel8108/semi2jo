@@ -34,6 +34,7 @@
             text-decoration: none;
         }
 
+
     </style>
 </head>
 <body>
@@ -44,7 +45,7 @@
             <c:if test="${sessionScope.loginok!=null}">
 
             <button type="button" onclick="location.href='qnaList?usernum=${sessionScope.usernum}'" class="myask">나의문의보기</button>
-                <button type="button" onclick="location.href='qnaList?usernum=${sessionScope.usernum}'" class="myask" style="margin-left: 3px;">문의유형별보기</button>
+
             </c:if>
         </div>
     <br>
@@ -85,7 +86,6 @@
                             <img src="../image/lock2.png" width="10px;" style="background-color: white">
                         </c:if>
 
-
                         <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm">
 
                             <c:if test="${dto.relevel==0}">
@@ -120,24 +120,26 @@
                 </tr>
             </c:forEach>
         </c:if>
+    </table>
+</div><br>
         <!-- 글쓰기 버튼은 로그인을 해야만 보인다 -->
         <c:if test="${sessionScope.loginok!=null}">
-        <tr>
-                <td colspan="6" align="right" style= "text-align:center; padding-top: 20px; padding-bottom: 25px;" >
+<%--        <tr>--%>
+<%--                <td colspan="6" align="right" style= "text-align:center; padding-top: 20px; padding-bottom: 25px;" >--%>
 
                     <c:if test="${sessionScope.email!='admin@gmail.com'}">
                     <button type="button" class="btn btn-outline"
-                            onclick="location.href='qnaForm'" id="writecolor" >문의하기</button>
+                            onclick="location.href='qnaForm'" id="writecolor" style="text-align: center;" >문의하기</button>
                     </c:if>
-                </td>
-        </tr>
+            <br><br>
+<%--                </td>--%>
+<%--        </tr>--%>
 
         </c:if>
-    </table>
-</div>
+
     <div class="container" style="width: 100%;">
 <div class="paging">
-    <ul class="pagination">
+    <ul class="pagination" style="margin-bottom: 60px; ">
         <c:if test="${startPage>1}">
             <li class="page-item"><a href="qnaList?currentPage=${startPage-1}"
                                      class="page-link">이전</a></li>
