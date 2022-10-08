@@ -84,15 +84,30 @@ public class ReadyPayController {
 	  
 	  }
 	  
+		 @GetMapping("/lecture/lecturecategori")
+		 public ModelAndView lectureCategori(String lectypeb) {
+			 
+			 ModelAndView mview = new ModelAndView();
+		  
+			 List<ReadyPayDto> list =  readypayservice.selectByCategori(lectypeb);
+		 
+		  	mview.addObject("list", list);
+		 
+		  	mview.setViewName("/main/lecture/lectureList");
+		  
+		  return mview; 
+		  
+		  }
+	  
 
-	// 둘다 받기
+	// �몮�떎 諛쏄린
 	@RequestMapping(value = "/payment/callback_receive")
 	  @ResponseBody
 	  public ResponseEntity<?> callback_receive(@RequestBody Map<String, Object> model, HttpServletRequest request ){  
 		HttpSession session = request.getSession();
 		int usernum = (int) session.getAttribute("usernum");
 		System.out.println(usernum);
-	  String process_result="결제성공";
+	  String process_result="寃곗젣�꽦怨�";
 	  System.out.println(process_result);
 	  JSONObject responseobj = new JSONObject();
 	  HttpHeaders responseHeaders = new HttpHeaders();
@@ -128,7 +143,7 @@ public class ReadyPayController {
 	  else { 
 		  
 		  System.out.println("error_msg: "+error_msg);
-	  	  responseobj.put("process_result", "결제실패"); 
+	  	  responseobj.put("process_result", "寃곗젣�떎�뙣"); 
 
 	  } 
 	  

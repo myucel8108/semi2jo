@@ -38,6 +38,44 @@
     </style>
 </head>
 <body>
+
+
+
+
+<div class="modal fade" id="myModal" style="width: 250px; margin: auto;">
+    <div class="modal-dialog dialog-sm">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">비밀번호 확인</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <input type="password" style="width: 150px; outline: black;">
+
+            </div>
+<%--            href='qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}'--%>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+
+                <button type="button" onclick="location.href='qnaDetail?qnanum=&currentPage=${currentPage}'" style="color: black; background-color: white; border: 1px solid black; border-radius: 15px; border-color: black;" data-id="${qnanum}" >확인</button>
+                <button type="button" data-bs-dismiss="modal" style="color: black; background-color: white; border: 1px solid black; border-radius: 15px; border-color: black;">취소</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
 <h1 style="text-align: center; font-size: 30px; margin-top: 80px; padding-bottom: 0px; font-family: abster;" >TeachMe 지원</h1>
 <div class="container" style="width: 100%;" >
         <div class="myaskbox" style="margin-bottom: 5px;">
@@ -85,21 +123,21 @@
                             <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm"></a>
                             <img src="../image/lock2.png" width="10px;" style="background-color: white">
                         </c:if>
-
-                        <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm">
+<%--                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">--%>
 
                             <c:if test="${dto.relevel==0}">
                             <img src="../image/lockimg.jpg" width="10px;" style="background-color: white">
                             </c:if>
                                 ${dto.subject}&nbsp;&nbsp;
+                        <a class="btn-modal" href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" data-bs-toggle="modal" data-bs-target="#myModal" style="text-decoration: none; color: black; "data-id="${dto.qnanum}">
                                 ${dto.qnatype}
+                        </a>
                             <c:if test="${dto.photo!='no'}">
                                 <i class="fa fa-picture-o"></i>
                             </c:if>
                             <c:if test="${dto.relevel>0}">
                                 <b style="color: orange; text-decoration: none;">답변완료</b>
                             </c:if>
-                        </a>
                     </td>
                     <c:set var="username" value="${resultInfo.dto.username}"/>
                     <c:set var="totalLength" value="${fn:length(dto.username)}"/>
@@ -159,5 +197,12 @@
 </div>
 </div>
 </div>
+<script>
+$(".btn-modal").click(function(){
+	var data = $(this).data('id');
+    $("#contents.body-contents").val(data);
+    $("#text-contents.body-contents").html(data);
+});
+</script>
 </body>
 </html>

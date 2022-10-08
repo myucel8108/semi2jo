@@ -73,38 +73,38 @@
 		<ul>
 			<li> 국어
 			<ul class="low">
-			<li><a href="lecture?lectypeb=문학" style="color: black;">문학</a></li>
-			<li>><a href="lecture?lectypeb=비문학" style="color: black;">비문학</a></li>
+			<li><a href="lectureList?lectypeb=문학" style="color: black;">문학</a></li>
+			<li>><a href="lectureList?lectypeb=비문학" style="color: black;">비문학</a></li>
 			</ul>						
 			</li>
 			
 			<li> 수학
 			<ul class="low">
-			<li>><a href="lecture?lectypeb=수학1" style="color: black;">수학1</a></li>
-			<li>><a href="lecture?lectypeb=수학2" style="color: black;">수학2</a></li>
-			<li>><a href="lecture?lectypeb=미적분" style="color: black;">미적분</a></li>
+			<li>><a href="lectureList?lectypeb=수학1" style="color: black;">수학1</a></li>
+			<li>><a href="lectureList?lectypeb=수학2" style="color: black;">수학2</a></li>
+			<li>><a href="lectureList?lectypeb=미적분" style="color: black;">미적분</a></li>
 			</ul>						
 			</li>
 			<li> 영어
 			<ul class="low">
-			<li>><a href="lecture?lectypeb=독해" style="color: black;">독해</a></li>
-			<li>><a href="lecture?lectypeb=문법" style="color: black;">문법</a></li>
+			<li>><a href="lectureList?lectypeb=독해" style="color: black;">독해</a></li>
+			<li>><a href="lectureList?lectypeb=문법" style="color: black;">문법</a></li>
 			</ul>						
 			</li>
 			<li>사회
 			<ul class="low">
-			<li>><a href="lecture?lectypeb=경제" style="color: black;">경제</a></li>
-			<li>><a href="lecture?lectypeb=사회문화" style="color: black;">사회문화</a></li>
+			<li>><a href="lectureList?lectypeb=경제" style="color: black;">경제</a></li>
+			<li>><a href="lectureList?lectypeb=사회문화" style="color: black;">사회문화</a></li>
 			</ul>						
 			</li>
 			<li>과학
 			<ul class="low">
-			<li>><a href="lecture?lectypeb=과학" style="color: black;">화학</a></li>
-			<li>><a href="lecture?lectypeb=생명과학" style="color: black;">생명과학</a></li>
+			<li>><a href="lectureList?lectypeb=과학" style="color: black;">화학</a></li>
+			<li>><a href="lectureList?lectypeb=생명과학" style="color: black;">생명과학</a></li>
 			</ul>						
 			</li>	
-	<li>><a href="lecture?lectypeb=한국사" style="color: black;">한국사</a></li>
-	<li>><a href="lecture?lectypeb=제2외국어" style="color: black;">제2외국어</a></li>
+	<li>><a href="lectureList?lectypeb=한국사" style="color: black;">한국사</a></li>
+	<li>><a href="lectureList?lectypeb=제2외국어" style="color: black;">제2외국어</a></li>
 		</ul>	                  
 	</div>
 		<table class="table table-bordered">
