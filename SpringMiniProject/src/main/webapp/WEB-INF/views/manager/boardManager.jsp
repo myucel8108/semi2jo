@@ -13,147 +13,139 @@
             href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap"
             rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-<%--    <link href="${root}/css/boardManager.scss" rel="stylesheet">--%>
-<%--<link rel="stylesheet" href="${root}/css/boardManager/fontsicomoonstyle.css">--%>
 
-<%--<link rel="stylesheet" href="css/owl.carousel.min.css">--%>
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="${root}/css/boardManager/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<!-- Style -->
-<link rel="stylesheet" href="${root}/css/boardManager/style.css">
+<link rel="stylesheet" href="${root}/css/manager/boardManager.css">
 
-<title>Table #5</title>
 </head>
 <body>
-
-
-<%--<div class="content">--%>
-
-<%--    <div class="container">--%>
-
-
-
-        <div class="table-responsive custom-table-responsive" id="free-board-control">
-
-            <h2 class="mb-5">자유 커뮤니티</h2>
-            <table class="table custom-table">
-                <thead>
-                <tr>
-
-<%--                    <th scope="col">--%>
-<%--                        <label class="control control--checkbox">--%>
-<%--                            <input type="checkbox"  class="js-check-all"/>--%>
-<%--                            <div class="control__indicator"></div>--%>
-<%--                        </label>--%>
-<%--                    </th>--%>
-
-                    <th scope="col">Number</th>
-                    <th scope="col">Subject</th>
-                    <th scope="col">Writer</th>
-                    <th scope="col">Writeday</th>
-                    <th scope="col">Readcount</th>
-                </tr>
-                </thead>
-                <tbody class="ajax-input-freeboard">
-<%--                    <tr class="">--%>
-<%--                        <th scope="row">--%>
-<%--                            <label class="control control--checkbox">--%>
-<%--                                <input type="checkbox"/>--%>
-<%--                                <div class="control__indicator"></div>--%>
-<%--                            </label>--%>
-<%--                        </th>--%>
-<%--                        <td>--%>
-<%--                            1392--%>
-<%--                        </td>--%>
-<%--                        <td><a href="#">James Yates</a></td>--%>
-<%--                        <td>--%>
-<%--                            Web Designer--%>
-<%--                            <small class="d-block">Far far away, behind the word mountains</small>--%>
-<%--                        </td>--%>
-<%--                        <td>+63 983 0962 971</td>--%>
-<%--                        <td>NY University</td>--%>
-<%--                    </tr>--%>
-
-<%--                <tr class="spacer"><td colspan="100"></td></tr>--%>
-<%--                <tr>--%>
-<%--                    <th scope="row">--%>
-<%--                        <label class="control control--checkbox">--%>
-<%--                            <input type="checkbox"/>--%>
-<%--                            <div class="control__indicator"></div>--%>
-<%--                        </label>--%>
-<%--                    </th>--%>
-
-<%--                    <td>9841</td>--%>
-<%--                    <td><a href="#">Sampson Murphy</a></td>--%>
-<%--                    <td>--%>
-<%--                        Mobile Dev--%>
-<%--                        <small class="d-block">Far far away, behind the word mountains</small>--%>
-<%--                    </td>--%>
-<%--                    <td>+01 352 1125 0192</td>--%>
-<%--                    <td>Senior High</td>--%>
-<%--                </tr>--%>
-
-                </tbody>
-            </table>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Free Board</h2>
+            </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-wrap">
+                    <table class="table table-responsive-xl">
+                        <thead>
+                        <tr>
+<%--                            <th>&nbsp;</th>--%>
+                            <th>Subject</th>
+                            <th>Writer</th>
+                            <th>WriteDay</th>
+                            <th>Readcount</th>
+<%--                            <th>&nbsp;</th>--%>
+                        </tr>
+                        </thead>
+                        <tbody class="ajax-input-freeboard">
+                        <tr class="alert" role="alert">
+<%--                            <td>--%>
+<%--                                <label class="checkbox-wrap checkbox-primary">--%>
+<%--                                    <input type="checkbox" checked>--%>
+<%--                                    <span class="checkmark"></span>--%>
+<%--                                </label>--%>
+<%--                            </td>--%>
+                            <td>Markotto89</td>
+                            <td class="d-flex align-items-center">
+                                <div class="img" style="background-image: url(images/person_1.jpg);"></div>
+                                <div class="pl-3 email">
+                                    <span>markotto@email.com</span>
+                                    <span>Added: 01/03/2020</span>
+                                </div>
+                            </td>
+                            <td>작성일</td>
+                            <td>조회수</td>
 
-
-<div class="table-responsive custom-table-responsive" id="ask-board-control">
-    <h2 class="mb-5">질문 커뮤니티</h2>
-    <table class="table custom-table">
-        <thead>
-        <tr>
-            <th scope="col">Number</th>
-            <th scope="col">Subject</th>
-            <th scope="col">Writer</th>
-            <th scope="col">Writeday</th>
-            <th scope="col">Readcount</th>
-        </tr>
-        </thead>
-        <tbody class="ajax-input-askboard">
-
-<%--        여기에 ajax로 불러드린 값을 넣는다--%>
-        </tbody>
-    </table>
-</div>
-
-
-<%--    </div>--%>
-
-<%--</div>--%>
-
-<script src="${root}/js/boardManager.js"></script>
-</body>
+<%--                            <td class="status"><span class="active">Active</span></td>--%>
+<%--                            <td>--%>
+<%--                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">--%>
+<%--                                    <span aria-hidden="true"><i class="fa fa-close"></i></span>--%>
+<%--                                </button>--%>
+<%--                            </td>--%>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="free-board-paging"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <script>
     $(function () {
-        freeBoardList();
+        var currentPage = 1;
+        freeBoardList(currentPage);
+
+        //페이징 번호 클릭시 이벤트
+        $(document).on('click','.page-item',function (){
+            var currentPage = $(this).attr('currentPage');
+            var type = $(this).attr('boardtype');
+            if (type=="free")
+                freeBoardList(currentPage);
+        });
     })
 
-    function freeBoardList(){
+    // 자유 커뮤니티 게시판 출력 함수
+    function freeBoardList(currentPage){
         var temp = "";
-        var page = "";
         $.ajax({
             type:"get",
             url:"${root}/manager/freeBoardList",
+            data:{"currentPage":currentPage},
             dataType:"json",
             success:function(res){
                 $.each(res.list,function (idx,ele) {
-                    var num = idx+1;
-                    temp+="<tr>";
-                    temp+="<td>"+num+"</td>";
+                    console.log("ajaxsucess");
+                    temp+="<tr class='alert' role='alert'>";
                     temp+="<td>"+ele.subject+"</td>";
-                    temp+="<td>"+ele.nickname+"</td>";
+                    temp+="<td class='d-flex align-items-center'>";
+                    temp+="<div class='pl-3 email'>";
+                    temp+="<span>"+ele.nickname+"</span>"
                     temp+="<td>"+ele.writeday+"</td>";
                     temp+="<td>"+ele.readcount+"</td>";
                     temp+="</tr>";
                 })//반복으로 데이터 출력
 
                 $(".ajax-input-freeboard").html(temp);
+                //페이징 처리 함수 호출
+                var startPage = res.startPage;
+                var endPage = res.endPage;
+                var currentPage = res.currentPage;
+                var totalPage = res.totalPage;
+                var boardtype = "free"; //페이징 처리에서 페이지번호 클릭시 어느 게시판에 적용되야 하는지 판단하기 위해 추가해줌
+                var temp = paging(startPage,endPage,currentPage,totalPage,boardtype);
+                $(".free-board-paging").html(temp);
             },
         });
     }
 
+    //페이징 처리 함수
+    function paging(startPage, endPage, currentPage, totalPage, boardtype) {
+        console.log("paging boardtype"+boardtype);
+        var page ="";
+        page += '<ul class="pagination">';
+        if (startPage>1){
+            page += '<li ><a class="page-item" currentPage="'+(currentPage-1)+'" boardtype="'+boardtype+'">이전</a></li>';
+        }
+        for(var pp = startPage; pp<=endPage; pp++){
+            if(pp==currentPage)
+                page += '<li class=" active"><a class="page-item" currentPage="'+pp+'" boardtype="'+boardtype+'" >'+pp+'</a></li>';
+            else
+                page += '<li><a class="page-item" currentPage="'+pp+'" boardtype="'+boardtype+'">'+pp+'</a></li>';
+        }
+        if(endPage<totalPage)
+            page += '<li><a class="page-item" currentPage="'+(endpage+1)+'" boardtype="'+boardtype+'">다음</a></li>';
+        page += '</ul>';
+        return page;
+    }
 </script>
+</body>
 </html>
+
+

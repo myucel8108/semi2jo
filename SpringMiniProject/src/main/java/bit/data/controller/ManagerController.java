@@ -238,6 +238,7 @@ public class ManagerController {
         return result;
     }
 
+    //관리자 메인화면에서 - 총유저수 출력
     @GetMapping("/manager/usertotalCount")
     @ResponseBody
     public int getUserTotalCount(){
@@ -247,7 +248,7 @@ public class ManagerController {
         System.out.println("user"+result);//sql 에서 해당 값이 없는 경우 0을 넣어줌
         return result;
     }
-
+    //커뮤니티 관리
     @GetMapping("/manager/freeBoardList")
     @ResponseBody
     public Map<String, Object> freeBoardList(@RequestParam(defaultValue = "1")int currentPage,
@@ -257,7 +258,7 @@ public class ManagerController {
         //페이징 처리에 필요한 변수들
         //전체 갯수
         int totalCount=boardService.getTotalCount(sc, sw);
-        int perPage=5;//한페이지당 보여질 글의 갯수
+        int perPage=3;//한페이지당 보여질 글의 갯수
         int perBlock=3;//한블럭당 보여질 페이지의 갯수
         int startNum;//db에서 가져올 글의 시작번호(mysql은 첫글이 0번,오라클은 1번)
         int startPage;//각블럭당 보여질 시작페이지

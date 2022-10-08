@@ -393,7 +393,6 @@
         // totalIncom();      //올해의 수익
         totalUser();       //전체 학생수
         totalLecture();
-        console.log("test2");//이번달에 개설된 강좌수
     });
 
     // //올해의 수익
@@ -415,7 +414,6 @@
             url:"${root}/manager/usertotalCount",
             dataType:"json",
             success:function(res) {
-                alert("print-total-user");
                 $("#print-total-user").html(res);
             }
         })
