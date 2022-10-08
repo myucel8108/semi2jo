@@ -38,6 +38,46 @@
     </style>
 </head>
 <body>
+
+
+
+
+<%--<div class="modal fade" id="myModal" style="width: 250px; margin: auto;">--%>
+<%--    <div class="modal-dialog dialog-sm">--%>
+<%--        <div class="modal-content">--%>
+
+<%--            <!-- Modal Header -->--%>
+<%--            <div class="modal-header">--%>
+<%--                <h4 class="modal-title">비밀번호 확인</h4>--%>
+<%--                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>--%>
+<%--            </div>--%>
+
+<%--            <!-- Modal body -->--%>
+<%--            <div class="modal-body">--%>
+<%--                <input type="hidden" name="qnanum" value="${dto.qnanum}">--%>
+<%--                <input type="hidden" name="currentPage" value="${currentPage}">--%>
+<%--                <input type="password" style="width: 150px; outline: black;">--%>
+
+<%--            </div>--%>
+<%--&lt;%&ndash;            href='qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}'&ndash;%&gt;--%>
+<%--            <!-- Modal footer -->--%>
+<%--            <div class="modal-footer">--%>
+
+<%--                <button type="button" onclick="location.href='qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}'" style="color: black; background-color: white; border: 1px solid black; border-radius: 15px; border-color: black;" >확인</button>--%>
+<%--                <button type="button" data-bs-dismiss="modal" style="color: black; background-color: white; border: 1px solid black; border-radius: 15px; border-color: black;">취소</button>--%>
+<%--            </div>--%>
+
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
+
+
+
+
+
+
+
+
 <h1 style="text-align: center; font-size: 30px; margin-top: 80px; padding-bottom: 0px; font-family: abster;" >TeachMe 지원</h1>
 <div class="container" style="width: 100%;" >
         <div class="myaskbox" style="margin-bottom: 5px;">
@@ -85,21 +125,23 @@
                             <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm"></a>
                             <img src="../image/lock2.png" width="10px;" style="background-color: white">
                         </c:if>
-
-                        <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm">
+<%--                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">--%>
 
                             <c:if test="${dto.relevel==0}">
                             <img src="../image/lockimg.jpg" width="10px;" style="background-color: white">
                             </c:if>
                                 ${dto.subject}&nbsp;&nbsp;
+                        <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" style="text-decoration: none; color: black;" qnanum="${dto.qnanum}">
+<%--                        <a href="../qna/secretQna.jsp" style="text-decoration: none; color: black;" qnanum="${dto.qnanum}">--%>
+<%--                        <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" data-bs-toggle="modal" data-bs-target="#myModal" style="text-decoration: none; color: black;" id="jebal">--%>
                                 ${dto.qnatype}
+                        </a>
                             <c:if test="${dto.photo!='no'}">
                                 <i class="fa fa-picture-o"></i>
                             </c:if>
                             <c:if test="${dto.relevel>0}">
                                 <b style="color: orange; text-decoration: none;">답변완료</b>
                             </c:if>
-                        </a>
                     </td>
                     <c:set var="username" value="${resultInfo.dto.username}"/>
                     <c:set var="totalLength" value="${fn:length(dto.username)}"/>
@@ -159,5 +201,32 @@
 </div>
 </div>
 </div>
+
+<%--<script>--%>
+<%--    $("#jebal").click(function(){--%>
+
+<%--        var qnanum=$(this).attr("qnanum");--%>
+<%--        alert(qnanum);--%>
+<%--        //--%>
+<%--        // $.ajax({--%>
+<%--        //     type:"get",--%>
+<%--        //     dataType:"json",--%>
+<%--        //     url:"updateform",--%>
+<%--        //     data:{"num":updatenum},--%>
+<%--        //     success:function(res){--%>
+<%--        //         console.dir(res)--%>
+<%--        //         $("#updatename").val(res.name);--%>
+<%--        //         $("#updatehp").val(res.hp);--%>
+<%--        //         $("#updateemail").val(res.email);--%>
+<%--        //         $("#updateaddr").val(res.address);--%>
+<%--        //     }--%>
+<%--        //--%>
+<%--        // });--%>
+
+<%--    });--%>
+<%--</script>--%>
+
+
+
 </body>
 </html>

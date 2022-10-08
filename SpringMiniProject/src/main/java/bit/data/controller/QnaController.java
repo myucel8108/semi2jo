@@ -72,10 +72,30 @@ public class QnaController {
         mview.addObject("dto", dto);
         mview.addObject("currentPage", currentPage);
 
+        mview.setViewName("/main/qna/secretQna");
+
+        return mview;
+    }
+
+    @GetMapping("/qna/secretQna") //게시판 디테일
+    public ModelAndView secretQna(int qnanum, int currentPage){
+
+        ModelAndView mview = new ModelAndView();
+
+
+        QnaDto dto = qnaService.selectByNum(qnanum);
+
+        mview.addObject("dto", dto);
+        mview.addObject("currentPage", currentPage);
+
         mview.setViewName("/main/qna/qnaDetail");
 
         return mview;
     }
+
+
+
+
 
     @PostMapping("/qna/insert") //게시판 추가
     public String insert(QnaDto dto, List<MultipartFile>upload, HttpServletRequest request)

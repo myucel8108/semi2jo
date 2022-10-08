@@ -8,8 +8,8 @@
 
 
 	<insert id="insertQna" parameterType="qnaDto">
-		insert into qna (usernum, username, qnatype, subject, content, photo,pass,writeday,regroup,restep,relevel)
-		values (#{usernum}, #{username}, #{qnatype}, #{subject}, #{content}, #{photo},#{pass},now(),#{regroup},#{restep},#{relevel})
+		insert into qna (usernum, username, qnatype, subject, content, photo,pass,writeday,regroup,restep,relevel,secret)
+		values (#{usernum}, #{username}, #{qnatype}, #{subject}, #{content}, #{photo},#{pass},now(),#{regroup},#{restep},#{relevel},#{secret})
 	</insert>
 	<select id="getTotalCount" parameterType="int" resultType="int">
 		select count(*) from qna
