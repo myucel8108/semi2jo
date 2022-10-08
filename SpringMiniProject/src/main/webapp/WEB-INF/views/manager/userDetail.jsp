@@ -29,7 +29,7 @@
                         <div class="row align-items-center">
                             <div class="col-lg-6 mb-4 mb-lg-0 userdetailphoto">
                                 <c:if test="${userdto.userphoto!=null}">
-                                  <img src="${root}/upload/${userdto.userphoto}" width="400" height="300">
+                                  <img src="${root}/upload/${userdto.userphoto}" width="350" height="300">
                                 </c:if>
                                 <c:if test="${userdto.userphoto==null}">
                                     <img src="${root}/image/noimage2.png" alt="이미지가 없습니다." width="300" height="300">
@@ -60,12 +60,15 @@
             <div class="col-lg-12 mb-4 mb-sm-5">
                 <div>
                     <span class="section-title text-primary mb-3 mb-sm-4">수강 중인 강의</span>
-                    <p>
-                        <c:forEach var="joinlist" items="${joinlist}">
-                            ${joinlist.teaname}
-                        </c:forEach>
-                    </p>
-                    <p class="mb-0">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed.</p>
+                    <c:forEach var="joinlist" items="${joinlist}">
+                        <script>
+                            var lecday = "${joinlist.lecday}".split(',');
+                            console.log(lecday);
+                        </script>
+                        <p>
+                            [${joinlist.lectypea}]-${joinlist.lectypeb} : ${joinlist.lecname}(${joinlist.roomnum}호)_${joinlist.teaname} [요일 : ${joinlist.lecday}] ${joinlist.lectime}교시
+                        </p>
+                    </c:forEach>
                 </div>
             </div>
             <div class="col-lg-12">
@@ -109,12 +112,6 @@
                             <div class="custom-progress progress progress-medium" style="height: 4px;">
                                 <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style="width:60%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar"></div>
                             </div>
-                        </div>
-                        <div>
-                            <span class="section-title text-primary mb-3 mb-sm-4">Education</span>
-                            <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
-                            <p class="mb-1-9">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-
                         </div>
                     </div>
                 </div>

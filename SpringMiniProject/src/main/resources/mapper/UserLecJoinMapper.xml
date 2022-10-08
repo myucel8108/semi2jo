@@ -5,6 +5,7 @@
         select lec.teaname, lec.lecname, lec.lectypea, lec.lectypeb, de.roomnum, de.lectime, de.lecday
         from lecture lec, lecdetail de, mylecture my
         where de.lecnum = lec.lecnum and my.lecdenum = de.lecdenum and my.usernum = #{usernum}
+        order by lectypea desc
     </select>
 
 </mapper>
