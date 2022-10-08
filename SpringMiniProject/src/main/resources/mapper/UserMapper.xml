@@ -61,6 +61,11 @@
         update user set userphoto=#{userphoto} where usernum=#{usernum}
     </update>
 
+    <!-- 회원 사진 삭제 -->
+    <update id="deleteUserPhoto" parameterType="int">
+        UPDATE user SET userphoto = null WHERE usernum=#{usernum}
+    </update>
+
     <!--회원 정보변경 (usernum)으로 가져옴-->
     <update id="updateUser" parameterType="userDto">
         update user set userpass=#{userpass}, username=#{username}, nickname=#{nickname}, userphoto=#{userphoto},

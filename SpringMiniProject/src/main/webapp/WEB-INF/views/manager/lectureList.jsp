@@ -49,6 +49,10 @@
             display: flex;
             flex-direction: row-reverse;
         }
+
+        .widgets-icons-2{
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -85,16 +89,27 @@
     <br>
     <div class="container">
         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
-
             <c:if test="${totalCount>0}">
                 <c:forEach var="dto" items="${list}">
                     <c:if test="${dto.lectypea=='국어'}">
                         <div class="col">
                             <div class="card radius-10 border-start border-0 border-3 border-info">
                                 <div class="card-body">
-                                    <p class="mb-0 text-secondary">[${dto.lectypea}]-${dto.lectypeb}</p>
-                                    <p class="my-1 text-info">${dto.lecname}</p>
-                                    <p class="mb-0 font-13">${dto.teaname}</p>
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <p class="mb-0 text-secondary">[${dto.lectypea}]-${dto.lectypeb}</p>
+                                            <p class="my-1 text-info">${dto.lecname}</p>
+                                            <p class="mb-0 font-13">${dto.teaname}</p>
+                                        </div>
+                                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
+                                            <c:if test="${dto.lecphoto!=null}">
+                                                <img src="upload/${dto.lecphoto}" width="50" height="50">
+                                            </c:if>
+                                            <c:if test="${dto.lecphoto==null}">
+                                                <img src="resources/image/noimage2.png" width="50" height="50">
+                                            </c:if>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -103,9 +118,21 @@
                         <div class="col">
                             <div class="card radius-10 border-start border-0 border-3 border-primary">
                                 <div class="card-body">
-                                    <p class="mb-0 text-secondary">[${dto.lectypea}]-${dto.lectypeb}</p>
-                                    <p class="my-1 text-primary">${dto.lecname}</p>
-                                    <p class="mb-0 font-13">${dto.teaname}</p>
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <p class="mb-0 text-secondary">[${dto.lectypea}]-${dto.lectypeb}</p>
+                                            <p class="my-1 text-primary">${dto.lecname}</p>
+                                            <p class="mb-0 font-13">${dto.teaname}</p>
+                                        </div>
+                                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
+                                            <c:if test="${dto.lecphoto!=null}">
+                                                <img src="upload/${dto.lecphoto}" width="50" height="50">
+                                            </c:if>
+                                            <c:if test="${dto.lecphoto==null}">
+                                                <img src="resources/image/noimage2.png" width="50" height="50">
+                                            </c:if>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -114,9 +141,21 @@
                         <div class="col">
                             <div class="card radius-10 border-start border-0 border-3 border-success">
                                 <div class="card-body">
-                                    <p class="mb-0 text-secondary">[${dto.lectypea}]-${dto.lectypeb}</p>
-                                    <p class="my-1 text-success">${dto.lecname}</p>
-                                    <p class="mb-0 font-13">${dto.teaname}</p>
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <p class="mb-0 text-secondary">[${dto.lectypea}]-${dto.lectypeb}</p>
+                                            <p class="my-1 text-success">${dto.lecname}</p>
+                                            <p class="mb-0 font-13">${dto.teaname}</p>
+                                        </div>
+                                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
+                                            <c:if test="${dto.lecphoto!=null}">
+                                                <img src="upload/${dto.lecphoto}" width="50" height="50">
+                                            </c:if>
+                                            <c:if test="${dto.lecphoto==null}">
+                                                <img src="resources/image/noimage2.png" width="50" height="50">
+                                            </c:if>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -125,9 +164,21 @@
                         <div class="col">
                             <div class="card radius-10 border-start border-0 border-3 border-warning">
                                 <div class="card-body">
-                                    <p class="mb-0 text-secondary">[${dto.lectypea}]-${dto.lectypeb}</p>
-                                    <p class="my-1 text-warning">${dto.lecname}</p>
-                                    <p class="mb-0 font-13">${dto.teaname}</p>
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <p class="mb-0 text-secondary">[${dto.lectypea}]-${dto.lectypeb}</p>
+                                            <p class="my-1 text-warning">${dto.lecname}</p>
+                                            <p class="mb-0 font-13">${dto.teaname}</p>
+                                        </div>
+                                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
+                                            <c:if test="${dto.lecphoto!=null}">
+                                                <img src="upload/${dto.lecphoto}" width="50" height="50">
+                                            </c:if>
+                                            <c:if test="${dto.lecphoto==null}">
+                                                <img src="resources/image/noimage2.png" width="50" height="50">
+                                            </c:if>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -136,9 +187,21 @@
                         <div class="col">
                             <div class="card radius-10 border-start border-0 border-3 border-danger">
                                 <div class="card-body">
-                                    <p class="mb-0 text-secondary">[${dto.lectypea}]-${dto.lectypeb}</p>
-                                    <p class="my-1 text-danger">${dto.lecname}</p>
-                                    <p class="mb-0 font-13">${dto.teaname}</p>
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <p class="mb-0 text-secondary">[${dto.lectypea}]-${dto.lectypeb}</p>
+                                            <p class="my-1 text-danger">${dto.lecname}</p>
+                                            <p class="mb-0 font-13">${dto.teaname}</p>
+                                        </div>
+                                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
+                                            <c:if test="${dto.lecphoto!=null}">
+                                                <img src="upload/${dto.lecphoto}" width="50" height="50">
+                                            </c:if>
+                                            <c:if test="${dto.lecphoto==null}">
+                                                <img src="resources/image/noimage2.png" width="50" height="50">
+                                            </c:if>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -147,7 +210,6 @@
             </c:if>
         </div>
     </div>
-
 
     <!-- 페이징 -->
     <div class="paging">

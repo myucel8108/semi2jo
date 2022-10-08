@@ -16,7 +16,7 @@
     <style type="text/css">
         .mb-4 {
             font-size: 19px;
-            width: 30%;
+            width: 70%;
         }
 
         .m-0 {
@@ -65,7 +65,7 @@
 				</div>
 				<div class="form-group">
 					<label for="photoupload">사진</label>
-					<input type="file" class="form-control btn-outline-primary" id="photoupload" name="upload">
+					<input type="file" class="form-control btn-outline-primary" id="photoupload" name="photoupload">
 				</div>
 				<br>
 				<div class="button-container">
@@ -81,7 +81,7 @@
 			var korean = ["문학", "비문학"];
 			var math = ["수학1", "수학2", "미적분"];
 			var society = ["경제", "사회문화"];
-			var science = ["화학", "생명과학"];
+			var science = ["화학", "지구과학"];
 			var english = ["독해", "문법"];
 			var none = ["중분류"]; //중분류 원래값으로 못돌려놔서 짜치는 방법으로 어거지로 쑤셔박았음. 수정 요망.
 			var selected;

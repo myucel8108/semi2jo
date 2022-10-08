@@ -50,7 +50,7 @@
         </tr>
         <c:set var="totalPrice" value="0"/>
         <c:set var="totalLecname" value=""/>
-        <c:forEach var="dto" items="${list }">
+        <c:forEach var="dto" items="${list}">
             <tr>
                 <td>${dto.lectypea}</td>
                 <td>${dto.lecname}</td>
@@ -85,6 +85,7 @@
             </tr>
             <c:set var="totalPrice" value="${totalPrice+dto.price}"/>
             <c:set var="totalLecname" value="${totalLecname} [${dto.lecname}]"/>
+            <c:set var="usernum" value="${dto.usernum}"/>
         </c:forEach>
         <tr>
             <td colspan="8" class="total">
@@ -92,17 +93,19 @@
             </td>
         </tr>
     </table>
+    
     <button type="button" onclick="payment('kcp','test','card')">결제하기</button>
 </div>
 <script type="text/javascript">
 
     var IMP = window.IMP;
 
-    var price ="${dto.price}";
     var name = "${sessionScope.loginname}";
-    var email = "${sessionScope.email}"
-
+    var email = "${sessionScope.email}";
+	var usernum= "${sessionScope.usernum}";
+	usernum +="";
     function payment(pg_provider,mode,payment_method) {
+    	var usernum = "${sessionScope.usernum}";
         IMP.init("imp32541741");
         var pg_mid;
         if(pg_provider =='kcp'){
@@ -125,20 +128,22 @@
             amount : "${totalPrice}",
             buyer_email : '${sessionScope.email}',
             buyer_name : '${sessionScope.loginname}',
+ 			usernum : "${sessionScope.usernum}"
         };
-
+        
+        
         IMP.request_pay(data, response => {
             alert('callback!:' +JSON.stringify(response)),
                 $.ajax({
-                    url: "/payment/callback_receive",
+                    url: "../payment/callback_receive",
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    data: JSON.stringify(response)
-                }).done(function (data) {
+                    datetype:"text",
+                    data: JSON.stringify(response),
+                	success: function(res) {
                     // 가맹점 서버 결제 API 성공시 로직'
-                    alert("성공");
                     location.reload();
-
+                	}
                 })
         })
     };

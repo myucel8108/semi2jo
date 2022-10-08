@@ -23,7 +23,121 @@
         margin-top: 20px;
         margin-bottom: 20px;
     }
+
+    checkbox-container {
+
+        position: relative;
+
+    }
+
+
+
+    /*//기본 체크박스 없애기*/
+
+       .checkbox-container input[type="checkbox"] {
+
+           position: absolute;
+
+           width: 1px;
+
+           height: 1px;
+
+           padding: 0;
+
+           margin: -1px;
+
+           overflow: hidden;
+
+           clip:rect(0,0,0,0);
+
+           border: 0;
+
+       }
+
+
+
+    /*// 웹의 경우 커서에 pointer 설정*/
+
+       .checkbox-container input[type="checkbox"] + label {
+
+           display: inline-block;
+
+           position: relative;
+
+           cusor: pointer;
+
+           -webkit-user-select: none;
+
+           -moz-user-select: none;
+
+           -ms-user-select: none;
+
+           user-select: none;
+
+       }
+
+
+
+    /*// 새로운 디자인의 체크박스 만들기*/
+
+       .checkbox-container input[type="checkbox"] + label:before {
+
+           content: ' ';
+
+           display: inline-block;
+
+           width: 18px;
+
+           height: 18px;
+
+           line-height: 18px;
+
+           margin: -2px 8px 0 0;
+
+           text-align: center;
+
+           vertical-align: middle;
+
+           background: white;
+
+           border: 1px solid grey;
+
+           border-radius: 3px;
+
+           /*box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);*/
+
+       }
+
+
+
+    .checkbox-container input[type="checkbox"] + label:active:before,
+
+    .checkbox-container input[type="checkbox"]:checked + label:active:before {
+        /*box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);*/
+
+    }
+
+
+
+    .checkbox-container input[type="checkbox"]:checked + label:before {
+
+        content: '\2713';
+
+        color: grey;
+
+        /*text-shadow: 1px 1px white;*/
+
+        background: white;
+
+        border-color: grey;
+
+        /*box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);*/
+
+    }
+
+
 </style>
+
 <body>
 <form action="insert" method="post" enctype="multipart/form-data">
 
@@ -43,11 +157,12 @@
                 <th style="width: 100px; text-align: center;">문의유형</th>
                 <td>
                     <select type="select" name="qnatype" required="required">
+                        <option value="" selected disabled hidden>선택해주세요</option>
                         <option>결제문의</option>
-                        <option>상품문의</option>
-                        <option>강사문의</option>
+                        <option>강의문의</option>
                         <option>학원문의</option>
-                        <option>취소문의</option>
+                        <option>상담문의</option>
+                        <option>기타문의</option>
                     </select>
                 </td>
             </tr>
@@ -115,21 +230,69 @@
 
 
                 <div style="text-align: center; margin-bottom: 10px;">
-                <input type="radio" name="opens" id="open" value="Y" class="radio"/><span class="ml_10">&nbsp;게시물 공개</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="radio" name="opens" id="open" value="N" class="radio"/><span class="ml_10">&nbsp;게시물 비공개</span>
-                </div>
+
+                    <div class="checkbox-container">
+
+                        <input type="checkbox" id="is-subscription" >
+
+                        <label for="is-subscription" style="padding-top:10px; color: grey; font-size: 15px;">비밀글 설정</label>
+
+                    </div>
+
+
+<%--                <input type="checkbox" id="secret"/>--%>
+<%--                    <label class="check1"><b style="margin-left: 3px; text-decoration: none; color: grey; font-size: 13px;">관리자만 보기</b></label>--%>
+<%--                </div>--%>
             </td>
         </tr>
 
         <tr>
             <td colspan="2" align="center">
-                <button type="submit" class="btn btn-outline" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" >등록</button>
+                <button type="submit" class="btn btn-outline insert2" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" >등록</button>
                 <button type="button" class="btn btn-outline"  style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" onclick="location.href='qnaList?currentPage=${currentPage}'">취소</button>
             </td>
 
 
         </tr>
     </table>
+
+
+<%--    <script>--%>
+
+
+<%--            //등록 이벤트--%>
+<%--            $(document).on("click", ".insert2", function () {--%>
+<%--                var idx = $(this).attr("idx");--%>
+<%--                var a = alert("등록되었습니다");--%>
+<%--                if (a) {--%>
+<%--                    var idx = $(this).attr("idx");--%>
+
+<%--                    $.ajax({--%>
+<%--                        type: "get",--%>
+<%--                        url: "../qna/insert",--%>
+<%--                        dataType: "text",--%>
+<%--                        data: {"idx": idx},--%>
+<%--                        success: function (res) {--%>
+<%--                            list();--%>
+<%--                        }//success--%>
+<%--                    });//ajax--%>
+
+<%--                }//if--%>
+
+
+<%--            });//onclick--%>
+
+
+
+
+
+
+
+
+
+
+
+<%--    </script>--%>
 </form>
 </body>
 </html>
