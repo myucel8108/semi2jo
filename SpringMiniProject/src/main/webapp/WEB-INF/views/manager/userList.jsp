@@ -26,10 +26,38 @@
         .deleteuser{
             cursor: pointer;
         }
+
+        .finduser{
+            display: flex;
+            justify-content: right;
+        }
+
+        .usertitle{
+            text-align: center;
+        }
+
+        .search-container{
+            width: 200px;
+        }
     </style>
 </head>
 <body>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
+    <!-- 검색창 -->
+    <div class="finduser">
+        <div class="usertitle">
+            회원 목록
+            <form action="userlist">
+                <div class="search-container">이름으로 회원 검색
+                    <div class="input-group search-item2"> <!-- 검색 -->
+                        <input type="text" name="searchword" class="form-control" style="width: 100px;">
+                        <button type="submit" class="btn btn-primary">검색</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br>
     <div class="container bootstrap snippets bootdey">
         <div class="row">
             <div class="col-lg-12">
