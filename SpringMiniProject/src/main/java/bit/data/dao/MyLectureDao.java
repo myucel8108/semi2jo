@@ -15,9 +15,15 @@ public class MyLectureDao implements MyLectureDaoInter{
     String ns = "bit.data.dao.MyLectureDao.";
     
     @Override
-    public void insertMyLecture(MyLectureDto mylecdto) {
+    public void insertMyLecture(MyLectureDto mylecDto) {
     	
-        session.insert(ns+"insertMyLecture", mylecdto);
+        session.insert(ns+"insertMyLecture", mylecDto);
+    }
+    @Override
+    public void updatePayok(int usernum) {
+    	
+    	
+    	session.update(ns+"updatePayok", usernum);
     }
     
 }

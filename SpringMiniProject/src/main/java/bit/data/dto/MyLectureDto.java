@@ -1,5 +1,7 @@
 package bit.data.dto;
 
+import java.sql.Timestamp;
+
 import lombok.Data;
 
 @Data
@@ -11,4 +13,5 @@ public class MyLectureDto {
 	 private int star;
 	 private String review;
 	 private String payok;
+	 private Timestamp paytime;
 }

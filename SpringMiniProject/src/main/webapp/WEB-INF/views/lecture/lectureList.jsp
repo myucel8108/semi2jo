@@ -71,40 +71,40 @@
 
 	<div style="width: 300px;">
 		<ul>
-			<li><a href=""> 국어</a>
+			<li> 국어
 			<ul class="low">
-			<li><a href="">문학</a></li>
-			<li><a href="">비문학</a></li>
+			<li><a href="lecture?lectypeb=문학" style="color: black;">문학</a></li>
+			<li>><a href="lecture?lectypeb=비문학" style="color: black;">비문학</a></li>
 			</ul>						
 			</li>
 			
-			<li><a href=""> 수학</a>
+			<li> 수학
 			<ul class="low">
-			<li><a href="">수학1</a></li>
-			<li><a href="">수학2</a></li>
-			<li><a href="">미적분</a></li>
+			<li>><a href="lecture?lectypeb=수학1" style="color: black;">수학1</a></li>
+			<li>><a href="lecture?lectypeb=수학2" style="color: black;">수학2</a></li>
+			<li>><a href="lecture?lectypeb=미적분" style="color: black;">미적분</a></li>
 			</ul>						
 			</li>
-			<li><a href=""> 영어</a>
+			<li> 영어
 			<ul class="low">
-			<li><a href="">독해</a></li>
-			<li><a href="">문법</a></li>
+			<li>><a href="lecture?lectypeb=독해" style="color: black;">독해</a></li>
+			<li>><a href="lecture?lectypeb=문법" style="color: black;">문법</a></li>
 			</ul>						
 			</li>
-			<li><a href="">사회</a>
+			<li>사회
 			<ul class="low">
-			<li><a href="">경제</a></li>
-			<li><a href="">사회문화</a></li>
+			<li>><a href="lecture?lectypeb=경제" style="color: black;">경제</a></li>
+			<li>><a href="lecture?lectypeb=사회문화" style="color: black;">사회문화</a></li>
 			</ul>						
 			</li>
-			<li><a href="">과학</a>
+			<li>과학
 			<ul class="low">
-			<li><a href="">화학</a></li>
-			<li><a href="">생명과학</a></li>
+			<li>><a href="lecture?lectypeb=과학" style="color: black;">화학</a></li>
+			<li>><a href="lecture?lectypeb=생명과학" style="color: black;">생명과학</a></li>
 			</ul>						
 			</li>	
-	<li><a href="">한국사</a></li>
-	<li><a href="">제2외국어</a></li>
+	<li>><a href="lecture?lectypeb=한국사" style="color: black;">한국사</a></li>
+	<li>><a href="lecture?lectypeb=제2외국어" style="color: black;">제2외국어</a></li>
 		</ul>	                  
 	</div>
 		<table class="table table-bordered">
