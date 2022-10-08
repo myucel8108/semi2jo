@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import util.ChangeName;
@@ -49,15 +50,21 @@ public class BoardController {
 
         BoardDto dto = boardService.selectByNum(boardnum);
 
-        int prevboardnum=boardService.moveToPrevBoard(boardnum); //이전글 넘버
-        String prevboardsub=boardService.selectByNum(prevboardnum).getSubject(); //이전글 제목
-
-        int nextboardnum=boardService.moveToNextBoard(boardnum); //다음글 넘버
-        String nextboardsub=boardService.selectByNum(nextboardnum).getSubject(); //다음글 제목
-
         int maxboardnum=boardService.getMaxNum(); //가장 최신글 보드넘버
         int minboardnum=boardService.getMinNum(); //가장 오래된글 보드넘버
 
+        int prevboardnum;
+        String prevboardsub="";
+        if (boardnum>minboardnum) {
+            prevboardnum = boardService.moveToPrevBoard(boardnum); //이전글 넘버
+            prevboardsub = boardService.selectByNum(prevboardnum).getSubject(); //이전글 제목
+        }
+        int nextboardnum;
+        String nextboardsub="";
+        if (boardnum<maxboardnum) {
+            nextboardnum = boardService.moveToNextBoard(boardnum); //다음글 넘버
+            nextboardsub = boardService.selectByNum(nextboardnum).getSubject(); //다음글 제목
+        }
 
         String userphoto="";
         try {
