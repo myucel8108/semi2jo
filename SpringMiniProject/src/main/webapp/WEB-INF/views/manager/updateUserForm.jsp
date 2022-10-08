@@ -22,13 +22,6 @@
             margin-bottom: 50px;
         }
     </style>
-    <script>
-        const autoHyphen = (target) => {
-            target.value = target.value
-                .replace(/[^0-9]/g, '')
-                .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
-        }
-    </script>
 </head>
 <body>
 <div class="container">
@@ -40,14 +33,15 @@
                 <hr>
             </div>
             <!-- Form START -->
-            <form class="file-upload" action="updateuser?usernum=${dto.usernum}" method="post">
+            <form class="file-upload" action="updateuser" method="post" enctype="multipart/form-data">
+
                 <div class="row mb-5 gx-5">
                     <!-- Contact detail -->
                     <div class="col-xxl-8 mb-5 mb-xxl-0">
                         <div class="bg-secondary-soft px-4 py-5 rounded">
                             <div class="row g-3">
-                                    <input type="text" hidden="hidden" value="${dto.usernum}">
-                                <h4 class="mb-4 mt-0">연락처 상세 정보</h4>
+                                    <input type="text" hidden="hidden" value="${dto.usernum}" name="usernum">
+                                <h4 class="mb-4 mt-0">상세 정보</h4>
                                 <!-- Email -->
                                 <div class="col-md-6">
                                     <label class="form-label">Email</label>
@@ -89,18 +83,18 @@
                                 <h4 class="mb-4 mt-0">회원 사진</h4>
                                 <div class="text-center">
                                     <!-- Image upload -->
-                                    <div class="square position-relative display-2 mb-3">
+                                    <div class="square position-relative display-2 mb-3 border-info">
                                         <c:if test="${dto.userphoto==null}">
-                                            <i class="fas fa-fw fa-user position-absolute top-50 start-50 translate-middle text-secondary"></i>
+                                            <img src="resources/image/noimage2.png" class="showimg" width="250" height="250">
                                         </c:if>
                                         <c:if test="${dto.userphoto!=null}">
-                                            <img src="${dto.userphoto}">
+                                            <img src="upload/${dto.userphoto}" class="showimg" width="250" height="250">
                                         </c:if>
                                     </div>
                                     <!-- Button -->
-                                    <input type="file" id="customFile" name="file" hidden="">
-                                    <label class="btn btn-success-soft btn-block" for="customFile">Upload</label>
-                                    <button type="button" class="btn btn-danger-soft">Remove</button>
+                                    <input type="file" id="uphoto" name="uploadphoto" hidden="">
+                                    <label class="btn btn-success-soft btn-block" for="uphoto" id="upphoto">Upload</label>
+                                    <button type="button" class="btn btn-danger-soft" id="removephoto" value="${dto.usernum}">Remove</button>
                                     <!-- Content -->
                                     <p class="text-muted mt-3 mb-0"><span class="me-1">최소 사이즈 : </span>300(px) x 300(px) </p>
                                 </div>
@@ -119,8 +113,44 @@
     </div>
 </div>
 <script>
+    //전화번호 입력 정규식
+    const autoHyphen = (target) => {
+        target.value = target.value
+            .replace(/[^0-9]/g, '')
+            .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+    }
+    //취소 버튼 누르면 뒤로가기
     $("#cancelbutton").click(function () {
         history.back();
+    });
+    <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
+    //경고 후 사진 삭제
+    $("#removephoto").click(function () {
+       var dephoto = confirm("경고 : 확인을 누르시면 사진이 삭제됩니다!!");
+       if(dephoto){
+           // console.log($(this).attr("value"));
+           var s = $(this).attr("value");
+           location.href="${root}/deleteuserphoto?usernum=" + s;
+       }
+    });
+    //사진 불러오면 미리보기하기 (템플릿에 트리거 있어서 주석처리)
+    // $("#upphoto").click(function(){
+    //     $("#uphoto").trigger("click");
+    // });
+    $("#uphoto").change(function(){
+        var reg = /(.*?)\/(jpg|jpeg|png|bmp|gif)$/; //정규표현식
+        var f = $(this)[0].files[0]; //현재 선택한 파일
+        if(!f.type.match(reg)){
+            alert("확장자가 이미지파일이 아닙니다");
+            return; //종료
+        }
+        if($(this)[0].files[0]){
+            var reader = new FileReader();
+            reader.onload=function(e){
+                $(".showimg").attr("src",e.target.result);
+            }
+            reader.readAsDataURL($(this)[0].files[0]);
+        }
     });
 </script>
 </body>

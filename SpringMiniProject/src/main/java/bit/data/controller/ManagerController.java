@@ -2,6 +2,7 @@ package bit.data.controller;
 
 import bit.data.dto.LectureDto;
 import bit.data.dto.UserDto;
+import bit.data.dto.UserLecJoinDto;
 import bit.data.service.LecDetailServiceInter;
 import bit.data.service.LectureServiceInter;
 import bit.data.service.UserServiceInter;
@@ -92,9 +93,11 @@ public class ManagerController {
     @GetMapping("/userdetail")
     public ModelAndView userDetail(int usernum){
         ModelAndView mview = new ModelAndView();
-
-        UserDto dto = userService.getUserDetailbyManager(usernum);
-        mview.addObject("dto", dto);
+        UserDto userdto = userService.getUserDetailbyManager(usernum);
+        List<UserLecJoinDto> joinlist = userService.getUserLecJoin(usernum);
+//        System.out.println(joinlist.get(10).getLecdenum());
+        mview.addObject("userdto", userdto);
+        mview.addObject("joinlist", joinlist);
 
         mview.setViewName("/manager/manager/userDetail");
         return mview;
@@ -120,7 +123,24 @@ public class ManagerController {
 
     //회원 정보 수정 후 회원 목록으로 이동
     @PostMapping("/updateuser")
-    public String updateUser(UserDto dto){
+    public String updateUser(UserDto dto, MultipartFile uploadphoto, HttpServletRequest request){
+
+        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
+        System.out.println(path); //저장되는 실제 경로 확인
+        String photo = uploadphoto.getOriginalFilename(); //photo는 실제 파일명
+        System.out.println(uploadphoto.getOriginalFilename()); //실제 파일명 확인
+        if(uploadphoto.getOriginalFilename().equals("")) {
+            dto.setUserphoto(null);
+        } else {
+            //String newName = ChangeName.getChangeFileName(upload.getOriginalFilename()); //파일 이름을 시간으로 변경할 때 사용
+            try {
+                uploadphoto.transferTo(new File(path + "/" + photo));
+                dto.setUserphoto(photo);
+            } catch (IllegalStateException | IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
         userService.updateUser(dto);
         return "redirect:userlist";
     }
@@ -128,6 +148,12 @@ public class ManagerController {
     @GetMapping("/deleteuser")
     public String deleteUser(int usernum){
         userService.deleteUser(usernum);
+        return "redirect:userlist";
+    }
+
+    @GetMapping("/deleteuserphoto")
+    public String deleteUserPhoto(int usernum){
+        userService.deleteUserPhoto(usernum);
         return "redirect:userlist";
     }
 
@@ -192,9 +218,9 @@ public class ManagerController {
     public String insertLecture(LectureDto dto, MultipartFile photoupload, HttpServletRequest request) {
         //사진이 여러개일 때는 MultipartFile을 List로 가져와야함
         String path = request.getSession().getServletContext().getRealPath("/resources/upload");
-//        System.out.println(path); //저장되는 실제 경로 확인
+        System.out.println(path); //저장되는 실제 경로 확인
         String photo = photoupload.getOriginalFilename(); //photo는 실제 파일명
-//        System.out.println(upload.getOriginalFilename()); //실제 파일명 확인
+        System.out.println(photoupload.getOriginalFilename()); //실제 파일명 확인
         if(photoupload.getOriginalFilename().equals("")) {
             dto.setLecphoto("no");
         } else {
