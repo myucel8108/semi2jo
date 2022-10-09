@@ -90,7 +90,7 @@ public class ReadyPayController {
 			 List<ReadyPayDto> list =  readypayservice.selectByCategori(lectypeb);
 			  model.addAttribute("list",list);
 		 
-
+// 나 국어 전체 영어 전체도 만들어야한다잉
 		  
 		  return "/main/lecture/lectureList";
 		  
