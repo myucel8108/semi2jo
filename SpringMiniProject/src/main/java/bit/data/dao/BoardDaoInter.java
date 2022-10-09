@@ -26,6 +26,9 @@ public interface BoardDaoInter {
     public int getMinNum();
     public int getMaxNum();
 
+//    public List<BoardDto> getBoardTypeList(Map<String, Object> map);
+
+
 
 
 
