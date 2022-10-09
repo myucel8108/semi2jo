@@ -52,10 +52,7 @@ public class UserController {
         System.out.println(path);
         //업로드 및 저장될 파일명 구하기
         String photoName=myphoto.getOriginalFilename();
-        if(photoName.equals("")) {
-            dto.setUserphoto(null);
-        }
-        else {
+        if(!photoName.equals("")) {
             String fileName= ChangeName.getChangeFileName(photoName);
             //업로드
             try {

@@ -6,10 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Yeon+Sung&display=swap" rel="stylesheet">
-
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
@@ -69,11 +67,22 @@
 
     }); //function
 
+    //submit 전에 호출
+    function check(){
+
+        //비밀번호
+        if($(".passsuccess").text()!="비밀번호 일치"){
+            alert("비밀번호가 서로 다릅니다");
+            return false;
+        }
+    }
+
     </script>
 </head>
 <body>
 <div class="container" style="width: 80%;">
-    <form action="update" method="post" enctype="multipart/form-data">
+    <form action="update" method="post" enctype="multipart/form-data" onsubmit="return check()">
+        <input type="hidden" name="usernum" value="${sessionScope.usernum}">
         <div class="title">
             회원정보수정
         </div>
@@ -98,7 +107,7 @@
                         <td class="text1"><div style="padding-bottom: 0px;">비밀번호</div></td>
                         <td class="text2">
                             <div class="wrapper">
-                                <input type="password" class="input" id="pass" name="pass" placeholder="새 비밀번호 입력" required="required" style="width: 170px;">
+                                <input type="password" class="input" id="pass" placeholder="새 비밀번호 입력" required="required" style="width: 170px;">
                                 <span class="underline"></span>
                             </div>
                         </td>
