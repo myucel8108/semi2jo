@@ -42,7 +42,7 @@ public class BoardController {
     }
 
     @GetMapping("/board/boardDetail") //게시판 디테일
-    public ModelAndView boardDetail(int boardnum, int currentPage){
+    public ModelAndView boardDetail(int boardnum, @RequestParam(defaultValue = "1")int currentPage){
 
         ModelAndView mview = new ModelAndView();
 
