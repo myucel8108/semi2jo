@@ -23,19 +23,19 @@
 <hr id="sidebar_hr">
 <div class="sidebar_content">
     <div class="sidebar_detail" id="d1" onclick="location.href='${root}/student/updateStudent'">
-        <span class="side_main_span_main">마이정보</span>
+        <span class="side_main_span_main">회원정보수정</span>
     </div>
     <div class="sidebar_detail" id="d2" onclick="location.href='${root}/student/timeTable'">
-        <span class="side_main_span_write">마이시간표</span>
+        <span class="side_main_span_write">강의시간표</span>
     </div>
     <div class="sidebar_detail" id="d3" onclick="location.href='${root}/student/stuLectureList'">
-        <span class="side_main_span_market">마이강의</span>
+        <span class="side_main_span_market">수강목록</span>
     </div>
     <div class="sidebar_detail" id="d4" onclick="location.href='#'">
         <span class="side_main_span_challenge">마이커뮤니티</span>
     </div>
     <div class="sidebar_detail" id="d5" onclick="location.href='${root}/student/myCart'">
-        <span class="side_main_span_scrap">마이장바구니</span>
+        <span class="side_main_span_scrap">장바구니</span>
     </div>
 </div>
 

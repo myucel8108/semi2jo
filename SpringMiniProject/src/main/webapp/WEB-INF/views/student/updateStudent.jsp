@@ -27,6 +27,7 @@
     <script type="text/javascript">
 
     $(function(){
+
         //버튼 클릭시 사진 불러오기
         $("#btnphoto").click(function(){
             $("#myphoto").trigger("click");
@@ -35,20 +36,20 @@
         //사진 불러오면 미리보기하기
         $("#myphoto").change(function(){
 
-        //정규표현식
-        var reg = /(.*?)\/(jpg|jpeg|png|bmp|gif)$/;
-        var f=$(this)[0].files[0];//현재 선택한 파일
-        if(!f.type.match(reg)){
-            alert("확장자가 이미지파일이 아닙니다");
-            return; //종료
-        }
-        if($(this)[0].files[0]){
-        var reader=new FileReader();
-        reader.onload=function(e){
-                $("#showimg").attr("src",e.target.result);
+            //정규표현식
+            var reg = /(.*?)\/(jpg|jpeg|png|bmp|gif)$/;
+            var f=$(this)[0].files[0];//현재 선택한 파일
+            if(!f.type.match(reg)){
+                alert("확장자가 이미지파일이 아닙니다");
+                return; //종료
             }
-                reader.readAsDataURL($(this)[0].files[0]);
-            }
+            if($(this)[0].files[0]){
+            var reader=new FileReader();
+            reader.onload=function(e){
+                    $("#showimg").attr("src",e.target.result);
+                }
+                    reader.readAsDataURL($(this)[0].files[0]);
+                }
         });
 
 
@@ -82,7 +83,7 @@
                     <tr>
                         <td rowspan="5" colspan="2" align="center" style="padding-right: 50px;">
                             <input type="file" id="myphoto" name="myphoto" style="display: none;">
-                            <img id="showimg" src="../resources/image/noprofilepicture.png">
+                            <img id="showimg" src="../resources/upload/${dto.userphoto==null?'noprofilepicture.png':dto.userphoto}">
                             <br>
                             <button type="button" id="btnphoto" class="btn btn-secondary">사진선택</button>
                         </td>
@@ -106,7 +107,7 @@
                         <td class="text1"><div style="padding-bottom: 10px;">비밀번호 확인</div></td>
                         <td class="text2">
                             <div class="wrapper">
-                                <input type="password" class="input" id="pass2" name="pass2" placeholder="새 비밀번호 확인" required="required" style="width: 170px;">
+                                <input type="password" class="input" id="pass2" name="userpass" placeholder="새 비밀번호 확인" required="required" style="width: 170px;">
                                 <span class="underline"></span>
                                 <span class="passsuccess"></span>
                             </div>
