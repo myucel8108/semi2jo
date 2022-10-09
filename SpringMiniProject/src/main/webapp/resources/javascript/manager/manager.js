@@ -73,13 +73,13 @@ $(document).ready(function () {
 $(function () {
     $('[data-toggle="popover"]').popover()
 });
-$('.popover-dismiss').popover({
-    trigger: 'focus'
-});
+// $('.popover-dismiss').popover({
+//     trigger: 'focus'
+// });
 
 
 // Version in Sidebar
 
 var version = document.getElementById('version-ruangadmin');
 
-version.innerHTML = "Version 1.1";
+// version.innerHTML = "Version 1.1";
