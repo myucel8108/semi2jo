@@ -172,7 +172,7 @@ public class ManagerController {
     @GetMapping("/deleteuserphoto")
     public String deleteUserPhoto(int usernum){
         userService.deleteUserPhoto(usernum);
-        return "redirect:userlist";
+        return "redirect:updateuserform?usernum=" + usernum;
     }
 
     //강좌 목록 출력
@@ -223,6 +223,12 @@ public class ManagerController {
         model.addAttribute("totalPage", totalPage);
 
         return "/manager/manager/lectureList";
+    }
+
+    @GetMapping("/lecture-present")
+    public String lecturePresent(int lecnum){
+
+        return "/manager/manager/lecturePresent";
     }
 
     //강의 등록 폼으로 이동

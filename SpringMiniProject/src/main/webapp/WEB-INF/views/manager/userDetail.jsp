@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,13 +60,45 @@
                 <div>
                     <span class="section-title text-primary mb-3 mb-sm-4">수강 중인 강의</span>
                     <c:forEach var="joinlist" items="${joinlist}">
-                        <script>
-                            var lecday = "${joinlist.lecday}".split(',');
-                            console.log(lecday);
-                        </script>
-                        <p>
-                            [${joinlist.lectypea}]-${joinlist.lectypeb} : ${joinlist.lecname}(${joinlist.roomnum}호)_${joinlist.teaname} [요일 : ${joinlist.lecday}] ${joinlist.lectime}교시
-                        </p>
+                        <div class="present-lecture${joinlist.mylecnum}">
+                            <script>
+                                //현재 년월과 비교해서 수강 중인 강의만 출력
+                                var date = new Date();
+                                var year = date.getFullYear();
+                                var month = date.getMonth()+1;
+                                var presentlecture = "";
+                                if ("${joinlist.lecyear}"==year && "${joinlist.lecmonth}"==month){
+                                    presentlecture += "<p>[${joinlist.lectypea}]-${joinlist.lectypeb} : ${joinlist.lecname}_${joinlist.teaname} (${joinlist.roomnum}호)";
+                                    presentlecture += "<span class='show-lecday${joinlist.mylecnum}'>[요일 : ${joinlist.lecday}]</span>";
+                                    presentlecture += "${joinlist.lectime}교시</p>";
+                                }
+                                $(".present-lecture${joinlist.mylecnum}").html(presentlecture);
+
+                                // DB에서 숫자로 가져오는 요일을 한글로 바꿔주기
+                                var temp = "";
+                                var lecday = "${joinlist.lecday}".split(',');
+                                for (var yoil=0; yoil<lecday.length; yoil++){
+                                    // console.log("lecday"+lecday[yoil]);
+                                    if (lecday[yoil]=="1"){
+                                        temp+="<span>[월]</span>";
+                                    } else if(lecday[yoil]=="2"){
+                                        temp+="<span>[화]</span>";
+                                    } else if(lecday[yoil]=="3"){
+                                        temp+="<span>[수]</span>";
+                                    } else if(lecday[yoil]=="4"){
+                                        temp+="<span>[목]</span>";
+                                    } else if(lecday[yoil]=="5"){
+                                        temp+="<span>[금]</span>";
+                                    } else if(lecday[yoil]=="6"){
+                                        temp+="<span>[토]</span>";
+                                    } else if(lecday[yoil]=="7"){
+                                        temp+="<span>[일]</span>";
+                                    }
+                                }
+                                var result = "${temp}";
+                                $(".show-lecday${joinlist.mylecnum}").html(temp);
+                            </script>
+                        </div>
                     </c:forEach>
                 </div>
             </div>
@@ -77,40 +108,24 @@
                         <div class="mb-4 mb-sm-5">
                             <span class="section-title text-primary mb-3 mb-sm-4">만료된 강의</span>
                             <div class="progress-text">
-                                <div class="row">
-                                    <div class="col-6">Driving range</div>
-                                    <div class="col-6 text-end">80%</div>
-                                </div>
-                            </div>
-                            <div class="custom-progress progress progress-medium mb-3" style="height: 4px;">
-                                <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style="width:80%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-                            </div>
-                            <div class="progress-text">
-                                <div class="row">
-                                    <div class="col-6">Short Game</div>
-                                    <div class="col-6 text-end">90%</div>
-                                </div>
-                            </div>
-                            <div class="custom-progress progress progress-medium mb-3" style="height: 4px;">
-                                <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style="width:90%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar"></div>
-                            </div>
-                            <div class="progress-text">
-                                <div class="row">
-                                    <div class="col-6">Side Bets</div>
-                                    <div class="col-6 text-end">50%</div>
-                                </div>
-                            </div>
-                            <div class="custom-progress progress progress-medium mb-3" style="height: 4px;">
-                                <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style="width:50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar"></div>
-                            </div>
-                            <div class="progress-text">
-                                <div class="row">
-                                    <div class="col-6">Putting</div>
-                                    <div class="col-6 text-end">60%</div>
-                                </div>
-                            </div>
-                            <div class="custom-progress progress progress-medium" style="height: 4px;">
-                                <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style="width:60%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar"></div>
+                                <c:forEach var="joinlist" items="${joinlist}">
+                                    <div class="row expired-lecture${joinlist.mylecnum}">
+                                        <script>
+                                            var date = new Date();
+                                            var year = date.getFullYear();
+                                            var month = date.getMonth()+1;
+                                            var lecture = "";
+                                            if ("${joinlist.lecyear}"<year){ //강의 개설 년도가 현재 년도보다 작으면 만료된 강의로 출력
+                                                // console.log("tset-sucess");
+                                                lecture += "<div><p>[${joinlist.lectypea}]-${joinlist.lectypeb} : ${joinlist.lecname}_${joinlist.teaname}</p></div>";
+                                            } else if("${joinlist.lecyear}"==year && "${joinlist.lecmonth}"<month){ //강의 개설 년도가 현재 년도와 같더라도 지나간 달이면 만료된 강의로 출력
+                                                lecture += "<div><p>[${joinlist.lectypea}]-${joinlist.lectypeb} : ${joinlist.lecname}_${joinlist.teaname}</p></div>";
+                                            }
+                                            console.log(lecture);
+                                            $(".expired-lecture${joinlist.mylecnum}").html(lecture);
+                                        </script>
+                                    </div>
+                                </c:forEach>
                             </div>
                         </div>
                     </div>
