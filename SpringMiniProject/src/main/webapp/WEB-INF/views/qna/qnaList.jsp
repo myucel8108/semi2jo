@@ -130,18 +130,24 @@
                             <c:if test="${dto.relevel==0}">
                             <img src="../image/lockimg.jpg" width="10px;" style="background-color: white">
                             </c:if>
-                                ${dto.subject}&nbsp;&nbsp;
+                                ${dto.subject}
+
+                        <c:if test="${sessionScope.loginok!=null and sessionScope.usernum==dto.usernum || sessionScope.email=='admin@gmail.com'}">
                         <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" style="text-decoration: none; color: black;" qnanum="${dto.qnanum}">
+                            </c:if>
 <%--                        <a href="../qna/secretQna.jsp" style="text-decoration: none; color: black;" qnanum="${dto.qnanum}">--%>
 <%--                        <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" data-bs-toggle="modal" data-bs-target="#myModal" style="text-decoration: none; color: black;" id="jebal">--%>
                                 ${dto.qnatype}
                         </a>
+
                             <c:if test="${dto.photo!='no'}">
                                 <i class="fa fa-picture-o"></i>
                             </c:if>
                             <c:if test="${dto.relevel>0}">
                                 <b style="color: orange; text-decoration: none;">답변완료</b>
+                        </a>
                             </c:if>
+
                     </td>
                     <c:set var="username" value="${resultInfo.dto.username}"/>
                     <c:set var="totalLength" value="${fn:length(dto.username)}"/>

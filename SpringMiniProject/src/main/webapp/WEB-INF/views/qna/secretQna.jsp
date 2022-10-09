@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>s
 <%--
   Created by IntelliJ IDEA.
   User: taemin
@@ -13,6 +15,7 @@
 </head>
 <%--    <meta http-equiv="Refresh" content="2;url=qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage} ">--%>
 <style>
+
     #allbs{
         text-align: center;
         display: block;
@@ -25,7 +28,7 @@
 
 
 <div >
-    <h1 style="text-align: center; margin-top: 70px; margin-bottom: 45px;" >비밀번호 확인</h1>
+    <h2 style="text-align: center; margin-top: 70px; margin-bottom: 45px;" >비밀번호 확인</h2>
 
     <form action="qnaDetail" name="frm" method="get" style="text-align: center;">
         <input type="hidden" name="qnanum" value="${dto.qnanum}">
@@ -47,8 +50,9 @@
 
             </div>
 
-<%--            <input type="submit" VALUE="확인" style="margin-bottom: 80px;">--%>
-        <button type="button" onclick="location.href='secretQna?qnanum=${dto.qnanum}&currentPage=${currentPage}'" style="width: 50px;">확인</button>
+        <c:if test="${sessionScope.email=='admin@gmail.com' || sessionScope.usernum==dto.usernum}">
+        <button type="button" onclick="location.href='secretQna?qnanum=${dto.qnanum}&currentPage=${currentPage}'" style="width: 50px; margin-bottom: 20px; background-color: white; border-radius: 15px; border: 1px solid grey;" >확인</button>
+        </c:if>
 
     </form>
 </div>
