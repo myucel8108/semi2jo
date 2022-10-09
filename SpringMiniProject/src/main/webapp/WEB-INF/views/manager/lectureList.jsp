@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="css/magager/lectureList.css">
+    <link rel="stylesheet" type="text/css" href="css/manager/lectureList.css">
     <style type="text/css">
         ul.pagination{
             justify-content: center;
@@ -22,7 +21,7 @@
         }
 
         .col{
-            margin-bottom: 10%;
+            margin-bottom: 5%;
         }
 
         .search-container{
@@ -53,12 +52,21 @@
         .widgets-icons-2{
             text-align: center;
         }
+
+        .present-container{
+            cursor: pointer;
+        }
+
+        .whole-list{
+            height: 87vh;
+        }
     </style>
 </head>
 
 <body>
+<div class="whole-list">
     <div class="possible-list">
-        유형별 과목
+        강좌 목록
     </div>
     <!-- 검색창 -->
     <div>
@@ -66,9 +74,12 @@
             <div class="search-container">
                 <div class="search-item1"> <!-- 기간 선택 -->
                     <select class="form-select" style="width: 150px;" name="searchcolumn">
-                        <option value="1">전체 강의</option>
-                        <option value="2">현재 진행 중인 강의</option>
-                        <option value="3">기간 만료된 강의</option>
+                        <option value="1">전체 강좌</option>
+                        <option value="2">[대분류] 국어</option>
+                        <option value="3">[대분류] 수학</option>
+                        <option value="4">[대분류] 영어</option>
+                        <option value="5">[대분류] 사회</option>
+                        <option value="6">[대분류] 과학</option>
                     </select>
                 </div>
                 <div class="input-group search-item2"> <!-- 검색 -->
@@ -84,7 +95,7 @@
     <br>
     <!-- 리스트 출력 창 -->
     <div class="lecture-count">
-        총 과목 수 : ${totalCount}
+        총 강좌 수 : ${totalCount}
     </div>
     <br>
     <div class="container">
@@ -94,14 +105,14 @@
                     <c:if test="${dto.lectypea=='국어'}">
                         <div class="col">
                             <div class="card radius-10 border-start border-0 border-3 border-info">
-                                <div class="card-body">
+                                <div class="card-body present-container" onclick="location.href='${root}/mini/lecture-present?lecnum=${dto.lecnum}'">
                                     <div class="d-flex align-items-center">
                                         <div>
                                             <p class="mb-0 text-secondary">[${dto.lectypea}]-${dto.lectypeb}</p>
                                             <p class="my-1 text-info">${dto.lecname}</p>
                                             <p class="mb-0 font-13">${dto.teaname}</p>
                                         </div>
-                                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
+                                        <div class="widgets-icons-2 rounded-circle  text-white ms-auto">
                                             <c:if test="${dto.lecphoto!=null}">
                                                 <img src="upload/${dto.lecphoto}" width="50" height="50">
                                             </c:if>
@@ -117,14 +128,14 @@
                     <c:if test="${dto.lectypea=='수학'}">
                         <div class="col">
                             <div class="card radius-10 border-start border-0 border-3 border-primary">
-                                <div class="card-body">
+                                <div class="card-body present-container" onclick="location.href='${root}/mini/lecture-present?lecnum=${dto.lecnum}'">
                                     <div class="d-flex align-items-center">
                                         <div>
                                             <p class="mb-0 text-secondary">[${dto.lectypea}]-${dto.lectypeb}</p>
                                             <p class="my-1 text-primary">${dto.lecname}</p>
                                             <p class="mb-0 font-13">${dto.teaname}</p>
                                         </div>
-                                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
+                                        <div class="widgets-icons-2 rounded-circle  text-white ms-auto">
                                             <c:if test="${dto.lecphoto!=null}">
                                                 <img src="upload/${dto.lecphoto}" width="50" height="50">
                                             </c:if>
@@ -140,14 +151,14 @@
                     <c:if test="${dto.lectypea=='영어'}">
                         <div class="col">
                             <div class="card radius-10 border-start border-0 border-3 border-success">
-                                <div class="card-body">
+                                <div class="card-body present-container" onclick="location.href='${root}/mini/lecture-present?lecnum=${dto.lecnum}'">
                                     <div class="d-flex align-items-center">
                                         <div>
                                             <p class="mb-0 text-secondary">[${dto.lectypea}]-${dto.lectypeb}</p>
                                             <p class="my-1 text-success">${dto.lecname}</p>
                                             <p class="mb-0 font-13">${dto.teaname}</p>
                                         </div>
-                                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
+                                        <div class="widgets-icons-2 rounded-circle  text-white ms-auto">
                                             <c:if test="${dto.lecphoto!=null}">
                                                 <img src="upload/${dto.lecphoto}" width="50" height="50">
                                             </c:if>
@@ -163,14 +174,14 @@
                     <c:if test="${dto.lectypea=='사회'}">
                         <div class="col">
                             <div class="card radius-10 border-start border-0 border-3 border-warning">
-                                <div class="card-body">
+                                <div class="card-body present-container" onclick="location.href='${root}/mini/lecture-present?lecnum=${dto.lecnum}'">
                                     <div class="d-flex align-items-center">
                                         <div>
                                             <p class="mb-0 text-secondary">[${dto.lectypea}]-${dto.lectypeb}</p>
                                             <p class="my-1 text-warning">${dto.lecname}</p>
                                             <p class="mb-0 font-13">${dto.teaname}</p>
                                         </div>
-                                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
+                                        <div class="widgets-icons-2 rounded-circle  text-white ms-auto">
                                             <c:if test="${dto.lecphoto!=null}">
                                                 <img src="upload/${dto.lecphoto}" width="50" height="50">
                                             </c:if>
@@ -186,14 +197,14 @@
                     <c:if test="${dto.lectypea=='과학'}">
                         <div class="col">
                             <div class="card radius-10 border-start border-0 border-3 border-danger">
-                                <div class="card-body">
+                                <div class="card-body present-container" onclick="location.href='${root}/mini/lecture-present?lecnum=${dto.lecnum}'">
                                     <div class="d-flex align-items-center">
                                         <div>
                                             <p class="mb-0 text-secondary">[${dto.lectypea}]-${dto.lectypeb}</p>
                                             <p class="my-1 text-danger">${dto.lecname}</p>
                                             <p class="mb-0 font-13">${dto.teaname}</p>
                                         </div>
-                                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
+                                        <div class="widgets-icons-2 rounded-circle  text-white ms-auto">
                                             <c:if test="${dto.lecphoto!=null}">
                                                 <img src="upload/${dto.lecphoto}" width="50" height="50">
                                             </c:if>
@@ -233,5 +244,6 @@
             </c:if>
         </ul>
     </div>
+</div>
 </body>
 </html>

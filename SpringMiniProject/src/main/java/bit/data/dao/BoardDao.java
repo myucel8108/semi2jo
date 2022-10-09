@@ -82,4 +82,11 @@ public class BoardDao implements BoardDaoInter{
     public int getMinNum() {
         return session.selectOne(ns+"getMinNum");
     }
+
+//    @Override
+//    public List<BoardDto> getBoardTypeList(Map<String, Object> map) {
+//        return session.selectList(ns+"getBoardTypeList", map);
+//    }
 }
+
+

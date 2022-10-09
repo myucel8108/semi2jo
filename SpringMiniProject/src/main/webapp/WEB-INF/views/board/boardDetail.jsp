@@ -30,6 +30,9 @@
         .redelete{
             cursor: pointer;
         }
+        .report{
+            cursor: pointer;
+        }
     </style>
     <script>
 
@@ -83,6 +86,21 @@
                   });
               }
           });
+            $(document).on("click",".report", function (){
+                var boardnum=$(this).attr("boardnum");
+                var ans=confirm("해당 게시글을 신고하시겠습니까?");
+                if(ans){
+                    $.ajax({
+                        type:"get",
+                        url:"",
+                        dataType:"text",
+                        data:{"boardnum":boardnum},
+                        success:function(res){
+                            alert("신고가 접수되었습니다")
+                        }
+                    });
+                }
+            });
         });
         function initlike(){
             var boardnum=${dto.boardnum};
@@ -98,7 +116,7 @@
                    // alert(res);
                     if(res==1){
                       //  $(".fa fa-thumbs-o-up").attr("class","fa fa-thumbs-up").css("color","red");
-                        $("span.likes i").attr("class","fa fa-thumbs-up").css("color","red");
+                        $("span.likes i").attr("class","fa fa-thumbs-up").css("color","blue");
                     }
                 }
             });
@@ -194,19 +212,19 @@
                 <br><br>
                 <span class="likes">
                 <%--<i class='far fa-thumbs-up'></i>--%>
-                    <i class="fa fa-thumbs-o-up" style="font-size:24px"></i>
-				</span><b>
-                좋아요</b>
+                    <i class="fa fa-thumbs-o-up" style="font-size:24px"><b style="font-size: 15px">
+                &nbsp;좋아요</b></i>
+				</span>
                 &nbsp;
                 <span class="likeusericon" data-bs-toggle="modal" data-bs-target="#likeuserModal">
                 <%--<i class='fas fa-user-alt' style='font-size:16px'></i>--%>
                     <i class="fa fa-user luser" style="font-size:24px"></i>
                 </span>
                 <b class="likesuser">
-                   ${dto.likes}</b>
+                    &nbsp;${dto.likes}</b>
                 &nbsp;&nbsp;
-                <i class="far fa-comment-dots" style="font-size:24px"></i>
-                <b class="banswer">0</b>
+                <i class="far fa-comment-dots" style="font-size:24px"><b class="banswer" style="font-size: 15px">&nbsp;0</b></i>
+                <i class="fa fa-warning report" style="font-size:24px; float: right;"><b style="font-size: 15px">&nbsp;신고하기</b></i>
                 <br><hr>
                 <div class="alist"></div>
                 <c:if test="${sessionScope.loginok!=null}">
@@ -216,16 +234,16 @@
                         <input type="hidden" name="usernum" value="${sessionScope.usernum}">
                         <div class="input-group">
                             <textarea name="recontent" id="recontent" style="width: 400px; height: 100px;" class="form-control"></textarea>
-                            <button type="button" id="btnreboard">등록</button>
+                            <button type="button" class="btn btn-outline-dark" id="btnreboard">등록</button>
                         </div>
                     </form>
                 </div>
                 </c:if>
                 <div style="text-align: center; float: bottom;"><hr>
-                <button type="button" onclick="location.href='boardFree?currentPage=${currentPage}'">목록</button>
+                <button type="button" class="btn btn-outline-dark" onclick="location.href='boardFree?currentPage=${currentPage}'">목록</button>
                 <c:if test="${sessionScope.loginok!=null && sessionScope.usernum==dto.usernum}">
-                <button type="button" onclick="location.href='boardUpdate?boardnum=${dto.boardnum}&currentPage=${currentPage}'">수정</button>
-                <button type="button" onclick="if(confirm('게시글을 삭제하시겠습니까?')) location.href='delete?boardnum=${dto.boardnum}&currentPage=${currentPage}'">삭제</button>
+                <button type="button" class="btn btn-outline-dark" onclick="location.href='boardUpdate?boardnum=${dto.boardnum}&currentPage=${currentPage}'">수정</button>
+                <button type="button" class="btn btn-outline-dark" onclick="if(confirm('게시글을 삭제하시겠습니까?')) location.href='delete?boardnum=${dto.boardnum}&currentPage=${currentPage}'">삭제</button>
 <%--                    <button class="boarddelete" type="button">삭제</button>--%>
                 </c:if>
                 </div>
@@ -256,7 +274,7 @@
             var thumbs = $(this).find("i").attr("class");
             var likestate;
             if(thumbs=='fa fa-thumbs-o-up'){ //좋아요없음
-                $(this).find("i").attr("class","fa fa-thumbs-up").css("color","red");
+                $(this).find("i").attr("class","fa fa-thumbs-up").css("color","blue");
                 likestate=1;
             } else { //좋아요있음
                 $(this).find("i").attr("class","fa fa-thumbs-o-up").css("color","black");

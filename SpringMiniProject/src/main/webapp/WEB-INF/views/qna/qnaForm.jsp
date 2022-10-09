@@ -167,9 +167,9 @@
                 </td>
             </tr>
             <tr>
-                <th style="width: 100px; text-align: center; padding-top: 12px;">비밀번호</th>
+                <th style="width: 100px; text-align: center; padding-top: 12px;" >비밀번호</th>
                 <td>
-                    <input type="password" name="pass" class="form-control" required="required">
+                    <input type="password" name="pass" class="form-control" required="required" placeholder="숫자 4자리 입력" pattern="[0-9]+" maxlength="4";>
                 </td>
             </tr>
 
@@ -231,14 +231,11 @@
 
                 <div style="text-align: center; margin-bottom: 10px;">
 
+
                     <div class="checkbox-container">
-
-                        <input type="checkbox" id="is-subscription" >
-
+                        <input type="checkbox" value="Y" id="is-subscription" >
                         <label for="is-subscription" style="padding-top:10px; color: grey; font-size: 15px;">비밀글 설정</label>
-
                     </div>
-
 
 <%--                <input type="checkbox" id="secret"/>--%>
 <%--                    <label class="check1"><b style="margin-left: 3px; text-decoration: none; color: grey; font-size: 13px;">관리자만 보기</b></label>--%>

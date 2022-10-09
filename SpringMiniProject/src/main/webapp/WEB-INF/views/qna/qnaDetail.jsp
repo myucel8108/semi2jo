@@ -54,48 +54,6 @@
     </style>
 
 
-    <script>
-
-        var qnanum = "${dto.qnanum}";
-
-        $(function () {
-
-            //삭제 이벤트
-            $(document).on("click", ".adel", function () {
-                // var qnanum = $(this).attr("qnanum");
-                // alert(qnanum);
-                var a = confirm("정말 삭제하시겠습니까?");
-                if (a) {
-                    // return "../qna/delete";
-
-                    // alert(a);
-
-
-                    $.ajax({
-                        type: "get",
-                        url: "delete",
-                        dataType: "text",
-                        data: {"qnanum": qnanum},
-                        success: function (res) {
-                            // list();
-                            location.href="qnaList?currentPage="+${currentPage};
-                        }//success
-                    });//ajax
-
-                }//if
-
-
-            });//onclick
-
-        });
-
-
-
-
-
-
-
-    </script>
 
 
 

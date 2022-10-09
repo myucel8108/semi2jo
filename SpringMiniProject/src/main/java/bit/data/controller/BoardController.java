@@ -42,7 +42,7 @@ public class BoardController {
     }
 
     @GetMapping("/board/boardDetail") //게시판 디테일
-    public ModelAndView boardDetail(int boardnum, int currentPage){
+    public ModelAndView boardDetail(int boardnum, @RequestParam(defaultValue = "1")int currentPage){
 
         ModelAndView mview = new ModelAndView();
 
@@ -135,6 +135,7 @@ public class BoardController {
         int endPage;
         int totalPage;
         int no;
+        //String boardtype;
         totalPage=totalCount/perPage+(totalCount%perPage==0?0:1);
 
         startPage=(currentPage-1)/perBlock*perBlock+1;
@@ -160,6 +161,7 @@ public class BoardController {
         model.addAttribute("endPage", endPage);
         model.addAttribute("no", no);
         model.addAttribute("totalPage", totalPage);
+        //model.addAttribute("boardtype", boardtype);
 
         return "/main/board/boardFree";
     }

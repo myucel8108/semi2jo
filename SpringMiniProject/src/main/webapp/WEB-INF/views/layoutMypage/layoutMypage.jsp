@@ -153,7 +153,7 @@
             position: relative;
             margin-top: -5px;
             padding: 30px 30px 30px 50px; /* 상단, 우측, 하단, 좌측 */
-            width: 300px;
+            width: 200px;
             height: 800px;
             z-index: 1;
             float: left;
@@ -162,7 +162,7 @@
 
         div.layout div.change{
             position: relative;
-            margin-left: 300px;
+            margin-left: 200px;
             margin-bottom: 100px;
             padding: 30px 30px 30px 30px;
             width: 800px;

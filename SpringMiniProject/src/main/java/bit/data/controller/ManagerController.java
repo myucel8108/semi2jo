@@ -172,7 +172,7 @@ public class ManagerController {
     @GetMapping("/deleteuserphoto")
     public String deleteUserPhoto(int usernum){
         userService.deleteUserPhoto(usernum);
-        return "redirect:userlist";
+        return "redirect:updateuserform?usernum=" + usernum;
     }
 
     //강좌 목록 출력
@@ -225,6 +225,12 @@ public class ManagerController {
         return "/manager/manager/lectureList";
     }
 
+    @GetMapping("/lecture-present")
+    public String lecturePresent(int lecnum){
+
+        return "/manager/manager/lecturePresent";
+    }
+
     //강의 등록 폼으로 이동
     @GetMapping("/addlectureform")
     public String addLecture(){
@@ -275,16 +281,16 @@ public class ManagerController {
         return result;
     }
     //커뮤니티 관리
-    @GetMapping("/manager/freeBoardList")
+    @GetMapping("/manager/boardList")
     @ResponseBody
     public Map<String, Object> freeBoardList(@RequestParam(defaultValue = "1")int currentPage,
                                              @RequestParam(value = "searchcolumn", required = false) String sc,	/*required = false: 값이 없을 겨우 null*/
-                                             @RequestParam(value = "searchword", required = false) String sw){
-        System.out.println("test2");
+                                             @RequestParam(value = "searchword", required = false) String sw,
+                                             @RequestParam(required=false) String ask){
         //페이징 처리에 필요한 변수들
         //전체 갯수
         int totalCount=boardService.getTotalCount(sc, sw);
-        int perPage=3;//한페이지당 보여질 글의 갯수
+        int perPage=2;//한페이지당 보여질 글의 갯수
         int perBlock=3;//한블럭당 보여질 페이지의 갯수
         int startNum;//db에서 가져올 글의 시작번호(mysql은 첫글이 0번,오라클은 1번)
         int startPage;//각블럭당 보여질 시작페이지
@@ -316,6 +322,9 @@ public class ManagerController {
 
         //페이지에서 보여질 글만 가져오기
         List<BoardDto> list = boardService.getPagingList(sc, sw, startNum, perPage);
+        if(ask=="ask"){
+            System.out.println("ask - sucess");
+        }
 
         Map<String, Object> map = new HashMap<>();
         map.put("list",list);
@@ -326,7 +335,6 @@ public class ManagerController {
         map.put("no",no);
         map.put("totalPage",totalPage);
 
-        System.out.println("totalCount="+totalCount);
 
         return map;
     }

@@ -20,5 +20,7 @@ public interface BoardServiceInter {
     public int moveToNextBoard(int boardnum);
     public int getMinNum();
     public int getMaxNum();
+//    public List<BoardDto> getBoardTypeList(String searchcolumn, String searchword, int startnum, int perpage);
+
 
 }

@@ -13,63 +13,87 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-
+<script>
+    $(function (){
+                function checkFileName(str){
+                    var ext=str.split(".").pop().toLowerCase();
+                    var pattern =   /[\{\}\/?,;:|*~`!^\+<>@\#$%&\\\=\'\"]/gi;
+                    if($.inArray(ext, ["bmp","jpg","png","jpeg","gif"]) == -1) {    // 파일 확장자 체크
+                        //alert(ext);
+                        alert("이미지 파일만 업로드 가능합니다.\n(업로드 가능 확장자: jpg, png, bmp, gif)");
+                        return false;
+                    } else if(pattern.test(str)){    // 파일명에 특수문자 체크
+                        alert("파일명에 특수문자를 제거해주세요.");
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+    });
+</script>
 </head>
 <body>
+<div class="container" style="width: 100%; padding: 50px;">
 <form action="insert" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="userid" value="${sessionScope.loginid}">
-    <table class="table table-bordered" style="width: 500px;">
+<%--    <input type="hidden" name="email" value="${sessionScope.loginid}">--%>
+        <input type="hidden" name="usernum" value="${sessionScope.usernum}">
+    <table class="table table-bordered" style="width: 600px;">
         <tr>
-            <th style="width: 100px;">제목</th>
+            <th style="text-align: center;">유형</th>
+            <td>
+            <label><input type="radio" name="boardtype" value="free" checked="checked">&nbsp;자유</label>
+                <label><input type="radio" name="boardtype" value="ask">&nbsp;질문</label>
+            </td>
+        </tr>
+        <tr>
+            <th style="width: 100px; text-align: center;">제목</th>
             <td>
                 <input type="text" name="subject" class="form-control" required="required">
             </td>
         </tr>
         <tr>
-            <th style="width: 100px;">사진</th>
+            <th style="width: 100px; text-align: center;">사진</th>
             <td>
                 <div class="phototag">
-                    <div class="input-group">
-                        <input type="file" name="upload" class="form-control" multiple="multiple" id="upload">
-                        &nbsp;
-                        <i class="fa fa-plus photoadd" style="font-size:14px"></i>
-                    </div>
+                    <input type="file" name="upload" class="form-control" multiple="multiple" id="upload">
+<%--                        <i class="fa fa-plus photoadd" style="font-size:14px"></i>--%>
                 </div>
-                <script>
-                    $("i.photoadd").click(function(){
-                        if($("input[name='upload']").length==4){
-                            alert("더이상 추가할수 없습니다");
-                            return;
-                        }
-                        var tag="";
-                        tag=' <div class="input-group">';
-                        tag+='<input type="file" name="upload" class="form-control" multiple="multiple" >';
-                        tag+="<i class='fas fa-minus-square photodel' style='font-size:24px'></i>";
-                        tag+="</div>";
-                        $("div.phototag").append(tag);
-                    });
+<%--                <script>--%>
+<%--                    $("i.photoadd").click(function(){--%>
+<%--                        if($("input[name='upload']").length==4){--%>
+<%--                            alert("더이상 추가할수 없습니다");--%>
+<%--                            return;--%>
+<%--                        }--%>
+<%--                        var tag="";--%>
+<%--                        tag=' <div class="input-group">';--%>
+<%--                        tag+='<input type="file" name="upload" class="form-control" multiple="multiple" >';--%>
+<%--                        tag+="<i class='fas fa-minus-square photodel' style='font-size:24px'></i>";--%>
+<%--                        tag+="</div>";--%>
+<%--                        $("div.phototag").append(tag);--%>
+<%--                    });--%>
 
-                    $(document).on("click",".photodel",function(){
-                        $(this).prev().remove();
-                        $(this).remove();
-                    });
-
-                </script>
+<%--                    $(document).on("click",".photodel",function(){--%>
+<%--                        $(this).prev().remove();--%>
+<%--                        $(this).remove();--%>
+<%--                    });--%>
+<%--                </script>--%>
             </td>
         </tr>
         <tr>
             <td colspan="2">
 					<textarea name="content" class="form-control" required="required"
-                              style="width: 500px; height: 400px;"></textarea>
+                              style="height: 400px;"></textarea>
             </td>
         </tr>
         <tr>
             <td colspan="2" align="center">
-                <button type="submit">업로드</button>
+                <button type="button" class="btn btn-outline-dark" onclick="location.href='boardFree?currentPage=${currentPage}'">뒤로가기</button>
+                <button type="submit" class="btn btn-outline-dark">업로드</button>
             </td>
         </tr>
     </table>
 </form>
+</div>
 </body>
 </html>
 <%--<%@ page language="java" contentType="text/html; charset=UTF-8"--%>
@@ -87,7 +111,7 @@
 
 <%--    <!-- css  -->--%>
 <%--    <c:set var="root" value="<%=request.getContextPath() %>"/>--%>
-<%--    <link rel="stylesheet" type="text/css" href="${root}/css/board/boardform.css">--%>
+<%--    <link rel="stylesheet" type="text/css" href="${root}/css/board/boardForm.css">--%>
 
 <%--    <title></title>--%>
 <%--    <script type="text/javascript">--%>

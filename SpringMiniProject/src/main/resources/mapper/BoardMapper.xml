@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bit.data.dao.BoardDao">
     <insert id="insertBoard" parameterType="boardDto">
-        insert into board (boardtype, usernum, nickname, subject, content, photo, readcount, likes, report, writeday)
-        values (#{boardtype}, #{usernum}, #{nickname}, #{subject}, #{content}, #{photo}, 0, 0, 0, now())
+        insert into board (boardtype, usernum, nickname, subject, content, photo, readcount, likes, report, reportcheck, writeday)
+        values (#{boardtype}, #{usernum}, #{nickname}, #{subject}, #{content}, #{photo}, 0, 0, 0, 'new', now())
     </insert>
     <select id="getTotalCount" parameterType="Map" resultType="int">
         select count(*) from board
@@ -11,6 +11,8 @@
             where ${searchcolumn} like concat('%',#{searchword},'%')
         </if>
     </select>
+
+
     <select id="getPagingList" parameterType="Map" resultType="boardDto">
         select * from board
         <if test="searchcolumn!=null and searchword!=null">
@@ -18,6 +20,10 @@
         </if>
         order by boardnum desc limit #{startnum},#{perpage}
     </select>
+
+
+
+
     <select id="selectByNum" parameterType="int" resultType="boardDto">
         select * from board where boardnum = #{boardnum}
     </select>
@@ -53,7 +59,12 @@
     <select id="getMinNum" resultType="int">--  제일 오래된글에 이전글버튼 안보이게 하기
         SELECT MIN(boardnum) from board
     </select>
-    <select id="getBoardType" parameterType="String" resultType="BoardDto">--  자유 질문 나누기
-        select * from board where boardtype=#{boardtype}
-    </select>
+<!--    <select id="getBoardTypeList" parameterType="Map" resultType="boardDto">&#45;&#45;  자유 질문 나눠서 출력-->
+<!--        select * from board-->
+<!--        <if test="searchcolumn!=null and searchword!=null">-->
+<!--            where ${searchcolumn} like concat('%',#{searchword},'%')-->
+<!--        </if>-->
+<!--            and where boardtype=#{boardtype}-->
+<!--        order by boardnum desc limit #{startnum},#{perpage}-->
+<!--    </select>-->
 </mapper>
