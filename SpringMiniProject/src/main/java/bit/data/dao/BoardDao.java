@@ -83,7 +83,17 @@ public class BoardDao implements BoardDaoInter{
         return session.selectOne(ns+"getMinNum");
     }
 
-//    @Override
+    @Override
+    public void updateReportCount(int boardnum) {
+        session.update(ns+"updateReportCount", boardnum);
+    }
+
+    @Override
+    public List<BoardDto> getHotList() {
+        return session.selectList(ns+"getHotList");
+    }
+
+    //    @Override
 //    public List<BoardDto> getBoardTypeList(Map<String, Object> map) {
 //        return session.selectList(ns+"getBoardTypeList", map);
 //    }

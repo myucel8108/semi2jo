@@ -53,7 +53,13 @@
                    success : function(res) {
                        var s="";
                        $.each(res,function(i,ids){
-                           s+=ids+"<br><br>";
+
+                           s+=ids;
+                           if(i%2==1){
+                               s+="<br><br>";
+                           }else{
+                               s+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                           }
                         });
                         if(res.length==0){
                            s="좋아요한 회원이 없습니다";
@@ -87,21 +93,29 @@
               }
           });
             $(document).on("click",".report", function (){
-                var boardnum=$(this).attr("boardnum");
+                var boardnum=${dto.boardnum};
+               // console.log("boardnum="+boardnum);
                 var ans=confirm("해당 게시글을 신고하시겠습니까?");
                 if(ans){
                     $.ajax({
                         type:"get",
-                        url:"",
+                        url:"report",
                         dataType:"text",
                         data:{"boardnum":boardnum},
                         success:function(res){
-                            alert("신고가 접수되었습니다")
+                           // alert(res);
+                            if(res==-1){
+                                alert("이미 신고하신 게시글입니다");
+                            }
+                            else {
+                                alert("신고가 접수되었습니다");
+                            }
                         }
                     });
                 }
             });
         });
+
         function initlike(){
             var boardnum=${dto.boardnum};
             var loginok='${sessionScope.loginok}';

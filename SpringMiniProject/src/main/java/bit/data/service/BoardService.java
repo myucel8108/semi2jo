@@ -91,7 +91,17 @@ public class BoardService implements BoardServiceInter{
         return boardDao.getMaxNum();
     }
 
-//    @Override
+    @Override
+    public void updateReportCount(int boardnum) {
+        boardDao.updateReportCount(boardnum);
+    }
+
+    @Override
+    public List<BoardDto> getHotList() {
+        return boardDao.getHotList();
+    }
+
+    //    @Override
 //    public List<BoardDto> getBoardTypeList(String searchcolumn, String searchword, int startnum, int perpage) {
 //        Map<String, Object>map = new HashMap<String, Object>();
 //        map.put("searchcolumn", searchcolumn);
