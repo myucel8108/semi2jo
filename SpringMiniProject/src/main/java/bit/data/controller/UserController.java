@@ -44,29 +44,35 @@ public class UserController {
 
     //수정
     @PostMapping("/student/update")
-    @ResponseBody
-    public void update(UserDto dto, HttpSession session, HttpServletRequest request,
-                       MultipartFile userphoto)
+    public String update(UserDto dto, HttpSession session, HttpServletRequest request,
+                       MultipartFile myphoto)
     {
         //톰캣에 올라간 upload 폴더 경로 구하기
         String path=request.getSession().getServletContext().getRealPath("/resources/upload");
         System.out.println(path);
         //업로드 및 저장될 파일명 구하기
-        String fileName= ChangeName.getChangeFileName(userphoto.getOriginalFilename());
-
-        //업로드
-        try {
-            userphoto.transferTo(new File(path+"/"+fileName));
-            userService.updateUserPhoto(dto.getUsernum(), fileName); //db에서 사진수정
-            session.setAttribute("userphoto", fileName); //세션의 사진변경
-        } catch (IllegalStateException | IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        String photoName=myphoto.getOriginalFilename();
+        if(photoName.equals("")) {
+            dto.setUserphoto(null);
+        }
+        else {
+            String fileName= ChangeName.getChangeFileName(photoName);
+            //업로드
+            try {
+                myphoto.transferTo(new File(path+"/"+fileName));
+                //dto에 바뀐 userphoto 넣기
+                dto.setUserphoto(fileName);
+            } catch (IllegalStateException | IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
 
+        //DB의 dto update
         userService.updateUser(dto);
         //세션에 저장된 이름도 변경하기
         session.setAttribute("loginname", dto.getUsername());
+        return "redirect:timeTable";
     }
 
     /////////////////////////////////////////////////////////////////////
