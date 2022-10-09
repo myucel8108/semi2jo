@@ -39,6 +39,10 @@
         .search-container{
             width: 200px;
         }
+
+        .paging{
+            padding-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -125,31 +129,33 @@
                 </div>
             </div>
         </div>
+        <br>
+        <br>
+        <!-- 페이징 -->
+        <div class="paging">
+            <ul class="pagination">
+                <c:if test="${startPage>1}">
+                    <li class="page-item"><a href="userlist?currentPage=${startPage-1}" class="page-link">이전</a></li>
+                </c:if>
+
+                <!-- 페이지 번호 -->
+                <c:forEach var="pp" begin="${startPage}" end="${endPage}">
+                    <c:if test="${pp==currentPage}">
+                        <li class="page-item active"><a href="userlist?currentPage=${pp}" class="page-link">${pp}</a></li>
+                    </c:if>
+                    <c:if test="${pp!=currentPage}">
+                        <li class="page-item"><a href="userlist?currentPage=${pp}" class="page-link">${pp}</a></li>
+                    </c:if>
+                </c:forEach>
+
+                <c:if test="${endPage<totalPage}">
+                    <li class="page-item"><a href="userlist?currentPage=${endPage+1}" class="page-link">다음</a></li>
+                </c:if>
+            </ul>
+        </div>
     </div>
     <br>
     <br>
-    <!-- 페이징 -->
-    <div class="paging">
-        <ul class="pagination">
-            <c:if test="${startPage>1}">
-                <li class="page-item"><a href="userlist?currentPage=${startPage-1}" class="page-link">이전</a></li>
-            </c:if>
-
-            <!-- 페이지 번호 -->
-            <c:forEach var="pp" begin="${startPage}" end="${endPage}">
-                <c:if test="${pp==currentPage}">
-                    <li class="page-item active"><a href="userlist?currentPage=${pp}" class="page-link">${pp}</a></li>
-                </c:if>
-                <c:if test="${pp!=currentPage}">
-                    <li class="page-item"><a href="userlist?currentPage=${pp}" class="page-link">${pp}</a></li>
-                </c:if>
-            </c:forEach>
-
-            <c:if test="${endPage<totalPage}">
-                <li class="page-item"><a href="userlist?currentPage=${endPage+1}" class="page-link">다음</a></li>
-            </c:if>
-        </ul>
-    </div>
 </div>
 </div>
 </div>

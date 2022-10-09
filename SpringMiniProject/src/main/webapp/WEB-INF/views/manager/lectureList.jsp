@@ -49,16 +49,20 @@
             flex-direction: row-reverse;
         }
 
-        .widgets-icons-2{
-            text-align: center;
-        }
-
         .present-container{
             cursor: pointer;
         }
 
         .whole-list{
             height: 87vh;
+        }
+
+        .show-photo{
+            text-align: center;
+        }
+
+        .paging{
+            padding-bottom: 20px;
         }
     </style>
 </head>
@@ -112,7 +116,7 @@
                                             <p class="my-1 text-info">${dto.lecname}</p>
                                             <p class="mb-0 font-13">${dto.teaname}</p>
                                         </div>
-                                        <div class="widgets-icons-2 rounded-circle  text-white ms-auto">
+                                        <div class="show-photo">
                                             <c:if test="${dto.lecphoto!=null}">
                                                 <img src="upload/${dto.lecphoto}" width="50" height="50">
                                             </c:if>
@@ -135,7 +139,7 @@
                                             <p class="my-1 text-primary">${dto.lecname}</p>
                                             <p class="mb-0 font-13">${dto.teaname}</p>
                                         </div>
-                                        <div class="widgets-icons-2 rounded-circle  text-white ms-auto">
+                                        <div class="show-photo">
                                             <c:if test="${dto.lecphoto!=null}">
                                                 <img src="upload/${dto.lecphoto}" width="50" height="50">
                                             </c:if>
@@ -158,7 +162,7 @@
                                             <p class="my-1 text-success">${dto.lecname}</p>
                                             <p class="mb-0 font-13">${dto.teaname}</p>
                                         </div>
-                                        <div class="widgets-icons-2 rounded-circle  text-white ms-auto">
+                                        <div class="show-photo">
                                             <c:if test="${dto.lecphoto!=null}">
                                                 <img src="upload/${dto.lecphoto}" width="50" height="50">
                                             </c:if>
@@ -181,7 +185,7 @@
                                             <p class="my-1 text-warning">${dto.lecname}</p>
                                             <p class="mb-0 font-13">${dto.teaname}</p>
                                         </div>
-                                        <div class="widgets-icons-2 rounded-circle  text-white ms-auto">
+                                        <div class="show-photo">
                                             <c:if test="${dto.lecphoto!=null}">
                                                 <img src="upload/${dto.lecphoto}" width="50" height="50">
                                             </c:if>
@@ -204,7 +208,7 @@
                                             <p class="my-1 text-danger">${dto.lecname}</p>
                                             <p class="mb-0 font-13">${dto.teaname}</p>
                                         </div>
-                                        <div class="widgets-icons-2 rounded-circle  text-white ms-auto">
+                                        <div class="show-photo">
                                             <c:if test="${dto.lecphoto!=null}">
                                                 <img src="upload/${dto.lecphoto}" width="50" height="50">
                                             </c:if>
