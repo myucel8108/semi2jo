@@ -41,7 +41,6 @@
 
 
 
-
 <%--<div class="modal fade" id="myModal" style="width: 250px; margin: auto;">--%>
 <%--    <div class="modal-dialog dialog-sm">--%>
 <%--        <div class="modal-content">--%>
@@ -70,6 +69,7 @@
 <%--        </div>--%>
 <%--    </div>--%>
 <%--</div>--%>
+
 
 
 
@@ -130,6 +130,7 @@
                             <c:if test="${dto.relevel==0}">
                             <img src="../image/lockimg.jpg" width="10px;" style="background-color: white">
                             </c:if>
+
                                 ${dto.subject}
 
                         <c:if test="${sessionScope.loginok!=null and sessionScope.usernum==dto.usernum || sessionScope.email=='admin@gmail.com'}">
@@ -140,13 +141,16 @@
                                 ${dto.qnatype}
                         </a>
 
+
                             <c:if test="${dto.photo!='no'}">
                                 <i class="fa fa-picture-o"></i>
                             </c:if>
                             <c:if test="${dto.relevel>0}">
                                 <b style="color: orange; text-decoration: none;">답변완료</b>
+
                         </a>
                             </c:if>
+
 
                     </td>
                     <c:set var="username" value="${resultInfo.dto.username}"/>
@@ -208,6 +212,7 @@
 </div>
 </div>
 
+
 <%--<script>--%>
 <%--    $("#jebal").click(function(){--%>
 
@@ -231,6 +236,7 @@
 
 <%--    });--%>
 <%--</script>--%>
+
 
 
 
