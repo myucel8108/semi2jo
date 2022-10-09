@@ -35,13 +35,22 @@
         /*    text-decoration: none;*/
         /*}*/
     </style>
+    <script>
+        $(function (){
+
+        });
+    </script>
 </head>
 <body>
 <div class="container" style="width: 1000px; padding: 50px;">
     <c:set var="root" value="<%=request.getContextPath() %>"/>
     <h1>커뮤니티</h1><br>
-                <h3>자유게시판</h3>
-                <button onclick="location.href='${root}/board/boardForm'" style="float: right;">글쓰기</button><br>
+    <div class="btn-group">
+        <button type="button" class="btn btn-outline-dark btn1" onclick="location.href='boardFree'">전체</button>
+        <button type="button" class="btn btn-outline-dark btn2" onclick="location.href='boardFree?boardtype=free'">자유</button>
+        <button type="button" class="btn btn-outline-dark btn3" onclick="location.href='boardFree?boardtype=ask'">질문</button>
+    </div>
+                <button onclick="location.href='${root}/board/boardForm'" style="float: right;" class="btn btn-outline-dark">글쓰기</button><br>
                 <div style="margin: 10px;">
                     <table class="table" style="width: 100%; border-collapse: separate; border-radius: 15px; border: 1px solid black;">
                         <tr>
@@ -102,43 +111,42 @@
                         </c:forEach>
                     </table>
                 </div>
-                <div class="searcharea" style="width: 100%; margin: 10px;">
+                <div class="searcharea" style="width: 60%; margin: 10px;">
                     <form action="boardFree">
                         <div class="input-group">
-                            <select class="form-select" style="width: 150px;" name="searchcolumn">
+                            <select class="btn-outline-dark" style="width: 100px; text-align: center;" name="searchcolumn">
                                 <option value="subject">제목</option>
                                 <option value="nickname">작성자</option>
                                 <option value="content">내용</option>
                             </select>
                             &nbsp;&nbsp;&nbsp;
-                            <input type="text" name="searchword" class="form-control" style="width: 140px;" placeholder="검색어" value="${param.searchword}">
-                            <button type="submit">검색</button>
+                            <input type="text" name="searchword" class="btn-outline-dark" style="width: 200px;" placeholder="검색어" value="${param.searchword}">
+                            <button type="submit" class="btn btn-outline-dark">검색</button>
                         </div>
                     </form>
                 </div>
                 <!--페이징-->
-                <div class="paging" style="margin-left: 600px;">
-                    <ul class="pagination">
+                <div class="paging">
+                    <ul class="pagination" style="justify-content: center;">
                         <c:if test="${startPage>1}">
-                            <li class="page-item"><a href="boardFree?currentPage=${startPage-1}" class="page-link">이전</a></li>
+                            <li class="page-item"><a href="boardFree?currentPage=${startPage-1}" class="page-link" style="color: black;">이전</a></li>
                         </c:if>
 
                         <!-- 페이지번호 -->
                         <c:forEach var="pp" begin="${startPage}" end="${endPage}">
                             <c:if test="${pp==currentPage}">
-                                <li class="page-item active"><a class="page-link" href="boardFree?currentPage=${pp}">${pp}</a></li>
+                                <li class="page-item"><a class="page-link" href="boardFree?currentPage=${pp}" style="color: white; background-color: black;">${pp}</a></li>
                             </c:if>
                             <c:if test="${pp!=currentPage}">
-                                <li class="page-item"><a class="page-link" href="boardFree?currentPage=${pp}">${pp}</a></li>
+                                <li class="page-item"><a class="page-link" href="boardFree?currentPage=${pp}" style="color: black;">${pp}</a></li>
                             </c:if>
                         </c:forEach>
 
                         <c:if test="${endPage<totalPage}">
-                            <li class="page-item"><a href="boardFree?currentPage=${endPage+1}" class="page-link">다음</a></li>
+                            <li class="page-item"><a href="boardFree?currentPage=${endPage+1}" class="page-link" style="color: black;">다음</a></li>
                         </c:if>
                     </ul>
                 </div>
-            </div>
-</div>
-</body>
+        </div>
+    </body>
 </html>

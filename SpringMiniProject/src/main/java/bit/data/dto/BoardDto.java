@@ -17,6 +17,7 @@ public class BoardDto {
     private int readcount;
     private int likes;
     private int report;
+    private String reportcheck;
     private Timestamp writeday;
     private int reboardcount;
 
