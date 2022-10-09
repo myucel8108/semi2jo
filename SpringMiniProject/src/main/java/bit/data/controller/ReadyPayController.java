@@ -84,18 +84,15 @@ public class ReadyPayController {
 	  
 	  }
 	  
-		 @GetMapping("/lecture/lecturecategori")
-		 public ModelAndView lectureCategori(String lectypeb) {
+		 @GetMapping(value= "/lecture/lectureList" , params = {"lectypeb"})
+		 public String lectureCategori(@RequestParam String lectypeb , Model model) {
 			 
-			 ModelAndView mview = new ModelAndView();
-		  
 			 List<ReadyPayDto> list =  readypayservice.selectByCategori(lectypeb);
+			  model.addAttribute("list",list);
 		 
-		  	mview.addObject("list", list);
-		 
-		  	mview.setViewName("/main/lecture/lectureList");
+
 		  
-		  return mview; 
+		  return "/main/lecture/lectureList";
 		  
 		  }
 	  
