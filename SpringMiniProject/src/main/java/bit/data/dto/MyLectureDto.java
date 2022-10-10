@@ -10,6 +10,7 @@ public class MyLectureDto {
 	 private int mylecnum;
 	 private int usernum;
 	 private int lecdenum;
+	 private int count;
 	 private int star;
 	 private String review;
 	 private String payok;

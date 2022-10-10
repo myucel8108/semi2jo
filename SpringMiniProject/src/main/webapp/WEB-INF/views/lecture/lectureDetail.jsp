@@ -14,6 +14,7 @@
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
 <style>
+
   .star {
     position: relative;
     font-size: 2rem;
@@ -75,50 +76,73 @@
 </style>
 <body>
 	
-	 <div style="display: flex; background-color: #002333;">
-		<img src=" " style="min-width:500px; max-width: 30%; min-height:300px; max-height: 20%;  margin: 50px 350px; display: flex;">		
+	 <div style="display: flex;">
+	<img src=" " style="min-width:500px; max-width: 30%; min-height:300px; max-height: 20%;  margin-top: 50px; margin-left:350px; margin-right:50px; display: flex;">		
+	 <form action="" style="margin-top: 50px;">
+	 <table>
+	 <tr>
+	 <td>
+	 ${dto.lectypea}>${dto.lectypeb}
+	 </td>
+	 </tr>
+	 <tr>
+	 <td>
+	 ${dto.lecname}
+	 </td>
+	 </tr>
+	 <tr>
+	 <td>
 	 	${dto.price}
-		${dto.lecname}
+	 	</td>
+	 	</tr>
+	  <tr>
+	 <td>
 		${dto.teaname}
-		${dto.avgstar}
-
-	  </div>
-    <c:set var="root" value="<%=request.getContextPath() %>"/>
-	<div class="container" style="height:3000px;">
-	<div  style="display: flex;  justify-content: center; align-items: center; ">    
-
-	 <div>
-
-	<img alt="" src="https://contents.kyobobook.co.kr/dtl/illustrate/963/i9788954761963.jpg">
-	
- 		${dto.lecdenum}
-	 	${dto.price}
-		${dto.lecname}
-		${dto.teaname}
-		${dto.avgstar}
-	 <button type="button" onclick='gocart()'>장바구니에 담기</button>  
-	 </div>
-	</div>
+		</td>
+		</tr>
+	<tr>
+	<td>
+		${dto.avgstar}	
+	</td>
+	</tr> 	
+	<tr>
+	<td>
+		 <button type="button" onclick='gocart()'>장바구니에 담기</button>  
+	 </td>
+	 </tr>
+	 </table>
+	</form>
+</div>
+    <c:set var="root" value="<%=request.getContextPath()%>"/>
+	<div class="container" >
 	<div style="display: flex; justify-content: center; align-items: center;">
-	
 	 <div>
 	 </div>
 	</div>
-	
+		
 	 <c:forEach var="redto" items="${list}">
 		<div>
-		작성자:${redto.username}  별점: ${redto.star} 
-		리뷰내용:${redto.review}	
-		</div>
+		<c:if test="${not empty redto.review}">
+		작성자:${redto.username} 
+		<br>
+		별점:
+		<c:forEach begin="1" end="${redto.star}">
+		 ★
+		</c:forEach>
+		<br>
+		리뷰 내용:${redto.review}
+		</c:if>
+		</div>	
 	</c:forEach>
-	<span class="star">
+	
+	<span class="star"> 
   <span>★★★★★</span>
   <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
 </span>
 	
  	<form class="mb-3" name="myform" id="myform" method="post">
 	<fieldset>
-		<span class="text-bold">별점을 선택해주세요</span>
+		<span class="text-bold"></span>
 		<input type="radio" name="reviewStar" value="5" id="rate1"><label
 			for="rate1">★</label>
 		<input type="radio" name="reviewStar" value="4" id="rate2"><label
@@ -134,13 +158,14 @@
 		<textarea class="col-auto form-control" type="text" id="reviewContents"
 				  placeholder="좋은 수강평을 남겨주시면  teachMe에 큰 힘이 됩니다! "></textarea>
 	</div>
+	<c:if test="">
+	<button>
+	등록하기
+	</button>
+	
+	</c:if>
 </form>	
-	
-	
-	
-</div>
-
-
+	</div>
  <script type="text/javascript">
 		 function gocart() {	
 			var ans = confirm("장바구니에 저장하시겠습니까?");
@@ -164,10 +189,10 @@
 							}
 
 						}
-		 			})                  		
+		 			});                  		
 			}
 		}
-	
+
    </script>    
 </body>
 </html>
