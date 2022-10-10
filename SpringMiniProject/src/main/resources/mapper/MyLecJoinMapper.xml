@@ -7,4 +7,11 @@
         where a.lecnum=b.lecnum and b.lecdenum=c.lecdenum
             and c.usernum=#{usernum} and c.payok=#{payok}
     </select>
+
+    <!--    올해의 총수익-->
+    <select id="getTotalIncom" parameterType="int" resultType="myLecJoinDto">
+        SELECT b.price, a.lectypea, b.lecmonth
+        from lecture a, lecdetail b, mylecture c
+        where a.lecnum=b.lecnum and b.lecdenum=c.lecdenum and c.payok="ok" and lecyear=${year}
+    </select>
 </mapper>

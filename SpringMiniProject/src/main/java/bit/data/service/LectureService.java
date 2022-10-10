@@ -47,4 +47,10 @@ public class LectureService implements LectureServiceInter{
     	
     	return lectureDao.getAllLecture();
     }
+
+    //lectype A 의 종류 구하기
+    @Override
+    public List<LectureDto> getLecTypeA() {
+        return lectureDao.getLecTypeA();
+    }
 }
