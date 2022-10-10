@@ -148,6 +148,7 @@
     <input type="hidden" name="relevel" value="${relevel}">
     <input type="hidden" name="restep" value="${restep}">
     <input type="hidden" name="currentPage" value="${currentPage}">
+
 <%--    <input type="hidden" name="pass" value="${dto.pass}">--%>
 
 
@@ -178,7 +179,7 @@
         </c:if>
 
         <c:if test="${qnanum>0}">
-            <input type="hidden" name="pass">
+            <input type="hidden" name="pass" value="${pass}">
             <input type="hidden" name="qnatype">
 
         </c:if>

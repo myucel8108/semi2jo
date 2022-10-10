@@ -37,6 +37,7 @@ public class QnaController {
             @RequestParam(defaultValue="0") int restep,
             @RequestParam(defaultValue="0") int relevel,
             @RequestParam(defaultValue="1") int currentPage,
+            @RequestParam(defaultValue="0") String pass,
             Model model
     )
     {
@@ -46,7 +47,8 @@ public class QnaController {
         model.addAttribute("restep",restep);
         model.addAttribute("relevel",relevel);
         model.addAttribute("currentPage",currentPage);
-
+        model.addAttribute("pass",pass);
+//        System.out.println(pass);
         //제목에 새글일경우 "", 답글일 경우 해당 제목을 넣어보자
         String content="";
         if(qnanum>0) {
@@ -76,7 +78,10 @@ public class QnaController {
         mview.addObject("dto", dto);
         mview.addObject("currentPage", currentPage);
 
-        if (usernum==12 || usernum==dto.getUsernum() && dto.getQnanum()==dto.getRegroup() ){
+        if (usernum==12 || usernum==dto.getUsernum()){
+
+            // 클릭한 글에 regroupnumber를 가져오고 로그인한 상태에서 해당 유저가 쓴 글의 리스트를 가져와야함 ( 내가쓴글들의 qnanum을 가져와야함 )
+            // qnanum이 여러개인데 그중 내가 클릭한 글의 regroup num이랑 일치하는게 있으면
             mview.setViewName("/main/qna/qnaDetail");
         }else {
             mview.setViewName("/main/qna/secretQna");
@@ -112,7 +117,7 @@ public class QnaController {
 //        int usernum=userService.getDataById(dto.getUsername()).getUsernum();
 //        dto.setUsernum(usernum);
         dto.setUsername(username);
-
+        System.out.println(dto.getPass());
         if (upload.get(0).getOriginalFilename().equals("")) {
             dto.setPhoto("no");
         } else {

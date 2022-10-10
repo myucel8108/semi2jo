@@ -159,7 +159,7 @@
     <div class="paging">
         <ul class="pagination" style="margin-bottom: 60px; ">
             <c:if test="${startPage>1}">
-                <li class="page-item"><a href="qnaList?currentPage=${startPage-1}" class="page-link">이전</a></li>
+                <li class="page-item"><a href="qnaList?currentPage=${startPage-1}" class="page-link" id="page-button-tm4" style="width: 70px;" >이전</a></li>
             </c:if>
             <!--  페이지 번호  -->
             <c:forEach var="pp" begin="${startPage}" end="${endPage}">
@@ -178,7 +178,7 @@
 
             </c:forEach>
             <c:if test="${endPage<totalPage}">
-                <li class="page-item"><a href="qnaList?currentPage=${endPage+1}" class="page-link" id="page-button-tm3">다음</a></li>
+                <li class="page-item"><a href="qnaList?currentPage=${endPage+1}" class="page-link" id="page-button-tm3" style="width: 70px;">다음</a></li>
             </c:if>
         </ul>
     </div>
