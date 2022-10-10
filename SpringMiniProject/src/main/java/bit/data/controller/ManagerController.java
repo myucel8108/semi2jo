@@ -106,8 +106,8 @@ public class ManagerController {
         mview.addObject("totalUser",totalUser);
 
         //lecture typeA 의 종류
-        List<LectureDto> leclist = lectureService.getLecTypeA();
-        mview.addObject("leclist",leclist);
+//        List<LectureDto> leclist = lectureService.getLecTypeA();
+//        mview.addObject("leclist",leclist);
 
         mview.setViewName("/manager/layoutManager/change");
         return mview;
