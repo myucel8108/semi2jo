@@ -1,5 +1,7 @@
 package bit.data.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,6 +26,13 @@ public class MyLectureDao implements MyLectureDaoInter{
     	
     	
     	session.update(ns+"updatePayok", usernum);
+    }
+    
+    @Override
+    public List<MyLectureDto>  getReview(int lecdenum) {
+   
+    return session.selectList(ns+"getReview", lecdenum);
+    	
     }
     
 }

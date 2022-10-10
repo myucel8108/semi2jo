@@ -21,14 +21,6 @@
                         TeachMe
                     </b></a>
                 </div>
-                <div class="col-sm-4 align-self-center text-right">
-                    <div class="social-icons">
-                        <a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a>
-                    </div>
-                </div>
             </div>
             <!--/row-->
         </div>
