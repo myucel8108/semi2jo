@@ -19,4 +19,9 @@ public class MyLecJoinDao implements MyLecJoinDaoInter{
     public List<MyLecJoinDto> getMyLecListByNum(Map<String,Object> map) {
         return session.selectList(ns+"getMyLecListByNum",map);
     }
+
+    @Override
+    public List<MyLecJoinDto> getMyLecPayByNum(int usernum) {
+        return session.selectList(ns+"getMyLecPayByNum",usernum);
+    }
 }

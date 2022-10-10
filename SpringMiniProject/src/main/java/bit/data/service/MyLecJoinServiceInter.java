@@ -7,4 +7,6 @@ import java.util.List;
 public interface MyLecJoinServiceInter {
 
     public List<MyLecJoinDto> getMyLecListByNum(int usernum, String payok);
+
+    public List<MyLecJoinDto> getMyLecPayByNum(int usernum);
 }

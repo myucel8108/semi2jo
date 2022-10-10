@@ -8,5 +8,6 @@ import java.util.Map;
 
 public interface MyLecJoinDaoInter {
     public List<MyLecJoinDto> getMyLecListByNum(Map<String,Object> map);
+    public List<MyLecJoinDto> getMyLecPayByNum(int usernum);
 
 }

@@ -118,7 +118,7 @@
                             <div class="wrapper">
                                 <input type="password" class="input" id="pass2" name="userpass" placeholder="새 비밀번호 확인" required="required" style="width: 170px;">
                                 <span class="underline"></span>
-                                <span class="passsuccess"></span>
+                                <div class="passsuccess"></div>
                             </div>
                         </td>
                     </tr>

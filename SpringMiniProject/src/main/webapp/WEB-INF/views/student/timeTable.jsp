@@ -19,7 +19,7 @@
     </style>
 </head>
 <body>
-<h1>시간표</h1>
+<h2>시간표</h2>
 <table class="lectable">
     <th></th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th><th>일</th>
         <c:forEach var="i" begin="1" end="13">
