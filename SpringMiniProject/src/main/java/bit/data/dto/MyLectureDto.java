@@ -13,5 +13,6 @@ public class MyLectureDto {
 	 private int star;
 	 private String review;
 	 private String payok;
+	 private String username;
 	 private Timestamp paytime;
 }

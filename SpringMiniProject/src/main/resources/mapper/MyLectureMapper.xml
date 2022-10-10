@@ -12,6 +12,11 @@
 			update mylecture set payok = "ok", paytime = now()  where usernum = #{usernum} AND payok ="no";
 		
 	</update>
-
+	
+	<select id="getReview" parameterType="int" resultType="myLectureDto">
+		select review , star from mylecture where lecdenum=${lecdenum} and payok="ok";
+		
+	</select>
+	
 	
 </mapper>
