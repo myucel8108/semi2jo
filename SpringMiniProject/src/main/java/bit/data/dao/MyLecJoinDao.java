@@ -20,9 +20,16 @@ public class MyLecJoinDao implements MyLecJoinDaoInter{
         return session.selectList(ns+"getMyLecListByNum",map);
     }
 
+
+    @Override
+    public List<MyLecJoinDto> getMyLecPayByNum(int usernum) {
+        return session.selectList(ns+"getMyLecPayByNum",usernum);
+    }
+
     //올해 총 수익
     @Override
     public List<MyLecJoinDto> getTotalIncom(int year) {
         return session.selectList(ns+"getTotalIncom",year);
+
     }
 }

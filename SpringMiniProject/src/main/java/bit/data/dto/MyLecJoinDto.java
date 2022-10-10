@@ -2,12 +2,15 @@ package bit.data.dto;
 
 import lombok.Data;
 
+import java.sql.Timestamp;
+
 @Data
 public class MyLecJoinDto {
     public int mylecnum;
     public int usernum;
     public int lecdenum;
     public String payok;
+    public Timestamp paytime;
     public int price;
     public String lectypea;
     public String lectypeb;
