@@ -23,9 +23,19 @@ public class UserController {
     @Autowired
     UserServiceInter userService;
 
+    //수정폼에 출력할 데이터 반환
+    @GetMapping("student/upStuPassCheck")
+    public String upStuPassCheck(Model model,HttpSession session){
+
+        int usernum= Integer.parseInt(session.getAttribute("usernum").toString());
+        UserDto dto=userService.getDataByNum(usernum);
+        model.addAttribute("dto",dto);
+
+        return "/mypage/student/upStuPassCheck";
+    }
 
     //수정폼에 출력할 데이터 반환
-    @GetMapping("student/updateStudent")
+    @PostMapping("student/updateStudent")
     public String updateStudent(Model model,HttpSession session){
 
         int usernum= Integer.parseInt(session.getAttribute("usernum").toString());
