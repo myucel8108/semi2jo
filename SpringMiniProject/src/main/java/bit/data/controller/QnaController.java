@@ -76,7 +76,7 @@ public class QnaController {
         mview.addObject("dto", dto);
         mview.addObject("currentPage", currentPage);
 
-        if (usernum==12 || usernum==dto.getUsernum()){
+        if (usernum==12 || usernum==dto.getUsernum() && dto.getQnanum()==dto.getRegroup() ){
             mview.setViewName("/main/qna/qnaDetail");
         }else {
             mview.setViewName("/main/qna/secretQna");

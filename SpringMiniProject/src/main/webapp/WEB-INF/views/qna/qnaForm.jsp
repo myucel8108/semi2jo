@@ -148,7 +148,7 @@
     <input type="hidden" name="relevel" value="${relevel}">
     <input type="hidden" name="restep" value="${restep}">
     <input type="hidden" name="currentPage" value="${currentPage}">
-    <input type="hidden" name="pass" value="${dto.pass}">
+<%--    <input type="hidden" name="pass" value="${dto.pass}">--%>
 
 
     <table class="table table-bordered" style="width: 500px;" id="formbox">

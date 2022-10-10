@@ -105,7 +105,7 @@
 <%--                        <button type="button" class="btn btn-outline adel" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" onclick="location.href='delete?qnanum=${dto.qnanum}&currentPage=${currentPage}'">삭제</button>--%>
                         </c:if>
                         <c:if test="${dto.restep==0 && sessionScope.email=='admin@gmail.com'}">
-                            <button type="button" class="btn btn-outline"  style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" onclick="location.href='qnaForm?qnanum=${dto.qnanum}&regroup=${dto.regroup}&restep=${dto.restep}&relevel=${dto.relevel}&currentPage=${currentPage}'">답글</button>
+                            <button type="button" class="btn btn-outline"  style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" onclick="location.href='qnaForm?qnanum=${dto.qnanum}&regroup=${dto.regroup}&restep=${dto.restep}&relevel=${dto.relevel}&currentPage=${currentPage}&pass=${dto.pass}'">답글</button>
                         </c:if>
                         <%--        <div id="listing">--%>
                         <button type="button" class="btn btn-outline"  style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" onclick="location.href='qnaList?currentPage=${currentPage}'">목록</button>

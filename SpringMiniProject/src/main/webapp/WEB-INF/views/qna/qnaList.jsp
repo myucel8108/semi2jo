@@ -96,7 +96,8 @@
 
 <%--                        <c:if test="${dto.relevel==0 and sessionScope.loginok!=null and sessionScope.usernum==dto.usernum || sessionScope.email=='admin@gmail.com'}">--%>
 <%--                        <c:if test="${dto.relevel==0 and sessionScope.loginok!=null and sessionScope.usernum==dto.usernum || sessionScope.email=='admin@gmail.com'}">--%>
-                        <c:if test="${dto.relevel==0 and sessionScope.loginok!=null || sessionScope.email=='admin@gmail.com'}">
+<%--                        <c:if test="${dto.relevel==0 and sessionScope.loginok!=null || sessionScope.email=='admin@gmail.com'}">--%>
+                        <c:if test="${sessionScope.loginok!=null || sessionScope.email=='admin@gmail.com'}">
                         <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm">
                             </c:if>
                             <c:if test="${sessionScope.loginok!=null and dto.relevel==0}">
@@ -153,6 +154,7 @@
 
 </c:if>
 
+
 <div class="container" style="width: 100%;">
     <div class="paging">
         <ul class="pagination" style="margin-bottom: 60px; ">
@@ -164,9 +166,16 @@
                 <c:if test="${pp==currentPage}">
                     <li class="page-item active"><a class="page-link" id="page-button-tm" href="qnaList?currentPage=${pp}">${pp}</a></li>
                 </c:if>
+
                 <c:if test="${pp!=currentPage}">
                     <li class="page-item"><a class="page-link" id="page-button-tm2" href="qnaList?currentPage=${pp}">${pp}</a></li>
                 </c:if>
+
+
+
+
+
+
             </c:forEach>
             <c:if test="${endPage<totalPage}">
                 <li class="page-item"><a href="qnaList?currentPage=${endPage+1}" class="page-link" id="page-button-tm3">다음</a></li>
@@ -175,7 +184,6 @@
     </div>
 </div>
 </div>
-
 
 
 
