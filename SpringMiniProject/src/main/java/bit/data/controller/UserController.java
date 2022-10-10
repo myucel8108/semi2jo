@@ -23,7 +23,7 @@ public class UserController {
     @Autowired
     UserServiceInter userService;
 
-    //수정폼에 출력할 데이터 반환
+    //회원정보 수정 전 비밀번호 확인폼
     @GetMapping("student/upStuPassCheck")
     public String upStuPassCheck(Model model,HttpSession session){
 
