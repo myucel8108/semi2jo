@@ -121,7 +121,7 @@
             });
         });
 
-        function initlike(){
+        function initlike(){ //좋아요를 한 게시글에 들어갔을때 좋아요가 눌러져있는 상태를 출력하기
             var boardnum=${dto.boardnum};
             var loginok='${sessionScope.loginok}';
             if(loginok=='')
@@ -221,7 +221,7 @@
         </tr>
         <tr height="200">
             <td>
-                <pre style="margin: 20px;"><b style="font-size: 17px;">${dto.content}</b></pre> <!--작성글 내용-->
+                <pre style="margin: 15px;"><b style="font-size: 17px;">${dto.content}</b></pre> <!--작성글 내용-->
                 <c:if test="${dto.photo!='no'}">    <!--작성글 첨부사진-->
                     <c:forTokens var="photo" items="${dto.photo}" delims=",">
                         <img src="../upload/${photo}" width="400"
@@ -296,14 +296,14 @@
             var thumbs = $(this).find("i").attr("class");
             var likestate;
             if(thumbs=='fa fa-thumbs-o-up'){ //좋아요없음
-                $(this).find("i").attr("class","fa fa-thumbs-up").css("color","blue");
+                $(this).find("i").attr("class","fa fa-thumbs-up").css("color","blue"); //좋아요O
                 likestate=1;
             } else { //좋아요있음
-                $(this).find("i").attr("class","fa fa-thumbs-o-up").css("color","black");
+                $(this).find("i").attr("class","fa fa-thumbs-o-up").css("color","black"); //좋아요X
                 likestate=0;
             }
 
-            var boardnum=${dto.boardnum};
+            var boardnum=${dto.boardnum}; //좋아요 누른 사람들 아이콘 클릭시
             //console.log(boardnum+","+likestate);
             $.ajax({
                 type : "get",

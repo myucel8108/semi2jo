@@ -30,7 +30,8 @@
 <div class="container" style="width: 1000px; padding: 50px;">
     <c:set var="root" value="<%=request.getContextPath() %>"/>
     <h1>커뮤니티</h1><br>
-                <button onclick="if(${sessionScope.loginok==null}){alert('로그인 후 이용해주세요')}else{location.href='${root}/board/boardForm'}" style="float: right;" class="btn btn-outline-dark">글쓰기</button><br><br>
+                <button onclick="if(${sessionScope.loginok==null}){alert('로그인 후 이용해주세요')}
+                        else{location.href='${root}/board/boardForm'}" style="float: right;" class="btn btn-outline-dark">글쓰기</button><br><br>
                 <div style="margin: 10px;">
                     <table class="table" style="width: 100%; border-collapse: separate; border-radius: 15px; border: 1px solid black;">
                         <tr>
