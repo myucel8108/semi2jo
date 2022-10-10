@@ -1,10 +1,7 @@
 package bit.data.controller;
 
 import bit.data.dto.*;
-import bit.data.service.BoardServiceInter;
-import bit.data.service.LecDetailServiceInter;
-import bit.data.service.LectureServiceInter;
-import bit.data.service.UserServiceInter;
+import bit.data.service.*;
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
