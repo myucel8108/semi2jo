@@ -26,7 +26,11 @@
 
 		select * from lecture order by lectypea asc
 	</select>
-	
+
+    <!--	과목 typea 종류 출력-->
+    <select id="getLecTypeA" resultType="myLectureDto">
+        SELECT distinct lectypea FROM lecture
+    </select>
 
 
 </mapper>

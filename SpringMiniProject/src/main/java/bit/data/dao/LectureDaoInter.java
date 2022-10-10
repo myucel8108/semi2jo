@@ -12,4 +12,7 @@ public interface LectureDaoInter {
     public List<LectureDto> getLectureList(Map<String, Object> map);
     public void insertLecture(LectureDto dto);
     public List<LectureDto> getAllLecture();
+
+    //lectype a 의 종류 구하기
+    public List<LectureDto> getLecTypeA();
 }

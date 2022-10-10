@@ -1,13 +1,7 @@
 package bit.data.controller;
 
-import bit.data.dto.BoardDto;
-import bit.data.dto.LectureDto;
-import bit.data.dto.UserDto;
-import bit.data.service.BoardServiceInter;
-import bit.data.dto.UserLecJoinDto;
-import bit.data.service.LecDetailServiceInter;
-import bit.data.service.LectureServiceInter;
-import bit.data.service.UserServiceInter;
+import bit.data.dto.*;
+import bit.data.service.*;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,11 +39,77 @@ public class ManagerController {
 
     @Autowired
     BoardServiceInter boardService;
+    @Autowired
+    MyLecJoinServiceInter myLecJoinService;
+
+    //관리자 페이지로 이동
+//    @GetMapping("/manager/main")
+//    public String managerMain() {
+//        return "/manager/layoutManager/change";
+//    }
+
 
     //관리자 페이지로 이동
     @GetMapping("/manager/main")
-    public String managerMain() {
-        return "/manager/layoutManager/change";
+    public ModelAndView managerMain() {
+        ModelAndView mview = new ModelAndView();
+
+        //총 매출액 + 월별 그래프
+        Date date = new Date();
+        int year = date.getYear()+1900;
+        int month = date.getMonth()+1;
+        System.out.println("year"+year);
+        List<MyLecJoinDto> list = myLecJoinService.getTotalIncom(year);
+        System.out.println(list);
+        int totalincom=0; int incom1=0; int incom2=0; int incom3=0; int incom4=0; int incom5=0;
+        int incom6=0; int incom7=0; int incom8=0; int incom9=0; int incom10=0; int incom11=0; int incom12=0;
+        for (int i=0; i< list.size(); i++){
+            //올해 전체 수익
+            totalincom +=list.get(i).price;
+            switch (list.get(i).lecmonth) {
+                case 1: incom1+=list.get(i).price; break;
+                case 2: incom2+=list.get(i).price; break;
+                case 3: incom3+=list.get(i).price; break;
+                case 4: incom4+=list.get(i).price; break;
+                case 5: incom5+=list.get(i).price; break;
+                case 6: incom6+=list.get(i).price; break;
+                case 7: incom7+=list.get(i).price; break;
+                case 8: incom8+=list.get(i).price; break;
+                case 9: incom9+=list.get(i).price; break;
+                case 10: incom10+=list.get(i).price; break;
+                case 11: incom11+=list.get(i).price; break;
+                case 12: incom12+=list.get(i).price; break;
+            }
+        }
+        mview.addObject("incom1",incom1);
+        mview.addObject("incom2",incom2);
+        mview.addObject("incom3",incom3);
+        mview.addObject("incom4",incom4);
+        mview.addObject("incom5",incom5);
+        mview.addObject("incom6",incom6);
+        mview.addObject("incom7",incom7);
+        mview.addObject("incom8",incom8);
+        mview.addObject("incom9",incom9);
+        mview.addObject("incom10",incom10);
+        mview.addObject("incom11",incom11);
+        mview.addObject("incom12",incom12);
+        mview.addObject("totalincom",totalincom);
+        mview.addObject("list",list);
+
+        //총 유저수 + 이번달 강의수
+        int totalLecture = lecDetailService.getLecTotalCountMonth(year, month);
+        if(!(totalLecture>0)) totalLecture=0;
+        int totalUser = userService.getUserTotalCount();
+        if(!(totalUser>0)) totalUser=0;
+        mview.addObject("totalLecture",totalLecture);
+        mview.addObject("totalUser",totalUser);
+
+        //lecture typeA 의 종류
+        List<LectureDto> leclist = lectureService.getLecTypeA();
+        mview.addObject("leclist",leclist);
+
+        mview.setViewName("/manager/layoutManager/change");
+        return mview;
     }
 
     //커뮤니티 관리 페이지로 이동
