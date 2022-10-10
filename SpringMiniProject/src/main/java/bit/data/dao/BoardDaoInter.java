@@ -26,6 +26,13 @@ public interface BoardDaoInter {
     public int getMinNum();
     public int getMaxNum();
 
+    public void updateReportCount(int boardnum);
+
+    public List<BoardDto> getHotList();
+
+
+
+
 //    public List<BoardDto> getBoardTypeList(Map<String, Object> map);
 
 

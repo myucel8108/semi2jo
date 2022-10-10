@@ -64,19 +64,20 @@ public class ReadyPayController {
 	 @GetMapping("/lecture/lectureDetail")
 	 public ModelAndView detail(int lecdenum) {
 		 
-		 ModelAndView mview = new ModelAndView();
-	  
+		ModelAndView mview = new ModelAndView();
+		List<MyLectureDto> list = myLectureService.getReview(lecdenum);
 	 	ReadyPayDto dto =  readypayservice.selectByLecdeNum(lecdenum);
 	 
 	  	mview.addObject("dto", dto);
-	 
+	  	mview.addObject("list", list);
 	  	mview.setViewName("/main/lecture/lectureDetail");
 	  
 	  return mview; 
 	  
 	  }
 	  
-	  @GetMapping("/lecture/lectureList") public String lecturelist(Model model) {
+	  @GetMapping("/lecture/lectureList") 
+	  public String lecturelist(Model model) {
 	  List<ReadyPayDto> list= readypayservice.MainGetAllLecture();
 	  model.addAttribute("list",list);
 	  
@@ -84,31 +85,30 @@ public class ReadyPayController {
 	  
 	  }
 	  
-		 @GetMapping(value= "/lecture/lectureList" , params = {"lectypeb"})
-		 public String lectureCategori(@RequestParam String lectypeb , Model model) {
+	@GetMapping(value= "/lecture/lectureList" , params = {"lectypeb"})
+	public String lectureCategori(@RequestParam String lectypeb , Model model) {
 			 
-			 List<ReadyPayDto> list =  readypayservice.selectByCategori(lectypeb);
-			  model.addAttribute("list",list);
+		List<ReadyPayDto> list =  readypayservice.selectByCategori(lectypeb);
+		model.addAttribute("list",list);
 		 
-// 나 국어 전체 영어 전체도 만들어야한다잉
 		  
 		  return "/main/lecture/lectureList";
 		  
 		  }
 	  
 
-	// �몮�떎 諛쏄린
-	@RequestMapping(value = "/payment/callback_receive")
+	// 占쎈ぎ占쎈뼄 獄쏆룄由�
+	  @RequestMapping(value = "/payment/callback_receive")
 	  @ResponseBody
 	  public ResponseEntity<?> callback_receive(@RequestBody Map<String, Object> model, HttpServletRequest request ){  
-		HttpSession session = request.getSession();
-		int usernum = (int) session.getAttribute("usernum");
+		  HttpSession session = request.getSession();
+		  int usernum = (int) session.getAttribute("usernum");
 		System.out.println(usernum);
-	  String process_result="寃곗젣�꽦怨�";
-	  System.out.println(process_result);
-	  JSONObject responseobj = new JSONObject();
-	  HttpHeaders responseHeaders = new HttpHeaders();
-	  responseHeaders.add("Content-Type","application/json; charset=UTF-8");
+		String process_result="野껉퀣�젫占쎄쉐�⑨옙";
+		System.out.println(process_result);
+		JSONObject responseobj = new JSONObject();
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type","application/json; charset=UTF-8");
 	  
 	  try { 
 		  String imp_uid = (String)model.get("imp_uid"); 
@@ -140,7 +140,7 @@ public class ReadyPayController {
 	  else { 
 		  
 		  System.out.println("error_msg: "+error_msg);
-	  	  responseobj.put("process_result", "寃곗젣�떎�뙣"); 
+	  	  responseobj.put("process_result", " "); 
 
 	  } 
 	  

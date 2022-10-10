@@ -4,13 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link
-            href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap"
-            rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
  <!--    <style>
         *{
             font-family: 'abster';
@@ -51,88 +44,203 @@
         }
     </style> -->
 <style>
-
+	*{
+	  box-sizing: border-box; 
+	}
+	  
+	.que:first-child{
+	    border-top: 1px solid black;
+	  }
+	  
+	.que{
+	  position: relative;
+	  padding: 17px 0;
+	  cursor: pointer;
+	  font-size: 14px;
+	  border-bottom: 1px solid #dddddd;
+	  
+	}
+	  
+	.que::before{
+	  display: inline-block;
+	  content: '과목';
+	  font-size: 14px;
+	  margin: 0 5px;
+	}
+	
+	.que.on>span{
+	  font-weight: bold;
+	}
+	  
+	.anw {
+	  display: none;
+	  overflow: hidden;
+	  font-size: 14px;
+	  text-align : center;
+	  border-bottom: 1px solid #e4e4e4;
+      border-radius: 4px;
+      font-size: 1rem;
+	  
+	}
+	 
+	#explain{ 
+		position: absolute; opacity: 0; 
+		} 
+		
+		.text_photo:hover #explain{ 
+		opacity: 1; 
+		}
+	.anw::before {
+	  display: inline-block;
+	  content: ;
+	  font-size: 14px;
+	  font-weight: bold;
+	  margin: 0 5px;
+	}
+	
+	.arrow-wrap {
+	  position: absolute;
+	  top:50%; right: 10px;
+	  transform: translate(0, -50%);
+	}
+	
+	.que .arrow-top {
+	  display: none;
+	}
+	.que .arrow-bottom {
+	  display: block;
+	}
+	.que.on .arrow-bottom {
+	  display: none;
+	}
+	.que.on .arrow-top {
+	  display: block; 
+	}
 		 body { margin:0; padding:0; font-family:'맑은 고딕', verdana; }
-		 a { color:#05f; text-decoration:none; }
-		 a:hover { text-decoration:underline; }
 		 
 		 h1, h2, h3, h4, h5, h6 { margin:0; padding:0; }
 		 ul, lo, li { margin:0; padding:0; list-style:none; }
-		
-		 aside#aside h3 { font-size:22px; margin-bottom:20px; text-align:center; }
-		 aside#aside li { font-size:16px; text-align:center; }
-		 aside#aside li a { color:#000; display:block; padding:10px 0; }
-		 aside#aside li a:hover { text-decoration:none; background:#eee; }
-
 </style>
 </head>
 <body>
-	<div class="container" style=" display: flex;">
+	<div class="container" style=" display: flex; min-height: 2500px;">
 
-	<div style="width: 300px;">
-		<ul>
-			<li> 국어
-			<ul class="low">
-			<li><a href="lectureList?lectypeb=문학" style="color: black;">문학</a></li>
-			<li>><a href="lectureList?lectypeb=비문학" style="color: black;">비문학</a></li>
-			</ul>						
-			</li>
-			
-			<li> 수학
-			<ul class="low">
-			<li>><a href="lectureList?lectypeb=수학1" style="color: black;">수학1</a></li>
-			<li>><a href="lectureList?lectypeb=수학2" style="color: black;">수학2</a></li>
-			<li>><a href="lectureList?lectypeb=미적분" style="color: black;">미적분</a></li>
-			</ul>						
-			</li>
-			<li> 영어
-			<ul class="low">
-			<li>><a href="lectureList?lectypeb=독해" style="color: black;">독해</a></li>
-			<li>><a href="lectureList?lectypeb=문법" style="color: black;">문법</a></li>
-			</ul>						
-			</li>
-			<li>사회
-			<ul class="low">
-			<li>><a href="lectureList?lectypeb=경제" style="color: black;">경제</a></li>
-			<li>><a href="lectureList?lectypeb=사회문화" style="color: black;">사회문화</a></li>
-			</ul>						
-			</li>
-			<li>과학
-			<ul class="low">
-			<li>><a href="lectureList?lectypeb=과학" style="color: black;">화학</a></li>
-			<li>><a href="lectureList?lectypeb=생명과학" style="color: black;">생명과학</a></li>
-			</ul>						
-			</li>	
-	<li>><a href="lectureList?lectypeb=한국사" style="color: black;">한국사</a></li>
-	<li>><a href="lectureList?lectypeb=제2외국어" style="color: black;">제2외국어</a></li>
-		</ul>	                  
+	<div id="Accordion_wrap" style="width: 150px; ">
+     <div class="que">
+      <span>국어</span>
+       <div class="arrow-wrap">
+         <span class="arrow-top">↑</span>
+        <span class="arrow-bottom">↓</span>
+       </div> 
+     </div>
+     <div class="anw">
+     <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypeb=문학&order=" style="color: black; text-decoration:none; margin-bottom: 5px;">문학</a>
 	</div>
-		<table class="table table-bordered">
+	<div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypeb=비문학" style="color: black; text-decoration:none;">비문학</a>
+     </div>    
+       </div>
+      <div class="que">
+      <span>수학</span>
+       <div class="arrow-wrap">
+         <span class="arrow-top">↑</span>
+        <span class="arrow-bottom">↓</span>
+       </div> 
+     </div>
+     <div class="anw">
+     <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     	<a href="lectureList?lectypeb=수학1" style="color: black;text-decoration:none; margin-bottom: 1px;">수학1</a>
+     </div>
+	<div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+		<a href="lectureList?lectypeb=수학2" style="color: black;text-decoration:none;">수학2</a>
+     </div> 
+      	<div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+		<a href="lectureList?lectypeb=미적분" style="color: black;text-decoration:none;">미적분</a>
+     </div>    
+     </div>
+          <div class="que">
+      <span>영어</span>
+       <div class="arrow-wrap">
+         <span class="arrow-top">↑</span>
+        <span class="arrow-bottom">↓</span>
+       </div> 
+     </div>
+     <div class="anw">
+     <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+		<a href="lectureList?lectypeb=독해" style="color: black; text-decoration:none;">독해</a>
+     </div>
+	<div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+    	<a href="lectureList?lectypeb=문법" style="color: black; text-decoration:none;">문법</a>
+     </div>     
+     </div>
+     <div class="que">
+      <span>사회</span>
+       <div class="arrow-wrap">
+         <span class="arrow-top">↑</span>
+        <span class="arrow-bottom">↓</span>
+       </div> 
+     </div>
+     <div class="anw">
+     <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypeb=경제" style="color: black; text-decoration:none;">경제</a>
+     </div>
+	<div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypeb=사회문화" style="color: black; text-decoration:none;">사회문화</a>
+     </div>     
+     </div>
+          <div class="que">
+      <span>과학</span>
+       <div class="arrow-wrap">
+         <span class="arrow-top">↑</span>
+        <span class="arrow-bottom">↓</span>
+       </div> 
+     </div>
+     <div class="anw">
+     <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+    <a href="lectureList?lectypeb=과학" style="color: black; text-decoration:none;">화학</a>
+     </div >
+	<div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+   <a href="lectureList?lectypeb=생명과학" style="color: black; text-decoration:none;">생명과학</a>
+     </div>     
+     </div>
+          <div class="que">
+      <span>그 외</span>
+       <div class="arrow-wrap">
+         <span class="arrow-top">↑</span>
+        <span class="arrow-bottom">↓</span>
+       </div> 
+     </div>
+     <div class="anw">
+     <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypeb=한국사" style="color: black; text-decoration:none;">한국사</a>
+     </div>
+	<div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypeb=제2외국어" style="color: black; text-decoration:none;">제2외국어</a>
+     </div>     
+     </div>
+</div>
+
+	<div style="width:1500px; margin-top: 30px; margin-left: 30px; margin-bottom: 30px; ">	
 		<c:forEach var="dto" items="${list}">
-			<tr>
-				<td style="width: 250px" align="center" rowspan="5">
-					<a href="lectureDetail?lecdenum=${dto.lecdenum}" style="color: black;">
-					<img src=" " width="230px" height="250" border="1" id="showimg">
-					</a>
-					<br>					
-				</td>
-				<td style="width: 300px">강사명 : ${dto.teaname}</td>
-			</tr>
-			<tr>
-		 <td>	강의명 : ${dto.lecname}</td>
-			
-			</tr>
-			<tr>
-				<td>강의 과목 : ${dto.lectypea}</td>
-			</tr>
-			<tr>
-				<td>강의 상세 과목 : ${dto.lectypeb}</td>
-			</tr>
-			<tr>
-				<td>주소 :</td>
-			</tr>
+					<div  class="text_photo" style="padding-left: 30px; padding-top: 30px; float: left; ">
+					<p id = 'explain'>${dto.lecname}</p> 
+						<a href="lectureDetail?lecdenum=${dto.lecdenum}" style="text-decoration:none;">
+						
+							<img src=" " width="230px" height="250" border="1" id="showimg"></a>
+					</div>
 		</c:forEach>	
-	</table>
-	</div>
+		</div>
+</div>
+	<script type="text/javascript">
+	
+	$(".que").click(function() {
+
+		   $(this).next(".anw").stop().slideToggle(300);
+		  $(this).toggleClass('on').siblings().removeClass('on');
+		  $(this).next(".anw").siblings(".anw").slideUp(300); // 1개씩 펼치기
+		});
+	
+	</script>
 </body>
 </html>

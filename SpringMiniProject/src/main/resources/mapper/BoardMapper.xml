@@ -11,8 +11,6 @@
             where ${searchcolumn} like concat('%',#{searchword},'%')
         </if>
     </select>
-
-
     <select id="getPagingList" parameterType="Map" resultType="boardDto">
         select * from board
         <if test="searchcolumn!=null and searchword!=null">
@@ -21,8 +19,9 @@
         order by boardnum desc limit #{startnum},#{perpage}
     </select>
 
-
-
+    <select id="getHotList" resultType="boardDto">
+        select * from board order by likes desc, readcount desc limit 5
+    </select>
 
     <select id="selectByNum" parameterType="int" resultType="boardDto">
         select * from board where boardnum = #{boardnum}
@@ -59,6 +58,9 @@
     <select id="getMinNum" resultType="int">--  제일 오래된글에 이전글버튼 안보이게 하기
         SELECT MIN(boardnum) from board
     </select>
+    <update id="updateReportCount" parameterType="int">-- 신고수 증가
+        update board set report=report+1 where boardnum=#{boardnum}
+    </update>
 <!--    <select id="getBoardTypeList" parameterType="Map" resultType="boardDto">&#45;&#45;  자유 질문 나눠서 출력-->
 <!--        select * from board-->
 <!--        <if test="searchcolumn!=null and searchword!=null">-->

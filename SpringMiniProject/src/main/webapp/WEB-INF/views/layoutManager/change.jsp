@@ -1,20 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%--<!DOCTYPE html>--%>
-<%--<html>--%>
-<%--<head>--%>
-<%--    <meta charset="UTF-8">--%>
-<%--    <title>Insert title here</title>--%>
-<%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">--%>
-<%--    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>--%>
-<%--    <style type="text/css">--%>
-<%--    </style>--%>
-<%--</head>--%>
-<%--<body>--%>
-<%--    <h1>hello world!!</h1>--%>
-<%--</body>--%>
-<%--</html>--%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,8 +11,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-<%--    char.js--%>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+<%--    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>--%>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+
     <style type="text/css">
         @font-face {
             font-family: 'MICEGothic Bold';
@@ -39,18 +26,6 @@
             font-family: 'MICEGothic Bold';
         }
     </style>
-
-<%--    <meta charset="utf-8">--%>
-<%--    <meta http-equiv="X-UA-Compatible" content="IE=edge">--%>
-<%--    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">--%>
-<%--    <meta name="description" content="">--%>
-<%--    <meta name="author" content="">--%>
-<%--    <link href="img/logo/logo.png" rel="icon">--%>
-<%--    <title>RuangAdmin - Dashboard</title>--%>
-<%--    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">--%>
-<%--    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">--%>
-<%--    <link href="css/manager/manager.css" rel="stylesheet">--%>
-
 </head>
 <c:set var="root" value="<%=request.getContextPath() %>"></c:set>
 
@@ -75,11 +50,14 @@
                                         <div class="text-xs font-weight-bold text-uppercase mb-1">
                                             Incom (<span id ="nowYear"></span> year)
                                         </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="print-total-incom"></div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="print-total-incom">
+                                            ${totalincom}
+                                        </div>
 <%--                                        <div class="mt-2 mb-0 text-muted text-xs">--%>
 <%--                                            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>--%>
 <%--                                            <span>Since last month</span>--%>
 <%--                                        </div>--%>
+
                                     </div>
                                     <div class="col-auto">
                                         <i class="fas fa-calendar fa-2x text-primary"></i>
@@ -96,6 +74,7 @@
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-uppercase mb-1">User</div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800" id="print-total-user"></div>
+                                        ${totalUser}
 <%--                                        <div class="mt-2 mb-0 text-muted text-xs">--%>
 <%--                                            <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>--%>
 <%--                                            <span>Since last years</span>--%>
@@ -118,6 +97,7 @@
                                             Lecture (<span id ="nowMonth"></span> month)
                                         </div>
                                         <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="print-total-lectures"></div>
+                                        ${totalLecture}
 <%--                                        <div class="mt-2 mb-0 text-muted text-xs">--%>
 <%--                                            <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>--%>
 <%--                                            <span>Since last month</span>--%>
@@ -136,102 +116,28 @@
                     <div class="col-xl-8 col-lg-7">
                         <div class="card mb-4">
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Monthly Recap Report</h6>
-                                <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                                       aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                         aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Dropdown Header:</div>
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
-                                </div>
+                                <h6 class="m-0 font-weight-bold text-primary">월별 매출 현황</h6>
                             </div>
                             <div class="card-body">
-                                <div class="chart-area">
-                                    <canvas id="myAreaChart"></canvas>
-                                </div>
+<%--                                <div class="chart-area">--%>
+                                    <canvas id="myChart"></canvas>
+<%--                                </div>--%>
                             </div>
                         </div>
                     </div>
+
                     <!-- Pie Chart -->
                     <div class="col-xl-4 col-lg-5">
                         <div class="card mb-4">
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Products Sold</h6>
-                                <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle btn btn-primary btn-sm" href="#" role="button" id="dropdownMenuLink"
-                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Month <i class="fas fa-chevron-down"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                         aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Select Periode</div>
-                                        <a class="dropdown-item" href="#">Today</a>
-                                        <a class="dropdown-item" href="#">Week</a>
-                                        <a class="dropdown-item active" href="#">Month</a>
-                                        <a class="dropdown-item" href="#">This Year</a>
-                                    </div>
-                                </div>
+                                <h6 class="m-0 font-weight-bold text-primary">과목별 매출 현황</h6>
                             </div>
                             <div class="card-body">
-                                <div class="mb-3">
-                                    <div class="small text-gray-500">Oblong T-Shirt
-                                        <div class="small float-right"><b>600 of 800 Items</b></div>
-                                    </div>
-                                    <div class="progress" style="height: 12px;">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 80%" aria-valuenow="80"
-                                             aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <div class="small text-gray-500">Gundam 90'Editions
-                                        <div class="small float-right"><b>500 of 800 Items</b></div>
-                                    </div>
-                                    <div class="progress" style="height: 12px;">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 70%" aria-valuenow="70"
-                                             aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <div class="small text-gray-500">Rounded Hat
-                                        <div class="small float-right"><b>455 of 800 Items</b></div>
-                                    </div>
-                                    <div class="progress" style="height: 12px;">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 55%" aria-valuenow="55"
-                                             aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <div class="small text-gray-500">Indomie Goreng
-                                        <div class="small float-right"><b>400 of 800 Items</b></div>
-                                    </div>
-                                    <div class="progress" style="height: 12px;">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50"
-                                             aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <div class="small text-gray-500">Remote Control Car Racing
-                                        <div class="small float-right"><b>200 of 800 Items</b></div>
-                                    </div>
-                                    <div class="progress" style="height: 12px;">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30"
-                                             aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer text-center">
-                                <a class="m-0 small text-primary card-link" href="#">View More <i
-                                        class="fas fa-chevron-right"></i></a>
+                                <canvas id="chartPie"></canvas>
                             </div>
                         </div>
                     </div>
+
                     <!-- Invoice Example -->
                     <div class="col-xl-8 col-lg-7 mb-4">
                         <div class="card">
@@ -392,53 +298,102 @@
 
     //페이지 로드 되자마자 출력되는 함수들
     $(function () {
-        // totalIncom();      //올해의 수익
-        totalUser();       //전체 학생수
-        totalLecture();
-    });
+        chartPie();
 
-    // //올해의 수익
-    // function totalIncom() {
-    //     $.ajax({
-    //         type:"get",
-    //         url:"/mini/manager/totalIncom",
-    //         dataType:"json",
-    //         success:function(res) {
-    //             alert("print-total-incom");
-    //             alert(res.result);
-    //             $("#print-total-incom").html(res.result);
-    //             }
-    //     })
-    // }
-    function totalUser() {
-        $.ajax({
-            type:"get",
-            url:"${root}/manager/usertotalCount",
-            dataType:"json",
-            success:function(res) {
-                $("#print-total-user").html(res);
+        <!-- 차트 script-->
+        // 차트를 그럴 영역을 dom요소로 가져온다.
+        var chartArea = document.getElementById('myChart').getContext('2d');
+        // 차트를 생성한다.
+        var myChart = new Chart(chartArea, {
+            // ①차트의 종류(String)
+            type: 'bar',
+            // ②차트의 데이터(Object)
+            data: {
+                // ③x축에 들어갈 이름들(Array)
+                labels: ['1', '2', '3', '4', '5', '6',"7",'8','9','10','11','12'],
+                // ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.
+                datasets: [{
+                    // ⑤dataset의 이름(String)
+                    label: '월별매출(단위:원)',
+                    // ⑥dataset값(Array)
+                    data: [${incom1}, ${incom2}, ${incom3}, ${incom4}, ${incom5}, ${incom6},
+                        ${incom7}, ${incom8}, ${incom9}, ${incom10}, ${incom11}, ${incom12}],
+                    // ⑦dataset의 배경색(rgba값을 String으로 표현)
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    // ⑧dataset의 선 색(rgba값을 String으로 표현)
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    // ⑨dataset의 선 두께(Number)
+                    borderWidth: 1
+                }]
+            },
+            // ⑩차트의 설정(Object)
+            options: {
+                // ⑪축에 관한 설정(Object)
+                scales: {
+                    // ⑫y축에 대한 설정(Object)
+                    y: {
+                        // ⑬시작을 0부터 하게끔 설정(최소값이 0보다 크더라도)(boolean)
+                        beginAtZero: true
+                    }
+                }
             }
-        })
+        });
+
+        document.getElementById("myChart").onclick = function(evt) {
+            var activePoints = myChart.getElementsAtEvent(evt);
+
+            if(activePoints.length > 0)
+            {
+                var clickedElementindex = activePoints[0]["_index"];
+                var month = myChart.data.labels[clickedElementindex];
+                console.log("label : " + month);
+
+                var value = myChart.data.datasets[0].data[clickedElementindex];
+                console.log("value : " + value);
+                chartPie(month);
+            }
+        }
+    });//function
+
+    function chartPie(month,value) {
+        // 차트를 그럴 영역을 dom요소로 가져온다.
+        var pieChartArea = document.getElementById('chartPie').getContext('2d');
+        // 차트를 생성한다.
+        var chartPie = new Chart(pieChartArea, {
+            // ①차트의 종류(String)
+            type: 'pie',
+            // ②차트의 데이터(Object)
+            data: {
+                // ③x축에 들어갈 이름들(Array)
+                labels: [month],
+                // ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.
+                datasets: [{
+                    // ⑤dataset의 이름(String)
+                    label: month+'월 과목별 매출(단위:원)',
+                    // ⑥dataset값(Array)
+                    data: [10,20],
+                    // ⑦dataset의 배경색(rgba값을 String으로 표현)
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    // ⑧dataset의 선 색(rgba값을 String으로 표현)
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    // ⑨dataset의 선 두께(Number)
+                    borderWidth: 1
+                }]
+            },
+            // ⑩차트의 설정(Object)
+            options: {
+                // ⑪축에 관한 설정(Object)
+                scales: {
+                    // ⑫y축에 대한 설정(Object)
+                    y: {
+                        // ⑬시작을 0부터 하게끔 설정(최소값이 0보다 크더라도)(boolean)
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
     }
-    function totalLecture() {
-        $.ajax({
-            type:"get",
-            url:"${root}/manager/totalLectureCount",
-            dataType:"json",
-            data:{"lecyear":year,"lecmonth":month},
-            success:function(res) {
-                $("#print-total-lectures").html(res);
-            }
-        })
-    };
 </script>
-
-<%--<script src="vendor/jquery/jquery.min.js"></script>--%>
-<%--<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>--%>
-<%--<script src="vendor/jquery-easing/jquery.easing.min.js"></script>--%>
-<%--<script src="js/ruang-admin.min.js"></script>--%>
-<%--<script src="vendor/chart.js/Chart.min.js"></script>--%>
-<%--<script src="js/manager/manager.js"></script>--%>
 </body>
 
 </html>

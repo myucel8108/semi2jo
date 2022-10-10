@@ -16,13 +16,13 @@
 
 </head>
 <body>
-<div class="container" style="width: 100%; padding: 50px;">
+<div class="container" style="width: 800px; padding: 50px;">
   <form action="update" method="post" enctype="multipart/form-data">
     <input type="hidden" name="boardnum" value="${dto.boardnum}">
     <input type="hidden" name="currentPage" value="${currentPage}">
     <%--    <input type="hidden" name="email" value="${sessionScope.loginid}">--%>
     <input type="hidden" name="usernum" value="${sessionScope.usernum}">
-    <table class="table table-bordered" style="width: 600px;">
+    <table class="table table-bordered" style="width: 800px;">
       <tr>
         <th style="text-align: center;">유형</th>
         <td>
