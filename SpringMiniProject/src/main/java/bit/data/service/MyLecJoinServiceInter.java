@@ -10,6 +10,6 @@ public interface MyLecJoinServiceInter {
 
     public List<MyLecJoinDto> getMyLecPayByNum(int usernum);
 
-    public List<MyLecJoinDto> getTotalIncom(int year);
+    public List<MyLecJoinDto> getTotalIncom(int year, int month);
 
 }

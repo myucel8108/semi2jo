@@ -47,6 +47,6 @@ public class LectureDao implements LectureDaoInter{
     //lectypeA 의 종류 구하기
     @Override
     public List<LectureDto> getLecTypeA() {
-        return session.selectList(ns="getLecTypeA");
+        return session.selectList(ns+"getLecTypeA");
     }
 }

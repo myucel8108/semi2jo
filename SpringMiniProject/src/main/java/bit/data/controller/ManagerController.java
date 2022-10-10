@@ -43,24 +43,19 @@ public class ManagerController {
     @Autowired
     MyLecJoinServiceInter myLecJoinService;
 
-    //관리자 페이지로 이동
-//    @GetMapping("/manager/main")
-//    public String managerMain() {
-//        return "/manager/layoutManager/change";
-//    }
 
 
     //관리자 페이지로 이동
     @GetMapping("/manager/main")
     public ModelAndView managerMain() {
         ModelAndView mview = new ModelAndView();
-
+        int mon =0;
         //총 매출액 + 월별 그래프
         Date date = new Date();
         int year = date.getYear()+1900;
         int month = date.getMonth()+1;
         System.out.println("year"+year);
-        List<MyLecJoinDto> list = myLecJoinService.getTotalIncom(year);
+        List<MyLecJoinDto> list = myLecJoinService.getTotalIncom(year,mon);
         System.out.println(list);
         int totalincom=0; int incom1=0; int incom2=0; int incom3=0; int incom4=0; int incom5=0;
         int incom6=0; int incom7=0; int incom8=0; int incom9=0; int incom10=0; int incom11=0; int incom12=0;
@@ -105,12 +100,71 @@ public class ManagerController {
         mview.addObject("totalLecture",totalLecture);
         mview.addObject("totalUser",totalUser);
 
-        //lecture typeA 의 종류
-//        List<LectureDto> leclist = lectureService.getLecTypeA();
-//        mview.addObject("leclist",leclist);
+//        lecture typeA 의 종류
+        List<LectureDto> leclist = lectureService.getLecTypeA();
+        mview.addObject("leclist",leclist);
+        System.out.println(leclist);
+        String lectureType =leclist.get(0).lectypea;
+        for (int i=1; i<leclist.size(); i++){
+            lectureType += ",";
+            lectureType += leclist.get(i).lectypea;
+        }
+        mview.addObject("lectureType",lectureType);
 
+        //과목별 총 매출 금액 구하기 (시간 되면 나중에는 자동형으로 변경해보자)
+        int val0=0; int val1=0; int val2=0; int val3=0; int val4=0;
+        for(int i=0; i< list.size(); i++){
+            int temp = list.get(i).price;
+            if(list.get(i).lectypea.equals("국어"))
+                val0 += temp;
+            else if(list.get(i).lectypea.equals("영어"))
+                val1+=temp;
+            else if(list.get(i).lectypea.equals("수학"))
+                val2+=temp;
+            else if(list.get(i).lectypea.equals("사회"))
+                val3+=temp;
+            else if(list.get(i).lectypea.equals("과학"))
+                val4+=temp;
+        }
+        mview.addObject("val0",val0);
+        mview.addObject("val1",val1);
+        mview.addObject("val2",val2);
+        mview.addObject("val3",val3);
+        mview.addObject("val4",val4);
+//        System.out.println(leclist.get(0).lectypea);
         mview.setViewName("/manager/layoutManager/change");
         return mview;
+    }
+
+    //해당 월의 과목별 매출
+    @GetMapping("/manager/incomByType")
+    @ResponseBody
+    public Map<String, Integer> imcomByType(@RequestParam(defaultValue = "0")int month){
+        Map<String, Integer> map = new HashMap<>();
+        List<MyLecJoinDto> list = myLecJoinService.getTotalIncom(2022,month);
+        List<LectureDto> leclist = lectureService.getLecTypeA();
+
+        //과목별 총 매출 금액 구하기 (시간 되면 나중에는 자동형으로 변경해보자)
+        int val0=0; int val1=0; int val2=0; int val3=0; int val4=0;
+        for(int i=0; i< list.size(); i++){
+            int temp = list.get(i).price;
+            if(list.get(i).lectypea.equals(leclist.get(0).lectypea))
+                val0 += temp;
+            else if(list.get(i).lectypea.equals(leclist.get(1).lectypea))
+                val1+=temp;
+            else if(list.get(i).lectypea.equals(leclist.get(2).lectypea))
+                val2+=temp;
+            else if(list.get(i).lectypea.equals(leclist.get(3).lectypea))
+                val3+=temp;
+            else if(list.get(i).lectypea.equals(leclist.get(4).lectypea))
+                val4+=temp;
+        }
+        map.put("val0",val0);
+        map.put("val1",val1);
+        map.put("val2",val2);
+        map.put("val3",val3);
+        map.put("val4",val4);
+        return map;
     }
 
     //커뮤니티 관리 페이지로 이동

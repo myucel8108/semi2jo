@@ -339,6 +339,76 @@
             }
         });
 
+        <%--for(var i =0; i<${leclist.size()}; i++){--%>
+        <%--    --%>
+        <%--}--%>
+
+        function chartPie() {
+            // 차트를 그럴 영역을 dom요소로 가져온다.
+            var pieChartArea = document.getElementById('chartPie').getContext('2d');
+            // 차트 x 축 데이터 (lectypea)
+            var lecType = "${lectureType}".split(",");
+            var res0=0; var res1=0; var res2=0; var res3=0; var res4=0;
+            <%--$.each(${list},function (idx, ele) {--%>
+            <%--    console("test");--%>
+
+            <%--})--%>
+            <%--for(var i=0; i<${list.size()}; i++){--%>
+            <%--    console.log(i);--%>
+            <%--    console.log(${list.get(i).lecmonth});--%>
+            <%--    console.log(${list.get(i).price});--%>
+            <%--    if("${list.get(i).lecmonth}"==month){--%>
+            <%--        if("${list.get(i).lectypea}"=="국어"){--%>
+            <%--            res0+=${list.get(i).price};--%>
+            <%--            console.log(res0);--%>
+            <%--        }--%>
+            <%--        if("${list.get(i).lectypea}"=="수학"){--%>
+            <%--            res1+=${list.get(i).price};--%>
+            <%--            console.log("res1"+res1);--%>
+            <%--        }--%>
+            
+            <%--    }--%>
+            
+            <%--}--%>
+
+            //차트 생성
+            var chartPie = new Chart(pieChartArea, {
+                // ①차트의 종류(String)
+                type: 'pie',
+                // ②차트의 데이터(Object)
+                data: {
+                    // ③x축에 들어갈 이름들(Array)
+                    labels:["국어","영어","수학","사회","과학"]
+                        // $.each(lecType,function (idx, ele) {
+                        // })
+                    ,
+            // ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.
+            datasets: [{
+                // ⑤dataset의 이름(String)
+                label: month+'월 과목별 매출(단위:원)',
+                // ⑥dataset값(Array)
+                data: [${val0},${val1},${val2},${val3},${val4}],
+                // ⑦dataset의 배경색(rgba값을 String으로 표현)
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                // ⑧dataset의 선 색(rgba값을 String으로 표현)
+                borderColor: 'rgba(255, 99, 132, 1)',
+                // ⑨dataset의 선 두께(Number)
+                borderWidth: 1
+            }]
+        },
+            // ⑩차트의 설정(Object)
+            options: {
+                // ⑪축에 관한 설정(Object)
+                scales: {
+                    // ⑫y축에 대한 설정(Object)
+                    y: {
+                        // ⑬시작을 0부터 하게끔 설정(최소값이 0보다 크더라도)(boolean)
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        }
         document.getElementById("myChart").onclick = function(evt) {
             var activePoints = myChart.getElementsAtEvent(evt);
 
@@ -355,44 +425,6 @@
         }
     });//function
 
-    function chartPie(month,value) {
-        // 차트를 그럴 영역을 dom요소로 가져온다.
-        var pieChartArea = document.getElementById('chartPie').getContext('2d');
-        // 차트를 생성한다.
-        var chartPie = new Chart(pieChartArea, {
-            // ①차트의 종류(String)
-            type: 'pie',
-            // ②차트의 데이터(Object)
-            data: {
-                // ③x축에 들어갈 이름들(Array)
-                labels: [month],
-                // ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.
-                datasets: [{
-                    // ⑤dataset의 이름(String)
-                    label: month+'월 과목별 매출(단위:원)',
-                    // ⑥dataset값(Array)
-                    data: [10,20],
-                    // ⑦dataset의 배경색(rgba값을 String으로 표현)
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    // ⑧dataset의 선 색(rgba값을 String으로 표현)
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    // ⑨dataset의 선 두께(Number)
-                    borderWidth: 1
-                }]
-            },
-            // ⑩차트의 설정(Object)
-            options: {
-                // ⑪축에 관한 설정(Object)
-                scales: {
-                    // ⑫y축에 대한 설정(Object)
-                    y: {
-                        // ⑬시작을 0부터 하게끔 설정(최소값이 0보다 크더라도)(boolean)
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    }
 </script>
 </body>
 
