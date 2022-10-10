@@ -255,6 +255,7 @@
                 <!-- Grid row -->
 
             </div>
-
+        </footer>
+    </section>
 </body>
 </html>

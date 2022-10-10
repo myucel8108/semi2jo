@@ -128,7 +128,7 @@ public class BoardController {
     )
     {
         int totalCount=boardService.getTotalCount(sc,sw);
-        int perPage=15;
+        int perPage=10;
         int perBlock=5;
         int startNum;
         int startPage;

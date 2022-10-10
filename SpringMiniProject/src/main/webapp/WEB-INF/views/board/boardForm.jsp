@@ -14,30 +14,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <script>
-    $(function (){
-                function checkFileName(str){
-                    var ext=str.split(".").pop().toLowerCase();
-                    var pattern =   /[\{\}\/?,;:|*~`!^\+<>@\#$%&\\\=\'\"]/gi;
-                    if($.inArray(ext, ["bmp","jpg","png","jpeg","gif"]) == -1) {    // 파일 확장자 체크
-                        //alert(ext);
-                        alert("이미지 파일만 업로드 가능합니다.\n(업로드 가능 확장자: jpg, png, bmp, gif)");
-                        return false;
-                    } else if(pattern.test(str)){    // 파일명에 특수문자 체크
-                        alert("파일명에 특수문자를 제거해주세요.");
-                        return false;
-                    } else {
-                        return true;
-                    }
-                }
-    });
+    // $(function (){
+    //     if ($("#anony"=='checked')){
+    //         var username = (this).attr(username);
+    //     }
+    // });
 </script>
 </head>
 <body>
-<div class="container" style="width: 100%; padding: 50px;">
+<div class="container" style="width: 800px; padding: 50px;">
 <form action="insert" method="post" enctype="multipart/form-data">
 <%--    <input type="hidden" name="email" value="${sessionScope.loginid}">--%>
         <input type="hidden" name="usernum" value="${sessionScope.usernum}">
-    <table class="table table-bordered" style="width: 600px;">
+    <table class="table table-bordered" style="width: 800px;">
         <tr>
             <th style="text-align: center;">유형</th>
             <td>
@@ -83,6 +72,7 @@
             <td colspan="2">
 					<textarea name="content" class="form-control" required="required"
                               style="height: 400px;"></textarea>
+                <label style="float: right;"><input type="checkbox" id="anony">익명</label>
             </td>
         </tr>
         <tr>
