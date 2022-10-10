@@ -38,6 +38,7 @@
     </style>
 </head>
 <body>
+
 <h1 style="text-align: center; font-size: 30px; margin-top: 80px; padding-bottom: 0px; font-family: abster;" >TeachMe 지원</h1>
 <div class="container" style="width: 100%;" >
     <div class="myaskbox" style="margin-bottom: 5px;">
@@ -93,7 +94,9 @@
                         </c:if>
 
 
-                        <c:if test="${dto.relevel==0 and sessionScope.loginok!=null and sessionScope.usernum==dto.usernum || sessionScope.email=='admin@gmail.com'}">
+<%--                        <c:if test="${dto.relevel==0 and sessionScope.loginok!=null and sessionScope.usernum==dto.usernum || sessionScope.email=='admin@gmail.com'}">--%>
+<%--                        <c:if test="${dto.relevel==0 and sessionScope.loginok!=null and sessionScope.usernum==dto.usernum || sessionScope.email=='admin@gmail.com'}">--%>
+                        <c:if test="${dto.relevel==0 and sessionScope.loginok!=null || sessionScope.email=='admin@gmail.com'}">
                         <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm">
                             </c:if>
                             <c:if test="${sessionScope.loginok!=null and dto.relevel==0}">
@@ -119,9 +122,9 @@
                     <c:set var="first" value="${fn:substring(dto.username, 0, 1)}"/>
                     <c:set var="last" value="${fn:substring(dto.username, 3, totalLength)}"/>
 
-                    <td align="center"><c:if test="${!empty dto.username and dto.username!='티치미'}"><c:out value="${first}**${last}"/>
+                    <td align="center"><c:if test="${!empty dto.username and dto.username!='티치미' and sessionScope.usernum!=dto.usernum }"><c:out value="${first}**${last}"/>
                         </c:if>
-                        <c:if test="${dto.username=='티치미'}"><c:out value="${dto.username}"/>
+                        <c:if test="${dto.username=='티치미' || sessionScope.usernum==dto.usernum}"><c:out value="${dto.username}"/>
                         </c:if>
 
 
@@ -172,5 +175,16 @@
     </div>
 </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
 </body>
-</html>ㅋ
+</html>

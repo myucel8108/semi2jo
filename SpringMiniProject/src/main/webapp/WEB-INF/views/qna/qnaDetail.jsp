@@ -89,6 +89,7 @@
                     <div class="aform">
                         <form id="aform">
                             <input type="hidden" name="qnanum" value="${dto.qnanum}">
+                            <input type="hidden" name="pass" value="${dto.pass}">
                             <input type="hidden" name="loginid" value="${sessionScope.loginid}">
                             <input type="hidden" name="username" value="${sessionScope.username}">
                         </form>
@@ -100,7 +101,7 @@
                         <button type="button" class="btn btn-outline" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" onclick="location.href='qnaUpdate?qnanum=${dto.qnanum}&currentPage=${currentPage}'">수정</button>
                         </c:if>
                         <c:if test="${sessionScope.loginok!=null && sessionScope.usernum==dto.usernum || sessionScope.email=='admin@gmail.com'}">
-                        <button type="button" class="btn btn-outline adel" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" >삭제</button>
+                        <button type="button" onclick="if(confirm('게시글을 삭제하시겠습니까?')) location.href='delete?qnanum=${dto.qnanum}&currentPage=${currentPage}'" class="btn btn-outline adel" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" >삭제</button>
 <%--                        <button type="button" class="btn btn-outline adel" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" onclick="location.href='delete?qnanum=${dto.qnanum}&currentPage=${currentPage}'">삭제</button>--%>
                         </c:if>
                         <c:if test="${dto.restep==0 && sessionScope.email=='admin@gmail.com'}">

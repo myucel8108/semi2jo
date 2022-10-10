@@ -148,6 +148,7 @@
     <input type="hidden" name="relevel" value="${relevel}">
     <input type="hidden" name="restep" value="${restep}">
     <input type="hidden" name="currentPage" value="${currentPage}">
+    <input type="hidden" name="pass" value="${dto.pass}">
 
 
     <table class="table table-bordered" style="width: 500px;" id="formbox">
@@ -232,10 +233,7 @@
                 <div style="text-align: center; margin-bottom: 10px;">
 
 
-                    <div class="checkbox-container">
-                        <input type="checkbox" value="Y" id="is-subscription" >
-                        <label for="is-subscription" style="padding-top:10px; color: grey; font-size: 15px;">비밀글 설정</label>
-                    </div>
+
 
 <%--                <input type="checkbox" id="secret"/>--%>
 <%--                    <label class="check1"><b style="margin-left: 3px; text-decoration: none; color: grey; font-size: 13px;">관리자만 보기</b></label>--%>
