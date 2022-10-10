@@ -5,6 +5,7 @@ import bit.data.dto.LectureDto;
 
 import java.util.List;
 
+import bit.data.dto.LecturePresentJoinDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +43,12 @@ public class LectureService implements LectureServiceInter{
     public void insertLecture(LectureDto dto) {
         lectureDao.insertLecture(dto);
     }
+
+    @Override
+    public List<LecturePresentJoinDto> getLecturePresent(int lecnum) {
+        return lectureDao.getLecturePresent(lecnum);
+    }
+
     @Override
     public List<LectureDto> getAllLecture(){
     	

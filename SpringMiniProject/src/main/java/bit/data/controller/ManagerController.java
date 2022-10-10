@@ -1,7 +1,11 @@
 package bit.data.controller;
 
 import bit.data.dto.*;
-import bit.data.service.*;
+import bit.data.service.BoardServiceInter;
+import bit.data.service.LecDetailServiceInter;
+import bit.data.service.LectureServiceInter;
+import bit.data.service.UserServiceInter;
+
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -287,9 +291,28 @@ public class ManagerController {
     }
 
     @GetMapping("/lecture-present")
-    public String lecturePresent(int lecnum){
+    public ModelAndView lecturePresent(int lecnum){
+//        System.out.println(lecnum);
+        ModelAndView mview = new ModelAndView();
 
-        return "/manager/manager/lecturePresent";
+        List<LecturePresentJoinDto> list = lectureService.getLecturePresent(lecnum);
+//        System.out.println(list);
+        String typea = list.get(0).getLectypea();
+        String typeb = list.get(0).getLectypeb();
+        String lphoto = list.get(0).getLecphoto();
+        String lname = list.get(0).getLecname();
+        String tname = list.get(0).getTeaname();
+
+        mview.addObject("list", list);
+        mview.addObject("typea", typea);
+        mview.addObject("typeb", typeb);
+        mview.addObject("lphoto", lphoto);
+        mview.addObject("lname", lname);
+        mview.addObject("tname", tname);
+
+        mview.setViewName("/manager/manager/lecturePresent");
+
+        return mview;
     }
 
     //강의 등록 폼으로 이동
