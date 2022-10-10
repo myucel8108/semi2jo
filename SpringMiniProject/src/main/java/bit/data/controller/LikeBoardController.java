@@ -65,13 +65,16 @@ public class LikeBoardController {
       List<Integer> usernums=likeBoardService.likeUserAll(boardnum);
       List<String> list=new ArrayList<>();
      String s="";
+
       for(int num:usernums){
           String nickname=userService.getDataByNum(num).getNickname();
           String userphoto=userService.getDataByNum(num).getUserphoto();
           if (userphoto != null) {
+
               s="<img src='../upload/"+userphoto+"' width=40 height=40 class='rounded-circle'>"+nickname;
           }
           if (userphoto == null) {
+
               s="<img src='../image/noprofilepicture.png' width=40 height=40 class='rounded-circle'>"+nickname;
           }
           //s=nickname;

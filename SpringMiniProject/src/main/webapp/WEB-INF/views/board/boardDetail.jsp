@@ -53,14 +53,20 @@
                    success : function(res) {
                        var s="";
                        $.each(res,function(i,ids){
-                           s+=ids+"<br><br>";
+
+                           s+=ids;
+                           if(i%2==1){
+                               s+="<br><br>";
+                           }else{
+                               s+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                           }
                         });
                         if(res.length==0){
                            s="좋아요한 회원이 없습니다";
                         }
                        Swal.fire({
 
-                           title: "이 게시물을 좋아요한 회원들<br>",
+                           title: "이 게시물을 좋아요한 회원들: ${dto.likes}명<br>",
 
                            html:s,
 
@@ -87,21 +93,34 @@
               }
           });
             $(document).on("click",".report", function (){
-                var boardnum=$(this).attr("boardnum");
+                var boardnum=${dto.boardnum};
+               // console.log("boardnum="+boardnum);
+                var a='${sessionScope.loginok}';
+                if(a==''){
+                    alert("로그인 후 이용해주세요");
+                    return;
+                }
                 var ans=confirm("해당 게시글을 신고하시겠습니까?");
                 if(ans){
                     $.ajax({
                         type:"get",
-                        url:"",
+                        url:"report",
                         dataType:"text",
                         data:{"boardnum":boardnum},
                         success:function(res){
-                            alert("신고가 접수되었습니다")
+                           // alert(res);
+                            if(res==-1){
+                                alert("이미 신고하신 게시글입니다");
+                            }
+                            else {
+                                alert("신고가 접수되었습니다");
+                            }
                         }
                     });
                 }
             });
         });
+
         function initlike(){
             var boardnum=${dto.boardnum};
             var loginok='${sessionScope.loginok}';
@@ -148,7 +167,7 @@
                             s+="<span class='writer'>(작성자)</span>";
                         }
                         s+="<br><br>";
-                        s+="<pre>&nbsp;&nbsp;<b>"+elt.recontent+"&nbsp;&nbsp;";
+                        s+="<pre>&nbsp;&nbsp;<b style='font-size: 15px;'>"+elt.recontent+"&nbsp;&nbsp;";
                         s+="</b><span class='day' style='color:gray;'>"+elt.writeday+"&nbsp;";
                         if(loginok=='yes' && usernum==elt.usernum){
                             s+='<i class="fa fa-close redelete" style="font-size:15px; color: black" reboardnum='+elt.reboardnum+'></i>';
@@ -202,7 +221,7 @@
         </tr>
         <tr height="200">
             <td>
-                <pre><b>${dto.content}</b></pre> <!--작성글 내용-->
+                <pre style="margin: 20px;"><b style="font-size: 17px;">${dto.content}</b></pre> <!--작성글 내용-->
                 <c:if test="${dto.photo!='no'}">    <!--작성글 첨부사진-->
                     <c:forTokens var="photo" items="${dto.photo}" delims=",">
                         <img src="../upload/${photo}" width="400"
@@ -210,7 +229,7 @@
                     </c:forTokens>
                 </c:if>
                 <br><br>
-                <span class="likes">
+                <span class="likes" style="margin: 10px;">
                 <%--<i class='far fa-thumbs-up'></i>--%>
                     <i class="fa fa-thumbs-o-up" style="font-size:24px"><b style="font-size: 15px">
                 &nbsp;좋아요</b></i>
@@ -227,18 +246,21 @@
                 <i class="fa fa-warning report" style="font-size:24px; float: right;"><b style="font-size: 15px">&nbsp;신고하기</b></i>
                 <br><hr>
                 <div class="alist"></div>
-                <c:if test="${sessionScope.loginok!=null}">
                 <div class="aform">
                     <form id="aform">
                         <input type="hidden" name="boardnum" value="${dto.boardnum}">
                         <input type="hidden" name="usernum" value="${sessionScope.usernum}">
                         <div class="input-group">
-                            <textarea name="recontent" id="recontent" style="width: 400px; height: 100px;" class="form-control"></textarea>
+                            <c:if test="${sessionScope.loginok!=null}">
+                            <textarea name="recontent" id="recontent" style="width: 400px; height: 100px;" class="form-control" placeholder="댓글을 입력해주세요"></textarea>
                             <button type="button" class="btn btn-outline-dark" id="btnreboard">등록</button>
+                            </c:if>
+                            <c:if test="${sessionScope.loginok==null}">
+                                <textarea name="recontent" id="recontent" style="width: 400px; height: 100px;" class="form-control" placeholder="로그인 후 이용해주세요"></textarea>
+                            </c:if>
                         </div>
                     </form>
                 </div>
-                </c:if>
                 <div style="text-align: center; float: bottom;"><hr>
                 <button type="button" class="btn btn-outline-dark" onclick="location.href='boardFree?currentPage=${currentPage}'">목록</button>
                 <c:if test="${sessionScope.loginok!=null && sessionScope.usernum==dto.usernum}">
@@ -268,7 +290,7 @@
         $("span.likes").click(function() {
             var a='${sessionScope.loginok}';
             if(a==''){
-                alert("로그인을 해주세요");
+                alert("로그인 후 이용해주세요");
                 return;
             }
             var thumbs = $(this).find("i").attr("class");

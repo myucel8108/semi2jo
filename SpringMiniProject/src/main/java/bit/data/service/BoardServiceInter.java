@@ -20,6 +20,10 @@ public interface BoardServiceInter {
     public int moveToNextBoard(int boardnum);
     public int getMinNum();
     public int getMaxNum();
+    public void updateReportCount(int boardnum);
+
+    public List<BoardDto> getHotList();
+
 //    public List<BoardDto> getBoardTypeList(String searchcolumn, String searchword, int startnum, int perpage);
 
 
