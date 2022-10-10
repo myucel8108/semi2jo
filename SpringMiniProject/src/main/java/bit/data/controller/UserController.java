@@ -23,9 +23,19 @@ public class UserController {
     @Autowired
     UserServiceInter userService;
 
+    //회원정보 수정 전 비밀번호 확인폼
+    @GetMapping("student/upStuPassCheck")
+    public String upStuPassCheck(Model model,HttpSession session){
+
+        int usernum= Integer.parseInt(session.getAttribute("usernum").toString());
+        UserDto dto=userService.getDataByNum(usernum);
+        model.addAttribute("dto",dto);
+
+        return "/mypage/student/upStuPassCheck";
+    }
 
     //수정폼에 출력할 데이터 반환
-    @GetMapping("student/updateStudent")
+    @PostMapping("student/updateStudent")
     public String updateStudent(Model model,HttpSession session){
 
         int usernum= Integer.parseInt(session.getAttribute("usernum").toString());
@@ -52,10 +62,7 @@ public class UserController {
         System.out.println(path);
         //업로드 및 저장될 파일명 구하기
         String photoName=myphoto.getOriginalFilename();
-        if(photoName.equals("")) {
-            dto.setUserphoto(null);
-        }
-        else {
+        if(!photoName.equals("")) {
             String fileName= ChangeName.getChangeFileName(photoName);
             //업로드
             try {

@@ -66,10 +66,14 @@
         UPDATE user SET userphoto = null WHERE usernum=#{usernum}
     </update>
 
-    <!--회원 정보변경 (usernum)으로 가져옴-->
+    <!--회원 정보변경 (usernum)으로 가져옴, 사진은 선택될 경우만 업데이트-->
     <update id="updateUser" parameterType="userDto">
-        update user set userpass=#{userpass}, username=#{username}, nickname=#{nickname}, userphoto=#{userphoto},
-                        addr=#{addr}, hp=#{hp}, birth=#{birth} where usernum=#{usernum}
+        update user set userpass=#{userpass}, username=#{username}, nickname=#{nickname},
+                        addr=#{addr}, hp=#{hp}, birth=#{birth}
+        <if test="userphoto!=null">
+            ,userphoto=#{userphoto}
+        </if>
+         where usernum=#{usernum}
     </update>
 
     <!--회원 삭제 (usernum)으로 가져옴-->

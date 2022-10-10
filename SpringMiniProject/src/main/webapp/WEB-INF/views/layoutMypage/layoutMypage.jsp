@@ -110,10 +110,6 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Yeon+Sung&display=swap" rel="stylesheet">
-
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style type="text/css">
 
         *{
@@ -174,9 +170,11 @@
             width: auto;
             height: 250px;
         }
+
     </style>
 </head>
 <body>
+
 <!-- 사이드 메뉴가 존재하는 challenge layout -->
 <div class="layout">
     <div class="layoutbox">

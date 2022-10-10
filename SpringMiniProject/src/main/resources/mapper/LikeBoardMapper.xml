@@ -7,6 +7,8 @@
 <select id="stateBoardLike" parameterType="Map" resultType="int"> /*좋아요상태: 좋아요가 눌러져있는지 안눌러져있는지*/
     select likestate from likeboard where boardnum=#{boardnum} and usernum=#{usernum}
 </select>
+
+
 <insert id="insertLikeBoard" parameterType="likeBoardDto"> /*좋아요하기*/
     insert into likeboard values (null,#{usernum}, #{boardnum}, #{likestate});
 </insert>

@@ -25,4 +25,14 @@ public class MyLecJoinService implements MyLecJoinServiceInter{
 
         return myLecJoinDao.getMyLecListByNum(map);
     }
+
+    @Override
+    public List<MyLecJoinDto> getMyLecPayByNum(int usernum) {
+        return myLecJoinDao.getMyLecPayByNum(usernum);
+    }
+        
+    @Override
+    public List<MyLecJoinDto> getTotalIncom(int year) {
+        return myLecJoinDao.getTotalIncom(year);
+    }
 }

@@ -4,17 +4,16 @@ import bit.data.dto.QnaDto;
 import bit.data.service.QnaServiceInter;
 import bit.data.service.UserServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import util.ChangeName;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -62,23 +61,32 @@ public class QnaController {
 
 
     @GetMapping("/qna/qnaDetail") //게시판 디테일
-    public ModelAndView qnaDetail(int qnanum, int currentPage){
+    @ResponseBody
+    public ModelAndView qnaDetail(int qnanum, int currentPage, HttpServletRequest request){
+
 
         ModelAndView mview = new ModelAndView();
+        HttpSession session = request.getSession();
 
+        int usernum = (int) session.getAttribute("usernum");
+        System.out.println(usernum);
 
         QnaDto dto = qnaService.selectByNum(qnanum);
 
         mview.addObject("dto", dto);
         mview.addObject("currentPage", currentPage);
 
-        mview.setViewName("/main/qna/secretQna");
+        if (usernum==12 || usernum==dto.getUsernum() && dto.getQnanum()==dto.getRegroup() ){
+            mview.setViewName("/main/qna/qnaDetail");
+        }else {
+            mview.setViewName("/main/qna/secretQna");
 
+        }
         return mview;
     }
 
-    @GetMapping("/qna/secretQna") //게시판 디테일
-    public ModelAndView secretQna(int qnanum, int currentPage){
+    @GetMapping("/qna/secretQna") //암호체크
+    public ModelAndView secretQna(int qnanum, int currentPage, String pass){
 
         ModelAndView mview = new ModelAndView();
 
@@ -87,15 +95,12 @@ public class QnaController {
 
         mview.addObject("dto", dto);
         mview.addObject("currentPage", currentPage);
+        mview.addObject("pass", pass);
 
         mview.setViewName("/main/qna/qnaDetail");
 
         return mview;
     }
-
-
-
-
 
     @PostMapping("/qna/insert") //게시판 추가
     public String insert(QnaDto dto, List<MultipartFile>upload, HttpServletRequest request)
@@ -179,11 +184,8 @@ public class QnaController {
     }
 
     @GetMapping("/qna/delete")
-    @ResponseBody
-//    public String delete(int qnanum, int currentPage)
-    public void delete(int qnanum)
+    public String delete(int qnanum, int currentPage)
     {
-        System.out.println("hi");
         QnaDto dto=qnaService.selectByNum(qnanum);
         int restep=dto.getRestep();
         int regroup=dto.getRegroup();
@@ -192,10 +194,16 @@ public class QnaController {
         }else{
             qnaService.deleteQna(qnanum);
         }
+
 //                restep이 0이면 원글 regroup을 파라미터로 보내서  regroup을 지우자
 //                num에 해당하는  dto 얻고
-//        return "redirect:qnaList?currentPage="+currentPage;
+        return  "redirect:qnaList?currentPage="+currentPage;
     }
+
+
+
+
+
 
     @PostMapping("/qna/update")
     public String update(QnaDto dto, int currentPage, List<MultipartFile>upload,

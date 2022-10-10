@@ -7,4 +7,19 @@
         where a.lecnum=b.lecnum and b.lecdenum=c.lecdenum
             and c.usernum=#{usernum} and c.payok=#{payok}
     </select>
+
+
+    <select id="getMyLecPayByNum" parameterType="int" resultType="myLecJoinDto">
+        SELECT c.mylecnum, c.usernum, c.lecdenum, c.payok, c.paytime, b.price, a.lectypea, a.lectypeb, a.lecname, a.teaname, b.roomnum, b.lectime, b.lecday, b.lecmonth, b.lecyear
+        from lecture a, lecdetail b, mylecture c
+        where a.lecnum=b.lecnum and b.lecdenum=c.lecdenum
+          and c.usernum=#{usernum} and (c.payok='ok' or c.payok='cancel')
+    </select>
+    
+    <!--    올해의 총수익-->
+    <select id="getTotalIncom" parameterType="int" resultType="myLecJoinDto">
+        SELECT b.price, a.lectypea, b.lecmonth
+        from lecture a, lecdetail b, mylecture c
+        where a.lecnum=b.lecnum and b.lecdenum=c.lecdenum and c.payok="ok" and lecyear=${year}
+    </select>
 </mapper>

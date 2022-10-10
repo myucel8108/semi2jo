@@ -18,22 +18,6 @@
         *{
             font-family: Noto Sans KR;
         }
-        /*li>a.page-link{*/
-        /*    display: block;*/
-        /*    justify-content: center;*/
-        /*    align-items: center;*/
-        /*    vertical-align: middle;*/
-        /*    text-align: center;*/
-        /*    margin: auto;*/
-        /*    background-color: white;*/
-        /*    width: 50px;*/
-        /*}*/
-        /*ul.pagination{*/
-        /*    justify-content: center;*/
-        /*}*/
-        /*table>td>a{*/
-        /*    text-decoration: none;*/
-        /*}*/
     </style>
     <script>
         $(function (){
@@ -42,40 +26,44 @@
     </script>
 </head>
 <body>
+
 <div class="container" style="width: 1000px; padding: 50px;">
     <c:set var="root" value="<%=request.getContextPath() %>"/>
     <h1>커뮤니티</h1><br>
-    <div class="btn-group">
-        <button type="button" class="btn btn-outline-dark btn1" onclick="location.href='boardFree'">전체</button>
-        <button type="button" class="btn btn-outline-dark btn2" onclick="location.href='boardFree?boardtype=free'">자유</button>
-        <button type="button" class="btn btn-outline-dark btn3" onclick="location.href='boardFree?boardtype=ask'">질문</button>
-    </div>
-                <button onclick="location.href='${root}/board/boardForm'" style="float: right;" class="btn btn-outline-dark">글쓰기</button><br>
+                <button onclick="if(${sessionScope.loginok==null}){alert('로그인 후 이용해주세요')}else{location.href='${root}/board/boardForm'}" style="float: right;" class="btn btn-outline-dark">글쓰기</button><br><br>
                 <div style="margin: 10px;">
                     <table class="table" style="width: 100%; border-collapse: separate; border-radius: 15px; border: 1px solid black;">
                         <tr>
-                            <th colspan="2">인기게시물 (어케만드는거야...)</th>
+                            <td colspan="5" align="center">
+                                <b>이번주 인기게시물 TOP5</b>
+                            </td>
                         </tr>
                         <tr>
-                            <td>인기1</td>
-                            <td>인기2</td>
+                            <th style="width: 300px; text-align: center;">제목</th>
+                            <th style="width: 80px; text-align: center;">작성자</th>
+                            <th style="width: 120px; text-align: center;">작성일</th>
+                            <th style="width: 50px; text-align: center;">좋아요</th>
+                            <th style="width: 50px; text-align: center;">조회</th>
                         </tr>
-                        <tr>
-                            <td>인기3</td>
-                            <td>인기4</td>
-                        </tr>
-                        <tr>
-                            <td>인기5</td>
-                            <td>인기6</td>
-                        </tr>
-                        <tr>
-                            <td>인기7</td>
-                            <td>인기8</td>
-                        </tr>
-                        <tr>
-                            <td>인기9</td>
-                            <td>인기10</td>
-                        </tr>
+                        <c:forEach var="hotdto" items="${hotlist}">
+                            <tr>
+                                <td>
+                                    <a href="${root}/board/boardDetail?boardnum=${hotdto.boardnum}&currentPage=1" style="text-decoration: none; color: black;">${hotdto.subject}</a>
+                                    <c:if test="${hotdto.photo!='no'}">
+                                        <i class="fa fa-image" style="font-size:20px"></i>
+                                    </c:if>
+                                    <c:if test="${hotdto.reboardcount>0}">
+                                        <b>[${hotdto.reboardcount}]</b>
+                                    </c:if>
+                                </td>
+                                <td style="text-align: center;">${hotdto.nickname}</td>
+                                <td style="text-align: center;">
+                                    <fmt:formatDate value="${hotdto.writeday}" pattern="yyyy-MM-dd"/>
+                                </td>
+                                <td style="text-align: center;">${hotdto.likes}</td>
+                                <td style="text-align: center;">${hotdto.readcount}</td>
+                            </tr>
+                        </c:forEach>
                     </table>
                 </div>
                 <br>

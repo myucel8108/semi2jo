@@ -14,4 +14,7 @@ public interface LectureDaoInter {
     public void insertLecture(LectureDto dto);
     public List<LecturePresentJoinDto> getLecturePresent(int lecnum);
     public List<LectureDto> getAllLecture();
+
+    //lectype a 의 종류 구하기
+    public List<LectureDto> getLecTypeA();
 }

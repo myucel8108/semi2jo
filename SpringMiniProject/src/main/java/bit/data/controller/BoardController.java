@@ -128,14 +128,13 @@ public class BoardController {
     )
     {
         int totalCount=boardService.getTotalCount(sc,sw);
-        int perPage=15;
+        int perPage=10;
         int perBlock=5;
         int startNum;
         int startPage;
         int endPage;
         int totalPage;
         int no;
-        //String boardtype;
         totalPage=totalCount/perPage+(totalCount%perPage==0?0:1);
 
         startPage=(currentPage-1)/perBlock*perBlock+1;
@@ -154,6 +153,17 @@ public class BoardController {
             int reboardcount = reboardService.getAllReboards(dto.getBoardnum()).size();
             dto.setReboardcount(reboardcount);
         }
+        for(BoardDto hotdto:list)
+        {
+            int reboardcount = reboardService.getAllReboards(hotdto.getBoardnum()).size();
+            hotdto.setReboardcount(reboardcount);
+        }
+
+
+        //좋아요 높은순 5개
+        List<BoardDto> hotlist=boardService.getHotList();
+
+        model.addAttribute("hotlist", hotlist);
         model.addAttribute("list", list);
         model.addAttribute("totalCount", totalCount);
         model.addAttribute("currentPage", currentPage);
@@ -161,7 +171,6 @@ public class BoardController {
         model.addAttribute("endPage", endPage);
         model.addAttribute("no", no);
         model.addAttribute("totalPage", totalPage);
-        //model.addAttribute("boardtype", boardtype);
 
         return "/main/board/boardFree";
     }

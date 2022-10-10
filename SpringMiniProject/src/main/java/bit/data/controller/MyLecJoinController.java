@@ -23,15 +23,19 @@ public class MyLecJoinController {
     @Autowired
     MyLecJoinServiceInter myLecJoinService;
 
-    //수강목록 출력(payok=="ok")
+    //수강목록 출력(payok=="ok")+강의 결제 내역(payok == "ok" or "cancel")
     @GetMapping("/student/stuLectureList")
     public String stuLectureList(Model model, HttpServletRequest request){
 
         HttpSession session =request.getSession();
         int usernum= Integer.parseInt(session.getAttribute("usernum").toString());
+        //수강목록
         List<MyLecJoinDto> list=myLecJoinService.getMyLecListByNum(usernum,"ok");
+        //강의 결제내역
+        List<MyLecJoinDto> plist=myLecJoinService.getMyLecPayByNum(usernum);
 
         model.addAttribute("list",list);
+        model.addAttribute("plist",plist);
 
         return "/mypage/student/stuLectureList";
 
@@ -51,9 +55,6 @@ public class MyLecJoinController {
 
     }
 
-    
-    
-
 
     //장바구니 출력(payok=="no")
     @GetMapping("/student/myCart")
@@ -66,5 +67,7 @@ public class MyLecJoinController {
         model.addAttribute("list",list);
         return "/mypage/student/myCart";
     }
+
+  
 
 }
