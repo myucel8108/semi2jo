@@ -14,7 +14,7 @@
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar1">
             <span class="navbar-toggler-icon"></span>
         </button>
-            <div class="collapse navbar-collapse" id="navbar1" style="margin-left: 50px;  position: absolute;">
+            <div class="collapse navbar-collapse" id="navbar1" style="margin: 0 auto; display: flex;">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
                         <a class="nav-link" href="/mini/">Home</a>
