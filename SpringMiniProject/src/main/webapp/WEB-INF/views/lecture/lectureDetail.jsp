@@ -210,7 +210,7 @@
 	      }
 	      
 	   }
-
+// 머지
 	    $(".review").slice(0,3).show(); // select the first ten
 	    $("#load").click(function(e){ // click event for load more
 	        $("div:hidden").slice(0,3).show(); // select next 10 hidden divs and show them
