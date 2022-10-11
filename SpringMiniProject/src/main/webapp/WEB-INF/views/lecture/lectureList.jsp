@@ -124,7 +124,7 @@ figure
 	  
 	}
 	 
-	#explain{ 
+	.explain{
 		position: absolute; opacity: 0; 
 		} 
 		
@@ -133,7 +133,7 @@ figure
 		}
 	.anw::before {
 	  display: inline-block;
-	  content: ;
+	  /*content: ;*/
 	  font-size: 14px;
 	  font-weight: bold;
 	  margin: 0 5px;
@@ -266,8 +266,9 @@ figure
 		<c:forEach var="dto" items="${list}">
 					<div  class="text_photo hover11" style="padding-left: 30px; padding-top: 30px; float: left; ">
 					 <figure>
-					<p id = 'explain'>${dto.lecname}</p> 
-					<p id = 'explain'>${dto.price}</p>
+					<p class = 'explain'>${dto.lecname}</p><br>
+					<p class = 'explain'>${dto.price}</p><br>
+                    <p class = 'explain'>${dto.avgstar}</p>
 						<a href="lectureDetail?lecdenum=${dto.lecdenum}" style="text-decoration:none;">
 						
 							<img src="../upload/${dto.lecphoto}" width="230px" height="250" border="1" id="showimg"></a>
