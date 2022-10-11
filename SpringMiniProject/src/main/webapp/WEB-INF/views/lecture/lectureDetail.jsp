@@ -165,34 +165,25 @@
 </div> --%>
     <c:set var="root" value="<%=request.getContextPath()%>"/>
 	<div class="container" >
-	<div style="display: flex; justify-content: center; align-items: center;">
-	 <div>
-	 </div>
-	</div>
-	<div>
-
-		
-
-	 <c:forEach var="redto" items="${list}">
-	 
-		<div class="review">	
-		<c:if test="${not empty redto.review}">
-		작성자:${redto.username}
-		</c:if>
+		<div style="display: flex; justify-content: center; align-items: center;"></div>
 		<div>
-		<c:if test="${not empty redto.review}">
-		작성자:${redto.username} 
-		<br>
-		별점:
-		<c:forEach begin="1" end="${redto.star}">
-		 ★
-		</c:forEach>
-		<br>
-		리뷰 내용:${redto.review}
-		</c:if>
+			<c:forEach var="redto" items="${list}">
+				<div class="review">
+					<div>
+					<c:if test="${not empty redto.review}">
+						작성자:${redto.username}
+						<br>
+						별점:
+						<c:forEach begin="1" end="${redto.star}">
+						 ★
+						</c:forEach>
+						<br>
+						리뷰 내용:${redto.review}
+					</c:if>
+					</div>
+    			</div>
+			</c:forEach>
 		</div>
-    </div> 
-	
 	<a href="#" id="load">후기 더 보기</a>
 
 	<%--별점 및 수강평 입력 부분(로그인한 수강생이 해당강의를 수강한 학생일때만 보이게 하기--%>
@@ -230,15 +221,12 @@
 				</button>
 			</form>
 		</c:if>
-
 	</c:forEach>
-
+	</div>
 
 <script type="text/javascript">
 
-	function gocart() {
-
-		var test = "${sessionScope.loginname}";
+	var test = "${sessionScope.loginok}";
 		function gocart() {
 			if(test!=""){
 				var inmylec="${inmylec}";
@@ -259,7 +247,6 @@
 								var ans2 = confirm("장바구니로 이동하시겠습니까?");
 
 								if (ans2) {
-
 									location.href='${root}/student/myCart';
 								}
 							}
@@ -270,7 +257,6 @@
 				alert("로그인 후 이용해주세요");
 			}
 		}
-	}
 
 	$(".review").slice(0,3).show(); // select the first ten
 	$("#load").click(function(e){ // click event for load more
