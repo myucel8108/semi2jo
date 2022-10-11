@@ -28,8 +28,8 @@ public class MyLecJoinDao implements MyLecJoinDaoInter{
 
     //올해 총 수익
     @Override
-    public List<MyLecJoinDto> getTotalIncom(int year) {
-        return session.selectList(ns+"getTotalIncom",year);
+    public List<MyLecJoinDto> getTotalIncom(Map<String, Object> map) {
+        return session.selectList(ns+"getTotalIncom",map);
 
     }
 }

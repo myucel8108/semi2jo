@@ -71,6 +71,7 @@ public class LoginController {
             session.setAttribute("photo", udto.getUserphoto());
             session.setAttribute("email",email);
             session.setAttribute("usertype",udto.getUsertype());
+            session.setAttribute("userpass",udto.getUserpass());
         }
         String temp = (result!=null?"success":"fail");
         map.put("result",temp);

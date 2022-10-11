@@ -78,8 +78,8 @@
                 </div>
                 <div class="col-lg-7 col-md-12 p-0" data-aos="fade-left" data-aos-delay="300">
                     <figure>
-                        <img class="inner-img" src="image/services-bg2.jpg" alt="services">
-                        <img class="out-sideimg" src="image/services-bg.jpg" alt="services">
+                        <img class="inner-img" src="" alt="services">
+                        <img class="out-sideimg" src="" alt="services">
                     </figure>
                 </div>
             </div>
@@ -91,7 +91,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 col-sm-8">
-                    <h3> <span>view some of the best works...</span></h3>
+                    <h3> <span>국내 최고의 강사들이 한 곳에</span></h3>
                 </div>
                 <div class="col-lg-5 col-sm-4">
                     <a href="portfolio.html" class="btn btn-success">강사진 확인</a>
@@ -101,31 +101,31 @@
         <div class="container-fluid">
             <div class="row"  data-aos="fade-up" data-aos-delay="300">
                 <a href="image/portfolio-2.jpg" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
-                  <img src="image/portfolio-2.jpg" class="img-fluid">
+                  <img src="image/tea/tea4.png" class="img-fluid">
                   <div class="overlay">
-                  <img src="image/plus-img.png" alt="plus-icon">
-                  <div class="inner-text"><h4>국어 유희준<span>top view</span></h4></div>
+                  <img src="" alt="plus-icon">
+                  <div class="inner-text"><h4>국어 김젬마<span>top view</span></h4></div>
                   </div>
                 </a>
                 <a href="images/portfolio-3.jpg" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
-                  <img src="image/portfolio-3.jpg" class="img-fluid">
+                  <img src="image/tea/tea1.png" class="img-fluid">
                   <div class="overlay">
-                  <img src="image/plus-img.png" alt="plus-icon">
-                  <div class="inner-text"><h4>수학 최진아<span>top view</span></h4></div>
+                  <img src="" alt="plus-icon">
+                  <div class="inner-text"><h4>수학 한석원<span>top view</span></h4></div>
                   </div>
                 </a>
                 <a href="image/portfolio-4.jpg" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
-                  <img src="image/portfolio-4.jpg" class="img-fluid">
+                  <img src="image/tea/tea2.png" class="img-fluid">
                   <div class="overlay">
-                  <img src="image/plus-img.png" alt="plus-icon">
-                  <div class="inner-text"><h4>영어 정우진 <span>top view</span></h4></div>
+                  <img src="" alt="plus-icon">
+                  <div class="inner-text"><h4>역사 이다지 <span>top view</span></h4></div>
                   </div>
                 </a>
                 <a href="image/portfolio-5.jpg" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
-                  <img src="image/portfolio-5.jpg" class="img-fluid">
+                  <img src="image/tea/tea3.png" class="img-fluid">
                   <div class="overlay">
-                  <img src="image/plus-img.png" alt="plus-icon">
-                  <div class="inner-text"><h4>사회 이동형<span>top view</span></h4></div>
+                  <img src="" alt="plus-icon">
+                  <div class="inner-text"><h4>영어 원정의<span>top view</span></h4></div>
                   </div>
                 </a>
             </div>
@@ -149,8 +149,7 @@
                     <div class="col-lg-5 col-sm-12 mx-auto box-1">
 
                         <!-- Content -->
-                        <a href="index.html"><img src="image/footer-logo.png" alt="footer-logo"></a>
-                        <p>인간은 사실 따지고 보면 능력이 다 비슷비슷하다. 하지만 속으로 자신이 천재라고 숨겨진 재능이 있다고 생각하지 말자 이런 비슷한 사람들 속에서 살아남을려면 
+                        <p>인간은 사실 따지고 보면 능력이 다 비슷비슷하다. 하지만 속으로 자신이 천재라고 숨겨진 재능이 있다고 생각하지 말자 이런 비슷한 사람들 속에서 살아남을려면
                         	남들 놀 때 공부하는 수 밖에 없다.
                          </p>
 

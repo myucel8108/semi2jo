@@ -20,4 +20,5 @@ public interface QnaServiceInter {
 	public void deleteQna(int qnanum);
 	public void deleteQnaRegroup(int regroup);
 
+
 }

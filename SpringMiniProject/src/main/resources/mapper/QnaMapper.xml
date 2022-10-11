@@ -22,7 +22,7 @@
 		<if test="usernum!=0">
 			where usernum=#{usernum}
 		</if>
-		order by regroup desc, restep asc limit #{startnum},#{perpage}
+		order by gongzitype asc, regroup desc, restep asc limit #{startnum},#{perpage}
 	</select>
 
 	<select id="selectByNum" parameterType="int" resultType="qnaDto">
