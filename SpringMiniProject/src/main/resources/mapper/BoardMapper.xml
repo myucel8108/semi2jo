@@ -6,21 +6,21 @@
         values (#{boardtype}, #{usernum}, #{nickname}, #{subject}, #{content}, #{photo}, 0, 0, 0, 'new', now())
     </insert>
     <select id="getTotalCount" parameterType="Map" resultType="int">
-        select count(*) from board
+        select count(*) from board where boardtype=#{boardtype}
         <if test="searchcolumn!=null and searchword!=null">
-            where ${searchcolumn} like concat('%',#{searchword},'%')
+            and ${searchcolumn} like concat('%',#{searchword},'%')
         </if>
     </select>
     <select id="getPagingList" parameterType="Map" resultType="boardDto">
-        select * from board
+        select * from board where boardtype=#{boardtype}
         <if test="searchcolumn!=null and searchword!=null">
-            where ${searchcolumn} like concat('%',#{searchword},'%')
+            and ${searchcolumn} like concat('%',#{searchword},'%')
         </if>
         order by boardnum desc limit #{startnum},#{perpage}
     </select>
 
     <select id="getHotList" resultType="boardDto">
-        select * from board order by likes desc, readcount desc limit 5
+        select * from board where writeday>=DATE_SUB(NOW(), INTERVAL 7 DAY) order by likes desc, readcount desc limit 5
     </select>
 
     <select id="selectByNum" parameterType="int" resultType="boardDto">

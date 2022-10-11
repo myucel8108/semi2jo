@@ -21,22 +21,26 @@ public class BoardService implements BoardServiceInter{
         boardDao.insertBoard(dto);
     }
     @Override
-    public List<BoardDto> getPagingList(String searchcolumn, String searchword, int startnum, int perpage) {
+    public List<BoardDto> getPagingList(String searchcolumn, String searchword, int startnum, int perpage, String boardtype) {
         // TODO Auto-generated method stub
         Map<String, Object>map = new HashMap<String, Object>();
         map.put("searchcolumn", searchcolumn);
         map.put("searchword", searchword);
         map.put("startnum", startnum);
         map.put("perpage", perpage);
+        map.put("boardtype", boardtype);
+
         return boardDao.getPagingList(map);
     }
 
     @Override
-    public int getTotalCount(String searchcolumn, String searchword) {
+    public int getTotalCount(String searchcolumn, String searchword, String boardtype) {
         // TODO Auto-generated method stub
         Map<String, String>map = new HashMap<String, String>();
         map.put("searchcolumn", searchcolumn);
         map.put("searchword", searchword);
+        map.put("boardtype", boardtype);
+
         return boardDao.getTotalCount(map);
     }
 

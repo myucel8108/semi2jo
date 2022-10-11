@@ -88,7 +88,7 @@
 <form action="insert" method="post" enctype="multipart/form-data">
 <%--    <input type="hidden" name="email" value="${sessionScope.loginid}">--%>
         <input type="hidden" name="usernum" value="${sessionScope.usernum}">
-    <table class="table table-bordered" style="width: 800px;">
+    <table class="table" style="width: 800px; border-collapse: separate; border-radius: 15px; border: 1px solid black;">
         <tr>
             <th style="text-align: center;">유형</th>
             <td>
@@ -117,7 +117,6 @@
             <td colspan="2">
 					<textarea name="content" class="form-control" required="required"
                               style="height: 400px;"></textarea>
-                <label style="float: right;"><input type="checkbox" id="anony">익명</label>
             </td>
         </tr>
         <tr>

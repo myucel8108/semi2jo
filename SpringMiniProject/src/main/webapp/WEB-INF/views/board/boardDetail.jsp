@@ -201,7 +201,6 @@
         </div>
     </div>
 </div>--%>
-
 <div class="container" style="width: 1000px; padding: 100px;">
     <table class="table table-bordered" style="width: 100%;">
         <tr>
@@ -224,7 +223,7 @@
                 <pre style="margin: 15px;"><b style="font-size: 17px;">${dto.content}</b></pre> <!--작성글 내용-->
                 <c:if test="${dto.photo!='no'}">    <!--작성글 첨부사진-->
                     <c:forTokens var="photo" items="${dto.photo}" delims=",">
-                        <img src="../upload/${photo}" width="400"
+                        <img src="../upload/${photo}" style="max-width: 400px;"
                              onerror="this.style.display='none'">
                     </c:forTokens>
                 </c:if>
@@ -262,7 +261,7 @@
                     </form>
                 </div>
                 <div style="text-align: center; float: bottom;"><hr>
-                <button type="button" class="btn btn-outline-dark" onclick="location.href='boardFree?currentPage=${currentPage}'">목록</button>
+                <button type="button" class="btn btn-outline-dark" onclick="location.href='boardFree?boardtype=${dto.boardtype}&currentPage=${currentPage}'">목록</button>
                 <c:if test="${sessionScope.loginok!=null && sessionScope.usernum==dto.usernum}">
                 <button type="button" class="btn btn-outline-dark" onclick="location.href='boardUpdate?boardnum=${dto.boardnum}&currentPage=${currentPage}'">수정</button>
                 <button type="button" class="btn btn-outline-dark" onclick="if(confirm('게시글을 삭제하시겠습니까?')) location.href='delete?boardnum=${dto.boardnum}&currentPage=${currentPage}'">삭제</button>
