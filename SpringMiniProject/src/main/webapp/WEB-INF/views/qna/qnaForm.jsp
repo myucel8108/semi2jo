@@ -148,37 +148,46 @@
     <input type="hidden" name="relevel" value="${relevel}">
     <input type="hidden" name="restep" value="${restep}">
     <input type="hidden" name="currentPage" value="${currentPage}">
+
 <%--    <input type="hidden" name="pass" value="${dto.pass}">--%>
 
 
     <table class="table table-bordered" style="width: 500px;" id="formbox">
 
-        <c:if test="${qnanum==0}">
+<%--        <c:if test="${qnanum==0 and sessionScope.usernum!=12}">--%>
+
             <tr>
                 <th style="width: 100px; text-align: center;">문의유형</th>
                 <td>
                     <select type="select" name="qnatype" required="required">
                         <option value="" selected disabled hidden>선택해주세요</option>
+                        <c:choose>
+                        <c:when test="${qnanum==0 and sessionScope.usernum!=12}">
                         <option>결제문의</option>
                         <option>강의문의</option>
                         <option>학원문의</option>
                         <option>상담문의</option>
                         <option>기타문의</option>
+                        </c:when>
+                        <c:otherwise>
+                        <option><b style="color: red;">공지사항</b></option>
+                        </c:otherwise>
+                        </c:choose>
                     </select>
                 </td>
             </tr>
+            <c:if test="${sessionScope.usernum!=12 and qnanum==0}">
             <tr>
                 <th style="width: 100px; text-align: center; padding-top: 12px;" >비밀번호</th>
                 <td>
                     <input type="password" name="pass" class="form-control" required="required" placeholder="숫자 4자리 입력" pattern="[0-9]+" maxlength="4";>
                 </td>
             </tr>
+            </c:if>
 
-
-        </c:if>
 
         <c:if test="${qnanum>0}">
-            <input type="hidden" name="pass">
+            <input type="hidden" name="pass" value="${pass}">
             <input type="hidden" name="qnatype">
 
         </c:if>
