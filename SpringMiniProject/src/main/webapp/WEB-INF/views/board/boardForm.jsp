@@ -14,11 +14,73 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <script>
-    // $(function (){
-    //     if ($("#anony"=='checked')){
-    //         var username = (this).attr(username);
-    //     }
-    // });
+            $(function () {
+
+                // 업로드 된 파일명
+                $("#file").on("change",function(){
+                    fileName=$("#file")[0].files;
+                    fileList="";
+                    // 최대 업로드 이미지 수 제한
+                    if(fileName.length>5){
+                        alert("이미지는 최대 5장까지 첨부 가능합니다.");
+                        return false;
+                    }
+                    var vaildchk=1;      // 유효성 검증 값
+                    for(i=0; i<fileName.length; i++){
+                        if(checkFileName(fileName[i].name)==true) {      // 파일명 검증
+                            fileList +=fileName[i].name+", ";
+                        } else {
+                            vaildchk=0;      // 유효성 검증 실패
+                            break;
+                        }
+                    }
+                    if(vaildchk==1) {
+                        fileList=fileList.slice(0, -2);
+                        $("input.filename_list").val(fileList);
+                    } else {   // vaildchk==0
+                        fileList="";
+                        $("input.filename_list").val("파일명(확장자)를 확인 후 재업로드 해주세요");
+                    }
+                });
+            });
+
+            //파일명 검증
+            function checkFileName(str){
+                var ext=str.split(".").pop().toLowerCase();
+                var pattern =   /[\{\}\/?,;:|*~`!^\+<>@\#$%&\\\=\'\"]/gi;
+                if($.inArray(ext, ["bmp","jpg","png","jpeg","gif"]) == -1) {    // 파일 확장자 체크
+                    //alert(ext);
+                    alert("이미지 파일만 업로드 가능합니다.\n(업로드 가능 확장자: jpg, png, bmp, gif)");
+                    return false;
+                } else if(pattern.test(str)){    // 파일명에 특수문자 체크
+                    alert("파일명에 특수문자를 제거해주세요.");
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+ //            $(function (){
+ //                function chk_file_type(obj) {
+ //                    var file_kind = obj.value.lastIndexOf('.');
+ //                    var file_name = obj.value.substring(file_kind+1,obj.length);
+ //                    var file_type = file_name.toLowerCase();
+ //
+ //
+ //
+ //                    var check_file_type=new Array();​
+ //
+ // check_file_type=['jpg','gif','png','jpeg','bmp'];
+ //
+ //
+ //
+ //                    if(check_file_type.indexOf(file_type)==-1){
+ //                        alert('이미지 파일만 선택할 수 있습니다.');
+ //                        var parent_Obj=obj.parentNode
+ //                        var node=parent_Obj.replaceChild(obj.cloneNode(true),obj);
+ //                        return false;
+ //                    }
+ //                }
+ //            });
 </script>
 </head>
 <body>
@@ -26,7 +88,7 @@
 <form action="insert" method="post" enctype="multipart/form-data">
 <%--    <input type="hidden" name="email" value="${sessionScope.loginid}">--%>
         <input type="hidden" name="usernum" value="${sessionScope.usernum}">
-    <table class="table table-bordered" style="width: 800px;">
+    <table class="table" style="width: 800px; border-collapse: separate; border-radius: 15px; border: 1px solid black;">
         <tr>
             <th style="text-align: center;">유형</th>
             <td>
@@ -44,35 +106,17 @@
             <th style="width: 100px; text-align: center;">사진</th>
             <td>
                 <div class="phototag">
-                    <input type="file" name="upload" class="form-control" multiple="multiple" id="upload">
+<%--                    <input type='file' name='files' accept='image/jpeg,image/gif,image/png' onchange='chk_file_type(this)' multiple="multiple">--%>
+<%--                    <input class="filename_list" readonly="readonly">--%>
+                    <input type="file" name="upload" class="form-control" multiple="multiple" id="file">
 <%--                        <i class="fa fa-plus photoadd" style="font-size:14px"></i>--%>
                 </div>
-<%--                <script>--%>
-<%--                    $("i.photoadd").click(function(){--%>
-<%--                        if($("input[name='upload']").length==4){--%>
-<%--                            alert("더이상 추가할수 없습니다");--%>
-<%--                            return;--%>
-<%--                        }--%>
-<%--                        var tag="";--%>
-<%--                        tag=' <div class="input-group">';--%>
-<%--                        tag+='<input type="file" name="upload" class="form-control" multiple="multiple" >';--%>
-<%--                        tag+="<i class='fas fa-minus-square photodel' style='font-size:24px'></i>";--%>
-<%--                        tag+="</div>";--%>
-<%--                        $("div.phototag").append(tag);--%>
-<%--                    });--%>
-
-<%--                    $(document).on("click",".photodel",function(){--%>
-<%--                        $(this).prev().remove();--%>
-<%--                        $(this).remove();--%>
-<%--                    });--%>
-<%--                </script>--%>
             </td>
         </tr>
         <tr>
             <td colspan="2">
 					<textarea name="content" class="form-control" required="required"
                               style="height: 400px;"></textarea>
-                <label style="float: right;"><input type="checkbox" id="anony">익명</label>
             </td>
         </tr>
         <tr>
