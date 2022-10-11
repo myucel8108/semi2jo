@@ -4,17 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap"
-            rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap"
+		  rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 	<!-- iamport.payment.js -->
-    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
 <style>
-<<<<<<< HEAD
 .review { display:none; 
 }
  
@@ -44,9 +43,6 @@
     margin-bottom: 15px;
    
 }
-=======
-
->>>>>>> branch 'ldh' of https://github.com/myucel8108/semi2jo.git
   .star {
     position: relative;
     font-size: 2rem;
@@ -194,92 +190,97 @@
 		<br>
 		리뷰 내용:${redto.review}
 		</c:if>
-		</div>	
 		</div>
-	</c:forEach>
-	</div> 
+    </div> 
 	
 	<a href="#" id="load">후기 더 보기</a>
 
-	<span class="star"> 
-  <span>★★★★★</span>
-  <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
-</span>
-	
- 	<form class="mb-3" name="myform" id="myform" method="post">
-	<fieldset>
-		<span class="text-bold"></span>
-		<input type="radio" name="reviewStar" value="5" id="rate1"><label
-			for="rate1">★</label>
-		<input type="radio" name="reviewStar" value="4" id="rate2"><label
-			for="rate2">★</label>
-		<input type="radio" name="reviewStar" value="3" id="rate3"><label
-			for="rate3">★</label>
-		<input type="radio" name="reviewStar" value="2" id="rate4"><label
-			for="rate4">★</label>
-		<input type="radio" name="reviewStar" value="1" id="rate5"><label
-			for="rate5">★</label>
-	</fieldset>
-	<div>
-		<textarea class="col-auto form-control" type="text" id="reviewContents"
-				  placeholder="좋은 수강평을 남겨주시면  TeachMe에 큰 힘이 됩니다! "></textarea>
-	</div>
-	<c:if test="">
-	<button>
-	등록하기
-	</button>
-	
-	</c:if>
-</form>	
-</div>
+	<%--별점 및 수강평 입력 부분(로그인한 수강생이 해당강의를 수강한 학생일때만 보이게 하기--%>
+	<c:set var="inmylec" value=""/> <%--내가 수강중인 lecdenum 합치기--%>
+	<c:forEach var="jdto" items="${jlist}">
+		<c:set var="inmylec" value="${inmylec} [${jdto.lecdenum}]"/> <%--내가 수강중인 lecdenum 합치기--%>
+		<c:if test="${jdto.lecdenum==dto.lecdenum}"> <%--내 수강목록의 lecdenum과 현재 상세페이지의 lecdenum이 같아야 출력--%>
+			<span class="star">
+				<span>★★★★★</span>
+				<input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+			</span>
 
-  </body>
+			<form class="mb-3" action="lecUpStarReview" name="myform" id="myform" method="post">
+				<input type="hidden" name="usernum" value="${sessionScope.usernum}">
+				<input type="hidden" name="lecdenum" value="${dto.lecdenum}">
+				<fieldset>
+					<span class="text-bold"></span>
+					<input type="radio" name="star" value="5" id="rate1"><label
+						for="rate1">★</label>
+					<input type="radio" name="star" value="4" id="rate2"><label
+						for="rate2">★</label>
+					<input type="radio" name="star" value="3" id="rate3"><label
+						for="rate3">★</label>
+					<input type="radio" name="star" value="2" id="rate4"><label
+						for="rate4">★</label>
+					<input type="radio" name="star" value="1" id="rate5"><label
+						for="rate5">★</label>
+				</fieldset>
+				<div>
+					<textarea class="col-auto form-control" name="review" type="text" id="reviewContents"
+							  placeholder="좋은 수강평을 남겨주시면  TeachMe에 큰 힘이 됩니다! "></textarea>
+				</div>
+				<button type="submit">
+					등록하기
+				</button>
+			</form>
+		</c:if>
+
+	</c:forEach>
 
 
-	</div>
- <script type="text/javascript">
- 	var test = "${sessionScope.loginname}";
- 
+<script type="text/javascript">
+
+	function gocart() {
+
+		var test = "${sessionScope.loginname}";
 		function gocart() {
-	      if(test!=""){
-	         var ans = confirm("장바구니에 저장하시겠습니까?");
-	         var usernum= "${sessionScope.usernum}";
-	         usernum *=1;
+			if(test!=""){
+				var inmylec="${inmylec}";
+				if(inmylec.indexOf("[${dto.lecdenum}]")>-1){
+					alert("이미 수강목록에 있는 강의입니다");
+				}else{
+					var ans = confirm("장바구니에 저장하시겠습니까?");
+					var usernum= "${sessionScope.usernum}";
+					usernum *=1;
 
-	         if(ans){
-	            $.ajax({
-	               url:"../student/myCart",
-	               method:"POST",
-	               dataType :"text",
-	               data: {"lecdenum": ${dto.lecdenum}, "usernum": usernum},
-	               success: function(res) {
-	                  var ans2 = confirm("장바구니로 이동하시겠습니까?");
+					if(ans){
+						$.ajax({
+							url:"../student/myCart",
+							method:"POST",
+							dataType :"text",
+							data: {"lecdenum": ${dto.lecdenum}, "usernum": usernum},
+							success: function(res) {
+								var ans2 = confirm("장바구니로 이동하시겠습니까?");
 
-	                  if (ans2) {
+								if (ans2) {
 
-	                     location.href='${root}/student/myCart';
-	                  }
-	               }
-	            });
-	         }
-	      }
-	      else{
-	    	  
-	    	  alert("로그인후 이용해주세요");
-	    	  
-	      }
-	      
-	   }
-// 머지
-	    $(".review").slice(0,3).show(); // select the first ten
-	    $("#load").click(function(e){ // click event for load more
-	        $("div:hidden").slice(0,3).show(); // select next 10 hidden divs and show them
-	        if($("div:hidden").length == 0){ // check if any hidden divs still exist
-	             // alert if there are none left
-	        }
-	    });
-	
-</script>    
- 
+									location.href='${root}/student/myCart';
+								}
+							}
+						});
+					}
+				}
+			}else{
+				alert("로그인 후 이용해주세요");
+			}
+		}
+	}
+
+	$(".review").slice(0,3).show(); // select the first ten
+	$("#load").click(function(e){ // click event for load more
+		$("div:hidden").slice(0,3).show(); // select next 10 hidden divs and show them
+		if($("div:hidden").length == 0){ // check if any hidden divs still exist
+			// alert if there are none left
+		}
+	});
+
+</script>
+
 </body>
 </html>

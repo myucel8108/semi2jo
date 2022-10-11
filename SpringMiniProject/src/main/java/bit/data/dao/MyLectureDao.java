@@ -1,6 +1,7 @@
 package bit.data.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,9 @@ public class MyLectureDao implements MyLectureDaoInter{
     return session.selectList(ns+"getReview", lecdenum);
     	
     }
-    
+
+    @Override
+    public void updateStarReview(Map<String, Object> map) {
+        session.selectOne(ns+"updateStarReview",map);
+    }
 }

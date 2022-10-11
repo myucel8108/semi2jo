@@ -19,6 +19,10 @@
 
 		
 	</select>
+
+	<update id="updateStarReview" parameterType="Map">
+		update mylecture set star=#{star}, review=#{review} where usernum = #{usernum} AND lecdenum= #{lecdenum};
+	</update>
 	
 	
 </mapper>

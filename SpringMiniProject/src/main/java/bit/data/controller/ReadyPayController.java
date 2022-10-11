@@ -50,52 +50,17 @@ import lombok.extern.slf4j.Slf4j;
 public class ReadyPayController {
 
 	  @Autowired
-	  MyLectureServiceInter myLectureService;    
+	  MyLectureServiceInter myLectureService;
 	  @Autowired
 	  LecDetailServiceInter lecDetailService;
 	  @Autowired
 	  UserServiceInter userService;
-	 @Autowired 
+	 @Autowired
 	 ReadyPayService readypayservice;
-	 
+
 	 private HttpSession session;
 	 MyLectureDto dto = new MyLectureDto();
-	 
-	  
-	 @GetMapping("/lecture/lectureDetail")
-	 public ModelAndView detail(int lecdenum) {
-		 
-		ModelAndView mview = new ModelAndView();
-		List<MyLectureDto> list = myLectureService.getReview(lecdenum);
-	 	ReadyPayDto dto =  readypayservice.selectByLecdeNum(lecdenum);
-	  	mview.addObject("dto", dto);
-	  	mview.addObject("list", list);
-	  	mview.setViewName("/main/lecture/lectureDetail");
-	  
-	  return mview; 
-	  
-	  }
-	  
-	  @GetMapping("/lecture/lectureList") 
-	  public String lecturelist(Model model) {
-	  List<ReadyPayDto> list= readypayservice.MainGetAllLecture();
-	  model.addAttribute("list",list);
-	  
-	  return "/main/lecture/lectureList"; 
-	  
-	  }
-	  
-	@GetMapping(value= "/lecture/lectureList" , params = {"lectypeb"})
-	public String lectureCategori(@RequestParam String lectypeb , Model model) {
-			 
-		List<ReadyPayDto> list =  readypayservice.selectByCategori(lectypeb);
-		model.addAttribute("list",list);
-		 
-		  
-		  return "/main/lecture/lectureList";
-		  
-		  }
-	  
+
 
 	// �뜝�럥�걥�뜝�럥堉� �뛾�룇猷꾤뵳占�
 	  @RequestMapping(value = "/payment/callback_receive")
