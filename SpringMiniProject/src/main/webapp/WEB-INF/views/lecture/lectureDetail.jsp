@@ -14,6 +14,7 @@
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
 <style>
+<<<<<<< HEAD
 .review { display:none; 
 }
  
@@ -43,6 +44,9 @@
     margin-bottom: 15px;
    
 }
+=======
+
+>>>>>>> branch 'ldh' of https://github.com/myucel8108/semi2jo.git
   .star {
     position: relative;
     font-size: 2rem;
@@ -124,18 +128,65 @@
 	</div>
 </div>
 </div>
+
+	
+	 <div style="display: flex;">
+	<img src=" " style="min-width:500px; max-width: 30%; min-height:300px; max-height: 20%;  margin-top: 50px; margin-left:350px; margin-right:50px; display: flex;">		
+	 <form action="" style="margin-top: 50px;">
+	 <table>
+	 <tr>
+	 <td>
+	 ${dto.lectypea}>${dto.lectypeb}
+	 </td>
+	 </tr>
+	 <tr>
+	 <td>
+	 ${dto.lecname}
+	 </td>
+	 </tr>
+	 <tr>
+	 <td>
+	 	${dto.price}
+	 	</td>
+	 	</tr>
+	  <tr>
+	 <td>
+		${dto.teaname}
+		</td>
+		</tr>
+	<tr>
+	<td>
+		${dto.avgstar}	
+	</td>
+	</tr> 	
+	<tr>
+	<td>
+		 <button type="button" onclick='gocart()'>장바구니에 담기</button>  
+	 </td>
+	 </tr>
+	 </table>
+	</form>
+</div>
+    <c:set var="root" value="<%=request.getContextPath()%>"/>
 	<div class="container" >
 	<div style="display: flex; justify-content: center; align-items: center;">
 	 <div>
 	 </div>
 	</div>
 	<div>
-	 <c:forEach var="redto" items="${list}">
-	 
-		<div class="review">
+
 		
+
+	 <c:forEach var="redto" items="${list}">
+
+	 
+		<div class="review">	
 		<c:if test="${not empty redto.review}">
 		작성자:${redto.username}
+		</c:if>
+		<div>
+		<c:if test="${not empty redto.review}">
+		작성자:${redto.username} 
 		<br>
 		별점:
 		<c:forEach begin="1" end="${redto.star}">
@@ -145,9 +196,12 @@
 		리뷰 내용:${redto.review}
 		</c:if>
 		</div>	
+		</div>
 	</c:forEach>
 	</div> 
+	
 	<a href="#" id="load">후기 더 보기</a>
+
 	<span class="star"> 
   <span>★★★★★</span>
   <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
@@ -171,11 +225,19 @@
 		<textarea class="col-auto form-control" type="text" id="reviewContents"
 				  placeholder="좋은 수강평을 남겨주시면  TeachMe에 큰 힘이 됩니다! "></textarea>
 	</div>
+	<c:if test="">
+	<button>
+	등록하기
+	</button>
+	
+	</c:if>
 </form>	
 </div>
 
   </body>
 
+
+	</div>
  <script type="text/javascript">
  	var test = "${sessionScope.loginname}";
  
@@ -186,7 +248,6 @@
 	         usernum *=1;
 
 	         if(ans){
-
 	            $.ajax({
 	               url:"../student/myCart",
 	               method:"POST",
