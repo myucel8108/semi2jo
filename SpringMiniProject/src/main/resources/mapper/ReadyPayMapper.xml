@@ -19,7 +19,7 @@
 		
 		</select>
 		<select id="selectByCategori" parameterType="String" resultType="readypayDto">
-		SELECT lecdetail.lecdenum , lecture.lecname, lecture.teaname, lecdetail.roomnum, lecdetail.lectime, lecture.avgstar,
+		SELECT lecdetail.lecdenum , lecture.lecname, lecture.teaname, lecdetail.roomnum, lecdetail.lectime, lecture.avgstar, lecture.lecphoto,
         lecdetail.lecmonth, lecdetail.lecday ,lecture.lecphoto , lecdetail.price, lecture.lectypea , lecture.lectypeb
 		from lecture join lecdetail on lecture.lecnum = lecdetail.lecnum where lectypeb = '${lectypeb}';
 		

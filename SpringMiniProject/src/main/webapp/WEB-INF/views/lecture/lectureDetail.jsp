@@ -14,6 +14,39 @@
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
 <style>
+<<<<<<< HEAD
+.review { display:none; 
+}
+ 
+.sangse{
+    font-weight: 400;
+    line-height: 1.43;
+    letter-spacing: -.3px;
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+  
+    margin-bottom: 20px;
+
+}
+.type{
+    overflow: hidden;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+      margin-top :50px;
+}
+.title{
+	line-height: 1.5;
+    letter-spacing: -.3px;
+    font-weight: 700;
+    font-size: 26px;
+    margin-bottom: 15px;
+   
+}
+=======
+
+>>>>>>> branch 'ldh' of https://github.com/myucel8108/semi2jo.git
   .star {
     position: relative;
     font-size: 2rem;
@@ -74,51 +107,108 @@
 }
 </style>
 <body>
-	
-	 <div style="display: flex; background-color: #002333;">
-		<img src=" " style="min-width:500px; max-width: 30%; min-height:300px; max-height: 20%;  margin: 50px 350px; display: flex;">		
-	 	${dto.price}
-		${dto.lecname}
-		${dto.teaname}
-		${dto.avgstar}
-
-	  </div>
-    <c:set var="root" value="<%=request.getContextPath() %>"/>
-	<div class="container" style="height:3000px;">
-	<div  style="display: flex;  justify-content: center; align-items: center; ">    
-
-	 <div>
-
-	<img alt="" src="https://contents.kyobobook.co.kr/dtl/illustrate/963/i9788954761963.jpg">
-	
- 		${dto.lecdenum}
-	 	${dto.price}
-		${dto.lecname}
-		${dto.teaname}
-		${dto.avgstar}
+	 <c:set var="root" value="<%=request.getContextPath()%>"/>
+	 <div style="display: flex;">
+	<div>
+	<img src="../upload/${dto.lecphoto}" style=" margin: 0 auto; margin-top:50px; display: flex;">			
+	<div class="type">
+	카테고리:${dto.lectypea}>${dto.lectypeb}
+	<div class="title">
+	 강의명:${dto.lecname}
+	</div>
+	<div class=" sangse">
+	 가격:${dto.price}원
+	</div>
+	<div>
+	 강사명:${dto.teaname} 평균별점:${dto.avgstar}	
+	</div>
+	<div style="margin-top: 30px;">
 	 <button type="button" onclick='gocart()'>장바구니에 담기</button>  
-	 </div>
 	</div>
+	</div>
+</div>
+</div>
+
+	<%-- 
+	 <div style="display: flex;">
+	<img src=" " style="min-width:500px; max-width: 30%; min-height:300px; max-height: 20%;  margin-top: 50px; margin-left:350px; margin-right:50px; display: flex;">		
+	 <form action="" style="margin-top: 50px;">
+	 <table>
+	 <tr>
+	 <td>
+	 ${dto.lectypea}>${dto.lectypeb}
+	 </td>
+	 </tr>
+	 <tr>
+	 <td>
+	 ${dto.lecname}
+	 </td>
+	 </tr>
+	 <tr>
+	 <td>
+	 	${dto.price}
+	 	</td>
+	 	</tr>
+	  <tr>
+	 <td>
+		${dto.teaname}
+		</td>
+		</tr>
+	<tr>
+	<td>
+		${dto.avgstar}	
+	</td>
+	</tr> 	
+	<tr>
+	<td>
+		 <button type="button" onclick='gocart()'>장바구니에 담기</button>  
+	 </td>
+	 </tr>
+	 </table>
+	</form>
+</div> --%>
+    <c:set var="root" value="<%=request.getContextPath()%>"/>
+	<div class="container" >
 	<div style="display: flex; justify-content: center; align-items: center;">
-	
 	 <div>
 	 </div>
 	</div>
-	
+	<div>
+
+		
+
 	 <c:forEach var="redto" items="${list}">
+	 
+		<div class="review">	
+		<c:if test="${not empty redto.review}">
+		작성자:${redto.username}
+		</c:if>
 		<div>
-		작성자:${redto.username}  별점: ${redto.star} 
-		리뷰내용:${redto.review}	
+		<c:if test="${not empty redto.review}">
+		작성자:${redto.username} 
+		<br>
+		별점:
+		<c:forEach begin="1" end="${redto.star}">
+		 ★
+		</c:forEach>
+		<br>
+		리뷰 내용:${redto.review}
+		</c:if>
+		</div>	
 		</div>
 	</c:forEach>
-	<span class="star">
+	</div> 
+	
+	<a href="#" id="load">후기 더 보기</a>
+
+	<span class="star"> 
   <span>★★★★★</span>
   <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
 </span>
 	
  	<form class="mb-3" name="myform" id="myform" method="post">
 	<fieldset>
-		<span class="text-bold">별점을 선택해주세요</span>
+		<span class="text-bold"></span>
 		<input type="radio" name="reviewStar" value="5" id="rate1"><label
 			for="rate1">★</label>
 		<input type="radio" name="reviewStar" value="4" id="rate2"><label
@@ -132,42 +222,64 @@
 	</fieldset>
 	<div>
 		<textarea class="col-auto form-control" type="text" id="reviewContents"
-				  placeholder="좋은 수강평을 남겨주시면  teachMe에 큰 힘이 됩니다! "></textarea>
+				  placeholder="좋은 수강평을 남겨주시면  TeachMe에 큰 힘이 됩니다! "></textarea>
 	</div>
+	<c:if test="">
+	<button>
+	등록하기
+	</button>
+	
+	</c:if>
 </form>	
-	
-	
-	
 </div>
 
+  </body>
 
+
+	</div>
  <script type="text/javascript">
-		 function gocart() {	
-			var ans = confirm("장바구니에 저장하시겠습니까?");
-			var usernum= "${sessionScope.usernum}";
-			usernum *=1;
+ 	var test = "${sessionScope.loginname}";
+ 
+		function gocart() {
+	      if(test!=""){
+	         var ans = confirm("장바구니에 저장하시겠습니까?");
+	         var usernum= "${sessionScope.usernum}";
+	         usernum *=1;
 
-			
-			if(ans){
-				
-               		$.ajax({
-               			url:"../student/myCart",
-               			method:"POST",
-               		 	dataType :"text",
-               			data: {"lecdenum": ${dto.lecdenum}, "usernum": usernum},
-    					success: function(res) {
-							var ans2 = confirm("장바구니로 이동하시겠습니까?");
-							
-               				if (ans2) {
-               					
-               				 location.href='${root}/student/myCart';
-							}
+	         if(ans){
+	            $.ajax({
+	               url:"../student/myCart",
+	               method:"POST",
+	               dataType :"text",
+	               data: {"lecdenum": ${dto.lecdenum}, "usernum": usernum},
+	               success: function(res) {
+	                  var ans2 = confirm("장바구니로 이동하시겠습니까?");
 
-						}
-		 			})                  		
-			}
-		}
+	                  if (ans2) {
+
+	                     location.href='${root}/student/myCart';
+	                  }
+	               }
+	            });
+	         }
+	      }
+	      else{
+	    	  
+	    	  alert("로그인후 이용해주세요");
+	    	  
+	      }
+	      
+	   }
+// 머지
+	    $(".review").slice(0,3).show(); // select the first ten
+	    $("#load").click(function(e){ // click event for load more
+	        $("div:hidden").slice(0,3).show(); // select next 10 hidden divs and show them
+	        if($("div:hidden").length == 0){ // check if any hidden divs still exist
+	             // alert if there are none left
+	        }
+	    });
 	
-   </script>    
+</script>    
+ 
 </body>
 </html>
