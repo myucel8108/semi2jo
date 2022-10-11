@@ -129,7 +129,7 @@
 </div>
 </div>
 
-	
+	<%-- 
 	 <div style="display: flex;">
 	<img src=" " style="min-width:500px; max-width: 30%; min-height:300px; max-height: 20%;  margin-top: 50px; margin-left:350px; margin-right:50px; display: flex;">		
 	 <form action="" style="margin-top: 50px;">
@@ -166,7 +166,7 @@
 	 </tr>
 	 </table>
 	</form>
-</div>
+</div> --%>
     <c:set var="root" value="<%=request.getContextPath()%>"/>
 	<div class="container" >
 	<div style="display: flex; justify-content: center; align-items: center;">
@@ -178,7 +178,6 @@
 		
 
 	 <c:forEach var="redto" items="${list}">
-
 	 
 		<div class="review">	
 		<c:if test="${not empty redto.review}">
