@@ -4,46 +4,87 @@
 <!DOCTYPE html>
 <html>
 <head>
- <!--    <style>
-        *{
-            font-family: 'abster';
-        }
-        .searcharea{
-            margin-top: 50px;
-            margin-left: 50px;
-        }
-        .menulist{
-            width: 300px;
-            /*height: 450px;*/
-            height: 100%;
-            border: 1px solid gray;
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 10px;
-            font-size: 30px;
-            background-color: darkblue;
-            margin-left: 0%;
-            color: white;
-        }
-        .menulist a{
-            cursor: pointer;
-        }
 
-        .box
-        {
-            width: 900px;
-            height: 100%;
-            border: 1px solid gray;
-            text-align: center;
-            line-height: 900px;
-            margin-bottom: 300px;
-
-        }
-        .superbox{
-            vertical-align: middle;
-        }
-    </style> -->
 <style>
+h1,
+h1+p {
+  margin: 30px 15px 0;
+  font-weight: 300;
+}
+h1+p a {
+  color: #333;
+}
+h1+p a:hover {
+  text-decoration: none;
+}
+h2 {
+  margin: 60px 15px 0;
+  padding: 0;
+  font-weight: 300;
+}
+h2 span {
+  margin-left: 1em;
+  color: #aaa;
+  font-size: 85%;
+}
+.column {
+  margin: 15px 15px 0;
+  padding: 0;
+}
+.column:last-child {
+  padding-bottom: 60px;
+}
+.column::after {
+  content: '';
+  clear: both;
+  display: block;
+}
+.column div {
+  position: relative;
+  float: left;
+  width: 300px;
+  height: 200px;
+  margin: 0 0 0 25px;
+  padding: 0;
+}
+.column div:first-child {
+  margin-left: 0;
+}
+.column div span {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  z-index: -1;
+  display: block;
+  width: 300px;
+  margin: 0;
+  padding: 0;
+  color: #444;
+  font-size: 18px;
+  text-decoration: none;
+  text-align: center;
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+  opacity: 0;
+}
+figure {
+  width: 300px;
+  height: 200px;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  overflow: hidden;
+}
+figure
+/* Opacity #1 */
+.hover11 figure img {
+  opacity: 1;
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+.hover11 figure:hover img {
+  opacity: .5;
+}
 	*{
 	  box-sizing: border-box; 
 	}
@@ -223,11 +264,15 @@
 
 	<div style="width:1500px; margin-top: 30px; margin-left: 30px; margin-bottom: 30px; ">	
 		<c:forEach var="dto" items="${list}">
-					<div  class="text_photo" style="padding-left: 30px; padding-top: 30px; float: left; ">
+					<div  class="text_photo hover11" style="padding-left: 30px; padding-top: 30px; float: left; ">
+					 <figure>
 					<p id = 'explain'>${dto.lecname}</p> 
+					<p id = 'explain'>${dto.price}</p>
 						<a href="lectureDetail?lecdenum=${dto.lecdenum}" style="text-decoration:none;">
 						
-							<img src=" " width="230px" height="250" border="1" id="showimg"></a>
+							<img src="../upload/${dto.lecphoto}" width="230px" height="250" border="1" id="showimg"></a>
+							
+							</figure>
 					</div>
 		</c:forEach>	
 		</div>

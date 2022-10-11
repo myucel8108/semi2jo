@@ -38,6 +38,7 @@ import bit.data.dto.BoardDto;
 import bit.data.dto.LectureDto;
 import bit.data.dto.MyLectureDto;
 import bit.data.dto.ReadyPayDto;
+import bit.data.dto.UserDto;
 import bit.data.service.LecDetailServiceInter;
 import bit.data.service.MyLectureServiceInter;
 import bit.data.service.ReadyPayService;
@@ -67,7 +68,6 @@ public class ReadyPayController {
 		ModelAndView mview = new ModelAndView();
 		List<MyLectureDto> list = myLectureService.getReview(lecdenum);
 	 	ReadyPayDto dto =  readypayservice.selectByLecdeNum(lecdenum);
-	 
 	  	mview.addObject("dto", dto);
 	  	mview.addObject("list", list);
 	  	mview.setViewName("/main/lecture/lectureDetail");
@@ -97,14 +97,14 @@ public class ReadyPayController {
 		  }
 	  
 
-	// 占쎈ぎ占쎈뼄 獄쏆룄由�
+	// �뜝�럥�걥�뜝�럥堉� �뛾�룇猷꾤뵳占�
 	  @RequestMapping(value = "/payment/callback_receive")
 	  @ResponseBody
 	  public ResponseEntity<?> callback_receive(@RequestBody Map<String, Object> model, HttpServletRequest request ){  
 		  HttpSession session = request.getSession();
 		  int usernum = (int) session.getAttribute("usernum");
 		System.out.println(usernum);
-		String process_result="野껉퀣�젫占쎄쉐�⑨옙";
+		String process_result="�뇦猿됲�ｏ옙�젷�뜝�럡�뎽占썩뫅�삕";
 		System.out.println(process_result);
 		JSONObject responseobj = new JSONObject();
 		HttpHeaders responseHeaders = new HttpHeaders();
