@@ -2,6 +2,7 @@ package bit.data.service;
 
 import bit.data.dao.MyLectureDao;
 import bit.data.dao.MyLectureDaoInter;
+import bit.data.dto.LecAvgStarDto;
 import bit.data.dto.MyLectureDto;
 
 import java.util.HashMap;
@@ -45,5 +46,18 @@ public class MyLectureService implements MyLectureServiceInter{
         map.put("lecdenum",lecdenum);
 
         myLectureDao.updateStarReview(map);
+    }
+
+    @Override
+    public LecAvgStarDto getAvgstarByLecnum(int lecnum) {
+        return myLectureDao.getAvgstarByLecnum(lecnum);
+    }
+
+    @Override
+    public void updateAvgstarByLecnum(double avgstar, int lecnum) {
+        Map<String, Object> map= new HashMap<>();
+        map.put("avgstar",avgstar);
+        map.put("lecnum",lecnum);
+        myLectureDao.updateAvgstarByLecnum(map);
     }
 }

@@ -3,6 +3,7 @@ package bit.data.dao;
 import java.util.List;
 import java.util.Map;
 
+import bit.data.dto.LecAvgStarDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -39,5 +40,15 @@ public class MyLectureDao implements MyLectureDaoInter{
     @Override
     public void updateStarReview(Map<String, Object> map) {
         session.selectOne(ns+"updateStarReview",map);
+    }
+
+    @Override
+    public LecAvgStarDto getAvgstarByLecnum(int lecnum) {
+        return session.selectOne(ns+"getAvgstarByLecnum", lecnum);
+    }
+
+    @Override
+    public void updateAvgstarByLecnum(Map<String, Object> map) {
+        session.selectOne(ns+"updateAvgstarByLecnum",map);
     }
 }

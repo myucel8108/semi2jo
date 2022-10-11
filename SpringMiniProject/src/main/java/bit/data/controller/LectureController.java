@@ -1,13 +1,11 @@
 package bit.data.controller;
 
-import bit.data.dto.LectureDto;
-import bit.data.dto.MyLecJoinDto;
-import bit.data.dto.MyLectureDto;
-import bit.data.dto.ReadyPayDto;
+import bit.data.dto.*;
 import bit.data.service.*;
 
 import java.util.List;
 
+import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,8 +69,23 @@ public class LectureController {
     public String lecUpStarReview(int star, String review, int usernum, int lecdenum) {
 
         myLectureService.updateStarReview(star,review,usernum,lecdenum);
+        updateAvgstar();
 
         return "redirect:lectureDetail?lecdenum="+lecdenum;
+    }
+
+    public void updateAvgstar(){
+
+        int lcount=lectureService.getTotalLectureCount(null,null);
+
+        for(int i=1;i<=lcount;i++)
+        {
+            try{
+                double avgstar=myLectureService.getAvgstarByLecnum(i).getAvgstar();
+                myLectureService.updateAvgstarByLecnum(avgstar,i);
+            }catch (NullPointerException e){ }
+
+        }
     }
 
     @GetMapping("/lecture/lectureList")

@@ -23,6 +23,15 @@
 	<update id="updateStarReview" parameterType="Map">
 		update mylecture set star=#{star}, review=#{review} where usernum = #{usernum} AND lecdenum= #{lecdenum};
 	</update>
-	
+
+	<select id="getAvgstarByLecnum" parameterType="int" resultType="lecAvgStarDto">
+		select a.lecnum, round(avg(c.star),1) avgstar
+		from lecture a, lecdetail b, mylecture c
+		where a.lecnum=b.lecnum and b.lecdenum=c.lecdenum and a.lecnum=#{lecnum} group by lecnum;
+	</select>
+
+	<update id="updateAvgstarByLecnum" parameterType="map">
+		update lecture set avgstar = #{avgstar} where lecnum = #{lecnum};
+	</update>
 	
 </mapper>
