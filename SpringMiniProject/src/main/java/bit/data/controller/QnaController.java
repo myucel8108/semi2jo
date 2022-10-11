@@ -77,12 +77,15 @@ public class QnaController {
 
         mview.addObject("dto", dto);
         mview.addObject("currentPage", currentPage);
+//        mview.addObject("dto", qnatype);
+        System.out.println(dto.getQnatype());
 
-        if (usernum==12 || usernum==dto.getUsernum()){
+        if (usernum==12 || usernum==dto.getUsernum() || dto.getQnatype().equals("공지사항") ){
 
             // 클릭한 글에 regroupnumber를 가져오고 로그인한 상태에서 해당 유저가 쓴 글의 리스트를 가져와야함 ( 내가쓴글들의 qnanum을 가져와야함 )
             // qnanum이 여러개인데 그중 내가 클릭한 글의 regroup num이랑 일치하는게 있으면
             mview.setViewName("/main/qna/qnaDetail");
+
         }else {
             mview.setViewName("/main/qna/secretQna");
 
@@ -184,6 +187,7 @@ public class QnaController {
         model.addAttribute("endPage", endPage);
         model.addAttribute("no", no);
         model.addAttribute("totalPage", totalPage);
+        model.addAttribute("usernum", usernum);
 
         return "/main/qna/qnaList";
     }

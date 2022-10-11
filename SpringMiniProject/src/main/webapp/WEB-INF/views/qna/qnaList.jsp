@@ -17,6 +17,12 @@
     <c:set var="root" value="<%=request.getContextPath() %>"/>
     <link rel="stylesheet" type="text/css" href="${root}/css/qna.css">
     <style>
+
+        button:focus {
+            outline: none;
+        }
+
+
         li>a.page-link{
             display: block;
             justify-content: center;
@@ -63,7 +69,7 @@
         <c:if test="${totalCount==0 }">
             <tr>
                 <td colspan="6" align="center">
-                    <h5> 등록된 문의글이 없습니다 </h5>
+                    <h5 style="padding-top: 5px;"> 등록된 문의글이 없습니다 </h5>
                 </td>
             </tr>
         </c:if>
@@ -100,13 +106,16 @@
                         <c:if test="${sessionScope.loginok!=null || sessionScope.email=='admin@gmail.com'}">
                         <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm">
                             </c:if>
-                            <c:if test="${sessionScope.loginok!=null and dto.relevel==0}">
+                            <c:if test="${sessionScope.loginok!=null and dto.relevel==0 and dto.qnatype!='공지사항'}">
                                 <img src="../image/lockimg.jpg" width="10px;" style="background-color: white">
                             </c:if>
                             <c:if test="${sessionScope.loginok!=null}">
                             </c:if>
                                 ${dto.subject}&nbsp;&nbsp;
-                            <c:if test="${sessionScope.loginok!=null}">
+                            <c:if test="${sessionScope.loginok!=null and dto.qnatype=='공지사항'}">
+                                <span style="color: red; text-decoration-style: solid;">${dto.qnatype}</span>
+                            </c:if>
+                            <c:if test="${sessionScope.loginok!=null and dto.qnatype!='공지사항'}">
                                 ${dto.qnatype}
                             </c:if>
                             <c:if test="${dto.photo!='no' and sessionScope.loginok!=null}">
@@ -116,7 +125,6 @@
                                 <b style="color: orange; text-decoration: none;">답변완료</b>
                             </c:if>
                         </a>
-
                     </td>
                     <c:set var="username" value="${resultInfo.dto.username}"/>
                     <c:set var="totalLength" value="${fn:length(dto.username)}"/>
@@ -144,10 +152,26 @@
     <%--        <tr>--%>
     <%--                <td colspan="6" align="right" style= "text-align:center; padding-top: 20px; padding-bottom: 25px;" >--%>
 
-    <c:if test="${sessionScope.email!='admin@gmail.com'}">
-        <button type="button" class="btn btn-outline"
-                onclick="location.href='qnaForm'" id="writecolor" style="text-align: center;" >문의하기</button>
-    </c:if>
+    <c:choose>
+        <c:when test="${sessionScope.email=='admin@gmail.com'}">
+            <button type="button" class="btn btn-outline"
+                    onclick="location.href='qnaForm'" id="writecolor" style="text-align: center;" >공지등록</button>
+        </c:when>
+        <c:otherwise>
+            <button type="button" class="btn btn-outline"
+                    onclick="location.href='qnaForm'" id="writecolor" style="text-align: center;" >문의등록</button>
+        </c:otherwise>
+    </c:choose>
+
+
+
+
+
+
+
+
+
+
     <br><br>
     <%--                </td>--%>
     <%--        </tr>--%>
@@ -158,28 +182,50 @@
 <div class="container" style="width: 100%;">
     <div class="paging">
         <ul class="pagination" style="margin-bottom: 60px; ">
-            <c:if test="${startPage>1}">
-                <li class="page-item"><a href="qnaList?currentPage=${startPage-1}" class="page-link" id="page-button-tm4" style="width: 70px;" >이전</a></li>
+            <c:if test="${usernum!=0}">
+                    <c:if test="${startPage>1}">
+                        <li class="page-item"><a href="qnaList?usernum=${sessionScope.usernum}&currentPage=${startPage-1}" class="page-link" id="page-button-tm4" style="width: 70px;" >이전</a></li>
+                    </c:if>
+                    <!--  페이지 번호  -->
+                    <c:forEach var="pp" begin="${startPage}" end="${endPage}">
+                        <c:if test="${pp==currentPage}">
+                            <li class="page-item active"><a class="page-link" id="page-button-tm" href="qnaList?usernum=${sessionScope.usernum}&currentPage=${pp}">${pp}</a></li>
+                        </c:if>
+
+                        <c:if test="${pp!=currentPage}">
+                            <li class="page-item"><a class="page-link" id="page-button-tm2" href="qnaList?usernum=${sessionScope.usernum}&currentPage=${pp}">${pp}</a></li>
+                        </c:if>
+
+                    </c:forEach>
+                    <c:if test="${endPage<totalPage}">
+                        <li class="page-item"><a href="qnaList?usernum=${sessionScope.usernum}&currentPage=${endPage+1}" class="page-link" id="page-button-tm7" style="width: 70px;">다음</a></li>
+                    </c:if>
             </c:if>
-            <!--  페이지 번호  -->
-            <c:forEach var="pp" begin="${startPage}" end="${endPage}">
-                <c:if test="${pp==currentPage}">
-                    <li class="page-item active"><a class="page-link" id="page-button-tm" href="qnaList?currentPage=${pp}">${pp}</a></li>
+
+
+            <c:if test="${usernum==0}">
+                <c:if test="${startPage>1}">
+                    <li class="page-item"><a href="qnaList?currentPage=${startPage-1}" class="page-link" id="page-button-tm5" style="width: 70px;" >이전</a></li>
                 </c:if>
+                <!--  페이지 번호  -->
+                <c:forEach var="pp" begin="${startPage}" end="${endPage}">
+                    <c:if test="${pp==currentPage}">
+                        <li class="page-item active"><a class="page-link" id="page-button-tm6" href="qnaList?currentPage=${pp}">${pp}</a></li>
+                    </c:if>
 
-                <c:if test="${pp!=currentPage}">
-                    <li class="page-item"><a class="page-link" id="page-button-tm2" href="qnaList?currentPage=${pp}">${pp}</a></li>
+                    <c:if test="${pp!=currentPage}">
+                        <li class="page-item"><a class="page-link" id="page-button-tm8" href="qnaList?currentPage=${pp}">${pp}</a></li>
+                    </c:if>
+
+                </c:forEach>
+                <c:if test="${endPage<totalPage}">
+                    <li class="page-item"><a href="qnaList?currentPage=${endPage+1}" class="page-link" id="page-button-tm3" style="width: 70px;">다음</a></li>
                 </c:if>
-
-
-
-
-
-
-            </c:forEach>
-            <c:if test="${endPage<totalPage}">
-                <li class="page-item"><a href="qnaList?currentPage=${endPage+1}" class="page-link" id="page-button-tm3" style="width: 70px;">다음</a></li>
             </c:if>
+
+
+
+
         </ul>
     </div>
 </div>
