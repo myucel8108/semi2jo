@@ -113,7 +113,7 @@
 
 
                     <!-- Area Chart -->
-                    <div class="col-xl-8 col-lg-7">
+                    <div class="col-xl-8 col-lg-7" >
                         <div class="card mb-4">
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold text-primary">월별 매출 현황</h6>
@@ -133,7 +133,7 @@
                                 <h6 class="m-0 font-weight-bold text-primary">과목별 매출 현황</h6>
                             </div>
                             <div class="card-body">
-                                <canvas id="chartPie"></canvas>
+                                <canvas id="chartPie" height="300px"></canvas>
                             </div>
                         </div>
                     </div>
@@ -389,7 +389,7 @@
                 // ⑥dataset값(Array)
                 data: [${val0},${val1},${val2},${val3},${val4}],
                 // ⑦dataset의 배경색(rgba값을 String으로 표현)
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                backgroundColor: ['rgba(255, 99, 132, 0.2)','rgba(76, 193, 192, 0.2)','rgba(255, 205, 86, 0.2)','rgba(54, 153, 224, 0.2)','rgba(201, 203, 207, 0.2)'],
                 // ⑧dataset의 선 색(rgba값을 String으로 표현)
                 borderColor: 'rgba(255, 99, 132, 1)',
                 // ⑨dataset의 선 두께(Number)
@@ -423,6 +423,10 @@
                 chartPie(month);
             }
         }
+
+        // var w = $("#myChart").attr("height");
+        // console.log(w);
+        // $("#chartPie").attr("height",w);
     });//function
 
 </script>

@@ -24,7 +24,7 @@
 <%--    자유 게시판--%>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6 text-center mb-5">
+            <div class="col-md-6 text-center">
                 <h2 class="heading-section">Free Board</h2>
             </div>
         </div>
@@ -64,7 +64,7 @@
 <%--    질문 게시판--%>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6 text-center mb-5">
+            <div class="col-md-6 text-center">
                 <h2 class="heading-section">ASK Board</h2>
             </div>
         </div>
@@ -105,7 +105,7 @@
     <%--    신고 게시판--%>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6 text-center mb-5">
+            <div class="col-md-6 text-center">
                 <h2 class="heading-section">Report Board</h2>
             </div>
         </div>
@@ -269,19 +269,19 @@
     //페이징 처리 함수
     function paging(startPage, endPage, currentPage, totalPage, boardtype) {
         var page ="";
-        page += '<ul class="pagination">';
+        page += '<div class="pagination">';
         if (startPage>1){
-            page += '<li ><a class="page-item" currentPage="'+(currentPage-1)+'" boardtype="'+boardtype+'">이전</a></li>';
+            page += '<span ><a class="page-item" currentPage="'+(currentPage-1)+'" boardtype="'+boardtype+'">이전</a></span>';
         }
         for(var pp = startPage; pp<=endPage; pp++){
             if(pp==currentPage)
-                page += '<li class=" active"><a class="page-item" currentPage="'+pp+'" boardtype="'+boardtype+'" >'+pp+'</a></li>';
+                page += '<span class=" active"><a class="page-item" currentPage="'+pp+'" boardtype="'+boardtype+'" >'+pp+'</a></span>';
             else
-                page += '<li><a class="page-item" currentPage="'+pp+'" boardtype="'+boardtype+'">'+pp+'</a></li>';
+                page += '<span><a class="page-item" currentPage="'+pp+'" boardtype="'+boardtype+'">'+pp+'</a></span>';
         }
         if(endPage<totalPage)
-            page += '<li><a class="page-item" currentPage="'+(endpage+1)+'" boardtype="'+boardtype+'">다음</a></li>';
-        page += '</ul>';
+            page += '<span><a class="page-item" currentPage="'+(endpage+1)+'" boardtype="'+boardtype+'">다음</a></span>';
+        page += '</div>';
         return page;
     }
 </script>
