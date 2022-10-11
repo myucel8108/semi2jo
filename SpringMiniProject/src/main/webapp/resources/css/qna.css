@@ -13,6 +13,13 @@
 /*    font-size: 15px;*/
 /*}*/
 
+button.firstBtn:focus{
+    border: none;
+    outline:none;
+}
+
+
+
 button:focus {
     outline: none;
 }

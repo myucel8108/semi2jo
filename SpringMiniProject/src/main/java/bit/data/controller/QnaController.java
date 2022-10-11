@@ -179,6 +179,9 @@ public class QnaController {
 
         no=totalCount-(currentPage-1)*perPage;
 
+
+
+
         List<QnaDto> list = qnaService.getPagingList(usernum, startNum, perPage);
         model.addAttribute("list", list);
         model.addAttribute("totalCount", totalCount);
