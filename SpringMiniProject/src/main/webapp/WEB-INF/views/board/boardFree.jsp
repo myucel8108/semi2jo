@@ -29,8 +29,14 @@
 
 <div class="container" style="width: 1000px; padding: 50px;">
     <c:set var="root" value="<%=request.getContextPath() %>"/>
-    <h1>커뮤니티</h1><br>
-                <button onclick="if(${sessionScope.loginok==null}){alert('로그인 후 이용해주세요')}else{location.href='${root}/board/boardForm'}" style="float: right;" class="btn btn-outline-dark">글쓰기</button><br><br>
+    <h1>${boardtype.equals('free')?"자유게시판":"질문게시판"}</h1><br>
+    <div class="btn-group">
+        <button type="button" class="btn btn-outline-dark" onclick="location.href='${root}/board/boardFree?boardtype=free'">자유</button>
+        <button type="button" class="btn btn-outline-dark" onclick="location.href='${root}/board/boardFree?boardtype=ask'">질문</button>
+    </div>
+
+                <button onclick="if(${sessionScope.loginok==null}){alert('로그인 후 이용해주세요')}
+                        else{location.href='${root}/board/boardForm'}" style="float: right;" class="btn btn-outline-dark">글쓰기</button><br><br>
                 <div style="margin: 10px;">
                     <table class="table" style="width: 100%; border-collapse: separate; border-radius: 15px; border: 1px solid black;">
                         <tr>
@@ -117,21 +123,21 @@
                 <div class="paging">
                     <ul class="pagination" style="justify-content: center;">
                         <c:if test="${startPage>1}">
-                            <li class="page-item"><a href="boardFree?currentPage=${startPage-1}" class="page-link" style="color: black;">이전</a></li>
+                            <li class="page-item"><a href="boardFree?boardtype=${boardtype}&currentPage=${startPage-1}" class="page-link" style="color: black;">이전</a></li>
                         </c:if>
 
                         <!-- 페이지번호 -->
                         <c:forEach var="pp" begin="${startPage}" end="${endPage}">
                             <c:if test="${pp==currentPage}">
-                                <li class="page-item"><a class="page-link" href="boardFree?currentPage=${pp}" style="color: white; background-color: black;">${pp}</a></li>
+                                <li class="page-item"><a class="page-link" href="boardFree?boardtype=${boardtype}&currentPage=${pp}" style="color: white; background-color: black;">${pp}</a></li>
                             </c:if>
                             <c:if test="${pp!=currentPage}">
-                                <li class="page-item"><a class="page-link" href="boardFree?currentPage=${pp}" style="color: black;">${pp}</a></li>
+                                <li class="page-item"><a class="page-link" href="boardFree?boardtype=${boardtype}&currentPage=${pp}" style="color: black;">${pp}</a></li>
                             </c:if>
                         </c:forEach>
 
                         <c:if test="${endPage<totalPage}">
-                            <li class="page-item"><a href="boardFree?currentPage=${endPage+1}" class="page-link" style="color: black;">다음</a></li>
+                            <li class="page-item"><a href="boardFree?boardtype=${boardtype}&currentPage=${endPage+1}" class="page-link" style="color: black;">다음</a></li>
                         </c:if>
                     </ul>
                 </div>

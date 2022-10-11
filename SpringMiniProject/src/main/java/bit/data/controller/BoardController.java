@@ -96,6 +96,7 @@ public class BoardController {
         dto.setNickname(nickname);
 
         if (upload.get(0).getOriginalFilename().equals("")) {
+
             dto.setPhoto("no");
         } else {
             String photo = "";
@@ -116,18 +117,22 @@ public class BoardController {
             dto.setPhoto(photo);
         }
         boardService.insertBoard(dto);
-        return "redirect:boardFree";
+        int maxboardnum=boardService.getMaxNum(); //가장 최신글 보드넘버
+
+        return "redirect:boardDetail?boardnum="+maxboardnum+"&currentPage=1";
     }
 
     @GetMapping("/board/boardFree") //게시판 리스트 출력
-    public String board(
+    public String boardfree(
             @RequestParam(defaultValue = "1") int currentPage,
-            @RequestParam(value = "searchcolumn" ,required = false) String sc,
+           @RequestParam(value = "searchcolumn" ,required = false) String sc,
             @RequestParam(value = "searchword" ,required = false) String sw,
+            @RequestParam(value = "boardtype" ,defaultValue = "free") String boardtype,
+
             Model model
     )
     {
-        int totalCount=boardService.getTotalCount(sc,sw);
+        int totalCount=boardService.getTotalCount(sc,sw, boardtype);
         int perPage=10;
         int perBlock=5;
         int startNum;
@@ -147,7 +152,7 @@ public class BoardController {
 
         no=totalCount-(currentPage-1)*perPage;
 
-        List<BoardDto> list = boardService.getPagingList(sc, sw, startNum, perPage);
+        List<BoardDto> list = boardService.getPagingList(sc, sw, startNum, perPage, boardtype);
         for(BoardDto dto:list)
         {
             int reboardcount = reboardService.getAllReboards(dto.getBoardnum()).size();
@@ -163,7 +168,9 @@ public class BoardController {
         //좋아요 높은순 5개
         List<BoardDto> hotlist=boardService.getHotList();
 
+        model.addAttribute("boardtype", boardtype);
         model.addAttribute("hotlist", hotlist);
+
         model.addAttribute("list", list);
         model.addAttribute("totalCount", totalCount);
         model.addAttribute("currentPage", currentPage);

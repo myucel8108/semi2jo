@@ -24,4 +24,5 @@ public interface QnaDaoInter {
     public int getMaxNum();
 
     public void deleteQnaRegroup(int regroup);
+
 }

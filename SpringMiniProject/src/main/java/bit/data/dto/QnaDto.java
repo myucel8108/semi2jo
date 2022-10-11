@@ -20,6 +20,7 @@ public class QnaDto {
 	private int restep;
 	private int relevel;
 	private boolean secret;
+	private String gongzitype;
 
 
 }

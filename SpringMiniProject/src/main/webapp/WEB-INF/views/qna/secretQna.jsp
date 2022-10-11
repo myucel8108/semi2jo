@@ -85,12 +85,41 @@
 
             <div id="allbs">
 
-          <table style="text-align: center; align-items: center; display: block; margin: 0 auto;" >
+
+
+<%--                <c:choose>  <!-- if, else의 시작임을 정의 -->--%>
+<%--                    <c:when test="${조건}"> <!-- if와 동일 -->--%>
+<%--                        해당 조건에 맞는경우 실행--%>
+<%--                    </c:when> <!-- if 종료 -->--%>
+<%--                    <c:otherwise> <!-- else와 동일 -->--%>
+<%--                        그 외의 경우 실행--%>
+<%--                    </c:otherwise> <!-- else 종료 -->--%>
+<%--                </c:choose>  <!-- if, else의 종료임을 정의-->--%>
+
+
+
+
+
+
+
+
+
+
+                <table style="text-align: center; align-items: center; display: block; margin: 0 auto;" >
               <tr>
                   <th style="text-align: center; display: block; align-items: center; margin-right: 10px;" > 비밀번호 </th>
                   <td>
-<%--                      <input type="password" name="pass" size="14" maxlength="4" placeholder="숫자 4자리 입력" pattern="[0-9]+" style="text-align: center;" id="pass1" required="required" onkeyup="printName()"/>--%>
-                      <input type="password" name="pass" size="14" maxlength="4" placeholder="숫자 4자리 입력" pattern="[0-9]+" style="text-align: center;" id="pass1" required="required">
+<%--&lt;%&ndash;                      <c:if test="${dto.username=='티치미'}">&ndash;%&gt;--%>
+<%--                      <input type="password" name="pass" size="20" maxlength="4" placeholder="비밀번호 4자리 입력" pattern="[0-9]+" style="text-align: center;" id="pass1" required="required">--%>
+<%--&lt;%&ndash;                      </c:if>&ndash;%&gt;--%>
+                      <c:choose>
+                      <c:when test="${dto.restep==0}">
+                          <input type="password" name="pass" size="20" maxlength="4" placeholder="비밀번호 4자리 입력" pattern="[0-9]+" style="text-align: center;" id="pass1" required="required">
+                      </c:when>
+                        <c:otherwise>
+                          <input type="password" name="pass" size="14" maxlength="4" placeholder="숫자 4자리 입력" pattern="[0-9]+" style="text-align: center;" id="pass1" required="required">
+                        </c:otherwise>
+                      </c:choose>
                   </td>
               </tr>
           </table>
@@ -108,19 +137,39 @@
 </div>
 
 <script>
+    <%--function printName() {--%>
+    <%--    const pass1=--%>
+    <%--        document.getElementById('pass1').value;--%>
+    <%--        if (pass1==${sessionScope.userpass})--%>
+    <%--        &lt;%&ndash;if (pass1==${dto.pass})&ndash;%&gt;--%>
+    <%--        location.href="secretQna?qnanum=${dto.qnanum}&currentPage=${currentPage}";--%>
+    <%--        else--%>
+    <%--    {--%>
+    <%--        alert("비밀번호가 맞지 않습니다");--%>
+    <%--        location.reload();--%>
+    <%--    }--%>
+    <%--}--%>
     function printName() {
+        // const pass2=
+        //     document.getElementById('pass2').value;
         const pass1=
             document.getElementById('pass1').value;
-            if (pass1==${dto.pass})
-            <%--if (pass1==${dto.pass})--%>
+
+            <%--if (pass2==${dto.pass}){--%>
+            <%--location.href="secretQna?qnanum=${dto.qnanum}&currentPage=${currentPage}";--%>
+            <%--}--%>
+
+        if (pass1==${dto.pass}){
             location.href="secretQna?qnanum=${dto.qnanum}&currentPage=${currentPage}";
-            else
+            }
+        else
         {
             alert("비밀번호가 맞지 않습니다");
             location.reload();
         }
-    }
 
+
+    }
 
 
 </script>

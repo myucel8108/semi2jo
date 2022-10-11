@@ -41,6 +41,7 @@
                         <div class="bg-secondary-soft px-4 py-5 rounded">
                             <div class="row g-3">
                                     <input type="text" hidden="hidden" value="${dto.usernum}" name="usernum">
+                                    <input type="text" hidden="hidden" value="${dto.userpass}" name="userpass">
                                 <h4 class="mb-4 mt-0">상세 정보</h4>
                                 <!-- Email -->
                                 <div class="col-md-6">

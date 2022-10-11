@@ -1,5 +1,6 @@
 package bit.data.service;
 
+import bit.data.dao.QnaDao;
 import bit.data.dao.QnaDaoInter;
 import bit.data.dto.QnaDto;
 import bit.data.dto.UserDto;
@@ -98,9 +99,12 @@ public class QnaService implements QnaServiceInter{
 
     }
 
+
+
     @Override
     public void deleteQnaRegroup(int regroup) {
         qnaDao.deleteQnaRegroup(regroup);
     }
 }
+
 

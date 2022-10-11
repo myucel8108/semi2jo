@@ -121,7 +121,7 @@
             });
         });
 
-        function initlike(){
+        function initlike(){ //좋아요를 한 게시글에 들어갔을때 좋아요가 눌러져있는 상태를 출력하기
             var boardnum=${dto.boardnum};
             var loginok='${sessionScope.loginok}';
             if(loginok=='')
@@ -201,7 +201,6 @@
         </div>
     </div>
 </div>--%>
-
 <div class="container" style="width: 1000px; padding: 100px;">
     <table class="table table-bordered" style="width: 100%;">
         <tr>
@@ -221,10 +220,10 @@
         </tr>
         <tr height="200">
             <td>
-                <pre style="margin: 20px;"><b style="font-size: 17px;">${dto.content}</b></pre> <!--작성글 내용-->
+                <pre style="margin: 15px;"><b style="font-size: 17px;">${dto.content}</b></pre> <!--작성글 내용-->
                 <c:if test="${dto.photo!='no'}">    <!--작성글 첨부사진-->
                     <c:forTokens var="photo" items="${dto.photo}" delims=",">
-                        <img src="../upload/${photo}" width="400"
+                        <img src="../upload/${photo}" style="max-width: 400px;"
                              onerror="this.style.display='none'">
                     </c:forTokens>
                 </c:if>
@@ -262,7 +261,7 @@
                     </form>
                 </div>
                 <div style="text-align: center; float: bottom;"><hr>
-                <button type="button" class="btn btn-outline-dark" onclick="location.href='boardFree?currentPage=${currentPage}'">목록</button>
+                <button type="button" class="btn btn-outline-dark" onclick="location.href='boardFree?boardtype=${dto.boardtype}&currentPage=${currentPage}'">목록</button>
                 <c:if test="${sessionScope.loginok!=null && sessionScope.usernum==dto.usernum}">
                 <button type="button" class="btn btn-outline-dark" onclick="location.href='boardUpdate?boardnum=${dto.boardnum}&currentPage=${currentPage}'">수정</button>
                 <button type="button" class="btn btn-outline-dark" onclick="if(confirm('게시글을 삭제하시겠습니까?')) location.href='delete?boardnum=${dto.boardnum}&currentPage=${currentPage}'">삭제</button>
@@ -296,14 +295,14 @@
             var thumbs = $(this).find("i").attr("class");
             var likestate;
             if(thumbs=='fa fa-thumbs-o-up'){ //좋아요없음
-                $(this).find("i").attr("class","fa fa-thumbs-up").css("color","blue");
+                $(this).find("i").attr("class","fa fa-thumbs-up").css("color","blue"); //좋아요O
                 likestate=1;
             } else { //좋아요있음
-                $(this).find("i").attr("class","fa fa-thumbs-o-up").css("color","black");
+                $(this).find("i").attr("class","fa fa-thumbs-o-up").css("color","black"); //좋아요X
                 likestate=0;
             }
 
-            var boardnum=${dto.boardnum};
+            var boardnum=${dto.boardnum}; //좋아요 누른 사람들 아이콘 클릭시
             //console.log(boardnum+","+likestate);
             $.ajax({
                 type : "get",

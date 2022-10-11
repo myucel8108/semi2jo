@@ -14,130 +14,186 @@
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
 <style>
-	.star {
-		position: relative;
-		font-size: 2rem;
-		color: #ddd;
-	}
+.review { display:none; 
+}
+ 
+.sangse{
+    font-weight: 400;
+    line-height: 1.43;
+    letter-spacing: -.3px;
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+  
+    margin-bottom: 20px;
 
-	.star input {
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		left: 0;
-		opacity: 0;
-		cursor: pointer;
-	}
-
-	.star span {
-		width: 0;
-		position: absolute;
-		left: 0;
-		color: red;
-		overflow: hidden;
-		pointer-events: none;
-	}
-	#myform fieldset{
-		display: inline-block;
-		direction: rtl;
-		border:0;
-	}
-	#myform fieldset legend{
-		text-align: right;
-	}
-	#myform input[type=radio]{
-		display: none;
-	}
-	#myform label{
-		font-size: 3em;
-		color: transparent;
-		text-shadow: 0 0 0 #f0f0f0;
-	}
-	#myform label:hover{
-		text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-	}
-	#myform label:hover ~ label{
-		text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-	}
-	#myform input[type=radio]:checked ~ label{
-		text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-	}
-	#reviewContents {
-		width: 100%;
-		height: 150px;
-		padding: 10px;
-		box-sizing: border-box;
-		border: solid 1.5px #D3D3D3;
-		border-radius: 5px;
-		font-size: 16px;
-		resize: none;
-	}
-	.review { display:none;
-	}
+}
+.type{
+    overflow: hidden;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+      margin-top :50px;
+}
+.title{
+	line-height: 1.5;
+    letter-spacing: -.3px;
+    font-weight: 700;
+    font-size: 26px;
+    margin-bottom: 15px;
+   
+}
+  .star {
+    position: relative;
+    font-size: 2rem;
+    color: #ddd;
+  }
+  
+  .star input {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .star span {
+    width: 0;
+    position: absolute; 
+    left: 0;
+    color: red;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  #myform fieldset{
+    display: inline-block;
+    direction: rtl;
+    border:0;
+}
+#myform fieldset legend{
+    text-align: right;
+}
+#myform input[type=radio]{
+    display: none;
+}
+#myform label{
+    font-size: 3em;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+}
+#myform label:hover{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#myform label:hover ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#myform input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#reviewContents {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: solid 1.5px #D3D3D3;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: none;
+}
 </style>
 <body>
-<c:set var="root" value="<%=request.getContextPath()%>"/>
-<div style="display: flex;">
-	<img src=" " style="min-width:500px; max-width: 30%; min-height:300px; max-height: 20%;  margin-top: 50px; margin-left:350px; margin-right:50px; display: flex;">
-
-	<form action="" style="margin-top: 50px;">
-		<table>
-			<tr>
-				<td>
-					${dto.lectypea}>${dto.lectypeb}
-				</td>
-			</tr>
-			<tr>
-				<td>
-					${dto.lecname}
-				</td>
-			</tr>
-			<tr>
-				<td>
-					${dto.price}
-				</td>
-			</tr>
-			<tr>
-				<td>
-					${dto.teaname}
-				</td>
-			</tr>
-			<tr>
-				<td>
-					${dto.avgstar}
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<button type="button" onclick='gocart()'>장바구니에 담기</button>
-				</td>
-			</tr>
-		</table>
-	</form>
+	 <c:set var="root" value="<%=request.getContextPath()%>"/>
+	 <div style="display: flex;">
+	<div>
+	<img src="../upload/${dto.lecphoto}" style=" margin: 0 auto; margin-top:50px; display: flex;">			
+	<div class="type">
+	카테고리:${dto.lectypea}>${dto.lectypeb}
+	<div class="title">
+	 강의명:${dto.lecname}
+	</div>
+	<div class=" sangse">
+	 가격:${dto.price}원
+	</div>
+	<div>
+	 강사명:${dto.teaname} 평균별점:${dto.avgstar}	
+	</div>
+	<div style="margin-top: 30px;">
+	 <button type="button" onclick='gocart()'>장바구니에 담기</button>  
+	</div>
+	</div>
+</div>
 </div>
 
-<%--리뷰 출력 및 리뷰 입력 부분--%>
-<div class="container" >
+	<%-- 
+	 <div style="display: flex;">
+	<img src=" " style="min-width:500px; max-width: 30%; min-height:300px; max-height: 20%;  margin-top: 50px; margin-left:350px; margin-right:50px; display: flex;">		
+	 <form action="" style="margin-top: 50px;">
+	 <table>
+	 <tr>
+	 <td>
+	 ${dto.lectypea}>${dto.lectypeb}
+	 </td>
+	 </tr>
+	 <tr>
+	 <td>
+	 ${dto.lecname}
+	 </td>
+	 </tr>
+	 <tr>
+	 <td>
+	 	${dto.price}
+	 	</td>
+	 	</tr>
+	  <tr>
+	 <td>
+		${dto.teaname}
+		</td>
+		</tr>
+	<tr>
+	<td>
+		${dto.avgstar}	
+	</td>
+	</tr> 	
+	<tr>
+	<td>
+		 <button type="button" onclick='gocart()'>장바구니에 담기</button>  
+	 </td>
+	 </tr>
+	 </table>
+	</form>
+</div> --%>
+    <c:set var="root" value="<%=request.getContextPath()%>"/>
+	<div class="container" >
+	<div style="display: flex; justify-content: center; align-items: center;">
+	 <div>
+	 </div>
+	</div>
+	<div>
 
-	<%--리뷰 출력--%>
-	<div style="display: flex; justify-content: center; align-items: center;"></div>
+		
+
+	 <c:forEach var="redto" items="${list}">
+	 
+		<div class="review">	
+		<c:if test="${not empty redto.review}">
+		작성자:${redto.username}
+		</c:if>
 		<div>
-			<c:forEach var="redto" items="${list}">
-				<div class="review">
-					<c:if test="${not empty redto.review}">
-						작성자:${redto.username}
-						<br>
-						별점:
-						<c:forEach begin="1" end="${redto.star}">
-							★
-						</c:forEach>
-						<br>
-						리뷰 내용:${redto.review}
-					</c:if>
-				</div>
-			</c:forEach>
+		<c:if test="${not empty redto.review}">
+		작성자:${redto.username} 
+		<br>
+		별점:
+		<c:forEach begin="1" end="${redto.star}">
+		 ★
+		</c:forEach>
+		<br>
+		리뷰 내용:${redto.review}
+		</c:if>
 		</div>
-		<a href="#" id="load">Load More</a>
+    </div> 
+	
+	<a href="#" id="load">후기 더 보기</a>
 
 	<%--별점 및 수강평 입력 부분(로그인한 수강생이 해당강의를 수강한 학생일때만 보이게 하기--%>
 	<c:set var="inmylec" value=""/> <%--내가 수강중인 lecdenum 합치기--%>
@@ -177,9 +233,6 @@
 
 	</c:forEach>
 
-
-
-</div>
 
 <script type="text/javascript">
 
@@ -228,5 +281,6 @@
 	});
 
 </script>
+
 </body>
 </html>

@@ -13,6 +13,17 @@
 /*    font-size: 15px;*/
 /*}*/
 
+button.firstBtn:focus{
+    border: none;
+    outline:none;
+}
+
+
+
+button:focus {
+    outline: none;
+}
+
 #page-button-tm {
     background-color: white;
     color: black;
@@ -24,15 +35,48 @@
     text-align: center;
     margin: auto;
     background-color: white;
+    outline-color: white;
 }
 #page-button-tm2{
     color: black;
+    outline-color: white;
     border: 1px solid black;
 }
 
 #page-button-tm3{
     color: black;
+    outline-color: white;
     border: 1px solid black;
+}
+
+#page-button-tm4{
+    color: black;
+    outline-color: white;
+    border: 1px solid black;
+}
+#page-button-tm5{
+    color: black;
+    border: 1px solid black;
+    outline-color: white;
+}
+#page-button-tm6{
+    color: black;
+    border: 1px solid black;
+    background-color: white;
+    border-color:black;
+    outline-color: white;
+    outline: 0;
+}
+#page-button-tm7{
+    color: black;
+    border: 1px solid black;
+    outline-color: white;
+}
+
+#page-button-tm8 {
+    color: black;
+    border: 1px solid black;
+    outline-color: white;
 }
 
 .subject-tm{
