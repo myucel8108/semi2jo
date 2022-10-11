@@ -80,7 +80,7 @@
         </c:if>
         <c:if test="${totalCount>0 }">
             <c:forEach var="dto" items="${list}">
-                <tr style="background-color: ${dto.gongzitype==0?'pink':'white'}">
+                <tr style="background-color: ${dto.gongzitype==0?'white':'white'}">
                     <td align="center">
                         <c:if test="${dto.gongzitype==0}">
                             <span class="gongzi"><b>공지</b></span>
