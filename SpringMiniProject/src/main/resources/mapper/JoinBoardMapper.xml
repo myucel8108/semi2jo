@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bit.data.dao.JoinBoardDao">
+    <select id="getReportBoardList" resultType="joinBoardDto">
+        select b.boardnum, count(*) reportcount, b.usernum, b.subject, b.boardtype, b.nickname
+        from reportboard r, board b where r.boardnum = b.boardnum group by(boardnum) having reportcount>4 order by reportcount desc
+    </select>
+</mapper>

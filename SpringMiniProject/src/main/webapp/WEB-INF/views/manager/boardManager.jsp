@@ -119,19 +119,12 @@
                             <th>Type</th>
                             <th>Subject</th>
                             <th>Writer</th>
-                            <th>WriteDay</th>
+                            <th>Report Count</th>
                             <th>Statue</th>
-                                                        <th>&nbsp;</th>
                         </tr>
                         </thead>
                         <tbody class="ajax-input-reportboard">
                         <tr class="alert" role="alert">
-                            <%--                            <td>--%>
-                            <%--                                <label class="checkbox-wrap checkbox-primary">--%>
-                            <%--                                    <input type="checkbox" checked>--%>
-                            <%--                                    <span class="checkmark"></span>--%>
-                            <%--                                </label>--%>
-                            <%--                            </td>--%>
                             <td></td>
                             <td class="d-flex align-items-center">
                                 <%--                                <div class="img" style="background-image: url(images/person_1.jpg);"></div>--%>
@@ -143,11 +136,9 @@
                             <td></td>
                             <td></td>
 
-                                <td class="status"><span class="active">Active</span></td>
-                                <td>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true"><i class="fa fa-close"></i></span>
-                                    </button>
+                                <td class="status">
+                                    <span class="active">Revert</span>
+                                    <span class="waiting">test</span>
                                 </td>
                         </tr>
                         </tbody>
@@ -161,9 +152,10 @@
 <script>
     $(function () {
         var currentPage = 1;
+
         freeBoardList(currentPage);
         askBoardList(currentPage);
-        // reportBoardList(currentPage);
+        reportBoardList();
 
         //페이징 번호 클릭시 이벤트
         $(document).on('click','.page-item',function (){
@@ -225,7 +217,6 @@
                     temp+="<td>"+ele.readcount+"</td>";
                     temp+="</tr>";
                 })//반복으로 데이터 출력
-
                 $(".ajax-input-askboard").html(temp);
                 //페이징 처리 함수 호출
                 var boardtype = "ask"; //페이징 처리에서 페이지번호 클릭시 어느 게시판에 적용되야 하는지 판단하기 위해 추가해줌
@@ -236,35 +227,31 @@
     }
 
     // 신고 커뮤니티 게시판 출력 함수
-    <%--function reportBoardList(currentPage){--%>
-    <%--    var temp = "";--%>
-    <%--    $.ajax({--%>
-    <%--        type:"get",--%>
-    <%--        url:"${root}/manager/boardList",--%>
-    <%--        data:{"currentPage":currentPage,"ask":"ask"},--%>
-    <%--        dataType:"json",--%>
-    <%--        success:function(res){--%>
-    <%--            $.each(res.list,function (idx,ele) {--%>
-    <%--                console.log("report-board");--%>
-    <%--                console.log(ele.boardnum);--%>
-    <%--                &lt;%&ndash;temp+="<tr class='alert' role='alert'>";&ndash;%&gt;--%>
-    <%--                &lt;%&ndash;temp+="<td><a href='${root}/board/boardDetail?boardnum="+ele.boardnum+"' target='_blank'>"+ele.subject+"</a></td>";&ndash;%&gt;--%>
-    <%--                &lt;%&ndash;temp+="<td class='d-flex align-items-center'>";&ndash;%&gt;--%>
-    <%--                &lt;%&ndash;temp+="<div class='pl-3 email'>";&ndash;%&gt;--%>
-    <%--                &lt;%&ndash;temp+="<span><a href='${root}/userdetail?usernum="+ele.usernum+"' target='_blank'>"+ele.nickname+"</a></span>"&ndash;%&gt;--%>
-    <%--                &lt;%&ndash;temp+="<td>"+ele.writeday+"</td>";&ndash;%&gt;--%>
-    <%--                &lt;%&ndash;temp+="<td>"+ele.readcount+"</td>";&ndash;%&gt;--%>
-    <%--                &lt;%&ndash;temp+="</tr>";&ndash;%&gt;--%>
-    <%--            })//반복으로 데이터 출력--%>
+    function reportBoardList(){
+        console.log("ajax- test1");
+        var temp = "";
+        $.ajax({
+            type:"get",
+            url:"${root}/manager/reportBoardList",
+            // data:{"currentPage":currentPage,"ask":"ask"},
+            dataType:"json",
+            success:function(res){
+                console.log("ajax-test2");
+                $.each(res.list,function (idx,ele) {
+                    console.log("report-board");
+                    console.log(ele.boardnum);
+                    console.log("ajax");
+                    console.log(ele.boardnum);
+                })//반복으로 데이터 출력
 
-    <%--            // $(".ajax-input-reportboard").html(temp);--%>
-    <%--            // //페이징 처리 함수 호출--%>
-    <%--            // var boardtype = "report"; //페이징 처리에서 페이지번호 클릭시 어느 게시판에 적용되야 하는지 판단하기 위해 추가해줌--%>
-    <%--            // var temp = paging(res.startPage,res.endPage,res.currentPage,res.totalPage,boardtype);--%>
-    <%--            // $(".report-board-paging").html(temp);--%>
-    <%--        },--%>
-    <%--    });--%>
-    <%--}--%>
+                // $(".ajax-input-reportboard").html(temp);
+                // // //페이징 처리 함수 호출
+                // var boardtype = "report"; //페이징 처리에서 페이지번호 클릭시 어느 게시판에 적용되야 하는지 판단하기 위해 추가해줌
+                // var temp = paging(res.startPage,res.endPage,res.currentPage,res.totalPage,boardtype);
+                // $(".report-board-paging").html(temp);
+            },
+        });
+    }
 
     //페이징 처리 함수
     function paging(startPage, endPage, currentPage, totalPage, boardtype) {

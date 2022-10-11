@@ -4005,6 +4005,7 @@ input[type="button"].btn-block {
   display: -ms-flexbox;
   display: flex;
   justify-content: center;
+  padding-bottom: 5rem;
   padding-left: 0;
   list-style: none;
   border-radius: 0.25rem; }
@@ -8205,7 +8206,8 @@ h1, h2, h3, h4, h5,
       border-bottom: 0; }
   .table tbody th, .table tbody td {
     border: none;
-    padding: 30px;
+    /*padding: 30px;*/
+    padding: 20px;
     font-size: 14px;
     background: #fff;
     vertical-align: middle; }

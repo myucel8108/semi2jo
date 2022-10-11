@@ -42,6 +42,8 @@ public class ManagerController {
     BoardServiceInter boardService;
     @Autowired
     MyLecJoinServiceInter myLecJoinService;
+    @Autowired
+    JoinBoardService joinBoardService;
 
 
 
@@ -54,9 +56,7 @@ public class ManagerController {
         Date date = new Date();
         int year = date.getYear()+1900;
         int month = date.getMonth()+1;
-        System.out.println("year"+year);
         List<MyLecJoinDto> list = myLecJoinService.getTotalIncom(year,mon);
-        System.out.println(list);
         int totalincom=0; int incom1=0; int incom2=0; int incom3=0; int incom4=0; int incom5=0;
         int incom6=0; int incom7=0; int incom8=0; int incom9=0; int incom10=0; int incom11=0; int incom12=0;
         for (int i=0; i< list.size(); i++){
@@ -103,7 +103,6 @@ public class ManagerController {
 //        lecture typeA 의 종류
         List<LectureDto> leclist = lectureService.getLecTypeA();
         mview.addObject("leclist",leclist);
-        System.out.println(leclist);
         String lectureType =leclist.get(0).lectypea;
         for (int i=1; i<leclist.size(); i++){
             lectureType += ",";
@@ -409,10 +408,8 @@ public class ManagerController {
     @GetMapping("/manager/usertotalCount")
     @ResponseBody
     public int getUserTotalCount(){
-        System.out.println("start controller");
         int result = userService.getUserTotalCount();
         if(!(result>0)) result=0;
-        System.out.println("user"+result);//sql 에서 해당 값이 없는 경우 0을 넣어줌
         return result;
     }
     //커뮤니티 관리
@@ -471,6 +468,18 @@ public class ManagerController {
         map.put("totalPage",totalPage);
 
 
+        return map;
+    }
+
+    @GetMapping("/manager/reportBoardList")
+    @ResponseBody
+    public Map<String, Object> getReportBoardList(){
+        Map<String, Object> map = new HashMap<>();
+        System.out.println("contoller test");
+        List<JoinBoardDto> list = joinBoardService.getReportBoardList();
+        map.put("list",list);
+        System.out.println("controller");
+        System.out.println(list);
         return map;
     }
 

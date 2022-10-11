@@ -22,5 +22,6 @@
 		<typeAlias type="bit.data.dto.MyLecJoinDto" alias="myLecJoinDto"/>
 		<typeAlias type="bit.data.dto.ReadyPayDto" alias="readypayDto"/>
 		<typeAlias type="bit.data.dto.ReportBoardDto" alias="reportBoardDto"/>
+		<typeAlias type="bit.data.dto.JoinBoardDto" alias="joinBoardDto"/>
 	</typeAliases>
 </configuration>
