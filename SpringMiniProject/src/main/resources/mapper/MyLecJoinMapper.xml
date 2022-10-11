@@ -17,9 +17,13 @@
     </select>
     
     <!--    올해의 총수익-->
-    <select id="getTotalIncom" parameterType="int" resultType="myLecJoinDto">
+    <select id="getTotalIncom" parameterType="Map" resultType="myLecJoinDto">
         SELECT b.price, a.lectypea, b.lecmonth
         from lecture a, lecdetail b, mylecture c
-        where a.lecnum=b.lecnum and b.lecdenum=c.lecdenum and c.payok="ok" and lecyear=${year}
+        where a.lecnum=b.lecnum and b.lecdenum=c.lecdenum and c.payok="ok" and b.lecyear=#{year}
+        <if test="month!=0">
+            and b.lecmonth=#{month}
+        </if>
+
     </select>
 </mapper>

@@ -43,7 +43,7 @@
 	</select>
 
     <!--	과목 typea 종류 출력-->
-    <select id="getLecTypeA" resultType="myLectureDto">
+    <select id="getLecTypeA" resultType="lectureDto">
         SELECT distinct lectypea FROM lecture
     </select>
 

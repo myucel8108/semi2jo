@@ -32,7 +32,11 @@ public class MyLecJoinService implements MyLecJoinServiceInter{
     }
         
     @Override
-    public List<MyLecJoinDto> getTotalIncom(int year) {
-        return myLecJoinDao.getTotalIncom(year);
+    public List<MyLecJoinDto> getTotalIncom(int year, int mon) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("year",year);
+        map.put("month",mon);
+        System.out.println(mon);
+        return myLecJoinDao.getTotalIncom(map);
     }
 }
