@@ -50,21 +50,6 @@ public class LectureService implements LectureServiceInter{
     }
 
     @Override
-    public LectureDto getLectureDetail(int lecnum) {
-        return lectureDao.getLectureDetail(lecnum);
-    }
-
-    @Override
-    public void deleteLecture(int lecnum) {
-        lectureDao.deleteLecture(lecnum);
-    }
-
-    @Override
-    public void updateLecture(LectureDto dto) {
-        lectureDao.updateLecture(dto);
-    }
-
-    @Override
     public List<LectureDto> getAllLecture(){
     	
     	return lectureDao.getAllLecture();

@@ -292,49 +292,24 @@ public class ManagerController {
 //        System.out.println(lecnum);
         ModelAndView mview = new ModelAndView();
 
-        LectureDto dto = lectureService.getLectureDetail(lecnum);
         List<LecturePresentJoinDto> list = lectureService.getLecturePresent(lecnum);
-//        System.out.println(list.size());
+//        System.out.println(list);
+        String typea = list.get(0).getLectypea();
+        String typeb = list.get(0).getLectypeb();
+        String lphoto = list.get(0).getLecphoto();
+        String lname = list.get(0).getLecname();
+        String tname = list.get(0).getTeaname();
 
-        //dto로 가져오지 않고 list에서 하나씩 빼오는 방법
-//        String typea = list.get(0).getLectypea();
-//        String typeb = list.get(0).getLectypeb();
-//        String lphoto = list.get(0).getLecphoto();
-//        String lname = list.get(0).getLecname();
-//        String tname = list.get(0).getTeaname();
-
-//        mview.addObject("typea", typea);
-//        mview.addObject("typeb", typeb);
-//        mview.addObject("lphoto", lphoto);
-//        mview.addObject("lname", lname);
-//        mview.addObject("tname", tname);
-
-        mview.addObject("lecnum", lecnum);
-        mview.addObject("dto", dto);
         mview.addObject("list", list);
+        mview.addObject("typea", typea);
+        mview.addObject("typeb", typeb);
+        mview.addObject("lphoto", lphoto);
+        mview.addObject("lname", lname);
+        mview.addObject("tname", tname);
 
         mview.setViewName("/manager/manager/lecturePresent");
 
         return mview;
-    }
-
-    @GetMapping("/updateLectureForm")
-    public ModelAndView updateform(int lecnum){
-        ModelAndView mview = new ModelAndView();
-
-        LectureDto dto = lectureService.getLectureDetail(lecnum);
-
-        mview.addObject("dto", dto);
-
-        mview.setViewName("/manager/manager/updateLectureForm");
-
-        return mview;
-    }
-
-    @GetMapping("/deleteLecture")
-    public String deleteLecture(int lecnum){
-        lectureService.deleteLecture(lecnum);
-        return "redirect:lecturelist";
     }
 
     //강의 등록 폼으로 이동
@@ -352,7 +327,7 @@ public class ManagerController {
         String photo = photoupload.getOriginalFilename(); //photo는 실제 파일명
         System.out.println(photoupload.getOriginalFilename()); //실제 파일명 확인
         if(photoupload.getOriginalFilename().equals("")) {
-            dto.setLecphoto(null);
+            dto.setLecphoto("no");
         } else {
             //String newName = ChangeName.getChangeFileName(upload.getOriginalFilename()); //파일 이름을 시간으로 변경할 때 사용
             try {

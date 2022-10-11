@@ -13,9 +13,6 @@ public interface LectureServiceInter {
     public List<LectureDto> getLectureList(String searchcolumn, String searchword, int startnum, int perpage);
     public void insertLecture(LectureDto dto);
     public List<LecturePresentJoinDto> getLecturePresent(int lecnum);
-    public LectureDto getLectureDetail(int lecnum);
-    public void deleteLecture(int lecnum);
-    public void updateLecture(LectureDto dto);
     public List<LectureDto> getAllLecture();
 
     //lectype A 의 종류 구하기

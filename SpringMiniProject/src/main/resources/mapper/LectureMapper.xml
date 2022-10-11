@@ -21,24 +21,9 @@
         </if>
         order by lectypea desc, lectypeb asc, lecname asc limit #{startnum},#{perpage}
     </select>
-    <!-- 강좌 상세(개설된 강의 확인) 출력 -->
-    <select id="getLectureDetail" parameterType="int" resultType="lectureDto">
-        select * from lecture where lecnum = #{lecnum} order by lectypea desc, lectypeb asc, lecname asc
-    </select>
-    <!-- 강좌 수정 -->
-    <update id="updateLecture" parameterType="lectureDto">
-        update lecture set teaname = #{teaname}, lecname = #{lecname}, lectypea = #{lectypea}, lectypeb = #{lectypeb}
-        <if test="lecphoto!=null">
-            ,lecphoto = #{lecphoto}
-        </if>
-        where lecnum = #{lecnum}
-    </update>
-    <!-- 강좌 삭제 -->
-    <delete id="deleteLecture" parameterType="int">
-        delete from lecture where lecnum = #{lecnum}
-    </delete>
     <!--강의 목록 전체 출력  과목 이름 순-->
      <select id="getAllLecture" resultType="lectureDto">
+
 		select * from lecture order by lectypea asc
 	</select>
 
