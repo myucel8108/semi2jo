@@ -76,7 +76,7 @@
     <div>
         <form action="lecturelist">
             <div class="search-container">
-                <div class="search-item1"> <!-- 기간 선택 -->
+                <div class="search-item1"> <!-- 분류 선택 -->
                     <select class="form-select" style="width: 150px;" name="searchcolumn">
                         <option value="1">전체 강좌</option>
                         <option value="2">[대분류] 국어</option>
@@ -86,12 +86,12 @@
                         <option value="6">[대분류] 과학</option>
                     </select>
                 </div>
-                <div class="input-group search-item2"> <!-- 검색 -->
+                <div class="input-group search-item2"> <!-- 강좌명으로 검색 -->
                     <input type="text" name="searchword" class="form-control" style="width: 100px;">
                     <button type="submit" class="btn btn-primary">검색</button>
                 </div>
-                <div class="search-item3"> <!-- 강의 등록 버튼 -->
-                    <button type="button" class="btn btn-primary" onclick="location.href='/mini/addlectureform'">강의 등록</button>
+                <div class="search-item3"> <!-- 강좌 등록 버튼 -->
+                    <button type="button" class="btn btn-primary" onclick="location.href='/mini/addlectureform'">강좌 등록</button>
                 </div>
             </div>
         </form>
@@ -109,7 +109,7 @@
                     <c:if test="${dto.lectypea=='국어'}">
                         <div class="col">
                             <div class="card radius-10 border-start border-0 border-3 border-info">
-                                <div class="card-body present-container" onclick="location.href='${root}/mini/lecture-present?lecnum=${dto.lecnum}'">
+                                <div class="card-body present-container" onclick="location.href='${root}/mini/lectureDetail?lecnum=${dto.lecnum}'">
                                     <div class="d-flex align-items-center">
                                         <div>
                                             <p class="mb-0 text-secondary">[${dto.lectypea}]-${dto.lectypeb}</p>
@@ -132,7 +132,7 @@
                     <c:if test="${dto.lectypea=='수학'}">
                         <div class="col">
                             <div class="card radius-10 border-start border-0 border-3 border-primary">
-                                <div class="card-body present-container" onclick="location.href='${root}/mini/lecture-present?lecnum=${dto.lecnum}'">
+                                <div class="card-body present-container" onclick="location.href='${root}/mini/lectureDetail?lecnum=${dto.lecnum}'">
                                     <div class="d-flex align-items-center">
                                         <div>
                                             <p class="mb-0 text-secondary">[${dto.lectypea}]-${dto.lectypeb}</p>
@@ -155,7 +155,7 @@
                     <c:if test="${dto.lectypea=='영어'}">
                         <div class="col">
                             <div class="card radius-10 border-start border-0 border-3 border-success">
-                                <div class="card-body present-container" onclick="location.href='${root}/mini/lecture-present?lecnum=${dto.lecnum}'">
+                                <div class="card-body present-container" onclick="location.href='${root}/mini/lectureDetail?lecnum=${dto.lecnum}'">
                                     <div class="d-flex align-items-center">
                                         <div>
                                             <p class="mb-0 text-secondary">[${dto.lectypea}]-${dto.lectypeb}</p>
@@ -178,7 +178,7 @@
                     <c:if test="${dto.lectypea=='사회'}">
                         <div class="col">
                             <div class="card radius-10 border-start border-0 border-3 border-warning">
-                                <div class="card-body present-container" onclick="location.href='${root}/mini/lecture-present?lecnum=${dto.lecnum}'">
+                                <div class="card-body present-container" onclick="location.href='${root}/mini/lectureDetail?lecnum=${dto.lecnum}'">
                                     <div class="d-flex align-items-center">
                                         <div>
                                             <p class="mb-0 text-secondary">[${dto.lectypea}]-${dto.lectypeb}</p>
@@ -201,7 +201,7 @@
                     <c:if test="${dto.lectypea=='과학'}">
                         <div class="col">
                             <div class="card radius-10 border-start border-0 border-3 border-danger">
-                                <div class="card-body present-container" onclick="location.href='${root}/mini/lecture-present?lecnum=${dto.lecnum}'">
+                                <div class="card-body present-container" onclick="location.href='${root}/mini/lectureDetail?lecnum=${dto.lecnum}'">
                                     <div class="d-flex align-items-center">
                                         <div>
                                             <p class="mb-0 text-secondary">[${dto.lectypea}]-${dto.lectypeb}</p>

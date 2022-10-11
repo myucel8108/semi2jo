@@ -3,17 +3,13 @@ package bit.data.controller;
 import bit.data.dto.*;
 import bit.data.service.*;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
-import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -23,9 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import util.ChangeName;
 
-import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Map;
 
@@ -340,37 +334,6 @@ public class ManagerController {
         return "/manager/manager/lectureList";
     }
 
-    @GetMapping("/lecture-present")
-    public ModelAndView lecturePresent(int lecnum){
-//        System.out.println(lecnum);
-        ModelAndView mview = new ModelAndView();
-
-        LectureDto dto = lectureService.getLectureDetail(lecnum);
-        List<LecturePresentJoinDto> list = lectureService.getLecturePresent(lecnum);
-//        System.out.println(list.size());
-
-        //dto로 가져오지 않고 list에서 하나씩 빼오는 방법
-//        String typea = list.get(0).getLectypea();
-//        String typeb = list.get(0).getLectypeb();
-//        String lphoto = list.get(0).getLecphoto();
-//        String lname = list.get(0).getLecname();
-//        String tname = list.get(0).getTeaname();
-
-//        mview.addObject("typea", typea);
-//        mview.addObject("typeb", typeb);
-//        mview.addObject("lphoto", lphoto);
-//        mview.addObject("lname", lname);
-//        mview.addObject("tname", tname);
-
-        mview.addObject("lecnum", lecnum);
-        mview.addObject("dto", dto);
-        mview.addObject("list", list);
-
-        mview.setViewName("/manager/manager/lecturePresent");
-
-        return mview;
-    }
-
     @GetMapping("/updateLectureForm")
     public ModelAndView updateform(int lecnum){
         ModelAndView mview = new ModelAndView();
@@ -382,6 +345,29 @@ public class ManagerController {
         mview.setViewName("/manager/manager/updateLectureForm");
 
         return mview;
+    }
+
+    @PostMapping("/updatelecture")
+    public String updateLecture(LectureDto dto, MultipartFile photoupload, HttpServletRequest request){
+
+        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
+        System.out.println(path); //저장되는 실제 경로 확인
+        String photo = photoupload.getOriginalFilename(); //photo는 실제 파일명
+        System.out.println(photoupload.getOriginalFilename()); //실제 파일명 확인
+        if(photoupload.getOriginalFilename().equals("")) {
+            dto.setLecphoto(null);
+        } else {
+            //String newName = ChangeName.getChangeFileName(upload.getOriginalFilename()); //파일 이름을 시간으로 변경할 때 사용
+            try {
+                photoupload.transferTo(new File(path + "/" + photo));
+                dto.setLecphoto(photo);
+            } catch (IllegalStateException | IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        lectureService.updateLecture(dto);
+        return "redirect:lecturelist";
     }
 
     @GetMapping("/deleteLecture")
@@ -418,6 +404,59 @@ public class ManagerController {
        }
         lectureService.insertLecture(dto);
         return "redirect:lecturelist";
+    }
+
+    //강의 상세 보기
+    @GetMapping("/lectureDetail")
+    public ModelAndView lectureDetail(int lecnum){
+//        System.out.println(lecnum);
+        ModelAndView mview = new ModelAndView();
+
+        LectureDto dto = lectureService.getLectureDetail(lecnum);
+        List<LectureDetailJoinDto> list = lectureService.getLecturePresent(lecnum);
+//        System.out.println(list.size());
+
+        //dto로 가져오지 않고 list에서 하나씩 빼오는 방법(이 방법 취소하고 dto로 한번 더 가져와서 주석처리)
+//        String typea = list.get(0).getLectypea();
+//        String typeb = list.get(0).getLectypeb();
+//        String lphoto = list.get(0).getLecphoto();
+//        String lname = list.get(0).getLecname();
+//        String tname = list.get(0).getTeaname();
+
+//        mview.addObject("typea", typea);
+//        mview.addObject("typeb", typeb);
+//        mview.addObject("lphoto", lphoto);
+//        mview.addObject("lname", lname);
+//        mview.addObject("tname", tname);
+
+        mview.addObject("lecnum", lecnum);
+        mview.addObject("dto", dto);
+        mview.addObject("list", list);
+        System.out.println(list);
+
+        mview.setViewName("/manager/manager/lectureDetail");
+
+        return mview;
+    }
+
+    //강의 추가폼으로 가기
+    @GetMapping("insertLectureDetailForm")
+    public String insertLectureDetailForm(int lecnum){
+        return "/manager/manager/insertLectureDetailForm?lecnum" + lecnum;
+    }
+
+    //강의 추가
+    @PostMapping("/insertLectureDetail")
+    public String insertLectureDetail(LecDetailDto dto, int lecnum){
+        lecDetailService.insertLectureDetail(dto);
+        return "redirect:lectureDetail?lecnum=" + lecnum;
+    }
+
+    //강의 삭제
+    @GetMapping("deleteLectureDetail")
+    public String deleteLectureDetail(int lecdenum, int lecnum){
+        lecDetailService.deleteLectureDetail(lecdenum);
+        return "redirect:lectureDetail?lecnum=" + lecnum;
     }
 
     //    이번달에 개설된 강의 총 수 반환

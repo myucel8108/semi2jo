@@ -33,12 +33,12 @@
 	<!-- Form Basic -->
 	<div class="card mb-4">
 		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-			<h6 class="m-0 font-weight-bold text-primary">강의 과목 등록</h6>
+			<h6 class="m-0 font-weight-bold text-primary">강좌 등록</h6>
 		</div>
 		<div class="card-body">
 			<form action="insertlecture" method="post" enctype="multipart/form-data">
 				<div class="form-group">
-					<label>강의 과목명</label>
+					<label>강좌명</label>
 					<input type="text" class="form-control btn-outline-primary" name="lecname" aria-describedby="emailHelp"
 						   placeholder="과목명 입력">
 				</div>
@@ -47,7 +47,7 @@
 					<input type="text" class="form-control btn-outline-primary" name="teaname" placeholder="강사명 입력">
 				</div>
 				<div class="form-group">
-					<label for="lectypea">강의 대분류</label>
+					<label for="lectypea">강좌 대분류</label>
 					<select id="lectypea" name="lectypea" class="form-control btn-outline-primary">
 						<option value="none" selected>대분류</option>
 						<option value="국어">국어</option>
@@ -58,7 +58,7 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="lectypeb">강의 중분류</label>
+					<label for="lectypeb">강좌 중분류</label>
 					<select id="lectypeb" name="lectypeb" class="form-control btn-outline-primary">
 						<option value="none" selected>중분류</option>
 					</select>
@@ -69,8 +69,8 @@
 				</div>
 				<br>
 				<div class="button-container">
-					<button type="submit" id="insertbutton" class="btn btn-primary">등록</button>
-					<button type="button" id="cancelbutton" class="btn btn-outline-primary">취소</button>
+					<button type="submit" id="insertbutton" class="btn btn-primary">강좌 등록</button>
+					<button type="button" id="cancelbutton" class="btn btn-outline-primary">강좌 등록 취소</button>
 				</div>
 			</form>
 		</div>
@@ -110,7 +110,7 @@
 		}
 
 		$("#insertbutton").click(function () {
-			alert("강의가 등록되었습니다");
+			alert("강좌가 등록되었습니다");
 		});
 		$("#cancelbutton").click(function () {
 			history.back();
