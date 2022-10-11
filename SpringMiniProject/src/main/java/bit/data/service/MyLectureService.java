@@ -4,7 +4,9 @@ import bit.data.dao.MyLectureDao;
 import bit.data.dao.MyLectureDaoInter;
 import bit.data.dto.MyLectureDto;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +35,15 @@ public class MyLectureService implements MyLectureServiceInter{
     	return myLectureDao.getReview(lecdenum);
 		
     }
-    
+
+    @Override
+    public void updateStarReview(int star, String review, int usernum, int lecdenum) {
+        Map<String, Object> map= new HashMap<>();
+        map.put("star",star);
+        map.put("review",review);
+        map.put("usernum",usernum);
+        map.put("lecdenum",lecdenum);
+
+        myLectureDao.updateStarReview(map);
+    }
 }

@@ -11,4 +11,5 @@ public interface MyLectureDaoInter {
 	   public void insertMyLecture(MyLectureDto mylecDto);
 	   public void updatePayok(int usernum);
 	   public List<MyLectureDto>  getReview(int lecdenum);
+	   public void updateStarReview(Map<String, Object> map);
 }
