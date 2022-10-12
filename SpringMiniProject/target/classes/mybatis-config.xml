@@ -7,7 +7,7 @@
 		<typeAlias type="bit.data.dto.LecAvgStarDto" alias="lecAvgStarDto"/>
 		<typeAlias type="bit.data.dto.LecDetailDto" alias="lecDetailDto"/>
 		<typeAlias type="bit.data.dto.LectureDto" alias="lectureDto"/>
-		<typeAlias type="bit.data.dto.LecturePresentJoinDto" alias="lecturePresentJoinDto"/>
+		<typeAlias type="bit.data.dto.LectureDetailJoinDto" alias="lectureDetailJoinDto"/>
 		<typeAlias type="bit.data.dto.LikeBoardDto" alias="likeBoardDto"/>
 		<typeAlias type="bit.data.dto.LockerDto" alias="lockerDto"/>
 		<typeAlias type="bit.data.dto.ManagerDto" alias="managerDto"/>

@@ -9,4 +9,15 @@
         select lecdenum, lecnum from lecdetail where lecdenum=#{lecdenum}
     </select>
 
+    <!-- 강의 추가 -->
+    <insert id="insertLectureDetail" parameterType="lecDetailDto">
+        INSERT INTO `errjava2`.`lecdetail` (`lecnum`, `lecname`, `roomnum`, `price`, `lectime`, `lecday`, `lecmonth`)
+        VALUES (null, #{lecname}, #{roomnum}, #{price}, #{lectime}, #{lecday}, #{lecmonth});
+    </insert>
+
+    <!-- 강의 삭제 -->
+    <delete id="deleteLectureDetail" parameterType="int">
+        DELETE FROM lecdetail WHERE lecdenum = #{lecdenum}
+    </delete>
+
 </mapper>

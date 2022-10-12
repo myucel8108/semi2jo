@@ -29,4 +29,14 @@ public class LecDetailService implements LecDetailServiceInter{
     public LecDetailDto getDataByLecDeNum(int lecdenum) {
         return lecDetailDao.getDataByLecDeNum(lecdenum);
     }
+
+    @Override
+    public void insertLectureDetail(LecDetailDto dto) {
+        lecDetailDao.insertLectureDetail(dto);
+    }
+
+    @Override
+    public void deleteLectureDetail(int lecdenum) {
+        lecDetailDao.deleteLectureDetail(lecdenum);
+    }
 }

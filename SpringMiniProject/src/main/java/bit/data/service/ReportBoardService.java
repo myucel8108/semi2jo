@@ -26,4 +26,11 @@ public class ReportBoardService implements ReportBoardServiceInter{
     public void insertReportBoard(ReportBoardDto dto) {
         reportBoardDao.insertReportBoard(dto);
     }
+
+    //신고횟수 되돌리기 - 관리자
+
+    @Override
+    public void revertReport(int boardnum) {
+        reportBoardDao.revertReport(boardnum);
+    }
 }

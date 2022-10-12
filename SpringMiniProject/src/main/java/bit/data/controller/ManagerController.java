@@ -3,17 +3,13 @@ package bit.data.controller;
 import bit.data.dto.*;
 import bit.data.service.*;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
-import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -23,9 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import util.ChangeName;
 
-import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Map;
 
@@ -340,37 +334,6 @@ public class ManagerController {
         return "/manager/manager/lectureList";
     }
 
-    @GetMapping("/lecture-present")
-    public ModelAndView lecturePresent(int lecnum){
-//        System.out.println(lecnum);
-        ModelAndView mview = new ModelAndView();
-
-        LectureDto dto = lectureService.getLectureDetail(lecnum);
-        List<LecturePresentJoinDto> list = lectureService.getLecturePresent(lecnum);
-//        System.out.println(list.size());
-
-        //dto로 가져오지 않고 list에서 하나씩 빼오는 방법
-//        String typea = list.get(0).getLectypea();
-//        String typeb = list.get(0).getLectypeb();
-//        String lphoto = list.get(0).getLecphoto();
-//        String lname = list.get(0).getLecname();
-//        String tname = list.get(0).getTeaname();
-
-//        mview.addObject("typea", typea);
-//        mview.addObject("typeb", typeb);
-//        mview.addObject("lphoto", lphoto);
-//        mview.addObject("lname", lname);
-//        mview.addObject("tname", tname);
-
-        mview.addObject("lecnum", lecnum);
-        mview.addObject("dto", dto);
-        mview.addObject("list", list);
-
-        mview.setViewName("/manager/manager/lecturePresent");
-
-        return mview;
-    }
-
     @GetMapping("/updateLectureForm")
     public ModelAndView updateform(int lecnum){
         ModelAndView mview = new ModelAndView();
@@ -382,6 +345,29 @@ public class ManagerController {
         mview.setViewName("/manager/manager/updateLectureForm");
 
         return mview;
+    }
+
+    @PostMapping("/updatelecture")
+    public String updateLecture(LectureDto dto, MultipartFile photoupload, HttpServletRequest request){
+
+        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
+        System.out.println(path); //저장되는 실제 경로 확인
+        String photo = photoupload.getOriginalFilename(); //photo는 실제 파일명
+        System.out.println(photoupload.getOriginalFilename()); //실제 파일명 확인
+        if(photoupload.getOriginalFilename().equals("")) {
+            dto.setLecphoto(null);
+        } else {
+            //String newName = ChangeName.getChangeFileName(upload.getOriginalFilename()); //파일 이름을 시간으로 변경할 때 사용
+            try {
+                photoupload.transferTo(new File(path + "/" + photo));
+                dto.setLecphoto(photo);
+            } catch (IllegalStateException | IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        lectureService.updateLecture(dto);
+        return "redirect:lecturelist";
     }
 
     @GetMapping("/deleteLecture")
@@ -420,6 +406,65 @@ public class ManagerController {
         return "redirect:lecturelist";
     }
 
+    //강의 상세 보기
+    @GetMapping("/lectureDetail")
+    public ModelAndView lectureDetail(int lecnum){
+//        System.out.println(lecnum);
+        ModelAndView mview = new ModelAndView();
+
+        LectureDto dto = lectureService.getLectureDetail(lecnum);
+        List<LectureDetailJoinDto> list = lectureService.getLecturePresent(lecnum);
+//        System.out.println(list.size());
+
+        //dto로 가져오지 않고 list에서 하나씩 빼오는 방법(이 방법 취소하고 dto로 한번 더 가져와서 주석처리)
+//        String typea = list.get(0).getLectypea();
+//        String typeb = list.get(0).getLectypeb();
+//        String lphoto = list.get(0).getLecphoto();
+//        String lname = list.get(0).getLecname();
+//        String tname = list.get(0).getTeaname();
+
+//        mview.addObject("typea", typea);
+//        mview.addObject("typeb", typeb);
+//        mview.addObject("lphoto", lphoto);
+//        mview.addObject("lname", lname);
+//        mview.addObject("tname", tname);
+
+        mview.addObject("lecnum", lecnum);
+        mview.addObject("dto", dto);
+        mview.addObject("list", list);
+        System.out.println(list);
+
+        mview.setViewName("/manager/manager/lectureDetail");
+
+        return mview;
+    }
+
+    //강의 추가폼으로 가기
+    @GetMapping("/insertLectureDetailForm")
+    public String insertLectureDetailForm(int lecnum){
+        System.out.println(lecnum);
+        return "/manager/manager/insertLectureDetailForm?lecnum=" + lecnum;
+    }
+
+    //강의 추가
+    @PostMapping("/insertLectureDetail")
+    public String insertLectureDetail(LecDetailDto dto, int lecnum){
+        lecDetailService.insertLectureDetail(dto);
+        return "redirect:lectureDetail?lecnum=" + lecnum;
+    }
+
+    @GetMapping("/updateLectureDetailForm")
+    public String updateLectureDetailForm(int lecdenum){
+        return "/manager/manager/updateLectureDetailForm?lecdenum=" + lecdenum;
+    }
+
+    //강의 삭제
+    @GetMapping("/deleteLectureDetail")
+    public String deleteLectureDetail(int lecdenum, int lecnum){
+        lecDetailService.deleteLectureDetail(lecdenum);
+        return "redirect:lectureDetail?lecnum=" + lecnum;
+    }
+
     //    이번달에 개설된 강의 총 수 반환
     @GetMapping("/manager/totalLectureCount")
     @ResponseBody
@@ -443,9 +488,7 @@ public class ManagerController {
     public Map<String, Object> freeBoardList(@RequestParam(defaultValue = "1")int currentPage,
                                              @RequestParam(value = "searchcolumn", required = false) String sc,	/*required = false: 값이 없을 겨우 null*/
                                              @RequestParam(value = "searchword", required = false) String sw,
-                                             @RequestParam(value = "boardtype", required = false) String boardtype,
-
-                                             @RequestParam(required=false) String ask){
+                                             @RequestParam(value = "boardtype", required = false) String boardtype){
         //페이징 처리에 필요한 변수들
         //전체 갯수
         int totalCount=boardService.getTotalCount(sc, sw, boardtype);
@@ -481,9 +524,6 @@ public class ManagerController {
 
         //페이지에서 보여질 글만 가져오기
         List<BoardDto> list = boardService.getPagingList(sc, sw, startNum, perPage, boardtype);
-        if(ask=="ask"){
-            System.out.println("ask - sucess");
-        }
 
         Map<String, Object> map = new HashMap<>();
         map.put("list",list);
@@ -498,16 +538,70 @@ public class ManagerController {
         return map;
     }
 
+    //관리자 - 커뮤니티 게시글 관리에서 신고글 출력
     @GetMapping("/manager/reportBoardList")
     @ResponseBody
-    public Map<String, Object> getReportBoardList(){
+    public Map<String, Object> getReportBoardList(@RequestParam(defaultValue = "1")int currentPage,
+                                                  @RequestParam(value = "searchcolumn", required = false) String sc,	/*required = false: 값이 없을 겨우 null*/
+                                                  @RequestParam(value = "searchword", required = false) String sw){
+
+        System.out.println("report- controller");
+        //페이징 처리에 필요한 변수들
+        //전체 갯수
+//        int totalCount=0;
+//        String boardtype="free";
+//        totalCount+=boardService.getTotalCount(sc, sw, boardtype);
+//        boardtype="ask";
+//        totalCount+=boardService.getTotalCount(sc, sw, boardtype);
+
+        List<JoinBoardDto> listcount = joinBoardService.getReportListCount();
+        int totalCount = listcount.size();
+        int perPage=2;//한페이지당 보여질 글의 갯수
+        int perBlock=3;//한블럭당 보여질 페이지의 갯수
+        int startNum;//db에서 가져올 글의 시작번호(mysql은 첫글이 0번,오라클은 1번)
+        int startPage;//각블럭당 보여질 시작페이지
+        int endPage;//각 블럭당 보여질 끝페이지
+        int totalPage;//총 페이지수
+        int no;//각 페이지당 출력할 시작번호
+
+        //총 페이지수를 구한다
+        //총글의갯수/한페이지당보여질갯수로 나눔(7/5=1)
+        //나머지가 1이라도 있으면 무조건 1페이지 추가(1+1=2페이지가 필요)
+        totalPage=totalCount/perPage+(totalCount%perPage==0?0:1);
+
+        //각 블럭당 보여질 시작페이지
+        //perBlock=5 일경우 현재페이지가 1~5 일경우는 시작페이지가 1, 끝페이지가 5
+        //만약 현재페이지가 13 일경우는 시작페이지가 11, 끝페이지가 15
+        startPage=(currentPage-1)/perBlock*perBlock+1;
+        endPage=startPage+perBlock-1;
+        //총페이지수가 23개일경우 마지막 블럭은 끝페이지가 25가 아니라 23이라야한다
+        if(endPage>totalPage) {
+            endPage=totalPage;
+        }
+
+        //각 페이지에서 보여질 시작번호
+        //예: 1페이지->0, 2페이지:5, 3페이지 : 10...
+        startNum=(currentPage-1)*perPage;
+
+        //각페이지당 출력할 시작번호 구하기
+        //예: 총글갯수가 23이라면  1페이지는 23,2페이지는 18,3페이지는 13...
+        no=totalCount-(currentPage-1)*perPage;
+
+        List<JoinBoardDto> list = joinBoardService.getReportBoardList(startNum, perPage);
         Map<String, Object> map = new HashMap<>();
-        System.out.println("contoller test");
-        List<JoinBoardDto> list = joinBoardService.getReportBoardList();
         map.put("list",list);
+        map.put("totalCount",totalCount);
+        map.put("currentPage",currentPage);
+        map.put("startPage",startPage);
+        map.put("endPage",endPage);
+        map.put("no",no);
+        map.put("totalPage",totalPage);
         System.out.println("controller");
         System.out.println(list);
         return map;
     }
+
+//    @GetMapping
+//    public void
 
 }
