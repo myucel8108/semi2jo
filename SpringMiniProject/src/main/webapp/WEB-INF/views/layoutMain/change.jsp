@@ -73,7 +73,11 @@
 
     }
 
-
+    .lg-text{
+        background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
 
 
 
