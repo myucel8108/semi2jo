@@ -15,9 +15,7 @@
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link rel="stylesheet" type="text/css" href="${root}/css/board/boardForm.css">
     <style type="text/css">
-        *{
-            font-family: Noto Sans KR;
-        }
+
     </style>
     <script>
         $(function (){

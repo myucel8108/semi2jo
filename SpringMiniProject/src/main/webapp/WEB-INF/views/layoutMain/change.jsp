@@ -1,21 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<link rel="stylesheet" type="text/css" href="${root}/css/qna.css">
+<link rel="stylesheet" type="text/css" href="${root}/css/taeminfont.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
 </head>
+<style>
+
+    #go{
+        background-color: white;
+        border-color: white;
+        margin-top: 100px;
+        color: black;
+    }
+
+    #tctext{
+        background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+
+    #go:hover{
+        background: linear-gradient(to right, #4481eb,#3f86ed);
+        /*background-color: #3f86ed;*/
+        border: none;
+        color: white;
+    }
+</style>
 <body>
   <!--Section-1-->
     <section class="section-1">
         <div class="jumbotron d-flex align-items-center">
-            <div class="gradient"></div>
+            <div class="gradient" ></div>
             <div class="container-fluid content">
-                <h1 data-aos="fade-up" data-aos-delay="100">Welcome to an academy.</h1>
-                <h2 data-aos="fade-up" data-aos-delay="300">I find that the harder I work, the more luck I seem to have.</h2>
-                <h4 data-aos="fade-up" data-aos-delay="500">Get up and Study, for the new chapter of your life</h4>
-                <p data-aos="fade-up" data-aos-delay="700"><a href="/mini/" class="btn btn-success">Get Started</a></p>
+                <h1 data-aos="fade-up" data-aos-delay="100" style="margin-bottom: 50px; color: white; font-family: 'BM Dohyeon';">국내 최다 합격률 <span style="color:#3f86ed;" id="tctext">티치미</span> 입시학원</h1>
+                <h2 data-aos="fade-up" data-aos-delay="300" style="margin-bottom: 50px; color: darkgray;">국내 최고의 강사진과 함께하는 체계적인 커리큘럼</h2>
+                <h4 data-aos="fade-up" data-aos-delay="500" style="background-color: white; color: black; margin-top: 250px; border-radius: 15px;">Teach me how to study by myself</h4>
+                <p data-aos="fade-up" data-aos-delay="700"><a href="/mini/" class="btn btn-success" id="go" >학습하기</a></p>
             </div>
             <!--container-fluid end-->
         </div>

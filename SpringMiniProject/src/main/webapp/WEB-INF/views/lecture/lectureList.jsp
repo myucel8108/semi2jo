@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<link rel="stylesheet" type="text/css" href="${root}/css/qna.css">
 <!DOCTYPE html>
 <html>
 <head>
 
 <style>
-h1,
 h1+p {
   margin: 30px 15px 0;
   font-weight: 300;
@@ -157,10 +157,10 @@ figure
 	.que.on .arrow-top {
 	  display: block; 
 	}
-		 body { margin:0; padding:0; font-family:'맑은 고딕', verdana; }
+		 /*body { margin:0; padding:0; font-family:'맑은 고딕', verdana; }*/
 		 
-		 h1, h2, h3, h4, h5, h6 { margin:0; padding:0; }
-		 ul, lo, li { margin:0; padding:0; list-style:none; }
+		 /*h1, h2, h3, h4, h5, h6 { margin:0; padding:0; }*/
+		 /*ul, lo, li { margin:0; padding:0; list-style:none; }*/
 </style>
 </head>
 <body>

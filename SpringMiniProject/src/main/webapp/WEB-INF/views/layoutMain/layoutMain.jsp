@@ -24,6 +24,9 @@
 	<script src="${pageContext.request.contextPath}/resources/javascript/animate.js"></script>
     <script src="${pageContext.request.contextPath}/resources/javascript/custom.js"></script>
     <script src="${pageContext.request.contextPath}/resources/javascript/bootstrap.js"></script>
+	<c:set var="root" value="<%=request.getContextPath() %>"></c:set>
+	<link rel="stylesheet" type="text/css" href="${root}/css/qna.css">
+
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
