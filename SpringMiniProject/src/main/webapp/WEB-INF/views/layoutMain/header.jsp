@@ -53,6 +53,12 @@
         margin-left: 200px;
     }
 
+    #logos:hover{
+        background-image: linear-gradient(to left, white,skyblue,#b3d7ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
 
     #rowfor{
         text-align: left;
