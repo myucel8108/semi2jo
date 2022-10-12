@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class JoinBoardDao implements ManagerDaoInter{
@@ -15,7 +16,11 @@ public class JoinBoardDao implements ManagerDaoInter{
 
     String ns = "bit.data.dao.JoinBoardDao.";
 
-    public List<JoinBoardDto> getReportBoardList(){
-        return session.selectList(ns+"getReportBoardList");
+    public List<JoinBoardDto> getReportBoardList(Map<String, Integer> map){
+        return session.selectList(ns+"getReportBoardList", map);
+    }
+
+    public List<JoinBoardDto> getReportListCount(){
+        return session.selectList(ns+"getReportListCount");
     }
 }

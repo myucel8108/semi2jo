@@ -18,6 +18,11 @@
 <link rel="stylesheet" href="${root}/css/manager/boardManager.css">
 
 </head>
+<style>
+    .status>span{
+        cursor: pointer;
+    }
+</style>
 <body>
 <section class="ftco-section">
 
@@ -42,7 +47,6 @@
                         </thead>
                         <tbody class="ajax-input-freeboard">
                         <tr class="alert" role="alert">
-                            <td></td>
                             <td class="d-flex align-items-center">
 <%--                                <div class="img" style="background-image: url(images/person_1.jpg);"></div>--%>
                                 <div class="pl-3 email">
@@ -50,8 +54,6 @@
                                     <span></span>
                                 </div>
                             </td>
-                            <td></td>
-                            <td></td>
                         </tr>
                         </tbody>
                     </table>
@@ -81,18 +83,6 @@
                         </tr>
                         </thead>
                         <tbody class="ajax-input-askboard">
-                        <tr class="alert" role="alert">
-                            <td></td>
-                            <td class="d-flex align-items-center">
-<%--                                <div class="img" style="background-image: url(images/person_1.jpg);"></div>--%>
-                                <div class="pl-3 email">
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                            </td>
-                            <td></td>
-                            <td></td>
-                        </tr>
                         </tbody>
                     </table>
                     <div class="ask-board-paging"></div>
@@ -124,23 +114,6 @@
                         </tr>
                         </thead>
                         <tbody class="ajax-input-reportboard">
-                        <tr class="alert" role="alert">
-                            <td></td>
-                            <td class="d-flex align-items-center">
-                                <%--                                <div class="img" style="background-image: url(images/person_1.jpg);"></div>--%>
-                                <div class="pl-3 email">
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                            </td>
-                            <td></td>
-                            <td></td>
-
-                                <td class="status">
-                                    <span class="active">Revert</span>
-                                    <span class="waiting">test</span>
-                                </td>
-                        </tr>
                         </tbody>
                     </table>
                     <div class="report-board-paging"></div>
@@ -155,7 +128,7 @@
 
         freeBoardList(currentPage);
         askBoardList(currentPage);
-        reportBoardList();
+        reportBoardList(currentPage);
 
         //페이징 번호 클릭시 이벤트
         $(document).on('click','.page-item',function (){
@@ -165,7 +138,30 @@
                 freeBoardList(currentPage);
             if (type=="ask")
                 askBoardList(currentPage);
+            if (type=="report")
+                reportBoardList(currentPage);
         });
+
+        //report board 에서 revert 와 delete 버튼 기능 작동
+        $(document).on('click','#btn-revert-reportboard',function () {
+            alert("btn revert");
+            var num = $(this).attr('num');
+            alert(num);
+            $.ajax({
+                type:"get",
+                url:"${root}/manager/revertReport",
+                dataType:"text",
+                data:{"boardnum":num},
+                success:function(res){
+                    alert("ajax - sucess");
+                },
+            });
+        })
+
+
+        $(document).on('click','#btn-delete-reportboard',function () {
+            alert("btn delete");
+        })
     })
 
     // 자유 커뮤니티 게시판 출력 함수
@@ -174,7 +170,7 @@
         $.ajax({
             type:"get",
             url:"${root}/manager/boardList",
-            data:{"currentPage":currentPage,"searchcolumn":"boardtype","searchword":"free"},
+            data:{"currentPage":currentPage,"boardtype":"free"},
             dataType:"json",
             success:function(res){
                 $.each(res.list,function (idx,ele) {
@@ -204,7 +200,7 @@
         $.ajax({
             type:"get",
             url:"${root}/manager/boardList",
-            data:{"currentPage":currentPage,"searchcolumn":"boardtype","searchword":"ask"},
+            data:{"currentPage":currentPage,"boardtype":"ask"},
             dataType:"json",
             success:function(res){
                 $.each(res.list,function (idx,ele) {
@@ -227,28 +223,34 @@
     }
 
     // 신고 커뮤니티 게시판 출력 함수
-    function reportBoardList(){
+    function reportBoardList(currentPage){
         console.log("ajax- test1");
         var temp = "";
         $.ajax({
             type:"get",
             url:"${root}/manager/reportBoardList",
-            // data:{"currentPage":currentPage,"ask":"ask"},
+            data:{"currentPage":currentPage},
             dataType:"json",
             success:function(res){
                 console.log("ajax-test2");
                 $.each(res.list,function (idx,ele) {
-                    console.log("report-board");
-                    console.log(ele.boardnum);
-                    console.log("ajax");
-                    console.log(ele.boardnum);
+                    temp+="<tr class='alert' role='alert'>";
+                    temp+="<td>"+ele.boardtype+"</td>"
+                    temp+="<td><a href='${root}/board/boardDetail?boardnum="+ele.boardnum+"'>"+ele.subject+"</a></td>"
+                    temp+="<td>"+ele.nickname+"</td>"
+                    temp+="<td>"+ele.reportcount+"</td>"
+                    temp+="<td class='status'>";
+                    temp+="<span class='active' id='btn-revert-reportboard' num='"+ele.boardnum+"'>Revert</span>";
+                    temp+="<span class='waiting' id='btn-delete-reportboard' num='"+ele.boardnum+"'>Delete</span>";
+                    temp+="</td>";
+                    temp+="</tr>";
                 })//반복으로 데이터 출력
 
-                // $(".ajax-input-reportboard").html(temp);
-                // // //페이징 처리 함수 호출
-                // var boardtype = "report"; //페이징 처리에서 페이지번호 클릭시 어느 게시판에 적용되야 하는지 판단하기 위해 추가해줌
-                // var temp = paging(res.startPage,res.endPage,res.currentPage,res.totalPage,boardtype);
-                // $(".report-board-paging").html(temp);
+                $(".ajax-input-reportboard").html(temp);
+                // //페이징 처리 함수 호출
+                var boardtype = "report"; //페이징 처리에서 페이지번호 클릭시 어느 게시판에 적용되야 하는지 판단하기 위해 추가해줌
+                var temp = paging(res.startPage,res.endPage,res.currentPage,res.totalPage,boardtype);
+                $(".report-board-paging").html(temp);
             },
         });
     }
@@ -267,7 +269,7 @@
                 page += '<span><a class="page-item" currentPage="'+pp+'" boardtype="'+boardtype+'">'+pp+'</a></span>';
         }
         if(endPage<totalPage)
-            page += '<span><a class="page-item" currentPage="'+(endpage+1)+'" boardtype="'+boardtype+'">다음</a></span>';
+            page += '<span><a class="page-item" currentPage="'+(endPage+1)+'" boardtype="'+boardtype+'">다음</a></span>';
         page += '</div>';
         return page;
     }
