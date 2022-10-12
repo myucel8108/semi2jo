@@ -4,12 +4,11 @@ import bit.data.dto.LectureDto;
 
 import java.util.List;
 
-import bit.data.dto.LecturePresentJoinDto;
+import bit.data.dto.LectureDetailJoinDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -35,7 +34,7 @@ public class LectureDao implements LectureDaoInter{
     }
 
     @Override
-    public List<LecturePresentJoinDto> getLecturePresent(int lecnum) {
+    public List<LectureDetailJoinDto> getLecturePresent(int lecnum) {
         return session.selectList(ns + "getLecturePresent", lecnum);
     }
 

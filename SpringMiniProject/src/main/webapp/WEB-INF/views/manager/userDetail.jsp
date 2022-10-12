@@ -69,8 +69,8 @@
                                 var presentlecture = "";
                                 if ("${joinlist.lecyear}"==year && "${joinlist.lecmonth}"==month){
                                     presentlecture += "<p>[${joinlist.lectypea}]-${joinlist.lectypeb} : ${joinlist.lecname}_${joinlist.teaname} (${joinlist.roomnum}호)";
-                                    presentlecture += "<span class='show-lecday${joinlist.mylecnum}'>[요일 : ${joinlist.lecday}]</span>";
-                                    presentlecture += "${joinlist.lectime}교시</p>";
+                                    presentlecture += " <span class='show-lecday${joinlist.mylecnum}'></span>";
+                                    presentlecture += " ${joinlist.lectime}교시</p>";
                                 }
                                 $(".present-lecture${joinlist.mylecnum}").html(presentlecture);
 
