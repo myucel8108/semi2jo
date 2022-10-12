@@ -48,11 +48,12 @@
 <header class="header bg">
     <div class="container text-white">
         <div class="row">
-            <div class="col-sm-4 align-self-center text-left">
+                <div class="col-sm-4 align-self-center text-left">
                 <h1 style="font-family: abster; text-decoration: none;"><a href="${root}" style="text-decoration: none; color: #3f86ed;" id="logos">TeachMe</a></h1>
             </div>
+<%--            <div>--%>
             <div class="col-sm-4 col-12 align-self-center box-1 text-center">
-                <a class="navbar-brand" href="/mini/"><b style="color: #191919; font-size: 40px" class="teachMeLogo">
+                <a class="navbar-brand" href="/mini/"><b style="color: #191919;  font-size: 40px" class="teachMeLogo">
                 </b></a>
             </div>
         </div>
