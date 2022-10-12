@@ -38,6 +38,8 @@ public class ManagerController {
     MyLecJoinServiceInter myLecJoinService;
     @Autowired
     JoinBoardService joinBoardService;
+    @Autowired
+    ReportBoardServiceInter reportBoardServiceInter;
 
 
 
@@ -601,7 +603,20 @@ public class ManagerController {
         return map;
     }
 
-//    @GetMapping
-//    public void
+    //관리자 커뮤니티 관리 - 신고 횟수 초기화
+    @PostMapping("/manager/revertReport")
+    @ResponseBody
+    public void revertReportBoard(int boardnum){
+        System.out.println("revert controller");
+        reportBoardServiceInter.revertReport(boardnum);
+    }
+
+    //관리자 커뮤니티 관리 - 신고 글 삭제
+    @PostMapping("/manager/deleteReport")
+    @ResponseBody
+    public void deleteReportBoard(int boardnum){
+        System.out.println("delete controller");
+        boardService.deleteBoard(boardnum);
+    }
 
 }

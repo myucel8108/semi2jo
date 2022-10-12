@@ -4,14 +4,14 @@
 <!--    신고된 글 리스트 출력-->
     <select id="getReportBoardList" parameterType="Map" resultType="joinBoardDto">
         select b.boardnum, count(*) reportcount, b.usernum, b.subject, b.boardtype, b.nickname
-        from reportboard r, board b where r.boardnum = b.boardnum group by(boardnum) having reportcount>4
+        from reportboard r, board b where r.boardnum = b.boardnum group by(boardnum) having reportcount>2
             order by boardnum desc limit #{startNum},#{perPage}
     </select>
 
 <!--    신고된 글 갯수출력-->
     <select id="getReportListCount" resultType="joinBoardDto">
         select b.boardnum, count(*) reportcount, b.usernum, b.subject, b.boardtype, b.nickname
-        from reportboard r, board b where r.boardnum = b.boardnum group by(boardnum) having reportcount>4
+        from reportboard r, board b where r.boardnum = b.boardnum group by(boardnum) having reportcount>2
     </select>
 
 </mapper>

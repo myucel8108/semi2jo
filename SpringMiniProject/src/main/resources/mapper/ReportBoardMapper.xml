@@ -10,6 +10,6 @@
 
 <!--    관리자 - 신고횟수 되돌리기-->
     <delete id="revertReport" parameterType="int">
-        delete reportboard where boardnum = #{boardnum}
+        delete from reportboard where boardnum = #{boardnum}
     </delete>
 </mapper>

@@ -29,6 +29,7 @@ public class ReportBoardDao implements ReportBoardDaoInter{
 
     @Override
     public void revertReport(int boardnum) {
+        System.out.println("revert dao");
         session.delete(ns+"revertReport",boardnum);
     }
 }
