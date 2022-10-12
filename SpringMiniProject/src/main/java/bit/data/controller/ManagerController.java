@@ -441,8 +441,9 @@ public class ManagerController {
 
     //강의 추가폼으로 가기
     @GetMapping("/insertLectureDetailForm")
-    public String insertLectureDetailForm(){
-        return "/manager/manager/insertLectureDetailForm";
+    public String insertLectureDetailForm(int lecnum){
+        System.out.println(lecnum);
+        return "/manager/manager/insertLectureDetailForm?lecnum=" + lecnum;
     }
 
     //강의 추가
