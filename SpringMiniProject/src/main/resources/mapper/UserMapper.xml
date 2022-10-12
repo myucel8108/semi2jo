@@ -81,4 +81,15 @@
         delete from user where usernum=#{usernum}
     </delete>
 
+    <!--아래로 마이페이지에 마이커뮤니티-->
+    <select id="getMyBoardList" parameterType="int" resultType="boardDto">
+        select * from board where usernum=#{usernum} order by boardnum desc
+    </select>
+    <select id="getMyReboardList" parameterType="int" resultType="reboardDto">
+        select * from reboard where usernum=#{usernum} order by reboardnum desc
+    </select>
+    <select id="getMyLikeboardList" parameterType="int" resultType="likeboardDto">
+        select * from likeboard where usernum=#{usernum} and likestate=1 order by likeboardnum desc
+    </select>
+
 </mapper>

@@ -1,7 +1,6 @@
 package bit.data.service;
 
-import bit.data.dto.UserDto;
-import bit.data.dto.UserLecJoinDto;
+import bit.data.dto.*;
 
 import java.util.List;
 import java.util.Map;
@@ -18,5 +17,11 @@ public interface UserServiceInter {
     public  void deleteUserPhoto(int usernum);
     public void updateUser(UserDto dto);
     public void deleteUser(int usernum);
+
+
+    //아래로 마이커뮤니티
+    public List<BoardDto> getMyBoardList(int usernum);
+    public List<ReboardDto> getMyReboardList(int usernum);
+    public List<LikeBoardDto> getMyLikeboardList(int usernum);
 
 }

@@ -1,7 +1,6 @@
 package bit.data.dao;
 
-import bit.data.dto.UserDto;
-import bit.data.dto.UserLecJoinDto;
+import bit.data.dto.*;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,6 +14,7 @@ public class UserDao implements UserDaoInter{
     @Autowired
     SqlSession session;
     String ns = "bit.data.dao.UserDao.";
+
 
     @Override
     public int getUserTotalCount() {
@@ -66,5 +66,21 @@ public class UserDao implements UserDaoInter{
     @Override
     public void deleteUser(int usernum) {
         session.selectOne(ns+"deleteUser",usernum);
+    }
+
+
+
+    //아래로 마이커뮤니티
+    @Override
+    public List<BoardDto> getMyBoardList(int usernum) {
+        return session.selectList(ns+"getMyBoardList", usernum);
+    }
+    @Override
+    public List<ReboardDto> getMyReboardList(int usernum) {
+        return session.selectList(ns+"getMyReboardList", usernum);
+    }
+    @Override
+    public List<LikeBoardDto> getMyLikeboardList(int usernum) {
+        return session.selectList(ns+"getMyLikeboardList", usernum);
     }
 }

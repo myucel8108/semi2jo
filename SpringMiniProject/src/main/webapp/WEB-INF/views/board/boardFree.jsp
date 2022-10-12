@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">--%>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Yeon+Sung&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <%-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>--%>
@@ -15,9 +15,6 @@
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link rel="stylesheet" type="text/css" href="${root}/css/board/boardForm.css">
     <style type="text/css">
-        *{
-            font-family: Noto Sans KR;
-        }
     </style>
     <script>
         $(function (){
@@ -26,7 +23,6 @@
     </script>
 </head>
 <body>
-
 <div class="container" style="width: 1000px; padding: 50px;">
     <c:set var="root" value="<%=request.getContextPath() %>"/>
     <h1>${boardtype.equals('free')?"자유게시판":"질문게시판"}</h1><br>
@@ -34,7 +30,6 @@
         <button type="button" class="btn btn-outline-dark" onclick="location.href='${root}/board/boardFree?boardtype=free'">자유</button>
         <button type="button" class="btn btn-outline-dark" onclick="location.href='${root}/board/boardFree?boardtype=ask'">질문</button>
     </div>
-
                 <button onclick="if(${sessionScope.loginok==null}){alert('로그인 후 이용해주세요')}
                         else{location.href='${root}/board/boardForm'}" style="float: right;" class="btn btn-outline-dark">글쓰기</button><br><br>
                 <div style="margin: 10px;">
