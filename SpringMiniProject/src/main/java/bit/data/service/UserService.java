@@ -1,8 +1,10 @@
 package bit.data.service;
 
+import bit.data.dao.BoardDaoInter;
+import bit.data.dao.LikeBoardDaoInter;
+import bit.data.dao.ReboardDaoInter;
 import bit.data.dao.UserDaoInter;
-import bit.data.dto.UserDto;
-import bit.data.dto.UserLecJoinDto;
+import bit.data.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ public class UserService implements UserServiceInter{
 
     @Autowired
     UserDaoInter userDao;
+
 
     @Override
     public int getUserTotalCount() {
@@ -72,5 +75,25 @@ public class UserService implements UserServiceInter{
     @Override
     public void deleteUser(int usernum) {
         userDao.deleteUser(usernum);
+    }
+
+
+
+
+    //아래로 마이커뮤니티
+
+    @Override
+    public List<BoardDto> getMyBoardList(int usernum) {
+        return userDao.getMyBoardList(usernum);
+    }
+
+    @Override
+    public List<ReboardDto> getMyReboardList(int usernum) {
+        return userDao.getMyReboardList(usernum);
+    }
+
+    @Override
+    public List<LikeBoardDto> getMyLikeboardList(int usernum) {
+        return userDao.getMyLikeboardList(usernum);
     }
 }

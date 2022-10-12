@@ -1,6 +1,9 @@
 package bit.data.controller;
 
 import bit.data.dto.UserDto;
+import bit.data.service.BoardServiceInter;
+import bit.data.service.LikeBoardServiceInter;
+import bit.data.service.ReboardServiceInter;
 import bit.data.service.UserServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +35,12 @@ public class UserController {
         model.addAttribute("dto",dto);
 
         return "/mypage/student/upStuPassCheck";
+    }
+
+    @GetMapping("student/studentBoard")
+    public String studentBoard(){
+
+        return "/mypage/student/studentBoard";
     }
 
     //수정폼에 출력할 데이터 반환

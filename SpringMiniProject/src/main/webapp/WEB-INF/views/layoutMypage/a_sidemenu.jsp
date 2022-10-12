@@ -32,7 +32,7 @@
     <div class="sidebar_detail" id="d3" onclick="location.href='${root}/student/stuLectureList'">
         <span class="side_main_span_market">수강목록</span>
     </div>
-    <div class="sidebar_detail" id="d4" onclick="location.href='#'">
+    <div class="sidebar_detail" id="d4" onclick="location.href='${root}/student/studentBoard'">
         <span class="side_main_span_challenge">마이커뮤니티</span>
     </div>
     <div class="sidebar_detail" id="d5" onclick="location.href='${root}/student/myCart'">

@@ -18,7 +18,6 @@
     </style>
 </head>
 <body>
-
 <div class="container" style="width: 1000px; padding: 50px;">
     <c:set var="root" value="<%=request.getContextPath() %>"/>
     <h1>${boardtype.equals('free')?"자유게시판":"질문게시판"}</h1><br>
@@ -26,7 +25,6 @@
         <button type="button" class="btn btn-outline-dark" onclick="location.href='${root}/board/boardFree?boardtype=free'">자유</button>
         <button type="button" class="btn btn-outline-dark" onclick="location.href='${root}/board/boardFree?boardtype=ask'">질문</button>
     </div>
-
                 <button onclick="if(${sessionScope.loginok==null}){alert('로그인 후 이용해주세요')}
                         else{location.href='${root}/board/boardForm'}" style="float: right;" class="btn btn-outline-dark">글쓰기</button><br><br>
                 <div style="margin: 10px;">
