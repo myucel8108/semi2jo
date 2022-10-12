@@ -20,10 +20,18 @@
         color: black;
     }
 
+    #tctext{
+        background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
 
     #go:hover{
-        background-color: #3f86ed;
-        border-color: #3f86ed;
+        background: linear-gradient(to right, #4481eb,#3f86ed);
+        /*background-color: #3f86ed;*/
+        border: none;
+        color: white;
     }
 </style>
 <body>
@@ -32,7 +40,7 @@
         <div class="jumbotron d-flex align-items-center">
             <div class="gradient" ></div>
             <div class="container-fluid content">
-                <h1 data-aos="fade-up" data-aos-delay="100" style="margin-bottom: 50px; color: white; font-family: 'BM Dohyeon';">국내 최다 합격률 <span style="color:#3f86ed;">티치미</span> 입시학원</h1>
+                <h1 data-aos="fade-up" data-aos-delay="100" style="margin-bottom: 50px; color: white; font-family: 'BM Dohyeon';">국내 최다 합격률 <span style="color:#3f86ed;" id="tctext">티치미</span> 입시학원</h1>
                 <h2 data-aos="fade-up" data-aos-delay="300" style="margin-bottom: 50px; color: darkgray;">국내 최고의 강사진과 함께하는 체계적인 커리큘럼</h2>
                 <h4 data-aos="fade-up" data-aos-delay="500" style="background-color: white; color: black; margin-top: 250px; border-radius: 15px;">Teach me how to study by myself</h4>
                 <p data-aos="fade-up" data-aos-delay="700"><a href="/mini/" class="btn btn-success" id="go" >학습하기</a></p>

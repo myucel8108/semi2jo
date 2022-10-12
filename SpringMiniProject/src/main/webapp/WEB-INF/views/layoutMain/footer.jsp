@@ -14,6 +14,16 @@
     <link rel="stylesheet" type="text/css" href="${root }/css/footer.css">
 
 </head>
+<style>
+    #ftlogo{
+
+        background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    }
+</style>
 <body>
 <!-- Copyright -->
 <div class="footer-copyright text-center">
@@ -52,9 +62,9 @@
     <div class="footerarea">
         <%--footer 좌측 로고--%>
         <div class="logofooterbox">
-            <b style="color: #191919; font-size: 40px; font-family: abster;" class="teachMeLogo" >
+            <a href="${root}" style="color: #191919; font-size: 40px; font-family: abster;" class="teachMeLogo"  id="ftlogo">
                 TeachMe
-            </b>
+            </a>
         </div>
         <div class="footer_text">(주)티치미아카데미
             <br>
