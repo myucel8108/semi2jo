@@ -65,28 +65,26 @@ public class LectureController {
         return mview;
 
     }
+    
+    //mylecture의 별점과 수강평 작성하고 등록하기 누르면 lecture테이블의 avgstar 업데이트 되게 하기
     @PostMapping("lecture/lecUpStarReview")
     public String lecUpStarReview(int star, String review, int usernum, int lecdenum) {
 
         myLectureService.updateStarReview(star,review,usernum,lecdenum);
-        updateAvgstar();
+        
+        //lecdenum에 해당하는 lecnum가져오기
+        LecDetailDto dto = lecDetailService.getDataByLecDeNum(lecdenum);
+        int lecnum=dto.getLecnum();
+
+        try {
+            //lecnum으로 lecture 테이블의 avgstar 값 바꾸기
+            double avgstar=myLectureService.getAvgstarByLecnum(lecnum).getAvgstar();
+            myLectureService.updateAvgstarByLecnum(avgstar,lecnum);
+        }catch (NullPointerException e){}
 
         return "redirect:lectureDetail?lecdenum="+lecdenum;
     }
-
-    public void updateAvgstar(){
-
-        int lcount=lectureService.getTotalLectureCount(null,null);
-
-        for(int i=1;i<=lcount;i++)
-        {
-            try{
-                double avgstar=myLectureService.getAvgstarByLecnum(i).getAvgstar();
-                myLectureService.updateAvgstarByLecnum(avgstar,i);
-            }catch (NullPointerException e){ }
-
-        }
-    }
+    
 
     @GetMapping("/lecture/lectureList")
     public String lecturelist(Model model) {

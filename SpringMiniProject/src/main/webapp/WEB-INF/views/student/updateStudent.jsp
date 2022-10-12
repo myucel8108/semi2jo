@@ -65,6 +65,25 @@
             }
         });
 
+        //회원탈퇴버튼
+        $("#btn_delete").click(function (){
+            var ans=confirm("정말 탈퇴하시겠습니까?");
+            var usernum=${sessionScope.usernum};
+            if(ans)
+            {
+                $.ajax({
+                    type: "get",
+                    dataType:"text",
+                    url:"delete",
+                    data:{"usernum":usernum},
+                    success:function(res){
+                        alert("탈퇴하였습니다");
+                        location.href='${root}/';
+                    }
+                });
+            }
+        });
+
     }); //function
 
     //submit 전에 호출
@@ -171,9 +190,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="4" style="text-align: right;">
+                        <td colspan="4" style="text-align: right">
                             <button type="button" class="btn-large2" style="margin-right: 20px;" onclick="location.href='${root}/student/timeTable'">취소하기</button>
-                            <button type="submit" class="btn-large1" id="btn_submit" style="margin-right: 230px;">수정하기</button>
+                            <button type="submit" class="btn-large1" id="btn_submit">수정하기</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align: left">
+                            <button type="button" class="" id="btn_delete">탈퇴하기</button>
                         </td>
                     </tr>
                 </table>

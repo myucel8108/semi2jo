@@ -1,6 +1,7 @@
 package bit.data.service;
 
 import bit.data.dao.LecDetailDaoInter;
+import bit.data.dto.LecDetailDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,11 @@ public class LecDetailService implements LecDetailServiceInter{
         map.put("lecyear",lecyear);
         map.put("lecmonth",lecmonth);
         return lecDetailDao.getLecTotalCountMonth(map);
+    }
+
+    //lecdenum으로 lecnum가져오기
+    @Override
+    public LecDetailDto getDataByLecDeNum(int lecdenum) {
+        return lecDetailDao.getDataByLecDeNum(lecdenum);
     }
 }

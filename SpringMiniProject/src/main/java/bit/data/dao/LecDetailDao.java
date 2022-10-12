@@ -1,5 +1,6 @@
 package bit.data.dao;
 
+import bit.data.dto.LecDetailDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,5 +20,10 @@ public class LecDetailDao implements LecDetailDaoInter{
     public int getLecTotalCountMonth(Map<String, Integer> map) {
         System.out.println("dao");
         return session.selectOne(ns+"getLecTotalCountMonth",map);
+    }
+
+    @Override
+    public LecDetailDto getDataByLecDeNum(int lecdenum) {
+        return session.selectOne(ns+"getDataByLecDeNum",lecdenum);
     }
 }
