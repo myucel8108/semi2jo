@@ -110,8 +110,8 @@
     </c:if>
     <c:if test="${sessionScope.loginok!=null && sessionScope.usertype=='user'}">
     <b>${sessionScope.loginname}님</b>&nbsp;&nbsp;
-    <a href="${root}/student/timeTable" class="bt1" >MYPAGE</a>&nbsp;
-    <button type="button" id="btnlogoutMain" class="bt1" style=" margin-right: 110px; margin-left: 5px;"><b>LOGOUT</b></button>
+    <a href="${root}/student/timeTable" class="bt1" ><button type="button" id="btnmypage" class="bt1" ><b> MYPAGE</b></button></a>&nbsp;
+    <button type="button" id="btnlogoutMain" class="bt1" style=" margin-right: 110px; margin-left: 5px; margin-top: 10px;"><b>LOGOUT</b></button>
     </c:if>
     <c:if test="${sessionScope.loginok!=null && sessionScope.usertype=='manager'}">
     <b>${sessionScope.loginname}님</b>	            &nbsp;&nbsp;

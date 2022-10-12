@@ -4,6 +4,8 @@
 <link rel="stylesheet" type="text/css" href="${root}/css/qna.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/taeminfont.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/TeachMeStyle.css">
+<script src="${pageContext.request.contextPath}/resources/javascript/taemin.js"></script>
+<%--<script src="${pageContext.request.contextPath}/taemin.js"></script>--%>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
@@ -29,21 +31,120 @@
 
 
     #go:hover{
-        background: linear-gradient(to right, #4481eb,#3f86ed);
+        background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         /*background-color: #3f86ed;*/
-        border: none;
-        color: white;
+        border-color: grey;
+        outline-color: grey;
     }
+
+
+
+    .wrap {
+        top: 50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        text-align: center;
+
+    }
+
+    #dynamic{
+        position: relative;
+        display: inline-block;
+        color: black;
+    }
+
+    #dynamic::after{
+        content:"";
+        display: block;
+        position: absolute;
+        top: 0;
+        right: -10px;
+        width: 4px;
+        height: 100%;
+        background-color: black;
+        color: black;
+    }
+
+    #dynamic.active::after{
+        display: none;
+
+    }
+
+
+
+
+
+/*------------------아래는 원본 위에는 테스트 중 ------------------*/
+
+/*#tp {*/
+/*    font-size: 20px;*/
+/*    min-width:5px;*/
+/*    white-space: nowrap;*/
+/*    !*position: fixed;*!*/
+/*    color: transparent;*/
+/*    left:50%;*/
+/*    bottom: 25%;*/
+/*    transform: translate(-50%, -50%);*/
+/*    position: absolute;*/
+/*    text-align: center;*/
+/*}*/
+
+/*    #tp::before {*/
+/*        content: "Teach me how to study!";*/
+/*        position: absolute;*/
+/*        top: 14px;*/
+/*        left: 15px;*/
+/*        width: 100%;*/
+/*        text-align: center;*/
+/*        height: 50%;*/
+/*        color: black;*/
+/*        overflow: hidden;*/
+/*        border-right: 1px solid black;*/
+/*        animation: cursor 5s steps(21) infinite;*/
+/*    }*/
+
+/*    @keyframes cursor{*/
+/*        0% {*/
+/*            width: 0%;*/
+/*        }*/
+/*        50% {*/
+/*            width: 50%;*/
+/*        }*/
+/*        100% {*/
+/*            width: 100%;*/
+/*        }*/
+/*    }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </style>
 <body>
   <!--Section-1-->
     <section class="section-1">
         <div class="jumbotron d-flex align-items-center">
             <div class="gradient" ></div>
-            <div class="container-fluid content">
+            <div class="container-fluid content" style="height: 150px; padding-bottom: 380px;" >
                 <h1 data-aos="fade-up" data-aos-delay="100" style="margin-bottom: 50px; color: white; font-family: 'BM Dohyeon';">국내 최다 합격률 <span style="color:#3f86ed;" id="tctext">티치미</span> 입시학원</h1>
-                <h2 data-aos="fade-up" data-aos-delay="300" style="margin-bottom: 50px; color: darkgray;">국내 최고의 강사진과 함께하는 체계적인 커리큘럼</h2>
-                <h4 data-aos="fade-up" data-aos-delay="500" style="background-color: white; color: black; margin-top: 250px; border-radius: 15px;">Teach me how to study by myself</h4>
+                <h2 data-aos="fade-up" data-aos-delay="300" style="margin-bottom: 50px; color: lightgray;">국내 최고의 강사진과 함께하는 체계적인 커리큘럼</h2>
+                <div class="wrap">
+                <h4 data-aos="fade-up" data-aos-delay="500" style="background-color: white; color: black; margin-top: 250px; border-radius: 15px;" id="tp"><b id="dynamic" class="lg-text"></b></h4>
+                </div>
                 <p data-aos="fade-up" data-aos-delay="700"><a href="/mini/" class="btn btn-success" id="go" >학습하기</a></p>
             </div>
             <!--container-fluid end-->
@@ -283,7 +384,129 @@
                 <!-- Grid row -->
 
             </div>
+
         </footer>
     </section>
+
 </body>
+<script>
+
+    let target = document.querySelector("#dynamic");
+
+
+
+    function randomString(){
+        let stringArr = ["대한민국 입시 부동의 1위","Teach you how to study", "2021년도 합격률 98%",
+            "학생 맞춤형 공부법","2021년도 합격률 97%","10년 연속 합격률 95% 달성"];
+        let selectString = stringArr[Math.floor(Math.random()* stringArr.length)];
+        let selectStringArr = selectString.split("");
+
+        return selectStringArr;
+    }
+
+
+    function resetTyping(){
+        target.textContent= "";
+
+        dynamic(randomString());
+    }
+
+
+
+    function dynamic(randomArr){
+
+        if(randomArr.length > 0){
+            target.textContent += randomArr.shift();
+            setTimeout(function(){
+                dynamic(randomArr);
+            },80);
+        }else{
+            setTimeout(resetTyping, 3000);
+        }
+
+    }
+
+    dynamic(randomString());
+
+
+
+
+    function blink(){
+        target.classList.toggle("active");
+
+    }
+    setInterval(blink, 500);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // let target = document.querySelector("#dynamic");
+    // function randomString() {
+    //     let stringArr = ["대한민국 입시 부동의 1위", "꿈을 이룰 수 있는 유일한 곳", "2021년도 합격률 98%",
+    //         "학생 맞춤형 공부법", "2020년도 합격률 97%", "10년 연속 합격률 95% 달성"];
+    //     let selectString = stringArr[Math.floor(Math.random() * stringArr.length)];
+    //     let selectStringArr = selectString.split("");
+    //
+    //     return selectStringArr;
+    //
+    //
+    //     function resetTyping() {
+    //         target.textContent = "";
+    //         dynamic(randomString());
+    //     }
+    //
+    //
+    //     function dynamic(randomArr) {
+    //
+    //         if (randomArr.length > 0) {
+    //             target.textContent += randomArr.shift();
+    //             setTimeout(function () {
+    //                 dynamic(randomArr);
+    //             }, 80);
+    //         } else {
+    //             setTimeout(resetTyping, 3000);
+    //         }
+    //     }
+    //
+    //     dynamic(randomString());
+    //
+    //
+    //     //커서 깜빡임 효과
+    //     function blink() {
+    //         target.classList.toggle("active");
+    //     }
+    //     setInterval(blink, 500);
+    // }
+
+    // let horizontalUnderLine = document.getElementById("horizontal-underline");
+    // let horizontalMenus = document.querySelectorAll("nav2:first-child a");
+</script>
+
+
+
+
+
+
+
+
+
+
 </html>
