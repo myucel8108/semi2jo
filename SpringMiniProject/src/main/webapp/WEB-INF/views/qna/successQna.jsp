@@ -10,6 +10,7 @@
 <head>
 <%--    <meta http-equiv="Refresh" content="5;url=qnaList">--%>
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="${root}/css/qna.css">
 </head>
 <body>
 <script>

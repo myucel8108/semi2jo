@@ -10,6 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <c:set var="root" value="<%=request.getContextPath() %>"></c:set>
     <link rel="stylesheet" type="text/css" href="${root}/css/account.css">
+    <link rel="stylesheet" type="text/css" href="${root}/css/qna.css">
+    <link rel="stylesheet" type="text/css" href="${root}/TeachMeStyle/.css">
     <!--===============================================================================================-->
 </head>
 <style>
@@ -17,8 +19,9 @@
         cursor: pointer;
     }
 
+
 </style>
-<body style="background-color: #666666;">
+<body style="background-color: white;">
 
 <div class="limiter" >
     <div class="container-login100">

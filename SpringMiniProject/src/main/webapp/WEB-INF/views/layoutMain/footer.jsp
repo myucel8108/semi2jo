@@ -28,9 +28,11 @@
 <div class="footerbox">
     <div class="footerhead">
         <div>
-           <span class="option_intro_bold">
+            <font style="font-size:10px; color:#dbdbdb"></font>
+            <span class="option_intro">
               회사소개
-           </span>
+                </span>
+           </font>
             <font style="font-size:10px; color:#dbdbdb">│</font>
             <span class="option_intro">
               이용약관
@@ -50,22 +52,21 @@
     <div class="footerarea">
         <%--footer 좌측 로고--%>
         <div class="logofooterbox">
-            <b style="color: #191919; font-size: 40px" class="teachMeLogo">
+            <b style="color: #191919; font-size: 40px; font-family: abster;" class="teachMeLogo" >
                 TeachMe
             </b>
         </div>
-        <div class="footer_text">
-            <b>(주)티치미아카데미</b>
+        <div class="footer_text">(주)티치미아카데미
             <br>
-            대표이사 : 유희준
+            대표이사 : 티치미
             <font style="font-size:10px; color:#dbdbdb">&nbsp;│&nbsp;</font>
-            서울특별시 강남구 역삼동 테헤란로 30길 52 4F
+            서울특별시 강남구 역삼동 7-7번지 7층 티치미 본원
             <font style="font-size:10px; color:#dbdbdb">&nbsp;│&nbsp;</font>
             사업자등록번호 : 123-456-789
             <br>
-            통신판매업신고 : 2022-서울강남구-333
+            통신판매업신고 : 2022-서울강남구-777
             <font style="font-size:10px; color:#dbdbdb">&nbsp;│&nbsp;</font>
-            E-mail : teachme@academy.com
+            E-mail : TeachMe@academy.com
             <br>
             COPYRIGHT 2022. TeachMe Co., Ltd. ALL RIGHTS RESERVED.
         </div>
