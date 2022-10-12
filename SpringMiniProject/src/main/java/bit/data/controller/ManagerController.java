@@ -440,9 +440,9 @@ public class ManagerController {
     }
 
     //강의 추가폼으로 가기
-    @GetMapping("insertLectureDetailForm")
-    public String insertLectureDetailForm(int lecnum){
-        return "/manager/manager/insertLectureDetailForm?lecnum" + lecnum;
+    @GetMapping("/insertLectureDetailForm")
+    public String insertLectureDetailForm(){
+        return "/manager/manager/insertLectureDetailForm";
     }
 
     //강의 추가
@@ -452,8 +452,13 @@ public class ManagerController {
         return "redirect:lectureDetail?lecnum=" + lecnum;
     }
 
+    @GetMapping("/updateLectureDetailForm")
+    public String updateLectureDetailForm(int lecdenum){
+        return "/manager/manager/updateLectureDetailForm?lecdenum=" + lecdenum;
+    }
+
     //강의 삭제
-    @GetMapping("deleteLectureDetail")
+    @GetMapping("/deleteLectureDetail")
     public String deleteLectureDetail(int lecdenum, int lecnum){
         lecDetailService.deleteLectureDetail(lecdenum);
         return "redirect:lectureDetail?lecnum=" + lecnum;
