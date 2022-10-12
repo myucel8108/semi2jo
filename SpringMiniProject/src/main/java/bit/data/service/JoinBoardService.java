@@ -6,7 +6,9 @@ import bit.data.dto.JoinBoardDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class JoinBoardService {
@@ -15,8 +17,14 @@ public class JoinBoardService {
     @Autowired
     JoinBoardDao joinBoardDao;
 
-    public List<JoinBoardDto> getReportBoardList(){
+    public List<JoinBoardDto> getReportBoardList(int startNum, int perPage){
+        Map<String, Integer> map = new HashMap<>();
+        map.put("startNum",startNum);
+        map.put("perPage",perPage);
+        return joinBoardDao.getReportBoardList(map);
+    }
 
-        return joinBoardDao.getReportBoardList();
+    public List<JoinBoardDto> getReportListCount(){
+        return joinBoardDao.getReportListCount();
     }
 }

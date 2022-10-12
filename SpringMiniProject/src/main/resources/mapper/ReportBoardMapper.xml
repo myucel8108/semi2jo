@@ -7,4 +7,9 @@
     <insert id="insertReportBoard" parameterType="reportBoardDto">--  신고하기
         insert into reportboard values (null, #{boardnum}, #{usernum})
     </insert>
+
+<!--    관리자 - 신고횟수 되돌리기-->
+    <delete id="revertReport" parameterType="int">
+        delete reportboard where boardnum = #{boardnum}
+    </delete>
 </mapper>

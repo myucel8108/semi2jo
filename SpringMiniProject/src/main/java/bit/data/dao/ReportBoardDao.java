@@ -24,4 +24,11 @@ public class ReportBoardDao implements ReportBoardDaoInter{
     public void insertReportBoard(ReportBoardDto dto) {
         session.insert(ns+"insertReportBoard", dto);
     }
+
+    //관리자 - 신고 횟수 되돌리기
+
+    @Override
+    public void revertReport(int boardnum) {
+        session.delete(ns+"revertReport",boardnum);
+    }
 }
