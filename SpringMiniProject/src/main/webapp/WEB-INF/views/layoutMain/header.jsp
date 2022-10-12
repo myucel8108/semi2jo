@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
+    <link rel="stylesheet" type="text/css" href="${root}/css/taemin.css">
+    <link rel="stylesheet" type="text/css" href="${root}/css/qna.css">
+    <link rel="stylesheet" type="text/css" href="${root}/css/taeminfont.css">
+    <script src="${pageContext.request.contextPath}/resources/javascript/taemin.js"></script>
+
 <style>
 
 
@@ -30,30 +36,62 @@
         background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
     }
 
+    .bt1:hover{
+        background-image: linear-gradient(to right, white,skyblue,blue,darkblue);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
 
     #logos{
         background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        width: 200px;
+        /*position: absolute;*/
+        /*padding-bottom: 50px;*/
+        position: absolute;
+        margin-left: 200px;
     }
 
 
+    #rowfor{
+        text-align: left;
+    }
 
+
+    #headerfor{
+        margin-left: -50px;
+        padding-top: 20px;
+        margin-bottom: 30px;
+
+
+    }
+
+    @keyframes slide{
+
+        from{
+            left: -200px;
+        }
+
+        to{
+            left: 200px;
+        }
+
+    }
 
 </style>
 </head>
 <body>
 <c:set var="root" value="<%=request.getContextPath() %>"></c:set>
-<header class="header bg">
-    <div class="container text-white">
-        <div class="row">
-                <div class="col-sm-4 align-self-center text-left">
-                <h1 style="font-family: abster; text-decoration: none;"><a href="${root}" style="text-decoration: none; color: #3f86ed;" id="logos">TeachMe</a></h1>
+<header id="headerfor">
+    <div  id="rowrowfor">
+        <div id="rowfor">
+                <div>
+                <h1 style="font-family: abster; margin: auto; text-decoration: none;" id="h1for"><a href="${root}" style="text-decoration: none; color: #3f86ed;" id="logos" data-aos="fade-right" data-aos-delay="100">TeachMe</a></h1>
             </div>
 <%--            <div>--%>
-            <div class="col-sm-4 col-12 align-self-center box-1 text-center">
-                <a class="navbar-brand" href="/mini/"><b style="color: #191919;  font-size: 40px" class="teachMeLogo">
+            <div >
+                <a href="/mini/"><b style="color: #191919;  font-size: 40px" >
                 </b></a>
             </div>
         </div>
@@ -62,7 +100,7 @@
     <div style="float: right;">
     <!-- login button -->
     <c:if test="${sessionScope.loginok==null }">
-    <button type="button" id="btnloginMain" class="bt1" style=" margin-right: 110px;"><b>JOIN</b></button>
+    <button type="button" id="btnloginMain" class="bt1" style=" margin-right: 110px; margin-top: 10px;"><b>LOGIN</b></button>
     </c:if>
     <c:if test="${sessionScope.loginok!=null && sessionScope.usertype=='user'}">
     <b>${sessionScope.loginname}님</b>&nbsp;&nbsp;

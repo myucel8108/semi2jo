@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" type="text/css" href="${root}/css/qna.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/taeminfont.css">
+<link rel="stylesheet" type="text/css" href="${root}/css/TeachMeStyle.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
@@ -231,7 +232,6 @@
                                 <a href="#!">user login</a>
                             </li>
                             <li>
-                                <a href="#!">creat new account</a>
                             </li>
                             <li>
                                 <a href="#!">checkout</a>
