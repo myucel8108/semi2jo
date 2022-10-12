@@ -82,6 +82,20 @@ public class UserController {
         return "redirect:timeTable";
     }
 
+    //탈퇴, user테이블에서 삭제 및 board관련 테이블에 nickname 탈퇴회원으로
+    @GetMapping("/student/delete")
+    @ResponseBody
+    public void delete(int usernum,HttpSession session)
+    {
+        userService.deleteUser(usernum);
+
+        session.removeAttribute("loginok");
+        session.removeAttribute("email");
+        session.removeAttribute("usernum");
+        session.removeAttribute("loginname");
+        session.removeAttribute("usertype");
+    }
+
     /////////////////////////////////////////////////////////////////////
     //사진만 변경메서드(쓸 일 있을지 몰라서 남겨둠)
     @PostMapping("student/updatephoto")

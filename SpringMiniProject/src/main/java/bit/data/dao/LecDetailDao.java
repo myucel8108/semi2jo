@@ -23,6 +23,11 @@ public class LecDetailDao implements LecDetailDaoInter{
     }
 
     @Override
+    public LecDetailDto getDataByLecDeNum(int lecdenum) {
+        return session.selectOne(ns+"getDataByLecDeNum",lecdenum);
+    }
+
+    @Override
     public void insertLectureDetail(LecDetailDto dto) {
         session.selectOne(ns + "insertLectureDetail", dto);
     }

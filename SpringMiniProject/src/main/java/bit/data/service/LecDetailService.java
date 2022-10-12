@@ -24,6 +24,12 @@ public class LecDetailService implements LecDetailServiceInter{
         return lecDetailDao.getLecTotalCountMonth(map);
     }
 
+    //lecdenum으로 lecnum가져오기
+    @Override
+    public LecDetailDto getDataByLecDeNum(int lecdenum) {
+        return lecDetailDao.getDataByLecDeNum(lecdenum);
+    }
+
     @Override
     public void insertLectureDetail(LecDetailDto dto) {
         lecDetailDao.insertLectureDetail(dto);

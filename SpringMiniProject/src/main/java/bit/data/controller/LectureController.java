@@ -1,13 +1,11 @@
 package bit.data.controller;
 
-import bit.data.dto.LectureDto;
-import bit.data.dto.MyLecJoinDto;
-import bit.data.dto.MyLectureDto;
-import bit.data.dto.ReadyPayDto;
+import bit.data.dto.*;
 import bit.data.service.*;
 
 import java.util.List;
 
+import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,13 +65,26 @@ public class LectureController {
         return mview;
 
     }
+    
+    //mylecture의 별점과 수강평 작성하고 등록하기 누르면 lecture테이블의 avgstar 업데이트 되게 하기
     @PostMapping("lecture/lecUpStarReview")
     public String lecUpStarReview(int star, String review, int usernum, int lecdenum) {
 
         myLectureService.updateStarReview(star,review,usernum,lecdenum);
+        
+        //lecdenum에 해당하는 lecnum가져오기
+        LecDetailDto dto = lecDetailService.getDataByLecDeNum(lecdenum);
+        int lecnum=dto.getLecnum();
+
+        try {
+            //lecnum으로 lecture 테이블의 avgstar 값 바꾸기
+            double avgstar=myLectureService.getAvgstarByLecnum(lecnum).getAvgstar();
+            myLectureService.updateAvgstarByLecnum(avgstar,lecnum);
+        }catch (NullPointerException e){}
 
         return "redirect:lectureDetail?lecdenum="+lecdenum;
     }
+    
 
     @GetMapping("/lecture/lectureList")
     public String lecturelist(Model model) {

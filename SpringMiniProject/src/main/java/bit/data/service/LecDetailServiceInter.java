@@ -7,6 +7,8 @@ import java.util.Map;
 public interface LecDetailServiceInter {
 
     public int getLecTotalCountMonth(int lecyear, int lecmonth);
+    public LecDetailDto getDataByLecDeNum(int lecdenum);
     public void insertLectureDetail(LecDetailDto dto);
     public void deleteLectureDetail(int lecdenum);
+
 }
