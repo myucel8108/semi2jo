@@ -24,6 +24,12 @@
 	<script src="${pageContext.request.contextPath}/resources/javascript/animate.js"></script>
     <script src="${pageContext.request.contextPath}/resources/javascript/custom.js"></script>
     <script src="${pageContext.request.contextPath}/resources/javascript/bootstrap.js"></script>
+	<link rel="stylesheet" type="text/css" href="${root}/css/taemin.css">
+	<link rel="stylesheet" type="text/css" href="${root}/css/qna.css">
+	<link rel="stylesheet" type="text/css" href="${root}/css/taeminfont.css">
+	<link rel="stylesheet" type="text/css" href="${root}/css/TeachMeStyle.css">
+	<link rel="stylesheet" type="text/css" href="${root}/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="${root}/css/animate.css">
 	<c:set var="root" value="<%=request.getContextPath() %>"></c:set>
 	<link rel="stylesheet" type="text/css" href="${root}/css/qna.css">
 

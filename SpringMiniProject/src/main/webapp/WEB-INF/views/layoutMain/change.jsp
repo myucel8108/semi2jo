@@ -15,6 +15,16 @@
 <head>
     <meta charset="UTF-8">
 </head>
+
+
+<a href="#" class="btn_gotop">
+  <span class="glyphicon glyphicon-chevron-up">
+  </span>
+</a>
+
+
+
+
 <style>
 
     #go{
@@ -102,6 +112,19 @@
     }
 
 
+    #askforr:hover{
+        background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    #comu:hover{
+        background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+
     #test_obj {
         position: fixed;
         width: 70px;
@@ -109,8 +132,7 @@
         right: 50px;
         border-radius: 70px;
         top: 550px;
-        border: 1px solid;
-        border-color: grey;
+        border: 1px solid grey;
     }
     #test_obj:hover {
     }
@@ -121,8 +143,27 @@
         -webkit-text-fill-color: transparent;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <body>
+
 <c:set var="root" value="<%=request.getContextPath() %>"></c:set>
   <!--Section-1-->
     <section class="section-1">
@@ -151,7 +192,7 @@
                         <div class="col-lg-10 col-sm-12">
                             <h3><a href="services.html">첫 번째</a></h3>
                             <p>교육의 본질은 쌍방향의 소통입니다. 직업 윤리를 떠나 학생들을 가르침에 따라 모든 선생님들은 보람을 느끼고 힘을 얻습니다. 저희는 상호간의 이해와 관계의 공유에서 많은 변화를 만들어 낼 것 입니다. </p>
-                            <p><a href="services.html"><img src="image/plus.png" alt="plus"></a></p>
+                            <p><a href="services.html"></a></p>
                         </div>
                     </div>
                 </div>
@@ -163,7 +204,7 @@
                         <div class="col-lg-10 col-sm-12">
                             <h3><a href="services.html">두 번째</a></h3>
                             <p>내신과 수능 모두를 겸비할 수 있는 학원이 되겠습니다. 한달의 한번씩 있는 학교 자체 모의고사를 통해 현재 자신의 위치와 전략을 만들어가면서 향후 미래에 좋은 입시 결과를 만들어 낼 것 입니다.</p>
-                            <p><a href="services.html"><img src="image/plus.png" alt="plus"></a></p>
+                            <p><a href="services.html"></a></p>
                         </div>
                     </div>
                 </div>
@@ -176,29 +217,29 @@
                             <h3><a href="services.html">세 번째</a></h3>
                             <p>매 해 바뀌는 입시제도 하에서 학생 개개인에게 맞는 학습방법과 전략을 짜기 위해선 학생이 원하는 수강 목록과 선생님을 고르되 자신이 책임지고 수업에 임해야 한다는 점을 강조하며 만든 시스템입니다.
                            		멋진 도전을 위해 함께한다면 결코 후회없는 1년이 될 것 입니다. </p>
-                            <p><a href="services.html"><img src="image/plus.png" alt="plus"></a></p>
+                            <p><a href="services.html"></a></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="section-3" style="border: 0">
+    <section class="section-3" style="border: 0; padding-bottom: 0;">
         <div class="container">
             <div class="row m-0">
                 <div class="col-lg-5 col-md-12 p-0" data-aos="fade-right" data-aos-delay="300">
-                    <h2> 왜 TeachMe <span>선택해야 하는가?</span></h2>
+                    <h2> 왜 TeachMe 를 <span> 선택했을까요?</span></h2>
                     <ul>
-                        <li><a href="services.html"><i class="fa fa-angle-right" aria-hidden="true"></i>학원 자체의 모의고사를 실전처럼</a></li>
-                        <li><a href="services.html"><i class="fa fa-angle-right" aria-hidden="true"></i>다른 학생들과 커뮤니티를 통한 정보교환</a></li>
-                        <li><a href="services.html"><i class="fa fa-angle-right" aria-hidden="true"></i>자유로운 수강 선택</a></li>
-                        <li><a href="services.html"><i class="fa fa-angle-right" aria-hidden="true"></i>책임감과 노하우가 있는 강사진과 시스템</a></li>                    
+                        <li><a href="services.html"><i class="fa fa-angle-right" aria-hidden="true"></i>평점 및 리뷰</a></li>
+                        <li><a href="services.html"><i class="fa fa-angle-right" aria-hidden="true"></i>평점 및 리뷰</a></li>
+                        <li><a href="services.html"><i class="fa fa-angle-right" aria-hidden="true"></i>평점 및 리뷰</a></li>
+                        <li><a href="services.html"><i class="fa fa-angle-right" aria-hidden="true"></i>평점 및 리뷰</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-7 col-md-12 p-0" data-aos="fade-left" data-aos-delay="300">
                     <figure>
-                        <img class="inner-img" src="" alt="services">
-                        <img class="out-sideimg" src="" alt="services">
+                            <img class="inner-img" src="image/son.jpg" alt="services">
+                            <img class="out-sideimg" src="" alt="services">
                     </figure>
                 </div>
             </div>
@@ -206,45 +247,43 @@
     </section>
    
     <!--Section-5-->
-    <section class="section-5" style="padding-bottom: 100px;">
+    <section class="section-18" style="padding-bottom: 20px; padding-top: 50px;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 col-sm-8">
-                    <h3> <span>국내 최고의 강사들이 한 곳에</span></h3>
+                    <h3> <span style= "margin-left: 0; display: flex; position: center; padding-bottom: 10px;">Study and Changes Life</span></h3>
                 </div>
-                <div class="col-lg-5 col-sm-4">
-                    <a href="portfolio.html" class="btn btn-success">강사진 확인</a>
-                </div>
+
             </div>
         </div>
-        <div class="container-fluid" style="height: 500px;">
+        <div class="container-fluid" style="height: 450px;">
             <div class="row"  data-aos="fade-up" data-aos-delay="300">
-                <a href="image/portfolio-2.jpg" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
-                  <img src="image/s1.jpg" class="img-fluid">
+                <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
+                  <img src="" class="img-fluid">
                   <div class="overlay" >
                   <img src="" alt="">
-                  <div class="inner-text"><h4>국어 김젬마<span>top view</span></h4></div>
+                  <div class="inner-text"><h4>2021년도<span>최종합격10명</span></h4></div>
                   </div>
                 </a>
-                <a href="images/portfolio-3.jpg" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
-                  <img src="image/55.jpg" class="img-fluid">
+                <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
+                  <img src="" class="img-fluid">
                   <div class="overlay" >
                   <img src="" alt="">
-                  <div class="inner-text"><h4>수학 한석원<span>top view</span></h4></div>
+                  <div class="inner-text"><h4>2021년도<span>최종합격15명</span></h4></div>
                   </div>
                 </a>
-                <a href="image/portfolio-4.jpg" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
-                  <img src="image/2323.png" class="img-fluid">
+                <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
+                  <img src="" class="img-fluid">
                   <div class="overlay">
                   <img src="" alt="">
-                  <div class="inner-text"><h4>역사 이다지 <span>top view</span></h4></div>
+                  <div class="inner-text"><h4>2021년도<span>최종합격11명</span></h4></div>
                   </div>
                 </a>
-                <a href="image/portfolio-5.jpg" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
-                  <img src="image/jh.jpg" class="img-fluid">
+                <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
+                  <img src="" class="img-fluid">
                   <div class="overlay">
                   <img src="" alt="">
-                  <div class="inner-text"><h4>영어 원정의<span>top view</span></h4></div>
+                  <div class="inner-text"><h4>2021년도<span>최종합격12명</span></h4></div>
                   </div>
                 </a>
             </div>
@@ -252,7 +291,53 @@
         </div>
         <!--container-->
     </section>
-    
+
+<!-- 아래는 원래꺼 위는 새로 추가 -->
+
+<section class="section-5" style="padding-bottom: 20px; padding-top: 50px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-sm-8">
+                <h3> <span style= "margin-left: 0; display: flex; position: center; padding-bottom: 10px;">Study and Changes Life</span></h3>
+            </div>
+
+        </div>
+    </div>
+    <div class="container-fluid" style="height: 450px;">
+        <div class="row"  data-aos="fade-up" data-aos-delay="300">
+            <a href="https://www.snu.ac.kr/" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
+                <img src="image/s1.jpg" class="img-fluid">
+                <div class="overlay" >
+                    <img src="" alt="">
+                    <div class="inner-text"><h4>2021년도<span>최종합격10명</span></h4></div>
+                </div>
+            </a>
+            <a href="https://www.korea.ac.kr/mbshome/mbs/university/index.do" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
+                <img src="image/55.jpg" class="img-fluid">
+                <div class="overlay" >
+                    <img src="" alt="">
+                    <div class="inner-text"><h4>2021년도<span>최종합격15명</span></h4></div>
+                </div>
+            </a>
+            <a href="https://www.yonsei.ac.kr/sc/" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
+                <img src="image/2323.png" class="img-fluid">
+                <div class="overlay">
+                    <img src="" alt="">
+                    <div class="inner-text"><h4>2021년도<span>최종합격11명</span></h4></div>
+                </div>
+            </a>
+            <a href="https://www.sogang.ac.kr/index.do" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
+                <img src="image/nm.jpg" class="img-fluid">
+                <div class="overlay">
+                    <img src="" alt="">
+                    <div class="inner-text"><h4>2021년도<span>최종합격12명</span></h4></div>
+                </div>
+            </a>
+        </div>
+        <!--/row-->
+    </div>
+    <!--container-->
+</section>
 <%--   --%>
 <%--    <section class="section-7">--%>
 <%--        <!-- Footer -->--%>
@@ -385,8 +470,8 @@
 
 
   <span id="top-link-block" class="hidden">
-  <div id="test_obj"><b style="margin-left:18px; padding-top: 20px; display: inline-block; text-align: center; vertical-align: center; color: black;"><a href="top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},fast);return false;" id="toptop">
-  TOP</a></b><br><br><br><b style="font-size: 15px; color: black; margin-left: 6px; padding-top: 15px;"></b><a href="${root}/qna/qnaList"><b style="padding-right: 3px; padding-top: 90px;">문의하기</b></a><br><br><br><b style="font-size: 15px; color: black; margin-left: 8px; padding-top: 40px; margin-top: 10px;"><a href="${root}/board/boardFree">커뮤니티</a></b></div>
+  <div id="test_obj"><b style="margin-left:18px; padding-top: 20px; display: inline-block; text-align: center; vertical-align: center; color: black;"><a href="#" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},fast);return false;" id="toptop">
+  TOP</a></b><br><br><br><b style="font-size: 15px; color: black; margin-left: 6px; padding-top: 15px;"></b><a href="${root}/qna/qnaList"><b style="padding-right: 3px; padding-top: 0px;" id="askforr">문의하기</b></a><br><br><br><b style="font-size: 15px; color: black; margin-left: 8px; padding-top: 40px; margin-top: 10px;" id="comu"><a href="${root}/board/boardFree">커뮤니티</a></b></div>
 </span><!-- /top-link-block -->
 </body>
 <script>
