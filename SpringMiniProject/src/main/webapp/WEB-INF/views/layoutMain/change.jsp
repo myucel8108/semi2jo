@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" type="text/css" href="${root}/css/qna.css">
@@ -19,7 +20,8 @@
     #go{
         background-color: white;
         border-color: white;
-        margin-top: 100px;
+        margin-top: 150px;
+        margin-bottom: 100px;
         color: black;
     }
 
@@ -77,79 +79,62 @@
         background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        margin-top: 100px;
     }
 
 
+    #top-link-block.affix-top {
+        position: absolute; /* allows it to "slide" up into view */
+        bottom: -82px;
+        right: 15px; /* right: 15px; 오른쪽에 위치시킬때 */
+    }
+    #top-link-block.affix {
+        position: absolute; /* keeps it on the bottom once in view */
+        bottom: 18px;
+        right: 15px;
+    }
 
-/*------------------아래는 원본 위에는 테스트 중 ------------------*/
+    #top-link-block{
 
-/*#tp {*/
-/*    font-size: 20px;*/
-/*    min-width:5px;*/
-/*    white-space: nowrap;*/
-/*    !*position: fixed;*!*/
-/*    color: transparent;*/
-/*    left:50%;*/
-/*    bottom: 25%;*/
-/*    transform: translate(-50%, -50%);*/
-/*    position: absolute;*/
-/*    text-align: center;*/
-/*}*/
+        padding-left: 1800px;
+        position:absolute;
 
-/*    #tp::before {*/
-/*        content: "Teach me how to study!";*/
-/*        position: absolute;*/
-/*        top: 14px;*/
-/*        left: 15px;*/
-/*        width: 100%;*/
-/*        text-align: center;*/
-/*        height: 50%;*/
-/*        color: black;*/
-/*        overflow: hidden;*/
-/*        border-right: 1px solid black;*/
-/*        animation: cursor 5s steps(21) infinite;*/
-/*    }*/
-
-/*    @keyframes cursor{*/
-/*        0% {*/
-/*            width: 0%;*/
-/*        }*/
-/*        50% {*/
-/*            width: 50%;*/
-/*        }*/
-/*        100% {*/
-/*            width: 100%;*/
-/*        }*/
-/*    }*/
+    }
 
 
+    #test_obj {
+        position: fixed;
+        width: 70px;
+        height: 210px;
+        right: 50px;
+        border-radius: 70px;
+        top: 550px;
+        border: 1px solid;
+        border-color: grey;
+    }
+    #test_obj:hover {
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    #toptop:hover{
+        background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
 
 </style>
 <body>
+<c:set var="root" value="<%=request.getContextPath() %>"></c:set>
   <!--Section-1-->
     <section class="section-1">
         <div class="jumbotron d-flex align-items-center">
             <div class="gradient" ></div>
-            <div class="container-fluid content" style="height: 150px; padding-bottom: 380px;" >
+            <div class="container-fluid content" style="height: 150px; padding-bottom: 450px;" >
                 <h1 data-aos="fade-up" data-aos-delay="100" style="margin-bottom: 50px; color: white; font-family: 'BM Dohyeon';">국내 최다 합격률 <span style="color:#3f86ed;" id="tctext">티치미</span> 입시학원</h1>
-                <h2 data-aos="fade-up" data-aos-delay="300" style="margin-bottom: 50px; color: lightgray;">국내 최고의 강사진과 함께하는 체계적인 커리큘럼</h2>
+                <h2 data-aos="fade-up" data-aos-delay="300" style="margin-bottom: 100px; margin-top: 50px; color: lightgray;">국내 최고의 강사진과 함께하는 체계적인 커리큘럼</h2>
                 <div class="wrap">
-                <h4 data-aos="fade-up" data-aos-delay="500" style="background-color: white; color: black; margin-top: 250px; border-radius: 15px;" id="tp"><b id="dynamic" class="lg-text"></b></h4>
+                <h4 data-aos="fade-up" data-aos-delay="500" style="background-color: white; color: black; margin-top: 450px; border-radius: 15px;" id="tp"><b id="dynamic" class="lg-text"></b></h4>
                 </div>
-                <p data-aos="fade-up" data-aos-delay="700"><a href="/mini/" class="btn btn-success" id="go" >학습하기</a></p>
+                <p data-aos="fade-up" data-aos-delay="700"><a href="/mini/" class="btn btn-success" id="go" >START</a></p>
             </div>
             <!--container-fluid end-->
         </div>
@@ -392,6 +377,17 @@
         </footer>
     </section>
 
+
+<%--  <!-- child of the body tag -->--%>
+<%--    <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},fast);return false;">--%>
+<%--        <i class="glyphicon glyphicon-chevron-up"></i> <button id=>Back to Top</button>--%>
+<%--    </a>--%>
+
+
+  <span id="top-link-block" class="hidden">
+  <div id="test_obj"><b style="margin-left:18px; padding-top: 20px; display: inline-block; text-align: center; vertical-align: center; color: black;"><a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},fast);return false;" id="toptop">
+  TOP</a></b><br><br><br><b style="font-size: 15px; color: black; margin-left: 6px; padding-top: 15px;"></b><a href="${root}/qna/qnaList"><b style="padding-right: 3px; padding-top: 90px;">문의하기</b></a><br><br><br><b style="font-size: 15px; color: black; margin-left: 8px; padding-top: 40px; margin-top: 10px;"><a href="${root}/board/boardFree">커뮤니티</a></b></div>
+</span><!-- /top-link-block -->
 </body>
 <script>
 
@@ -443,6 +439,29 @@
 
 
 
+        if ( ($(window).height() + 100) < $(document).height() ) {
+        $('#top-link-block').removeClass('hidden').affix({
+            // how far to scroll down before link "slides" into view
+            offset: {top:100}
+        });
+    }
+
+
+
+
+    $(document).ready(function () {
+        var tmp = parseInt($("#test_obj").css('top'));
+
+        $(window).scroll(function () {
+            var scrollTop = $(window).scrollTop();
+            var obj_position = scrollTop + tmp + "px";
+
+            $("#test_obj").stop().animate({
+                "top": obj_position
+            }, 500);
+
+        }).scroll();
+    });
 
 
 
@@ -451,57 +470,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    // let target = document.querySelector("#dynamic");
-    // function randomString() {
-    //     let stringArr = ["대한민국 입시 부동의 1위", "꿈을 이룰 수 있는 유일한 곳", "2021년도 합격률 98%",
-    //         "학생 맞춤형 공부법", "2020년도 합격률 97%", "10년 연속 합격률 95% 달성"];
-    //     let selectString = stringArr[Math.floor(Math.random() * stringArr.length)];
-    //     let selectStringArr = selectString.split("");
-    //
-    //     return selectStringArr;
-    //
-    //
-    //     function resetTyping() {
-    //         target.textContent = "";
-    //         dynamic(randomString());
-    //     }
-    //
-    //
-    //     function dynamic(randomArr) {
-    //
-    //         if (randomArr.length > 0) {
-    //             target.textContent += randomArr.shift();
-    //             setTimeout(function () {
-    //                 dynamic(randomArr);
-    //             }, 80);
-    //         } else {
-    //             setTimeout(resetTyping, 3000);
-    //         }
-    //     }
-    //
-    //     dynamic(randomString());
-    //
-    //
-    //     //커서 깜빡임 효과
-    //     function blink() {
-    //         target.classList.toggle("active");
-    //     }
-    //     setInterval(blink, 500);
-    // }
-
-    // let horizontalUnderLine = document.getElementById("horizontal-underline");
-    // let horizontalMenus = document.querySelectorAll("nav2:first-child a");
 </script>
 
 

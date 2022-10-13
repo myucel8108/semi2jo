@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>TeachMe입시학원 | Study and Changes Life</title>
     <link rel="stylesheet" type="text/css" href="${root}/css/taemin.css">
     <link rel="stylesheet" type="text/css" href="${root}/css/qna.css">
     <link rel="stylesheet" type="text/css" href="${root}/css/taeminfont.css">
@@ -106,7 +106,7 @@
     <div style="float: right;">
     <!-- login button -->
     <c:if test="${sessionScope.loginok==null }">
-    <button type="button" id="btnloginMain" class="bt1" style=" margin-right: 110px; margin-top: 10px;"><b>LOGIN</b></button>
+    <button type="button" id="btnloginMain" class="bt1" style=" margin-right: 110px; margin-top: 10px;"><b>SIGN</b></button>
     </c:if>
     <c:if test="${sessionScope.loginok!=null && sessionScope.usertype=='user'}">
     <b>${sessionScope.loginname}님</b>&nbsp;&nbsp;
