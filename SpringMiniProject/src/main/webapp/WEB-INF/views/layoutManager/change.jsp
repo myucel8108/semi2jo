@@ -13,6 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <%--    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>--%>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"><%--부트 스트랩 icon--%>
 
     <style type="text/css">
         @font-face {
@@ -51,7 +52,7 @@
                                             Incom (<span id ="nowYear"></span> year)
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800" id="print-total-incom">
-                                            ${totalincom}
+
                                         </div>
 <%--                                        <div class="mt-2 mb-0 text-muted text-xs">--%>
 <%--                                            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>--%>
@@ -60,7 +61,7 @@
 
                                     </div>
                                     <div class="col-auto">
-                                        <i class="fas fa-calendar fa-2x text-primary"></i>
+                                        <i class="bi bi-coin" style="font-size: 30px; color: red"></i>
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +82,7 @@
 <%--                                        </div>--%>
                                     </div>
                                     <div class="col-auto">
-                                        <i class="fas fa-shopping-cart fa-2x text-success"></i>
+                                        <i class="bi bi-people-fill" style="font-size: 30px;"></i>
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +131,7 @@
                     <div class="col-xl-4 col-lg-5">
                         <div class="card mb-4">
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">과목별 매출 현황</h6>
+                                <h6 class="m-0 font-weight-bold text-primary" id="chartPieHead">과목별 매출 현황</h6>
                             </div>
                             <div class="card-body">
                                 <canvas id="chartPie" height="300px"></canvas>
@@ -295,10 +296,15 @@
     document.getElementById("nowMonth").innerText=month;
     document.getElementById("nowYear").innerText=year;
 
+    var totalincom = ${totalincom};
+    var resultTotalIncom = totalincom.toLocaleString('ko-KR');
+    $("#print-total-incom").html(resultTotalIncom);
+
 
     //페이지 로드 되자마자 출력되는 함수들
     $(function () {
-        chartPie();
+        // chartPieFunction(val0, val1, val2, val3, val4);
+
 
         <!-- 차트 script-->
         // 차트를 그럴 영역을 dom요소로 가져온다.
@@ -339,63 +345,39 @@
             }
         });
 
-        <%--for(var i =0; i<${leclist.size()}; i++){--%>
-        <%--    --%>
-        <%--}--%>
 
-        function chartPie() {
-            // 차트를 그럴 영역을 dom요소로 가져온다.
-            var pieChartArea = document.getElementById('chartPie').getContext('2d');
-            // 차트 x 축 데이터 (lectypea)
-            var lecType = "${lectureType}".split(",");
-            var res0=0; var res1=0; var res2=0; var res3=0; var res4=0;
-            <%--$.each(${list},function (idx, ele) {--%>
-            <%--    console("test");--%>
+        //Pie 차트 생성
+        // 차트를 그럴 영역을 dom요소로 가져온다.
+        var pieChartArea = document.getElementById('chartPie').getContext('2d');
+        // 차트 x 축 데이터 (lectypea)
+        var lecType = "${lectureType}".split(",");
 
-            <%--})--%>
-            <%--for(var i=0; i<${list.size()}; i++){--%>
-            <%--    console.log(i);--%>
-            <%--    console.log(${list.get(i).lecmonth});--%>
-            <%--    console.log(${list.get(i).price});--%>
-            <%--    if("${list.get(i).lecmonth}"==month){--%>
-            <%--        if("${list.get(i).lectypea}"=="국어"){--%>
-            <%--            res0+=${list.get(i).price};--%>
-            <%--            console.log(res0);--%>
-            <%--        }--%>
-            <%--        if("${list.get(i).lectypea}"=="수학"){--%>
-            <%--            res1+=${list.get(i).price};--%>
-            <%--            console.log("res1"+res1);--%>
-            <%--        }--%>
-            
-            <%--    }--%>
-            
-            <%--}--%>
+        //차트 생성
+        var chartPie = new Chart(pieChartArea, {
+            // ①차트의 종류(String)
+            type: 'pie',
+            // ②차트의 데이터(Object)
+            data: {
+                // ③x축에 들어갈 이름들(Array)
+                labels:
+                $.each(lecType,function (idx, ele) {
+                })
 
-            //차트 생성
-            var chartPie = new Chart(pieChartArea, {
-                // ①차트의 종류(String)
-                type: 'pie',
-                // ②차트의 데이터(Object)
-                data: {
-                    // ③x축에 들어갈 이름들(Array)
-                    labels:["국어","영어","수학","사회","과학"]
-                        // $.each(lecType,function (idx, ele) {
-                        // })
-                    ,
-            // ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.
-            datasets: [{
-                // ⑤dataset의 이름(String)
-                label: month+'월 과목별 매출(단위:원)',
-                // ⑥dataset값(Array)
-                data: [${val0},${val1},${val2},${val3},${val4}],
-                // ⑦dataset의 배경색(rgba값을 String으로 표현)
-                backgroundColor: ['rgba(255, 99, 132, 0.2)','rgba(76, 193, 192, 0.2)','rgba(255, 205, 86, 0.2)','rgba(54, 153, 224, 0.2)','rgba(201, 203, 207, 0.2)'],
-                // ⑧dataset의 선 색(rgba값을 String으로 표현)
-                borderColor: 'rgba(255, 99, 132, 1)',
-                // ⑨dataset의 선 두께(Number)
-                borderWidth: 1
-            }]
-        },
+                ,
+                // ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.
+                datasets: [{
+                    // ⑤dataset의 이름(String)
+                    label: month+'월 과목별 매출(단위:원)',
+                    // ⑥dataset값(Array)
+                    data: [${val0},${val1},${val2},${val3},${val4}],
+                    // ⑦dataset의 배경색(rgba값을 String으로 표현)
+                    backgroundColor: ['rgba(255, 99, 132, 0.2)','rgba(76, 193, 192, 0.2)','rgba(255, 205, 86, 0.2)','rgba(54, 153, 224, 0.2)','rgba(201, 203, 207, 0.2)'],
+                    // ⑧dataset의 선 색(rgba값을 String으로 표현)
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    // ⑨dataset의 선 두께(Number)
+                    borderWidth: 1
+                }]
+            },
             // ⑩차트의 설정(Object)
             options: {
                 // ⑪축에 관한 설정(Object)
@@ -408,19 +390,40 @@
                 }
             }
         });
-        }
+
+
+
+        // mychart 에서 클릭이벤트 발생시 해당 월의 과목별 매출 띄우기
         document.getElementById("myChart").onclick = function(evt) {
             var activePoints = myChart.getElementsAtEvent(evt);
 
             if(activePoints.length > 0)
             {
+                //선택한 표의 월 데이터 가져오기
                 var clickedElementindex = activePoints[0]["_index"];
-                var month = myChart.data.labels[clickedElementindex];
-                console.log("label : " + month);
+                var monthDay = myChart.data.labels[clickedElementindex];
+                console.log("label : " + monthDay);
+
+                //ajax를 사용해 해당월의 과목별 매출 데이터 출력하기
+                $.ajax({
+                    type:"get",
+                    url:"${root}/manager/incomByType",
+                    dataType:"json",
+                    data:{"month":monthDay,"year":year},
+                    success:function(res){
+                        $("#chartPieHead").html("과목별 매출 현황 - "+monthDay+"월");
+                        chartPie.data.datasets[0].data=[res.va0, res.va1, res.va2, res.va3, res.va4];
+                        chartPie.update();
+                        // var test = chartPie.data.datasets.data;
+                        // chartPie().data.datasets[0].date=[0,0,0,0,0];
+                    },
+                });
+
 
                 var value = myChart.data.datasets[0].data[clickedElementindex];
                 console.log("value : " + value);
-                chartPie(month);
+                var temp = 200000;
+                // chartPie(temp);
             }
         }
 
@@ -428,6 +431,56 @@
         // console.log(w);
         // $("#chartPie").attr("height",w);
     });//function
+
+
+
+
+    <%--function chartPieFunction(val0, val1, val2, val3, val4) {--%>
+    <%--    // 차트를 그럴 영역을 dom요소로 가져온다.--%>
+    <%--    var pieChartArea = document.getElementById('chartPie').getContext('2d');--%>
+    <%--    // 차트 x 축 데이터 (lectypea)--%>
+    <%--    &lt;%&ndash;var lecType = "${lectureType}".split(",");&ndash;%&gt;--%>
+
+    <%--    //차트 생성--%>
+    <%--    var chartPie = new Chart(pieChartArea, {--%>
+    <%--        // ①차트의 종류(String)--%>
+    <%--        type: 'pie',--%>
+    <%--        // ②차트의 데이터(Object)--%>
+    <%--        data: {--%>
+    <%--            // ③x축에 들어갈 이름들(Array)--%>
+    <%--            labels:["국어","영어","수학","사회","과학"]--%>
+    <%--            // $.each(lecType,function (idx, ele) {--%>
+    <%--            // })--%>
+    <%--            ,--%>
+    <%--            // ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.--%>
+    <%--            datasets: [{--%>
+    <%--                // ⑤dataset의 이름(String)--%>
+    <%--                label: month+'월 과목별 매출(단위:원)',--%>
+    <%--                // ⑥dataset값(Array)--%>
+    <%--                data: [val0, val1, val2, val3, val4],--%>
+    <%--                // ⑦dataset의 배경색(rgba값을 String으로 표현)--%>
+    <%--                backgroundColor: ['rgba(255, 99, 132, 0.2)','rgba(76, 193, 192, 0.2)','rgba(255, 205, 86, 0.2)','rgba(54, 153, 224, 0.2)','rgba(201, 203, 207, 0.2)'],--%>
+    <%--                // ⑧dataset의 선 색(rgba값을 String으로 표현)--%>
+    <%--                borderColor: 'rgba(255, 99, 132, 1)',--%>
+    <%--                // ⑨dataset의 선 두께(Number)--%>
+    <%--                borderWidth: 1--%>
+    <%--            }]--%>
+    <%--        },--%>
+    <%--        // ⑩차트의 설정(Object)--%>
+    <%--        options: {--%>
+    <%--            // ⑪축에 관한 설정(Object)--%>
+    <%--            scales: {--%>
+    <%--                // ⑫y축에 대한 설정(Object)--%>
+    <%--                y: {--%>
+    <%--                    // ⑬시작을 0부터 하게끔 설정(최소값이 0보다 크더라도)(boolean)--%>
+    <%--                    beginAtZero: true--%>
+    <%--                }--%>
+    <%--            }--%>
+    <%--        }--%>
+    <%--    });--%>
+    <%--}--%>
+
+
 
 </script>
 </body>

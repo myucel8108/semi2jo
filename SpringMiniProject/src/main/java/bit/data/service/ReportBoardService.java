@@ -31,6 +31,7 @@ public class ReportBoardService implements ReportBoardServiceInter{
 
     @Override
     public void revertReport(int boardnum) {
+        System.out.println("revert service");
         reportBoardDao.revertReport(boardnum);
     }
 }

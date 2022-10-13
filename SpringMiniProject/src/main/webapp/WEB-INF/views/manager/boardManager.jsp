@@ -144,23 +144,36 @@
 
         //report board 에서 revert 와 delete 버튼 기능 작동
         $(document).on('click','#btn-revert-reportboard',function () {
-            alert("btn revert");
             var num = $(this).attr('num');
-            alert(num);
-            $.ajax({
-                type:"get",
-                url:"${root}/manager/revertReport",
-                dataType:"text",
-                data:{"boardnum":num},
-                success:function(res){
-                    alert("ajax - sucess");
-                },
-            });
+            var re = confirm("해당 글의 신고 횟수를 초기화 하시겠습니까?");
+            if(re){
+                $.ajax({
+                    type:"post",
+                    url:"${root}/manager/revertReport",
+                    dataType:"text",
+                    data:{"boardnum":num},
+                    success:function(res){
+                        location.href="${root}/manager/boardControl"
+                    },
+                });
+            }
         })
 
 
         $(document).on('click','#btn-delete-reportboard',function () {
-            alert("btn delete");
+            var num = $(this).attr('num');
+            var re = confirm("해당 글을 삭제 하시겠습니까?");
+            if(re){
+                $.ajax({
+                    type:"post",
+                    url:"${root}/manager/deleteReport",
+                    dataType:"text",
+                    data:{"boardnum":num},
+                    success:function(res){
+                        location.href="${root}/manager/boardControl"
+                    },
+                });
+            }
         })
     })
 

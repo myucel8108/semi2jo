@@ -38,10 +38,12 @@ public class ManagerController {
     MyLecJoinServiceInter myLecJoinService;
     @Autowired
     JoinBoardService joinBoardService;
+    @Autowired
+    ReportBoardServiceInter reportBoardServiceInter;
 
 
 
-    //관리자 페이지로 이동
+    //관리자 페이지로 이동(매출)
     @GetMapping("/manager/main")
     public ModelAndView managerMain() {
         ModelAndView mview = new ModelAndView();
@@ -71,18 +73,18 @@ public class ManagerController {
                 case 12: incom12+=list.get(i).price; break;
             }
         }
-        mview.addObject("incom1",incom1);
-        mview.addObject("incom2",incom2);
-        mview.addObject("incom3",incom3);
-        mview.addObject("incom4",incom4);
-        mview.addObject("incom5",incom5);
-        mview.addObject("incom6",incom6);
-        mview.addObject("incom7",incom7);
-        mview.addObject("incom8",incom8);
-        mview.addObject("incom9",incom9);
-        mview.addObject("incom10",incom10);
-        mview.addObject("incom11",incom11);
-        mview.addObject("incom12",incom12);
+        mview.addObject("incom1",incom1/1000);
+        mview.addObject("incom2",incom2/1000);
+        mview.addObject("incom3",incom3/1000);
+        mview.addObject("incom4",incom4/1000);
+        mview.addObject("incom5",incom5/1000);
+        mview.addObject("incom6",incom6/1000);
+        mview.addObject("incom7",incom7/1000);
+        mview.addObject("incom8",incom8/1000);
+        mview.addObject("incom9",incom9/1000);
+        mview.addObject("incom10",incom10/1000);
+        mview.addObject("incom11",incom11/1000);
+        mview.addObject("incom12",incom12/1000);
         mview.addObject("totalincom",totalincom);
         mview.addObject("list",list);
 
@@ -108,39 +110,6 @@ public class ManagerController {
         int val0=0; int val1=0; int val2=0; int val3=0; int val4=0;
         for(int i=0; i< list.size(); i++){
             int temp = list.get(i).price;
-            if(list.get(i).lectypea.equals("국어"))
-                val0 += temp;
-            else if(list.get(i).lectypea.equals("영어"))
-                val1+=temp;
-            else if(list.get(i).lectypea.equals("수학"))
-                val2+=temp;
-            else if(list.get(i).lectypea.equals("사회"))
-                val3+=temp;
-            else if(list.get(i).lectypea.equals("과학"))
-                val4+=temp;
-        }
-        mview.addObject("val0",val0);
-        mview.addObject("val1",val1);
-        mview.addObject("val2",val2);
-        mview.addObject("val3",val3);
-        mview.addObject("val4",val4);
-//        System.out.println(leclist.get(0).lectypea);
-        mview.setViewName("/manager/layoutManager/change");
-        return mview;
-    }
-
-    //해당 월의 과목별 매출
-    @GetMapping("/manager/incomByType")
-    @ResponseBody
-    public Map<String, Integer> imcomByType(@RequestParam(defaultValue = "0")int month){
-        Map<String, Integer> map = new HashMap<>();
-        List<MyLecJoinDto> list = myLecJoinService.getTotalIncom(2022,month);
-        List<LectureDto> leclist = lectureService.getLecTypeA();
-
-        //과목별 총 매출 금액 구하기 (시간 되면 나중에는 자동형으로 변경해보자)
-        int val0=0; int val1=0; int val2=0; int val3=0; int val4=0;
-        for(int i=0; i< list.size(); i++){
-            int temp = list.get(i).price;
             if(list.get(i).lectypea.equals(leclist.get(0).lectypea))
                 val0 += temp;
             else if(list.get(i).lectypea.equals(leclist.get(1).lectypea))
@@ -152,11 +121,52 @@ public class ManagerController {
             else if(list.get(i).lectypea.equals(leclist.get(4).lectypea))
                 val4+=temp;
         }
-        map.put("val0",val0);
-        map.put("val1",val1);
-        map.put("val2",val2);
-        map.put("val3",val3);
-        map.put("val4",val4);
+        mview.addObject("val0",(val0/1000));
+        mview.addObject("val1",val1/1000);
+        mview.addObject("val2",val2/1000);
+        mview.addObject("val3",val3/1000);
+        mview.addObject("val4",val4/1000);
+//        System.out.println(leclist.get(0).lectypea);
+        mview.setViewName("/manager/layoutManager/change");
+        return mview;
+    }
+
+    //해당 월의 과목별 매출
+    @GetMapping("/manager/incomByType")
+    @ResponseBody
+    public Map<String, Integer> imcomByType(@RequestParam(defaultValue = "0")int month,int year){
+        System.out.println("month"+month);
+        Map<String, Integer> map = new HashMap<>();
+        List<MyLecJoinDto> list = myLecJoinService.getTotalIncom(year,month);
+        System.out.println(list);
+        System.out.println(list.size());
+        List<LectureDto> leclist = lectureService.getLecTypeA();
+
+        //과목별 총 매출 금액 구하기 (시간 되면 나중에는 자동형으로 변경해보자)
+        int va0=0; int va1=0; int va2=0; int va3=0; int va4=0;
+        for(int i=0; i< list.size(); i++){
+            int temp = list.get(i).price;
+            if(list.get(i).lectypea.equals(leclist.get(0).lectypea))
+                va0 += temp;
+            else if(list.get(i).lectypea.equals(leclist.get(1).lectypea))
+                va1+=temp;
+            else if(list.get(i).lectypea.equals(leclist.get(2).lectypea))
+                va2+=temp;
+            else if(list.get(i).lectypea.equals(leclist.get(3).lectypea))
+                va3+=temp;
+            else if(list.get(i).lectypea.equals(leclist.get(4).lectypea))
+                va4+=temp;
+        }
+        System.out.println("va0"+va0);
+        System.out.println("va1"+va1);
+        System.out.println("va2"+va2);
+        System.out.println("va3"+va3);
+        System.out.println("va4"+va4);
+        map.put("va0",va0);
+        map.put("va1",va1);
+        map.put("va2",va2);
+        map.put("va3",va3);
+        map.put("va4",va4);
         return map;
     }
 
@@ -601,7 +611,20 @@ public class ManagerController {
         return map;
     }
 
-//    @GetMapping
-//    public void
+    //관리자 커뮤니티 관리 - 신고 횟수 초기화
+    @PostMapping("/manager/revertReport")
+    @ResponseBody
+    public void revertReportBoard(int boardnum){
+        System.out.println("revert controller");
+        reportBoardServiceInter.revertReport(boardnum);
+    }
+
+    //관리자 커뮤니티 관리 - 신고 글 삭제
+    @PostMapping("/manager/deleteReport")
+    @ResponseBody
+    public void deleteReportBoard(int boardnum){
+        System.out.println("delete controller");
+        boardService.deleteBoard(boardnum);
+    }
 
 }
