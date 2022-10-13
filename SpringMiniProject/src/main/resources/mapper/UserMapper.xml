@@ -34,11 +34,16 @@
         select * from user where email=#{email}
     </select>
 
-    <!--전체 회원 수 출력-->
+    <!--전체 회원 수 출력(매출쪽)-->
     <select id="getUserTotalCount" resultType="int">
-        select count(*) from user
+        select count(*) from user where usertype="user"
+    </select>
+
+    <!--전체 회원 수 출력(목록 출력쪽)-->
+    <select id="getUserTotalCount2" parameterType="String" resultType="int">
+        select count(*) from user where usertype="user"
         <if test="searchword!=null">
-            where usertype="user"
+            and username like concat('%',#{searchword},'%')
         </if>
     </select>
 

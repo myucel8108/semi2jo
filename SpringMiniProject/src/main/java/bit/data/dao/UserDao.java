@@ -22,6 +22,11 @@ public class UserDao implements UserDaoInter{
     }
 
     @Override
+    public int getUserTotalCount2(String searchword) {
+        return session.selectOne(ns + "getUserTotalCount2", searchword);
+    }
+
+    @Override
     public List<UserDto> getUserList(Map<String, Object> map) {
         return session.selectList(ns + "getUserList", map);
     }

@@ -49,6 +49,11 @@ public class LectureService implements LectureServiceInter{
     }
 
     @Override
+    public LectureDetailJoinDto getLectureDetailData(int lecdenum) {
+        return lectureDao.getLectureDetailData(lecdenum);
+    }
+
+    @Override
     public LectureDto getLectureDetail(int lecnum) {
         return lectureDao.getLectureDetail(lecnum);
     }

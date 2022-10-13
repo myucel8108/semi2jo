@@ -11,8 +11,8 @@
 
     <!-- 강의 추가 -->
     <insert id="insertLectureDetail" parameterType="lecDetailDto">
-        INSERT INTO `errjava2`.`lecdetail` (`lecnum`, `lecname`, `roomnum`, `price`, `lectime`, `lecday`, `lecmonth`)
-        VALUES (null, #{lecname}, #{roomnum}, #{price}, #{lectime}, #{lecday}, #{lecmonth});
+        INSERT INTO lecdetail (lecnum, lecname, roomnum, price, lectime, lecday, lecmonth, lecyear)
+        VALUES (#{lecnum}, #{lecname}, #{roomnum}, #{price}, #{lectime}, #{lecday}, #{lecmonth}, #{lecyear});
     </insert>
 
     <!-- 강의 삭제 -->
