@@ -178,6 +178,7 @@ figure
 </style>
 </head>
 <body>
+<c:set var="root" value="<%=request.getContextPath() %>"></c:set>
 	<div class="container" style=" display: flex; min-height: 2500px;">
 
 	<div id="Accordion_wrap" style="width: 150px; ">
