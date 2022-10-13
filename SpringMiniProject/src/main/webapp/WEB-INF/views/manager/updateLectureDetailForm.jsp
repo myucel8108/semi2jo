@@ -57,19 +57,19 @@
                 <br>
                 <br>
                 <div class="user-avatar">
-<%--                  <c:if test="${dto.lecphoto!=null}">--%>
-<%--                    <img src="upload/${dto.lecphoto}" class="img-full">--%>
-<%--                  </c:if>--%>
-<%--                  <c:if test="${dto.lecphoto==null}">--%>
-<%--                    <img src="resources/image/noimage2.png" class="img-full">--%>
-<%--                  </c:if>--%>
+                  <c:if test="${dto.lecphoto!=null}">
+                    <img src="upload/${dto.lecphoto}" class="img-full">
+                  </c:if>
+                  <c:if test="${dto.lecphoto==null}">
+                    <img src="resources/image/noimage2.png" class="img-full">
+                  </c:if>
                 </div>
                 <br>
-<%--                <h4 class="user-name">${dto.lecname}</h4>--%>
-<%--                <h6 class="user-email">[${dto.lectypea}]-${dto.lectypeb}</h6>--%>
+                <h4 class="user-name">${dto.lecname}</h4>
+                <h6 class="user-email">[${dto.lectypea}]-${dto.lectypeb}</h6>
               </div>
               <div class="about">
-<%--                <h5>${dto.teaname}</h5>--%>
+                <h5>${dto.teaname}</h5>
               </div>
             </div>
           </div>
@@ -115,7 +115,7 @@
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                 <div class="form-group">
                   <label>수강료</label>
-                  <input type="text" class="form-control lec-price" oninput="formatPrice(this)" name="price" placeholder="수강료 입력">
+                  <input type="text" class="form-control lec-price" name="price" placeholder="수강료 입력" value="${dto.price}">
                 </div>
                 <br>
                 <br>
@@ -179,7 +179,7 @@
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="text-right button-box">
                   <button type="submit"  name="insertDetail" class="btn btn-outline-primary">등록하기</button>
-                  &nbsp;
+
                   <button type="button" id="detail-Back" class="btn btn-outline-secondary">돌아가기</button>
                 </div>
               </div>
@@ -191,25 +191,12 @@
   </form>
 </div>
 <script>
-  // //금액 1000 단위로 콤마 정규식
-  // const formatPrice = (target) => {
-  //   // 숫자만 남긴 후 포맷
-  //   target.value = Number(target.value
-  //           .replace(/[^0-9]/g, ''))
-  //           .toLocaleString();
-  // }
-
-  // //DB로 넘길 때 다시 콤마 제거
-  // const reg = /[^\w\sㄱ-힣]|[\_]/g;
-  // // 특수문자만 지우기
-  // const regReplace = (str) => {
-  //   return str.replace(reg, ``);
-  // }
-  // // 인풋창에 입력 시 이벤트
-  // const removeComma = (target) => {
-  //   const value = target.value;
-  //
-  //   document.querySelector('.lec-price').innerHTML = regReplace(value);
+  var temp = document.getElementById('fullName');
+  for (var i=1; i<temp.options.length; i++){
+      if ("${dto.roomnum}"==temp.options[i].value){
+          temp.options[i].selected="true";
+      }
+  }
 
   //현재 년도 얻어와서 강의 년도에 출력
   var date = new Date();

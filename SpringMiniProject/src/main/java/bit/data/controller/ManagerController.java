@@ -470,7 +470,7 @@ public class ManagerController {
         LectureDetailJoinDto dto = lectureService.getLectureDetailData(lecdenum);
 
         mview.addObject("dto",dto);
-        mview.setViewName("/manager/manager/updateLectureDetailForm?lecdenum=" + lecdenum);
+        mview.setViewName("/manager/manager/updateLectureDetailForm");
 
         return mview;
     }
