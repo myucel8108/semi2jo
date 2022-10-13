@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" type="text/css" href="${root}/css/qna.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/taeminfont.css">
+<link rel="stylesheet" type="text/css" href="${root}/css/TeachMeStyle.css">
+<script src="${pageContext.request.contextPath}/resources/javascript/taemin.js"></script>
+<%--<script src="${pageContext.request.contextPath}/taemin.js"></script>--%>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
@@ -16,7 +20,8 @@
     #go{
         background-color: white;
         border-color: white;
-        margin-top: 100px;
+        margin-top: 150px;
+        margin-bottom: 100px;
         color: black;
     }
 
@@ -28,22 +33,108 @@
 
 
     #go:hover{
-        background: linear-gradient(to right, #4481eb,#3f86ed);
+        background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         /*background-color: #3f86ed;*/
-        border: none;
-        color: white;
+        border-color: grey;
+        outline-color: grey;
     }
+
+
+
+    .wrap {
+        top: 50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        text-align: center;
+
+    }
+
+    #dynamic{
+        position: relative;
+        display: inline-block;
+        color: black;
+    }
+
+    #dynamic::after{
+        content:"";
+        display: block;
+        position: absolute;
+        top: 0;
+        right: -10px;
+        width: 4px;
+        height: 100%;
+        background-color: black;
+        color: black;
+    }
+
+    #dynamic.active::after{
+        display: none;
+
+    }
+
+    .lg-text{
+        background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-top: 100px;
+    }
+
+
+    #top-link-block.affix-top {
+        position: absolute; /* allows it to "slide" up into view */
+        bottom: -82px;
+        right: 15px; /* right: 15px; 오른쪽에 위치시킬때 */
+    }
+    #top-link-block.affix {
+        position: absolute; /* keeps it on the bottom once in view */
+        bottom: 18px;
+        right: 15px;
+    }
+
+    #top-link-block{
+
+        padding-left: 1800px;
+        position:absolute;
+
+    }
+
+
+    #test_obj {
+        position: fixed;
+        width: 70px;
+        height: 210px;
+        right: 50px;
+        border-radius: 70px;
+        top: 550px;
+        border: 1px solid;
+        border-color: grey;
+    }
+    #test_obj:hover {
+    }
+
+    #toptop:hover{
+        background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
 </style>
 <body>
+<c:set var="root" value="<%=request.getContextPath() %>"></c:set>
   <!--Section-1-->
     <section class="section-1">
         <div class="jumbotron d-flex align-items-center">
             <div class="gradient" ></div>
-            <div class="container-fluid content">
+            <div class="container-fluid content" style="height: 150px; padding-bottom: 450px;" >
                 <h1 data-aos="fade-up" data-aos-delay="100" style="margin-bottom: 50px; color: white; font-family: 'BM Dohyeon';">국내 최다 합격률 <span style="color:#3f86ed;" id="tctext">티치미</span> 입시학원</h1>
-                <h2 data-aos="fade-up" data-aos-delay="300" style="margin-bottom: 50px; color: darkgray;">국내 최고의 강사진과 함께하는 체계적인 커리큘럼</h2>
-                <h4 data-aos="fade-up" data-aos-delay="500" style="background-color: white; color: black; margin-top: 250px; border-radius: 15px;">Teach me how to study by myself</h4>
-                <p data-aos="fade-up" data-aos-delay="700"><a href="/mini/" class="btn btn-success" id="go" >학습하기</a></p>
+                <h2 data-aos="fade-up" data-aos-delay="300" style="margin-bottom: 100px; margin-top: 50px; color: lightgray;">국내 최고의 강사진과 함께하는 체계적인 커리큘럼</h2>
+                <div class="wrap">
+                <h4 data-aos="fade-up" data-aos-delay="500" style="background-color: white; color: black; margin-top: 450px; border-radius: 15px;" id="tp"><b id="dynamic" class="lg-text"></b></h4>
+                </div>
+                <p data-aos="fade-up" data-aos-delay="700"><a href="/mini/" class="btn btn-success" id="go" >START</a></p>
             </div>
             <!--container-fluid end-->
         </div>
@@ -231,7 +322,6 @@
                                 <a href="#!">user login</a>
                             </li>
                             <li>
-                                <a href="#!">creat new account</a>
                             </li>
                             <li>
                                 <a href="#!">checkout</a>
@@ -283,7 +373,112 @@
                 <!-- Grid row -->
 
             </div>
+
         </footer>
     </section>
+
+
+<%--  <!-- child of the body tag -->--%>
+<%--    <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},fast);return false;">--%>
+<%--        <i class="glyphicon glyphicon-chevron-up"></i> <button id=>Back to Top</button>--%>
+<%--    </a>--%>
+
+
+  <span id="top-link-block" class="hidden">
+  <div id="test_obj"><b style="margin-left:18px; padding-top: 20px; display: inline-block; text-align: center; vertical-align: center; color: black;"><a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},fast);return false;" id="toptop">
+  TOP</a></b><br><br><br><b style="font-size: 15px; color: black; margin-left: 6px; padding-top: 15px;"></b><a href="${root}/qna/qnaList"><b style="padding-right: 3px; padding-top: 90px;">문의하기</b></a><br><br><br><b style="font-size: 15px; color: black; margin-left: 8px; padding-top: 40px; margin-top: 10px;"><a href="${root}/board/boardFree">커뮤니티</a></b></div>
+</span><!-- /top-link-block -->
 </body>
+<script>
+
+    let target = document.querySelector("#dynamic");
+
+
+
+    function randomString(){
+        let stringArr = ["대한민국 입시 부동의 1위","Teach you how to study", "2021년도 합격률 98%",
+            "학생 맞춤형 공부법","2021년도 합격률 97%","10년 연속 합격률 95% 달성"];
+        let selectString = stringArr[Math.floor(Math.random()* stringArr.length)];
+        let selectStringArr = selectString.split("");
+
+        return selectStringArr;
+    }
+
+
+    function resetTyping(){
+        target.textContent= "";
+
+        dynamic(randomString());
+    }
+
+
+
+    function dynamic(randomArr){
+
+        if(randomArr.length > 0){
+            target.textContent += randomArr.shift();
+            setTimeout(function(){
+                dynamic(randomArr);
+            },80);
+        }else{
+            setTimeout(resetTyping, 3000);
+        }
+
+    }
+
+    dynamic(randomString());
+
+
+
+
+    function blink(){
+        target.classList.toggle("active");
+
+    }
+    setInterval(blink, 500);
+
+
+
+        if ( ($(window).height() + 100) < $(document).height() ) {
+        $('#top-link-block').removeClass('hidden').affix({
+            // how far to scroll down before link "slides" into view
+            offset: {top:100}
+        });
+    }
+
+
+
+
+    $(document).ready(function () {
+        var tmp = parseInt($("#test_obj").css('top'));
+
+        $(window).scroll(function () {
+            var scrollTop = $(window).scrollTop();
+            var obj_position = scrollTop + tmp + "px";
+
+            $("#test_obj").stop().animate({
+                "top": obj_position
+            }, 500);
+
+        }).scroll();
+    });
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
 </html>

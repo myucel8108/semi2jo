@@ -22,7 +22,12 @@
         -webkit-text-fill-color: transparent;
     }
 
+    .footerarea{
+        background: linear-gradient(to right, lightgray, darkgray, lightgray);
     }
+
+
+
 </style>
 <body>
 <!-- Copyright -->
@@ -59,7 +64,7 @@
         </div>
     </div>
     <hr noshade="noshade" style="margin: 0;">
-    <div class="footerarea">
+    <div class="footerarea" >
         <%--footer 좌측 로고--%>
         <div class="logofooterbox">
             <a href="${root}" style="color: #191919; font-size: 40px; font-family: abster;" class="teachMeLogo"  id="ftlogo">

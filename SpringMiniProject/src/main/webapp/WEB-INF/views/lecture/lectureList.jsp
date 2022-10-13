@@ -161,9 +161,24 @@ figure
 		 
 		 /*h1, h2, h3, h4, h5, h6 { margin:0; padding:0; }*/
 		 /*ul, lo, li { margin:0; padding:0; list-style:none; }*/
+
+#test_obj {
+    position: fixed;
+    width: 70px;
+    height: 210px;
+    right: 50px;
+    border-radius: 70px;
+    top: 550px;
+    border: 1px solid;
+    border-color: grey;
+}
+
+
+
 </style>
 </head>
 <body>
+<c:set var="root" value="<%=request.getContextPath() %>"></c:set>
 	<div class="container" style=" display: flex; min-height: 2500px;">
 
 	<div id="Accordion_wrap" style="width: 150px; ">
@@ -280,15 +295,54 @@ figure
 		</c:forEach>	
 		</div>
 </div>
-	<script type="text/javascript">
-	
-	$(".que").click(function() {
 
-		   $(this).next(".anw").stop().slideToggle(300);
-		  $(this).toggleClass('on').siblings().removeClass('on');
-		  $(this).next(".anw").siblings(".anw").slideUp(300); // 1개씩 펼치기
-		});
-	
-	</script>
+
+    <div id="test_obj"><b style="margin-left:18px; padding-top: 20px; display: inline-block; text-align: center; vertical-align: center; color: black;"><a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},fast);return false;" id="toptop">
+        TOP</a></b><br><br><br><b style="font-size: 15px; color: black; margin-left: 6px; padding-top: 15px;"></b><a href="${root}/qna/qnaList"><b style="padding-right: 3px; padding-top: 90px;">문의하기</b></a><br><br><br><b style="font-size: 15px; color: black; margin-left: 8px; padding-top: 40px; margin-top: 10px;"><a href="${root}/board/boardFree">커뮤니티</a></b></div>
+    </span><!-- /top-link-block -->
+
+
+
+
+
+
 </body>
+
+
+
+<script type="text/javascript">
+
+    $(".que").click(function() {
+
+        $(this).next(".anw").stop().slideToggle(300);
+        $(this).toggleClass('on').siblings().removeClass('on');
+        $(this).next(".anw").siblings(".anw").slideUp(300); // 1개씩 펼치기
+    });
+
+
+
+    $(document).ready(function () {
+        var tmp = parseInt($("#test_obj").css('top'));
+
+        $(window).scroll(function () {
+            var scrollTop = $(window).scrollTop();
+            var obj_position = scrollTop + tmp + "px";
+
+            $("#test_obj").stop().animate({
+                "top": obj_position
+            }, 500);
+
+        }).scroll();
+    });
+
+
+
+
+
+
+
+
+</script>
+
+
 </html>

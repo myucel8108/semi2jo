@@ -15,6 +15,21 @@
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link rel="stylesheet" type="text/css" href="${root}/css/board/boardForm.css">
     <style type="text/css">
+
+        #test_obj {
+            position: fixed;
+            width: 70px;
+            height: 210px;
+            right: 50px;
+            border-radius: 70px;
+            top: 550px;
+            border: 1px solid;
+            border-color: grey;
+        }
+
+
+
+
     </style>
 </head>
 <body>
@@ -132,5 +147,39 @@
                     </ul>
                 </div>
         </div>
+
+
+<div id="test_obj"><b style="margin-left:18px; padding-top: 20px; display: inline-block; text-align: center; vertical-align: center; color: black;"><a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},fast);return false;" id="toptop">
+    TOP</a></b><br><br><br><b style="font-size: 15px; color: black; margin-left: 6px; padding-top: 15px;"></b><a href="${root}/qna/qnaList"><b style="padding-right: 3px; padding-top: 90px;">문의하기</b></a><br><br><br><b style="font-size: 15px; color: black; margin-left: 8px; padding-top: 40px; margin-top: 10px;"><a href="${root}/board/boardFree">커뮤니티</a></b></div>
+</span><!-- /top-link-block -->
+
+
+
+
     </body>
+
+
+
+<script>
+
+    $(document).ready(function () {
+        var tmp = parseInt($("#test_obj").css('top'));
+
+        $(window).scroll(function () {
+            var scrollTop = $(window).scrollTop();
+            var obj_position = scrollTop + tmp + "px";
+
+            $("#test_obj").stop().animate({
+                "top": obj_position
+            }, 500);
+
+        }).scroll();
+    });
+
+
+
+</script>
+
+
+
 </html>
