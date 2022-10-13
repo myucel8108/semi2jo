@@ -68,7 +68,15 @@ public class UserDao implements UserDaoInter{
         session.selectOne(ns+"deleteUser",usernum);
     }
 
+    @Override
+    public void updateBoardNickname(Map<String, Object> map) {
+        session.selectOne(ns+"updateBoardNickname",map);
+    }
 
+    @Override
+    public void updateReBoardNickname(Map<String, Object> map) {
+        session.selectOne(ns+"updateReBoardNickname",map);
+    }
 
     //아래로 마이커뮤니티
     @Override

@@ -30,6 +30,15 @@ public class MyLecJoinService implements MyLecJoinServiceInter{
     public List<MyLecJoinDto> getMyLecPayByNum(int usernum) {
         return myLecJoinDao.getMyLecPayByNum(usernum);
     }
+
+    @Override
+    public void deleteMyCartByLecdenum(int usernum, int lecdenum) {
+        Map<String, Integer> map= new HashMap<>();
+        map.put("usernum",usernum);
+        map.put("lecdenum",lecdenum);
+
+        myLecJoinDao.deleteMyCartByLecdenum(map);
+    }
         
     @Override
     public List<MyLecJoinDto> getTotalIncom(int year, int mon) {

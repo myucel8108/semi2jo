@@ -8,13 +8,14 @@
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Yeon+Sung&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <!-- iamport.payment.js -->
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 
     <style type="text/css">
-        *{
+        body *{
             font-family: 'Noto Sans KR';
         }
         .lectd th,td{
@@ -39,19 +40,21 @@
 <div class="lectdbox">
     <table class="table table-bordered lectd">
         <tr>
-            <th style="width: 80px">과목분류</th>
-            <th style="width: 150px">강의명</th>
+            <th style="width: 30px"><input id="allCheck" type="checkbox"/></th>
+            <th style="width: 60px">과목분류</th>
+            <th style="width: 120px">강의명</th>
             <th style="width: 80px">강사</th>
             <th style="width: 80px">강의실</th>
-            <th style="width: 100px">강의교시</th>
+            <th style="width: 80px">강의교시</th>
             <th style="width: 100px">강의요일</th>
-            <th style="width: 50px">수강연월</th>
-            <th style="width: 50px">가격</th>
+            <th style="width: 60px">수강연월</th>
+            <th style="width: 60px">가격</th>
         </tr>
         <c:set var="totalPrice" value="0"/>
         <c:set var="totalLecname" value=""/>
         <c:forEach var="dto" items="${list}">
             <tr>
+                <td><input class="aCheck" type="checkbox" value="${dto.lecdenum}"/></td>
                 <td>${dto.lectypea}</td>
                 <td>${dto.lecname}</td>
                 <td>${dto.teaname}</td>
@@ -88,13 +91,13 @@
             <c:set var="usernum" value="${dto.usernum}"/>
         </c:forEach>
         <tr>
-            <td colspan="8" class="total">
-                총 결제 예정 금액 :  <fmt:formatNumber type="currency" value="${totalPrice}"/>
+            <td colspan="9" class="total">
+                총 결제 예정 금액 : <fmt:formatNumber type="currency" value="${totalPrice}"/>
             </td>
         </tr>
     </table>
-    
-    <button type="button" onclick="payment('kcp','test','card')">결제하기</button>
+    <button type="button" id="selectDel">선택삭제</button>&nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button" onclick="payment('kcp','test','card')" style="float: right">결제하기</button>
 </div>
 <script type="text/javascript">
 
@@ -147,6 +150,59 @@
                 })
         })
     };
+
+    $(function (){
+
+        //전체 선택 클릭 시 체크값 얻어서 모든 체크값 전달하기
+        $("#allCheck").click(function(){
+            //전체 선택의 체크값 얻기
+            var chk = $(this).is(":checked");//true 또는 false
+
+            //전체 선택의 체크값을 글 앞으 체크에 일괄 전달
+            $(".aCheck").prop("checked", chk);
+
+        });
+        //하나라도 선택하면 모두선택 체크박스 해제
+        $(".aCheck").click(function(){
+            $("#allCheck").prop("checked", false);
+        });
+
+        //선택삭제 버튼 클릭 시 삭제
+        $("#selectDel").click(function(){
+
+            //체크된 길이 구하기
+            var len=$(".aCheck:checked").length;
+            //체크 안했을 경우
+            if(len==0){
+                alert("최소 1개 이상의 글을 선택해주세요");
+            }else{ //체크 했을 경우
+                var a=confirm(len+"개의 강의를 장바구니에서 삭제하시겠습니까?");
+
+                if(a){
+                    //체크된 곳의 value값(lecdenum) 얻어서 nums에 넣기(반복)
+                    var nums="";
+                    $(".aCheck:checked").each(function(idx){
+                        nums+=$(this).val()+","
+                    });
+                    //마지막 컴마 제거하기
+                    nums=nums.substring(0,nums.length-1);
+                    console.log(nums);
+                    //삭제컨트롤러로 전송
+                    $.ajax({
+                        url : "deleteMyCart",
+                        type : "post",
+                        data : {"nums":nums},
+                        success : function(){
+                            alert("삭제되었습니다");
+                            location.reload();
+                        }
+                    });
+
+                }
+            }
+        });
+    });
+
 
 </script>
 </body>

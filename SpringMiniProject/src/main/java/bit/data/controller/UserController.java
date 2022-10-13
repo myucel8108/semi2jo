@@ -1,5 +1,7 @@
 package bit.data.controller;
 
+import bit.data.dto.BoardDto;
+import bit.data.dto.ReboardDto;
 import bit.data.dto.UserDto;
 import bit.data.service.BoardServiceInter;
 import bit.data.service.LikeBoardServiceInter;
@@ -18,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 
 @Controller
@@ -96,8 +99,14 @@ public class UserController {
     @ResponseBody
     public void delete(int usernum,HttpSession session)
     {
-        userService.deleteUser(usernum);
+        //board테이블 nickname 탈퇴회원으로
+        userService.updateBoardNickname("(탈퇴회원)",usernum);
+        //reboard테이블 nickname 탈퇴회원으로
+        userService.updateReBoardNickname("(탈퇴회원)",usernum);
 
+        //user테이블에서 삭제
+        userService.deleteUser(usernum);
+        //세션에서 삭제
         session.removeAttribute("loginok");
         session.removeAttribute("email");
         session.removeAttribute("usernum");

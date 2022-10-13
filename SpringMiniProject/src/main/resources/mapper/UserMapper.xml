@@ -81,6 +81,15 @@
         delete from user where usernum=#{usernum}
     </delete>
 
+    <!--회원 삭제 하면 usernum으로 가져와서 board게시물에 작성자 닉네임 (탈퇴회원)되도록-->
+    <update id="updateBoardNickname" parameterType="Map">
+        update board set nickname=#{nickname} where usernum=#{usernum}
+    </update>
+    <!--회원 삭제 하면 usernum으로 가져와서 reboard게시물에 작성자 닉네임 (탈퇴회원)되도록-->
+    <update id="updateReBoardNickname" parameterType="Map">
+        update reboard set nickname=#{nickname} where usernum=#{usernum}
+    </update>
+
     <!--아래로 마이페이지에 마이커뮤니티-->
     <select id="getMyBoardList" parameterType="int" resultType="boardDto">
         select * from board where usernum=#{usernum} order by boardnum desc

@@ -16,6 +16,8 @@ public interface UserDaoInter {
     public void deleteUserPhoto(int usernum);
     public void updateUser(UserDto dto);
     public void deleteUser(int usernum);
+    public void updateBoardNickname(Map<String, Object> map);
+    public void updateReBoardNickname(Map<String, Object> map);
 
 
 
