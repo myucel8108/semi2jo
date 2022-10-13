@@ -4,11 +4,17 @@ import lombok.Data;
 
 @Data
 public class LectureDetailJoinDto {
-    public int lecdenum;
-    public String teaname;
-    public int roomnum;
-    public String lectime;
-    public String lecday;
-    public int lecmonth;
-    public int lecyear;
+    private int lecnum;
+    private String lecname;
+    private String lectypea;
+    private String lectypeb;
+    private String lecphoto;
+    private int lecdenum;
+    private String teaname;
+    private int roomnum;
+    private int price;
+    private String lectime;
+    private String lecday;
+    private int lecmonth;
+    private int lecyear;
 }

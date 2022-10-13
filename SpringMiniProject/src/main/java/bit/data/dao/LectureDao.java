@@ -39,6 +39,11 @@ public class LectureDao implements LectureDaoInter{
     }
 
     @Override
+    public LectureDetailJoinDto getLectureDetailData(int lecdenum) {
+        return session.selectOne(ns + "getLecturePresent", lecdenum);
+    }
+
+    @Override
     public LectureDto getLectureDetail(int lecnum) {
         return session.selectOne(ns + "getLectureDetail", lecnum);
     }

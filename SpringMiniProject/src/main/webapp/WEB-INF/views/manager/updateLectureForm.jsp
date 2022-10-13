@@ -69,8 +69,8 @@
             </div>
             <br>
             <div class="button-container">
-                <button type="submit" id="update-button" class="btn btn-primary">강좌 등록</button>
-                <button type="button" id="cancelbutton" class="btn btn-outline-primary">강좌 등록 취소</button>
+                <button type="submit" id="update-button" class="btn btn-primary">강좌 수정</button>
+                <button type="button" id="cancelbutton" class="btn btn-outline-primary">강좌 수정 취소</button>
             </div>
         </form>
     </div>
@@ -125,7 +125,7 @@
     }
 
     $("#update-button").click(function () {
-        alert("강의가 수정되었습니다");
+        alert("강좌가 수정되었습니다");
     });
     $("#cancelbutton").click(function () {
         history.back();

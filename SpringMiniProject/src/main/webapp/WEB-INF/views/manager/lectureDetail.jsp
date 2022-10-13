@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="resources/css/manager/lecturePresent.css">
+    <link rel="stylesheet" href="resources/css/manager/lectureDetail.css">
     <style>
         .container {
             height: 90vh;
@@ -22,7 +22,14 @@
             padding-bottom: 0;
         }
 
+        .add-Detail{
+            cursor: pointer;
+        }
 
+        .button-box{
+            display: flex;
+            justify-content: end;
+        }
     </style>
 </head>
 <body>
@@ -46,18 +53,35 @@
                     <div class="member_designation">
                         <h2>${dto.lectypea}</h2>
                         <span>${dto.lectypeb}</span>
+                        <span class="">
+                            <button type="button" onclick="location.href='${root}/updateLectureForm?lecnum=${dto.lecnum}'" class="btn btn-outline-primary btn-sm">강좌 수정</button>
+                            <button type="button" id="delete-lecture" class="btn btn-outline-danger btn-sm">강좌 삭제</button>
+                            <script>
+                                 //강좌 삭제
+                                 $("#delete-lecture").click(function () {
+                                     var a = confirm("강의를 삭제하시겠습니까?");
+                                     if(a){
+                                         location.href="${root}/deleteLecture?lecnum=${dto.lecnum}";
+                                     }
+                                 });
+                            </script>
+                        </span>
                     </div>
-                    <div class="member_desc">
+                    <span class="member_desc">
                         <ul class="styled_list">
                             <li class="">
+                                <h5>
                                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                                 강좌명 : ${dto.lecname}
+                                </h5>
                             </li>
                         </ul>
+                    </span>
+                    <span class="button-box">
                         <button class="btn btn-social outlined" onclick="location.href='${root}/insertLectureDetailForm?lecnum=${dto.lecnum}'">
-                            <i class="fa fa-plus" style="font-size:24px;color:#007bff"></i>
+                            <label class="add-Detail">강의 추가<i class="fa fa-plus" style="font-size:24px;color:#007bff"></i></label>
                         </button>
-                    </div>
+                    </span>
                     <!-- 개설된 강의 목록 출력 -->
                     <c:forEach var="dtolist" items="${list}">
                         <div class="bg-image "
@@ -140,16 +164,11 @@
                             }
                             var result = "${temp}";
                             $(".show-lecday${dtolist.lecdenum}").html(temp);
-
-                            $("#deleteLecDetail${dtolist.lecdenum}").click(function () {
-                               var a = confirm("강의를 삭제하시겠습니까?");
-                               if(a){
-                                   location.href="${root}/deleteLectureDetail?lecdenum=${dtolist.lecdenum}&lecnum=${dto.lecnum}";
-                               }
-                            });
                         </script>
                     </c:forEach>
                 </div>
             </div>
+        </div>
     </section>
 </div>
+</body>

@@ -24,6 +24,7 @@
     </style>
 </head>
 <body>
+<c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -120,11 +121,12 @@
             .replace(/[^0-9]/g, '')
             .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
     }
+
     //취소 버튼 누르면 뒤로가기
     $("#cancelbutton").click(function () {
         history.back();
     });
-    <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
+
     //경고 후 사진 삭제
     $("#removephoto").click(function () {
        var dephoto = confirm("경고 : 확인을 누르시면 사진이 삭제됩니다!!");
@@ -134,6 +136,7 @@
            location.href="${root}/deleteuserphoto?usernum=" + s;
        }
     });
+
     //사진 불러오면 미리보기하기 (템플릿에 트리거 있어서 주석처리)
     // $("#upphoto").click(function(){
     //     $("#uphoto").trigger("click");

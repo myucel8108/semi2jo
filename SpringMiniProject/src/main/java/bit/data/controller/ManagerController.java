@@ -179,9 +179,9 @@ public class ManagerController {
     //메뉴에서 회원관리 클릭 시 회원 목록 출력
     @GetMapping("/userlist")
     public String getUserList(@RequestParam(defaultValue = "1") int currentPage,
-                              @RequestParam(value = "searchword", required = false) String sw, //value: userlist의 name(url에서 ? 뒤에 오는 텍스트)과 일치 시킬 것 String 변수명이 일치되면 value는 생략가능
+                              @RequestParam(value = "searchword", required = false) String searchword, //value: userlist의 name(url에서 ? 뒤에 오는 텍스트)과 일치 시킬 것 String 변수명이 일치되면 value는 생략가능
                               Model model){
-        int totalCount = userService.getUserTotalCount();
+        int totalCount = userService.getUserTotalCount2(searchword);
         int perPage=10;//한 페이지 당 보여질 글의 갯수
         int perBlock=5;//한 블럭당 보여질 페이지의 갯수
         int startNum;//db에서 가져올 글의 시작번호(mysql은 첫글이 0번,오라클은 1번)
@@ -212,7 +212,7 @@ public class ManagerController {
         //각페이지당 출력할 시작번호 구하기
         //예: 총글갯수가 23이라면  1페이지는 23,2페이지는 18,3페이지는 13...
         no=totalCount-(currentPage-1)*perPage;
-        List<UserDto> list = userService.getUserList(sw, startNum, perPage);
+        List<UserDto> list = userService.getUserList(searchword, startNum, perPage);
 
         model.addAttribute("list", list);
         model.addAttribute("totalCount", totalCount);
@@ -282,12 +282,14 @@ public class ManagerController {
         return "redirect:userlist";
     }
 
+    //회원 삭제 후 회원 목록으로 이동
     @GetMapping("/deleteuser")
     public String deleteUser(int usernum){
         userService.deleteUser(usernum);
         return "redirect:userlist";
     }
 
+    //회원 사진 삭제 후 수정 폼으로 이동
     @GetMapping("/deleteuserphoto")
     public String deleteUserPhoto(int usernum){
         userService.deleteUserPhoto(usernum);
@@ -344,6 +346,7 @@ public class ManagerController {
         return "/manager/manager/lectureList";
     }
 
+    //강좌 수정폼으로 이동
     @GetMapping("/updateLectureForm")
     public ModelAndView updateform(int lecnum){
         ModelAndView mview = new ModelAndView();
@@ -357,6 +360,7 @@ public class ManagerController {
         return mview;
     }
 
+    //강좌 수정 후 강좌 목록으로 이동
     @PostMapping("/updatelecture")
     public String updateLecture(LectureDto dto, MultipartFile photoupload, HttpServletRequest request){
 
@@ -380,19 +384,20 @@ public class ManagerController {
         return "redirect:lecturelist";
     }
 
+    //강좌 삭제 후 강좌 목록으로 이동
     @GetMapping("/deleteLecture")
     public String deleteLecture(int lecnum){
         lectureService.deleteLecture(lecnum);
         return "redirect:lecturelist";
     }
 
-    //강의 등록 폼으로 이동
+    //강좌 등록 폼으로 이동
     @GetMapping("/addlectureform")
     public String addLecture(){
         return "/manager/manager/addLectureForm";
     }
 
-    //강의 등록 후 강의 리스트로 이동
+    //강좌 등록 후 강좌 목록으로 이동
     @PostMapping("/insertlecture")
     public String insertLecture(LectureDto dto, MultipartFile photoupload, HttpServletRequest request) {
         //사진이 여러개일 때는 MultipartFile을 List로 가져와야함
@@ -451,24 +456,36 @@ public class ManagerController {
 
     //강의 추가폼으로 가기
     @GetMapping("/insertLectureDetailForm")
-    public String insertLectureDetailForm(int lecnum){
-        System.out.println(lecnum);
-        return "/manager/manager/insertLectureDetailForm?lecnum=" + lecnum;
+    public ModelAndView insertLectureDetailForm(int lecnum){
+        ModelAndView mview = new ModelAndView();
+        LectureDto dto = lectureService.getLectureDetail(lecnum);
+
+        mview.addObject("dto", dto);
+        mview.setViewName("/manager/manager/insertLectureDetailForm");
+
+        return mview;
     }
 
-    //강의 추가
+    //강의 추가 후 강의 상세로 이동
     @PostMapping("/insertLectureDetail")
     public String insertLectureDetail(LecDetailDto dto, int lecnum){
         lecDetailService.insertLectureDetail(dto);
         return "redirect:lectureDetail?lecnum=" + lecnum;
     }
 
+    //강의 수정폼으로 이동
     @GetMapping("/updateLectureDetailForm")
-    public String updateLectureDetailForm(int lecdenum){
-        return "/manager/manager/updateLectureDetailForm?lecdenum=" + lecdenum;
+    public ModelAndView updateLectureDetailForm(int lecdenum){
+        ModelAndView mview = new ModelAndView();
+        LectureDetailJoinDto dto = lectureService.getLectureDetailData(lecdenum);
+
+        mview.addObject("dto",dto);
+        mview.setViewName("/manager/manager/updateLectureDetailForm");
+
+        return mview;
     }
 
-    //강의 삭제
+    //강의 삭제 후 강의 상세로 이동
     @GetMapping("/deleteLectureDetail")
     public String deleteLectureDetail(int lecdenum, int lecnum){
         lecDetailService.deleteLectureDetail(lecdenum);
