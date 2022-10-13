@@ -1,6 +1,7 @@
 package bit.data.controller;
 
 import bit.data.dto.BoardDto;
+
 import bit.data.dto.ReboardDto;
 import bit.data.dto.UserDto;
 import bit.data.service.BoardServiceInter;
@@ -29,7 +30,7 @@ public class UserController {
     @Autowired
     UserServiceInter userService;
 
-    //회원정보 수정 전 비밀번호 확인폼
+    //�쉶�썝�젙蹂� �닔�젙 �쟾 鍮꾨�踰덊샇 �솗�씤�뤌
     @GetMapping("student/upStuPassCheck")
     public String upStuPassCheck(Model model,HttpSession session){
 
@@ -46,7 +47,7 @@ public class UserController {
         return "/mypage/student/studentBoard";
     }
 
-    //수정폼에 출력할 데이터 반환
+    //�닔�젙�뤌�뿉 異쒕젰�븷 �뜲�씠�꽣 諛섑솚
     @PostMapping("student/updateStudent")
     public String updateStudent(Model model,HttpSession session){
 
@@ -57,29 +58,29 @@ public class UserController {
         return "/mypage/student/updateStudent";
     }
 
-    //ajax로 값 넘길때는 이걸로 가능
+    //ajax濡� 媛� �꽆湲몃븣�뒗 �씠嫄몃줈 媛��뒫
     /*@ResponseBody
     public UserDto getDataByNum(int usernum)
     {
         return userService.getDataByNum(usernum);
     }*/
 
-    //수정
+    //�닔�젙
     @PostMapping("/student/update")
     public String update(UserDto dto, HttpSession session, HttpServletRequest request,
                        MultipartFile myphoto)
     {
-        //톰캣에 올라간 upload 폴더 경로 구하기
+        //�넱罹ｌ뿉 �삱�씪媛� upload �뤃�뜑 寃쎈줈 援ы븯湲�
         String path=request.getSession().getServletContext().getRealPath("/resources/upload");
         System.out.println(path);
-        //업로드 및 저장될 파일명 구하기
+        //�뾽濡쒕뱶 諛� ���옣�맆 �뙆�씪紐� 援ы븯湲�
         String photoName=myphoto.getOriginalFilename();
         if(!photoName.equals("")) {
             String fileName= ChangeName.getChangeFileName(photoName);
-            //업로드
+            //�뾽濡쒕뱶
             try {
                 myphoto.transferTo(new File(path+"/"+fileName));
-                //dto에 바뀐 userphoto 넣기
+                //dto�뿉 諛붾�� userphoto �꽔湲�
                 dto.setUserphoto(fileName);
             } catch (IllegalStateException | IOException e) {
                 // TODO Auto-generated catch block
@@ -87,26 +88,26 @@ public class UserController {
             }
         }
 
-        //DB의 dto update
+        //DB�쓽 dto update
         userService.updateUser(dto);
-        //세션에 저장된 이름도 변경하기
+        //�꽭�뀡�뿉 ���옣�맂 �씠由꾨룄 蹂�寃쏀븯湲�
         session.setAttribute("loginname", dto.getUsername());
         return "redirect:timeTable";
     }
 
-    //탈퇴, user테이블에서 삭제 및 board관련 테이블에 nickname 탈퇴회원으로
+    //�깉�눜, user�뀒�씠釉붿뿉�꽌 �궘�젣 諛� board愿��젴 �뀒�씠釉붿뿉 nickname �깉�눜�쉶�썝�쑝濡�
     @GetMapping("/student/delete")
     @ResponseBody
     public void delete(int usernum,HttpSession session)
     {
-        //board테이블 nickname 탈퇴회원으로
-        userService.updateBoardNickname("(탈퇴회원)",usernum);
-        //reboard테이블 nickname 탈퇴회원으로
-        userService.updateReBoardNickname("(탈퇴회원)",usernum);
+        //board�뀒�씠釉� nickname �깉�눜�쉶�썝�쑝濡�
+        userService.updateBoardNickname("(�깉�눜�쉶�썝)",usernum);
+        //reboard�뀒�씠釉� nickname �깉�눜�쉶�썝�쑝濡�
+        userService.updateReBoardNickname("(�깉�눜�쉶�썝)",usernum);
 
-        //user테이블에서 삭제
+        //user�뀒�씠釉붿뿉�꽌 �궘�젣
         userService.deleteUser(usernum);
-        //세션에서 삭제
+        //�꽭�뀡�뿉�꽌 �궘�젣
         session.removeAttribute("loginok");
         session.removeAttribute("email");
         session.removeAttribute("usernum");
@@ -115,23 +116,23 @@ public class UserController {
     }
 
     /////////////////////////////////////////////////////////////////////
-    //사진만 변경메서드(쓸 일 있을지 몰라서 남겨둠)
+    //�궗吏꾨쭔 蹂�寃쎈찓�꽌�뱶(�벝 �씪 �엳�쓣吏� 紐곕씪�꽌 �궓寃⑤몺)
     @PostMapping("student/updatephoto")
     @ResponseBody
     public void updatePhoto(HttpServletRequest request,HttpSession session,
                             int usernum,MultipartFile userphoto)
     {
-        //톰캣에 올라간 upload 폴더 경로 구하기
+        //�넱罹ｌ뿉 �삱�씪媛� upload �뤃�뜑 寃쎈줈 援ы븯湲�
         String path=request.getSession().getServletContext().getRealPath("/resources/upload");
         System.out.println(path);
-        //업로드 및 저장될 파일명 구하기
+        //�뾽濡쒕뱶 諛� ���옣�맆 �뙆�씪紐� 援ы븯湲�
         String fileName= ChangeName.getChangeFileName(userphoto.getOriginalFilename());
 
-        //업로드
+        //�뾽濡쒕뱶
         try {
             userphoto.transferTo(new File(path+"/"+fileName));
-            userService.updateUserPhoto(usernum, fileName); //db에서 사진수정
-            session.setAttribute("userphoto", fileName); //세션의 사진변경
+            userService.updateUserPhoto(usernum, fileName); //db�뿉�꽌 �궗吏꾩닔�젙
+            session.setAttribute("userphoto", fileName); //�꽭�뀡�쓽 �궗吏꾨�寃�
         } catch (IllegalStateException | IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

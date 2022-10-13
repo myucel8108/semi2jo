@@ -16,4 +16,5 @@ public class MyLectureDto {
 	 private String payok;
 	 private String username;
 	 private Timestamp paytime;
+	 private String userphoto;
 }
