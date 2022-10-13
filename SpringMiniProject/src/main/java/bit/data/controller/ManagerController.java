@@ -459,7 +459,9 @@ public class ManagerController {
     public ModelAndView insertLectureDetailForm(int lecnum){
         ModelAndView mview = new ModelAndView();
         LectureDto dto = lectureService.getLectureDetail(lecnum);
+        List<LectureDetailJoinDto> list = lectureService.getLecturePresent(lecnum);
 
+        mview.addObject("list", list);
         mview.addObject("dto", dto);
         mview.setViewName("/manager/manager/insertLectureDetailForm");
 
