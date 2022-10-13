@@ -1,6 +1,7 @@
 package bit.data.controller;
 
 import bit.data.dto.BoardDto;
+import bit.data.dto.LikeBoardDto;
 import bit.data.dto.ReboardDto;
 import bit.data.dto.UserDto;
 import bit.data.service.BoardServiceInter;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import util.ChangeName;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +31,9 @@ public class UserController {
     @Autowired
     UserServiceInter userService;
 
+    @Autowired
+    BoardServiceInter boardService;
+
     //회원정보 수정 전 비밀번호 확인폼
     @GetMapping("student/upStuPassCheck")
     public String upStuPassCheck(Model model,HttpSession session){
@@ -40,11 +45,6 @@ public class UserController {
         return "/mypage/student/upStuPassCheck";
     }
 
-    @GetMapping("student/studentBoard")
-    public String studentBoard(){
-
-        return "/mypage/student/studentBoard";
-    }
 
     //수정폼에 출력할 데이터 반환
     @PostMapping("student/updateStudent")
@@ -138,4 +138,27 @@ public class UserController {
         }
     }
 
+    @GetMapping("student/studentBoard")
+    public String studentBoard(){
+
+        return "/mypage/student/studentBoard";
+    }
+    @GetMapping("student/mylist1")
+    @ResponseBody
+    public List<BoardDto> mylist1(int usernum){
+
+        return userService.getMyBoardList(usernum);
+    }
+    @GetMapping("student/mylist2")
+    @ResponseBody
+    public List<ReboardDto> mylist2(int usernum){
+
+        return userService.getMyReboardList(usernum);
+    }
+    @GetMapping("student/mylist3")
+    @ResponseBody
+    public List<LikeBoardDto> mylist3(int usernum){
+
+        return userService.getMyLikeboardList(usernum);
+    }
 }

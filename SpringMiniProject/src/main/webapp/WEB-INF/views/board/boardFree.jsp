@@ -26,22 +26,22 @@
             border: 1px solid;
             border-color: grey;
         }
-
-
-
-
+        .boardbtn:active, .boardbtn:focus{
+            outline:none !important;
+            box-shadow:none !important;
+        }
     </style>
 </head>
 <body>
 <div class="container" style="width: 1000px; padding: 50px;">
     <c:set var="root" value="<%=request.getContextPath() %>"/>
-    <h1>${boardtype.equals('free')?"자유게시판":"질문게시판"}</h1><br>
+    <h1 style="text-align: center;">${boardtype.equals('free')?"자유게시판":"질문게시판"}</h1><br>
     <div class="btn-group">
-        <button type="button" class="btn btn-outline-dark" onclick="location.href='${root}/board/boardFree?boardtype=free'">자유</button>
-        <button type="button" class="btn btn-outline-dark" onclick="location.href='${root}/board/boardFree?boardtype=ask'">질문</button>
+        <button type="button" class="btn btn-outline-dark boardbtn" onclick="location.href='${root}/board/boardFree?boardtype=free'">자유</button>
+        <button type="button" class="btn btn-outline-dark boardbtn" onclick="location.href='${root}/board/boardFree?boardtype=ask'">질문</button>
     </div>
                 <button onclick="if(${sessionScope.loginok==null}){alert('로그인 후 이용해주세요')}
-                        else{location.href='${root}/board/boardForm'}" style="float: right;" class="btn btn-outline-dark">글쓰기</button><br><br>
+                        else{location.href='${root}/board/boardForm'}" style="float: right;" class="btn btn-outline-dark boardbtn">글쓰기</button><br><br>
                 <div style="margin: 10px;">
                     <table class="table" style="width: 100%; border-collapse: separate; border-radius: 15px; border: 1px solid black;">
                         <tr>
@@ -113,14 +113,14 @@
                 <div class="searcharea" style="width: 60%; margin: 10px;">
                     <form action="boardFree">
                         <div class="input-group">
-                            <select class="btn-outline-dark" style="width: 100px; text-align: center;" name="searchcolumn">
+                            <select style="width: 100px; text-align: center;" name="searchcolumn">
                                 <option value="subject">제목</option>
                                 <option value="nickname">작성자</option>
                                 <option value="content">내용</option>
                             </select>
                             &nbsp;&nbsp;&nbsp;
-                            <input type="text" name="searchword" class="btn-outline-dark" style="width: 200px;" placeholder="검색어" value="${param.searchword}">
-                            <button type="submit" class="btn btn-outline-dark">검색</button>
+                            <input type="text" name="searchword" style="width: 200px;" placeholder="검색어" value="${param.searchword}">
+                            <button type="submit" class="btn btn-outline-dark boardbtn">검색</button>
                         </div>
                     </form>
                 </div>
@@ -128,21 +128,21 @@
                 <div class="paging">
                     <ul class="pagination" style="justify-content: center;">
                         <c:if test="${startPage>1}">
-                            <li class="page-item"><a href="boardFree?boardtype=${boardtype}&currentPage=${startPage-1}" class="page-link" style="color: black;">이전</a></li>
+                            <li class="page-item"><a href="boardFree?boardtype=${boardtype}&currentPage=${startPage-1}" class="page-link boardbtn" style="color: black;">이전</a></li>
                         </c:if>
 
                         <!-- 페이지번호 -->
                         <c:forEach var="pp" begin="${startPage}" end="${endPage}">
                             <c:if test="${pp==currentPage}">
-                                <li class="page-item"><a class="page-link" href="boardFree?boardtype=${boardtype}&currentPage=${pp}" style="color: white; background-color: black;">${pp}</a></li>
+                                <li class="page-item"><a class="page-link boardbtn" href="boardFree?boardtype=${boardtype}&currentPage=${pp}" style="color: white; background-color: black;">${pp}</a></li>
                             </c:if>
                             <c:if test="${pp!=currentPage}">
-                                <li class="page-item"><a class="page-link" href="boardFree?boardtype=${boardtype}&currentPage=${pp}" style="color: black;">${pp}</a></li>
+                                <li class="page-item"><a class="page-link boardbtn" href="boardFree?boardtype=${boardtype}&currentPage=${pp}" style="color: black;">${pp}</a></li>
                             </c:if>
                         </c:forEach>
 
                         <c:if test="${endPage<totalPage}">
-                            <li class="page-item"><a href="boardFree?boardtype=${boardtype}&currentPage=${endPage+1}" class="page-link" style="color: black;">다음</a></li>
+                            <li class="page-item"><a href="boardFree?boardtype=${boardtype}&currentPage=${endPage+1}" class="page-link boardbtn" style="color: black;">다음</a></li>
                         </c:if>
                     </ul>
                 </div>
