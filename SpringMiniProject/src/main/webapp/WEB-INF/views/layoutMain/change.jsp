@@ -183,7 +183,7 @@
             </div>
         </div>
     </section>
-    <section class="section-3">
+    <section class="section-3" style="border: 0">
         <div class="container">
             <div class="row m-0">
                 <div class="col-lg-5 col-md-12 p-0" data-aos="fade-right" data-aos-delay="300">
@@ -206,7 +206,7 @@
     </section>
    
     <!--Section-5-->
-    <section class="section-5">
+    <section class="section-5" style="padding-bottom: 100px;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 col-sm-8">
@@ -217,33 +217,33 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid" style="height: 500px;">
             <div class="row"  data-aos="fade-up" data-aos-delay="300">
                 <a href="image/portfolio-2.jpg" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
-                  <img src="image/tea/tea4.png" class="img-fluid">
-                  <div class="overlay">
-                  <img src="" alt="plus-icon">
+                  <img src="image/s1.jpg" class="img-fluid">
+                  <div class="overlay" >
+                  <img src="" alt="">
                   <div class="inner-text"><h4>국어 김젬마<span>top view</span></h4></div>
                   </div>
                 </a>
                 <a href="images/portfolio-3.jpg" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
-                  <img src="image/tea/tea1.png" class="img-fluid">
-                  <div class="overlay">
-                  <img src="" alt="plus-icon">
+                  <img src="image/55.jpg" class="img-fluid">
+                  <div class="overlay" >
+                  <img src="" alt="">
                   <div class="inner-text"><h4>수학 한석원<span>top view</span></h4></div>
                   </div>
                 </a>
                 <a href="image/portfolio-4.jpg" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
-                  <img src="image/tea/tea2.png" class="img-fluid">
+                  <img src="image/2323.png" class="img-fluid">
                   <div class="overlay">
-                  <img src="" alt="plus-icon">
+                  <img src="" alt="">
                   <div class="inner-text"><h4>역사 이다지 <span>top view</span></h4></div>
                   </div>
                 </a>
                 <a href="image/portfolio-5.jpg" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
-                  <img src="image/tea/tea3.png" class="img-fluid">
+                  <img src="image/jh.jpg" class="img-fluid">
                   <div class="overlay">
-                  <img src="" alt="plus-icon">
+                  <img src="" alt="">
                   <div class="inner-text"><h4>영어 원정의<span>top view</span></h4></div>
                   </div>
                 </a>
@@ -253,126 +253,126 @@
         <!--container-->
     </section>
     
-   
-    <section class="section-7">
-        <!-- Footer -->
-        <footer class="page-footer font-small stylish-color-dark">
+<%--   --%>
+<%--    <section class="section-7">--%>
+<%--        <!-- Footer -->--%>
+<%--        <footer class="page-footer font-small stylish-color-dark">--%>
 
-            <!-- Footer Links -->
-            <div class="container text-center text-md-left">
+<%--            <!-- Footer Links -->--%>
+<%--            <div class="container text-center text-md-left">--%>
 
-                <!-- Grid row -->
-                <div class="row">
+<%--                <!-- Grid row -->--%>
+<%--                <div class="row">--%>
 
-                    <!-- Grid column -->
-                    <div class="col-lg-5 col-sm-12 mx-auto box-1">
+<%--                    <!-- Grid column -->--%>
+<%--                    <div class="col-lg-5 col-sm-12 mx-auto box-1">--%>
 
-                        <!-- Content -->
-                        <p>인간은 사실 따지고 보면 능력이 다 비슷비슷하다. 하지만 속으로 자신이 천재라고 숨겨진 재능이 있다고 생각하지 말자 이런 비슷한 사람들 속에서 살아남을려면
-                        	남들 놀 때 공부하는 수 밖에 없다.
-                         </p>
+<%--                        <!-- Content -->--%>
+<%--                        <p>인간은 사실 따지고 보면 능력이 다 비슷비슷하다. 하지만 속으로 자신이 천재라고 숨겨진 재능이 있다고 생각하지 말자 이런 비슷한 사람들 속에서 살아남을려면--%>
+<%--                        	남들 놀 때 공부하는 수 밖에 없다.--%>
+<%--                         </p>--%>
 
-                    </div>
-                    <!-- Grid column -->
-
-                    <hr class="clearfix w-100 d-md-none">
-
-                    <!-- Grid column -->
-                    <div class="col-lg-2 col-sm-4 box-2 mx-auto">
-
-                        <!-- Links -->
-                        <h5>Site Navigation</h5>
-
-                        <ul class="list-unstyled">
-					<li>
-                        <a href="/mini/">Home</a>
-                    </li>
-                    <li >
-                        <a  href="about.html">About us</a>
-                    </li>
-                    <li >
-                        <a  href="${root}/lecture/lectureList">lecture</a>
-                    </li>
-                    <li>
-                        <a  href="${root}/board/boardFree">community</a>
-                    </li>
-                    <li >
-                        <a href="${root}/layoutMypage/change">My page</a>
-                    </li>
-                    <li >
-                        <a  href="${root}/qna/qnaList">Q & A</a>
-                    </li>
-                    <li>
-                            
-		   </ul>
-
-                    </div>
+<%--                    </div>--%>
                     <!-- Grid column -->
 
-                    <hr class="clearfix w-100 d-md-none">
+<%--                    <hr class="clearfix w-100 d-md-none">--%>
 
-                    <!-- Grid column -->
-                    <div class="col-lg-2 col-sm-4 box-3 mx-auto">
+<%--                    <!-- Grid column -->--%>
+<%--                    <div class="col-lg-2 col-sm-4 box-2 mx-auto">--%>
 
-                        <!-- Links -->
-                        <h5>information</h5>
+<%--                        <!-- Links -->--%>
+<%--                        <h5>Site Navigation</h5>--%>
 
-                        <ul class="list-unstyled">
-                            <li>
-                                <a href="#!">user login</a>
-                            </li>
-                            <li>
-                            </li>
-                            <li>
-                                <a href="#!">checkout</a>
-                            </li>
-                            <li>
-                                <a href="#!">my cart</a>
-                            </li>
-                            <li>
-                                <a href="#!">other information</a>
-                            </li>
-                        </ul>
+<%--                        <ul class="list-unstyled">--%>
+<%--					<li>--%>
+<%--                        <a href="/mini/">Home</a>--%>
+<%--                    </li>--%>
+<%--                    <li >--%>
+<%--                        <a  href="about.html">About us</a>--%>
+<%--                    </li>--%>
+<%--                    <li >--%>
+<%--                        <a  href="${root}/lecture/lectureList">lecture</a>--%>
+<%--                    </li>--%>
+<%--                    <li>--%>
+<%--                        <a  href="${root}/board/boardFree">community</a>--%>
+<%--                    </li>--%>
+<%--                    <li >--%>
+<%--                        <a href="${root}/layoutMypage/change">My page</a>--%>
+<%--                    </li>--%>
+<%--                    <li >--%>
+<%--                        <a  href="${root}/qna/qnaList">Q & A</a>--%>
+<%--                    </li>--%>
+<%--                    <li>--%>
+<%--                            --%>
+<%--		   </ul>--%>
 
-                    </div>
-                    <!-- Grid column -->
+<%--                    </div>--%>
+<%--                    <!-- Grid column -->--%>
 
-                    <hr class="clearfix w-100 d-md-none">
+<%--                    <hr class="clearfix w-100 d-md-none">--%>
 
-                    <!-- Grid column -->
-                    <div class="col-lg-2 col-sm-4 box-4 mx-auto">
+<%--                    <!-- Grid column -->--%>
+<%--                    <div class="col-lg-2 col-sm-4 box-3 mx-auto">--%>
 
-                        <!-- Links -->
-                        <h5>policies & Info</h5>
+<%--                        <!-- Links -->--%>
+<%--                        <h5>information</h5>--%>
 
-                        <ul class="list-unstyled">
-                            <li>
-                                <a href="#!">Terms Conditions </a>
-                            </li>
-                            <li>
-                                <a href="#!">website polocy</a>
-                            </li>
-                            <li>
-                                <a href="#!">Policy for Sellers </a>
-                            </li>
-                            <li>
-                                <a href="#!">Policy for Buyers</a>
-                            </li>
-                            <li>
-                                <a href="#!">Shipping & Refund </a>
-                            </li>
-                            <li>
-                                <a href="#!">Wholesale Policy</a>
-                            </li>
-                        </ul>
+<%--                        <ul class="list-unstyled">--%>
+<%--                            <li>--%>
+<%--                                <a href="#!">user login</a>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <a href="#!">checkout</a>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <a href="#!">my cart</a>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <a href="#!">other information</a>--%>
+<%--                            </li>--%>
+<%--                        </ul>--%>
 
-                    </div>
-                    <!-- Grid column -->
+<%--                    </div>--%>
+<%--                    <!-- Grid column -->--%>
 
-                </div>
-                <!-- Grid row -->
+<%--                    <hr class="clearfix w-100 d-md-none">--%>
 
-            </div>
+<%--                    <!-- Grid column -->--%>
+<%--                    <div class="col-lg-2 col-sm-4 box-4 mx-auto">--%>
+
+<%--                        <!-- Links -->--%>
+<%--                        <h5>policies & Info</h5>--%>
+
+<%--                        <ul class="list-unstyled">--%>
+<%--                            <li>--%>
+<%--                                <a href="#!">Terms Conditions </a>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <a href="#!">website polocy</a>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <a href="#!">Policy for Sellers </a>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <a href="#!">Policy for Buyers</a>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <a href="#!">Shipping & Refund </a>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <a href="#!">Wholesale Policy</a>--%>
+<%--                            </li>--%>
+<%--                        </ul>--%>
+
+<%--                    </div>--%>
+<%--                    <!-- Grid column -->--%>
+
+<%--                </div>--%>
+<%--                <!-- Grid row -->--%>
+
+<%--            </div>--%>
 
         </footer>
     </section>
@@ -385,7 +385,7 @@
 
 
   <span id="top-link-block" class="hidden">
-  <div id="test_obj"><b style="margin-left:18px; padding-top: 20px; display: inline-block; text-align: center; vertical-align: center; color: black;"><a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},fast);return false;" id="toptop">
+  <div id="test_obj"><b style="margin-left:18px; padding-top: 20px; display: inline-block; text-align: center; vertical-align: center; color: black;"><a href="top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},fast);return false;" id="toptop">
   TOP</a></b><br><br><br><b style="font-size: 15px; color: black; margin-left: 6px; padding-top: 15px;"></b><a href="${root}/qna/qnaList"><b style="padding-right: 3px; padding-top: 90px;">문의하기</b></a><br><br><br><b style="font-size: 15px; color: black; margin-left: 8px; padding-top: 40px; margin-top: 10px;"><a href="${root}/board/boardFree">커뮤니티</a></b></div>
 </span><!-- /top-link-block -->
 </body>
@@ -396,8 +396,8 @@
 
 
     function randomString(){
-        let stringArr = ["대한민국 입시 부동의 1위","Teach you how to study", "2021년도 합격률 98%",
-            "학생 맞춤형 공부법","2021년도 합격률 97%","10년 연속 합격률 95% 달성"];
+        let stringArr = ["대한민국 입시 부동의 1위","Study and Changes Life", "2021년도 합격률 98%",
+            "학생 맞춤형 공부법","최고의 강사 최고의 커리큘럼","10년 연속 합격률 95% 달성"];
         let selectString = stringArr[Math.floor(Math.random()* stringArr.length)];
         let selectStringArr = selectString.split("");
 

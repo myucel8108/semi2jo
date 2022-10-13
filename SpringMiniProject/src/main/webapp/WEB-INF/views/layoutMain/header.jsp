@@ -67,8 +67,8 @@
 
     #headerfor{
         margin-left: -50px;
-        padding-top: 20px;
-        margin-bottom: 30px;
+        padding-top: 40px;
+        /*margin-bottom: 30px;*/
 
 
     }
