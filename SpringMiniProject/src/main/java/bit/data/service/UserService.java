@@ -77,8 +77,22 @@ public class UserService implements UserServiceInter{
         userDao.deleteUser(usernum);
     }
 
+    @Override
+    public void updateBoardNickname(String nickname, int usernum) {
+        Map<String, Object> map= new HashMap<>();
+        map.put("nickname",nickname);
+        map.put("usernum",usernum);
+        userDao.updateBoardNickname(map);
+    }
 
-
+    @Override
+    public void updateReBoardNickname(String nickname, int usernum) {
+        System.out.println(nickname);
+        Map<String, Object> map= new HashMap<>();
+        map.put("nickname",nickname);
+        map.put("usernum",usernum);
+        userDao.updateReBoardNickname(map);
+    }
 
     //아래로 마이커뮤니티
 

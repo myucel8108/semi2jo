@@ -15,6 +15,11 @@
         where a.lecnum=b.lecnum and b.lecdenum=c.lecdenum
           and c.usernum=#{usernum} and (c.payok='ok' or c.payok='cancel')
     </select>
+
+    <!-- 장바구니 삭제 -->
+    <delete id="deleteMyCartByLecdenum" parameterType="Map">
+        delete from mylecture where usernum=#{usernum} and lecdenum=#{lecdenum} and payok='no'
+    </delete>
     
     <!--    올해의 총수익-->
     <select id="getTotalIncom" parameterType="Map" resultType="myLecJoinDto">
@@ -26,4 +31,5 @@
         </if>
 
     </select>
+
 </mapper>

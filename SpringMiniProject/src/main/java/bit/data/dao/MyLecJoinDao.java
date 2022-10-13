@@ -26,6 +26,11 @@ public class MyLecJoinDao implements MyLecJoinDaoInter{
         return session.selectList(ns+"getMyLecPayByNum",usernum);
     }
 
+    @Override
+    public void deleteMyCartByLecdenum(Map<String, Integer> map) {
+        session.delete(ns+"deleteMyCartByLecdenum",map);
+    }
+
     //올해 총 수익
     @Override
     public List<MyLecJoinDto> getTotalIncom(Map<String, Object> map) {

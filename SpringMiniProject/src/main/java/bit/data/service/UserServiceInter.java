@@ -17,6 +17,8 @@ public interface UserServiceInter {
     public  void deleteUserPhoto(int usernum);
     public void updateUser(UserDto dto);
     public void deleteUser(int usernum);
+    public void updateBoardNickname(String nickname,int usernum);
+    public void updateReBoardNickname(String nickname,int usernum);
 
 
     //아래로 마이커뮤니티

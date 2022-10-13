@@ -10,6 +10,8 @@ public interface MyLecJoinServiceInter {
 
     public List<MyLecJoinDto> getMyLecPayByNum(int usernum);
 
+    public void deleteMyCartByLecdenum(int usernum,int lecdenum);
+
     public List<MyLecJoinDto> getTotalIncom(int year, int month);
 
 }

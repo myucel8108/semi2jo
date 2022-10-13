@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -58,7 +57,7 @@ public class MyLecJoinController {
 
     //장바구니 출력(payok=="no")
     @GetMapping("/student/myCart")
-    public String Cart(Model model, HttpServletRequest request){
+    public String myCart(Model model, HttpServletRequest request){
 
         HttpSession session =request.getSession();
         int usernum= Integer.parseInt(session.getAttribute("usernum").toString());
@@ -68,6 +67,24 @@ public class MyLecJoinController {
         return "/mypage/student/myCart";
     }
 
-  
+    //장바구니 삭제(payok=="no")
+    @PostMapping("/student/deleteMyCart")
+    @ResponseBody
+    public void deleteCart(String nums, HttpServletRequest request){
+        //현재 usernum 얻기
+        HttpSession session =request.getSession();
+        int usernum= Integer.parseInt(session.getAttribute("usernum").toString());
+        //nums ','로 분리하여 lecdenum 각각 배열에 넣기
+        String[] ns=nums.split(",");
+
+        for(String n:ns)
+        {
+            int lecdenum=Integer.parseInt(n);
+            myLecJoinService.deleteMyCartByLecdenum(usernum,lecdenum);
+        }
+
+    }
+
+
 
 }
