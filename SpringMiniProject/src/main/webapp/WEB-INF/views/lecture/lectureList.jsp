@@ -246,6 +246,8 @@ figure
      </div>     
      </div>
           <div class="que">
+          
+          <!-- 머지용 바꾸기 -->
       <span>그 외</span>
        <div class="arrow-wrap">
          <span class="arrow-top">↑</span>
