@@ -500,7 +500,6 @@
     let target = document.querySelector("#dynamic");
 
 
-
     function randomString(){
         let stringArr = ["대한민국 입시 부동의 1위","Study and Changes Life", "2021년도 합격률 98%",
             "학생 맞춤형 공부법","최고의 강사 최고의 커리큘럼","10년 연속 합격률 95% 달성"];
