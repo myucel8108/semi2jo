@@ -97,6 +97,7 @@
         position: absolute; /* allows it to "slide" up into view */
         bottom: -82px;
         right: 15px; /* right: 15px; 오른쪽에 위치시킬때 */
+
     }
     #top-link-block.affix {
         position: absolute; /* keeps it on the bottom once in view */
@@ -112,17 +113,17 @@
     }
 
 
-    #askforr:hover{
-        background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+    /*#askforr:hover{*/
+    /*    background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);*/
+    /*    -webkit-background-clip: text;*/
+    /*    -webkit-text-fill-color: transparent;*/
+    /*}*/
 
-    #comu:hover{
-        background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+    /*#comu:hover{*/
+    /*    background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);*/
+    /*    -webkit-background-clip: text;*/
+    /*    -webkit-text-fill-color: transparent;*/
+    /*}*/
 
 
     #test_obj {
@@ -132,30 +133,14 @@
         right: 50px;
         border-radius: 70px;
         top: 550px;
-        border: 1px solid grey;
-    }
-    #test_obj:hover {
+
     }
 
-    #toptop:hover{
-        background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /*#toptop:hover{*/
+    /*    background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);*/
+    /*    -webkit-background-clip: text;*/
+    /*    -webkit-text-fill-color: transparent;*/
+    /*}*/
 
 
 
@@ -463,15 +448,12 @@
     </section>
 
 
-<%--  <!-- child of the body tag -->--%>
-<%--    <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},fast);return false;">--%>
-<%--        <i class="glyphicon glyphicon-chevron-up"></i> <button id=>Back to Top</button>--%>
-<%--    </a>--%>
 
-
+<!--퀵메뉴바-->
   <span id="top-link-block" class="hidden">
-  <div id="test_obj"><b style="margin-left:18px; padding-top: 20px; display: inline-block; text-align: center; vertical-align: center; color: black;"><a href="#" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},fast);return false;" id="toptop">
-  TOP</a></b><br><br><br><b style="font-size: 15px; color: black; margin-left: 6px; padding-top: 15px;"></b><a href="${root}/qna/qnaList"><b style="padding-right: 3px; padding-top: 0px;" id="askforr">문의하기</b></a><br><br><br><b style="font-size: 15px; color: black; margin-left: 8px; padding-top: 40px; margin-top: 10px;" id="comu"><a href="${root}/board/boardFree">커뮤니티</a></b></div>
+  <div id="test_obj" style="border: none;"><b style="margin-left:18px; padding-top: 20px; display: inline-block; text-align: center; vertical-align: center; color: black;"><a href="#" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},fast);return false;" id="toptop">
+      <img src="image/tttt.png" style="width: 130%;">
+  </a></b><br><br><br><b style="font-size: 15px; color: black; margin-left: 6px; padding-top: 15px;"></b><a href="${root}/qna/qnaList"><img src="image/1ask.png" style="width: 130%; "></a><br><br><br><b style="font-size: 15px; color: black; margin-left: 8px; padding-top: 40px; margin-top: 10px;" id="comu"><a href="${root}/board/boardFree"><img src="image/comu.png" style="width: 80%;margin-left: 16px; "></a></b></div>
 </span><!-- /top-link-block -->
 </body>
 <script>
@@ -532,6 +514,7 @@
     }
 
 
+        // 퀵메뉴바
 
 
     $(document).ready(function () {
