@@ -1,6 +1,7 @@
 package bit.data.controller;
 
 import bit.data.dto.LikeBoardDto;
+import bit.data.dto.UserDto;
 import bit.data.service.BoardServiceInter;
 import bit.data.service.LikeBoardServiceInter;
 import bit.data.service.UserServiceInter;
@@ -61,24 +62,32 @@ public class LikeBoardController {
     @ResponseBody
     public List<String> likeUser(int boardnum)
     {
-      List<Integer> usernums=likeBoardService.likeUserAll(boardnum);
-      List<String> list=new ArrayList<>();
-     String s="";
+        List<Integer> usernums=likeBoardService.likeUserAll(boardnum);
+        List<String> list=new ArrayList<>();
+        String s="";
 
-      for(int num:usernums){
-          String nickname=userService.getDataByNum(num).getNickname();
-          String userphoto=userService.getDataByNum(num).getUserphoto();
-          if (userphoto != null) {
+        for(int num:usernums){
+            UserDto udto =userService.getDataByNum(num);
+            String nickname;
+            String userphoto;
+            if (udto==null){
+                nickname="(탈퇴회원)";
+                userphoto=null;
+            }else{
+                nickname=udto.getNickname();
+                userphoto=udto.getUserphoto();
+            }
+            if (userphoto != null) {
 
-              s="<img src='../upload/"+userphoto+"' width=40 height=40 class='rounded-circle'>"+nickname;
-          }
-          if (userphoto == null) {
+                s="<img src='../upload/"+userphoto+"' width=40 height=40 class='rounded-circle'>"+nickname;
+            }
+            if (userphoto == null) {
 
-              s="<img src='../image/noprofilepicture.png' width=40 height=40 class='rounded-circle'>"+nickname;
-          }
-          //s=nickname;
-          list.add(s);
-      }
-      return  list;
+                s="<img src='../image/noprofilepicture.png' width=40 height=40 class='rounded-circle'>"+nickname;
+            }
+            //s=nickname;
+            list.add(s);
+        }
+        return  list;
     }
 }

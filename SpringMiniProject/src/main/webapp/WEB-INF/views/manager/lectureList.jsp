@@ -17,36 +17,20 @@
         .possible-list{
             margin-top: 30px;
             margin-bottom: 30px;
-            font-size: 33px;
+            font-size: 40px;
+            display: flex;
+            justify-content: center;
         }
 
         .col{
             margin-bottom: 5%;
         }
 
-        .search-container{
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .search-item1{
-            display: flex;
-            flex-grow: 1;
-        }
-
-        .search-item2{
-            display: flex;
-            flex-grow: 2;
-        }
-
-        .search-item3{
-            display: flex;
-            flex-grow: 1;
-        }
 
         .lecture-count{
             display: flex;
-            flex-direction: row-reverse;
+            justify-content: end;
+            padding-right: 150px;
         }
 
         .present-container{
@@ -64,6 +48,35 @@
         .paging{
             padding-bottom: 20px;
         }
+
+        .search-box{
+            width: 200px;
+            display: flex;
+            justify-content: end;
+            margin-left: 1154px;
+        }
+
+        .insert-button{
+            margin-right: 150px;
+            display: flex;
+            justify-content: end;
+        }
+
+        #paging-pp{
+            color: white;
+            background-color: #5a5c69;
+            border-color: #5a5c69;
+        }
+
+        #paging-np{
+            color: #5a5c69;
+            background-color: white;
+            border-color: #5a5c69;
+        }
+
+        .container{
+            padding-left: 30px;
+        }
     </style>
 </head>
 
@@ -75,24 +88,13 @@
     <!-- 검색창 -->
     <div>
         <form action="lecturelist">
-            <div class="search-container">
-                <div class="search-item1"> <!-- 분류 선택 -->
-                    <select class="form-select" style="width: 150px;" name="searchcolumn">
-                        <option value="1">전체 강좌</option>
-                        <option value="2">[대분류] 국어</option>
-                        <option value="3">[대분류] 수학</option>
-                        <option value="4">[대분류] 영어</option>
-                        <option value="5">[대분류] 사회</option>
-                        <option value="6">[대분류] 과학</option>
-                    </select>
-                </div>
-                <div class="input-group search-item2"> <!-- 강좌명으로 검색 -->
-                    <input type="text" name="searchword" class="form-control" style="width: 100px;">
-                    <button type="submit" class="btn btn-primary">검색</button>
-                </div>
-                <div class="search-item3"> <!-- 강좌 등록 버튼 -->
-                    <button type="button" class="btn btn-primary" onclick="location.href='/mini/addlectureform'">강좌 등록</button>
-                </div>
+            <div class="insert-button"> <!-- 강좌 등록 버튼 -->
+                <button type="button" class="btn btn-sm btn-outline-primary" onclick="location.href='/mini/addlectureform'">강좌 등록</button>
+            </div>
+            <br>
+            <div class="input-group search-box"> <!-- 강좌명으로 검색 -->
+                <input type="text" name="searchword" class="form-control" style="width: 100px;">
+                <button type="submit" class="btn btn-sm btn-outline-secondary">강좌명 검색</button>
             </div>
         </form>
     </div>
@@ -236,10 +238,10 @@
             <!-- 페이지 번호 -->
             <c:forEach var="pp" begin="${startPage}" end="${endPage}">
                 <c:if test="${pp==currentPage}">
-                    <li class="page-item active"><a href="lecturelist?currentPage=${pp}" class="page-link">${pp}</a></li>
+                    <li class="page-item active"><a href="lecturelist?currentPage=${pp}" class="page-link" id="paging-pp">${pp}</a></li>
                 </c:if>
                 <c:if test="${pp!=currentPage}">
-                    <li class="page-item"><a href="lecturelist?currentPage=${pp}" class="page-link">${pp}</a></li>
+                    <li class="page-item"><a href="lecturelist?currentPage=${pp}" class="page-link" id="paging-np">${pp}</a></li>
                 </c:if>
             </c:forEach>
 

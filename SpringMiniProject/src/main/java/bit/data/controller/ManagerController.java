@@ -135,11 +135,8 @@ public class ManagerController {
     @GetMapping("/manager/incomByType")
     @ResponseBody
     public Map<String, Integer> imcomByType(@RequestParam(defaultValue = "0")int month,int year){
-        System.out.println("month"+month);
         Map<String, Integer> map = new HashMap<>();
         List<MyLecJoinDto> list = myLecJoinService.getTotalIncom(year,month);
-        System.out.println(list);
-        System.out.println(list.size());
         List<LectureDto> leclist = lectureService.getLecTypeA();
 
         //과목별 총 매출 금액 구하기 (시간 되면 나중에는 자동형으로 변경해보자)
@@ -157,11 +154,6 @@ public class ManagerController {
             else if(list.get(i).lectypea.equals(leclist.get(4).lectypea))
                 va4+=temp;
         }
-        System.out.println("va0"+va0);
-        System.out.println("va1"+va1);
-        System.out.println("va2"+va2);
-        System.out.println("va3"+va3);
-        System.out.println("va4"+va4);
         map.put("va0",va0);
         map.put("va1",va1);
         map.put("va2",va2);
@@ -410,13 +402,13 @@ public class ManagerController {
         } else {
             //String newName = ChangeName.getChangeFileName(upload.getOriginalFilename()); //파일 이름을 시간으로 변경할 때 사용
             try {
-               photoupload.transferTo(new File(path + "/" + photo));
-               dto.setLecphoto(photo);
+                photoupload.transferTo(new File(path + "/" + photo));
+                dto.setLecphoto(photo);
             } catch (IllegalStateException | IOException e) {
-               // TODO Auto-generated catch block
-               e.printStackTrace();
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
-       }
+        }
         lectureService.insertLecture(dto);
         return "redirect:lecturelist";
     }
@@ -447,7 +439,7 @@ public class ManagerController {
         mview.addObject("lecnum", lecnum);
         mview.addObject("dto", dto);
         mview.addObject("list", list);
-        System.out.println(list);
+//        System.out.println(list);
 
         mview.setViewName("/manager/manager/lectureDetail");
 
@@ -459,7 +451,9 @@ public class ManagerController {
     public ModelAndView insertLectureDetailForm(int lecnum){
         ModelAndView mview = new ModelAndView();
         LectureDto dto = lectureService.getLectureDetail(lecnum);
+        List<LectureDetailJoinDto> list = lectureService.getLecturePresent(lecnum);
 
+        mview.addObject("list", list);
         mview.addObject("dto", dto);
         mview.setViewName("/manager/manager/insertLectureDetailForm");
 

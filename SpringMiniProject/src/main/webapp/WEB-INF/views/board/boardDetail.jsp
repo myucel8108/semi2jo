@@ -7,12 +7,12 @@
     <meta charset="UTF-8">
     <title>Insert title here</title>
 
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Yeon+Sung&display=swap" rel="stylesheet">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-<%--     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>--%>
-<%--    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>--%>
+    <%--     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>--%>
+    <%--    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>--%>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -42,61 +42,61 @@
 
             list();
 
-           initlike();
-           //좋아요 숫자 클릭시 좋아요 누른 아이디+닉네임 보이게 하기
-          $(".likeusericon").click(function(){
-               var boardnum=${dto.boardnum};
+            initlike();
+            //좋아요 숫자 클릭시 좋아요 누른 아이디+닉네임 보이게 하기
+            $(".likeusericon").click(function(){
+                var boardnum=${dto.boardnum};
                 //console.log("boardnum="+boardnum);
-               $.ajax({
-                   type : "get",
-                   url : "likesuser",
-                   dataType : "json",
-                   data : {"boardnum":boardnum},
-                   success : function(res) {
-                       var s="";
-                       $.each(res,function(i,ids){
+                $.ajax({
+                    type : "get",
+                    url : "likesuser",
+                    dataType : "json",
+                    data : {"boardnum":boardnum},
+                    success : function(res) {
+                        var s="";
+                        $.each(res,function(i,ids){
 
-                           s+=ids;
-                           if(i%2==1){
-                               s+="<br><br>";
-                           }else{
-                               s+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-                           }
+                            s+=ids;
+                            if(i%2==1){
+                                s+="<br><br>";
+                            }else{
+                                s+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                            }
                         });
                         if(res.length==0){
-                           s="좋아요한 회원이 없습니다";
+                            s="좋아요한 회원이 없습니다";
                         }
-                       Swal.fire({
+                        Swal.fire({
 
-                           title: "이 게시물을 좋아요한 회원들: ${dto.likes}명<br>",
+                            title: "이 게시물을 좋아요한 회원들: ${dto.likes}명<br>",
 
-                           html:s,
+                            html:s,
 
-                           confirmButtonText: "닫기",
+                            confirmButtonText: "닫기",
 
-                       });
+                        });
 
-                   }
-               });
-           });
-          $(document).on("click",".redelete", function (){
-              var reboardnum=$(this).attr("reboardnum");
-              var ans=confirm("댓글을 삭제하시겠습니까?");
-              if(ans){
-                  $.ajax({
-                      type:"get",
-                      url:"../reboard/delete",
-                      dataType:"text",
-                      data:{"reboardnum":reboardnum},
-                      success:function(res){
-                          list();
-                      }
-                  });
-              }
-          });
+                    }
+                });
+            });
+            $(document).on("click",".redelete", function (){
+                var reboardnum=$(this).attr("reboardnum");
+                var ans=confirm("댓글을 삭제하시겠습니까?");
+                if(ans){
+                    $.ajax({
+                        type:"get",
+                        url:"../reboard/delete",
+                        dataType:"text",
+                        data:{"reboardnum":reboardnum},
+                        success:function(res){
+                            list();
+                        }
+                    });
+                }
+            });
             $(document).on("click",".report", function (){
                 var boardnum=${dto.boardnum};
-               // console.log("boardnum="+boardnum);
+                // console.log("boardnum="+boardnum);
                 var a='${sessionScope.loginok}';
                 if(a==''){
                     alert("로그인 후 이용해주세요");
@@ -110,7 +110,7 @@
                         dataType:"text",
                         data:{"boardnum":boardnum},
                         success:function(res){
-                           // alert(res);
+                            // alert(res);
                             if(res==-1){
                                 alert("이미 신고하신 게시글입니다");
                             }
@@ -134,10 +134,12 @@
                 dataType : "json",
                 data : {"boardnum":boardnum},
                 success : function(res) {
-                   // alert(res);
+                    // alert(res);
                     if(res==1){
+
                       //  $(".fa fa-thumbs-o-up").attr("class","fa fa-thumbs-up").css("color","red");
                         $("span.likes i").attr("class","fa fa-thumbs-up").css("color","#4481eb");
+
                     }
                 }
             });
@@ -158,12 +160,18 @@
                     $("b.banswer").text(res.length);
                     $.each(res, function (i, elt){
                         s+="<div>"
-                        if(elt.userphoto==null) { //댓글프사 없으면 기본프사
+                        if(elt.nickname=='(탈퇴회원)') {
                             s+="<img src='../image/noprofilepicture.png' style='width: 30px; height: 30px;' class='rounded-circle' hspace='10'>";
+                        }else{
+                            if(elt.userphoto==null) { //댓글프사 없으면 기본프사
+                                s+="<img src='../image/noprofilepicture.png' style='width: 30px; height: 30px;' class='rounded-circle' hspace='10'>";
+                            }
+                            if(elt.userphoto!=null) { //댓글프사 있으면 특정프사
+                                s+="<img src='../upload/"+elt.userphoto+"' style='width: 30px; height: 30px;' class='rounded-circle' hspace='10'>";
+                            }
                         }
-                        if(elt.userphoto!=null) { //댓글프사 있으면 특정프사
-                            s+="<img src='../upload/"+elt.userphoto+"' style='width: 30px; height: 30px;' class='rounded-circle' hspace='10'>";
-                        }
+
+
                         s+="<b>"+elt.nickname+"</b>";
                         if (writeuser==elt.usernum){
                             s+="<span class='writer'>(작성자)</span>";
@@ -212,6 +220,9 @@
                     <img src="../upload/${userphoto}" width="40" height="40" class="rounded-circle"
                          onerror="this.src='../image/noprofilepicture.png'" hspace="10">
                 </c:if>
+                <c:if test="${userphoto=='no'}"> <!--작성자의 프사-->
+                    <img src="../image/noprofilepicture.png" width="40" height="40" class="rounded-circle" hspace="10">
+                </c:if>
                 <b>${dto.nickname}</b>
                 <span style="color: gray; font-size: 12px;">
 					<fmt:formatDate value="${dto.writeday}" pattern="yyyy-MM-dd HH:mm"/>
@@ -253,8 +264,10 @@
                         <input type="hidden" name="usernum" value="${sessionScope.usernum}">
                         <div class="input-group">
                             <c:if test="${sessionScope.loginok!=null}">
+
                             <textarea name="recontent" id="recontent" style="width: 400px; height: 100px;" class="form-control" placeholder="댓글을 입력해주세요"></textarea>
                             <button type="button" class="btn btn-outline-dark boardbtn" id="btnreboard">등록</button>
+
                             </c:if>
                             <c:if test="${sessionScope.loginok==null}">
                                 <textarea name="recontent" id="recontent" style="width: 400px; height: 100px;" class="form-control" placeholder="로그인 후 이용해주세요"></textarea>
@@ -263,17 +276,19 @@
                     </form>
                 </div>
                 <div style="text-align: center; float: bottom;"><hr>
+
                 <button type="button" class="btn btn-outline-dark boardbtn" onclick="location.href='boardFree?boardtype=${dto.boardtype}&currentPage=${currentPage}'">목록</button>
                 <c:if test="${sessionScope.loginok!=null && sessionScope.usernum==dto.usernum}">
                 <button type="button" class="btn btn-outline-dark boardbtn" onclick="location.href='boardUpdate?boardnum=${dto.boardnum}&currentPage=${currentPage}'">수정</button>
                 <button type="button" class="btn btn-outline-dark boardbtn" onclick="if(confirm('게시글을 삭제하시겠습니까?')) location.href='delete?boardnum=${dto.boardnum}&currentPage=${currentPage}'">삭제</button>
 <%--                    <button class="boarddelete" type="button">삭제</button>--%>
                 </c:if>
+
                 </div>
             </td>
         </tr>
     </table>
-<%--    <h1>${minboardnum},${dto.boardnum},${maxboardnum}</h1>--%>
+    <%--    <h1>${minboardnum},${dto.boardnum},${maxboardnum}</h1>--%>
 
     <c:if test="${dto.boardnum<maxboardnum}">
         <a href="nextboard?boardnum=${dto.boardnum}&currentPage=${currentPage}" style="color: black; text-decoration: none;">다음글&nbsp;
@@ -284,8 +299,8 @@
 
 
     <c:if test="${dto.boardnum>minboardnum}">
-    <a href="prevboard?boardnum=${dto.boardnum}&currentPage=${currentPage}" style="color: black; text-decoration: none;">이전글&nbsp;
-        <i class="fa fa-chevron-down" style="font-size:24px;cursor: pointer"></i>&nbsp;&nbsp;${prevboardsub}</a>
+        <a href="prevboard?boardnum=${dto.boardnum}&currentPage=${currentPage}" style="color: black; text-decoration: none;">이전글&nbsp;
+            <i class="fa fa-chevron-down" style="font-size:24px;cursor: pointer"></i>&nbsp;&nbsp;${prevboardsub}</a>
     </c:if>
     <script>
         $("span.likes").click(function() {
@@ -312,8 +327,8 @@
                 dataType : "json",
                 data : {"boardnum":boardnum,"likestate":likestate},
                 success : function(res) {
-                      //  alert(res);
-                        $("b.likesuser").text(res);
+                    //  alert(res);
+                    $("b.likesuser").text(res);
                 }
             });
         });
@@ -326,7 +341,7 @@
                 dataType : "text",
                 data : fdata,
                 success : function(res) {
-                   list();
+                    list();
                     $("#recontent").val("");
                 }
             });
