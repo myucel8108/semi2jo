@@ -39,7 +39,8 @@
 
         .search-container{
             width: 200px;
-            margin-left: 1150px;
+            float: right;
+            margin-right: 110px;
         }
 
         .paging{
@@ -75,9 +76,11 @@
         <div>
             <p class="usertitle">회원 목록</p>
             <form action="userlist">
-                <div class="search-container">이름으로 회원 검색
-                    <div class="input-group search-item2"> <!-- 검색 -->
-                        <input type="text" name="searchword" class="form-control" style="width: 100px;">
+                <br>
+                <br>
+                <div class="search-container">
+                    <div class="input-group"> <!-- 검색 -->
+                        <input type="text" name="searchword" class="form-control" placeholder="이름 검색" style="width: 100px;">
                         <button type="submit" class="btn btn-outline-secondary">검색</button>
                     </div>
                 </div>

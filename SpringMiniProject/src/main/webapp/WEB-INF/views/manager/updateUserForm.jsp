@@ -129,7 +129,7 @@
 
     //경고 후 사진 삭제
     $("#removephoto").click(function () {
-       var dephoto = confirm("경고 : 확인을 누르시면 사진이 삭제됩니다!!");
+       var dephoto = confirm("경고 : 확인을 누르시면 저장하지 않아도 사진이 삭제됩니다!!");
        if(dephoto){
            // console.log($(this).attr("value"));
            var s = $(this).attr("value");

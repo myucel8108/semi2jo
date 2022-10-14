@@ -16,7 +16,7 @@
     <style type="text/css">
         .mb-4 {
             font-size: 19px;
-            width: 70%;
+            width: 87.1vw;
         }
 
         .m-0 {
@@ -26,6 +26,12 @@
         .button-container {
             display: flex;
             justify-content: right;
+        }
+
+        .card{
+            width: 500px;
+            margin: auto;
+            margin-top: 50px;
         }
     </style>
 </head>
@@ -52,9 +58,10 @@
                     <option class="none" value="none" >대분류</option>
                     <option class="korean" value="국어" ${dto.lectypea=='국어'?'selected':''}>국어</option>
                     <option class="math" value="수학" ${dto.lectypea=='수학'?'selected':''}>수학</option>
-                    <option class="society" value="사회" ${dto.lectypea=='사회'?'selected':''}>사회</option>
-                    <option class="science" value="과학" ${dto.lectypea=='과학'?'selected':''}>과학</option>
                     <option class="english" value="영어" ${dto.lectypea=='영어'?'selected':''}>영어</option>
+                    <option class="society" value="사회탐구" ${dto.lectypea=='사회탐구'?'selected':''}>사회탐구</option>
+                    <option class="science" value="과학탐구" ${dto.lectypea=='과학탐구'?'selected':''}>과학탐구</option>
+                    <option class="foreign" value="제2외국어" ${dto.lectypea=='제2외국어'?'selected':''}>제2외국어</option>
                 </select>
             </div>
             <div class="form-group">
@@ -85,41 +92,48 @@
     function calltype () {
         var a = $("#lectypea").val();
 
-        var korean = ["문학", "비문학"];
-        var math = ["수학1", "수학2", "미적분"];
-        var society = ["경제", "사회문화"];
-        var science = ["화학", "지구과학"];
-        var english = ["독해", "문법"];
-        var none = ["중분류"]; //중분류 원래값으로 못돌려놔서 짜치는 방법으로 어거지로 쑤셔박았음. 수정 요망.
-        console.log("korean"+korean);
+        var korean = ["독서·문학·화법과 작문", "국어종합", "독해", "문법"];
+        var math = ["수학종합", "수학기초", "수학심화"];
+        var english = ["영어", "영어듣기"];
+        var society = ["역사", "지리", "경제", "윤리", "정치와 법", "사회·문화"];
+        var science = ["물리", "화학", "생명과학", "지구과학"];
+        var foreign = ["아시아", "유럽", "한문"]
+        var none = ["중분류"];
         var selected=[];
+
         if (a == "국어") {
             selected = korean;
         } else if (a == "수학") {
             selected = math;
-        } else if (a == "사회") {
+        } else if (a == "사회탐구") {
             selected = society;
-        } else if (a == "과학") {
+        } else if (a == "과학탐구") {
             selected = science;
         } else if (a == "영어") {
             selected = english;
-        } else if (a == "none") { //중분류 원래값으로 못돌려놔서 짜치는 방법으로 어거지로 쑤셔박았음. 수정 요망.
+        } else if (a == "제2외국어") {
+            selected = foreign;
+        } else if (a == "none") {
             selected = none;
         }
         option(selected);
-        console.log("test1");
-        console.log("test-selected"+selected);
+        // console.log("test1");
+        // console.log("test-selected"+selected);
     }
     function option(selected) {
         var s = "";
-        console.log("function options");
-        console.log(selected);
+        // console.log("function options");
+        // console.log(selected);
         $.each(selected, function (i, subject) {
-            var sub = subject;
-            var sel = "${dto.lectypeb}"==sub?'selected':'';
-            console.log("subject");
-            console.log(sel);
-            s += "<option class='a' value='" + subject + "'>" + subject + "</option>";
+            var ii = '${dto.lectypeb}';
+            // console.log("subject");
+            // console.log("111="+sub+","+ii);
+            if(subject==ii){
+                s += "<option class='a' selected value='" + subject + "'>" + subject + "</option>";
+            } else {
+                s += "<option class='a' value='" + subject + "'>" + subject + "</option>";
+
+            }
         });
         $("#lectypeb").html(s);
     }
