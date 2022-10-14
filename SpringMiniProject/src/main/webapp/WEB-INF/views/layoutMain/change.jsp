@@ -223,7 +223,7 @@
                 </div>
                 <div class="col-lg-7 col-md-12 p-0" data-aos="fade-left" data-aos-delay="300">
                     <figure>
-                            <img class="inner-img" src="image/son.jpg" alt="services">
+                            <img class="inner-img" src="" alt="services">
                             <img class="out-sideimg" src="" alt="services">
                     </figure>
                 </div>
