@@ -16,6 +16,9 @@
     *{
       font-family: 'Noto Sans KR';
     }
+    .btnmyboard:hover {
+      background-color: lightgrey;
+    }
   </style>
   <script>
     $(function (){
@@ -36,7 +39,7 @@
         data : {"usernum":usernum},
         success : function(res) {
           // $("h3.listcount").text(res.length);
-          s+="<h4>작성 한 게시물</h4>";
+          s+="<h4>작성한 게시물</h4>";
           s+='<table class="table table-bordered">';
           s+='<tr>';
           s+='<th style="text-align: center; width: 50%;">제목</th>';
@@ -61,9 +64,9 @@
 <h1>커뮤니티</h1>
 <br>
 <div class="btn-group">
-  <button type="button" id="myboard" class="btn btn-outline-danger">작성 한 게시물</button>
-  <button type="button" id="myreboard" class="btn btn-outline-danger">댓글 단 게시물</button>
-  <button type="button" id="mylikeboard" class="btn btn-outline-danger">좋아요 한 게시물</button>
+  <button type="button" id="myboard" class="btn btn-outline-secondary btnmyboard">작성한 게시물</button>
+  <button type="button" id="myreboard" class="btn btn-outline-secondary btnmyboard">댓글 단 게시물</button>
+  <button type="button" id="mylikeboard" class="btn btn-outline-secondary btnmyboard">좋아요 한 게시물</button>
 </div>
 <br>
   <h3 class="listcount"></h3>

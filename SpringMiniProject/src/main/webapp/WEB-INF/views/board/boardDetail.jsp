@@ -31,6 +31,10 @@
         .report{
             cursor: pointer;
         }
+        .boardbtn:active, .boardbtn:focus{
+            outline:none !important;
+            box-shadow:none !important;
+        }
     </style>
     <script>
 
@@ -133,7 +137,7 @@
                    // alert(res);
                     if(res==1){
                       //  $(".fa fa-thumbs-o-up").attr("class","fa fa-thumbs-up").css("color","red");
-                        $("span.likes i").attr("class","fa fa-thumbs-up").css("color","blue");
+                        $("span.likes i").attr("class","fa fa-thumbs-up").css("color","#4481eb");
                     }
                 }
             });
@@ -250,7 +254,7 @@
                         <div class="input-group">
                             <c:if test="${sessionScope.loginok!=null}">
                             <textarea name="recontent" id="recontent" style="width: 400px; height: 100px;" class="form-control" placeholder="댓글을 입력해주세요"></textarea>
-                            <button type="button" class="btn btn-outline-dark" id="btnreboard">등록</button>
+                            <button type="button" class="btn btn-outline-dark boardbtn" id="btnreboard">등록</button>
                             </c:if>
                             <c:if test="${sessionScope.loginok==null}">
                                 <textarea name="recontent" id="recontent" style="width: 400px; height: 100px;" class="form-control" placeholder="로그인 후 이용해주세요"></textarea>
@@ -259,10 +263,10 @@
                     </form>
                 </div>
                 <div style="text-align: center; float: bottom;"><hr>
-                <button type="button" class="btn btn-outline-dark" onclick="location.href='boardFree?boardtype=${dto.boardtype}&currentPage=${currentPage}'">목록</button>
+                <button type="button" class="btn btn-outline-dark boardbtn" onclick="location.href='boardFree?boardtype=${dto.boardtype}&currentPage=${currentPage}'">목록</button>
                 <c:if test="${sessionScope.loginok!=null && sessionScope.usernum==dto.usernum}">
-                <button type="button" class="btn btn-outline-dark" onclick="location.href='boardUpdate?boardnum=${dto.boardnum}&currentPage=${currentPage}'">수정</button>
-                <button type="button" class="btn btn-outline-dark" onclick="if(confirm('게시글을 삭제하시겠습니까?')) location.href='delete?boardnum=${dto.boardnum}&currentPage=${currentPage}'">삭제</button>
+                <button type="button" class="btn btn-outline-dark boardbtn" onclick="location.href='boardUpdate?boardnum=${dto.boardnum}&currentPage=${currentPage}'">수정</button>
+                <button type="button" class="btn btn-outline-dark boardbtn" onclick="if(confirm('게시글을 삭제하시겠습니까?')) location.href='delete?boardnum=${dto.boardnum}&currentPage=${currentPage}'">삭제</button>
 <%--                    <button class="boarddelete" type="button">삭제</button>--%>
                 </c:if>
                 </div>
@@ -293,7 +297,7 @@
             var thumbs = $(this).find("i").attr("class");
             var likestate;
             if(thumbs=='fa fa-thumbs-o-up'){ //좋아요없음
-                $(this).find("i").attr("class","fa fa-thumbs-up").css("color","blue"); //좋아요O
+                $(this).find("i").attr("class","fa fa-thumbs-up").css("color","#4481eb"); //좋아요O
                 likestate=1;
             } else { //좋아요있음
                 $(this).find("i").attr("class","fa fa-thumbs-o-up").css("color","black"); //좋아요X
