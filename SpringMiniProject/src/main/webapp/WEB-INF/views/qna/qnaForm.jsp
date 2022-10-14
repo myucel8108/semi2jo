@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<link rel="stylesheet" type="text/css" href="${root}/css/qna.css">
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-    <link rel="stylesheet" type="text/css" href="${root}/css/qna.css">
+
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link
             href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap"
@@ -104,7 +106,6 @@
 
            border-radius: 3px;
 
-           /*box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);*/
 
        }
 
@@ -113,7 +114,6 @@
     .checkbox-container input[type="checkbox"] + label:active:before,
 
     .checkbox-container input[type="checkbox"]:checked + label:active:before {
-        /*box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);*/
 
     }
 
@@ -125,13 +125,10 @@
 
         color: grey;
 
-        /*text-shadow: 1px 1px white;*/
-
         background: white;
 
         border-color: grey;
 
-        /*box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);*/
 
     }
 
@@ -139,6 +136,7 @@
 </style>
 
 <body>
+<c:set var="root" value="<%=request.getContextPath() %>"/>
 <form action="insert" method="post" enctype="multipart/form-data">
 
     <input type="hidden" name="usernum" value="${sessionScope.usernum}">
@@ -149,12 +147,9 @@
     <input type="hidden" name="restep" value="${restep}">
     <input type="hidden" name="currentPage" value="${currentPage}">
 
-<%--    <input type="hidden" name="pass" value="${dto.pass}">--%>
-
 
     <table class="table table-bordered" style="width: 500px;" id="formbox">
 
-<%--        <c:if test="${qnanum==0 and sessionScope.usernum!=12}">--%>
 
             <tr>
                 <th style="width: 100px; text-align: center;">문의유형</th>
@@ -180,7 +175,7 @@
             <tr>
                 <th style="width: 100px; text-align: center; padding-top: 12px;" >비밀번호</th>
                 <td>
-                    <input type="password" name="pass" class="form-control" required="required" placeholder="숫자 4자리 입력" pattern="[0-9]+" maxlength="4";>
+                    <input type="password" name="pass" class="form-control" required="required" placeholder="숫자 4자리 입력" pattern="[0-9]+" maxlength="4"; style="border-color: white;">
                 </td>
             </tr>
             </c:if>
@@ -196,7 +191,6 @@
             <td>
                 <div class="phototag">
                     <div class="input-group">
-<%--                        <input type="file" name="upload" class="form-control" multiple="multiple" id="upload">--%>
                         <input type="file" name="upload" class="form-control" id="upload">
                         &nbsp;
                         <i class="fa fa-plus photoadd" style="font-size:14px; margin-left: 3px; margin-right:0px; margin-top: 10px;"></i>
@@ -242,11 +236,6 @@
                 <div style="text-align: center; margin-bottom: 10px;">
 
 
-
-
-<%--                <input type="checkbox" id="secret"/>--%>
-<%--                    <label class="check1"><b style="margin-left: 3px; text-decoration: none; color: grey; font-size: 13px;">관리자만 보기</b></label>--%>
-<%--                </div>--%>
             </td>
         </tr>
 
@@ -260,43 +249,7 @@
         </tr>
     </table>
 
-
-<%--    <script>--%>
-
-
-<%--            //등록 이벤트--%>
-<%--            $(document).on("click", ".insert2", function () {--%>
-<%--                var idx = $(this).attr("idx");--%>
-<%--                var a = alert("등록되었습니다");--%>
-<%--                if (a) {--%>
-<%--                    var idx = $(this).attr("idx");--%>
-
-<%--                    $.ajax({--%>
-<%--                        type: "get",--%>
-<%--                        url: "../qna/insert",--%>
-<%--                        dataType: "text",--%>
-<%--                        data: {"idx": idx},--%>
-<%--                        success: function (res) {--%>
-<%--                            list();--%>
-<%--                        }//success--%>
-<%--                    });//ajax--%>
-
-<%--                }//if--%>
-
-
-<%--            });//onclick--%>
-
-
-
-
-
-
-
-
-
-
-
-<%--    </script>--%>
 </form>
+</div>
 </body>
 </html>

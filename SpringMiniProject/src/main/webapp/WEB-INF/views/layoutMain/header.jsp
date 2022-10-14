@@ -10,6 +10,9 @@
     <link rel="stylesheet" type="text/css" href="${root}/css/taemin.css">
     <link rel="stylesheet" type="text/css" href="${root}/css/qna.css">
     <link rel="stylesheet" type="text/css" href="${root}/css/taeminfont.css">
+    <link rel="stylesheet" type="text/css" href="${root}/css/TeachMeStyle.css">
+    <link rel="stylesheet" type="text/css" href="${root}/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="${root}/css/animate.css">
     <script src="${pageContext.request.contextPath}/resources/javascript/taemin.js"></script>
 
 <style>
@@ -67,8 +70,8 @@
 
     #headerfor{
         margin-left: -50px;
-        padding-top: 20px;
-        margin-bottom: 30px;
+        padding-top: 40px;
+        /*margin-bottom: 30px;*/
 
 
     }
@@ -115,8 +118,8 @@
     </c:if>
     <c:if test="${sessionScope.loginok!=null && sessionScope.usertype=='manager'}">
     <b>${sessionScope.loginname}님</b>	            &nbsp;&nbsp;
-    <a href="${root}/manager/main">관리자페이지</a>
-    <button type="button" id="btnlogoutMain" class="bt1" style=" margin-right: 110px;" >LOGOUT</button>
+        <a href="${root}/manager/main"><button type="button" id="btnmypage2" class="bt1" ><b>ADMIN</b></button></a>
+    <button type="button" id="btnlogoutMain" class="bt1" style=" margin-right: 110px; margin-left: 5px; margin-top: 10px;" ><b>LOGOUT</b></button>
     </c:if>
     </div>
     <script>

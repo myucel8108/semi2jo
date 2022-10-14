@@ -453,7 +453,8 @@ header .fa {
 =============================*/
 
 .section-5 {
-    width: 100%;
+    width: 80%;
+    margin: auto;
     height: auto;
     padding-top: 75px;
 }
@@ -610,6 +611,170 @@ header .fa {
 .section-5 .modal-backdrop {
     z-index: 9999;
 }
+
+/*** 18번 태민추가 **/
+
+
+.section-18 {
+    width: 80%;
+    margin: auto;
+    height: auto;
+    padding-top: 75px;
+}
+
+.section-18 h3 {
+    color: #737373;
+    font-size: 38px;
+    line-height: 60px;
+    padding-bottom: 40px;
+    margin-top: -13px;
+}
+
+.section-18 h5 {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.section-18 h3 span {
+    display: block;
+}
+
+.section-18 .btn-success {
+    color: #fff;
+    padding: 12px 35px;
+    letter-spacing: 1px;
+    border-radius: 0;
+    background-color: #b4dc2d;
+    border-color: #b4dc2d;
+    text-transform: uppercase;
+}
+
+.section-18 .btn-success:hover {
+    color: #ffffff;
+    background-color: #000;
+    border: 1px solid #000;
+}
+
+.section-18 hr {
+    padding-bottom: 60px;
+}
+
+.section-18 .more-button {
+    text-align: center;
+    padding-top: 75px;
+}
+
+.section-18 .btn-primary {
+    color: #dddddd;
+    background-color: transparent;
+    border-color: #b2b2b2;
+    border: 2px solid #b2b2b2;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 100px;
+    padding: 14px 30px;
+    text-transform: uppercase;
+    margin: 10px;
+}
+
+.section-18 .btn-primary:hover {
+    color: #ffffff;
+    background: #000000;
+    border: 2px solid #000000;
+}
+
+.section-18 .btn-primary:not(:disabled):not(.disabled):active {
+    color: #fff;
+    background-color: #000000;
+    border-color: #000000;
+}
+
+.section-18 .box {
+    position: relative;
+    padding: 0;
+}
+
+.section-18 .img-fluid {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    height: 400px;
+}
+
+.section-18 .box:hover .overlay {
+    opacity: 1;
+}
+
+.section-18 .text span {
+    display: block;
+}
+
+.section-18 .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background: -moz-linear-gradient(-45deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%);
+    background: -webkit-linear-gradient(-45deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3000000', endColorstr='#b3000000', GradientType=1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-18 .overlay img {
+    width: 20%;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    position: absolute;
+}
+
+.section-18 .text {
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    position: absolute;
+    bottom: 8%;
+    left: 10%;
+}
+
+.section-18 h4 {
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: 500;
+    line-height: 28px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.section-18 h4 span {
+    display: block;
+}
+
+.section-18 .other1 .overlay img {
+    width: 15%;
+}
+
+.section-18 .modal {
+    z-index: 99999;
+}
+
+.section-18 .modal-backdrop.show {
+    opacity: .8;
+}
+
+.section-18 .modal-backdrop {
+    z-index: 9999;
+}
+
 
 /*==============================
       Section-6 Styles
