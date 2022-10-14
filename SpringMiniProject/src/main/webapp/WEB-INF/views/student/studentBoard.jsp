@@ -13,11 +13,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Yeon+Sung&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
   <style>
-    *{
+    body{
       font-family: 'Noto Sans KR';
     }
-    .btnmyboard:hover {
+    .boardbtn{
+      width: 150px;
+      height: 40px;
+      border-radius: 15px;
+      background-color: white;
+      border: 1px solid black;
+    }
+    .boardbtn:hover {
       background-color: lightgrey;
+      color: #0a56a9;
     }
   </style>
   <script>
@@ -64,9 +72,9 @@
 <h1>커뮤니티</h1>
 <br>
 <div class="btn-group">
-  <button type="button" id="myboard" class="btn btn-outline-secondary btnmyboard">작성한 게시물</button>
-  <button type="button" id="myreboard" class="btn btn-outline-secondary btnmyboard">댓글 단 게시물</button>
-  <button type="button" id="mylikeboard" class="btn btn-outline-secondary btnmyboard">좋아요 한 게시물</button>
+  <button type="button" id="myboard" class="boardbtn">작성한 게시물</button>
+  <button type="button" id="myreboard" class="boardbtn">댓글 단 게시물</button>
+  <button type="button" id="mylikeboard" class="boardbtn">좋아요 한 게시물</button>
 </div>
 <br>
   <h3 class="listcount"></h3>

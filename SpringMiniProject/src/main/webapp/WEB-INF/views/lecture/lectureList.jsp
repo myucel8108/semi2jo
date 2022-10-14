@@ -151,7 +151,7 @@ figure
      
    .que::before{
      display: inline-block;
-     content: ;
+     /*content: ;*/
      font-size: 14px;
      margin: 0 5px;
    }
@@ -206,10 +206,27 @@ figure
    .que.on .arrow-top {
      display: block; 
    }
+   #btnmycart{
+       width: 300px;
+       height: 70px;
+       font-size: 30px;
+       color: #3b5a9b;
+       background-color: white;
+       border-radius: 15px;
+       border-color: #3b5a9b;
+   }
+   #btnmycart:hover{
+       color: #1da1f2;
+       border-color: #1da1f2;
+   }
 </style>
 </head>
 <body>
+
+   <div class="container" style=" display: flex; min-height: 1000px;">
+
    <div class="container" style=" display: flex; min-height: 1000px; ">
+
    <div id="Accordion_wrap" style="width: 300px; margin-top: 50px; margin-left: 100px; ">
      <div class="que">
       <span><i class='fas fa-book-open'></i> 국어</span>
@@ -327,7 +344,9 @@ figure
       <c:forEach var="dto" items="${list}">
         <div style= "float:left; padding: 30px;">
       <a class="banner_img"  href="lectureDetail?lecdenum=${dto.lecdenum}" style="text-decoration:none;">                         
+
                      <img src="../upload/lecture/${dto.lecphoto}" style=" width:240px ;height:320px; border:1px; margin: 0 auto; "id="showimg">                        	
+
                
                <p class="hover_text">${dto.teaname}</p>
                 </a>
