@@ -82,6 +82,12 @@
  //                }
  //            });
 </script>
+    <style>
+        .boardbtn:active, .boardbtn:focus{
+            outline:none !important;
+            box-shadow:none !important;
+        }
+    </style>
 </head>
 <body>
 <div class="container" style="width: 800px; padding: 50px;">
@@ -121,8 +127,8 @@
         </tr>
         <tr>
             <td colspan="2" align="center">
-                <button type="button" class="btn btn-outline-dark" onclick="location.href='boardFree?currentPage=${currentPage}'">뒤로가기</button>
-                <button type="submit" class="btn btn-outline-dark">업로드</button>
+                <button type="button" class="btn btn-outline-dark boardbtn" onclick="location.href='boardFree?currentPage=${currentPage}'">뒤로가기</button>
+                <button type="submit" class="btn btn-outline-dark boardbtn">업로드</button>
             </td>
         </tr>
     </table>

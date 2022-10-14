@@ -14,6 +14,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
+<style>
+  .boardbtn:active, .boardbtn:focus{
+    outline:none !important;
+    box-shadow:none !important;
+  }
+</style>
 <body>
 <div class="container" style="width: 800px; padding: 50px;">
   <form action="update" method="post" enctype="multipart/form-data">
@@ -52,8 +58,8 @@
       </tr>
       <tr>
         <td colspan="2" align="center">
-          <button type="button" class="btn btn-outline-dark" onclick="history.back();">뒤로가기</button>
-          <button type="submit" class="btn btn-outline-dark">수정하기</button>
+          <button type="button" class="btn btn-outline-dark boardbtn" onclick="history.back();">뒤로가기</button>
+          <button type="submit" class="btn btn-outline-dark boardbtn">수정하기</button>
         </td>
       </tr>
     </table>
