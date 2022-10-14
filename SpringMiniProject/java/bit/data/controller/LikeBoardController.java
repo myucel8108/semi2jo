@@ -33,21 +33,21 @@ public class LikeBoardController {
 
         if(cnt==0){
             //System.out.println("insert="+dto.getUsernum()+","+dto.getLikestate());
-            likeBoardService.insertLikeBoard(dto); //최초로 좋아요를 클릭하기
+            likeBoardService.insertLikeBoard(dto);
         }else{
             //System.out.println("update="+dto.getUsernum()+","+dto.getLikestate());
-            likeBoardService.updateLikeState(dto); //좋아요를 수정하기
+            likeBoardService.updateLikeState(dto);
         }
         if(dto.getLikestate()==0){
-            boardService.updateDecreLikeCount(dto.getBoardnum()); //좋아요를 취소하기
+            boardService.updateDecreLikeCount(dto.getBoardnum()); 
         }else{
-            boardService.updateIncreLikeCount(dto.getBoardnum()); //취소했던 좋아요를 다시 좋아요하기
+            boardService.updateIncreLikeCount(dto.getBoardnum()); 
         }
         int totallike=boardService.selectByNum(dto.getBoardnum()).getLikes();
-        return totallike; //좋아요 여부를 반환
+        return totallike; 
     }
 
-    @GetMapping("/board/likesstate") //좋아요 돼있는지 안돼있는지
+    @GetMapping("/board/likesstate") 
     @ResponseBody
     public int likeStateBoardUser(int boardnum, HttpSession session)
     {
@@ -57,7 +57,7 @@ public class LikeBoardController {
         //System.out.println("likestate="+likestate);
         return likestate;
     }
-    @GetMapping("/board/likesuser") //좋아요 누른 회원들 출력
+    @GetMapping("/board/likesuser") 
     @ResponseBody
     public List<String> likeUser(int boardnum)
     {
