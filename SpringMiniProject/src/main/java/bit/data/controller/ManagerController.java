@@ -439,7 +439,7 @@ public class ManagerController {
         mview.addObject("lecnum", lecnum);
         mview.addObject("dto", dto);
         mview.addObject("list", list);
-        System.out.println(list);
+//        System.out.println(list);
 
         mview.setViewName("/manager/manager/lectureDetail");
 
@@ -451,7 +451,9 @@ public class ManagerController {
     public ModelAndView insertLectureDetailForm(int lecnum){
         ModelAndView mview = new ModelAndView();
         LectureDto dto = lectureService.getLectureDetail(lecnum);
+        List<LectureDetailJoinDto> list = lectureService.getLecturePresent(lecnum);
 
+        mview.addObject("list", list);
         mview.addObject("dto", dto);
         mview.setViewName("/manager/manager/insertLectureDetailForm");
 

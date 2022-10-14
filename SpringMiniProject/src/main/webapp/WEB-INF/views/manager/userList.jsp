@@ -33,15 +33,38 @@
         }
 
         .usertitle{
+            font-size: 40px;
             text-align: center;
         }
 
         .search-container{
             width: 200px;
+            margin-left: 1150px;
         }
 
         .paging{
             padding-bottom: 20px;
+        }
+
+        .show-img {
+            border-radius: 100px;
+            margin-top: 6px;
+        }
+
+        #paging-pp{
+            color: white;
+            background-color: #5a5c69;
+            border-color: #5a5c69;
+        }
+
+        #paging-np{
+            color: #5a5c69;
+            background-color: white;
+            border-color: #5a5c69;
+        }
+
+        .margin-box{
+            margin-left: 18px;
         }
     </style>
 </head>
@@ -49,13 +72,13 @@
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
     <!-- 검색창 -->
     <div class="finduser">
-        <div class="usertitle">
-            회원 목록
+        <div>
+            <p class="usertitle">회원 목록</p>
             <form action="userlist">
                 <div class="search-container">이름으로 회원 검색
                     <div class="input-group search-item2"> <!-- 검색 -->
                         <input type="text" name="searchword" class="form-control" style="width: 100px;">
-                        <button type="submit" class="btn btn-primary">검색</button>
+                        <button type="submit" class="btn btn-outline-secondary">검색</button>
                     </div>
                 </div>
             </form>
@@ -65,7 +88,7 @@
     <div class="container bootstrap snippets bootdey">
         <div class="row">
             <div class="col-lg-12">
-                <div class="main-box no-header clearfix">
+                <div class="main-box no-header clearfix margin-box">
                     <div class="main-box-body clearfix">
                         <div class="table-responsive">
                             <table class="table user-list">
@@ -82,15 +105,15 @@
                                     <c:forEach var="dto" items="${list}">
                                         <c:if test="${dto.usertype=='user'}">
                                         <tr>
-                                            <td>
+                                            <td class="show-img-box">
                                                 <c:if test="${dto.userphoto!=null}">
-                                                    <img src="upload/${dto.userphoto}" width="50" height="50">
+                                                    <img src="upload/${dto.userphoto}" width="50" height="50" class="show-img">
                                                 </c:if>
                                                 <c:if test="${dto.userphoto==null}">
-                                                    <img src="resources/image/noimage2.png">
+                                                    <img src="resources/image/noimage2.png" class="show-img">
                                                 </c:if>
-                                                <a href="${root}/userdetail?usernum=${dto.usernum}" class="user-link">${dto.username}</a>
-                                                <span class="user-subhead">${dto.nickname}</span>
+                                                <a href="${root}/userdetail?usernum=${dto.usernum}" class="user-link text-dark">${dto.username}</a>
+                                                <span class="user-subhead text-secondary">${dto.nickname}</span>
                                             </td>
                                             <td>
                                                 ${dto.hp}
@@ -98,19 +121,19 @@
                                                 ${dto.email}
                                             </td>
                                             <td style="width: 20%;">
-                                                <a href="${root}/userdetail?usernum=${dto.usernum}" class="table-link text-warning">
+                                                <a href="${root}/userdetail?usernum=${dto.usernum}" class="table-link text-secondary">
                                                         <span class="fa-stack">
                                                             <i class="fa fa-square fa-stack-2x"></i>
                                                             <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
                                                         </span>
                                                 </a>
-                                                <a href="${root}/updateuserform?usernum=${dto.usernum}" class="table-link text-info">
+                                                <a href="${root}/updateuserform?usernum=${dto.usernum}" class="table-link text-secondary">
                                                         <span class="fa-stack">
                                                             <i class="fa fa-square fa-stack-2x"></i>
                                                             <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
                                                         </span>
                                                 </a>
-                                                <span class="table-link text-danger deleteuser">
+                                                <span class="table-link text-dark deleteuser">
                                                         <span class="fa-stack">
                                                             <i class="fa fa-square fa-stack-2x"></i>
                                                             <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
@@ -141,10 +164,10 @@
                 <!-- 페이지 번호 -->
                 <c:forEach var="pp" begin="${startPage}" end="${endPage}">
                     <c:if test="${pp==currentPage}">
-                        <li class="page-item active"><a href="userlist?currentPage=${pp}" class="page-link">${pp}</a></li>
+                        <li class="page-item active"><a href="userlist?currentPage=${pp}" class="page-link" id="paging-pp">${pp}</a></li>
                     </c:if>
                     <c:if test="${pp!=currentPage}">
-                        <li class="page-item"><a href="userlist?currentPage=${pp}" class="page-link">${pp}</a></li>
+                        <li class="page-item"><a href="userlist?currentPage=${pp}" class="page-link" id="paging-np">${pp}</a></li>
                     </c:if>
                 </c:forEach>
 

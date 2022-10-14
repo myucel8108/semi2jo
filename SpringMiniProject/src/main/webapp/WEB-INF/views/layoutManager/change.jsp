@@ -16,16 +16,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"><%--부트 스트랩 icon--%>
 
     <style type="text/css">
-        @font-face {
-            font-family: 'MICEGothic Bold';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic Bold.woff2') format('woff2');
-            font-weight: 700;
-            font-style: normal;
-        }
-
-        * {
-            font-family: 'MICEGothic Bold';
-        }
     </style>
 </head>
 <c:set var="root" value="<%=request.getContextPath() %>"></c:set>
