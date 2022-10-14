@@ -11,10 +11,9 @@
 <title>Management Page</title>
 	<c:set var="root" value="<%=request.getContextPath() %>"></c:set>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 	<script src="${root}/js/manager/manager.js"></script>
-<%--	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">--%>
 	<link href="${root}/css/manager/manager.css" rel="stylesheet">
 	<style type="text/css">
 
@@ -45,10 +44,10 @@
 </head>
 <body>
 	<div class="layoutManager">
-		<span class="change" id="menu">
+		<span class="change" id="menu" >
 			<tiles:insertAttribute name="menu"/>
 		</span>
-		<div class="change" id="header">
+		<div class="change" id="header" style="background-color: white">
 			<tiles:insertAttribute name="header"/>
 		</div>
 
