@@ -10,7 +10,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <style>
         @font-face {
@@ -53,7 +52,7 @@
 <body id="page-top">
 <div id="wrapper">
 <!-- Sidebar -->
-<ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+<ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar" style="background-color: white;">
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="${root}/">
         <div class="sidebar-brand-icon">
 <%--            <img src="img/logo/logo2.png">--%>

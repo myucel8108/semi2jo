@@ -8,13 +8,9 @@
 
     <meta charset="UTF-8">
     <title>Insert title here</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-    <%--    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>--%>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"><%--부트 스트랩 icon--%>
-
     <style type="text/css">
     </style>
 </head>
@@ -107,7 +103,7 @@
         <div class="col-xl-8 col-lg-7" >
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">월별 매출 현황</h6>
+                    <h6 class="m-0 font-weight-bold" style="color: black">월별 매출 현황</h6>
                 </div>
                 <div class="card-body">
                     <%--                                <div class="chart-area">--%>
@@ -121,7 +117,7 @@
         <div class="col-xl-4 col-lg-5">
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary" id="chartPieHead">과목별 매출 현황</h6>
+                    <h6 class="m-0 font-weight-bold" id="chartPieHead" >과목별 매출 현황</h6>
                 </div>
                 <div class="card-body">
                     <canvas id="chartPie" height="300px"></canvas>
