@@ -13,20 +13,95 @@
    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
 <style>
+.css-uimfca {width: 100%;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 14px;
+    color: rgb(48, 52, 65);
+    font-weight: 700;
+    margin-top: 36px;
 
-.product_view { position: relative; padding: 0 0 0 50px; width: 450px; box-sizing: border-box;
 }
-.product_view .img { position: absolute; left: 0; top: 0;
+     div.alist img{
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            border: 1px solid gray;
+            border-radius: 10px;
+            margin-left: 10px;
+        }
+        #detailbox
+        {
+            margin: auto;
+            margin-bottom: 0px;
+        }
+
+        #buttonbox{
+            margin: auto;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 40px;
+        }
+        #listing{
+            margin: auto;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #tpst{
+            font-size: 15px;
+            text-decoration: none;
+            color: grey;
+            font-style: italic;
+        }
+
+.css-1ptxp8z {
+    width: 300px;
+    background-color: rgb(255, 255, 255);
+    z-index: 1;
+    position: sticky;
+    top: 0px;
+
+    
 }
-.product_view .img > img { width: 368px; height: 370px; border:1px solid #e8e8e8; 
+.css-1bmzgfy {
+    position: relative;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -webkit-box-pack: space-around;
+    -ms-flex-pack: space-around;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #555969;
+    font-size: 14px;
+    background-color: #fafafc;
+    cursor: pointer;
+    height: 60px;
+    padding: 0 4px;
+    border-top: 1px solid #e4e5ed;
+    border-right: 1px solid #e4e5ed;
+    border-bottom: 1px solid #000000;
+    
 }
-.product_view .img li:after { content: ""; display: block; clear: both;
+.css-k008qs {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+
 }
-.product_view .img li { float: left; padding: 10px 10px 0 0;
-}
-.product_view .img li.on img { border-color:#0a56a9;
-}
-.product_view .img li img { width: 68px; height: 68px; border:1px solid #e8e8e8;
+.product_view { position: relative; padding: 0 0 0 50px; width: 400px; box-sizing: border-box; 
 }
 .product_view h2 { margin: 0 0 15px; padding: 0 0 20px; border-bottom:2px solid #333; font-size:24px; color:#232323; line-height: 26px;
 }
@@ -44,10 +119,6 @@
 .product_view table .length input { width:44px; height: 30px; border:none;border-right:1px solid #c6c6c6; text-align:center; 
 }
 .product_view table .length a { overflow: hidden;position: absolute; right: 0; width: 26px; height: 16px; color:transparent;
-}
-.product_view table .length a:nth-of-type(1) {  top: 0;background: url("../images/ico_up.png") no-repeat center;
-}
-.product_view table .length a:nth-of-type(2) { bottom:0; background: url("../images/ico_down.png") no-repeat center; border-top:1px solid #c6c6c6;
 }
 .product_view table select { width:100%; border:1px solid #c6c6c6; box-sizing: border-box; no-repeat right 11px center;appearance:none; -webkit-appearance:none; -moz-appearance:none;
 }
@@ -96,8 +167,8 @@ table { border-collapse:collapse; border-spacing:0; width:100%;
      font-size: 14px;
      text-align : center;
      border-bottom: 1px solid #e4e4e4;
-      border-radius: 4px;
-      font-size: 1rem;
+     border-radius: 4px;
+     font-size: 1rem;
      
    }
     
@@ -105,7 +176,7 @@ table { border-collapse:collapse; border-spacing:0; width:100%;
     opacity: 0; 
       } 
       
-      .text_photo:hover #explain{ 
+   .text_photo:hover #explain{ 
       opacity: 1; 
       }
    .anw::before {
@@ -136,6 +207,7 @@ table { border-collapse:collapse; border-spacing:0; width:100%;
 .review {
  display:none; 
  margin-bottom: 20px;
+ width: 800px;
 
 }
 
@@ -167,9 +239,9 @@ table { border-collapse:collapse; border-spacing:0; width:100%;
     margin-bottom: 15px;
     flex-wrap: wrap;
     align-items: center;
-    display: flex;
-    margin-left:50px;
     float: left;
+    position: relative;
+    display: flex;
 }
 .title{
    	line-height: 1.5;
@@ -192,6 +264,14 @@ table { border-collapse:collapse; border-spacing:0; width:100%;
     opacity: 0;
     cursor: pointer;
   }
+ .css-1ptxp8z {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    z-index: 1;
+    position: sticky;
+    top: 0px;
+    margin-bottom: 48px;
+}
   
   .star span {
     width: 0;
@@ -237,122 +317,130 @@ table { border-collapse:collapse; border-spacing:0; width:100%;
     resize: none;
 }
 #Accordion_wrap{
-
+position: relative;
 }
 </style>
 <body>
-    <c:set var="root" value="<%=request.getContextPath()%>"/>
-    <div class="container">
-    	<div style=" width: 1200px; height: 700px;">
-   			<div style=" display: flex; margin: 0 auto;" >
-  				<div id="Accordion_wrap" style="width: 150px; margin-top: 50px; margin-left: 80px; ">
-			     <div class="que">
-			      <span><i class='fas fa-book-open'></i> 국어</span>
-			       <div class="arrow-wrap">
-			         <span class="arrow-top">↑</span>
-			        <span class="arrow-bottom">↓</span>
-			       </div> 
-			     </div>
-			     <div class="anw">
-			     <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
-			     <a href="lectureList?lectypeb=문학&order=" style="color: black; text-decoration:none; margin-bottom: 5px;">문학</a>
-			   </div>
-			   <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
-			     <a href="lectureList?lectypeb=비문학" style="color: black; text-decoration:none;">비문학</a>
-			     </div>    
-			       </div>
-			      <div class="que">
-			      <span><i class='fas fa-calculator'></i>수학</span>
-			       <div class="arrow-wrap">
-			         <span class="arrow-top">↑</span>
-			        <span class="arrow-bottom">↓</span>
-			       </div> 
-			     </div>
-			     <div class="anw">
-			     <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
-			        <a href="lectureList?lectypeb=수학1" style="color: black;text-decoration:none; margin-bottom: 1px;">수학1</a>
-			     </div>
-			   <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
-			      <a href="lectureList?lectypeb=수학2" style="color: black;text-decoration:none;">수학2</a>
-			     </div> 
-			         <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
-			      <a href="lectureList?lectypeb=미적분" style="color: black; text-decoration:none;">미적분</a>
-			     </div>    
-			     </div>
-			          <div class="que">
-			      <span><i class='fas fa-donate'></i>영어</span>
-			       <div class="arrow-wrap">
-			         <span class="arrow-top">↑</span>
-			        <span class="arrow-bottom">↓</span>
-			       </div> 
-			     </div>
-			     <div class="anw">
-			     <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
-			      <a href="lectureList?lectypeb=독해" style="color: black; text-decoration:none;">독해</a>
-			     </div>
-			   <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
-			       <a href="lectureList?lectypeb=문법" style="color: black; text-decoration:none;">문법</a>
-			     </div>     
-			     </div>
-			     <div class="que">
-			      <span> <i class='fas fa-balance-scale'></i>  사회</span>
-			       <div class="arrow-wrap">
-			         <span class="arrow-top">↑</span>
-			        <span class="arrow-bottom">↓</span>
-			       </div> 
-			     </div>
-			     <div class="anw">
-			     <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
-			     <a href="lectureList?lectypeb=경제" style="color: black; text-decoration:none;">경제</a>
-			     </div>
-			   <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
-			     <a href="lectureList?lectypeb=사회문화" style="color: black; text-decoration:none;">사회문화</a>
-			     
-			     </div>     
-			     </div>
-			          <div class="que">
-			      <span><i class='fas fa-atom'></i>  과학</span>
-			       <div class="arrow-wrap">
-			         <span class="arrow-top">↑</span>
-			        <span class="arrow-bottom">↓</span>
-			       </div> 
-			     </div>
-			     <div class="anw">
-			     <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
-			    <a href="lectureList?lectypeb=과학" style="color: black; text-decoration:none;">화학</a>
-			     </div >
-			   <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
-			   <a href="lectureList?lectypeb=생명과학" style="color: black; text-decoration:none;">생명과학</a>
-			     </div>     
-			     </div>
-			          <div class="que">
-			      <span><i class='fas fa-book-reader'></i>  그 외</span>
-			       <div class="arrow-wrap">
-			         <span class="arrow-top">↑</span>
-			        <span class="arrow-bottom">↓</span>
-			       </div> 
-			     </div>
-			     <div class="anw">
-			     <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
-			     <a href="lectureList?lectypeb=한국사" style="color: black; text-decoration:none;">한국사</a>
-			     </div>
-			   <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
-			     <a href="lectureList?lectypeb=제2외국어" style="color: black; text-decoration:none;">제2외국어</a>
-			 </div>     
-		</div>
+   <div id="Accordion_wrap" style="width: 100px; margin-top: 50px; margin-left:50px;">
+     <div class="que">
+      <span><i class='fas fa-book-open'></i> 국어</span>
+       <div class="arrow-wrap">
+         <span class="arrow-top">↑</span>
+        <span class="arrow-bottom">↓</span>
+       </div> 
+     </div>
+     <div class="anw">
+       <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypea=국어" style="color: black; text-decoration:none; margin-bottom: 5px;">국어</a>
+   </div>
+     <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypeb=문학" style="color: black; text-decoration:none; margin-bottom: 5px;">문학</a>
+   </div>
+   <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypeb=비문학" style="color: black; text-decoration:none;">비문학</a>
+     </div>    
+       </div>
+      <div class="que">
+      <span><i class='fas fa-calculator'></i>  수학</span>
+       <div class="arrow-wrap">
+         <span class="arrow-top">↑</span>
+        <span class="arrow-bottom">↓</span>
+       </div> 
+     </div>
+     <div class="anw">
+     <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypea=수학" style="color: black; text-decoration:none; margin-bottom: 5px;">수학</a>
+   </div>
+     <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+        <a href="lectureList?lectypeb=수학1" style="color: black;text-decoration:none; margin-bottom: 1px;">수학1</a>
+     </div>
+   <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+      <a href="lectureList?lectypeb=수학2" style="color: black;text-decoration:none;">수학2</a>
+     </div> 
+         <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+      <a href="lectureList?lectypeb=미적분" style="color: black; text-decoration:none;">미적분</a>
+     </div>    
+     </div>
+          <div class="que">
+      <span><i class='fas fa-donate'></i>영어</span>
+       <div class="arrow-wrap">
+         <span class="arrow-top">↑</span>
+        <span class="arrow-bottom">↓</span>
+       </div> 
+     </div>
+     <div class="anw">
+      <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypea=영어" style="color: black; text-decoration:none; margin-bottom: 5px;">영어</a>
+   </div>
+     <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+      <a href="lectureList?lectypeb=독해" style="color: black; text-decoration:none;">독해</a>
+     </div>
+   <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+       <a href="lectureList?lectypeb=문법" style="color: black; text-decoration:none;">문법</a>
+     </div>     
+     </div>
+     <div class="que">
+      <span> <i class='fas fa-balance-scale'></i>  사회</span>
+       <div class="arrow-wrap">
+         <span class="arrow-top">↑</span>
+        <span class="arrow-bottom">↓</span>
+       </div> 
+     </div>
+     <div class="anw">
+            <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypea=사회" style="color: black; text-decoration:none; margin-bottom: 5px;">사회</a>
+   </div>
+     <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypeb=경제" style="color: black; text-decoration:none;">경제</a>
+     </div>
+   <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypeb=사회문화" style="color: black; text-decoration:none;">사회문화</a>
+     
+     </div>     
+     </div>
+          <div class="que">
+      <span><i class='fas fa-atom'></i>  과학</span>
+       <div class="arrow-wrap">
+         <span class="arrow-top">↑</span>
+        <span class="arrow-bottom">↓</span>
+       </div> 
+     </div>
+     <div class="anw">
+            <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypea=과학" style="color: black; text-decoration:none; margin-bottom: 5px;">과학</a>
+   </div>
+     <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+    <a href="lectureList?lectypeb=화학" style="color: black; text-decoration:none;">화학</a>
+     </div >
+   <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+   <a href="lectureList?lectypeb=생명과학" style="color: black; text-decoration:none;">생명과학</a>
+     </div>     
+     </div>
+          <div class="que">
+      <span><i class='fas fa-book-reader'></i>  그 외</span>
+       <div class="arrow-wrap">
+         <span class="arrow-top">↑</span>
+        <span class="arrow-bottom">↓</span>
+       </div> 
+     </div>
+     <div class="anw">
+     <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypeb=한국사" style="color: black; text-decoration:none;">한국사</a>
+     </div>
+   <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypeb=제2외국어" style="color: black; text-decoration:none;">제2외국어</a>
+     </div>     
+     </div>
 </div>
-   			<div class="type" >
-   			<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788954762946.jpg" style=" width: 300px; height: 400px; margin-top: 50px;">         	   			 
+
+ <c:set var="root" value="<%=request.getContextPath()%>"/>
+    <div class="container" style="width: 1000px; ">
+   			<div class="type">
+   			<img src="../upload/lecture/${dto.lecphoto}" style=" width: 380px; height: 500px; margin-top: 50px; margin-bottom: 50px;">         	   			 
 		 			<div class="title">
 		 	<div class="product_view">	
-		   				<h2>강의: ${dto.lecname}</h2>
+		   	<h2>${dto.lecname}</h2>
 		<table>
-			<caption>
-				<details class="hide">
-					<summary>상품정보</summary>
-					판매가, 상품코드, 옵션 및 결제금액 안내
-				</details>
-			</caption>
 			<colgroup>
 			<col style="width:173px;">
 			<col>
@@ -376,36 +464,57 @@ table { border-collapse:collapse; border-spacing:0; width:100%;
 				<td	>${dto.avgstar} 								
 				</td>
 			</tr>
-		
+			
 			</tbody>
 	
+
 		</table>
+	<button id="writecolor" class=" load  btn btn-outline"  type="button" onclick="gocart(event)"> 장바구니</button>
 	
-	</div>
-		
+
+		</div>		
 	</div>	
-	</div>			
+
 </div>
+
+<div style="margin: 0 auto;  display: inline-block;">
+
+	<nav class="css-1ptx8z" style="display: flex; margin-bottom: 150px;" >
+
+		<div class=" css-1bmzgfy">
+			교재 설명
+		</div>
+		<div class=" css-1bmzgfy">
+			취소 및 환불규정
+		</div>
+		<div class=" css-1bmzgfy">
+			후기
+		</div>
+	</nav>	
 	
-		 	
-</div>
-
-<div  style="margin-left: 450px;">
-		<button id="writecolor" class=" load  btn btn-outline"  type="button" onclick="gocart(event)"> 장바구니
-		</button>    
-   </div>	
-   
-<div style="margin: 0 auto; text-align: center;">
 <img alt="" src="https://contents.kyobobook.co.kr/sih/fit-in/814x0/dtl/illustrate/946/i9788954762946.jpg">
+    <c:set var="root" value="<%=request.getContextPath()%>"/>  
 </div>
 
-    <c:set var="root" value="<%=request.getContextPath()%>"/>
-    
+<div style="display: flex;flex-direction: column; width: 800px; margin-top: 200px;">
+<div style="font-size: 18px; font-weight: 700; color: rgb(48, 52, 65);">
+강의 평가
+</div>
+<div>
+${dto.avgstar} 
+</div>
+<div style="color: rgb(154, 155, 167);  font-size: 12px; padding-bottom: 24px; border-bottom: 1px solid rgb(48, 52, 65);">
+실제 강의자들이 남긴 평가입니다.
+</div>
+</div>
+<div class="css-uimfca">
+강의 후기
+</div>
    <div style="margin-top: 50px;">
-      <div >
+      <div>
       <div>
          <c:forEach var="redto" items="${list}">
-            <div class="review">
+            <div class="review" style="border-bottom: 1px solid black;">
                <div>             
                <c:if test="${not empty redto.review}">
                    <div style="color: #f7e600;">   
@@ -416,18 +525,17 @@ table { border-collapse:collapse; border-spacing:0; width:100%;
 					</c:when>            
                     <c:otherwise>
                     	<img src="../upload/noprofilepicture.png" class="rounded-circle" style="width: 40px; height: 40px;" >
-                    </c:otherwise>
-           
+                    </c:otherwise>           
                     </c:choose>
                    </div>
 	                  <c:forEach begin="1" end="${redto.star}">      	                
 	                   ★             
 	                  </c:forEach>  
 	                  <div>       
-	                 <p style="color: #000; margin-bottom: 0;">
-                     작성자:${redto.username}| ${redto.paytime}</p>    
+	                 <p style="color: #000; margin-bottom: 10px;">
+                     ${redto.username} (${redto.paytime})</p>    
                     <div style="color: #000 ">
-                  		리뷰 내용:${redto.review}
+                  		${redto.review}
     				</div>
     				</div>
     				    </div>
@@ -436,11 +544,11 @@ table { border-collapse:collapse; border-spacing:0; width:100%;
              </div>
          </c:forEach>
       </div>
- 
-      <button id="writecolor" class="load  btn btn-outline"  type="button">
-			 더보기</button>
-
 </div>
+<button  class="load btn btn-outline" type="button">더보기</button>
+</div>
+ 
+<div style="float: left; margin: 0 auto; width: 800px;">
    <%--별점 및 수강평 입력 부분(로그인한 수강생이 해당강의를 수강한 학생일때만 보이게 하기--%>
    <c:set var="inmylec" value=""/> <%--내가 수강중인 lecdenum 합치기--%>
    <c:forEach var="jdto" items="${jlist}">
@@ -477,10 +585,9 @@ table { border-collapse:collapse; border-spacing:0; width:100%;
          </form>
       </c:if>
    </c:forEach>
- </div>
+ </div>  
 </div>
 <script type="text/javascript">
-
    var test = "${sessionScope.loginok}";
       function gocart(e) {
     	    e.stopImmediatePropagation();
@@ -516,17 +623,15 @@ table { border-collapse:collapse; border-spacing:0; width:100%;
       }
       
    	$(".review").slice(0,1).show(); // select the first ten
-   	$(".load").click(function(e){ // click event for load more
-   	 e.stopPropagation();
+   	$(".load").click(function(e){ // click event for load more  
     $("div:hidden").slice(0,10).show(); // select next 10 hidden divs and show them
-    e.stoppropagation();
+    e.stopImmediatePropagation();
       if($("div:hidden").length == 0){ // check if any hidden divs still exist   
       }	    
-      e.stopImmediatePropagation();
    });
-   $(".que").click(function(e) {
-	   e.stopPropagation();
-	   $(this).next(".anw").stop().slideToggle(300);
+
+   $(".que").click(function(e) {	
+	   $(this).next(".anw").stop().slideToggle(300);	
         $(this).toggleClass('on').siblings().removeClass('on');
         $(this).next(".anw").siblings(".anw").slideUp(300); // 1개씩 펼치기
         e.stopImmediatePropagation();

@@ -209,7 +209,7 @@ figure
 </style>
 </head>
 <body>
-   <div class="container" style=" display: flex; min-height: 1000px;">
+   <div class="container" style=" display: flex; min-height: 1000px; ">
    <div id="Accordion_wrap" style="width: 300px; margin-top: 50px; margin-left: 100px; ">
      <div class="que">
       <span><i class='fas fa-book-open'></i> 국어</span>
@@ -322,17 +322,17 @@ figure
      </div>
 </div>
 
-   <div style="width:2500px; margin-top: 50px; margin-left: 50px; margin-bottom: 30px; ">   
+   <div style="width:100%; height:100%; margin-top: 25px; margin-left: 50px; margin-bottom: 30px; ">   
      
       <c:forEach var="dto" items="${list}">
         <div style= "float:left; padding: 30px;">
       <a class="banner_img"  href="lectureDetail?lecdenum=${dto.lecdenum}" style="text-decoration:none;">                         
-                     <img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788954762946.jpg" style=" width:200px ;height:200px; border:1px; "id="showimg">                        	
+                     <img src="../upload/lecture/${dto.lecphoto}" style=" width:240px ;height:320px; border:1px; margin: 0 auto; "id="showimg">                        	
                
                <p class="hover_text">${dto.teaname}</p>
                 </a>
                
-                 <p>과목명:${dto.lecname}</p>
+                 <p>${dto.lecname}</p>
                </div>
               
       </c:forEach>   
