@@ -16,7 +16,7 @@
     <style type="text/css">
         .mb-4 {
             font-size: 19px;
-            width: 70%;
+            width: 87.1vw;
         }
 
         .m-0 {
@@ -27,6 +27,12 @@
             display: flex;
             justify-content: right;
         }
+
+		.card{
+			width: 500px;
+			margin: auto;
+			margin-top: 50px;
+		}
     </style>
 </head>
 <body>
@@ -52,9 +58,10 @@
 						<option value="none" selected>대분류</option>
 						<option value="국어">국어</option>
 						<option value="수학">수학</option>
-						<option value="사회">사회</option>
-						<option value="과학">과학</option>
 						<option value="영어">영어</option>
+						<option value="사회탐구">사회탐구</option>
+						<option value="과학탐구">과학탐구</option>
+						<option value="제2외국어">제2외국어</option>
 					</select>
 				</div>
 				<div class="form-group">
@@ -78,23 +85,26 @@
 </body>
 	<script>
 		$("#lectypea").change(function () {
-			var korean = ["문학", "비문학"];
-			var math = ["수학1", "수학2", "미적분"];
-			var society = ["경제", "사회문화"];
-			var science = ["화학", "지구과학"];
-			var english = ["독해", "문법"];
+			var korean = ["독서·문학·화법과 작문", "국어종합", "독해", "문법"];
+			var math = ["수학종합", "수학기초", "수학심화"];
+			var english = ["영어", "영어듣기"];
+			var society = ["역사", "지리", "경제", "윤리", "정치와 법", "사회·문화"];
+			var science = ["물리", "화학", "생명과학", "지구과학"];
+			var foreign = ["아시아", "유럽", "한문"]
 			var none = ["중분류"]; //중분류 원래값으로 못돌려놔서 짜치는 방법으로 어거지로 쑤셔박았음. 수정 요망.
 			var selected;
 			if ($(this).val() == "국어") {
 				selected = korean;
 			} else if ($(this).val() == "수학") {
 				selected = math;
-			} else if ($(this).val() == "사회") {
-				selected = society;
-			} else if ($(this).val() == "과학") {
-				selected = science;
 			} else if ($(this).val() == "영어") {
 				selected = english;
+			} else if ($(this).val() == "사회탐구") {
+				selected = society;
+			} else if ($(this).val() == "과학탐구") {
+				selected = science;
+			} else if ($(this).val() == "제2외국어") {
+				selected = foreign;
 			} else if ($(this).val() == "none") { //중분류 원래값으로 못돌려놔서 짜치는 방법으로 어거지로 쑤셔박았음. 수정 요망.
 				selected = none;
 			}
