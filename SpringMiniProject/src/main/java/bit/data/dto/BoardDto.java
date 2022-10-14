@@ -1,5 +1,6 @@
 package bit.data.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.sql.Timestamp;
@@ -18,6 +19,7 @@ public class BoardDto {
     private int likes;
     private int report;
     private String reportcheck;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "Asia/Seoul")
     private Timestamp writeday;
     private int reboardcount;
 
