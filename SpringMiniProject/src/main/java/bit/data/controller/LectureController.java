@@ -47,14 +47,14 @@ public class LectureController {
         ReadyPayDto dto =  readypayservice.selectByLecdeNum(lecdenum);
 
         HttpSession session =request.getSession();
-        //내가 수강한 강의상세페이지에만 수강평 작성할 수 있도록 myLecJoin 정보 보내주기(로그인한 경우만)
+        //�궡媛� �닔媛뺥븳 媛뺤쓽�긽�꽭�럹�씠吏��뿉留� �닔媛뺥룊 �옉�꽦�븷 �닔 �엳�룄濡� myLecJoin �젙蹂� 蹂대궡二쇨린(濡쒓렇�씤�븳 寃쎌슦留�)
         if(session.getAttribute("usernum")!=null)
         {
-            //로그인한 수강생 usernum 가져오기
+            //濡쒓렇�씤�븳 �닔媛뺤깮 usernum 媛��졇�삤湲�
             int usernum= Integer.parseInt(session.getAttribute("usernum").toString());
-            //usernum 기준으로 수강목록 data 가져오기
+            //usernum 湲곗��쑝濡� �닔媛뺣ぉ濡� data 媛��졇�삤湲�
             List<MyLecJoinDto> jlist=myLecJoinService.getMyLecListByNum(usernum,"ok");
-            //mview에 jlist 넣어주기
+            //mview�뿉 jlist �꽔�뼱二쇨린
             mview.addObject("jlist", jlist);
         }
 
@@ -66,18 +66,18 @@ public class LectureController {
 
     }
     
-    //mylecture의 별점과 수강평 작성하고 등록하기 누르면 lecture테이블의 avgstar 업데이트 되게 하기
+    //mylecture�쓽 蹂꾩젏怨� �닔媛뺥룊 �옉�꽦�븯怨� �벑濡앺븯湲� �늻瑜대㈃ lecture�뀒�씠釉붿쓽 avgstar �뾽�뜲�씠�듃 �릺寃� �븯湲�
     @PostMapping("lecture/lecUpStarReview")
     public String lecUpStarReview(int star, String review, int usernum, int lecdenum) {
 
         myLectureService.updateStarReview(star,review,usernum,lecdenum);
         
-        //lecdenum에 해당하는 lecnum가져오기
+        //lecdenum�뿉 �빐�떦�븯�뒗 lecnum媛��졇�삤湲�
         LecDetailDto dto = lecDetailService.getDataByLecDeNum(lecdenum);
         int lecnum=dto.getLecnum();
 
         try {
-            //lecnum으로 lecture 테이블의 avgstar 값 바꾸기
+            //lecnum�쑝濡� lecture �뀒�씠釉붿쓽 avgstar 媛� 諛붽씀湲�
             double avgstar=myLectureService.getAvgstarByLecnum(lecnum).getAvgstar();
             myLectureService.updateAvgstarByLecnum(avgstar,lecnum);
         }catch (NullPointerException e){}
@@ -95,25 +95,17 @@ public class LectureController {
 
     }
 
-    @GetMapping(value= "/lecture/lectureList" , params = {"lectypeb"})
-    public String lectureCategori(@RequestParam String lectypeb , Model model) {
-
-        List<ReadyPayDto> list =  readypayservice.selectByCategori(lectypeb);
-        model.addAttribute("list",list);
-
-
-        return "/main/lecture/lectureList";
-
-    }
     @GetMapping(value= "/lecture/lectureList" , params = {"lectypea"})
-    public String lectureCategori2(@RequestParam String lectypea , Model model) {
+    public String lectureCategori(@RequestParam String lectypea , Model model) {
 
-        List<ReadyPayDto> list =  readypayservice.selectByCategori2(lectypea);
+        List<ReadyPayDto> list =  readypayservice.selectByCategori(lectypea);
         model.addAttribute("list",list);
 
 
         return "/main/lecture/lectureList";
 
     }
+    
+
 
 }

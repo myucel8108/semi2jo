@@ -17,7 +17,5 @@ public interface LectureDaoInter {
     public void deleteLecture(int lecnum);
     public void updateLecture(LectureDto dto);
     public List<LectureDto> getAllLecture();
-
-    //lectype a 의 종류 구하기
     public List<LectureDto> getLecTypeA();
 }

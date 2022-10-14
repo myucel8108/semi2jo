@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import util.DeleteServerPhoto;
 
 import java.util.List;
 import java.util.Map;
@@ -283,7 +284,13 @@ public class ManagerController {
 
     //회원 사진 삭제 후 수정 폼으로 이동
     @GetMapping("/deleteuserphoto")
-    public String deleteUserPhoto(int usernum){
+    public String deleteUserPhoto(int usernum, HttpServletRequest request){
+        String path = request.getSession().getServletContext().getRealPath("/resources/upload"); //실제 저장 장소
+
+        String fileName = userService.getDataByNum(usernum).getUserphoto(); //실제 파일 이름
+
+        DeleteServerPhoto.deleteServerPhoto(path, fileName);
+
         userService.deleteUserPhoto(usernum);
         return "redirect:updateuserform?usernum=" + usernum;
     }

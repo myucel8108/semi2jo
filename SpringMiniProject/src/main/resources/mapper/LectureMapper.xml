@@ -19,7 +19,7 @@
         <if test="searchword!=null">
             where lecname like concat('%',#{searchword},'%')
         </if>
-        order by lectypea desc, lectypeb asc, lecname asc limit #{startnum},#{perpage}
+        order by lecnum asc, lectypeb asc, lecname asc limit #{startnum},#{perpage}
     </select>
     <!-- 강좌 상세(개설된 강의 확인) 출력 -->
     <select id="getLectureDetail" parameterType="int" resultType="lectureDto">

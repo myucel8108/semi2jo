@@ -22,13 +22,23 @@
             padding-bottom: 0;
         }
 
-        .add-Detail{
+        .add-Detail {
             cursor: pointer;
         }
 
-        .button-box{
+        .button-box {
             display: flex;
             justify-content: end;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: end;
+        }
+
+        .typeb {
+            font-size: 20px;
+            color: #5a5c69;
         }
     </style>
 </head>
@@ -41,7 +51,7 @@
                 <div class="col-lg-3 col-md-4">
                     <div class="img-container">
                         <c:if test="${dto.lecphoto!=null}">
-                            <img src="upload/${dto.lecphoto}" class="img-full">
+                            <img src="upload/lecture/${dto.lecphoto}" class="img-full">
                         </c:if>
                         <c:if test="${dto.lecphoto==null}">
                             <img src="resources/image/noimage2.png" class="img-full">
@@ -52,16 +62,19 @@
                 <div class="col-lg-9 col-md-8 right-box">
                     <div class="member_designation">
                         <h2>${dto.lectypea}</h2>
-                        <span>${dto.lectypeb}</span>
-                        <span class="">
-                            <button type="button" onclick="location.href='${root}/updateLectureForm?lecnum=${dto.lecnum}'" class="btn btn-outline-primary btn-sm">강좌 수정</button>
-                            <button type="button" id="delete-lecture" class="btn btn-outline-danger btn-sm">강좌 삭제</button>
+                        <span class="typeb">${dto.lectypeb}</span>
+                        <span class="button-container">
+                            <button type="button"
+                                    onclick="location.href='${root}/updateLectureForm?lecnum=${dto.lecnum}'"
+                                    class="btn btn-outline-dark btn-sm">강좌 수정</button>
+                            <button type="button" id="delete-lecture"
+                                    class="btn btn-outline-secondary btn-sm">강좌 삭제</button>
                             <script>
                                  //강좌 삭제
                                  $("#delete-lecture").click(function () {
                                      var a = confirm("강의를 삭제하시겠습니까?");
-                                     if(a){
-                                         location.href="${root}/deleteLecture?lecnum=${dto.lecnum}";
+                                     if (a) {
+                                         location.href = "${root}/deleteLecture?lecnum=${dto.lecnum}";
                                      }
                                  });
                             </script>
@@ -72,14 +85,16 @@
                             <li class="">
                                 <h5>
                                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                                강좌명 : ${dto.lecname}
+                                ${dto.lecname}
                                 </h5>
                             </li>
                         </ul>
                     </span>
                     <span class="button-box">
-                        <button class="btn btn-social outlined" onclick="location.href='${root}/insertLectureDetailForm?lecnum=${dto.lecnum}'">
-                            <label class="add-Detail">강의 추가<i class="fa fa-plus" style="font-size:24px;color:#007bff"></i></label>
+                        <button class="btn btn-social outlined"
+                                onclick="location.href='${root}/insertLectureDetailForm?lecnum=${dto.lecnum}'">
+                            <label class="add-Detail">강의 추가<i class="fa fa-plus"
+                                                              style="font-size:24px;color:#007bff"></i></label>
                         </button>
                     </span>
                     <!-- 개설된 강의 목록 출력 -->
@@ -110,11 +125,13 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="social-icons">
-                                            <button class="btn btn-social outlined" onclick="location.href='${root}/updateLectureDetailForm?lecdenum=${dtolist.lecdenum}'">
-                                                <i class="fa fa-repeat" style="font-size:20px"></i>
+                                            <button class="btn btn-social outlined"
+                                                    onclick="location.href='${root}/updateLectureDetailForm?lecdenum=${dtolist.lecdenum}'">
+                                                <i class="fa fa-pencil-square-o" style="font-size:24px"></i>
                                             </button>
-                                            <button id="deleteLecDetail${dtolist.lecdenum}" class="btn btn-social outlined">
-                                                <i class="fa fa-trash-o" style="font-size:20px"></i>
+                                            <button id="deleteLecDetail${dtolist.lecdenum}"
+                                                    class="btn btn-social outlined">
+                                                <i class="fa fa-trash-o" style="font-size:24px"></i>
                                             </button>
                                         </div>
                                     </div>

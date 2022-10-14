@@ -17,7 +17,7 @@
         }
 
         .container {
-            margin-top: 90px;
+            margin-top: 50px;
             height: 81vh;
         }
 
@@ -42,7 +42,7 @@
             justify-content: end;
         }
 
-        .data-box{
+        .data-box {
             padding: 90px 90px 30px 90px;
         }
     </style>
@@ -64,7 +64,7 @@
                                 <br>
                                 <div class="user-avatar">
                                     <c:if test="${dto.lecphoto!=null}">
-                                        <img src="upload/${dto.lecphoto}" class="img-full">
+                                        <img src="upload/lecture/${dto.lecphoto}" class="img-full">
                                     </c:if>
                                     <c:if test="${dto.lecphoto==null}">
                                         <img src="resources/image/noimage2.png" class="img-full">
@@ -81,7 +81,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 " >
+            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 ">
                 <div class="card h-100">
                     <div class="card-body data-box">
                         <div class="row gutters">
@@ -176,8 +176,7 @@
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right button-box">
                                     <button type="submit" name="insertDetail" class="btn btn-outline-primary">등록하기
-                                    </button>
-                                    &nbsp;
+                                    </button>                                    &nbsp;
                                     <button type="button" id="detail-Back" class="btn btn-outline-secondary">돌아가기
                                     </button>
                                 </div>
@@ -232,15 +231,15 @@
     //강의 시간 반복문
     var lecHtml = '';
     // $("#lecTime-button").click(function () {
-        for (var i=1; i <= 13; i++) {
-            lecHtml += "<label><input type='checkbox' name='lectime' readonly='readonly' value = '" + i + "'> " + i + "교시</input></label>&nbsp;&nbsp;";
-        }
-        ;
-        $("#lec-time").html(lecHtml);
+    for (var i = 1; i <= 13; i++) {
+        lecHtml += "<label><input type='checkbox' name='lectime' readonly='readonly' value = '" + i + "'> " + i + "교시</input></label>&nbsp;&nbsp;";
+    }
+    ;
+    $("#lec-time").html(lecHtml);
 
-        // var lecmonth = $(".lec-month").val();
+    // var lecmonth = $(".lec-month").val();
 
-        // var lecday = $('input:checkbox[name="lecday"]').val();
+    // var lecday = $('input:checkbox[name="lecday"]').val();
 
     <%--    function showLecday() {--%>
     <%--      const arr = [];--%>
