@@ -17,10 +17,10 @@
 </head>
 
 
-<a href="#" class="btn_gotop">
-  <span class="glyphicon glyphicon-chevron-up">
-  </span>
-</a>
+<%--<a href="#" class="btn_gotop">--%>
+<%--  <span class="glyphicon glyphicon-chevron-up">--%>
+<%--  </span>--%>
+<%--</a>--%>
 
 
 
@@ -93,24 +93,24 @@
     }
 
 
-    #top-link-block.affix-top {
-        position: absolute; /* allows it to "slide" up into view */
-        bottom: -82px;
-        right: 15px; /* right: 15px; 오른쪽에 위치시킬때 */
+    /*#top-link-block.affix-top {*/
+    /*    position: absolute; !* allows it to "slide" up into view *!*/
+    /*    bottom: -82px;*/
+    /*    right: 15px; !* right: 15px; 오른쪽에 위치시킬때 *!*/
 
-    }
-    #top-link-block.affix {
-        position: absolute; /* keeps it on the bottom once in view */
-        bottom: 18px;
-        right: 15px;
-    }
+    /*}*/
+    /*#top-link-block.affix {*/
+    /*    position: absolute; !* keeps it on the bottom once in view *!*/
+    /*    bottom: 18px;*/
+    /*    right: 15px;*/
+    /*}*/
 
-    #top-link-block{
+    /*#top-link-block{*/
 
-        padding-left: 1800px;
-        position:absolute;
+    /*    padding-left: 1800px;*/
+    /*    position:absolute;*/
 
-    }
+    /*}*/
 
 
     /*#askforr:hover{*/
@@ -126,13 +126,13 @@
     /*}*/
 
 
-    #test_obj {
+    #main_menu {
         position: fixed;
         width: 70px;
         height: 210px;
         right: 50px;
         border-radius: 70px;
-        top: 550px;
+        top: 30%;
 
     }
 
@@ -142,6 +142,23 @@
     /*    -webkit-text-fill-color: transparent;*/
     /*}*/
 
+    Css
+    nav {
+        width: 100px;
+    }
+    ul { padding: 0; }
+    li {
+        list-style: none;
+        line-height: 34px;
+    }
+    a {
+        display: block; /* 중요 */
+        text-decoration: none;
+        color: black;
+        text-align: center;
+    }
+    .snd_menu { background: #efefef; }
+    .sub_menu { display: none; } /* 서브메뉴들 숨김 */
 
 
 
@@ -447,14 +464,36 @@
         </footer>
     </section>
 
+<%--<span id="top-link-block" class="hidden">--%>
+<%--    <div id="test_obj" style="border: none;"><b style="margin-left:18px; padding-top: 20px; display: inline-block; text-align: center; vertical-align: center; color: black;"><a href="#" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},fast);return false;" id="toptop">--%>
+<%--      <img src="image/tttt.png" style="width: 130%;">--%>
+<%--  </a>--%>
+<%--    </b>--%>
 
+<nav>
+    <ul id="main_menu">
+        <li><a href="javascript:dos();" style="color: black;" ><button style="background-color:transparent; border-radius: 15px;"><b>Quick</b></button></a>
+            <ul class="snd_menu sub_menu" style=" background-color:transparent;">
+                <br>
+                <li><a href="${root}/lecture/lectureList"><img src="image/yu.png" style="width: 100%; background-color:transparent; color: black;" >강의</a></li>
+                <br>
+                <li><a href="${root}/board/boardFree"><img src="image/cccb.png" style="width: 100%;padding-left:10px;  ">커뮤니티</a></li>
+                <br>
+                <li><a href="${root}/qna/qnaList"><img src="image/1ask.png" style="width:130%; padding-right: 25px;">문의하기</a></li>
+            </ul>
+    </li>
+    </ul>
+</nav>
 
-<!--퀵메뉴바-->
-  <span id="top-link-block" class="hidden">
-  <div id="test_obj" style="border: none;"><b style="margin-left:18px; padding-top: 20px; display: inline-block; text-align: center; vertical-align: center; color: black;"><a href="#" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},fast);return false;" id="toptop">
-      <img src="image/tttt.png" style="width: 130%;">
-  </a></b><br><br><br><b style="font-size: 15px; color: black; margin-left: 6px; padding-top: 15px;"></b><a href="${root}/qna/qnaList"><img src="image/1ask.png" style="width: 130%; "></a><br><br><br><b style="font-size: 15px; color: black; margin-left: 8px; padding-top: 40px; margin-top: 10px;" id="comu"><a href="${root}/board/boardFree"><img src="image/comu.png" style="width: 80%;margin-left: 16px; "></a></b></div>
+         </div>
 </span><!-- /top-link-block -->
+
+<%--<!--퀵메뉴바-->--%>
+<%--  <span id="top-link-block" class="hidden">--%>
+<%--  <div id="test_obj" style="border: none;"><b style="margin-left:18px; padding-top: 20px; display: inline-block; text-align: center; vertical-align: center; color: black;"><a href="#" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},fast);return false;" id="toptop">--%>
+<%--      <img src="image/tttt.png" style="width: 130%;">--%>
+<%--  </a></b><br><br><br><b style="font-size: 15px; color: black; margin-left: 6px; padding-top: 15px;"></b><a href="${root}/qna/qnaList"><img src="image/1ask.png" style="width: 130%; "></a><br><br><br><b style="font-size: 15px; color: black; margin-left: 8px; padding-top: 40px; margin-top: 10px;" id="comu"><a href="${root}/board/boardFree"><img src="image/comu.png" style="width: 80%;margin-left: 16px; "></a></b></div>--%>
+<%--</span><!-- /top-link-block -->--%>
 </body>
 <script>
 
@@ -505,35 +544,41 @@
     setInterval(blink, 500);
 
 
-
-        if ( ($(window).height() + 100) < $(document).height() ) {
-        $('#top-link-block').removeClass('hidden').affix({
-            // how far to scroll down before link "slides" into view
-            offset: {top:100}
-        });
-    }
+    //
+    //     if ( ($(window).height() + 100) < $(document).height() ) {
+    //     $('#top-link-block').removeClass('hidden').affix({
+    //         // how far to scroll down before link "slides" into view
+    //         offset: {top:100}
+    //     });
+    // }
 
 
         // 퀵메뉴바
 
-
-    $(document).ready(function () {
-        var tmp = parseInt($("#test_obj").css('top'));
-
-        $(window).scroll(function () {
-            var scrollTop = $(window).scrollTop();
-            var obj_position = scrollTop + tmp + "px";
-
-            $("#test_obj").stop().animate({
-                "top": obj_position
-            }, 500);
-
-        }).scroll();
-    });
-
-
+    //
+    // $(document).ready(function () {
+    //     var tmp = parseInt($("#test_obj").css('top'));
+    //
+    //     $(window).scroll(function () {
+    //         var scrollTop = $(window).scrollTop();
+    //         var obj_position = scrollTop + tmp + "px";
+    //
+    //         $("#test_obj").stop().animate({
+    //             "top": obj_position
+    //         }, 500);
+    //
+    //     }).scroll();
+    // });
 
 
+
+    $(document).ready(function dos() {
+        $('#main_menu > li > a').click(function(){
+            $(this).next($('.snd_menu sub_menu')).slideToggle('fast');
+        })
+        // e.stopPropagation();
+
+    })
 
 
 
