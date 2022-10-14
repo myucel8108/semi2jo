@@ -472,7 +472,7 @@
 
 <nav>
     <ul id="main_menu">
-        <li><a href="javascript:dos();" style="color: black;" ><button style="background-color:transparent; border-radius: 15px;"><b>Quick</b></button></a>
+        <li><a href="javascript:dos();" style="color: black;" ><img src="image/just2.png" style="width: 100%; background-color:transparent; color: black;" ></a>
             <ul class="snd_menu sub_menu" style=" background-color:transparent;">
                 <br>
                 <li><a href="${root}/lecture/lectureList"><img src="image/yu.png" style="width: 100%; background-color:transparent; color: black;" >강의</a></li>
