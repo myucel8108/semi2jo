@@ -39,6 +39,12 @@ public class ReadyPayDao implements ReadyPayDaoInter {
     	return session.selectList(ns+"selectByCategori",lectypeb);
     	
     }
+    @Override
+    public List<ReadyPayDto> selectByCategori2(String lectypea) {
+    	
+    	return session.selectList(ns+"selectByCategori2",lectypea);
+    	
+    }
 }
 
 

@@ -6,6 +6,52 @@
 <head>
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <style>
+img {
+  vertical-align: top;
+}
+.banner_img, .banner_bg{
+  display:inline-block;
+  position: relative;
+}
+.banner_img:hover:after,
+.banner_img:hover > .hover_text,
+.banner_bg:hover:after,
+.banner_bg:hover > .hover_text
+{
+  display:block;
+}
+.banner_img:after,.banner_bg:after,.hover_text{
+  display:none;
+}
+.banner_img:after,.banner_bg:after{
+  content:'';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+.banner_img {
+  overflow: hidden;
+}
+.banner_img img{
+  height: 340px;
+}
+.banner_img:hover img{
+  transform: scale(1.2);
+  transition: 1s;
+}
+.hover_text {
+  position: absolute;
+  top: 100px;
+  left: 25px;
+  color: #fff;
+  z-index: 20;
+  font-weight: 600;
+  font-size: 20px;
+}
 
 #Accordion_wrap{
 position: relative;
@@ -126,11 +172,14 @@ figure
    }
     
    #explain{ 
-    opacity: 0; 
+   opacity: 0; 
+   position: absolute;
+ 
       } 
       
-      .text_photo:hover #explain{ 
+    .text_photo:hover #explain{ 
       opacity: 1; 
+  	  
       }
    .anw::before {
      display: inline-block;
@@ -170,8 +219,11 @@ figure
        </div> 
      </div>
      <div class="anw">
+       <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypea=국어" style="color: black; text-decoration:none; margin-bottom: 5px;">국어</a>
+   </div>
      <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
-     <a href="lectureList?lectypeb=문학&order=" style="color: black; text-decoration:none; margin-bottom: 5px;">문학</a>
+     <a href="lectureList?lectypeb=문학" style="color: black; text-decoration:none; margin-bottom: 5px;">문학</a>
    </div>
    <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
      <a href="lectureList?lectypeb=비문학" style="color: black; text-decoration:none;">비문학</a>
@@ -185,6 +237,9 @@ figure
        </div> 
      </div>
      <div class="anw">
+     <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypea=수학" style="color: black; text-decoration:none; margin-bottom: 5px;">수학</a>
+   </div>
      <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
         <a href="lectureList?lectypeb=수학1" style="color: black;text-decoration:none; margin-bottom: 1px;">수학1</a>
      </div>
@@ -203,6 +258,9 @@ figure
        </div> 
      </div>
      <div class="anw">
+      <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypea=영어" style="color: black; text-decoration:none; margin-bottom: 5px;">영어</a>
+   </div>
      <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
       <a href="lectureList?lectypeb=독해" style="color: black; text-decoration:none;">독해</a>
      </div>
@@ -218,6 +276,9 @@ figure
        </div> 
      </div>
      <div class="anw">
+            <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypea=사회" style="color: black; text-decoration:none; margin-bottom: 5px;">사회</a>
+   </div>
      <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
      <a href="lectureList?lectypeb=경제" style="color: black; text-decoration:none;">경제</a>
      </div>
@@ -234,8 +295,11 @@ figure
        </div> 
      </div>
      <div class="anw">
+            <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
+     <a href="lectureList?lectypea=과학" style="color: black; text-decoration:none; margin-bottom: 5px;">과학</a>
+   </div>
      <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
-    <a href="lectureList?lectypeb=과학" style="color: black; text-decoration:none;">화학</a>
+    <a href="lectureList?lectypeb=화학" style="color: black; text-decoration:none;">화학</a>
      </div >
    <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
    <a href="lectureList?lectypeb=생명과학" style="color: black; text-decoration:none;">생명과학</a>
@@ -261,14 +325,16 @@ figure
    <div style="width:2500px; margin-top: 50px; margin-left: 50px; margin-bottom: 30px; ">   
      
       <c:forEach var="dto" items="${list}">
-      
-               <div  class="text_photo hover11" style= "float:left; padding-left: 30px;">
+        <div style= "float:left; padding: 30px;">
+      <a class="banner_img"  href="lectureDetail?lecdenum=${dto.lecdenum}" style="text-decoration:none;">                         
+                     <img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788954762946.jpg" style=" width:200px ;height:200px; border:1px; "id="showimg">                        	
                
-             <a href="lectureDetail?lecdenum=${dto.lecdenum}" style="text-decoration:none;">
-                     <img src="../upload/${dto.lecphoto}" style=" width:200px ;height:200px; border:1px; "id="showimg">            
+               <p class="hover_text">${dto.teaname}</p>
                 </a>
+               
                  <p>과목명:${dto.lecname}</p>
                </div>
+              
       </c:forEach>   
       </div>
 </div>
@@ -284,7 +350,7 @@ figure
 	   var currentPosition = parseInt($("#Accordion_wrap").css("top"));
 	   $(window).scroll(function() {
 	     var position = $(window).scrollTop(); 
-	     $("#Accordion_wrap").stop().animate({"top":position+currentPosition+"px"},1000);
+	     $("#Accordion_wrap").stop().animate({"top":position+currentPosition+"px"},300);
 	   });
 	 });
    
