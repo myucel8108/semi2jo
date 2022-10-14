@@ -6,7 +6,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Yeon+Sung&display=swap" rel="stylesheet">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
@@ -17,6 +16,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style type="text/css">
+
+        body{
+            font-family: Noto Sans KR;
+        }
 
         span.likes {
             cursor: pointer;
@@ -31,9 +34,15 @@
         .report{
             cursor: pointer;
         }
-        .boardbtn:active, .boardbtn:focus{
-            outline:none !important;
-            box-shadow:none !important;
+        .boardbtn{
+            width: 100px;
+            height: 40px;
+            border-radius: 15px;
+            background-color: white;
+            border: 1px solid black;
+        }
+        .boardbtn:hover {
+            background-color: lightgrey;
         }
     </style>
     <script>
@@ -57,18 +66,18 @@
                         $.each(res,function(i,ids){
 
                             s+=ids;
-                            if(i%2==1){
-                                s+="<br><br>";
-                            }else{
-                                s+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-                            }
+                            // if(i%2==1){
+                            //     s+="<br><br>";
+                            // }else{
+                            //     s+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                            // }
                         });
                         if(res.length==0){
                             s="좋아요한 회원이 없습니다";
                         }
                         Swal.fire({
 
-                            title: "이 게시물을 좋아요한 회원들: ${dto.likes}명<br>",
+                            title: "좋아요한 회원들: ${dto.likes}명<br>",
 
                             html:s,
 
@@ -170,8 +179,6 @@
                                 s+="<img src='../upload/"+elt.userphoto+"' style='width: 30px; height: 30px;' class='rounded-circle' hspace='10'>";
                             }
                         }
-
-
                         s+="<b>"+elt.nickname+"</b>";
                         if (writeuser==elt.usernum){
                             s+="<span class='writer'>(작성자)</span>";
@@ -191,31 +198,11 @@
     </script>
 </head>
 <body>
-
-<!-- The Modal -->
-<%--<div class="modal fade" id="likeuserModal">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">좋아요한 회원들</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                <div class="like-users">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>--%>
 <div class="container" style="width: 1000px; padding: 100px;">
     <table class="table table-bordered" style="width: 100%;">
         <tr>
-            <td>
-                <h2><b>${dto.subject}</b></h2>
+            <td style="padding: 30px;">
+                <h2><b>${dto.subject}</b></h2><br>
                 <c:if test="${userphoto!='no'}"> <!--작성자의 프사-->
                     <img src="../upload/${userphoto}" width="40" height="40" class="rounded-circle"
                          onerror="this.src='../image/noprofilepicture.png'" hspace="10">
@@ -232,7 +219,7 @@
             </td>
         </tr>
         <tr height="200">
-            <td>
+            <td style="padding: 30px;">
                 <pre style="margin: 15px;"><b style="font-size: 17px;">${dto.content}</b></pre> <!--작성글 내용-->
                 <c:if test="${dto.photo!='no'}">    <!--작성글 첨부사진-->
                     <c:forTokens var="photo" items="${dto.photo}" delims=",">
@@ -249,13 +236,13 @@
                 &nbsp;
                 <span class="likeusericon" data-bs-toggle="modal" data-bs-target="#likeuserModal">
                 <%--<i class='fas fa-user-alt' style='font-size:16px'></i>--%>
-                    <i class="fa fa-user luser" style="font-size:24px"></i>
+                    <i class="fa fa-user luser" style="font-size:24px">&nbsp;<b class="likesuser" style="font-size: 15px">
+                    ${dto.likes}</b></i>
                 </span>
-                <b class="likesuser">
-                    &nbsp;${dto.likes}</b>
+
                 &nbsp;&nbsp;
-                <i class="far fa-comment-dots" style="font-size:24px"><b class="banswer" style="font-size: 15px">&nbsp;0</b></i>
-                <i class="fa fa-warning report" style="font-size:24px; float: right;"><b style="font-size: 15px">&nbsp;신고하기</b></i>
+                <i class="far fa-comment-dots" style="font-size:24px">&nbsp;<b class="banswer" style="font-size: 15px">0</b></i>
+                <i class="fa fa-warning report" style="font-size:24px; float: right; color: red"><b style="font-size: 15px; color: black;">&nbsp;신고하기</b></i>
                 <br><hr>
                 <div class="alist"></div>
                 <div class="aform">
@@ -264,10 +251,8 @@
                         <input type="hidden" name="usernum" value="${sessionScope.usernum}">
                         <div class="input-group">
                             <c:if test="${sessionScope.loginok!=null}">
-
-                            <textarea name="recontent" id="recontent" style="width: 400px; height: 100px;" class="form-control" placeholder="댓글을 입력해주세요"></textarea>
-                            <button type="button" class="btn btn-outline-dark boardbtn" id="btnreboard">등록</button>
-
+                            <textarea name="recontent" id="recontent" style="width: 400px; height: 100px; box-shadow: none;" class="form-control" placeholder="댓글을 입력해주세요"></textarea>
+                            <button type="button" class="btn btn-outline-dark" id="btnreboard" style="background-color: whitesmoke; color: black; box-shadow: none;">등록</button>
                             </c:if>
                             <c:if test="${sessionScope.loginok==null}">
                                 <textarea name="recontent" id="recontent" style="width: 400px; height: 100px;" class="form-control" placeholder="로그인 후 이용해주세요"></textarea>
@@ -277,10 +262,10 @@
                 </div>
                 <div style="text-align: center; float: bottom;"><hr>
 
-                <button type="button" class="btn btn-outline-dark boardbtn" onclick="location.href='boardFree?boardtype=${dto.boardtype}&currentPage=${currentPage}'">목록</button>
+                <button type="button" class="boardbtn" onclick="location.href='boardFree?boardtype=${dto.boardtype}&currentPage=${currentPage}'">목록</button>
                 <c:if test="${sessionScope.loginok!=null && sessionScope.usernum==dto.usernum}">
-                <button type="button" class="btn btn-outline-dark boardbtn" onclick="location.href='boardUpdate?boardnum=${dto.boardnum}&currentPage=${currentPage}'">수정</button>
-                <button type="button" class="btn btn-outline-dark boardbtn" onclick="if(confirm('게시글을 삭제하시겠습니까?')) location.href='delete?boardnum=${dto.boardnum}&currentPage=${currentPage}'">삭제</button>
+                <button type="button" class="boardbtn" onclick="location.href='boardUpdate?boardnum=${dto.boardnum}&currentPage=${currentPage}'">수정</button>
+                <button type="button" class="boardbtn" onclick="if(confirm('게시글을 삭제하시겠습니까?')) location.href='delete?boardnum=${dto.boardnum}&currentPage=${currentPage}'">삭제</button>
 <%--                    <button class="boarddelete" type="button">삭제</button>--%>
                 </c:if>
 
@@ -334,6 +319,10 @@
         });
         //댓글저장
         $("#btnreboard").click(function() {
+            if ($("#recontent").val()=='') {
+                alert("댓글을 입력 후 등록해주세요");
+                return;
+            }
             var fdata = $("#aform").serialize();
             $.ajax({
                 type : "post",

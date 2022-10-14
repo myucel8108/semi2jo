@@ -15,7 +15,9 @@
 <%--    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>--%>
     <link rel="stylesheet" type="text/css" href="${root}/css/board/boardForm.css">
     <style type="text/css">
-
+        body{
+            font-family: Noto Sans KR;
+        }
         #test_obj {
             position: fixed;
             width: 70px;
@@ -26,9 +28,12 @@
             border: 1px solid;
             border-color: grey;
         }
-        .boardbtn:active, .boardbtn:focus{
-            outline:none !important;
-            box-shadow:none !important;
+        .boardbtn{
+            width: 100px;
+            height: 40px;
+            border-radius: 15px;
+            background-color: white;
+            border: 1px solid black;
         }
         .boardbtn:hover {
             background-color: lightgrey;
@@ -39,17 +44,17 @@
 <div class="container" style="width: 1000px; padding: 50px;">
     <c:set var="root" value="<%=request.getContextPath() %>"/>
     <h1 style="text-align: center;">${boardtype.equals('free')?"자유게시판":"질문게시판"}</h1><br>
-    <div class="btn-group">
-        <button type="button" class="btn btn-outline-dark boardbtn" onclick="location.href='${root}/board/boardFree?boardtype=free'">자유</button>
-        <button type="button" class="btn btn-outline-dark boardbtn" onclick="location.href='${root}/board/boardFree?boardtype=ask'">질문</button>
+    <div class="btn-group" style="align-content: center;">
+        <button type="button" class="boardbtn" onclick="location.href='${root}/board/boardFree?boardtype=free'">자유</button>&nbsp;
+        <button type="button" class="boardbtn" onclick="location.href='${root}/board/boardFree?boardtype=ask'">질문</button>
     </div>
                 <button onclick="if(${sessionScope.loginok==null}){alert('로그인 후 이용해주세요')}
-                        else{location.href='${root}/board/boardForm'}" style="float: right;" class="btn btn-outline-dark boardbtn">글쓰기</button><br><br>
+                        else{location.href='${root}/board/boardForm'}" style="float: right;" class="boardbtn">글쓰기</button><br><br>
                 <div style="margin: 10px;">
-                    <table class="table" style="width: 100%; border-collapse: inherit; border-radius: 15px; border: 1px solid black;">
+                    <table class="table table-bordered">
                         <tr>
                             <td colspan="5" align="center">
-                                <b>이번주 인기게시물 TOP5</b>
+                                <b>이번주 인기게시물 <b style="color: #4481eb;">TOP5</b></b>
                             </td>
                         </tr>
                         <tr>
@@ -83,7 +88,7 @@
                 <br>
                 <div class="boardlist" style="margin: 10px;">
                     <c:set var="root" value="<%=request.getContextPath() %>"/>
-                    <table class="table" style="width: 100%; border-collapse: separate; border-radius: 10px; border: 1px solid black;">
+                    <table class="table table-bordered" style="width: 100%;">
                         <tr>
                             <th style="width:50px; text-align: center;">번호</th>
                             <th style="width: 300px; text-align: center;">제목</th>
@@ -121,8 +126,8 @@
                                 <option value="nickname">작성자</option>
                                 <option value="content">내용</option>
                             </select>
-                            <input type="text" name="searchword" style="width: 200px;" placeholder="검색어" value="${param.searchword}">
-                            <button type="submit" class="btn btn-outline-dark boardbtn">검색</button>
+                            <input type="text" name="searchword" style="width: 200px; border-width: thin thin thin thin;" placeholder="검색어" value="${param.searchword}">
+                            <button type="submit" class="boardbtn" style="border-radius: inherit;">검색</button>
                         </div>
                     </form>
                 </div><br>
@@ -136,10 +141,10 @@
                         <!-- 페이지번호 -->
                         <c:forEach var="pp" begin="${startPage}" end="${endPage}">
                             <c:if test="${pp==currentPage}">
-                                <li class="page-item"><a class="page-link boardbtn" href="boardFree?boardtype=${boardtype}&currentPage=${pp}" style="color: white; background-color: lightgrey;">${pp}</a></li>
+                                <li class="page-item"><a class="page-link boardbtn" href="boardFree?boardtype=${boardtype}&currentPage=${pp}" style="color: black; background-color: lightgrey; border-radius: inherit; box-shadow: none;">${pp}</a></li>
                             </c:if>
                             <c:if test="${pp!=currentPage}">
-                                <li class="page-item"><a class="page-link boardbtn" href="boardFree?boardtype=${boardtype}&currentPage=${pp}" style="color: black;">${pp}</a></li>
+                                <li class="page-item"><a class="page-link boardbtn" href="boardFree?boardtype=${boardtype}&currentPage=${pp}" style="color: black; border-radius: inherit; box-shadow: none;">${pp}</a></li>
                             </c:if>
                         </c:forEach>
 

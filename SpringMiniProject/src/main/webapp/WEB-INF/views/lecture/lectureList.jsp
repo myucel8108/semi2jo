@@ -206,9 +206,24 @@ figure
    .que.on .arrow-top {
      display: block; 
    }
+   #btnmycart{
+       width: 300px;
+       height: 70px;
+       font-size: 30px;
+       color: #3b5a9b;
+       background-color: white;
+       border-radius: 15px;
+       border-color: #3b5a9b;
+   }
+   #btnmycart:hover{
+       color: #1da1f2;
+       border-color: #1da1f2;
+   }
 </style>
 </head>
 <body>
+<button id="btnmycart"><i class="fa fa-shopping-cart"></i>&nbsp;장바구니</button>
+
    <div class="container" style=" display: flex; min-height: 1000px;">
    <div id="Accordion_wrap" style="width: 300px; margin-top: 50px; margin-left: 100px; ">
      <div class="que">
@@ -327,7 +342,7 @@ figure
       <c:forEach var="dto" items="${list}">
         <div style= "float:left; padding: 30px;">
       <a class="banner_img"  href="lectureDetail?lecdenum=${dto.lecdenum}" style="text-decoration:none;">                         
-                     <img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788954762946.jpg" style=" width:200px ;height:200px; border:1px; "id="showimg">                        	
+                     <img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788954762946.jpg" style=" width:240px ;height:320px; border:1px; "id="showimg">
                
                <p class="hover_text">${dto.teaname}</p>
                 </a>
