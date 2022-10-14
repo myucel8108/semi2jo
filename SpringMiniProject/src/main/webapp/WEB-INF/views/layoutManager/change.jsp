@@ -51,7 +51,7 @@
 
                         </div>
                         <div class="col-auto">
-                            <i class="bi bi-coin" style="font-size: 30px; color: green"></i>
+                            <i class="bi bi-coin" style="font-size: 30px; color: goldenrod"></i>
                         </div>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                             <%--                                        </div>--%>
                         </div>
                         <div class="col-auto">
-                            <i class="bi bi-people-fill" style="font-size: 30px; color: purple"></i>
+                            <i class="bi bi-people-fill" style="font-size: 30px;"></i>
                         </div>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                             <%--                                        </div>--%>
                         </div>
                         <div class="col-auto">
-                            <i class="bi bi-book" style="font-size: 30px; color: blue"></i>
+                            <i class="bi bi-book" style="font-size: 30px; color: green"></i>
                         </div>
                     </div>
                 </div>

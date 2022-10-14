@@ -617,8 +617,6 @@ public class ManagerController {
         map.put("endPage",endPage);
         map.put("no",no);
         map.put("totalPage",totalPage);
-        System.out.println("controller");
-        System.out.println(list);
         return map;
     }
 
@@ -626,7 +624,6 @@ public class ManagerController {
     @PostMapping("/manager/revertReport")
     @ResponseBody
     public void revertReportBoard(int boardnum){
-        System.out.println("revert controller");
         reportBoardServiceInter.revertReport(boardnum);
     }
 
@@ -634,7 +631,6 @@ public class ManagerController {
     @PostMapping("/manager/deleteReport")
     @ResponseBody
     public void deleteReportBoard(int boardnum){
-        System.out.println("delete controller");
         boardService.deleteBoard(boardnum);
     }
 

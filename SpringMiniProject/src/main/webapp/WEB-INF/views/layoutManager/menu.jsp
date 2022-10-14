@@ -63,45 +63,60 @@
     <hr class="sidebar-divider my-0">
     <li class="nav-item active">
         <a class="nav-link" href='${root}/manager/main'>
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>관리자 페이지</span></a>
+<%--            <i class="fas fa-fw fa-tachometer-alt"></i>--%>
+            <span>매출 관리</span></a>
     </li>
-    <hr class="sidebar-divider">
-    <div class="sidebar-heading">
-        Features
-    </div>
-<%--    User 메뉴--%>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="${root}/userlist" data-toggle="collapse" data-target="#collapseBootstrap"
-           aria-expanded="true" aria-controls="collapseBootstrap">
-            <i class="far fa-fw fa-window-maximize"></i>
-            <span>회원관리</span>
-        </a>
+    <li class="nav-item active">
+        <a class="nav-link" href='${root}/userlist'>
+<%--            <i class="fas fa-fw fa-tachometer-alt"></i>--%>
+            <span>회원 관리</span></a>
     </li>
-<%--    Lecture 메뉴--%>
-    <li class="nav-item" onclick="location.href='${root}/lecturelist'">
-        <a class="nav-link collapsed"  data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
-           aria-controls="collapseForm" >
-            <i class="fab fa-fw fa-wpforms"></i>
-            <span>강좌</span>
-        </a>
+    <li class="nav-item active">
+        <a class="nav-link" href='${root}/lecturelist'>
+<%--            <i class="fas fa-fw fa-tachometer-alt"></i>--%>
+            <span>강좌 관리</span></a>
     </li>
-    <li class="nav-item" onclick="location.href='${root}/manager/boardControl'">
-        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
-           aria-controls="collapseTable">
-            <i class="fas fa-fw fa-table"></i>
-            <span>커뮤니티 관리</span>
-        </a>
+    <li class="nav-item active">
+        <a class="nav-link" href='${root}/manager/boardControl'>
+<%--            <i class="fas fa-fw fa-tachometer-alt"></i>--%>
+            <span>커뮤니티 관리</span></a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
-           aria-controls="collapseTable">
-            <i class="fas fa-fw fa-table"></i>
-            <span>QnA 관리</span>
-        </a>
-    </li>
-    <hr class="sidebar-divider">
-    <div class="version" id="version-ruangadmin"></div>
+<%--    <hr class="sidebar-divider">--%>
+<%--    <div class="sidebar-heading">--%>
+<%--        Features--%>
+<%--    </div>--%>
+<%--&lt;%&ndash;    User 메뉴&ndash;%&gt;--%>
+<%--    <li class="nav-item">--%>
+<%--        <a class="nav-link collapsed" href="${root}/userlist" data-toggle="collapse" data-target="#collapseBootstrap"--%>
+<%--           aria-expanded="true" aria-controls="collapseBootstrap">--%>
+<%--            <i class="far fa-fw fa-window-maximize"></i>--%>
+<%--            <span>회원관리</span>--%>
+<%--        </a>--%>
+<%--    </li>--%>
+<%--&lt;%&ndash;    Lecture 메뉴&ndash;%&gt;--%>
+<%--    <li class="nav-item" onclick="location.href='${root}/lecturelist'">--%>
+<%--        <a class="nav-link collapsed"  data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"--%>
+<%--           aria-controls="collapseForm" >--%>
+<%--            <i class="fab fa-fw fa-wpforms"></i>--%>
+<%--            <span>강좌</span>--%>
+<%--        </a>--%>
+<%--    </li>--%>
+<%--    <li class="nav-item" onclick="location.href='${root}/manager/boardControl'">--%>
+<%--        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"--%>
+<%--           aria-controls="collapseTable">--%>
+<%--            <i class="fas fa-fw fa-table"></i>--%>
+<%--            <span>커뮤니티 관리</span>--%>
+<%--        </a>--%>
+<%--    </li>--%>
+<%--    <li class="nav-item">--%>
+<%--        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"--%>
+<%--           aria-controls="collapseTable">--%>
+<%--            <i class="fas fa-fw fa-table"></i>--%>
+<%--            <span>QnA 관리</span>--%>
+<%--        </a>--%>
+<%--    </li>--%>
+<%--    <hr class="sidebar-divider">--%>
+<%--    <div class="version" id="version-ruangadmin"></div>--%>
 </ul>
 <!-- Sidebar -->
 
