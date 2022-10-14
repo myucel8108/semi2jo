@@ -62,14 +62,14 @@ public class ReadyPayController {
 	 MyLectureDto dto = new MyLectureDto();
 
 
-	// �뜝�럥�걥�뜝�럥堉� �뛾�룇猷꾤뵳占�
+	// 占쎈쐻占쎈윥占쎄괘占쎈쐻占쎈윥�젆占� 占쎈쎗占쎈즵�뙴袁ㅻ뎨�뜝占�
 	  @RequestMapping(value = "/payment/callback_receive")
 	  @ResponseBody
 	  public ResponseEntity<?> callback_receive(@RequestBody Map<String, Object> model, HttpServletRequest request ){  
 		  HttpSession session = request.getSession();
 		  int usernum = (int) session.getAttribute("usernum");
 		System.out.println(usernum);
-		String process_result="�뇦猿됲�ｏ옙�젷�뜝�럡�뎽占썩뫅�삕";
+		String process_result="占쎈눇�뙼�맪占쏙퐦�삕占쎌졆占쎈쐻占쎈윞占쎈렰�뜝�뜦維낉옙�굲";
 		System.out.println(process_result);
 		JSONObject responseobj = new JSONObject();
 		HttpHeaders responseHeaders = new HttpHeaders();
