@@ -105,6 +105,15 @@ public class LectureController {
         return "/main/lecture/lectureList";
 
     }
+    @GetMapping(value= "/lecture/lectureList" , params = {"lectypea"})
+    public String lectureCategori2(@RequestParam String lectypea , Model model) {
 
+        List<ReadyPayDto> list =  readypayservice.selectByCategori2(lectypea);
+        model.addAttribute("list",list);
+
+
+        return "/main/lecture/lectureList";
+
+    }
 
 }
