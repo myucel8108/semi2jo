@@ -151,7 +151,7 @@ figure
      
    .que::before{
      display: inline-block;
-     content: ;
+     /*content: ;*/
      font-size: 14px;
      margin: 0 5px;
    }
