@@ -447,7 +447,7 @@ public class ManagerController {
         mview.addObject("lecnum", lecnum);
         mview.addObject("dto", dto);
         mview.addObject("list", list);
-        System.out.println(list);
+//        System.out.println(list);
 
         mview.setViewName("/manager/manager/lectureDetail");
 
