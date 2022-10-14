@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -7,72 +7,67 @@
     <title>Insert title here</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="css/manager/lectureList.css">
     <style type="text/css">
-        ul.pagination{
+        ul.pagination {
             justify-content: center;
         }
 
-        .possible-list{
+        .possible-list {
             margin-bottom: 30px;
             font-size: 40px;
             display: flex;
             justify-content: center;
         }
 
-        .lecture-count{
+        .lecture-count {
             display: flex;
             justify-content: end;
             padding-right: 130px;
         }
 
-        .present-container{
+        .present-container {
             cursor: pointer;
         }
 
-        .whole-list{
-            height: 91vh;
-        }
-
-        .paging{
+        .paging {
             padding-bottom: 20px;
         }
 
-        .search-box{
+        .search-box {
             padding-right: 125px;
             display: flex;
             justify-content: right;
         }
 
-        .insert-button{
+        .insert-button {
             padding-right: 125px;
             display: flex;
             justify-content: end;
         }
 
-        #paging-pp{
+        #paging-pp {
             color: white;
             background-color: #5a5c69;
             border-color: #5a5c69;
         }
 
-        #paging-np{
+        #paging-np {
             color: #5a5c69;
             background-color: white;
             border-color: #5a5c69;
         }
 
-        .container{
+        .container {
             padding-left: 30px;
         }
 
-        .typeb{
+        .typeb {
             font-size: 15px;
         }
     </style>
 </head>
-
 <body>
 <div class="whole-list">
     <div class="possible-list">
@@ -100,7 +95,8 @@
                     <c:if test="${dto.lectypea=='국어'}">
                         <div class="col">
                             <div class="card radius-10 border-start border-0 border-3 border-info">
-                                <div class="card-body present-container" onclick="location.href='${root}/mini/lectureDetail?lecnum=${dto.lecnum}'">
+                                <div class="card-body present-container"
+                                     onclick="location.href='${root}/mini/lectureDetail?lecnum=${dto.lecnum}'">
                                     <div class="d-flex align-items-center">
                                         <div>
                                             <p class="mb-0 text-dark">[${dto.lectypea}]</p>
@@ -116,7 +112,8 @@
                     <c:if test="${dto.lectypea=='수학'}">
                         <div class="col">
                             <div class="card radius-10 border-start border-0 border-3 border-primary">
-                                <div class="card-body present-container" onclick="location.href='${root}/mini/lectureDetail?lecnum=${dto.lecnum}'">
+                                <div class="card-body present-container"
+                                     onclick="location.href='${root}/mini/lectureDetail?lecnum=${dto.lecnum}'">
                                     <div class="d-flex align-items-center">
                                         <div>
                                             <p class="mb-0 text-dark">[${dto.lectypea}]</p>
@@ -132,7 +129,8 @@
                     <c:if test="${dto.lectypea=='영어'}">
                         <div class="col">
                             <div class="card radius-10 border-start border-0 border-3 border-success">
-                                <div class="card-body present-container" onclick="location.href='${root}/mini/lectureDetail?lecnum=${dto.lecnum}'">
+                                <div class="card-body present-container"
+                                     onclick="location.href='${root}/mini/lectureDetail?lecnum=${dto.lecnum}'">
                                     <div class="d-flex align-items-center">
                                         <div>
                                             <p class="mb-0 text-dark">[${dto.lectypea}]</p>
@@ -148,7 +146,8 @@
                     <c:if test="${dto.lectypea=='사회탐구'}">
                         <div class="col">
                             <div class="card radius-10 border-start border-0 border-3 border-warning">
-                                <div class="card-body present-container" onclick="location.href='${root}/mini/lectureDetail?lecnum=${dto.lecnum}'">
+                                <div class="card-body present-container"
+                                     onclick="location.href='${root}/mini/lectureDetail?lecnum=${dto.lecnum}'">
                                     <div class="d-flex align-items-center">
                                         <div>
                                             <p class="mb-0 text-dark">[${dto.lectypea}]</p>
@@ -164,7 +163,8 @@
                     <c:if test="${dto.lectypea=='과학탐구'}">
                         <div class="col">
                             <div class="card radius-10 border-start border-0 border-3 border-danger">
-                                <div class="card-body present-container" onclick="location.href='${root}/mini/lectureDetail?lecnum=${dto.lecnum}'">
+                                <div class="card-body present-container"
+                                     onclick="location.href='${root}/mini/lectureDetail?lecnum=${dto.lecnum}'">
                                     <div class="d-flex align-items-center">
                                         <div>
                                             <p class="mb-0 text-dark">[${dto.lectypea}]</p>
@@ -180,7 +180,8 @@
                     <c:if test="${dto.lectypea=='제2외국어'}">
                         <div class="col">
                             <div class="card radius-10 border-start border-0 border-3 border-secondary">
-                                <div class="card-body present-container" onclick="location.href='${root}/mini/lectureDetail?lecnum=${dto.lecnum}'">
+                                <div class="card-body present-container"
+                                     onclick="location.href='${root}/mini/lectureDetail?lecnum=${dto.lecnum}'">
                                     <div class="d-flex align-items-center">
                                         <div>
                                             <p class="mb-0 text-dark">[${dto.lectypea}]</p>
@@ -199,7 +200,9 @@
     </div>
     <br>
     <div class="insert-button"> <!-- 강좌 등록 버튼 -->
-        <button type="button" class="btn btn-sm btn-outline-primary" onclick="location.href='/mini/addlectureform'">강좌 등록</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='/mini/addlectureform'">강좌
+            등록
+        </button>
     </div>
     <br>
     <!-- 페이징 -->
@@ -212,10 +215,12 @@
             <!-- 페이지 번호 -->
             <c:forEach var="pp" begin="${startPage}" end="${endPage}">
                 <c:if test="${pp==currentPage}">
-                    <li class="page-item active"><a href="lecturelist?currentPage=${pp}" class="page-link" id="paging-pp">${pp}</a></li>
+                    <li class="page-item active"><a href="lecturelist?currentPage=${pp}" class="page-link"
+                                                    id="paging-pp">${pp}</a></li>
                 </c:if>
                 <c:if test="${pp!=currentPage}">
-                    <li class="page-item"><a href="lecturelist?currentPage=${pp}" class="page-link" id="paging-np">${pp}</a></li>
+                    <li class="page-item"><a href="lecturelist?currentPage=${pp}" class="page-link"
+                                             id="paging-np">${pp}</a></li>
                 </c:if>
             </c:forEach>
 

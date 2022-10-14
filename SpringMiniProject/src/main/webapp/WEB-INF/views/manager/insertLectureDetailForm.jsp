@@ -176,7 +176,7 @@
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right button-box">
                                     <button type="submit" name="insertDetail" class="btn btn-outline-primary">등록하기
-                                    </button>                                    &nbsp;
+                                    </button> &nbsp;
                                     <button type="button" id="detail-Back" class="btn btn-outline-secondary">돌아가기
                                     </button>
                                 </div>

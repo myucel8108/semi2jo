@@ -179,6 +179,14 @@
                                     temp += "<span>[일]</span>";
                                 }
                             }
+
+                            $("#deleteLecDetail${dtolist.lecdenum}").click(function () {
+                                var a = confirm("강의를 삭제하시겠습니까?");
+                                if (a) {
+                                    location.href = "${root}/deleteLectureDetail?lecdenum=${dtolist.lecdenum}&lecnum=${dto.lecnum}"
+                                }
+                            });
+
                             var result = "${temp}";
                             $(".show-lecday${dtolist.lecdenum}").html(temp);
                         </script>
