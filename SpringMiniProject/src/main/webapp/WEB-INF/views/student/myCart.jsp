@@ -15,7 +15,7 @@
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 
     <style type="text/css">
-        body *{
+        .container{
             font-family: 'Noto Sans KR';
         }
         .lectd th,td{
@@ -36,6 +36,7 @@
 
 </head>
 <body>
+<div class="container">
 <h1>장바구니</h1>
 <div class="lectdbox">
     <table class="table table-bordered lectd">
@@ -98,6 +99,7 @@
     </table>
     <button type="button" id="selectDel">선택삭제</button>&nbsp;&nbsp;&nbsp;&nbsp;
     <button type="button" onclick="payment('kcp','test','card')" style="float: right">결제하기</button>
+</div>
 </div>
 <script type="text/javascript">
 

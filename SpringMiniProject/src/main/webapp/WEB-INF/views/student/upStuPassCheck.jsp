@@ -15,7 +15,9 @@
     <c:set var="root" value="<%=request.getContextPath() %>"/>
     <link rel="stylesheet" type="text/css" href="${root}/css/updateform.css">
     <style type="text/css">
-
+        .container{
+            font-family: 'Noto Sans KR';
+        }
     </style>
     <script type="text/javascript">
 
