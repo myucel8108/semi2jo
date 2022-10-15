@@ -8,8 +8,8 @@
 
 
 	<insert id="insertQna" parameterType="qnaDto">
-		insert into qna (usernum, username, qnatype, subject, content, photo,pass,writeday,regroup,restep,relevel,secret)
-		values (#{usernum}, #{username}, #{qnatype}, #{subject}, #{content}, #{photo},#{pass},now(),#{regroup},#{restep},#{relevel},#{secret})
+		insert into qna (usernum, username, qnatype, subject, content, photo,pass,writeday,regroup,restep,relevel,secret,gongzitype)
+		values (#{usernum}, #{username}, #{qnatype}, #{subject}, #{content}, #{photo},#{pass},now(),#{regroup},#{restep},#{relevel},#{secret},#{gongzitype})
 	</insert>
 	<select id="getTotalCount" parameterType="int" resultType="int">
 		select count(*) from qna
@@ -18,10 +18,12 @@
 		</if>
 	</select>
 	<select id="getPagingList" parameterType="Map" resultType="qnaDto">
+
 		select * from qna
 		<if test="usernum!=0">
 			where usernum=#{usernum}
 		</if>
+
 		order by gongzitype asc, regroup desc, restep asc limit #{startnum},#{perpage}
 	</select>
 

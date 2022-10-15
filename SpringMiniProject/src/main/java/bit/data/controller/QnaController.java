@@ -115,12 +115,21 @@ public class QnaController {
     {
         String path = request.getSession().getServletContext().getRealPath("/resources/upload");
 
+        if (dto.getQnatype().equals("공지사항"))
+            dto.setGongzitype("0");
+        else
+            dto.setGongzitype("1");
+
 //        loginid 에 해당하는 username 얻기
         String username=userService.getDataByNum(dto.getUsernum()).getUsername();
 //        int usernum=userService.getDataById(dto.getUsername()).getUsernum();
 //        dto.setUsernum(usernum);
         dto.setUsername(username);
-        System.out.println(dto.getPass());
+        System.out.println(dto.getQnatype());
+
+
+
+
         if (upload.get(0).getOriginalFilename().equals("")) {
             dto.setPhoto("no");
         } else {

@@ -125,7 +125,7 @@
                             </c:if>
                                 ${dto.subject}&nbsp;&nbsp;
                             <c:if test="${sessionScope.loginok!=null and dto.qnatype=='공지사항'}">
-                                <span style="color: red; text-decoration-style: solid;"><b style="margin-left: 40%;">티치미&nbsp;${dto.qnatype}</b></span>
+                                <span style="color: red; text-decoration-style: solid;"><b style="margin-left: 37%;">티치미&nbsp;${dto.qnatype}</b></span>
                             </c:if>
                             <c:if test="${sessionScope.loginok!=null and dto.qnatype!='공지사항'}">
                                 ${dto.qnatype}
@@ -136,6 +136,7 @@
                             <c:if test="${dto.relevel>0 and sessionScope.loginok!=null}">
                                 <b style="color: orange; text-decoration: none;">답변완료</b>
                             </c:if>
+
                         </a>
                     </td>
                     <c:set var="username" value="${resultInfo.dto.username}"/>
