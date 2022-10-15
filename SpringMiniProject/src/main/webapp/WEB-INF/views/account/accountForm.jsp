@@ -28,7 +28,7 @@
         <%--        <div class="wrap-login100">--%>
         <div class="login100-form validate-form" style="justify-content: center">
 					<span class="login100-form-title p-b-43">
-						Login
+						Sign In
 					</span>
 
 <%--            id 입력--%>
@@ -86,10 +86,10 @@
 
 
             <div class="container-login100-form-btn">
-                <button class="login100-form-btn" id="btn-sign-in" style="width: 40%; margin-right: 5%">
+                <button class="login100-form-btn" id="btn-sign-in" style="width: 40%; margin-right: 5%; color: black">
                     Sign In
                 </button>
-                <button class="login100-form-btn" style="width: 40%; margin-left: 5%"
+                <button class="login100-form-btn" style="width: 40%; margin-left: 5%; color: black"
                         onclick="location.href='${root}/insertAccountF'">
                     Sign Up
                 </button>

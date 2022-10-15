@@ -527,6 +527,11 @@ public class ManagerController {
 
     @PostMapping("/updateLectureDetail")
     public String updateLectureDetail(LecDetailDto dto, int lecnum) {
+        System.out.println("lecday"+dto.getLecday());
+        System.out.println("price"+dto.getPrice());
+        System.out.println("month"+dto.getLecmonth());
+        System.out.println("lectime"+dto.getLectime());
+        System.out.println(dto);
         lecDetailService.updateLectureDetail(dto);
         return "redirect:lectureDetail?lecnum=" + lecnum;
     }
