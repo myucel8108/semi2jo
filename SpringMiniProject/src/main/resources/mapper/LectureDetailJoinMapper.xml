@@ -7,4 +7,10 @@
         where lec.lecnum = de.lecnum and lec.lecnum = #{lecnum}
         order by lectypea desc
     </select>
+    <select id="getLectureDetailData" parameterType="int" resultType="lectureDetailJoinDto">
+        select lec.lecnum, lec.lecname, lec.lectypea, lec.lectypeb, lec.lecphoto, lec.teaname, de.lecdenum, de.roomnum, de.price, de.lectime, de.lecday, de.lecmonth, de.lecyear
+        from lecture lec, lecdetail de
+        where lec.lecnum = de.lecnum and de.lecdenum = #{lecdenum}
+        order by lectypea desc
+    </select>
 </mapper>

@@ -121,7 +121,7 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>수강료</label>
-                                    <input type="text" class="form-control lec-price" pattern="[0-9]{7,}" name="price"
+                                    <input type="text" class="form-control lec-price" oninput="numberOnly(this)" name="price"
                                            placeholder="수강료 입력">
                                 </div>
                                 <br>
@@ -176,7 +176,7 @@
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right button-box">
                                     <button type="submit" name="insertDetail" class="btn btn-outline-primary">등록하기
-                                    </button>                                    &nbsp;
+                                    </button> &nbsp;
                                     <button type="button" id="detail-Back" class="btn btn-outline-secondary">돌아가기
                                     </button>
                                 </div>
@@ -194,7 +194,7 @@
     //   // 숫자만 남긴 후 포맷
     //   target.value = Number(target.value
     //           .replace(/[^0-9]/g, ''))
-    //           .toLocaleString();
+    //           // .toLocaleString();
     // }
 
     // //DB로 넘길 때 다시 콤마 제거

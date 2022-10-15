@@ -9,49 +9,49 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <link rel="stylesheet" href="resources/css/manager/insertLectureDetailForm.css">
     <style type="text/css">
-      .select-room {
-        width: 150px;
-        height: 32px;
-        border: 1px solid lightgray;
-        border-radius: 2px;
-      }
+        .select-room {
+            width: 150px;
+            height: 32px;
+            border: 1px solid lightgray;
+            border-radius: 2px;
+        }
 
-      .container {
-        margin-top: 50px;
-        height: 81vh;
-      }
+        .container {
+            margin-top: 50px;
+            height: 81vh;
+        }
 
-      .margin-box {
-        margin-bottom: 20px;
-      }
+        .margin-box {
+            margin-bottom: 20px;
+        }
 
-      label {
-        margin-bottom: 10px;
-      }
+        label {
+            margin-bottom: 10px;
+        }
 
-      .body-check {
-        line-height: 30px;
-      }
+        .body-check {
+            line-height: 30px;
+        }
 
-      .title-box {
-        margin-bottom: 30px;
-      }
+        .title-box {
+            margin-bottom: 30px;
+        }
 
-      .button-box {
-        display: flex;
-        justify-content: end;
-      }
+        .button-box {
+            display: flex;
+            justify-content: end;
+        }
 
-      .data-box {
-        padding: 90px 90px 30px 90px;
-      }
+        .data-box {
+            padding: 90px 90px 30px 90px;
+        }
     </style>
 </head>
 <body class="body-check">
 <div class="container">
     <form action="updateLectureDetail?lecdenum=${dto.lecdenum}" method="post">
-            <input hidden="hidden" name="lecnum" value="${dto.lecnum}">
-            <input hidden="hidden" name="lecname" value="${dto.lecname}">
+        <input hidden="hidden" name="lecnum" value="${dto.lecnum}">
+        <input hidden="hidden" name="lecname" value="${dto.lecname}">
         <div class="row gutters">
             <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                 <div class="card h-100">
@@ -74,7 +74,7 @@
                                 <h6 class="user-email">[${dto.lectypea}]-${dto.lectypeb}</h6>
                             </div>
                             <div class="about">
-                                <h5>${dto.teaname}</h5>
+                                <h5 class="text-dark">${dto.teaname}</h5>
                             </div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                     <div class="card-body data-box">
                         <div class="row gutters">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 title-box">
-                                <h3 class="mb-2 text-primary">강의 등록</h3>
+                                <h3 class="mb-2 text-dark">강의 등록</h3>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 margin-box">
                                 <div class="form-group">
@@ -120,71 +120,71 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>수강료</label>
-                                    <input type="text" class="form-control lec-price" name="price" placeholder="수강료 입력"
+                                    <input type="text" class="form-control lec-price" oninput="numberOnly(this)" name="price" placeholder="수강료 입력"
                                            value="${dto.price}">
                                 </div>
                                 <br>
                                 <br>
                             </div>
-                          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 margin-box">
-                            <div class="form-group">
-                              <label>수강일</label>
-                              <br>
-                              <label><input type="checkbox" class="lecday" name="lecday" value="1"> 월요일</label>
-                              <label><input type="checkbox" class="lecday" name="lecday" value="2"> 화요일</label>
-                              <label><input type="checkbox" class="lecday" name="lecday" value="3"> 수요일</label>
-                              <label><input type="checkbox" class="lecday" name="lecday" value="4"> 목요일</label>
-                              <label><input type="checkbox" class="lecday" name="lecday" value="5"> 금요일</label>
-                              <br>
-                              <label><input type="checkbox" class="lecday" name="lecday" value="6"> 토요일</label>
-                              <label><input type="checkbox" class="lecday" name="lecday" value="7"> 일요일</label>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 margin-box">
+                                <div class="form-group">
+                                    <label>수강일</label>
+                                    <br>
+                                    <label><input type="checkbox" class="lecday" name="lecday" value="1"> 월요일</label>
+                                    <label><input type="checkbox" class="lecday" name="lecday" value="2"> 화요일</label>
+                                    <label><input type="checkbox" class="lecday" name="lecday" value="3"> 수요일</label>
+                                    <label><input type="checkbox" class="lecday" name="lecday" value="4"> 목요일</label>
+                                    <label><input type="checkbox" class="lecday" name="lecday" value="5"> 금요일</label>
+                                    <br>
+                                    <label><input type="checkbox" class="lecday" name="lecday" value="6"> 토요일</label>
+                                    <label><input type="checkbox" class="lecday" name="lecday" value="7"> 일요일</label>
+                                </div>
+                                <span name="showLecday"></span>
                             </div>
-                            <span name="showLecday"></span>
-                          </div>
-                          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="form-group">
-                              <span id="lecTime-button">강의 시간</span>
-                              <br>
-                              <span id="lec-time">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <span id="lecTime-button">강의 시간</span>
+                                    <br>
+                                    <span id="lec-time">
                                     </span>
+                                </div>
                             </div>
-                          </div>
                         </div>
-                      <br>
-                            <div class="row gutters">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 margin-box">
-                                    <div class="form-group">
-                                        <label>강의월</label>
-                                        <br>
-                                        <select class="select-room lec-month" name="lecmonth" style="font-size: 13px">
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label for="lecture-year">강의 년도</label>
-                                        <input type="number" class="form-control" id="lecture-year" name="lecyear"
-                                               oninput="numberOnly(this)" placeholder="강의 년도">
-                                    </div>
+                        <br>
+                        <div class="row gutters">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 margin-box">
+                                <div class="form-group">
+                                    <label>강의월</label>
+                                    <br>
+                                    <select class="select-room lec-month" name="lecmonth" style="font-size: 13px">
+                                    </select>
                                 </div>
                             </div>
-                            <br>
-                            <br>
-                            <br>
-                            <div class="row gutters">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="text-right button-box">
-                                        <button type="submit" name="updateDetail" class="btn btn-outline-primary">등록하기
-                                        </button>                                        &nbsp;
-                                        <button type="button" id="detail-Back" class="btn btn-outline-secondary">돌아가기
-                                        </button>
-                                    </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="lecture-year">강의 년도</label>
+                                    <input type="number" class="form-control" id="lecture-year" name="lecyear"
+                                           oninput="numberOnly(this)" placeholder="강의 년도">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="text-right button-box">
+                                    <button type="submit" name="updateDetail" class="btn btn-outline-dark">수정하기
+                                    </button> &nbsp;
+                                    <button type="button" id="detail-Back" class="btn btn-outline-secondary">돌아가기
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </form>
 </div>
 <script>
@@ -192,6 +192,16 @@
     for (var i = 1; i < temp.options.length; i++) {
         if ("${dto.roomnum}" == temp.options[i].value) {
             temp.options[i].selected = "true";
+        }
+    }
+
+    //수강일 DB값 얻어와서 출력
+    var lecday = "1,2,3";
+    var lecday_arr = lecday.split(",");
+    // console.log(lecday_arr);
+    for (var i=1; i<=7; i++){
+        for (var j=0; j<lecday_arr.length; j++){
+
         }
     }
 
