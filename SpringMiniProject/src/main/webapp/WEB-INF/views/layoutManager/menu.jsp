@@ -12,29 +12,8 @@
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <style>
-        @font-face {
-            font-family: 'MICEGothic Bold';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic Bold.woff2') format('woff2');
-            font-weight: 700;
-            font-style: normal;
-        }
-
-        * {
-            font-family: 'MICEGothic Bold';
-        }
-
         div>div{
             width: 100%;
-        }
-
-        .atag{
-            text-decoration: none;
-            color: gray;
-        }
-
-        .menu {
-            vertical-align: middle;
-            text-align:center;
         }
     </style>
     <script>

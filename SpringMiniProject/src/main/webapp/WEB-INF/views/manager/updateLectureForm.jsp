@@ -14,7 +14,6 @@
     <style type="text/css">
         .mb-4 {
             font-size: 19px;
-            width: 87.1vw;
         }
 
         .m-0 {

@@ -21,14 +21,19 @@
         * {
             font-family: 'MICEGothic Bold';
         }
+
+        #logoutbox{
+            justify-content: right;
+            padding-right: 123px;
+        }
     </style>
     <c:set var="root" value="<%=request.getContextPath() %>"></c:set>
 
     <div id="content-wrapper" class="d-flex flex-column">
         <div id="content">
     <!-- TopBar -->
-    <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top" style="background-color: yellowgreen">
-
+    <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top" id="logoutbox">
+        <button type="button" class="btn btn-outline-primary" id="btn-logout-manager">Log Out</button>
 <%--        <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">--%>
 <%--            <i class="fa fa-bars"></i>--%>
 <%--        </button>--%>
