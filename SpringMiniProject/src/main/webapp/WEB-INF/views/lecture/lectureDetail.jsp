@@ -320,7 +320,7 @@ position: relative;
          </tr>
          </tbody>
       </table>
-   <button id="writecolor" class=" load  btn btn-outline"  type="button" onclick="gocart(event)"> 장바구니</button>
+   <button id="writecolor" class="btn btn-outline"  type="button" onclick="gocart(event)"> 장바구니</button>
       </div>      
    </div>   
 
@@ -330,18 +330,19 @@ position: relative;
 <div style="margin: 0 auto;  display: inline-block; ">
 
    <nav class="css-1ptx8z" style="display: flex; Position: Sticky ; top:0;" >
-         <div class=" css-1bmzgfy">      
-         <li style="list-style: none;"><a href="#div0" id="scroll_move">강의 확인</a></li>
-            </div>
-      <div class=" css-1bmzgfy">      
-         <li style="list-style: none;"><a href="#div1" id="scroll_move">상세 설명</a></li>
-            </div>
-            <div class=" css-1bmzgfy">   
-            <li style="list-style: none;"><a href="#div2" id="scroll_move">취소 및 환불규정</a></li>
-            </div>         
-            <div class=" css-1bmzgfy">   
-         <li style="list-style: none;"><a href="#div3" id="scroll_move">후기</a></li>         
-      </div>   
+         <a href="#div0" class=" css-1bmzgfy" id="scroll_move">
+         
+         <li style="list-style: none;">강의 확인</li>
+           </a>
+      <a href="#div1" id="scroll_move" class=" css-1bmzgfy">
+         <li style="list-style: none;">상세 설명</li>
+           </a>
+           <a href="#div2" id="scroll_move" class=" css-1bmzgfy">
+            <li style="list-style: none;">취소 및 환불규정</li>
+                     </a>
+            <a href="#div3" id="scroll_move" class=" css-1bmzgfy">
+         <li style="list-style: none;">후기</li>         
+     </a>
    </nav>   
    
    
@@ -569,9 +570,7 @@ position: relative;
         		
         	}
 			
-		});
-      
-       
+		});     
 });      
 </script>
 </body>
