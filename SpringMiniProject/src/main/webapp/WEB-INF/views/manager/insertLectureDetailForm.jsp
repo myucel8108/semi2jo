@@ -75,7 +75,7 @@
                                 <h6 class="user-email">[${dto.lectypea}]-${dto.lectypeb}</h6>
                             </div>
                             <div class="about">
-                                <h5>${dto.teaname}</h5>
+                                <h5 style="color: black">${dto.teaname}</h5>
                             </div>
                         </div>
                     </div>
@@ -86,13 +86,13 @@
                     <div class="card-body data-box">
                         <div class="row gutters">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 title-box">
-                                <h3 class="mb-2 text-primary">강의 등록</h3>
+                                <h3 class="mb-2 text-dark">강의 등록</h3>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 margin-box">
                                 <div class="form-group">
                                     <label for="fullName" id="room-label" name="roomnum">강의실</label>
                                     <br>
-                                    <select class="select-room" id="fullName" style="font-size: 13px" name="roomnum">
+                                    <select class="select-room" id="fullName" style="font-size: 13px" name="roomnum" required="required">
                                         <option class="room-option" value="101">101</option>
                                         <option class="room-option" value="102">102</option>
                                         <option class="room-option" value="201">201</option>
@@ -122,7 +122,7 @@
                                 <div class="form-group">
                                     <label>수강료</label>
                                     <input type="text" class="form-control lec-price" oninput="numberOnly(this)" name="price"
-                                           placeholder="수강료 입력">
+                                           placeholder="수강료 입력" required="required">
                                 </div>
                                 <br>
                                 <br>
@@ -144,8 +144,7 @@
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <span id="lecTime-button">강의 시간</span>
-                                    <br>
+                                    <div style="margin-bottom: 10px">강의 시간</div>
                                     <span id="lec-time">
                                     </span>
                                 </div>
@@ -157,7 +156,7 @@
                                 <div class="form-group">
                                     <label>강의월</label>
                                     <br>
-                                    <select class="select-room lec-month" name="lecmonth" style="font-size: 13px">
+                                    <select class="select-room lec-month" name="lecmonth" style="font-size: 13px" required="required">
                                     </select>
                                 </div>
                             </div>
@@ -165,7 +164,7 @@
                                 <div class="form-group">
                                     <label for="lecture-year">강의 년도</label>
                                     <input type="number" class="form-control" id="lecture-year" name="lecyear"
-                                           oninput="numberOnly(this)" placeholder="강의 년도">
+                                           oninput="numberOnly(this)" placeholder="강의 년도" required="required">
                                 </div>
                             </div>
                         </div>
@@ -175,7 +174,7 @@
                         <div class="row gutters">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right button-box">
-                                    <button type="submit" name="insertDetail" class="btn btn-outline-primary">등록하기
+                                    <button type="submit" name="insertDetail" class="btn btn-outline-dark">등록하기
                                     </button> &nbsp;
                                     <button type="button" id="detail-Back" class="btn btn-outline-secondary">돌아가기
                                     </button>
@@ -231,8 +230,8 @@
     //강의 시간 반복문
     var lecHtml = '';
     // $("#lecTime-button").click(function () {
-    for (var i = 1; i <= 13; i++) {
-        lecHtml += "<label><input type='checkbox' name='lectime' readonly='readonly' value = '" + i + "'> " + i + "교시</input></label>&nbsp;&nbsp;";
+    for (var i = 1; i <= 10; i++) {
+        lecHtml += "<label><input type='checkbox' name='lectime' value = '" + i + "'> " + i + "교시</input></label>&nbsp;&nbsp;";
     }
     ;
     $("#lec-time").html(lecHtml);

@@ -63,6 +63,10 @@
         .margin-box {
             margin-left: 18px;
         }
+
+        .text-align{
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -89,9 +93,9 @@
         <div class="col-lg-12">
             <div class="main-box no-header clearfix margin-box">
                 <div class="main-box-body clearfix">
-                    <div class="table-responsive">
-                        <table class="table user-list">
-                            <thead>
+                    <div class="">
+                        <table class="table table-bordered user-list">
+                            <thead class="text-align">
                             <tr>
                                 <th><span>회원</span></th>
                                 <th><span>연락처</span></th>
@@ -121,7 +125,7 @@
                                             <td>
                                                     ${dto.email}
                                             </td>
-                                            <td style="width: 20%;">
+                                            <td style="width: 20%;" class="text-align">
                                                 <a href="${root}/userdetail?usernum=${dto.usernum}"
                                                    class="table-link text-secondary">
                                                         <span class="fa-stack">

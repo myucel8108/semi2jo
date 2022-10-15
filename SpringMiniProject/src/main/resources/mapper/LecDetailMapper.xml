@@ -17,7 +17,7 @@
 
     <!-- 강의 수정 -->
     <update id="updateLectureDetail" parameterType="lecDetailDto">
-        update lecdetail set roomnum = #{roomnum}, price = #{price}, lectime = ${lectime}, lecday = #{lecday}, lecmonth = #{lecmonth}, lecyear = #{lecyear}
+        update lecdetail set roomnum = #{roomnum}, price = #{price}, lectime = #{lectime}, lecday = #{lecday}, lecmonth = #{lecmonth}, lecyear = #{lecyear}
         where lecdenum = #{lecdenum}
     </update>
 

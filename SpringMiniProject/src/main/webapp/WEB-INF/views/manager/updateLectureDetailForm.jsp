@@ -144,8 +144,7 @@
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <span id="lecTime-button">강의 시간</span>
-                                    <br>
+                                    <div style="margin-bottom: 10px">강의 시간</div>
                                     <span id="lec-time">
                                     </span>
                                 </div>
@@ -165,7 +164,7 @@
                                 <div class="form-group">
                                     <label for="lecture-year">강의 년도</label>
                                     <input type="number" class="form-control" id="lecture-year" name="lecyear"
-                                           oninput="numberOnly(this)" placeholder="강의 년도">
+                                           oninput="numberOnly(this)" placeholder="강의 년도" value="${dto.lecyear}">
                                 </div>
                             </div>
                         </div>
@@ -197,36 +196,50 @@
     }
 
     //수강일 DB값 얻어와서 출력
-    var lecday = "1,2,3";
+    var lecday = "${dto.lecday}";
     var lecday_arr = lecday.split(",");
+    console.log(lecday_arr);
+    $("input[name='lecday']").each(function () {
+        for (var j=0; j<lecday_arr.length; j++){
+            if (lecday_arr[j]==this.value){
+                $(this).attr("checked", true);
+            };
+        };
+    })
+
 
     //강의 시간 반복문
     var lecHtml = '';
     // $("#lecTime-button").click(function () {
-    for (var i = 1; i <= 13; i++) {
-        lecHtml += "<label><input type='checkbox' name='lectime' readonly='readonly' value = '" + i + "'> " + i + "교시</input></label>&nbsp;&nbsp;";
-    }
-    ;
+    for (var i = 1; i <= 10; i++) {
+        lecHtml += "<label><input type='checkbox' name='lectime' value = '" + i + "'> " + i + "교시</input></label>&nbsp;&nbsp;";
+    };
+
     $("#lec-time").html(lecHtml);
 
+    //강의 시간 DB값 얻어와서 출력
+    var lectime = "${dto.lectime}";
+    var lectime_arr = lectime.split(",");
+    console.log(lectime_arr);
+    $("input[name='lectime']").each(function () {
+        for (var j=0; j<lectime_arr.length; j++){
+            if (lectime_arr[j]==this.value){
+                $(this).attr("checked", true);
+            };
+        };
+    })
 
-    //현재 년도 얻어와서 강의 년도에 출력
-    var date = new Date();
-    var year = date.getFullYear();
-    $("#lecture-year").attr("value", year);
-
-    //현재 월 얻어와서 강의월에 출력
-    var month = date.getMonth() + 1;
+    //DB에서 강의월 얻어와서 강의월에 출력
     var html = '';
     for (var i = 1; i <= 12; i++) {
         html += "<option value = '" + i + "'>" + i + "월</option>";
     }
     $(".lec-month").append(html);
-    $(".lec-month").val(month);
+    $(".lec-month").val(${dto.lecmonth});
 
     $(".lec-month option").filter(function () {
         //may want to use $.trim in here
-        return $(this).text() == month;
+        return $(this).text() == ${dto.lecmonth};
     }).attr('selected', true);
 
     //년도에 숫자만 들어가게
