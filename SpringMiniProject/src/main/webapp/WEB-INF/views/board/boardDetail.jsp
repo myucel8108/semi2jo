@@ -262,12 +262,12 @@
                 </div>
                 <div style="text-align: center; float: bottom;"><hr>
 
-                <button type="button" class="boardbtn" onclick="location.href='boardFree?boardtype=${dto.boardtype}&currentPage=${currentPage}'">목록</button>
                 <c:if test="${sessionScope.loginok!=null && sessionScope.usernum==dto.usernum}">
                 <button type="button" class="boardbtn" onclick="location.href='boardUpdate?boardnum=${dto.boardnum}&currentPage=${currentPage}'">수정</button>
                 <button type="button" class="boardbtn" onclick="if(confirm('게시글을 삭제하시겠습니까?')) location.href='delete?boardnum=${dto.boardnum}&currentPage=${currentPage}'">삭제</button>
 <%--                    <button class="boarddelete" type="button">삭제</button>--%>
                 </c:if>
+                <button type="button" class="boardbtn" onclick="location.href='boardFree?boardtype=${dto.boardtype}&currentPage=${currentPage}'">목록</button>
 
                 </div>
             </td>

@@ -94,10 +94,10 @@ public class LectureController {
 
     }
 
-    @GetMapping(value= "/lecture/lectureList" , params = {"lectypea"})
-    public String lectureCategori(@RequestParam String lectypea , Model model) {
+    @GetMapping(value= "/lecture/lectureList" , params = {"lectypeb"})
+    public String lectureCategori(@RequestParam String lectypeb, Model model) {
 
-        List<ReadyPayDto> list =  readypayservice.selectByCategori(lectypea);
+        List<ReadyPayDto> list =  readypayservice.selectByCategori(lectypeb);
         model.addAttribute("list",list);
 
 

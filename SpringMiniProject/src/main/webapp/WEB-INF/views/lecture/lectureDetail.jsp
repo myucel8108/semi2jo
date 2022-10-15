@@ -249,6 +249,7 @@ table { border-collapse:collapse; border-spacing:0; width:100%;
     font-size: 16px;
     resize: none;
 }
+
 #Accordion_wrap{
 position: relative;
 }      
@@ -322,6 +323,7 @@ position: relative;
    <button id="writecolor" class=" load  btn btn-outline"  type="button" onclick="gocart(event)"> 장바구니</button>
       </div>      
    </div>   
+
 
 </div>
 

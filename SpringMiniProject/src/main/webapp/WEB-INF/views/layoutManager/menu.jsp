@@ -54,10 +54,17 @@
 <!-- Sidebar -->
 <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar" style="background-color: white;">
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="${root}/">
-        <div class="sidebar-brand-icon">
+<%--        <div class="sidebar-brand-icon">--%>
 <%--            <img src="img/logo/logo2.png">--%>
+<%--        </div>--%>
+        <div class="sidebar-brand-text mx-3" style="    background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: absolute;
+    font-size: 40px;
+">
+            TeachMe
         </div>
-        <div class="sidebar-brand-text mx-3" >로고 위치</div>
     </a>
     <hr class="sidebar-divider my-0">
     <li class="nav-item active">

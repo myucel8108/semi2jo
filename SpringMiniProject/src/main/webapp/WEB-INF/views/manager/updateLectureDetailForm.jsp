@@ -52,6 +52,7 @@
     <form action="updateLectureDetail?lecdenum=${dto.lecdenum}" method="post">
         <input hidden="hidden" name="lecnum" value="${dto.lecnum}">
         <input hidden="hidden" name="lecname" value="${dto.lecname}">
+
         <div class="row gutters">
             <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                 <div class="card h-100">
@@ -198,12 +199,6 @@
     //수강일 DB값 얻어와서 출력
     var lecday = "1,2,3";
     var lecday_arr = lecday.split(",");
-    // console.log(lecday_arr);
-    for (var i=1; i<=7; i++){
-        for (var j=0; j<lecday_arr.length; j++){
-
-        }
-    }
 
     //강의 시간 반복문
     var lecHtml = '';

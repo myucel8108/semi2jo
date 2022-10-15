@@ -37,6 +37,7 @@ public class LecDetailService implements LecDetailServiceInter{
 
     @Override
     public void updateLectureDetail(LecDetailDto dto) {
+        System.out.println("service"+dto);
         lecDetailDao.updateLectureDetail(dto);
     }
 
