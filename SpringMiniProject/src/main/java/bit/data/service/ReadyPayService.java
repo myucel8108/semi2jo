@@ -26,10 +26,10 @@ public class ReadyPayService  implements ReadyPayServiceInter {
 			return ReadyPayDao.MainGetAllLecture();
 	 }
 	 @Override
-	 public List<ReadyPayDto> selectByCategori(String lectypea) {
+	 public List<ReadyPayDto> selectByCategori(String lectypeb) {
 		 
 		 
-			return ReadyPayDao.selectByCategori(lectypea);
+			return ReadyPayDao.selectByCategori(lectypeb);
 	 }
 
 	 

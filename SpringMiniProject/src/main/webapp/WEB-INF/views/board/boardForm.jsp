@@ -101,7 +101,7 @@
 <form action="insert" method="post" enctype="multipart/form-data">
 <%--    <input type="hidden" name="email" value="${sessionScope.loginid}">--%>
         <input type="hidden" name="usernum" value="${sessionScope.usernum}">
-    <table class="table" style="width: 800px; border-collapse: separate; border-radius: 15px; border: 1px solid black;">
+    <table class="table table-bordered">
         <tr>
             <th style="text-align: center;">유형</th>
             <td>
@@ -134,8 +134,8 @@
         </tr>
         <tr>
             <td colspan="2" align="center">
-                <button type="button" class="boardbtn" onclick="history.back()">뒤로가기</button>
                 <button type="submit" class="boardbtn">업로드</button>
+                <button type="button" class="boardbtn" onclick="history.back()">뒤로가기</button>
             </td>
         </tr>
     </table>
