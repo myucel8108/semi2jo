@@ -155,29 +155,30 @@
             <tr>
                 <th style="width: 100px; text-align: center;">문의유형</th>
                 <td>
-
-                    <select type="select" name="qnatype" required="required" id="qnatype">
-                        <c:choose>
-                        <c:when test="${qnanum==0 and sessionScope.usernum!=12}">
+                    <c:choose>
+                    <c:when test="${qnanum==0 and sessionScope.usernum!=12}">
+                    <select type="select" name="qnatype" id="qnatype" required="required">
                         <option value="" selected disabled hidden>선택해주세요</option>
                         <option>결제문의</option>
                         <option>강의문의</option>
                         <option>학원문의</option>
                         <option>상담문의</option>
                         <option>기타문의</option>
+                    </select>
                         </c:when>
                         <c:when test="${sessionScope.usernum==12 and qnanum!=0}">
-                        <option><b>답변</b></option>
+
                         </c:when>
                         <c:otherwise>
+                        <select type="select" name="qnatype" id="qnatype" required="required">
                         <option><b style="color: red; text-decoration: none;" value="0">공지사항${qnatype}</b></option>
 <%--                            <option><b style="color: red;">답변완료</b></option>--%>
 <%--                            <b style="color: orange; text-decoration: none;">답변완료</b>--%>
+                        </select>
                         </c:otherwise>
                         </c:choose>
 
 
-                    </select>
                 </td>
             </tr>
             <c:if test="${sessionScope.usernum!=12 and qnanum==0}">
