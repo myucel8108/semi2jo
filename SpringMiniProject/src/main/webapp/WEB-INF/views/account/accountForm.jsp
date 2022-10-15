@@ -105,6 +105,17 @@
 <script>
     // 로그인 버튼 클릭 이벤트
     $("#btn-sign-in").click(function () {
+        loginClick();
+    });
+
+    //엔터키로 로그인 버튼클릭
+    $(document).keyup(function(event) {
+        if (event.key == "Enter") {
+            loginClick();
+        }
+    });
+
+    function loginClick() {
         //아이디와 비번 읽기
         var email = $(".loginemail").val();
         var userpass = $(".loginpass").val();
@@ -125,7 +136,7 @@
                 }
             },
         });
-    });
+    }
 </script>
 <%--    카카오 api 로그인--%>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
