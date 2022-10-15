@@ -22,12 +22,19 @@
     .status>span{
         cursor: pointer;
     }
+
+    .usertitle{
+        font-size: 40px;
+        text-align: center;
+        color: black;
+    }
 </style>
 <body>
 <section class="ftco-section">
 
 <%--    자유 게시판--%>
     <div class="container">
+        <p class="usertitle">매출 현황</p>
         <div class="row justify-content-center">
             <div class="col-md-6 text-center">
                 <h2 class="heading-section">Free Board</h2>

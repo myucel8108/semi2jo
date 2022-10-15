@@ -1,7 +1,6 @@
 package bit.data.service;
 
 import java.util.List;
-
 import bit.data.dto.LectureDto;
 import bit.data.dto.LectureDetailJoinDto;
 
@@ -15,8 +14,6 @@ public interface LectureServiceInter {
     public void deleteLecture(int lecnum);
     public void updateLecture(LectureDto dto);
     public List<LectureDto> getAllLecture();
-
     //lectype A 의 종류 구하기
     public List<LectureDto> getLecTypeA();
-    
 }

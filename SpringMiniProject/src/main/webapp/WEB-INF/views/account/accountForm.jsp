@@ -33,16 +33,21 @@
 
 <%--            id 입력--%>
             <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                <input class="input100 loginemail" type="text" >
-                <span class="focus-input100"></span>
-                <span class="label-input100">Email</span>
+                <input class="input100 loginemail" type="text" placeholder="Email">
+<%--                <span class="focus-input100"></span>--%>
+<%--                <span class="label-input100">Email</span>--%>
             </div>
 
 <%--            pass 입력--%>
             <div class="wrap-input100 validate-input" data-validate="Password is required">
-                <input class="input100 loginpass" type="password" >
-                <span class="focus-input100"></span>
-                <span class="label-input100">Password</span>
+                <input class="input100 loginpass" type="password" placeholder="Password">
+<%--                <span class="focus-input100"></span>--%>
+<%--                <span class="label-input100">Password</span>--%>
+            </div>
+            <div class="wrap-input100 validate-input" data-validate="Password is required"
+                    style="background-image: url('${root}/image/kakaoLogin.png');background-repeat: no-repeat;
+                            background-size: cover;" onclick="kakaoLogin();">
+
             </div>
 
 
@@ -62,14 +67,14 @@
 <%--                </div>--%>
 
 <%--            간편로그인--%>
-            <ul>
-                <li onclick="kakaoLogin();">
-<%--                    <a href="javascript:void(0)">--%>
-<%--                        <span>카카오 로그인</span>--%>
-<%--                    </a>--%>
-                    카카오 로그인
-                </li>
-            </ul>
+<%--            <ul>--%>
+<%--                <li onclick="kakaoLogin();">--%>
+<%--&lt;%&ndash;                    <a href="javascript:void(0)">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                        <span>카카오 로그인</span>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                    </a>&ndash;%&gt;--%>
+<%--                    카카오 로그인--%>
+<%--                </li>--%>
+<%--            </ul>--%>
 <%--            <ul>--%>
 <%--                <li onclick="kakaoLogout();">--%>
 <%--                    &lt;%&ndash;                    <a href="javascript:void(0)">&ndash;%&gt;--%>

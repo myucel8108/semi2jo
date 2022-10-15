@@ -12,7 +12,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"><%--부트 스트랩 icon--%>
     <style type="text/css">
+        .usertitle{
+            font-size: 40px;
+            text-align: center;
+        }
+        .self-row{
+            --bs-gutter-x: 1.5rem;
+            --bs-gutter-y: 0;
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: calc(-1 * var(--bs-gutter-y));
+            margin-right: calc(-.5 * var(--bs-gutter-x));
+
+        }
+        .card-col3{
+            display: flex;
+            justify-content: space-evenly;
+
+        }
     </style>
+
+
 </head>
 <c:set var="root" value="<%=request.getContextPath() %>"></c:set>
 
@@ -25,10 +45,14 @@
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
 
-    <div class="row mb-3">
+    <div class=" mb-3 row">
         <!-- Card Example-->
-
+        <div><p class="usertitle">매출 현황</p></div>
         <!-- 올 한해의 전체 소득 출력 칸-->
+
+<%--        card 에 정보 출력 --%>
+        <div class="card-col3">
+
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card h-100">
                 <div class="card-body">
@@ -97,7 +121,7 @@
                 </div>
             </div>
         </div>
-
+        </div>
 
         <!-- Area Chart -->
         <div class="col-xl-8 col-lg-7" >
@@ -181,7 +205,7 @@
                     // ⑦dataset의 배경색(rgba값을 String으로 표현)
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     // ⑧dataset의 선 색(rgba값을 String으로 표현)
-                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderColor: 'rgba(255, 99, 132, 0.2)',
                     // ⑨dataset의 선 두께(Number)
                     borderWidth: 1
                 }]
@@ -227,7 +251,7 @@
                     // ⑦dataset의 배경색(rgba값을 String으로 표현)
                     backgroundColor: ['rgba(255, 99, 132, 0.2)','rgba(76, 193, 192, 0.2)','rgba(255, 205, 86, 0.2)','rgba(54, 153, 224, 0.2)','rgba(201, 203, 207, 0.2)'],
                     // ⑧dataset의 선 색(rgba값을 String으로 표현)
-                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderColor: ['rgba(255, 99, 132, 0.2)','rgba(76, 193, 192, 0.2)','rgba(255, 205, 86, 0.2)','rgba(54, 153, 224, 0.2)','rgba(201, 203, 207, 0.2)'],
                     // ⑨dataset의 선 두께(Number)
                     borderWidth: 1
                 }]
