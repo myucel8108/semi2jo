@@ -16,6 +16,5 @@ public class ReadyPayDto {
 	private int price;
 	private String lectypea ;
 	private String lectypeb;
-	private double avgstar;	
-
+	private double avgstar;
 }

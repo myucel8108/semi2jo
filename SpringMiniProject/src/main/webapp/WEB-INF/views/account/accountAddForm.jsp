@@ -115,7 +115,7 @@
 <%--            </div>--%>
 
             <div class="container-login100-form-btn">
-                <button class="login100-form-btn" id="btn-sign-up" type="submit">
+                <button class="login100-form-btn" id="btn-sign-up" type="submit" style="color: black">
                     Sing Up
                 </button>
             </div>
