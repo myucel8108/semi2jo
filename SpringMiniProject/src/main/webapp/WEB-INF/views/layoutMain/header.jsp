@@ -106,7 +106,7 @@
         </div>
         <!--/row-->
     </div>
-    <div style="float: right;">
+    <div style="float: right;" >
     <!-- login button -->
     <c:if test="${sessionScope.loginok==null }">
     <button type="button" id="btnloginMain" class="bt1" style=" margin-right: 110px; margin-top: 10px;"><b>SIGN</b></button>
