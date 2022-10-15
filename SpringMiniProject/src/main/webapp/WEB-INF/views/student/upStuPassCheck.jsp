@@ -13,11 +13,9 @@
 
     <!-- css  -->
     <c:set var="root" value="<%=request.getContextPath() %>"/>
-    <link rel="stylesheet" type="text/css" href="${root}/css/updateform.css">
+    <link rel="stylesheet" type="text/css" href="${root}/css/stupagechange.css">
     <style type="text/css">
-        .ucontainer{
-            font-family: 'Noto Sans KR';
-        }
+
     </style>
     <script type="text/javascript">
 
@@ -34,49 +32,44 @@
     </script>
 </head>
 <body>
-<div class="ucontainer" style="width: 80%;">
+<div class="sttitle">
+    회원정보수정
+</div>
+<div class="stcontainer">
     <form action="updateStudent" method="post" onsubmit="return check()">
         <input type="hidden" name="usernum" value="${sessionScope.usernum}">
-        <div class="title">
-            회원정보수정
+        <br>
+        <div style="font-size: 15px; color: #6d6d6d">
+            안전한 회원정보변경을 위해 비밀번호를 입력해주세요
         </div>
-        <br><br>
-        <div class="container" style="width: 80%; margin-left: 100px;">
-            <div style="font-size: 15px; color: #6d6d6d">
-                안전한 회원정보변경을 위해 비밀번호를 입력해주세요
-            </div>
-            <div class="box">
-                <table class="text">
-                  <tr>
-                        <td class="text1"> <div style="padding-bottom: 0px; width: 120px;">아이디</div></td>
-                        <td class="text2">
-                            <div class="wrapper">
-                                <input type="text" class="input" readonly value="${dto.email}" style="width: 170px;">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text1"><div style="padding-bottom: 0px;">비밀번호</div></td>
-                        <td class="text2">
-                            <div class="wrapper">
-                                <input type="password" class="input" id="pass" placeholder="비밀번호 입력" required="required" style="width: 170px;">
-                                <span class="underline"></span>
-                            </div>
-                        </td>
-                    </tr>
+        <table class="text">
+          <tr>
+                <td class="text1"> <div style="padding-bottom: 0px; width: 120px;">아이디</div></td>
+                <td class="text2">
+                    <div class="wrapper">
+                        <input type="text" class="input" readonly value="${dto.email}" style="width: 170px;">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="text1"><div style="padding-bottom: 0px;">비밀번호</div></td>
+                <td class="text2">
+                    <div class="wrapper">
+                        <input type="password" class="input" id="pass" placeholder="비밀번호 입력" required="required" style="width: 170px;">
+                        <span class="underline"></span>
+                    </div>
+                </td>
+            </tr>
 
-                    <tr>
-                        <td colspan="2" style="text-align: center;">
-                            <button type="button" class="btn-large2" style="margin-right: 60px;" onclick="location.href='${root}/student/timeTable'">취소</button>
-                            <button type="submit" class="btn-large1" id="btn_submit" style="margin-right: 30px;">확인</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <button type="button" class="basicbtn" style="margin-right: 60px;" onclick="location.href='${root}/student/timeTable'">취소</button>
+                    <button type="submit" class="basicbtn" id="btn_submit" style="margin-right: 30px;">확인</button>
+                </td>
+            </tr>
+        </table>
     </form>
 </div>
 
-</div>
 </body>
 </html>

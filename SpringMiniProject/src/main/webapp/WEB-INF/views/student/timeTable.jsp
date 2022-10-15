@@ -11,19 +11,23 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Yeon+Sung&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <!-- css  -->
+    <c:set var="root" value="<%=request.getContextPath() %>"/>
+    <link rel="stylesheet" type="text/css" href="${root}/css/stupagechange.css">
     <link rel="stylesheet" type="text/css" href="${root}/resources/css/timetable.css" />
+
     <style type="text/css">
-        .tcontainer{
-            font-family: 'Noto Sans KR';
-        }
+
     </style>
 </head>
 <body>
-<div class="tcontainer">
-<h2>시간표</h2>
+<div class="sttitle">
+    시간표
+</div>
+<div class="stcontainer">
 <table class="lectable">
     <th></th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th><th>일</th>
-        <c:forEach var="i" begin="1" end="13">
+        <c:forEach var="i" begin="1" end="10">
             <tr>
                 <c:forEach var="j" begin="0" end="7">
                     <td>
@@ -52,7 +56,11 @@
                                 <c:set var="bgcolor" value="#f8ece9"/>
                             </c:if>
                             <div class="mylecname" style="background-color:${bgcolor};">
-                                <a>${dto.lecname}</a>
+                                <c:if test="${fn:length(dto.lecname)>6}">
+                                    ${fn:substring(dto.lecname,0,6)}<br>
+                                    ${fn:substring(dto.lecname,7,14)}
+                                    <c:if test="${fn:length(dto.lecname)>15}">..</c:if>
+                                </c:if>
                             </div>
                             <div style="color: #6d6d6d;">
                                 ${dto.teaname}

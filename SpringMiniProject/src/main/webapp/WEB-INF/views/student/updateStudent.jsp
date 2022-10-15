@@ -13,17 +13,15 @@
 
     <!-- css  -->
     <c:set var="root" value="<%=request.getContextPath() %>"/>
-    <link rel="stylesheet" type="text/css" href="${root}/css/updateform.css">
+    <link rel="stylesheet" type="text/css" href="${root}/css/stupagechange.css">
     <style type="text/css">
-        .ucontainer{
-            font-family: 'Noto Sans KR';
-        }
         #showimg{
             width: 150px;
             height: 150px;
             border-radius: 100px;
             margin-bottom: 20px;
         }
+
     </style>
     <script type="text/javascript">
 
@@ -102,110 +100,104 @@
     </script>
 </head>
 <body>
-<div class="ucontainer" style="width: 80%;">
+<div class="sttitle">
+    회원정보수정
+</div>
+<div class="stcontainer">
     <form action="update" method="post" enctype="multipart/form-data" onsubmit="return check()">
         <input type="hidden" name="usernum" value="${sessionScope.usernum}">
-        <div class="title">
-            회원정보수정
-        </div>
-        <div class="container" style="width: 80%;">
-            <div class="box">
-                <table class="text">
-                    <tr>
-                        <td rowspan="5" colspan="2" align="center" style="padding-right: 50px;">
-                            <input type="file" id="myphoto" name="myphoto" style="display: none;">
-                            <img id="showimg" src="../resources/upload/${dto.userphoto==null?'noprofilepicture.png':dto.userphoto}">
-                            <br>
-                            <button type="button" id="btnphoto" class="btn btn-secondary">사진선택</button>
-                        </td>
-                        <td class="text1"> <div style="padding-bottom: 0px; width: 120px;">아이디</div></td>
-                        <td class="text2">
-                            <div class="wrapper">
-                                <input type="text" class="input" readonly name="email" value="${dto.email}" style="width: 170px;">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text1"><div style="padding-bottom: 0px;">비밀번호</div></td>
-                        <td class="text2">
-                            <div class="wrapper">
-                                <input type="password" class="input" id="pass" placeholder="새 비밀번호 입력" required="required" style="width: 170px;">
-                                <span class="underline"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text1"><div style="padding-bottom: 10px;">비밀번호 확인</div></td>
-                        <td class="text2">
-                            <div class="wrapper">
-                                <input type="password" class="input" id="pass2" name="userpass" placeholder="새 비밀번호 확인" required="required" style="width: 170px;">
-                                <span class="underline"></span>
-                                <div class="passsuccess"></div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text1"> <div style="padding-bottom: 0px;">이름</div></td>
-                        <td class="text2">
-                            <div class="wrapper">
-                                <input type="text" class="input" name="username"
-                                       value="${dto.username}" placeholder="이름 입력" style="width: 170px;" required>
-                                <span class="underline"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text1"> <div style="padding-bottom: 0px;">닉네임</div></td>
-                        <td class="text2">
-                            <div class="wrapper">
-                                <input type="text" class="input" name="nickname"
-                                       value="${dto.nickname}" placeholder="닉네임 입력" style="width: 170px;" required>
-                                <span class="underline"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text1"> <div style="padding-bottom: 0px; width: 120px;">생년월일</div></td>
-                        <td class="text2">
-                            <div class="wrapper">
-                                <input type="text" class="input" name="birth"
-                                       value="${dto.birth}" placeholder="생년월일 입력" style="width: 170px;">
-                                <span class="underline"></span>
-                            </div>
-                        </td>
-                        <td class="text1"> <div style="padding-bottom: 0px;">핸드폰번호</div></td>
-                        <td class="text2">
-                            <div class="wrapper">
-                                <input type="text" class="input" name="hp"
-                                       value="${dto.hp}" placeholder="핸드폰번호 입력" style="width: 170px;">
-                                <span class="underline"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text1"> <div style="padding-bottom: 0px;">주소</div></td>
-                        <td colspan="3" class="text2">
-                            <div class="wrapper">
-                                <input type="text" class="input" name="addr"
-                                       value="${dto.addr}" placeholder="주소 입력" style="width: 320px;">
-                                <span class="underline"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="text-align: right">
-                            <button type="button" class="btn-large2" style="margin-right: 20px;" onclick="location.href='${root}/student/timeTable'">취소하기</button>
-                            <button type="submit" class="btn-large1" id="btn_submit">수정하기</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="text-align: left">
-                            <button type="button" class="" id="btn_delete">탈퇴하기</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+        <table class="text">
+            <tr>
+                <td rowspan="5" colspan="2" align="center" style="padding-right: 50px;">
+                    <input type="file" id="myphoto" name="myphoto" style="display: none;">
+                    <img id="showimg" src="../resources/upload/${dto.userphoto==null?'noprofilepicture.png':dto.userphoto}">
+                    <br>
+                    <button type="button" id="btnphoto" class="btn btn-secondary">사진선택</button>
+                </td>
+                <td class="text1"> <div style="padding-bottom: 0px; width: 120px;">아이디</div></td>
+                <td class="text2">
+                    <div class="wrapper">
+                        <input type="text" class="input" readonly name="email" value="${dto.email}" style="width: 170px;">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="text1"><div style="padding-bottom: 0px;">비밀번호</div></td>
+                <td class="text2">
+                    <div class="wrapper">
+                        <input type="password" class="input" id="pass" placeholder="새 비밀번호 입력" required="required" style="width: 170px;">
+                        <span class="underline"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="text1"><div style="padding-bottom: 10px;">비밀번호 확인</div></td>
+                <td class="text2">
+                    <div class="wrapper">
+                        <input type="password" class="input" id="pass2" name="userpass" placeholder="새 비밀번호 확인" required="required" style="width: 170px;">
+                        <span class="underline"></span>
+                        <div class="passsuccess"></div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="text1"> <div style="padding-bottom: 0px;">이름</div></td>
+                <td class="text2">
+                    <div class="wrapper">
+                        <input type="text" class="input" name="username"
+                               value="${dto.username}" placeholder="이름 입력" style="width: 170px;" required>
+                        <span class="underline"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="text1"> <div style="padding-bottom: 0px;">닉네임</div></td>
+                <td class="text2">
+                    <div class="wrapper">
+                        <input type="text" class="input" name="nickname"
+                               value="${dto.nickname}" placeholder="닉네임 입력" style="width: 170px;" required>
+                        <span class="underline"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="text1"> <div style="padding-bottom: 0px; width: 120px;">생년월일</div></td>
+                <td class="text2">
+                    <div class="wrapper">
+                        <input type="text" class="input" name="birth"
+                               value="${dto.birth}" placeholder="생년월일 입력" style="width: 170px;">
+                        <span class="underline"></span>
+                    </div>
+                </td>
+                <td class="text1"> <div style="padding-bottom: 0px;">핸드폰번호</div></td>
+                <td class="text2">
+                    <div class="wrapper">
+                        <input type="text" class="input" name="hp"
+                               value="${dto.hp}" placeholder="핸드폰번호 입력" style="width: 170px;">
+                        <span class="underline"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="text1"> <div style="padding-bottom: 0px;">주소</div></td>
+                <td colspan="2" class="text2">
+                    <div class="wrapper">
+                        <input type="text" class="input" name="addr"
+                               value="${dto.addr}" placeholder="주소 입력" style="width: 280px;">
+                        <span class="underline" style="width: 280px;"></span>
+                    </div>
+                </td>
+                <td>
+                <button type="button" class="basicbtn" style="margin-right: 20px;" onclick="location.href='${root}/student/timeTable'">취소하기</button>
+                <button type="submit" class="basicbtn" id="btn_submit">수정하기</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align: right">
+                    <button type="button" style="color: gray; border: 1px solid gray; margin-right: 25px;" class="basicbtn" id="btn_delete">탈퇴하기</button>
+                </td>
+            </tr>
+        </table>
     </form>
 </div>
 

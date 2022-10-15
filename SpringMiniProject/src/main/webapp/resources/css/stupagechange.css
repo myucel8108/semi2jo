@@ -1,12 +1,31 @@
 @charset "UTF-8";
 
-div.ccontainer {
+div.stcontainer {
     font-family: 'Noto Sans KR';
-    margin: 0 0 0 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
-div.title {
-    font-size: 30px;
+.basicbtn{
+    width: 80px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+div.sttitle {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    font-size: 25px;
     font-weight: 600;
     color: #505050;
 }
@@ -110,33 +129,3 @@ input:focus::-webkit-input-placeholder {
     width: 170px;
 }
 
-
-/* 드롭다운 placeholder */
-.category_placeholder {
-    color: #AAA;
-}
-
-/* Textarea 디자인 */
-textarea {
-    width: 635px;
-    height: 410px;
-    margin: 56px 0 40px;
-    padding: 14px 14px 14px 14px;
-    border-radius: 10px;
-    border: solid 1px #dbdbdb;
-    background-color: #fff;
-}
-
-textarea:active {
-    box-shadow: 0 0 4px rgb(204, 204, 204);
-    border-radius: 2px 2px 0 0;
-    background-color: #f8f8f8;
-    outline: none;
-}
-
-textarea:focus {
-    outline: none;
-    box-shadow: 0 0 5px #6ca5f8;
-    border-radius: 10px;
-    border: 1px solid #3f86ed;
-}
