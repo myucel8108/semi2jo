@@ -17,7 +17,6 @@
 
 <style>
 
-
     .bt1{
         width: 100px;
         height: 35px;
@@ -91,8 +90,10 @@
 </style>
 </head>
 <body>
+
 <c:set var="root" value="<%=request.getContextPath() %>"></c:set>
 <header id="headerfor">
+
     <div  id="rowrowfor">
         <div id="rowfor">
                 <div>
@@ -137,6 +138,22 @@
                 },
             });
         });
+
+
+        //
+        // var now = new Date();
+        // var then = new Date('nov 17,2022');
+        // var gap = now.getTime() - then.getTime();
+        // gap = Math.floor(gap / (1000 * 60 * 60 * 24)) * -1;
+        // document.write('<div id="dday">2022년도 수능 D-<span style="font-size:33px;">' + gap + '</span></div>');
+
+
+
+
+
+
+
+
     </script>
 </header>
 </body>

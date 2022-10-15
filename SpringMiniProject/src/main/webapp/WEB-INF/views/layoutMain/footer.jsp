@@ -15,17 +15,17 @@
 
 </head>
 <style>
-    #ftlogo{
+    /*#ftlogo{*/
 
-        background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    #fttlogo{
-        background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+    /*    background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);*/
+    /*    -webkit-background-clip: text;*/
+    /*    -webkit-text-fill-color: transparent;*/
+    /*}*/
+    /*#fttlogo{*/
+    /*    background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);*/
+    /*    -webkit-background-clip: text;*/
+    /*    -webkit-text-fill-color: transparent;*/
+    /*}*/
 
     .footerarea{
         /*background: linear-gradient(to right, lightgray, darkgray, lightgray);*/
