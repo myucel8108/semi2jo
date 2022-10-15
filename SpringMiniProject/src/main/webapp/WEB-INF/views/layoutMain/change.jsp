@@ -14,6 +14,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <script>
+        document.getElementById('vidd').play();
+    </script>
 </head>
 
 
@@ -126,7 +129,7 @@
         text-align: center;
 
     }
-
+    video { max-width: 80%; display: block; margin: 20px auto; }
 
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -213,13 +216,30 @@
                 </ul>
             </div>
             <div class="col-lg-7 col-md-12 p-0" data-aos="fade-left" data-aos-delay="300">
-                <figure>
-                    <img class="inner-img" src="" alt="services">
-                    <img class="out-sideimg" src="" alt="services">
-                </figure>
+                <div style="margin-top: 150px;">
+                    <video class="inner-img" src="${root}/css/videos/wr.mp4" controls muted autoplay loop width="100%;" style="border-radius: 20px; margin-left: 50px;" alt="services" ></video>
+            </div>
+<%--                    <img class="inner-img" src="" alt="services">--%>
+<%--                    <img class="out-sideimg" src="" alt="services">--%>
             </div>
         </div>
     </div>
+<%--            <div class="col-lg-7 col-md-12 p-0" data-aos="fade-left" data-aos-delay="300">--%>
+<%--                <figure>--%>
+<%--                    <video controls width="250" id="vidd" autoplay="autoplay" muted="muted">--%>
+<%--                        source src="videos/wr.mp4" type="video/mp4">--%>
+<%--                    </video>--%>
+<%--&lt;%&ndash;                    <img class="inner-img" src="image/teach.jpg" alt="services" style="border-radius: 20px;">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                    <img class="out-sideimg" src="image/asd.jpg" alt="services" style="border-radius: 20px;">&ndash;%&gt;--%>
+<%--                    <video width="100%" height="auto" autoplay loop muted controls class="out-sideimg"> <source src="video/wr.mp4" type="video/mp4" alt="services">--%>
+<%--                    </video>--%>
+<%--    <video class="out-sideimg" autoplay controls loop muted>--%>
+<%--        <source src="video/wr.mp4" type="video/mp4">--%>
+<%--    </video>--%>
+<%--                </figure>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
 </section>
 
 <!--Section-5-->
@@ -227,8 +247,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-7 col-sm-8">
-                <h3><span style="margin-left: 0; display: flex; position: center; padding-bottom: 10px;">Study and Changes Life</span>
-                </h3>
+
             </div>
 
         </div>
@@ -236,31 +255,31 @@
     <div class="container-fluid" style="height: 450px;">
         <div class="row" data-aos="fade-up" data-aos-delay="300">
             <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
-                <img src="" class="img-fluid">
+                <img src="image/mattt.jpg" class="img-fluid">
                 <div class="overlay">
                     <img src="" alt="">
-                    <div class="inner-text"><h4>2021년도<span>최종합격10명</span></h4></div>
+                    <div class="inner-text"><h4>000강사<span>수강하기</span></h4></div>
                 </div>
             </a>
             <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
-                <img src="" class="img-fluid">
+                <img src="image/engg.jpg" class="img-fluid">
                 <div class="overlay">
                     <img src="" alt="">
-                    <div class="inner-text"><h4>2021년도<span>최종합격15명</span></h4></div>
+                    <div class="inner-text"><h4>000강사<span>수강하기</span></h4></div>
                 </div>
             </a>
             <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
-                <img src="" class="img-fluid">
+                <img src="image/mh.jpg" class="img-fluid">
                 <div class="overlay">
                     <img src="" alt="">
-                    <div class="inner-text"><h4>2021년도<span>최종합격11명</span></h4></div>
+                    <div class="inner-text"><h4>000강사<span>수강하기</span></h4></div>
                 </div>
             </a>
             <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
-                <img src="" class="img-fluid">
+                <img src="image/scc.jpg" class="img-fluid">
                 <div class="overlay">
                     <img src="" alt="">
-                    <div class="inner-text"><h4>2021년도<span>최종합격12명</span></h4></div>
+                    <div class="inner-text"><h4>000강사<span>수강하기</span></h4></div>
                 </div>
             </a>
         </div>
@@ -316,139 +335,12 @@
                 </div>
             </a>
         </div>
-        <!--/row-->
     </div>
-    <!--container-->
 </section>
-<%--   --%>
-<%--    <section class="section-7">--%>
-<%--        <!-- Footer -->--%>
-<%--        <footer class="page-footer font-small stylish-color-dark">--%>
-
-<%--            <!-- Footer Links -->--%>
-<%--            <div class="container text-center text-md-left">--%>
-
-<%--                <!-- Grid row -->--%>
-<%--                <div class="row">--%>
-
-<%--                    <!-- Grid column -->--%>
-<%--                    <div class="col-lg-5 col-sm-12 mx-auto box-1">--%>
-
-<%--                        <!-- Content -->--%>
-<%--                        <p>인간은 사실 따지고 보면 능력이 다 비슷비슷하다. 하지만 속으로 자신이 천재라고 숨겨진 재능이 있다고 생각하지 말자 이런 비슷한 사람들 속에서 살아남을려면--%>
-<%--                        	남들 놀 때 공부하는 수 밖에 없다.--%>
-<%--                         </p>--%>
-
-<%--                    </div>--%>
-<!-- Grid column -->
-
-<%--                    <hr class="clearfix w-100 d-md-none">--%>
-
-<%--                    <!-- Grid column -->--%>
-<%--                    <div class="col-lg-2 col-sm-4 box-2 mx-auto">--%>
-
-<%--                        <!-- Links -->--%>
-<%--                        <h5>Site Navigation</h5>--%>
-
-<%--                        <ul class="list-unstyled">--%>
-<%--					<li>--%>
-<%--                        <a href="/mini/">Home</a>--%>
-<%--                    </li>--%>
-<%--                    <li >--%>
-<%--                        <a  href="about.html">About us</a>--%>
-<%--                    </li>--%>
-<%--                    <li >--%>
-<%--                        <a  href="${root}/lecture/lectureList">lecture</a>--%>
-<%--                    </li>--%>
-<%--                    <li>--%>
-<%--                        <a  href="${root}/board/boardFree">community</a>--%>
-<%--                    </li>--%>
-<%--                    <li >--%>
-<%--                        <a href="${root}/layoutMypage/change">My page</a>--%>
-<%--                    </li>--%>
-<%--                    <li >--%>
-<%--                        <a  href="${root}/qna/qnaList">Q & A</a>--%>
-<%--                    </li>--%>
-<%--                    <li>--%>
-<%--                            --%>
-<%--		   </ul>--%>
-
-<%--                    </div>--%>
-<%--                    <!-- Grid column -->--%>
-
-<%--                    <hr class="clearfix w-100 d-md-none">--%>
-
-<%--                    <!-- Grid column -->--%>
-<%--                    <div class="col-lg-2 col-sm-4 box-3 mx-auto">--%>
-
-<%--                        <!-- Links -->--%>
-<%--                        <h5>information</h5>--%>
-
-<%--                        <ul class="list-unstyled">--%>
-<%--                            <li>--%>
-<%--                                <a href="#!">user login</a>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <a href="#!">checkout</a>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <a href="#!">my cart</a>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <a href="#!">other information</a>--%>
-<%--                            </li>--%>
-<%--                        </ul>--%>
-
-<%--                    </div>--%>
-<%--                    <!-- Grid column -->--%>
-
-<%--                    <hr class="clearfix w-100 d-md-none">--%>
-
-<%--                    <!-- Grid column -->--%>
-<%--                    <div class="col-lg-2 col-sm-4 box-4 mx-auto">--%>
-
-<%--                        <!-- Links -->--%>
-<%--                        <h5>policies & Info</h5>--%>
-
-<%--                        <ul class="list-unstyled">--%>
-<%--                            <li>--%>
-<%--                                <a href="#!">Terms Conditions </a>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <a href="#!">website polocy</a>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <a href="#!">Policy for Sellers </a>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <a href="#!">Policy for Buyers</a>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <a href="#!">Shipping & Refund </a>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <a href="#!">Wholesale Policy</a>--%>
-<%--                            </li>--%>
-<%--                        </ul>--%>
-
-<%--                    </div>--%>
-<%--                    <!-- Grid column -->--%>
-
-<%--                </div>--%>
-<%--                <!-- Grid row -->--%>
-
-<%--            </div>--%>
 
 </footer>
 </section>
 
-<%--<span id="top-link-block" class="hidden">--%>
-<%--    <div id="test_obj" style="border: none;"><b style="margin-left:18px; padding-top: 20px; display: inline-block; text-align: center; vertical-align: center; color: black;"><a href="#" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},fast);return false;" id="toptop">--%>
-<%--      <img src="image/tttt.png" style="width: 130%;">--%>
-<%--  </a>--%>
-<%--    </b>--%>
 <nav class="cuz">
     <ul id="main_menu">
         <div class="btn_gotop"><a href="#"><img src="image/tttt.png"
@@ -456,7 +348,7 @@
         <br>
         <br>
         <li><a href="javascript:dos()" style="color: black;"><img src="image/pointt.png"
-                                                                  style="width: 100%; background-color:transparent; color: black;"></a>
+                                                                  style="width: 80%; background-color:transparent; color: black;"></a>
             <ul class="snd_menu sub_menu" style=" background-color:transparent;">
                 <br>
                 <li><a href="${root}/lecture/lectureList"><img src="image/yu.png"
@@ -489,6 +381,11 @@
 
 </body>
 <script>
+
+
+
+
+
     $(document).ready(function dos() {
         $('#main_menu > li > a').click(function () {
             $(this).next($('.snd_menu sub_menu')).slideToggle('fast');
