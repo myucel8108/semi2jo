@@ -137,8 +137,9 @@
 
 <body>
 <c:set var="root" value="<%=request.getContextPath() %>"/>
-<form action="insert" method="post" enctype="multipart/form-data">
 
+<form action="insert" method="post" enctype="multipart/form-data">
+<%--onsubmit="return check()--%>
     <input type="hidden" name="usernum" value="${sessionScope.usernum}">
     <input type="hidden" name="username" value="${sessionScope.username}">
     <input type="hidden" name="qnanum" value="${qnanum}">
@@ -154,20 +155,28 @@
             <tr>
                 <th style="width: 100px; text-align: center;">문의유형</th>
                 <td>
-                    <select type="select" name="qnatype" required="required">
-                        <option value="" selected disabled hidden>선택해주세요</option>
+
+                    <select type="select" name="qnatype" required="required" id="qnatype">
                         <c:choose>
                         <c:when test="${qnanum==0 and sessionScope.usernum!=12}">
+                        <option value="" selected disabled hidden>선택해주세요</option>
                         <option>결제문의</option>
                         <option>강의문의</option>
                         <option>학원문의</option>
                         <option>상담문의</option>
                         <option>기타문의</option>
                         </c:when>
+                        <c:when test="${sessionScope.usernum==12 and qnanum!=0}">
+                        <option><b>답변</b></option>
+                        </c:when>
                         <c:otherwise>
-                        <option><b style="color: red;">공지사항</b></option>
+                        <option><b style="color: red; text-decoration: none;" value="0">공지사항${qnatype}</b></option>
+<%--                            <option><b style="color: red;">답변완료</b></option>--%>
+<%--                            <b style="color: orange; text-decoration: none;">답변완료</b>--%>
                         </c:otherwise>
                         </c:choose>
+
+
                     </select>
                 </td>
             </tr>
@@ -241,7 +250,7 @@
 
         <tr>
             <td colspan="2" align="center">
-                <button type="submit" class="btn btn-outline insert2" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" >등록</button>
+                <button type="submit" class="btn btn-outline insert2" style="color: black; text-decoration: none; background-color: white; border: 1px solid black;">등록</button>
                 <button type="button" class="btn btn-outline"  style="color: black; text-decoration: none; background-color: white; border: 1px solid black;" onclick="location.href='qnaList?currentPage=${currentPage}'">취소</button>
             </td>
 
@@ -251,5 +260,15 @@
 
 </form>
 </div>
+
+<script>
+    // function check(){
+    //     var qnatype = $("#qnatype").val();
+    //
+    //     console.log(qnatype);
+    //     return true;
+    // }
+</script>
+
 </body>
 </html>
