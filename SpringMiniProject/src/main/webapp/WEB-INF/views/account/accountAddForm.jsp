@@ -97,9 +97,15 @@
 <%--                <span class="focus-input100"></span>--%>
 <%--                <span class="label-input100 userid">Phone Number</span>--%>
             </div>
+
+            <div class="wrap-input100 validate-input" data-validate ="Nick Name is required">
+                <input class="input100" type="text" name="nickname" placeholder="Nick Name">
+                <%--                <span class="focus-input100"></span>--%>
+                <%--                <span class="label-input100 userid">Phone Number</span>--%>
+            </div>
 <%--            생일--%>
             <div class="wrap-input100 validate-input div-input-birth" >
-                <input class="input100" id="birth" type="date" name="birth" placeholder="Birth Day">
+                <input class="input100" id="birth" type="date" name="birth" placeholder="Birth Day" value="Birth Day">
 <%--                <span class="focus-input100"></span>--%>
 <%--                <span class="label-input100 userid">Birth Day</span>--%>
             </div>
@@ -233,6 +239,14 @@
             alert("비밀번호가 다릅니다.");
             return false;
         }
+
+        //엔터키로 회원가입 버튼클릭
+        $(document).keyup(function(event) {
+            if (event.key == "Enter") {
+                $("#btn-sign-up").onclick;
+            }
+        });
+
     }
 </script>
 

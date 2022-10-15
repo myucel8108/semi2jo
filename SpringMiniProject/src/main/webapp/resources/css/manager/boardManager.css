@@ -136,6 +136,7 @@ sup {
 
 a {
   /*color: #007bff;*/
+  color: black !important;
   text-decoration: none;
   background-color: transparent; }
   a:hover {
@@ -8204,7 +8205,8 @@ h1, h2, h3, h4, h5,
     padding: 30px;
     font-size: 13px;
     font-weight: 500;
-    color: gray; }
+    /*color: gray; */
+  }
   .table thead tr {
     background: #fff;
     border-bottom: 4px solid #eceffa; }
@@ -8233,12 +8235,12 @@ h1, h2, h3, h4, h5,
       content: '';
       border-radius: 50%; }
   .table tbody td.status .active {
-    background: #cff6dd;
+    /*background: #cff6dd;*/
     color: #1fa750; }
     .table tbody td.status .active:after {
       background: #23bd5a; }
   .table tbody td.status .waiting {
-    background: #fdf5dd;
+    /*background: #fdf5dd;*/
     color: #cfa00c; }
     .table tbody td.status .waiting:after {
       background: #f2be1d; }

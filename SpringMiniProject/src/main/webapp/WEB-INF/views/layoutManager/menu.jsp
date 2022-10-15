@@ -63,7 +63,8 @@
     position: absolute;
     font-size: 40px;
 ">
-            TeachMe
+<%--            TeachMe--%>
+            <img src="${root}/image/sib.png" width="200px;" style="margin-top: 10px;">
         </div>
     </a>
     <hr class="sidebar-divider my-0">

@@ -28,13 +28,16 @@
         text-align: center;
         color: black;
     }
+    .container{
+        margin-left: 28px;
+    }
 </style>
 <body>
 <section class="ftco-section">
-
+    <p class="usertitle">매출 현황</p>
 <%--    자유 게시판--%>
     <div class="container">
-        <p class="usertitle">매출 현황</p>
+
         <div class="row justify-content-center">
             <div class="col-md-6 text-center">
                 <h2 class="heading-section">Free Board</h2>
@@ -198,7 +201,7 @@
                     temp+="<td><a href='${root}/board/boardDetail?boardnum="+ele.boardnum+"' target='_blank'>"+ele.subject+"</a></td>";
                     temp+="<td class='d-flex align-items-center'>";
                     temp+="<div class='pl-3 email'>";
-                    temp+="<span><a href='${root}/userdetail?usernum="+ele.usernum+"' target='_blank'>"+ele.nickname+"</a></span>"
+                    temp+="<span>"+ele.nickname+"</span>"
                     temp+="<td>"+ele.writeday+"</td>";
                     temp+="<td>"+ele.readcount+"</td>";
                     temp+="</tr>";
@@ -228,7 +231,7 @@
                     temp+="<td><a href='${root}/board/boardDetail?boardnum="+ele.boardnum+"' target='_blank'>"+ele.subject+"</a></td>";
                     temp+="<td class='d-flex align-items-center'>";
                     temp+="<div class='pl-3 email'>";
-                    temp+="<span><a href='${root}/userdetail?usernum="+ele.usernum+"' target='_blank'>"+ele.nickname+"</a></span>"
+                    temp+="<span>"+ele.nickname+"</span>";
                     temp+="<td>"+ele.writeday+"</td>";
                     temp+="<td>"+ele.readcount+"</td>";
                     temp+="</tr>";
