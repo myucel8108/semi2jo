@@ -33,6 +33,9 @@
             border-radius: 10px;
             margin-left: 10px;
         }
+     .load{
+         cursor: pointer;
+     }
         #detailbox
         {
             margin: auto;
@@ -469,7 +472,7 @@ position: relative;
 	
 
 		</table>
-	<button id="writecolor" class=" load  btn btn-outline"  type="button" onclick="gocart(event)"> 장바구니</button>
+	<button id="writecolor" class=" load btn btn-outline"  type="button" onclick="gocart(event)"> 장바구니</button>
 	
 
 		</div>		
@@ -511,8 +514,6 @@ ${dto.avgstar}
 강의 후기
 </div>
    <div style="margin-top: 50px;">
-      <div>
-      <div>
          <c:forEach var="redto" items="${list}">
             <div class="review" style="border-bottom: 1px solid black;">
                <div>             
@@ -543,11 +544,8 @@ ${dto.avgstar}
  	              </div>
              </div>
          </c:forEach>
-      </div>
-</div>
-<button  class="load btn btn-outline" type="button">더보기</button>
-</div>
- 
+            <b class="load" style="justify-content: center;">더 보기&nbsp;<i class="fa fa-arrow-down" style="font-size:15px"></i></b>
+   </div>
 <div style="float: left; margin: 0 auto; width: 800px;">
    <%--별점 및 수강평 입력 부분(로그인한 수강생이 해당강의를 수강한 학생일때만 보이게 하기--%>
    <c:set var="inmylec" value=""/> <%--내가 수강중인 lecdenum 합치기--%>
@@ -579,7 +577,7 @@ ${dto.avgstar}
                <textarea class="col-auto form-control" name="review" type="text" id="reviewContents"
                        placeholder="좋은 수강평을 남겨주시면  TeachMe에 큰 힘이 됩니다! "></textarea>
             </div>
-            <button  class="btn btn-outline" id="writecolor" type="submit">
+            <button  class="btn btn-outline" id="writecolor" type="submit" style="box-shadow: none;">
                등록하기
             </button>
          </form>
