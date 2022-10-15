@@ -65,7 +65,7 @@
                         var s="";
                         $.each(res,function(i,ids){
 
-                            s+=ids;
+                            s+=ids+"<br><br>";
                             // if(i%2==1){
                             //     s+="<br><br>";
                             // }else{
