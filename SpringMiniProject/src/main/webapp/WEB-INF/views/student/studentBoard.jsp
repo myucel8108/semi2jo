@@ -24,7 +24,7 @@
       border: 1px solid black;
     }
     .boardbtn:hover {
-      background-color: lightgrey;
+      background-color: #e9ecef;
       color: #0a56a9;
     }
   </style>

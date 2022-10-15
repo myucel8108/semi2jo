@@ -207,12 +207,11 @@
     <div class="container">
         <div class="row m-0">
             <div class="col-lg-5 col-md-12 p-0" data-aos="fade-right" data-aos-delay="300">
-                <h2> 왜 TeachMe 를 <span> 선택했을까요?</span></h2>
+                <h2>TeachMe 인기강좌 TOP5</h2>
                 <ul>
-                    <li><a href="services.html"><i class="fa fa-angle-right" aria-hidden="true"></i>평점 및 리뷰</a></li>
-                    <li><a href="services.html"><i class="fa fa-angle-right" aria-hidden="true"></i>평점 및 리뷰</a></li>
-                    <li><a href="services.html"><i class="fa fa-angle-right" aria-hidden="true"></i>평점 및 리뷰</a></li>
-                    <li><a href="services.html"><i class="fa fa-angle-right" aria-hidden="true"></i>평점 및 리뷰</a></li>
+                    <c:forEach var="hotdto" items="${hotlectures}">
+                        <li><a href="lecture/lectureDetail?lecdenum="><i class="fa fa-angle-right" aria-hidden="true"></i>${hotdto.lecname}</a>&nbsp;<b style="color: #ba8b00">${hotdto.avgstar}점</b> ${hotdto.teaname} 강사</li>
+                    </c:forEach>
                 </ul>
             </div>
             <div class="col-lg-7 col-md-12 p-0" data-aos="fade-left" data-aos-delay="300">

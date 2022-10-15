@@ -26,4 +26,8 @@
         DELETE FROM lecdetail WHERE lecdenum = #{lecdenum}
     </delete>
 
+    <!--별점 TOP4 강의 출력-->
+    <select id="selectHotLectures" resultType="lectureDto">
+        select * from lecture order by avgstar desc limit 5
+    </select>
 </mapper>
