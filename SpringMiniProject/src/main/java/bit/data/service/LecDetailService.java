@@ -2,10 +2,12 @@ package bit.data.service;
 
 import bit.data.dao.LecDetailDaoInter;
 import bit.data.dto.LecDetailDto;
+import bit.data.dto.LectureDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -44,5 +46,10 @@ public class LecDetailService implements LecDetailServiceInter{
     @Override
     public void deleteLectureDetail(int lecdenum) {
         lecDetailDao.deleteLectureDetail(lecdenum);
+    }
+
+    @Override
+    public List<LectureDto> selectHotLectures() {
+        return lecDetailDao.selectHotLectures();
     }
 }

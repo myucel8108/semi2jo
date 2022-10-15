@@ -1,10 +1,12 @@
 package bit.data.dao;
 
 import bit.data.dto.LecDetailDto;
+import bit.data.dto.LectureDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -41,5 +43,10 @@ public class LecDetailDao implements LecDetailDaoInter{
     @Override
     public void deleteLectureDetail(int lecdenum) {
         session.selectOne(ns + "deleteLectureDetail", lecdenum);
+    }
+
+    @Override
+    public List<LectureDto> selectHotLectures() {
+        return session.selectList(ns+"selectHotLectures");
     }
 }
