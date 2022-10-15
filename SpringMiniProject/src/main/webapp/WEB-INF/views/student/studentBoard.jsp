@@ -6,19 +6,15 @@
 <head>
   <meta charset="UTF-8">
   <title>Insert title here</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<%--  <link--%>
-<%--          href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap"--%>
-<%--          rel="stylesheet">--%>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Yeon+Sung&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+  <!-- css  -->
+  <c:set var="root" value="<%=request.getContextPath() %>"/>
+  <link rel="stylesheet" type="text/css" href="${root}/css/stupagechange.css">
   <style>
-    body{
-      font-family: 'Noto Sans KR';
-    }
     .boardbtn{
-      width: 150px;
-      height: 40px;
+      width: 120px;
+      height: 30px;
       border-radius: 15px;
       background-color: white;
       border: 1px solid black;
@@ -50,9 +46,9 @@
           s+="<h4>작성한 게시물</h4>";
           s+='<table class="table table-bordered">';
           s+='<tr>';
-          s+='<th style="text-align: center; width: 50%;">제목</th>';
-          s+='<th style="text-align: center; width: 20%;">작성자</th>';
-          s+='<th style="text-align: center; width: 30%;">작성일</th>';
+          s+='<th style="text-align: center; width: 300px;">제목</th>';
+          s+='<th style="text-align: center; width: 100px;">작성자</th>';
+          s+='<th style="text-align: center; width: 200px;">작성일</th>';
           s+='</tr>';
           $.each(res, function (i, elt){
             s+="<tr>";
@@ -69,16 +65,22 @@
   </script>
 </head>
 <body>
-<h1>커뮤니티</h1>
-<br>
-<div class="btn-group">
-  <button type="button" id="myboard" class="boardbtn">작성한 게시물</button>
-  <button type="button" id="myreboard" class="boardbtn">댓글 단 게시물</button>
-  <button type="button" id="mylikeboard" class="boardbtn">좋아요 한 게시물</button>
+<div class="sttitle">
+  마이커뮤니티
 </div>
 <br>
+<div class="stcontainer">
+<div class="btn-group">
+  <button type="button" id="myboard" class="boardbtn">작성한 게시물</button>&nbsp;&nbsp;
+  <button type="button" id="myreboard" class="boardbtn">댓글 단 게시물</button>&nbsp;&nbsp;
+  <button type="button" id="mylikeboard" class="boardbtn">좋아요 한 게시물</button>
+</div>
+</div>
+<br>
+<div class="stcontainer">
   <h3 class="listcount"></h3>
   <div class="mylist"></div>
+</div>
 </body>
 <script>
   $("#myboard").click(function (){
@@ -98,9 +100,9 @@
         s+="<h4>작성 한 게시물</h4>";
         s+='<table class="table table-bordered">';
         s+='<tr>';
-        s+='<th style="text-align: center; width: 50%;">제목</th>';
-        s+='<th style="text-align: center; width: 20%;">작성자</th>';
-        s+='<th style="text-align: center; width: 30%;">작성일</th>';
+        s+='<th style="text-align: center; width: 300px;">제목</th>';
+        s+='<th style="text-align: center; width: 100px;">작성자</th>';
+        s+='<th style="text-align: center; width: 200px;">작성일</th>';
         s+='</tr>';
         $.each(res, function (i, elt){
           s+="<tr>";
@@ -131,9 +133,9 @@
           s+="<h4>댓글 단 게시물</h4>";
           s+='<table class="table table-bordered">';
           s+='<tr>';
-          s+='<th style="text-align: center; width: 50%;">제목</th>';
-          s+='<th style="text-align: center; width: 20%;">작성자</th>';
-          s+='<th style="text-align: center; width: 30%;">작성일</th>';
+          s+='<th style="text-align: center; width: 300px;">제목</th>';
+          s+='<th style="text-align: center; width: 100px;">작성자</th>';
+          s+='<th style="text-align: center; width: 200px;">작성일</th>';
           s+='</tr>';
           $.each(res, function (i, elt){
             s+="<tr>";
@@ -164,9 +166,9 @@
         s+="<h4>좋아요 한 게시물</h4>";
         s+='<table class="table table-bordered">';
         s+='<tr>';
-        s+='<th style="text-align: center; width: 50%;">제목</th>';
-        s+='<th style="text-align: center; width: 20%;">작성자</th>';
-        s+='<th style="text-align: center; width: 30%;">작성일</th>';
+        s+='<th style="text-align: center; width: 300px;">제목</th>';
+        s+='<th style="text-align: center; width: 100px;">작성자</th>';
+        s+='<th style="text-align: center; width: 200px;">작성일</th>';
         s+='</tr>';
         $.each(res, function (i, elt){
           s+="<tr>";

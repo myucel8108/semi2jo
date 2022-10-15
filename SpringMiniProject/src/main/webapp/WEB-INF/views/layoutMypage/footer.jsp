@@ -5,34 +5,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%--    <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Yeon+Sung&display=swap" rel="stylesheet">
-    &lt;%&ndash;    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">&ndash;%&gt;
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>--%>
+    <%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">--%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <c:set var="root" value="<%=request.getContextPath() %>"/>
     <link rel="stylesheet" type="text/css" href="${root }/css/footer.css">
 
 </head>
 <style>
-    #ftlogo{
+    /*#ftlogo{*/
 
-        background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    #fttlogo{
-        background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+    /*    background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);*/
+    /*    -webkit-background-clip: text;*/
+    /*    -webkit-text-fill-color: transparent;*/
+    /*}*/
+    /*#fttlogo{*/
+    /*    background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);*/
+    /*    -webkit-background-clip: text;*/
+    /*    -webkit-text-fill-color: transparent;*/
+    /*}*/
 
     .footerarea{
         /*background: linear-gradient(to right, lightgray, darkgray, lightgray);*/
         background-color: lightgray;
     }
-
-
+    .teachMeLogo{
+        font-family: abster;
+        text-decoration: none;
+    }
+    .teachMeLogo:hover{
+        text-decoration: none;
+    }
 
 </style>
 <body>

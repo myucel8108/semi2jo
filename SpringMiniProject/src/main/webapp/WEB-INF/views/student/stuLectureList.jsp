@@ -12,11 +12,11 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- css  -->
+  <c:set var="root" value="<%=request.getContextPath() %>"/>
+  <link rel="stylesheet" type="text/css" href="${root}/css/stupagechange.css">
 
   <style type="text/css">
-    .lcontainer{
-      font-family: 'Noto Sans KR';
-    }
     .lectd th,td{
       text-align: center;
     }
@@ -25,7 +25,7 @@
       height: auto;
       padding: 10px 10px 10px 10px;
     }
-    .lecpayshow:hover
+    #lecpayshow:hover
     {
       cursor: pointer;
     }
@@ -36,7 +36,7 @@
     $(function(){
       $("#lecpay").hide();
 
-      $(".lecpayshow").click(function (){
+      $("#lecpayshow").click(function (){
         var icon=$(this).find("span").attr("class");
         if(icon=='glyphicon glyphicon-chevron-down'){
           $(this).find("span").attr("class",'glyphicon glyphicon-chevron-up');
@@ -52,14 +52,15 @@
   </script>
 </head>
 <body>
-<div class="lcontainer">
-<h2>수강목록</h2>
-
+<div class="sttitle">
+  수강목록
+</div>
+<div class="stcontainer">
 <div class="lectdbox">
 <table class="table table-bordered lectd">
   <tr>
     <th style="width: 80px">과목분류</th>
-    <th style="width: 150px">강의명</th>
+    <th style="width: 200px">강의명</th>
     <th style="width: 80px">강사</th>
     <th style="width: 80px">강의실</th>
     <th style="width: 80px">강의교시</th>
@@ -101,14 +102,15 @@
   </c:forEach>
 </table>
 </div>
-
-<h4 class="lecpayshow">강의 결제 내역 <span class="glyphicon glyphicon-chevron-down"></span></h4>
+</div>
+<div class="sttitle" id="lecpayshow" style="font-size: 18px;">강의 결제 내역 <span class="glyphicon glyphicon-chevron-down"></span></div>
+<div class="stcontainer">
 <div class="lectdbox" id="lecpay">
   <table class="table table-bordered lectd">
     <tr>
-      <th style="width: 160px">결제일시</th>
+      <th style="width: 150px">결제일시</th>
       <th style="width: 70px">결제상태</th>
-      <th style="width: 160px">강의</th>
+      <th style="width: 220px">강의</th>
       <th style="width: 80px">강의교시</th>
       <th style="width: 100px">강의요일</th>
       <th style="width: 70px">수강연월</th>
@@ -155,26 +157,5 @@
 </div>
 </div>
 
-<%--<div>
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Small Modal</button>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
-      <div class="modal-body">
-        <p>This is a small modal.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-</div>--%>
 </body>
 </html>

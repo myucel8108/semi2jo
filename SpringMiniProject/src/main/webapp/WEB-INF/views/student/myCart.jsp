@@ -12,11 +12,12 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <!-- iamport.payment.js -->
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+    <!-- css  -->
+    <c:set var="root" value="<%=request.getContextPath() %>"/>
+    <link rel="stylesheet" type="text/css" href="${root}/css/stupagechange.css">
 
     <style type="text/css">
-        .ccontainer{
-            font-family: 'Noto Sans KR';
-        }
+
         .lectd th,td{
             text-align: center;
         }
@@ -31,12 +32,15 @@
             padding-right: 15px !important;
             font-size: 20px;
         }
+
     </style>
 
 </head>
 <body>
-<div class="ccontainer">
-<h1>장바구니</h1>
+<div class="sttitle">
+    장바구니
+</div>
+<div class="stcontainer">
 <div class="lectdbox">
     <table class="table table-bordered lectd">
         <tr>
@@ -96,8 +100,8 @@
             </td>
         </tr>
     </table>
-    <button type="button" id="selectDel">선택삭제</button>&nbsp;&nbsp;&nbsp;&nbsp;
-    <button type="button" onclick="payment('kcp','test','card')" style="float: right">결제하기</button>
+    <button type="button" class="basicbtn" id="selectDel">선택삭제</button>&nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button" class="basicbtn" onclick="payment('kcp','test','card')" style="float: right">결제하기</button>
 </div>
 </div>
 <script type="text/javascript">

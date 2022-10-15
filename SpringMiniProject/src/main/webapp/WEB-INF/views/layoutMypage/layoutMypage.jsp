@@ -47,25 +47,14 @@
             position: relative;
         }
 
-        div.layout div.header{
-            position: relative;
-            width: 100%;
-            height: 90px;
-        }
-
-        div.layout div.menu{
-            position: relative;
-            width: 100%;
-            height: 56px;
-            z-index: 10;
-        }
 
         /* main 내 side_menu 영역 */
         div.layout div.side_menu{
             position: relative;
-            margin-top: -5px;
-            padding: 30px 30px 30px 50px; /* 상단, 우측, 하단, 좌측 */
-            width: 20%;
+            margin-top: -30px;
+            margin-left: 100px;
+            padding: 30px 0px 30px 30px; /* 상단, 우측, 하단, 좌측 */
+            width: 200px;
             height: auto;
             z-index: 1;
             float: left;
@@ -73,18 +62,12 @@
         }
 
         div.layout div.change{
+            margin-top: -30px;
             position: relative;
             margin-left: 200px;
-            margin-bottom: 100px;
-            padding: 30px 30px 30px 30px;
+            margin-bottom: 300px;
             width: 80%;
-            height: 800px;
             z-index: 1;
-        }
-
-        div.layout div.footer{
-            width: auto;
-            height: 250px;
         }
 
     </style>
