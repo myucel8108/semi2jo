@@ -7,9 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Yeon+Sung&display=swap" rel="stylesheet">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <style>
-    body{
-        font-family: Noto Sans KR;
-    }
+
     img {
         vertical-align: top;
     }
@@ -56,7 +54,7 @@
 
     .hover_text {
         position: absolute;
-        top: 100px;
+        top: 60px;
         left: 25px;
         color: #fff;
         z-index: 20;
@@ -65,8 +63,9 @@
     }
 
     #Accordion_wrap {
-        position: relative;
-    }
+        position: absolute;
+        
+    	}
 
     h1 + p {
         font-weight: 300;
@@ -168,7 +167,7 @@
 
     .que {
         position: relative;
-        padding: 17px 0;
+        padding: 12px 0;
         cursor: pointer;
         font-size: 14px;
         border-bottom: 1px solid black;
@@ -237,10 +236,23 @@
     .que.on .arrow-top {
         display: block;
     }
+     .fa-star{
+	color:#F05522;
+}
+.rating .star2{
+       width:0;
+       overflow: hidden;
+       
+}
+ .rating .star-wrap{
+      width:18px; 
+       display: inline-block;
+         
+}
 </style>
 </head>
-<body>
-<div class="container" style=" display: flex; min-height: 1000px; ">
+<body class="test">
+<div class="container" style=" display: flex; ">
     <div id="Accordion_wrap" style="width: 150px; margin-top: 50px; text-align: center;">
         <div>
 
@@ -249,7 +261,7 @@
             </div>
 
             <div class="que">
-                <span><i class='fas fa-book-open'></i>&nbsp;국어</span>
+                <span><i class='fas fa-book-open'></i>&nbsp;&nbsp;국어</span>
                 <div class="arrow-wrap">
                     <span class="arrow-top"><i class='fas fa-angle-up'></i></span>
                     <span class="arrow-bottom"><i class='fas fa-angle-down'></i></span>
@@ -270,7 +282,7 @@
 
 
             <div class="que">
-                <span><i class='fas fa-calculator'></i>&nbsp;수학</span>
+                <span><i class='fas fa-calculator'></i>&nbsp;&nbsp;수학</span>
                 <div class="arrow-wrap">
                     <span class="arrow-top"><i class='fas fa-angle-up'></i></span>
                     <span class="arrow-bottom"><i class='fas fa-angle-down'></i></span>
@@ -292,7 +304,7 @@
 
 
             <div class="que">
-                <span><i class='fab fa-amilia'></i>&nbsp;영어</span>
+                <span><i class='fab fa-amilia'></i>&nbsp;&nbsp;영어</span>
                 <div class="arrow-wrap">
                     <span class="arrow-top"><i class='fas fa-angle-up'></i></span>
                     <span class="arrow-bottom"><i class='fas fa-angle-down'></i></span>
@@ -309,7 +321,7 @@
 
 
             <div class="que">
-                <span> <i class='fas fa-balance-scale'></i>  사회</span>
+                <span> <i class='fas fa-balance-scale'></i>&nbsp;&nbsp;사회</span>
                 <div class="arrow-wrap">
                     <span class="arrow-top"><i class='fas fa-angle-up'></i></span>
                     <span class="arrow-bottom"><i class='fas fa-angle-down'></i></span>
@@ -339,7 +351,7 @@
 
 
             <div class="que">
-                <span><i class='fas fa-atom'></i>&nbsp;과학</span>
+                <span><i class='fas fa-atom'></i>&nbsp;&nbsp;과학</span>
                 <div class="arrow-wrap">
                     <span class="arrow-top"><i class='fas fa-angle-up'></i></span>
                     <span class="arrow-bottom"><i class='fas fa-angle-down'></i></span>
@@ -362,7 +374,7 @@
 
 
             <div class="que">
-                <span><i class='fas fa-language'></i>&nbsp;제2외국어</span>
+                <span><i class='fas fa-language'></i>&nbsp;&nbsp;제2외국어</span>
                 <div class="arrow-wrap">
                     <span class="arrow-top"><i class='fas fa-angle-up'></i></span>
                     <span class="arrow-bottom"><i class='fas fa-angle-down'></i></span>
@@ -382,15 +394,29 @@
         </div>
     </div>
 
-    <div style="width:100%; height:100%; margin-top: 25px; margin-left: 50px; margin-bottom: 30px; ">
+    <div style="width:100%; height:100%; margin-top: 25px; margin-left: 150px; margin-bottom: 30px; ">
         <c:forEach var="lecdto" items="${list}">
+        
             <div style="float:left; padding: 30px;">
                 <a class="banner_img" href="lectureDetail?lecdenum=${lecdto.lecdenum}">
                     <img src="../upload/lecture/${lecdto.lecphoto}"
-                         style=" width:240px ;height:320px;" id="showimg">
-                    <p class="hover_text" style="text-align: center;">${lecdto.teaname} 강사</p>
+                         style=" width:240px ;height:320px;" id="showimg">                
+                <div class="review2 hover_text" style="margin-left: 50px; margin-top: 5px;">
+                	<p class="" style="padding: 0 auto;">${lecdto.teaname} 강사 <br>${lecdto.lectypea}<br>${lecdto.lectypeb}
+            		 <p style="font-size: 12px;">별점:${lecdto.avgstar}</p></p>
+            		<div class="rating" data-rate="${lecdto.avgstar}">
+	            	<div class="star-wrap"><div class="star2"><i class="fas fa-star"></i></div></div>
+	            	<div class="star-wrap"><div class="star2"><i class="fas fa-star"></i></div></div>
+	            	<div class="star-wrap"><div class="star2"><i class="fas fa-star"></i></div></div>
+	            	<div class="star-wrap"><div class="star2"><i class="fas fa-star"></i></div></div>
+	            	<div class="star-wrap"><div class="star2"><i class="fas fa-star"></i></div></div>
+	            
+            	</div>           
+            </div>              
                 </a>
-                <p style="text-align: center;">${lecdto.lecname}<br>₩${lecdto.price}</p>
+                <div>
+                <p style="text-align: center; margin: 0 auto;">${lecdto.lecname}<br>₩${lecdto.price} </p>
+                </div>
             </div>
         </c:forEach>
     </div>
@@ -405,10 +431,39 @@
     $(document).ready(function () {
         var currentPosition = parseInt($("#Accordion_wrap").css("top"));
         $(window).scroll(function () {
-            var position = $(window).scrollTop();
+        	
+        	var position = $(window).scrollTop();
             $("#Accordion_wrap").stop().animate({"top": position + currentPosition + "px"}, 300);
+            
+            
         });
+        
+        
+        const rating =$('.rating');
+        rating.each(function () {
+       	const $this = $(this);
+       	//정수와 소수점 구분
+       	const targetScore =$this.attr('data-rate');		
+       	const firstdigit =targetScore.split('.');
+       	if(firstdigit.length > 1){
+          		for(var i=0 ; i < firstdigit[0] ; i++){
+       			$this.find('.star2').eq(i).css({width:'100%'}); 			     			
+       		}	
+          		$this.find('.star2').eq(firstdigit[0]).css({width:firstdigit[1]+'0%'});
+       	}
+       	else{
+       		for(var i=0 ; i<  targetScore; i++){
+       			$this.find('.star2').eq(i).css({width:'100%'}); 			     			
+       		}	
+       		
+       	}
+			
+		});     
+        
+        
     });
+
+    
 </script>
 </body>
 </html>
