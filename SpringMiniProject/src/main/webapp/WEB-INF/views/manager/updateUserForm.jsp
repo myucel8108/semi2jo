@@ -20,6 +20,7 @@
 
         .last-div{
             margin-bottom: 50px;
+            margin-right: 50px;
         }
     </style>
 </head>
@@ -95,8 +96,8 @@
                                     </div>
                                     <!-- Button -->
                                     <input type="file" id="uphoto" name="uploadphoto" hidden="">
-                                    <label class="btn btn-success-soft btn-block" for="uphoto" id="upphoto">Upload</label>
-                                    <button type="button" class="btn btn-danger-soft" id="removephoto" value="${dto.usernum}">Remove</button>
+                                    <label class="btn btn-secondary btn-block" for="uphoto" id="upphoto">Upload</label>
+                                    <button type="button" class="btn btn-outline-secondary" id="removephoto" value="${dto.usernum}">Remove</button>
                                     <!-- Content -->
                                     <p class="text-muted mt-3 mb-0"><span class="me-1">최소 사이즈 : </span>300(px) x 300(px) </p>
                                 </div>
@@ -107,8 +108,8 @@
 
                 <!-- button -->
                 <div class="gap-3 d-md-flex justify-content-md-end text-center last-div">
-                    <button type="submit" class="btn btn-success-soft btn-lg">Update profile</button>
-                    <button type="button" class="btn btn-danger-soft btn-lg" id="cancelbutton">Cancel</button>
+                    <button type="submit" class="btn btn-secondary btn-lg">Update profile</button>
+                    <button type="button" class="btn btn-outline-secondary btn-lg" id="cancelbutton">Cancel</button>
                 </div>
             </form> <!-- Form END -->
         </div>

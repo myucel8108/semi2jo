@@ -34,7 +34,7 @@
                             <div class="col-lg-6 px-xl-10">
                                 <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
                                     <h3 class="h2 text-white mb-0">${userdto.username}</h3>
-                                    <span class="text-primary">${userdto.nickname}</span>
+                                    <span class="text-white-50">${userdto.nickname}</span>
                                 </div>
                                 <ul class="list-unstyled mb-1-9">
                                     <li class="mb-2 mb-xl-3 display-28"><span
@@ -63,7 +63,7 @@
             </div>
             <div class="col-lg-12 mb-4 mb-sm-5">
                 <div>
-                    <span class="section-title text-primary mb-3 mb-sm-4">수강 중인 강의</span>
+                    <span class="section-title text-secondary mb-3 mb-sm-4">수강 중인 강의</span>
                     <c:forEach var="joinlist" items="${joinlist}">
                         <div class="present-lecture${joinlist.mylecnum}">
                             <script>
@@ -111,7 +111,7 @@
                 <div class="row">
                     <div class="col-lg-12 mb-4 mb-sm-5">
                         <div class="mb-4 mb-sm-5">
-                            <span class="section-title text-primary mb-3 mb-sm-4">만료된 강의</span>
+                            <span class="section-title text-secondary mb-3 mb-sm-4">만료된 강의</span>
                             <div class="progress-text">
                                 <c:forEach var="joinlist" items="${joinlist}">
                                     <div class="row expired-lecture${joinlist.mylecnum}">

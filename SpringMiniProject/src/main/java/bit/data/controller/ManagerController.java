@@ -295,9 +295,9 @@ public class ManagerController {
     public String updateUser(UserDto dto, MultipartFile uploadphoto, HttpServletRequest request) {
 
         String path = request.getSession().getServletContext().getRealPath("/resources/upload");
-        System.out.println(path); //저장되는 실제 경로 확인
+//        System.out.println(path); //저장되는 실제 경로 확인
         String photo = uploadphoto.getOriginalFilename(); //photo는 실제 파일명
-        System.out.println(uploadphoto.getOriginalFilename()); //실제 파일명 확인
+//        System.out.println(uploadphoto.getOriginalFilename()); //실제 파일명 확인
         if (uploadphoto.getOriginalFilename().equals("")) {
             dto.setUserphoto(null);
         } else {
@@ -403,9 +403,9 @@ public class ManagerController {
     public String updateLecture(LectureDto dto, MultipartFile photoupload, HttpServletRequest request) {
 
         String path = request.getSession().getServletContext().getRealPath("/resources/upload");
-        System.out.println(path); //저장되는 실제 경로 확인
+//        System.out.println(path); //저장되는 실제 경로 확인
         String photo = photoupload.getOriginalFilename(); //photo는 실제 파일명
-        System.out.println(photoupload.getOriginalFilename()); //실제 파일명 확인
+//        System.out.println(photoupload.getOriginalFilename()); //실제 파일명 확인
         if (photoupload.getOriginalFilename().equals("")) {
             dto.setLecphoto(null);
         } else {
@@ -440,9 +440,9 @@ public class ManagerController {
     public String insertLecture(LectureDto dto, MultipartFile photoupload, HttpServletRequest request) {
         //사진이 여러개일 때는 MultipartFile을 List로 가져와야함
         String path = request.getSession().getServletContext().getRealPath("/resources/upload");
-        System.out.println(path); //저장되는 실제 경로 확인
+//        System.out.println(path); //저장되는 실제 경로 확인
         String photo = photoupload.getOriginalFilename(); //photo는 실제 파일명
-        System.out.println(photoupload.getOriginalFilename()); //실제 파일명 확인
+//        System.out.println(photoupload.getOriginalFilename()); //실제 파일명 확인
         if (photoupload.getOriginalFilename().equals("")) {
             dto.setLecphoto(null);
         } else {
@@ -518,7 +518,7 @@ public class ManagerController {
     public ModelAndView updateLectureDetailForm(int lecdenum) {
         ModelAndView mview = new ModelAndView();
         LectureDetailJoinDto dto = lectureService.getLectureDetailData(lecdenum);
-        System.out.println(dto);
+//        System.out.println(dto);
         mview.addObject("dto", dto);
         mview.setViewName("/manager/manager/updateLectureDetailForm");
 
