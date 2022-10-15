@@ -43,7 +43,7 @@ div.sidebar_detail {
 }
 
 div.sidebar_detail:hover {
-    color: #ff4b4e;
+    color: #3f86ed !important;
 }
 
 span.side_main_span_main,.side_main_span_write,.side_main_span_market,.side_main_span_challenge,.side_main_span_scrap {

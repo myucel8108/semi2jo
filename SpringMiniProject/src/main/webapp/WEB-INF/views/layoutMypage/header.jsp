@@ -6,16 +6,12 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <c:set var="root" value="<%=request.getContextPath() %>"></c:set>
     <title>TeachMe입시학원 | Study and Changes Life</title>
-    <link rel="stylesheet" type="text/css" href="${root}/css/taemin.css">
-    <link rel="stylesheet" type="text/css" href="${root}/css/qna.css">
-    <link rel="stylesheet" type="text/css" href="${root}/css/taeminfont.css">
-    <script src="${pageContext.request.contextPath}/resources/javascript/taemin.js"></script>
 
     <style>
 
-       .bt1{
+
+        .bt1{
             width: 100px;
             height: 35px;
             /*font-size: 16px;*/
@@ -67,8 +63,8 @@
 
         #headerfor{
             margin-left: -50px;
-            padding-top: 20px;
-            margin-bottom: 30px;
+            padding-top: 40px;
+            /*margin-bottom: 30px;*/
 
 
         }
@@ -88,39 +84,38 @@
     </style>
 </head>
 <body>
-
+<c:set var="root" value="<%=request.getContextPath() %>"></c:set>
 <header id="headerfor">
     <div  id="rowrowfor">
         <div id="rowfor">
             <div>
-                <h1 style="font-family: abster; margin: auto; text-decoration: none;" id="h1for"><a href="${root}" style="text-decoration: none; color: #3f86ed;" id="logos" data-aos="fade-right" data-aos-delay="100">TeachMe</a></h1>
+                <h1 style="font-family: abster; margin: auto; font-size: 40px !important; font-weight: bold !important; text-decoration: none;" id="h1for"><a href="${root}" style="text-decoration: none; color: #3f86ed;" id="logos" data-aos="fade-right" data-aos-delay="100">TeachMe</a></h1>
             </div>
             <%--            <div>--%>
             <div >
-                <a href="/mini/"><b style="color: #191919;  font-size: 40px" >
+                <a href="/mini/"><b style="color: #191919;  font-size: 40px !important;" >
                 </b></a>
             </div>
         </div>
         <!--/row-->
     </div>
-    <div style="float: right;">
+    <div style="float: right;" >
         <!-- login button -->
         <c:if test="${sessionScope.loginok==null }">
-            <button type="button" id="btnloginMain" class="bt1" style=" margin-right: 110px; margin-top: 10px;"><b>SIGN</b></button>
+            <button type="button" id="btnloginMain" class="bt1" style=" margin-right: 110px; margin-top: 10px; font-size: 16px !important;"><b>SIGN</b></button>
         </c:if>
         <c:if test="${sessionScope.loginok!=null && sessionScope.usertype=='user'}">
-            <b>${sessionScope.loginname}님</b>&nbsp;&nbsp;
-            <a href="${root}/student/timeTable" class="bt1" ><button type="button" id="btnmypage" class="bt1" ><b> MYPAGE</b></button></a>&nbsp;
-            <button type="button" id="btnlogoutMain" class="bt1" style=" margin-right: 110px; margin-left: 5px; margin-top: 10px;"><b>LOGOUT</b></button>
+            <b style="font-size: 16px !important;"> ${sessionScope.loginname}님</b>&nbsp;&nbsp;
+            <a href="${root}/student/timeTable" class="bt1" ><button type="button" id="btnmypage" class="bt1" ><b style="font-size: 16px !important;"> MYPAGE</b></button></a>&nbsp;
+            <button type="button" id="btnlogoutMain" class="bt1" style=" margin-right: 110px; margin-left: 5px; margin-top: 10px; font-size: 16px !important;"><b>LOGOUT</b></button>
         </c:if>
         <c:if test="${sessionScope.loginok!=null && sessionScope.usertype=='manager'}">
             <b>${sessionScope.loginname}님</b>	            &nbsp;&nbsp;
-            <a href="${root}/manager/main">관리자페이지</a>
-            <button type="button" id="btnlogoutMain" class="bt1" style=" margin-right: 110px;" >LOGOUT</button>
+            <a href="${root}/manager/main"><button type="button" id="btnmypage2" class="bt1" ><b>ADMIN</b></button></a>
+            <button type="button" id="btnlogoutMain" class="bt1" style=" margin-right: 110px; margin-left: 5px; margin-top: 10px; font-size: 16px !important;" ><b>LOGOUT</b></button>
         </c:if>
     </div>
     <script>
-        <c:set var="root" value="<%=request.getContextPath() %>"></c:set>
         $("#btnloginMain").click(function () {
             location.href="${root}/loginF";
         });

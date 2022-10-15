@@ -15,7 +15,7 @@
     <c:set var="root" value="<%=request.getContextPath() %>"/>
     <link rel="stylesheet" type="text/css" href="${root}/css/updateform.css">
     <style type="text/css">
-        .container{
+        .ucontainer{
             font-family: 'Noto Sans KR';
         }
     </style>
@@ -34,7 +34,7 @@
     </script>
 </head>
 <body>
-<div class="container" style="width: 80%;">
+<div class="ucontainer" style="width: 80%;">
     <form action="updateStudent" method="post" onsubmit="return check()">
         <input type="hidden" name="usernum" value="${sessionScope.usernum}">
         <div class="title">
