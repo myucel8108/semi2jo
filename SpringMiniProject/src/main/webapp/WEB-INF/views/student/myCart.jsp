@@ -7,7 +7,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Yeon+Sung&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
@@ -15,7 +14,7 @@
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 
     <style type="text/css">
-        .container{
+        .ccontainer{
             font-family: 'Noto Sans KR';
         }
         .lectd th,td{
@@ -36,7 +35,7 @@
 
 </head>
 <body>
-<div class="container">
+<div class="ccontainer">
 <h1>장바구니</h1>
 <div class="lectdbox">
     <table class="table table-bordered lectd">

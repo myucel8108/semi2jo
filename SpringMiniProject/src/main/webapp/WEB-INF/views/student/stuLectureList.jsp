@@ -14,7 +14,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
   <style type="text/css">
-    .container{
+    .lcontainer{
       font-family: 'Noto Sans KR';
     }
     .lectd th,td{
@@ -52,7 +52,7 @@
   </script>
 </head>
 <body>
-<div class="container">
+<div class="lcontainer">
 <h2>수강목록</h2>
 
 <div class="lectdbox">

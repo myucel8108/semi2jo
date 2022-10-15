@@ -13,13 +13,13 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <link rel="stylesheet" type="text/css" href="${root}/resources/css/timetable.css" />
     <style type="text/css">
-        .container{
+        .tcontainer{
             font-family: 'Noto Sans KR';
         }
     </style>
 </head>
 <body>
-<div class="container">
+<div class="tcontainer">
 <h2>시간표</h2>
 <table class="lectable">
     <th></th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th><th>일</th>
