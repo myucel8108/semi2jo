@@ -36,6 +36,11 @@ public class LecDetailService implements LecDetailServiceInter{
     }
 
     @Override
+    public void updateLectureDetail(LecDetailDto dto) {
+        lecDetailDao.updateLectureDetail(dto);
+    }
+
+    @Override
     public void deleteLectureDetail(int lecdenum) {
         lecDetailDao.deleteLectureDetail(lecdenum);
     }

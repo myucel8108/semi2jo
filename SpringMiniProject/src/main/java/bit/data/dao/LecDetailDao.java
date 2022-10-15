@@ -33,6 +33,11 @@ public class LecDetailDao implements LecDetailDaoInter{
     }
 
     @Override
+    public void updateLectureDetail(LecDetailDto dto) {
+        session.selectOne(ns + "updateLectureDetail", dto);
+    }
+
+    @Override
     public void deleteLectureDetail(int lecdenum) {
         session.selectOne(ns + "deleteLectureDetail", lecdenum);
     }

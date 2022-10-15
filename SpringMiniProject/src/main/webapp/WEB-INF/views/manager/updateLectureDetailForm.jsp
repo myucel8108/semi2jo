@@ -74,7 +74,7 @@
                                 <h6 class="user-email">[${dto.lectypea}]-${dto.lectypeb}</h6>
                             </div>
                             <div class="about">
-                                <h5>${dto.teaname}</h5>
+                                <h5 class="text-dark">${dto.teaname}</h5>
                             </div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                     <div class="card-body data-box">
                         <div class="row gutters">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 title-box">
-                                <h3 class="mb-2 text-primary">강의 등록</h3>
+                                <h3 class="mb-2 text-dark">강의 등록</h3>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 margin-box">
                                 <div class="form-group">
@@ -120,7 +120,7 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>수강료</label>
-                                    <input type="text" class="form-control lec-price" name="price" placeholder="수강료 입력"
+                                    <input type="text" class="form-control lec-price" oninput="numberOnly(this)" name="price" placeholder="수강료 입력"
                                            value="${dto.price}">
                                 </div>
                                 <br>
@@ -174,7 +174,7 @@
                         <div class="row gutters">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right button-box">
-                                    <button type="submit" name="updateDetail" class="btn btn-outline-primary">등록하기
+                                    <button type="submit" name="updateDetail" class="btn btn-outline-dark">수정하기
                                     </button> &nbsp;
                                     <button type="button" id="detail-Back" class="btn btn-outline-secondary">돌아가기
                                     </button>
@@ -192,6 +192,16 @@
     for (var i = 1; i < temp.options.length; i++) {
         if ("${dto.roomnum}" == temp.options[i].value) {
             temp.options[i].selected = "true";
+        }
+    }
+
+    //수강일 DB값 얻어와서 출력
+    var lecday = "1,2,3";
+    var lecday_arr = lecday.split(",");
+    // console.log(lecday_arr);
+    for (var i=1; i<=7; i++){
+        for (var j=0; j<lecday_arr.length; j++){
+
         }
     }
 

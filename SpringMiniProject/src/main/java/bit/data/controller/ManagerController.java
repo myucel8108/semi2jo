@@ -518,19 +518,23 @@ public class ManagerController {
     public ModelAndView updateLectureDetailForm(int lecdenum) {
         ModelAndView mview = new ModelAndView();
         LectureDetailJoinDto dto = lectureService.getLectureDetailData(lecdenum);
-
+        System.out.println(dto);
         mview.addObject("dto", dto);
         mview.setViewName("/manager/manager/updateLectureDetailForm");
 
         return mview;
     }
 
+    @PostMapping("/updateLectureDetail")
+    public String updateLectureDetail(LecDetailDto dto, int lecnum) {
+        lecDetailService.updateLectureDetail(dto);
+        return "redirect:lectureDetail?lecnum=" + lecnum;
+    }
+
     //강의 삭제 후 강의 상세로 이동
     @GetMapping("/deleteLectureDetail")
     public String deleteLectureDetail(@RequestParam(defaultValue = "0") int lecdenum,
                                       @RequestParam(defaultValue = "0") int lecnum) {
-        System.out.println("lecdenum" + lecdenum);
-        System.out.println("lecnum" + lecnum);
         lecDetailService.deleteLectureDetail(lecdenum);
         return "redirect:lectureDetail?lecnum=" + lecnum;
     }

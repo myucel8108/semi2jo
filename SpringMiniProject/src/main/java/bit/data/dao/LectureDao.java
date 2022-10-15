@@ -40,7 +40,7 @@ public class LectureDao implements LectureDaoInter{
 
     @Override
     public LectureDetailJoinDto getLectureDetailData(int lecdenum) {
-        return session.selectOne(ns + "getLecturePresent", lecdenum);
+        return session.selectOne(ns + "getLectureDetailData", lecdenum);
     }
 
     @Override
