@@ -15,8 +15,7 @@
 	
 	<select id="getReview" parameterType="int" resultType="myLectureDto">
 
-			select mylecture.review , mylecture.star , mylecture.usernum, user.username  from mylecture, user where mylecture.lecdenum=#{lecdenum} and payok="ok" and mylecture.usernum =user.usernum ;
-
+		select mylecture.review , mylecture.star , mylecture.usernum, user.username , user.userphoto, mylecture.paytime  from mylecture, user where mylecture.lecdenum=#{lecdenum}  and payok="ok" and mylecture.usernum =user.usernum ;
 		
 	</select>
 

@@ -45,16 +45,15 @@ public class LectureController {
         ModelAndView mview = new ModelAndView();
         List<MyLectureDto> list = myLectureService.getReview(lecdenum);
         ReadyPayDto dto =  readypayservice.selectByLecdeNum(lecdenum);
-
         HttpSession session =request.getSession();
-        //�궡媛� �닔媛뺥븳 媛뺤쓽�긽�꽭�럹�씠吏��뿉留� �닔媛뺥룊 �옉�꽦�븷 �닔 �엳�룄濡� myLecJoin �젙蹂� 蹂대궡二쇨린(濡쒓렇�씤�븳 寃쎌슦留�)
+        //
         if(session.getAttribute("usernum")!=null)
         {
-            //濡쒓렇�씤�븳 �닔媛뺤깮 usernum 媛��졇�삤湲�
+       
             int usernum= Integer.parseInt(session.getAttribute("usernum").toString());
-            //usernum 湲곗��쑝濡� �닔媛뺣ぉ濡� data 媛��졇�삤湲�
+            //usernum 
             List<MyLecJoinDto> jlist=myLecJoinService.getMyLecListByNum(usernum,"ok");
-            //mview�뿉 jlist �꽔�뼱二쇨린
+            //mview
             mview.addObject("jlist", jlist);
         }
 
@@ -66,18 +65,18 @@ public class LectureController {
 
     }
     
-    //mylecture�쓽 蹂꾩젏怨� �닔媛뺥룊 �옉�꽦�븯怨� �벑濡앺븯湲� �늻瑜대㈃ lecture�뀒�씠釉붿쓽 avgstar �뾽�뜲�씠�듃 �릺寃� �븯湲�
+    //mylecture
     @PostMapping("lecture/lecUpStarReview")
     public String lecUpStarReview(int star, String review, int usernum, int lecdenum) {
 
         myLectureService.updateStarReview(star,review,usernum,lecdenum);
         
-        //lecdenum�뿉 �빐�떦�븯�뒗 lecnum媛��졇�삤湲�
+        //lecdenum
         LecDetailDto dto = lecDetailService.getDataByLecDeNum(lecdenum);
         int lecnum=dto.getLecnum();
 
         try {
-            //lecnum�쑝濡� lecture �뀒�씠釉붿쓽 avgstar 媛� 諛붽씀湲�
+            //lecnum
             double avgstar=myLectureService.getAvgstarByLecnum(lecnum).getAvgstar();
             myLectureService.updateAvgstarByLecnum(avgstar,lecnum);
         }catch (NullPointerException e){}
