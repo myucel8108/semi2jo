@@ -34,7 +34,7 @@
     <input type="hidden" name="currentPage" value="${currentPage}">
     <%--    <input type="hidden" name="email" value="${sessionScope.loginid}">--%>
     <input type="hidden" name="usernum" value="${sessionScope.usernum}">
-    <table class="table table-bordered" style="width: 800px;">
+    <table class="table table-bordered">
       <tr>
         <th style="text-align: center;">유형</th>
         <td>
@@ -65,8 +65,8 @@
       </tr>
       <tr>
         <td colspan="2" align="center">
-          <button type="button" class="boardbtn" onclick="history.back();">뒤로가기</button>
           <button type="submit" class="boardbtn">수정하기</button>
+          <button type="button" class="boardbtn" onclick="history.back();">뒤로가기</button>
         </td>
       </tr>
     </table>
