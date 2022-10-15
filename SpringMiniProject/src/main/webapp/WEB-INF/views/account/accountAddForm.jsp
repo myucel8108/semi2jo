@@ -51,56 +51,57 @@
                     </script>
                 </c:if>
                 <c:if test="${email==null}">
-                    <input class="input100 userid" type="text" name="email" data-validate = "Valid email is required: ex@abc.xyz">
-                    <span class="focus-input100"></span>
-                    <span class="label-input100 userid">email</span>
+                    <input class="input100 userid" type="text" name="email" data-validate = "Valid email is required: ex@abc.xyz"
+                            placeholder="Email">
+<%--                    <span class="focus-input100"></span>--%>
+<%--                    <span class="label-input100 userid">email</span>--%>
                 </c:if>
             </div>
 
-            <div style="margin-bottom: 10px;" id="div-check-id" >
+            <div style="margin-bottom: 10px; display: none" id="div-check-id">
                 <span style="margin-left: 10px;" id="result-check-id">Check Id</span>
             </div>
 
 
 <%--            비밀번호 입력--%>
             <div class="wrap-input100 validate-input" data-validate="Password is required">
-                <input class="input100 loginpass check-pass-one" type="password" name="userpass">
-                <span class="focus-input100"></span>
-                <span class="label-input100 ">Password</span>
+                <input class="input100 loginpass check-pass-one" type="password" name="userpass" placeholder="Password">
+<%--                <span class="focus-input100"></span>--%>
+<%--                <span class="label-input100 ">Password</span>--%>
             </div>
             <div class="wrap-input100 validate-input" data-validate="Password is required">
-                <input class="input100 loginpass check-pass-two" type="password" >
-                <span class="focus-input100"></span>
-                <span class="label-input100">Check Password</span>
+                <input class="input100 loginpass check-pass-two" type="password" placeholder="Password">
+<%--                <span class="focus-input100"></span>--%>
+<%--                <span class="label-input100">Check Password</span>--%>
             </div>
             <div style="margin-bottom: 10px;" id="div-check-pass" >
-                <span style="margin-left: 10px;" id="result-check-pass">Incorrect</span>
+                <span style="margin-left: 10px; display: none" id="result-check-pass">Incorrect</span>
             </div>
 
 <%--            이름--%>
             <div class="wrap-input100 validate-input" data-validate = "Name is required">
-                <input class="input100" type="text" name="username">
-                <span class="focus-input100"></span>
-                <span class="label-input100 userid">Name</span>
+                <input class="input100" type="text" name="username" placeholder="Name">
+<%--                <span class="focus-input100"></span>--%>
+<%--                <span class="label-input100 userid">Name</span>--%>
             </div>
 
 <%--            주소--%>
             <div class="wrap-input100 validate-input" data-validate = "Address is required">
-                <input class="input100" type="text" name="addr">
-                <span class="focus-input100"></span>
-                <span class="label-input100 userid">Address</span>
+                <input class="input100" type="text" name="addr" placeholder="Address">
+<%--                <span class="focus-input100"></span>--%>
+<%--                <span class="label-input100 userid">Address</span>--%>
             </div>
 <%--            핸드폰버호--%>
             <div class="wrap-input100 validate-input" data-validate = "Phone Number is required">
-                <input class="input100" type="text" name="hp">
-                <span class="focus-input100"></span>
-                <span class="label-input100 userid">Phone Number</span>
+                <input class="input100" type="text" name="hp" placeholder="Phone Number">
+<%--                <span class="focus-input100"></span>--%>
+<%--                <span class="label-input100 userid">Phone Number</span>--%>
             </div>
 <%--            생일--%>
             <div class="wrap-input100 validate-input div-input-birth" >
-                <input class="input100" id="birth" type="date" name="birth">
-                <span class="focus-input100"></span>
-                <span class="label-input100 userid">Birth Day</span>
+                <input class="input100" id="birth" type="date" name="birth" placeholder="Birth Day">
+<%--                <span class="focus-input100"></span>--%>
+<%--                <span class="label-input100 userid">Birth Day</span>--%>
             </div>
 
 <%--            프로필 사진--%>
@@ -112,9 +113,6 @@
 <%--                <img id="showimg">--%>
 <%--                <span class="focus-input100"></span>--%>
 <%--            </div>--%>
-
-
-
 
             <div class="container-login100-form-btn">
                 <button class="login100-form-btn" id="btn-sign-up" type="submit">

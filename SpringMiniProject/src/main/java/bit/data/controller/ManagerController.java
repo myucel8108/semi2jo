@@ -573,7 +573,6 @@ public class ManagerController {
                                                   @RequestParam(value = "searchcolumn", required = false) String sc,	/*required = false: 값이 없을 겨우 null*/
                                                   @RequestParam(value = "searchword", required = false) String sw){
 
-        System.out.println("report- controller");
         //페이징 처리에 필요한 변수들
         //전체 갯수
 //        int totalCount=0;
