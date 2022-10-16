@@ -61,7 +61,7 @@
             clear: both;
         }
 
-        div.layout div.change{
+        div.layout div.timeTable{
             margin-top: -30px;
             position: relative;
             margin-left: 200px;

@@ -422,7 +422,7 @@
     <ul id="main_menu">
         <div class="btn_gotop"><a href="#"><img src="image/tttt.png"
                                                 style="width: 70%; background-color:transparent; color: black;"></a></div>
-        <br>리
+        <br>
         <br>
         <li><a href="javascript:dos()" style="color: black;"><img src="image/pointt.png"
                                                                   style="width: 80%; background-color:transparent; color: black;"></a>
