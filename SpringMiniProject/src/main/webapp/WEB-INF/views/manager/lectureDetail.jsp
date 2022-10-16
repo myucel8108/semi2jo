@@ -40,6 +40,10 @@
             font-size: 20px;
             color: #5a5c69;
         }
+
+        .lecture-info{
+            width: 160px;
+        }
     </style>
 </head>
 <body>
@@ -103,23 +107,32 @@
                              style="background-image: url('https://www.bootdey.com/img/Content/bg_element.jpg');">
                             <div class="member_contact">
                                 <div class="row">
-                                    <div class="col-lg-4  mb-3 mb-lg-0">
+                                    <div class="col-lg-4  mb-3 mb-lg-0 lecture-info">
                                         <div class="media-box">
                                             <div class="media-icon">
-                                                <i class="fa fa-desktop" style="font-size:48px;"></i>
+                                                <i class="fa fa-desktop" style="font-size:40px;"></i>
                                             </div>
                                             <div class="media-content text-white lecture-present1${dtolist.lecdenum}">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4  mb-3 mb-lg-0">
+                                    <div class="col-lg-4  mb-3 mb-lg-0 lecture-info">
                                         <div class="media-box">
                                             <div class="media-icon">
-                                                <i class="fa fa-folder-open-o" style="font-size:48px;"></i>
+                                                <i class="fa fa-folder-open-o" style="font-size:40px;"></i>
                                             </div>
                                             <div class="media-content lecture-present2${dtolist.lecdenum}">
-                                                <h5>Email</h5>
-                                                <p><a href="mailto">info@example.com</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4  mb-3 mb-lg-0 lecture-info">
+                                        <div class="media-box">
+                                            <div class="media-icon">
+                                                <i class="fa fa-handshake-o" style="font-size:40px"></i>
+                                            </div>
+                                            <div class="media-content">
+                                                <h5>${dtolist.lecyear}년</h5>
+                                                <p>${dtolist.lecmonth}월</p>
                                             </div>
                                         </div>
                                     </div>
@@ -180,6 +193,7 @@
                                 }
                             }
 
+                            //쓰레기통 버튼 누르면 삭제하기
                             $("#deleteLecDetail${dtolist.lecdenum}").click(function () {
                                 var a = confirm("강의를 삭제하시겠습니까?");
                                 if (a) {
