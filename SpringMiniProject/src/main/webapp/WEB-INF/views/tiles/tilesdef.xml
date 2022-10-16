@@ -25,34 +25,18 @@
         <put-attribute name="change" value="/WEB-INF/views/{1}/{2}.jsp"/>
     </definition>
 
-    <definition name="test" template="/WEB-INF/views/test/layoutManager.jsp">
-        <put-attribute name="change" value="/WEB-INF/views/layoutManager/change.jsp"/>
-        <put-attribute name="header" value="/WEB-INF/views/layoutManager/header.jsp"/>
-        <put-attribute name="menu" value="/WEB-INF/views/layoutManager/menu.jsp"/>
-    </definition>
-    <!-- macro -->
-    <definition name="/test/*/*" extends="test">
-        <put-attribute name="change" value="/WEB-INF/views/{1}/{2}.jsp"/>
-    </definition>
 
-<!--    <definition name="layoutMypage" template="/WEB-INF/views/layoutMypage/layoutMypage.jsp">-->
-<!--        <put-attribute name="change" value="/WEB-INF/views/layoutMypage/change.jsp"/>-->
-<!--        <put-attribute name="footer" value="/WEB-INF/views/layoutMypage/footer.jsp"/>-->
-<!--        <put-attribute name="header" value="/WEB-INF/views/layoutMypage/header.jsp"/>-->
-<!--        <put-attribute name="info" value="/WEB-INF/views/layoutMypage/info.jsp"/>-->
-<!--        <put-attribute name="menu" value="/WEB-INF/views/layoutMypage/menu.jsp"/>-->
-<!--    </definition>-->
     <!-- layout3: challenge -->
     <definition name="layoutMypage" template="/WEB-INF/views/layoutMypage/layoutMypage.jsp">
         <put-attribute name="header" value="/WEB-INF/views/layoutMypage/header.jsp" />
         <put-attribute name="menu" value="/WEB-INF/views/layoutMypage/menu.jsp" />
-        <put-attribute name="change" value="/WEB-INF/views/layoutMypage/change.jsp" />
+        <put-attribute name="timeTable" value="/WEB-INF/views/student/timeTable.jsp" />
         <put-attribute name="a_sidemenu" value="/WEB-INF/views/layoutMypage/a_sidemenu.jsp" />
         <put-attribute name="footer" value="/WEB-INF/views/layoutMypage/footer.jsp" />
     </definition>
     <!-- macro -->
     <definition name="/mypage/*/*" extends="layoutMypage">
-        <put-attribute name="change" value="/WEB-INF/views/{1}/{2}.jsp"/>
+        <put-attribute name="timeTable" value="/WEB-INF/views/{1}/{2}.jsp"/>
     </definition>
 
 </tiles-definitions>

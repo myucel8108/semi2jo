@@ -9,14 +9,9 @@
 		<typeAlias type="bit.data.dto.LectureDto" alias="lectureDto"/>
 		<typeAlias type="bit.data.dto.LectureDetailJoinDto" alias="lectureDetailJoinDto"/>
 		<typeAlias type="bit.data.dto.LikeBoardDto" alias="likeBoardDto"/>
-		<typeAlias type="bit.data.dto.LockerDto" alias="lockerDto"/>
-		<typeAlias type="bit.data.dto.ManagerDto" alias="managerDto"/>
 		<typeAlias type="bit.data.dto.MyLectureDto" alias="myLectureDto"/>
-		<typeAlias type="bit.data.dto.NoticeDto" alias="noticeDto"/>
-		<typeAlias type="bit.data.dto.PayDto" alias="payDto"/>
 		<typeAlias type="bit.data.dto.QnaDto" alias="qnaDto"/>
 		<typeAlias type="bit.data.dto.ReboardDto" alias="reboardDto"/>
-		<typeAlias type="bit.data.dto.RoomDto" alias="roomDto"/>
 		<typeAlias type="bit.data.dto.UserDto" alias="userDto"/>
 		<typeAlias type="bit.data.dto.UserLecJoinDto" alias="userLecJoinDto"/>
 		<typeAlias type="bit.data.dto.MyLecJoinDto" alias="myLecJoinDto"/>

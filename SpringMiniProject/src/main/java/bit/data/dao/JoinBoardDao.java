@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class JoinBoardDao implements ManagerDaoInter{
+public class JoinBoardDao {
 
     @Autowired
     SqlSession session;
