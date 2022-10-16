@@ -78,7 +78,7 @@ header h6 {
 
 nav {
     background-color: #ffffff ;
-    border-top: 1px solid #e5e5e5;
+    /*border-top: 1px solid #e5e5e5;*/
     -webkit-box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.1607843137254902);
     -moz-box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.1607843137254902);
     box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.1607843137254902);

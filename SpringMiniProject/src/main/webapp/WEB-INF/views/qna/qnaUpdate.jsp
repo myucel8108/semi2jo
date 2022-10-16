@@ -108,6 +108,7 @@
 
 </script>
 <body>
+<c:set var="root" value="<%=request.getContextPath() %>"/>
 <c:if test="${sessionScope.loginok==null}">
   <script type="text/javascript">
     alert("먼저 로그인해주세요");
