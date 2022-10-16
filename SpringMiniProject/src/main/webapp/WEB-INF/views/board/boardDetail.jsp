@@ -8,7 +8,7 @@
     <title>Insert title here</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Yeon+Sung&display=swap" rel="stylesheet">
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<%--    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>--%>
     <%--     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>--%>
     <%--    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>--%>
@@ -16,10 +16,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style type="text/css">
-
-        body{
-            font-family: Noto Sans KR;
-        }
 
         span.likes {
             cursor: pointer;
@@ -184,8 +180,8 @@
                             s+="<span class='writer'>(작성자)</span>";
                         }
                         s+="<br><br>";
-                        s+="<pre>&nbsp;&nbsp;<b style='font-size: 15px;'>"+elt.recontent+"&nbsp;&nbsp;";
-                        s+="</b><span class='day' style='color:gray;'>"+elt.writeday+"&nbsp;";
+                        s+="<pre>&nbsp;&nbsp;<span style='font-size: 15px; font-family: Noto Sans KR!important;'>"+elt.recontent+"&nbsp;&nbsp;";
+                        s+="</span><span class='day' style='color:gray; font-family: Noto Sans KR;!important;'>"+elt.writeday+"&nbsp;";
                         if(loginok=='yes' && usernum==elt.usernum){
                             s+='<i class="fa fa-close redelete" style="font-size:15px; color: black" reboardnum='+elt.reboardnum+'></i>';
                         }
@@ -198,7 +194,7 @@
     </script>
 </head>
 <body>
-<div class="container" style="width: 1000px; padding: 100px;">
+<div class="container" style="width: 1000px; padding: 100px; font-family: Noto Sans KR;">
     <table class="table table-bordered" style="width: 100%;">
         <tr>
             <td style="padding: 30px;">
@@ -220,7 +216,7 @@
         </tr>
         <tr height="200">
             <td style="padding: 30px;">
-                <pre style="margin: 15px;"><b style="font-size: 17px;">${dto.content}</b></pre> <!--작성글 내용-->
+                <pre style="margin: 15px;"><p style="font-size: 17px; font-family: Noto Sans KR;!important;">${dto.content}</p></pre> <!--작성글 내용-->
                 <c:if test="${dto.photo!='no'}">    <!--작성글 첨부사진-->
                     <c:forTokens var="photo" items="${dto.photo}" delims=",">
                         <img src="../upload/${photo}" style="max-width: 400px;"
@@ -241,7 +237,7 @@
                 </span>
 
                 &nbsp;&nbsp;
-                <i class="far fa-comment-dots" style="font-size:24px">&nbsp;<b class="banswer" style="font-size: 15px">0</b></i>
+                <i class="fa fa-commenting-o" style="font-size:24px">&nbsp;<b class="banswer" style="font-size: 15px">0</b></i>
                 <i class="fa fa-warning report" style="font-size:24px; float: right; color: red"><b style="font-size: 15px; color: black;">&nbsp;신고하기</b></i>
                 <br><hr>
                 <div class="alist"></div>
