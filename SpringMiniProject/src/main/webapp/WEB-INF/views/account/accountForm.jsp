@@ -12,12 +12,14 @@
     <link rel="stylesheet" type="text/css" href="${root}/css/account.css">
     <link rel="stylesheet" type="text/css" href="${root}/css/qna.css">
     <link rel="stylesheet" type="text/css" href="${root}/TeachMeStyle/.css">
+    <link rel="stylesheet" type="text/css" href="${root}/css/quickmenu.css">
     <!--===============================================================================================-->
 </head>
 <style>
     #check-id{
         cursor: pointer;
     }
+
 
 
 </style>
@@ -51,40 +53,6 @@
             </div>
 
 
-
-<%--            <div class="flex-sb-m w-full p-t-3 p-b-32">--%>
-<%--                <div class="contact100-form-checkbox">--%>
-<%--                    <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">--%>
-<%--                    <label class="label-checkbox100" for="ckb1">--%>
-<%--                    </label>--%>
-<%--                </div>--%>
-
-<%--                <div>--%>
-<%--                    <a href="#" class="txt1">--%>
-<%--                        Forgot Password?--%>
-<%--                    </a>--%>
-
-<%--                </div>--%>
-
-<%--            간편로그인--%>
-<%--            <ul>--%>
-<%--                <li onclick="kakaoLogin();">--%>
-<%--&lt;%&ndash;                    <a href="javascript:void(0)">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                        <span>카카오 로그인</span>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    </a>&ndash;%&gt;--%>
-<%--                    카카오 로그인--%>
-<%--                </li>--%>
-<%--            </ul>--%>
-<%--            <ul>--%>
-<%--                <li onclick="kakaoLogout();">--%>
-<%--                    &lt;%&ndash;                    <a href="javascript:void(0)">&ndash;%&gt;--%>
-<%--                    &lt;%&ndash;                        <span>카카오 로그인</span>&ndash;%&gt;--%>
-<%--                    &lt;%&ndash;                    </a>&ndash;%&gt;--%>
-<%--                    카카오 로그아웃--%>
-<%--                </li>--%>
-<%--            </ul>--%>
-
-
             <div class="container-login100-form-btn">
                 <button class="login100-form-btn" id="btn-sign-in" style="width: 40%; margin-right: 5%; color: black">
                     Sign In
@@ -101,6 +69,33 @@
 
     </div>
 </div>
+
+<%--퀵메뉴--%>
+<nav class="cuz">
+    <ul id="main_menu">
+        <div class="btn_gotop"><a href="#"><img src="image/tttt.png"
+                                                style="width: 70%; background-color:transparent; color: black;"></a>
+        </div>
+        <br>
+        <br>
+        <li><a href="javascript:dos()" style="color: black;"><img src="image/pointt.png"
+                                                                  style="width: 80%; background-color:transparent; color: black;"></a>
+            <ul class="snd_menu sub_menu" style=" background-color:transparent;">
+                <br>
+                <li><a href="${root}/lecture/lectureList"><img src="image/yu.png"
+                                                               style="width: 100%; background-color:transparent; color: black;">강의</a>
+                </li>
+                <br>
+                <li><a href="${root}/board/boardFree"><img src="image/cccb.png"
+                                                           style="width: 100%;padding-left:10px;  ">커뮤니티</a></li>
+                <br>
+                <li><a href="${root}/qna/qnaList"><img src="image/1ask.png" style="width:130%; padding-right: 25px;">문의하기</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
 
 <script>
     // 로그인 버튼 클릭 이벤트
@@ -137,6 +132,16 @@
             },
         });
     }
+
+    // 퀵메뉴 script
+    $(document).ready(function dos() {
+        $('#main_menu > li > a').click(function () {
+            $(this).next($('.snd_menu sub_menu')).slideToggle('fast');
+            // $(this).show($('.snd_menu sub_menu')("slide",{direction:'left'},1000));
+        })
+        // e.stopPropagation();
+
+    })
 </script>
 <%--    카카오 api 로그인--%>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>

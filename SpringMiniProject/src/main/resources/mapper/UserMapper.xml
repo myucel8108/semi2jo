@@ -5,7 +5,7 @@
     <insert id="insertUser" parameterType="userDto">
         insert into user (usernum,usertype,email,userpass,username,
                           nickname,userphoto,addr,hp,lastlogin,birth)
-        values (null,"user",#{email},#{userpass},#{username},null,#{userphoto},#{addr},#{hp},now(),#{birth})
+        values (null,"user",#{email},#{userpass},#{username},#{nickname},#{userphoto},#{addr},#{hp},now(),#{birth})
     </insert>
 
     <!--회원가입시 아이디(email) 중복체크-->
