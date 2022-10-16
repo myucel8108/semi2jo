@@ -29,6 +29,21 @@
     margin-top: 36px;
 
 }
+
+#btnmycart{
+       width: 200px;
+       height: 70px;
+       font-size: 30px;
+       color: #3b5a9b;
+       background-color: white;
+       border-radius: 15px;
+       border-color: #3b5a9b;
+       
+   }
+   #btnmycart:hover{
+       color: #1da1f2;
+       border-color: #1da1f2;
+   }
      div.alist img{
             width: 40px;
             height: 40px;
@@ -354,7 +369,7 @@ position: relative;
          </tr>
          </tbody>
       </table>
-   <button id="writecolor" class="btn btn-outline"  type="button" onclick="gocart(event)"> 장바구니</button>
+   <button id="btnmycart" class="btn btn-outline"  type="button" onclick="gocart(event)"><i class="fa fa-shopping-cart"></i>&nbsp;장바구니</button>
       </div>      
    </div>   
 </div>

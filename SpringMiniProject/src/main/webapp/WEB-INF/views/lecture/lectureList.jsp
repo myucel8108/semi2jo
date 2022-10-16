@@ -251,8 +251,8 @@
 }
 </style>
 </head>
-<body class="test">
-<div class="container" style=" display: flex; ">
+<body >
+<div class="container" style=" display: flex; min-height: 500px;">
     <div id="Accordion_wrap" style="width: 150px; margin-top: 50px; text-align: center;">
         <div>
 
