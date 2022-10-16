@@ -190,31 +190,31 @@
 
         </div>
     </div>
-    <h3 style="text-align: center; margin-bottom: 40px; margin-top: 0px; color: black;">티치미 선정 필수강의</h3>
+    <h3 style="text-align: center; margin-bottom: 40px; margin-top: 0px; color: black;">Recommended Lectures</h3>
     <div class="container-fluid" style="height: 450px;">
         <div class="row" data-aos="fade-up" data-aos-delay="300">
-            <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
+            <a href="lecture/lectureDetail?lecdenum=70" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
                 <img src="image/mh.jpg" class="img-fluid">
                 <div class="overlay">
-                    <img src="" alt="">
+                    <img src="${root}lecture/lectureDetail?lecdenum=70" alt="">
                     <div class="inner-text"><h4>본 강의<span>수강하기</span></h4></div>
                 </div>
             </a>
-            <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
+            <a href="lecture/lectureDetail?lecdenum=83" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
                 <img src="image/engg.jpg" class="img-fluid">
                 <div class="overlay">
                     <img src="" alt="">
                     <div class="inner-text"><h4>본 강의<span>수강하기</span></h4></div>
                 </div>
             </a>
-            <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
+            <a href="lecture/lectureDetail?lecdenum=79" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
                 <img src="image/mattt.jpg" class="img-fluid">
                 <div class="overlay">
                     <img src="" alt="">
                     <div class="inner-text"><h4>본 강의<span>수강하기</span></h4></div>
                 </div>
             </a>
-            <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
+            <a href="lecture/lectureDetail?lecdenum=93" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
                 <img src="image/kok.jpg" class="img-fluid">
                 <div class="overlay">
                     <img src="" alt="">
@@ -551,7 +551,7 @@
         var hour = Math.ceil((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var min = Math.ceil((gap % (1000 * 60 * 60)) / (1000 * 60));
         var sec = Math.ceil((gap % (1000 * 60)) / 1000);
-        document.getElementById("count").innerHTML = "<b style='font-style: italic;'>2022년도 수능 D-DAY&nbsp;</b>  " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초 남았습니다!";
+        document.getElementById("count").innerHTML = "<b>2022년도 수능 D-DAY&nbsp;</b>  " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초";
     }, 1000);
 
 
