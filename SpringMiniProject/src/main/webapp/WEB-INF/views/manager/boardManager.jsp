@@ -291,16 +291,16 @@
         var page ="";
         page += '<div class="pagination">';
         if (startPage>1){
-            page += '<span class="page-item" currentPage="'+(currentPage-1)+'" boardtype="'+boardtype+'">이전</span>';
+            page += '<a class="page-link page-item" currentPage="'+(currentPage-1)+'" boardtype="'+boardtype+'">이전</a>';
         }
         for(var pp = startPage; pp<=endPage; pp++){
             if(pp==currentPage)
-                page += '<span class=" active page-item" currentPage="'+pp+'" boardtype="'+boardtype+'" >'+pp+'</span>';
+                page += '<a class="active page-link page-item" currentPage="'+pp+'" boardtype="'+boardtype+'" >'+pp+'</a>';
             else
-                page += '<span class="page-item" currentPage="'+pp+'" boardtype="'+boardtype+'">'+pp+'</span>';
+                page += '<a class="page-link page-item"  currentPage="'+pp+'" boardtype="'+boardtype+'">'+pp+'</a>';
         }
         if(endPage<totalPage)
-            page += '<span class="page-item" currentPage="'+(endPage+1)+'" boardtype="'+boardtype+'">다음</span>';
+            page += '<a class="page-link page-item" currentPage="'+(endPage+1)+'" boardtype="'+boardtype+'">다음</a>';
         page += '</div>';
         return page;
     }
