@@ -115,10 +115,11 @@
                         </c:if>
 
 
+
                         <c:if test="${sessionScope.loginok!=null || sessionScope.email=='admin@gmail.com'}">
                         <a href="qnaDetail?qnanum=${dto.qnanum}&currentPage=${currentPage}" class="subject-tm">
                             </c:if>
-                            <c:if test="${sessionScope.loginok!=null and dto.relevel==0 and dto.qnatype!='공지사항' and sessionScope.usernum!=dto.usernum}">
+                            <c:if test="${sessionScope.loginok!=null and dto.relevel==0 and dto.qnatype!='공지사항' and sessionScope.usernum!=dto.usernum and sessionScope.usernum!=12}">
                                 <img src="../image/lockimg.jpg" width="10px;" style="background-color: white">
                             </c:if>
                             <c:if test="${sessionScope.loginok!=null}">
@@ -145,7 +146,7 @@
                     <c:set var="last" value="${fn:substring(dto.username, 3, totalLength)}"/>
 
                     <td align="center">
-                        <c:if test="${!empty dto.username and dto.username!='티치미' and sessionScope.usernum!=dto.usernum }">
+                        <c:if test="${!empty dto.username and dto.username!='티치미' and sessionScope.usernum!=dto.usernum}">
                             <c:out value="${first}**${last}"/>
                         </c:if>
                         <c:if test="${dto.username=='티치미' || sessionScope.usernum==dto.usernum}">
