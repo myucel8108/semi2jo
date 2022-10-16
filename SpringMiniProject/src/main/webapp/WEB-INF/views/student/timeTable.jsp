@@ -17,7 +17,9 @@
     <link rel="stylesheet" type="text/css" href="${root}/resources/css/timetable.css" />
 
     <style type="text/css">
-
+        a.lecdego:hover{
+            color: #6d6d6d !important;
+        }
     </style>
 </head>
 <body>
@@ -56,11 +58,13 @@
                                 <c:set var="bgcolor" value="#f8ece9"/>
                             </c:if>
                             <div class="mylecname" style="background-color:${bgcolor};">
+                                <a class="lecdego" href="${root}/lecture/lectureDetail?lecdenum=${dto.lecdenum}">
                                 <c:if test="${fn:length(dto.lecname)>6}">
                                     ${fn:substring(dto.lecname,0,6)}<br>
                                     ${fn:substring(dto.lecname,7,14)}
                                     <c:if test="${fn:length(dto.lecname)>15}">..</c:if>
                                 </c:if>
+                                </a>
                             </div>
                             <div style="color: #6d6d6d;">
                                 ${dto.teaname}

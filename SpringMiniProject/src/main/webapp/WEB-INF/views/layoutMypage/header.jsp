@@ -126,7 +126,7 @@
                 url:"${root}/logout",
                 dataType:"text",
                 success:function(res){
-                    location.reload();
+                    location.href="${root}";
                 },
             });
         });

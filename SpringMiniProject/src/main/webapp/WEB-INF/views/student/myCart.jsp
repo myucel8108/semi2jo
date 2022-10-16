@@ -45,8 +45,8 @@
     <table class="table table-bordered lectd">
         <tr>
             <th style="width: 30px"><input id="allCheck" type="checkbox"/></th>
-            <th style="width: 60px">과목분류</th>
-            <th style="width: 120px">강의명</th>
+            <th style="width: 70px">과목분류</th>
+            <th style="width: 150px">강의명</th>
             <th style="width: 80px">강사</th>
             <th style="width: 80px">강의실</th>
             <th style="width: 80px">강의교시</th>
@@ -60,7 +60,12 @@
             <tr>
                 <td><input class="aCheck" type="checkbox" value="${dto.lecdenum}"/></td>
                 <td>${dto.lectypea}</td>
-                <td>${dto.lecname}</td>
+                <td>
+                    <a class="lecdego" href="${root}/lecture/lectureDetail?lecdenum=${dto.lecdenum}">
+                    ${fn:substring(dto.lecname,0,14)}
+                    <c:if test="${fn:length(dto.lecname)>14}">..</c:if>
+                    </a>
+                </td>
                 <td>${dto.teaname}</td>
                 <td>${dto.roomnum}</td>
                 <td>${dto.lectime}교시</td>
@@ -88,7 +93,7 @@
                     </c:if>
                 </td>
                 <td>${dto.lecyear}/${dto.lecmonth}</td>
-                <td><fmt:formatNumber type="currency" value="${dto.price}"/></td>
+                <td><fmt:formatNumber pattern="￦#,###" value="${dto.price}"/></td>
             </tr>
             <c:set var="totalPrice" value="${totalPrice+dto.price}"/>
             <c:set var="totalLecname" value="${totalLecname} [${dto.lecname}]"/>
@@ -96,7 +101,7 @@
         </c:forEach>
         <tr>
             <td colspan="9" class="total">
-                총 결제 예정 금액 : <fmt:formatNumber type="currency" value="${totalPrice}"/>
+                총 결제 예정 금액 : <fmt:formatNumber pattern="￦#,###" value="${totalPrice}"/>
             </td>
         </tr>
     </table>
