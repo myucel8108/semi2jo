@@ -1,0 +1,38 @@
+.cuz {
+  width: 100px;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  line-height: 34px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}
+
+.snd_menu {
+  background: #efefef;
+}
+
+.sub_menu {
+  display: none;
+}
+
+
+#main_menu {
+  position: fixed;
+  width: 70px;
+  height: 210px;
+  right: 60px;
+  border-radius: 70px;
+  top: 35%;
+  text-align: center;
+
+}
