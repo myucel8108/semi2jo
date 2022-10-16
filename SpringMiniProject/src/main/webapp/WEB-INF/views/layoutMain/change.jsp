@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href="${root}/css/taeminfont.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/TeachMeStyle.css">
 <script src="${pageContext.request.contextPath}/resources/javascript/taemin.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <%--<script src="${pageContext.request.contextPath}/taemin.js"></script>--%>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -196,28 +197,28 @@
                 <img src="image/mh.jpg" class="img-fluid">
                 <div class="overlay">
                     <img src="" alt="">
-                    <div class="inner-text"><h4>000강사<span>수강하기</span></h4></div>
+                    <div class="inner-text"><h4>본 강의<span>수강하기</span></h4></div>
                 </div>
             </a>
             <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
                 <img src="image/engg.jpg" class="img-fluid">
                 <div class="overlay">
                     <img src="" alt="">
-                    <div class="inner-text"><h4>000강사<span>수강하기</span></h4></div>
+                    <div class="inner-text"><h4>본 강의<span>수강하기</span></h4></div>
                 </div>
             </a>
             <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
                 <img src="image/mattt.jpg" class="img-fluid">
                 <div class="overlay">
                     <img src="" alt="">
-                    <div class="inner-text"><h4>000강사<span>수강하기</span></h4></div>
+                    <div class="inner-text"><h4>본 강의<span>수강하기</span></h4></div>
                 </div>
             </a>
             <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
                 <img src="image/kok.jpg" class="img-fluid">
                 <div class="overlay">
                     <img src="" alt="">
-                    <div class="inner-text"><h4>000강사<span>수강하기</span></h4></div>
+                    <div class="inner-text"><h4>본 강의<span>수강하기</span></h4></div>
                 </div>
             </a>
         </div>
@@ -232,43 +233,43 @@
         <div class="row">
             <h2 style="text-align: center; margin-bottom: 80px; margin-top: 0px;">What is different?</h2>
             <div class="col-lg-4 col-sm-12 col-12 box-1">
-                <div class="row box" data-aos="fade-left" data-aos-delay="300">
+                <div class="row box" data-aos="fade-left" data-aos-delay="300" style="background-color: grey; border-radius: 20px;">
                     <div class="col-lg-2 col-sm-12">
-                        <i class="fa fa-desktop" aria-hidden="true" style="color: black;"></i>
+                        <i class="far fa-smile" aria-hidden="true" style="color: white; font-size: 30px;"></i>
                     </div>
                     <div class="col-lg-10 col-sm-12">
-                        <h3><a href="services.html">첫 번째</a></h3>
-                        <p style="color: black;">교육의 본질은 쌍방향의 소통입니다. 직업 윤리를 떠나 학생들을 가르침에 따라 모든 선생님들은 보람을 느끼고 힘을 얻습니다.
+                        <h3><a href="services.html" style="color: white;">첫 번째</a></h3>
+                        <p style="color: white;"><b>교육의 본질은 쌍방향의 소통입니다. 직업 윤리를 떠나 학생들을 가르침에 따라 모든 선생님들은 보람을 느끼고 힘을 얻습니다.
                             저희는 상호간의 이해와 관계의 공유에서 많은
-                            변화를 만들어 낼 것 입니다. </p>
+                            변화를 만들어 낼 것 입니다. </b></p>
                         <p><a href="services.html"></a></p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-12 col-12 box-2">
-                <div class="row box" data-aos="fade-left" data-aos-delay="500">
+                <div class="row box" data-aos="fade-left" data-aos-delay="500" style="background-color: grey; border-radius: 20px;">
                     <div class="col-lg-2 col-sm-12">
-                        <i class="fa fa-desktop" aria-hidden="true" style="color: black;"></i>
+                        <i class="far fa-smile" aria-hidden="true" style="color: white; font-size: 30px;"></i>
                     </div>
                     <div class="col-lg-10 col-sm-12">
-                        <h3><a href="services.html">두 번째</a></h3>
-                        <p style="color: black;">내신과 수능 모두를 겸비할 수 있는 학원이 되겠습니다. 한달의 한번씩 있는 학교 자체 모의고사를 통해 현재 자신의 위치와 전략을
+                        <h3><a href="services.html" style="color: white;">두 번째</a></h3>
+                        <p style="color: white;"><b>내신과 수능 모두를 겸비할 수 있는 학원이 되겠습니다. 한달의 한번씩 있는 학교 자체 모의고사를 통해 현재 자신의 위치와 전략을
                             만들어가면서 향후 미래에 좋은 입시
-                            결과를 만들어 낼 것 입니다.</p>
+                            결과를 만들어 낼 것 입니다.</b></p>
                         <p><a href="services.html"></a></p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-12 col-12 box-3">
-                <div class="row box" data-aos="fade-left" data-aos-delay="700">
+                <div class="row box" data-aos="fade-left" data-aos-delay="700" style="background-color: grey; border-radius: 20px;">
                     <div class="col-lg-2 col-sm-12">
-                        <i class="fa fa-desktop" aria-hidden="true" style="color: black;"></i>
+                        <i class="far fa-smile" aria-hidden="true" style="color: white; font-size: 30px;"></i>
                     </div>
                     <div class="col-lg-10 col-sm-12">
-                        <h3><a href="services.html">세 번째</a></h3>
-                        <p style="color: black;">매 해 바뀌는 입시제도 하에서 학생 개개인에게 맞는 학습방법과 전략을 짜기 위해선 학생이 원하는 수강 목록과 선생님을 고르되
+                        <h3><a href="services.html" style="color: white;">세 번째</a></h3>
+                        <p style="color: white;"><b style="white;">매 해 바뀌는 입시제도 하에서 학생 개개인에게 맞는 학습방법과 전략을 짜기 위해선 학생이 원하는 수강 목록과 선생님을 고르되
                             자신이 책임지고 수업에 임해야 한다는 점을
-                            강조하며 만든 시스템입니다 </p>
+                            강조하며 만든 시스템입니다</b> </p>
                         <%--                            멋진 도전을 위해 함께한다면 결코 후회없는 1년이 될 것 입니다. </p>--%>
                         <p><a href="services.html"></a></p>
                     </div>
@@ -337,7 +338,7 @@
                 </ul>
             </div>
             <div class="col-lg-7 col-md-12 p-0" data-aos="fade-left" data-aos-delay="300">
-                <div style="margin-top: 150px;">
+                <div style="margin-top: 120px;">
                     <video class="inner-img" src="${root}/css/videos/wr.mp4" controls muted autoplay loop width="100%;"
                            style="border-radius: 20px; margin-left: 50px;" alt="services"></video>
                 </div>
@@ -550,7 +551,7 @@
         var hour = Math.ceil((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var min = Math.ceil((gap % (1000 * 60 * 60)) / (1000 * 60));
         var sec = Math.ceil((gap % (1000 * 60)) / 1000);
-        document.getElementById("count").innerHTML = "2022년도 수능 D-DAY  " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초 남았습니다!";
+        document.getElementById("count").innerHTML = "<b style='font-style: italic;'>2022년도 수능 D-DAY&nbsp;</b>  " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초 남았습니다!";
     }, 1000);
 
 
