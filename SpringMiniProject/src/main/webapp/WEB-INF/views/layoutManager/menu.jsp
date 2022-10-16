@@ -50,7 +50,6 @@
             <img src="${root}/image/sib.png" width="200px;" style="margin-top: 10px;">
         </div>
     </a>
-    <hr class="sidebar-divider my-0">
     <li class="nav-item active">
         <a class="nav-link" href='${root}/manager/main'>
 <%--            <i class="fas fa-fw fa-tachometer-alt"></i>--%>
