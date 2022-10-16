@@ -81,9 +81,6 @@
  //            });
 </script>
     <style>
-        body{
-            font-family: Noto Sans KR;
-        }
         .boardbtn{
             width: 100px;
             height: 40px;
@@ -97,7 +94,7 @@
     </style>
 </head>
 <body>
-<div class="container" style="width: 800px; padding: 50px;">
+<div class="container" style="width: 800px; padding: 50px; font-family: Noto Sans KR;">
 <form action="insert" method="post" enctype="multipart/form-data">
 <%--    <input type="hidden" name="email" value="${sessionScope.loginid}">--%>
         <input type="hidden" name="usernum" value="${sessionScope.usernum}">

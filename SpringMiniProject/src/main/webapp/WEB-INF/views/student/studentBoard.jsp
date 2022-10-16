@@ -6,6 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Insert title here</title>
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Yeon+Sung&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
   <!-- css  -->
@@ -43,7 +44,7 @@
         data : {"usernum":usernum},
         success : function(res) {
           // $("h3.listcount").text(res.length);
-          s+="<h4>작성한 게시물</h4>";
+          s+="<h4><i class='fas fa-edit'></i>&nbsp;작성한 게시물</h4>";
           s+='<table class="table table-bordered">';
           s+='<tr>';
           s+='<th style="text-align: center; width: 300px;">제목</th>';
@@ -97,7 +98,7 @@
       data : {"usernum":usernum},
       success : function(res) {
         // $("h3.listcount").text(res.length);
-        s+="<h4>작성 한 게시물</h4>";
+        s+="<h4><i class='fas fa-edit'></i>&nbsp;작성 한 게시물</h4>";
         s+='<table class="table table-bordered">';
         s+='<tr>';
         s+='<th style="text-align: center; width: 300px;">제목</th>';
@@ -130,7 +131,7 @@
         data : {"usernum":usernum},
         success : function(res) {
           // $("h3.listcount").text(res.length);
-          s+="<h4>댓글 단 게시물</h4>";
+          s+="<h4><i class='far fa-comment-dots'></i>&nbsp;댓글 단 게시물</h4>";
           s+='<table class="table table-bordered">';
           s+='<tr>';
           s+='<th style="text-align: center; width: 300px;">제목</th>';
@@ -163,7 +164,7 @@
       data : {"usernum":usernum},
       success : function(res) {
         // $("h3.listcount").text(res.length);
-        s+="<h4>좋아요 한 게시물</h4>";
+        s+="<h4><i class='far fa-thumbs-up'></i>&nbsp;좋아요 한 게시물</h4>";
         s+='<table class="table table-bordered">';
         s+='<tr>';
         s+='<th style="text-align: center; width: 300px;">제목</th>';
