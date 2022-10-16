@@ -206,14 +206,14 @@
                                                               style="width: 80%; background-color:transparent; color: black;"></a>
       <ul class="snd_menu sub_menu" style=" background-color:transparent;">
         <br>
-        <li><a href="${root}/lecture/lectureList"><img src="../image/yu.png"
+        <li><a class="quick" href="${root}/lecture/lectureList"><img src="../image/yu.png"
                                                        style="width: 100%; background-color:transparent; color: black;">강의</a>
         </li>
         <br>
-        <li><a href="${root}/board/boardFree"><img src="../image/cccb.png"
+        <li><a class="quick" href="${root}/board/boardFree"><img src="../image/cccb.png"
                                                    style="width: 100%;padding-left:10px;  ">커뮤니티</a></li>
         <br>
-        <li><a href="${root}/qna/qnaList"><img src="../image/1ask.png" style="width:130%; padding-right: 25px;">문의하기</a>
+        <li><a class="quick" href="${root}/qna/qnaList"><img src="../image/1ask.png" style="width:130%; padding-right: 25px;">문의하기</a>
         </li>
       </ul>
     </li>
