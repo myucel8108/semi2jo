@@ -36,12 +36,6 @@
       line-height: 34px;
     }
 
-    a {
-      text-decoration: none;
-      color: black;
-      text-align: center;
-    }
-
     .snd_menu {
       background: #efefef;
     }

@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+a.quick {
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    font-size: 16px;
+}
 a.lecdego{
     text-decoration: none;
     color: black;
@@ -79,7 +85,6 @@ div.wrapper {
 #color div {
     width: 33px;
     height: 33px;
-    border: 0.8px solid black;
     cursor: pointer;
     border-radius: 50px;
     margin-left: 15px;
