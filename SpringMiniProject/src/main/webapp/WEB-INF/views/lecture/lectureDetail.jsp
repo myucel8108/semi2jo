@@ -325,7 +325,7 @@ position: relative;
 </style>
 <body>
 <c:set var="root" value="<%=request.getContextPath() %>"></c:set>
-    <div class="container" style="width: 1000px; margin: 0 auto; text-align: center;" id="div0">
+    <div class="container" style="width: 1000px; margin:0 auto; text-align: center;" id="div0">
             <div class="type">
             <img src="../upload/lecture/${dto.lecphoto}" style=" width: 380px; height: 500px; margin-top: 50px; margin-bottom: 50px; margin-left: 100px;">                         
                 <div class="title">
@@ -420,7 +420,7 @@ position: relative;
        <button id="btnmycart" class="btn btn-outline"  type="button" onclick="gocart(event)" ><i class="fa fa-shopping-cart"></i>&nbsp;장바구니</button>
       </div>      
    </div>   
-</div>
+
 
 <div style="margin: 0 auto;  display: inline-block; ">
 
@@ -532,8 +532,8 @@ position: relative;
 </div>
 
 <div style="margin: 0 auto; text-align: center; align-items: center;">
-<button  class="load btn btn-outline" type="button">후기 보기</button>
-<button  class="fold btn btn-outline" type="button" style="display: none;">접기</button>
+<button  class="load btn btn-outline" type="button" style="box-shadow: none;"><i class="fas fa-angle-down">&nbsp;후기 보기</i></button>
+<button  class="fold btn btn-outline" type="button" style="display: none;"><i class="fas fa-angle-up">&nbsp;접기</i></button>
 
 </div>
  
