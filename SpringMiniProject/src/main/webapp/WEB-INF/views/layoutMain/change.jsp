@@ -136,7 +136,7 @@
     #dday{
     width: 200px;
     height: 50px;
-    top: 67%;
+    bottom: -2%;
     margin-left: 34.5%;
     color: black;
     }
@@ -419,7 +419,7 @@
     <ul id="main_menu">
         <div class="btn_gotop"><a href="#"><img src="image/tttt.png"
                                                 style="width: 70%; background-color:transparent; color: black;"></a></div>
-        <br>
+        <br>리
         <br>
         <li><a href="javascript:dos()" style="color: black;"><img src="image/pointt.png"
                                                                   style="width: 80%; background-color:transparent; color: black;"></a>
@@ -542,7 +542,7 @@
     var then = new Date('nov 17,2022');
     var gap = now.getTime() - then.getTime();
     gap = Math.floor(gap / (1000 * 60 * 60 * 24)) * -1;
-    document.write('<div id="dday" style="text-align: center; width: 550px; position: absolute; font-size: 25px; padding-top: 5px; color: gold;">2022년도 수능 D-<span style="font-size:25px; text-align: center; color: gold;">' + gap + '</span></div>');
+    document.write('<div id="dday" style="text-align: center; width: 550px; position: absolute; font-size: 25px; padding-top: 5px; color: black;">2022년도 수능 D-<span style="font-size:25px; text-align: center; color: black; ">' + gap + '</span></div>');
 
     //
 
