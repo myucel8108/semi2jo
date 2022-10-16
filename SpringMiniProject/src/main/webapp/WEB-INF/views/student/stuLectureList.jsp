@@ -30,6 +30,43 @@
       cursor: pointer;
     }
 
+    #main_menu {
+      position: fixed;
+      width: 70px;
+      height: 210px;
+      right: 60px;
+      border-radius: 70px;
+      top: 35%;
+      text-align: center;
+
+    }
+    .cuz {
+      width: 100px;
+    }
+
+    ul {
+      padding: 0;
+    }
+
+    li {
+      list-style: none;
+      line-height: 34px;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+      text-align: center;
+    }
+
+    .snd_menu {
+      background: #efefef;
+    }
+
+    .sub_menu {
+      display: none;
+    }
+
   </style>
 
   <script type="text/javascript">
@@ -123,10 +160,10 @@
       <c:if test="${dto.payok eq 'ok'}">
         <c:set var="fcolor" value="black"/>
       </c:if>
-      <tr class="lecpaylist" style="color: ${fcolor};">
+      <tr class="lecpaylist" style="color: ${fcolor} !important;">
         <td>${dto.paytime}</td>
         <td>${dto.payok eq "ok"?"완료":"취소"}</td>
-        <td><a class="lecdego" href="${root}/lecture/lectureDetail?lecdenum=${dto.lecdenum}">
+        <td><a style="color: ${fcolor} !important;" class="lecdego" href="${root}/lecture/lectureDetail?lecdenum=${dto.lecdenum}">
             ${dto.lecname} [${dto.teaname}]</a></td>
         <td>${dto.lectime}교시</td>
         <td>
@@ -158,6 +195,39 @@
   </table>
 </div>
 </div>
+<nav class="cuz">
+  <ul id="main_menu">
+    <div class="btn_gotop"><a href="#"><img src="../image/tttt.png"
+                                            style="width: 70%; background-color:transparent; color: black;"></a>
+    </div>
+    <br>
+    <br>
+    <li><a href="javascript:dos()" style="color: black;"><img src="../image/pointt.png"
+                                                              style="width: 80%; background-color:transparent; color: black;"></a>
+      <ul class="snd_menu sub_menu" style=" background-color:transparent;">
+        <br>
+        <li><a href="${root}/lecture/lectureList"><img src="../image/yu.png"
+                                                       style="width: 100%; background-color:transparent; color: black;">강의</a>
+        </li>
+        <br>
+        <li><a href="${root}/board/boardFree"><img src="../image/cccb.png"
+                                                   style="width: 100%;padding-left:10px;  ">커뮤니티</a></li>
+        <br>
+        <li><a href="${root}/qna/qnaList"><img src="../image/1ask.png" style="width:130%; padding-right: 25px;">문의하기</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<script>
+  $(document).ready(function dos() {
+    $('#main_menu > li > a').click(function () {
+      $(this).next($('.snd_menu sub_menu')).slideToggle('fast');
+      // $(this).show($('.snd_menu sub_menu')("slide",{direction:'left'},1000));
+    })
+    // e.stopPropagation();
 
+  })
+</script>
 </body>
 </html>
