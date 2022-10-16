@@ -44,8 +44,8 @@
 <%--                <span class="focus-input100"></span>--%>
 <%--                <span class="label-input100">Password</span>--%>
             </div>
-            <div class="wrap-input100 validate-input" data-validate="Password is required"
-                    style="background-image: url('${root}/image/kakaoLogoSmall.png');background-repeat: no-repeat;
+            <div class="wrap-input200" data-validate="Password is required"
+                    style="background-image: url('${root}/image/kakaoLogobig.png');background-repeat: no-repeat;
                             background-size: cover; background-position: center center" onclick="kakaoLogin();">
 
             </div>

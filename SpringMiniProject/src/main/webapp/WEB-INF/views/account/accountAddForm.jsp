@@ -58,8 +58,8 @@
                 </c:if>
             </div>
 
-            <div style="margin-bottom: 10px; display: none" id="div-check-id">
-                <span style="margin-left: 10px;" id="result-check-id">Check Id</span>
+            <div style="margin-bottom: 10px; display: none; margin-left: 10%" id="div-check-id">
+                <span id="result-check-id">Check Id</span>
             </div>
 
 
@@ -74,7 +74,7 @@
 <%--                <span class="focus-input100"></span>--%>
 <%--                <span class="label-input100">Check Password</span>--%>
             </div>
-            <div style="margin-bottom: 10px;" id="div-check-pass" >
+            <div style="margin-bottom: 10px; margin-left: 10%;" id="div-check-pass" >
                 <span style="margin-left: 10px; display: none" id="result-check-pass">Incorrect</span>
             </div>
 
