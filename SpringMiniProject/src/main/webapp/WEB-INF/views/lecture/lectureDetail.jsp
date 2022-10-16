@@ -17,6 +17,44 @@
 <link href="/resources/rateit/rateit.css" rel="stylesheet" type="text/css">
 </head>
 <style>
+       #main_menu {
+            position: fixed;
+            width: 70px;
+            height: 210px;
+            right: 60px;
+            border-radius: 70px;
+            top: 35%;
+            text-align: center;
+
+        }
+.cuz {
+    width: 100px;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    line-height: 34px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+.snd_menu {
+    background: #efefef;
+}
+
+.sub_menu {
+    display: none;
+}
+
+
 .css-uimfca {width: 100%;
     display: flex;
     -webkit-box-pack: justify;
@@ -31,14 +69,16 @@
 }
 
 #btnmycart{
-       width: 100%;
-       height: 70px;
-       font-size: 30px;
+       width: 80%;
+       height: 50px;
+       font-size: 20px;
+
        color: #3b5a9b;
        background-color: white;
        border-radius: 15px;
        border-color: #3b5a9b;
-       
+       margin: 0 auto;
+       text-align: center;
    }
    #btnmycart:hover{
        color: #1da1f2;
@@ -122,7 +162,7 @@
 }
 .product_view { position: relative; padding: 0 0 0 50px; width: 400px; box-sizing: border-box; 
 }
-.product_view h2 { margin: 0 0 15px; padding: 0 0 20px; border-bottom:2px solid #333; font-size:24px; color:#232323; line-height: 26px;
+.product_view h2 { margin: 0 0 15px; padding: 0 0 20px; font-size:24px; color:#232323; line-height: 26px;
 }
 .product_view table th,
 .product_view table td { padding:14px 0; font-size: 15px; color:#444; text-align: left;
@@ -199,12 +239,13 @@ table { border-collapse:collapse; border-spacing:0; width:100%;
     letter-spacing: -.3px;
     margin-bottom: 30px;
     align-items: center;
+    margin-top:  30px;
    
 }
   .star {
     position: relative;
     font-size: 2rem;
-    color: #F05522;
+    color: #ff8c00;;
   }
   
   .star input {
@@ -269,7 +310,7 @@ table { border-collapse:collapse; border-spacing:0; width:100%;
 position: relative;
 }      
  .fa-star{
-	color:#F05522;
+	color:#ff8c00;;
 }
 .rating .star2{
        width:0;
@@ -367,10 +408,16 @@ position: relative;
             <td>${dto.lectime} 교시                          
             </td>
          </tr>
+        
          </tbody>
+  		<tr>
+  		<td>
+  		
+  		</tr>    
       </table>
-              <br>
-   <button id="btnmycart" class="btn btn-outline" type="button" onclick="gocart(event)"><i class="fa fa-shopping-cart"></i>&nbsp;장바구니</button>
+
+      </div>
+       <button id="btnmycart" class="btn btn-outline"  type="button" onclick="gocart(event)" ><i class="fa fa-shopping-cart"></i>&nbsp;장바구니</button>
       </div>      
    </div>   
 </div>
@@ -434,28 +481,29 @@ position: relative;
 	            	<div class="star-wrap"><div class="star2"><i class="fas fa-star"></i></div></div>
             	</div>
             </div>  
-<div  style="color: rgb(154, 155, 167);  font-size: 12px; padding-bottom: 24px; border-bottom: 1px solid rgb(48, 52, 65);">
+<div  style="color: rgb(154, 155, 167);  font-size: 12px; padding-bottom: 24px; border-top: 1px solid rgb(48, 52, 65);">
 실제 강의자들이 남긴 평가입니다.
-</div>
 </div>
 <div class="css-uimfca" style="color: rgb(154, 155, 167);  font-size: 12px;">
 강의 후기
 </div>
-   <div style="margin-top: 50px; color: rgb(154, 155, 167);  font-size: 12px;;  text-align: left; ">
+</div>
+
+   <div style="margin-top: 30px; color: rgb(154, 155, 167);  font-size: 12px;  text-align: left; ">
       <div>
       <div>
          <c:forEach var="redto" items="${list}">
-            <div class="review" style="border-bottom: 1px solid black;">
+            <div class="review" style="border-top: 1px solid black;">
                <div>             
                <c:if test="${not empty redto.review}">
                    <div style="color: #f7e600;">   
                    <div>                      
                       <c:choose>              
                       <c:when test="${not empty redto.userphoto}">
-                    <img src="../resources/upload/${redto.userphoto}" class="rounded-circle" style="width: 40px; height: 40px;">
+                    <img src="../resources/upload/${redto.userphoto}" class="rounded-circle" style="width: 40px; height: 40px;  margin-top: 15px;">
                </c:when>            
                     <c:otherwise>
-                       <img src="/upload/noprofilepicture.png" class="rounded-circle" style="width: 40px; height: 40px;" >
+                       <img src="/upload/noprofilepicture.png" class="rounded-circle" style="width: 40px; height: 40px; margin-top: 15px;" >
                     </c:otherwise>           
                     </c:choose>
                    </div>                                        
@@ -467,12 +515,11 @@ position: relative;
 	            	<div class="star-wrap"><div class="star2"><i class="fas fa-star"></i></div></div>
 	            	<div class="star-wrap"><div class="star2"><i class="fas fa-star"></i></div></div>
             	</div>
-            </div>              
-                 
+            </div>                            
                      <div>       
                     <p style="color: #000; margin-bottom: 10px;">
                      ${redto.username} (${redto.paytime})</p>    
-                    <div style="color: #000 ">
+                    <div style="color: #000; font-size: 18px;">
                         ${redto.review}
                 </div>
                 </div>
@@ -483,8 +530,11 @@ position: relative;
          </c:forEach>
       </div>
 </div>
-<button  class="load btn btn-outline" type="button" style="box-shadow: none;">더보기&nbsp;<i class='fas fa-angle-down'></i></button>
-<button  class="fold btn btn-outline" type="button" style="display: none; box-shadow: none;">접기&nbsp;<i class='fas fa-angle-up'></i></button>
+
+<div style="margin: 0 auto; text-align: center; align-items: center;">
+<button  class="load btn btn-outline" type="button">후기 보기</button>
+<button  class="fold btn btn-outline" type="button" style="display: none;">접기</button>
+
 </div>
  
 <div style="float: left; width: 800px; margin-bottom: 100px;">
@@ -524,9 +574,35 @@ position: relative;
          </form>
       </c:if>
    </c:forEach>
+
 </div>
  </div>  
 </div>
+</div>
+<nav class="cuz">
+    <ul id="main_menu">
+        <div class="btn_gotop"><a href="#"><img src="../image/tttt.png"
+                                                style="width: 70%; background-color:transparent; color: black;"></a>
+        </div>
+        <br>
+        <br>
+        <li><a href="javascript:dos()" style="color: black;"><img src="../image/pointt.png"
+                                                                  style="width: 80%; background-color:transparent; color: black;"></a>
+            <ul class="snd_menu sub_menu" style=" background-color:transparent;">
+                <br>
+                <li><a href="${root}/lecture/lectureList"><img src="../image/yu.png"
+                                                               style="width: 100%; background-color:transparent; color: black;">강의</a>
+                </li>
+                <br>
+                <li><a href="${root}/board/boardFree"><img src="../image/cccb.png"
+                                                           style="width: 100%;padding-left:10px;  ">커뮤니티</a></li>
+                <br>
+                <li><a href="${root}/qna/qnaList"><img src="../image/1ask.png" style="width:130%; padding-right: 25px;">문의하기</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
 <script type="text/javascript">
    var test = "${sessionScope.loginok}";
       function gocart(e) {
@@ -563,9 +639,9 @@ position: relative;
       }
       
       //리뷰 내리기
-      $(".review").slice(0,3).show(); // select the first ten
+      $(".review").slice(0,5).show(); // select the first ten
       $(".load").click(function(e){ // click event for load more  
-	    $("div:hidden").slice(0,3).show(); // select next 10 hidden divs and show them
+	    $("div:hidden").slice(0,10).show(); // select next 10 hidden divs and show them
 	    e.stopImmediatePropagation();
 	      if($("div:hidden").length == 0){ // check if any hidden divs still exist   
 	         $('.load').hide();
@@ -574,7 +650,7 @@ position: relative;
    		});  
       
       $(".fold").click(function(e){ // click event for load more  
-    	    $(".review").slice(0,100).hide(); // select next 10 hidden divs and show them
+    	    $(".review").slice(0,10).hide(); // select next 10 hidden divs and show them
     	    e.stopImmediatePropagation();
     	      if($("div:hidden").length != 0){ // check if any hidden divs still exist   
     	         $('.fold').hide();
@@ -617,9 +693,19 @@ position: relative;
         	}
 			
 		});     
-});      
+    
       
+      });      
       
+      $(document).ready(function dos() {
+    	    $('#main_menu > li > a').click(function () {
+    	        $(this).next($('.snd_menu sub_menu')).slideToggle('fast');
+    	        // $(this).show($('.snd_menu sub_menu')("slide",{direction:'left'},1000));
+    	    })
+    	    // e.stopPropagation();
+
+    	})
+  
       
 </script>
 </body>

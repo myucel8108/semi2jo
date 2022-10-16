@@ -8,15 +8,51 @@
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <style>
 
+
+    #main_menu {
+            position: fixed;
+            width: 70px;
+            height: 210px;
+            right: 60px;
+            border-radius: 70px;
+            top: 35%;
+            text-align: center;
+
+        }
+.cuz {
+    width: 100px;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    line-height: 34px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+.snd_menu {
+    background: #efefef;
+}
+
+.sub_menu {
+    display: none;
+}
+
     img {
         vertical-align: top;
     }
-
     .banner_img, .banner_bg {
         display: inline-block;
         position: relative;
     }
-
     .banner_img:hover:after,
     .banner_img:hover > .hover_text,
     .banner_bg:hover:after,
@@ -59,7 +95,7 @@
         color: #fff;
         z-index: 20;
         font-weight: 600;
-        font-size: 20px;
+       
     }
 
     #Accordion_wrap {
@@ -237,7 +273,7 @@
         display: block;
     }
      .fa-star{
-	color:#F05522;
+	color:#ff8c00;
 }
 .rating .star2{
        width:0;
@@ -252,7 +288,7 @@
 </style>
 </head>
 <body >
-<div class="container" style=" display: flex; min-height: 500px;">
+<div class="container" style=" display: flex; min-height: 700px;">
     <div id="Accordion_wrap" style="width: 150px; margin-top: 50px; text-align: center;">
         <div>
 
@@ -327,7 +363,7 @@
             </div>
             <div class="anw">
                 <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
-                    <a href="lectureList?lectypea=역사"
+                    <a href="lectureList?lectypeb=역사"
                        style="color: black; text-decoration:none; margin-bottom: 5px;">역사</a>
                 </div>
                 <div style="padding: 10px 0; border-bottom: 1px solid #dddddd;">
@@ -369,8 +405,6 @@
                     <a href="lectureList?lectypeb=물리" style="color: black; text-decoration:none;">물리학</a>
                 </div>
             </div>
-
-
             <div class="que">
                 <span><i class='fas fa-language'></i>&nbsp;&nbsp;제2외국어</span>
                 <div class="arrow-wrap">
@@ -400,7 +434,7 @@
                     <img src="../upload/lecture/${lecdto.lecphoto}"
                          style=" width:240px ;height:320px;" id="showimg">                
                 <div class="review2 hover_text" style="margin-left: 50px; margin-top: 5px;">
-                	<p style="padding: 0 auto;">${lecdto.teaname} 강사<br><br> 개강 월:${lecdto.lecmonth}<br><br>${lecdto.lectypea}>${lecdto.lectypeb}</p>            	
+                	<p style="padding: 0 auto;">${lecdto.teaname} 강사<br><br> 개강: ${lecdto.lecmonth}월<br><br>${lecdto.lectypea}>${lecdto.lectypeb}</p>            	
             		 <p style="font-size: 12px;">별점:${lecdto.avgstar}</p>
             		<div class="rating" data-rate="${lecdto.avgstar}">
 	            	<div class="star-wrap"><div class="star2"><i class="fas fa-star"></i></div></div>
@@ -417,7 +451,41 @@
         </c:forEach>
     </div>
 </div>
+
+<nav class="cuz">
+    <ul id="main_menu">
+        <div class="btn_gotop"><a href="#"><img src="../image/tttt.png"
+                                                style="width: 70%; background-color:transparent; color: black;"></a>
+        </div>
+        <br>
+        <br>
+        <li><a href="javascript:dos()" style="color: black;"><img src="../image/pointt.png"
+                                                                  style="width: 80%; background-color:transparent; color: black;"></a>
+            <ul class="snd_menu sub_menu" style=" background-color:transparent;">
+                <br>
+                <li><a href="${root}/lecture/lectureList"><img src="../image/yu.png"
+                                                               style="width: 100%; background-color:transparent; color: black;">강의</a>
+                </li>
+                <br>
+                <li><a href="${root}/board/boardFree"><img src="../image/cccb.png"
+                                                           style="width: 100%;padding-left:10px;  ">커뮤니티</a></li>
+                <br>
+                <li><a href="${root}/qna/qnaList"><img src="../image/1ask.png" style="width:130%; padding-right: 25px;">문의하기</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
 <script type="text/javascript">
+
+$(document).ready(function dos() {
+    $('#main_menu > li > a').click(function () {
+        $(this).next($('.snd_menu sub_menu')).slideToggle('fast');
+        // $(this).show($('.snd_menu sub_menu')("slide",{direction:'left'},1000));
+    })
+    // e.stopPropagation();
+
+})
     $(".que").click(function () {
         $(this).next(".anw").stop().slideToggle(300);
         $(this).toggleClass('on').siblings().removeClass('on');
@@ -431,10 +499,6 @@
         	var position = $(window).scrollTop();
             $("#Accordion_wrap").stop().animate({"top": position + currentPosition + "px"}, 300);
         });
-   			   
-
-        
-        
         const rating =$('.rating');
         rating.each(function () {
        	const $this = $(this);
