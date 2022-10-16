@@ -146,7 +146,7 @@
                     <c:set var="last" value="${fn:substring(dto.username, 3, totalLength)}"/>
 
                     <td align="center">
-                        <c:if test="${!empty dto.username and dto.username!='티치미' and sessionScope.usernum!=dto.usernum }">
+                        <c:if test="${!empty dto.username and dto.username!='티치미' and sessionScope.usernum!=dto.usernum}">
                             <c:out value="${first}**${last}"/>
                         </c:if>
                         <c:if test="${dto.username=='티치미' || sessionScope.usernum==dto.usernum}">

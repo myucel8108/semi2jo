@@ -87,6 +87,18 @@
 
     }
 
+
+    /*#dday{*/
+    /*    width: 200px;*/
+    /*    height: 50px;*/
+    /*    border: 1px solid grey;*/
+    /*    top: 7%;*/
+    /*    margin-left: 80%;*/
+    /*    border: 1px solid black;*/
+    /*    color: black;*/
+    /*}*/
+
+
 </style>
 </head>
 <body>
@@ -146,6 +158,12 @@
         // var gap = now.getTime() - then.getTime();
         // gap = Math.floor(gap / (1000 * 60 * 60 * 24)) * -1;
         // document.write('<div id="dday">2022년도 수능 D-<span style="font-size:33px;">' + gap + '</span></div>');
+
+        // var now = new Date();
+        // var then = new Date('nov 17,2022');
+        // var gap = now.getTime() - then.getTime();
+        // gap = Math.floor(gap / (1000 * 60 * 60 * 24)) * -1;
+        // document.write('<div id="dday" style="text-align: center; width: 250px; position: absolute;">2022년도 수능 D-<span style="font-size:25px; text-align: center;">' + gap + '</span></div>');
 
 
 

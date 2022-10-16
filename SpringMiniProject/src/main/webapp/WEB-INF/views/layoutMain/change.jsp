@@ -131,10 +131,25 @@
     }
     video { max-width: 80%; display: block; margin: 20px auto; }
 
+
+
+    #dday{
+    width: 200px;
+    height: 50px;
+    top: 67%;
+    margin-left: 34.5%;
+    color: black;
+    }
+
+    #chcol:hover{
+        color: black;
+
+    }
+
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <body>
-
+<%--<div id="dday"></div>--%>
 <c:set var="root" value="<%=request.getContextPath() %>"></c:set>
 <!--Section-1-->
 <section class="section-1">
@@ -151,7 +166,9 @@
                     style="background-color: white; color: black; margin-top: 450px; border-radius: 15px;" id="tp"><b
                         id="dynamic" class="lg-text"></b></h4>
             </div>
-            <p data-aos="fade-up" data-aos-delay="700"><a href="/mini/" class="btn btn-success" id="go">START</a></p>
+            <p data-aos="fade-up" data-aos-delay="700"><a href="lecture/lectureList" class="btn btn-success" id="go">START</a></p>
+
+
         </div>
         <!--container-fluid end-->
     </div>
@@ -208,14 +225,15 @@
 <section class="section-2">
     <div class="container">
         <div class="row">
+            <h2 style="text-align: center; margin-bottom: 80px;">What is different?</h2>
             <div class="col-lg-4 col-sm-12 col-12 box-1">
                 <div class="row box" data-aos="fade-left" data-aos-delay="300">
                     <div class="col-lg-2 col-sm-12">
-                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <i class="fa fa-desktop" aria-hidden="true" style="color: black;"></i>
                     </div>
                     <div class="col-lg-10 col-sm-12">
-                        <h3><a href="services.html">첫 번째</a></h3>
-                        <p>교육의 본질은 쌍방향의 소통입니다. 직업 윤리를 떠나 학생들을 가르침에 따라 모든 선생님들은 보람을 느끼고 힘을 얻습니다. 저희는 상호간의 이해와 관계의 공유에서 많은
+                        <h3><a href="services.html" >첫 번째</a></h3>
+                        <p style="color: black;">교육의 본질은 쌍방향의 소통입니다. 직업 윤리를 떠나 학생들을 가르침에 따라 모든 선생님들은 보람을 느끼고 힘을 얻습니다. 저희는 상호간의 이해와 관계의 공유에서 많은
                             변화를 만들어 낼 것 입니다. </p>
                         <p><a href="services.html"></a></p>
                     </div>
@@ -224,11 +242,11 @@
             <div class="col-lg-4 col-sm-12 col-12 box-2">
                 <div class="row box" data-aos="fade-left" data-aos-delay="500">
                     <div class="col-lg-2 col-sm-12">
-                        <i class="fa fa-code" aria-hidden="true"></i>
+                        <i class="fa fa-desktop" aria-hidden="true" style="color: black;"></i>
                     </div>
                     <div class="col-lg-10 col-sm-12">
                         <h3><a href="services.html">두 번째</a></h3>
-                        <p>내신과 수능 모두를 겸비할 수 있는 학원이 되겠습니다. 한달의 한번씩 있는 학교 자체 모의고사를 통해 현재 자신의 위치와 전략을 만들어가면서 향후 미래에 좋은 입시
+                        <p style="color: black;">내신과 수능 모두를 겸비할 수 있는 학원이 되겠습니다. 한달의 한번씩 있는 학교 자체 모의고사를 통해 현재 자신의 위치와 전략을 만들어가면서 향후 미래에 좋은 입시
                             결과를 만들어 낼 것 입니다.</p>
                         <p><a href="services.html"></a></p>
                     </div>
@@ -237,11 +255,11 @@
             <div class="col-lg-4 col-sm-12 col-12 box-3">
                 <div class="row box" data-aos="fade-left" data-aos-delay="700">
                     <div class="col-lg-2 col-sm-12">
-                        <i class="fa fa-comments-o" aria-hidden="true"></i>
+                        <i class="fa fa-desktop" aria-hidden="true"  style="color: black;"></i>
                     </div>
                     <div class="col-lg-10 col-sm-12">
                         <h3><a href="services.html">세 번째</a></h3>
-                        <p>매 해 바뀌는 입시제도 하에서 학생 개개인에게 맞는 학습방법과 전략을 짜기 위해선 학생이 원하는 수강 목록과 선생님을 고르되 자신이 책임지고 수업에 임해야 한다는 점을
+                        <p style="color: black;">매 해 바뀌는 입시제도 하에서 학생 개개인에게 맞는 학습방법과 전략을 짜기 위해선 학생이 원하는 수강 목록과 선생님을 고르되 자신이 책임지고 수업에 임해야 한다는 점을
                             강조하며 만든 시스템입니다.
                             멋진 도전을 위해 함께한다면 결코 후회없는 1년이 될 것 입니다. </p>
                         <p><a href="services.html"></a></p>
@@ -253,10 +271,13 @@
 </section>
 <h2 style="text-align: center;">FIND LECTURE BY KEYWORD</h2>
 <br>
-<h5 style="text-align: center;">키워드에 따라 원하는 강의를 발견해보세요</h5>
+<h5 style="text-align: center; color: grey;">키워드에 따라 원하는 강의를 발견해보세요</h5>
 <div class="container" style="width: 100%;">
     <div class="myaskbox" style="margin-bottom: 5px;">
-        <button type="button" onclick="location.href='qnaList?'" class="myask2" style="width: 100px;"><b>수학강의</b></button>&nbsp;
+
+<%--        <button type="button" onclick="location.href='qnaList?'" class="myask" style="width: 100px;">--%>
+<%--            <b>수학강의</b>--%>
+<%--        </button>&nbsp;--%>
 
             <button type="button" onclick="location.href=''" class="myask" style="width: 100px;">
                 <b>국어강의</b>
@@ -279,8 +300,14 @@
             </button>
 
             <button type="button" onclick="location.href='lecture/lectureList'" class="myask" style="width: 100px;">
+                <b>수학강의</b>
+            </button>
+
+
+            <button type="button" onclick="location.href='lecture/lectureList'" class="myask" style="width: 100px;">
                 <b>전체강의</b>
             </button>
+
 
     </div>
 </div>
@@ -300,10 +327,10 @@
     <div class="container">
         <div class="row m-0">
             <div class="col-lg-5 col-md-12 p-0" data-aos="fade-right" data-aos-delay="300">
-                <h2>TeachMe 인기강좌 TOP5</h2>
+                <h2 style="color: black;">TeachMe 인기강좌 TOP5</h2>
                 <ul>
                     <c:forEach var="hotdto" items="${hotlectures}">
-                        <li><a href="lecture/lectureDetail?lecdenum="><i class="fa fa-angle-right" aria-hidden="true"></i>${hotdto.lecname}</a>&nbsp;<b style="color: #ba8b00">${hotdto.avgstar}점</b> ${hotdto.teaname} 강사</li>
+                        <li style="font-size: 18px;"><a href="lecture/lectureDetail?lecdenum=" id="chcol"><i class="fa fa-angle-right" aria-hidden="true"></i>${hotdto.lecname}</a>&nbsp;<b style="color: gold">${hotdto.avgstar}점</b> ${hotdto.teaname} 강사</li>
                     </c:forEach>
                 </ul>
             </div>
@@ -341,7 +368,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-7 col-sm-8">
-                <h3><span style="margin-left: 0; display: flex; position: center; padding-bottom: 10px;">Study and Changes Life</span>
+                <h3 style="color: black;"><span style="margin-left: 0; display: flex; position: center; padding-bottom: 10px;">Study and Changes Life</span>
                 </h3>
             </div>
 
@@ -427,11 +454,10 @@
 
 
 </body>
+
+
+
 <script>
-
-
-
-
 
     $(document).ready(function dos() {
         $('#main_menu > li > a').click(function () {
@@ -511,6 +537,16 @@
     //
     //     }).scroll();
     // });
+
+    var now = new Date();
+    var then = new Date('nov 17,2022');
+    var gap = now.getTime() - then.getTime();
+    gap = Math.floor(gap / (1000 * 60 * 60 * 24)) * -1;
+    document.write('<div id="dday" style="text-align: center; width: 550px; position: absolute; font-size: 25px; padding-top: 5px; color: gold;">2022년도 수능 D-<span style="font-size:25px; text-align: center; color: gold;">' + gap + '</span></div>');
+
+    //
+
+
 
 
 </script>
