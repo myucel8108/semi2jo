@@ -86,8 +86,8 @@
         <div class="side_menu">
             <tiles:insertAttribute name="a_sidemenu"/>
         </div>
-        <div class="change">
-            <tiles:insertAttribute name="change"/>
+        <div class="timeTable">
+            <tiles:insertAttribute name="timeTable"/>
         </div>
         <div class="footer">
             <tiles:insertAttribute name="footer"/>
