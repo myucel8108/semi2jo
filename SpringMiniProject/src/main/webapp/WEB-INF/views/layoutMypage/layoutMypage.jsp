@@ -56,7 +56,7 @@
             padding: 30px 0px 30px 30px; /* 상단, 우측, 하단, 좌측 */
             width: 200px;
             height: auto;
-            z-index: 1;
+            z-index: 10;
             float: left;
             clear: both;
         }

@@ -70,7 +70,8 @@
   <c:forEach var="dto" items="${list }">
     <tr>
       <td align="center">${dto.lectypea}</td>
-      <td>${dto.lecname}</td>
+      <td><a class="lecdego" href="${root}/lecture/lectureDetail?lecdenum=${dto.lecdenum}">
+          ${dto.lecname}</a></td>
       <td>${dto.teaname}</td>
       <td>${dto.roomnum}</td>
       <td>${dto.lectime}교시</td>
@@ -125,7 +126,8 @@
       <tr class="lecpaylist" style="color: ${fcolor};">
         <td>${dto.paytime}</td>
         <td>${dto.payok eq "ok"?"완료":"취소"}</td>
-        <td>${dto.lecname} [${dto.teaname}]</td>
+        <td><a class="lecdego" href="${root}/lecture/lectureDetail?lecdenum=${dto.lecdenum}">
+            ${dto.lecname} [${dto.teaname}]</a></td>
         <td>${dto.lectime}교시</td>
         <td>
           <c:if test="${fn:contains(dto.lecday,1)}">

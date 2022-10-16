@@ -20,8 +20,7 @@
       border: 1px solid black;
     }
     .boardbtn:hover {
-      background-color: #e9ecef;
-      color: #0a56a9;
+      background-color: #eeeeee;
     }
   </style>
   <script>
@@ -52,7 +51,7 @@
           s+='</tr>';
           $.each(res, function (i, elt){
             s+="<tr>";
-            s+="<td><a href='../board/boardDetail?boardnum="+elt.boardnum+"'>"+elt.subject+"</a></td>";
+            s+="<td><a class='lecdego' href='../board/boardDetail?boardnum="+elt.boardnum+"'>"+elt.subject+"</a></td>";
             s+="<td style='text-align: center;'>"+elt.nickname+"</td>";
             s+="<td style='text-align: center;'>"+elt.writeday+"</td>";
             s+="</tr>"
@@ -106,7 +105,7 @@
         s+='</tr>';
         $.each(res, function (i, elt){
           s+="<tr>";
-          s+="<td><a href='../board/boardDetail?boardnum="+elt.boardnum+"'>"+elt.subject+"</a></td>";
+          s+="<td><a class='lecdego' href='../board/boardDetail?boardnum="+elt.boardnum+"'>"+elt.subject+"</a></td>";
           s+="<td style='text-align: center;'>"+elt.nickname+"</td>";
           s+="<td style='text-align: center;'>"+elt.writeday+"</td>";
           s+="</tr>"
@@ -139,7 +138,7 @@
           s+='</tr>';
           $.each(res, function (i, elt){
             s+="<tr>";
-            s+="<td><a href='../board/boardDetail?boardnum="+elt.boardnum+"'>"+elt.subject+"</a></td>";
+            s+="<td><a class='lecdego' href='../board/boardDetail?boardnum="+elt.boardnum+"'>"+elt.subject+"</a></td>";
             s+="<td style='text-align: center;'>"+elt.nickname+"</td>";
             s+="<td style='text-align: center;'>"+elt.writeday+"</td>";
             s+="</tr>"
@@ -172,7 +171,7 @@
         s+='</tr>';
         $.each(res, function (i, elt){
           s+="<tr>";
-          s+="<td><a href='../board/boardDetail?boardnum="+elt.boardnum+"'>"+elt.subject+"</a></td>";
+          s+="<td><a class='lecdego' href='../board/boardDetail?boardnum="+elt.boardnum+"'>"+elt.subject+"</a></td>";
           s+="<td style='text-align: center;'>"+elt.nickname+"</td>";
           s+="<td style='text-align: center;'>"+elt.writeday+"</td>";
           s+="</tr>"

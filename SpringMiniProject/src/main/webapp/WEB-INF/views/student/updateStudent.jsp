@@ -112,7 +112,7 @@
                     <input type="file" id="myphoto" name="myphoto" style="display: none;">
                     <img id="showimg" src="../resources/upload/${dto.userphoto==null?'noprofilepicture.png':dto.userphoto}">
                     <br>
-                    <button type="button" id="btnphoto" class="btn btn-secondary">사진선택</button>
+                    <button type="button" id="btnphoto" class="basicbtn">사진선택</button>
                 </td>
                 <td class="text1"> <div style="padding-bottom: 0px; width: 120px;">아이디</div></td>
                 <td class="text2">
