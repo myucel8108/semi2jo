@@ -23,7 +23,7 @@
 	    font-weight: 700;
 	    font-style: normal;
 	}
-	
+
 	* {
 		font-family: 'MICEGothic Bold';
 	}
