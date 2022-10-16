@@ -203,9 +203,9 @@
                     data: [${incom1}, ${incom2}, ${incom3}, ${incom4}, ${incom5}, ${incom6},
                         ${incom7}, ${incom8}, ${incom9}, ${incom10}, ${incom11}, ${incom12}],
                     // ⑦dataset의 배경색(rgba값을 String으로 표현)
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    backgroundColor: 'rgba(54, 153, 224, 0.5)',
                     // ⑧dataset의 선 색(rgba값을 String으로 표현)
-                    borderColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(54, 153, 224, 0.5)',
                     // ⑨dataset의 선 두께(Number)
                     borderWidth: 1
                 }]
@@ -247,11 +247,11 @@
                     // ⑤dataset의 이름(String)
                     label: month+'월 과목별 매출(단위:원)',
                     // ⑥dataset값(Array)
-                    data: [${val0},${val1},${val2},${val3},${val4}],
+                    data: [${val0},${val1},${val2},${val3},${val4},${val5}],
                     // ⑦dataset의 배경색(rgba값을 String으로 표현)
-                    backgroundColor: ['rgba(255, 99, 132, 0.2)','rgba(76, 193, 192, 0.2)','rgba(255, 205, 86, 0.2)','rgba(54, 153, 224, 0.2)','rgba(201, 203, 207, 0.2)'],
+                    backgroundColor: ['rgba(255, 99, 132, 0.3)','rgba(255, 207, 163, 0.3)','rgba(76, 193, 192, 0.3)','rgba(255, 230, 86, 0.3)','rgba(54, 153, 224, 0.3)','rgba(201, 203, 207, 0.3)'],
                     // ⑧dataset의 선 색(rgba값을 String으로 표현)
-                    borderColor: ['rgba(255, 99, 132, 0.2)','rgba(76, 193, 192, 0.2)','rgba(255, 205, 86, 0.2)','rgba(54, 153, 224, 0.2)','rgba(201, 203, 207, 0.2)'],
+                    borderColor: ['rgba(255, 99, 132, 0.3)','rgba(255, 207, 163, 0.3)','rgba(76, 193, 192, 0.3)','rgba(255, 230, 86, 0.3)','rgba(54, 153, 224, 0.3)','rgba(201, 203, 207, 0.3)'],
                     // ⑨dataset의 선 두께(Number)
                     borderWidth: 1
                 }]
@@ -290,7 +290,7 @@
                     data:{"month":monthDay,"year":year},
                     success:function(res){
                         $("#chartPieHead").html("과목별 매출 현황 - "+monthDay+"월");
-                        chartPie.data.datasets[0].data=[res.va0, res.va1, res.va2, res.va3, res.va4];
+                        chartPie.data.datasets[0].data=[res.va0, res.va1, res.va2, res.va3, res.va4, res.va5];
                         chartPie.update();
                         // var test = chartPie.data.datasets.data;
                         // chartPie().data.datasets[0].date=[0,0,0,0,0];

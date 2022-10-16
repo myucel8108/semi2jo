@@ -7,28 +7,19 @@
 <head>
     <title>Login V18</title>
     <meta charset="UTF-8">
+    <c:set var="root" value="<%=request.getContextPath() %>"></c:set>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/account.css">
+    <link rel="stylesheet" type="text/css" href="${root}/css/quickmenu.css">
     <!--===============================================================================================-->
 </head>
 <style>
     #div-check-id{
         cursor: pointer;
     }
-    /*#check-id{*/
-    /*    !*position: absolute;*!*/
-    /*    color: red;*/
-    /*    !*vertical-align: center;*!*/
-    /*    margin-right: auto;*/
-    /*    display: block;*/
-    /*}*/
-    /*.div-check-id{*/
-    /*    display: flex;*/
-    /*    justify-content: right;*/
-    /*}*/
 
 </style>
-<c:set var="root" value="<%=request.getContextPath() %>"></c:set>
+
 <body style="background-color: #666666;">
 
 <div class="limiter" >
@@ -58,8 +49,8 @@
                 </c:if>
             </div>
 
-            <div style="margin-bottom: 10px; display: none" id="div-check-id">
-                <span style="margin-left: 10px;" id="result-check-id">Check Id</span>
+            <div style="margin-bottom: 10px; display: none; margin-left: 10%" id="div-check-id">
+                <span id="result-check-id">Check Id</span>
             </div>
 
 
@@ -74,7 +65,7 @@
 <%--                <span class="focus-input100"></span>--%>
 <%--                <span class="label-input100">Check Password</span>--%>
             </div>
-            <div style="margin-bottom: 10px;" id="div-check-pass" >
+            <div style="margin-bottom: 10px; margin-left: 10%;" id="div-check-pass" >
                 <span style="margin-left: 10px; display: none" id="result-check-pass">Incorrect</span>
             </div>
 
@@ -110,15 +101,6 @@
 <%--                <span class="label-input100 userid">Birth Day</span>--%>
             </div>
 
-<%--            프로필 사진--%>
-<%--            <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">--%>
-<%--                <span class="label-input100">Photo</span>--%>
-<%--                <input class="input100 userphoto" type="file" name="photo" style="display: none;">--%>
-<%--                <button type="button" id="btnAccountPhoto" class="btn btn-secondary">사진선택</button>--%>
-<%--                <br><br>--%>
-<%--                <img id="showimg">--%>
-<%--                <span class="focus-input100"></span>--%>
-<%--            </div>--%>
 
             <div class="container-login100-form-btn">
                 <button class="login100-form-btn" id="btn-sign-up" type="submit" style="color: black">
@@ -130,32 +112,36 @@
 
     </div>
 </div>
+
+
+<%--퀵메뉴--%>
+<nav class="cuz">
+    <ul id="main_menu">
+        <div class="btn_gotop"><a href="#"><img src="image/tttt.png"
+                                                style="width: 70%; background-color:transparent; color: black;"></a>
+        </div>
+        <br>
+        <br>
+        <li><a href="javascript:dos()" style="color: black;"><img src="image/pointt.png"
+                                                                  style="width: 80%; background-color:transparent; color: black;"></a>
+            <ul class="snd_menu sub_menu" style=" background-color:transparent;">
+                <br>
+                <li><a href="${root}/lecture/lectureList"><img src="image/yu.png"
+                                                               style="width: 100%; background-color:transparent; color: black;">강의</a>
+                </li>
+                <br>
+                <li><a href="${root}/board/boardFree"><img src="image/cccb.png"
+                                                           style="width: 100%;padding-left:10px;  ">커뮤니티</a></li>
+                <br>
+                <li><a href="${root}/qna/qnaList"><img src="image/1ask.png" style="width:130%; padding-right: 25px;">문의하기</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
 <script type="text/javascript">
     $(function () {
-        // //버튼 클릭시 사진 불러오는 이벤트 추가
-        // $("#btnAccountPhoto").click(function () {
-        //     $(".userphoto").trigger("click");
-        // });
-        //
-        // //사진 불러오면 미리보기 하기
-        // $(".userphoto").change(function(){
-        //     /* console.log("1:"+$(this)[0].files.length);
-        //     console.log("2:"+$(this)[0].files[0]); */
-        //     //정규표현식
-        //     var reg = /(.*?)\/(jpg|jpeg|png|bmp|gif)$/;
-        //     var f=$(this)[0].files[0];//현재 선택한 파일
-        //     if(!f.type.match(reg)){
-        //         alert("확장자가 이미지파일이 아닙니다");
-        //         return;
-        //     }
-        //     if($(this)[0].files[0]){
-        //         var reader=new FileReader();
-        //         reader.onload=function(e){
-        //             $("#showimg").attr("src",e.target.result);
-        //         }
-        //         reader.readAsDataURL($(this)[0].files[0]);
-        //     }
-        // });
 
         //아이디 중복체크 버튼 이벤트
         $("#div-check-id").click(function () {
@@ -216,13 +202,16 @@
             }
         });
 
+        // 퀵메뉴 script
+        $(document).ready(function dos() {
+            $('#main_menu > li > a').click(function () {
+                $(this).next($('.snd_menu sub_menu')).slideToggle('fast');
+                // $(this).show($('.snd_menu sub_menu')("slide",{direction:'left'},1000));
+            })
+            // e.stopPropagation();
 
-        //birth 입력하는 div 클릭시 input tag 활성화
-        // $(".div-input-birth").click(function () {
-        //     console.log("teset click");
-        //     document.getElementById("birth").style.display='block';
-        //     $("#birth").trigger("click");
-        // });
+        })
+
     });//function
 
     //submit 전에 호출

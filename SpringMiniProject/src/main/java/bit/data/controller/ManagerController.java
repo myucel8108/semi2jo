@@ -51,58 +51,40 @@ public class ManagerController {
         int month = date.getMonth() + 1;
         List<MyLecJoinDto> list = myLecJoinService.getTotalIncom(year, mon);
         int totalincom = 0;
-        int incom1 = 0;
-        int incom2 = 0;
-        int incom3 = 0;
-        int incom4 = 0;
-        int incom5 = 0;
-        int incom6 = 0;
-        int incom7 = 0;
-        int incom8 = 0;
-        int incom9 = 0;
-        int incom10 = 0;
-        int incom11 = 0;
-        int incom12 = 0;
+        int incom1 = 0; int incom2 = 0;
+        int incom3 = 0; int incom4 = 0;
+        int incom5 = 0; int incom6 = 0;
+        int incom7 = 0; int incom8 = 0;
+        int incom9 = 0; int incom10 = 0;
+        int incom11 = 0; int incom12 = 0;
         for (int i = 0; i < list.size(); i++) {
             //올해 전체 수익
             totalincom += list.get(i).price;
             switch (list.get(i).lecmonth) {
                 case 1:
-                    incom1 += list.get(i).price;
-                    break;
+                    incom1 += list.get(i).price; break;
                 case 2:
-                    incom2 += list.get(i).price;
-                    break;
+                    incom2 += list.get(i).price; break;
                 case 3:
-                    incom3 += list.get(i).price;
-                    break;
+                    incom3 += list.get(i).price; break;
                 case 4:
-                    incom4 += list.get(i).price;
-                    break;
+                    incom4 += list.get(i).price; break;
                 case 5:
-                    incom5 += list.get(i).price;
-                    break;
+                    incom5 += list.get(i).price; break;
                 case 6:
-                    incom6 += list.get(i).price;
-                    break;
+                    incom6 += list.get(i).price; break;
                 case 7:
-                    incom7 += list.get(i).price;
-                    break;
+                    incom7 += list.get(i).price; break;
                 case 8:
-                    incom8 += list.get(i).price;
-                    break;
+                    incom8 += list.get(i).price; break;
                 case 9:
-                    incom9 += list.get(i).price;
-                    break;
+                    incom9 += list.get(i).price; break;
                 case 10:
-                    incom10 += list.get(i).price;
-                    break;
+                    incom10 += list.get(i).price; break;
                 case 11:
-                    incom11 += list.get(i).price;
-                    break;
+                    incom11 += list.get(i).price; break;
                 case 12:
-                    incom12 += list.get(i).price;
-                    break;
+                    incom12 += list.get(i).price; break;
             }
         }
         mview.addObject("incom1", incom1 / 1000);
@@ -139,11 +121,10 @@ public class ManagerController {
         mview.addObject("lectureType", lectureType);
 
         //과목별 총 매출 금액 구하기 (시간 되면 나중에는 자동형으로 변경해보자)
-        int val0 = 0;
-        int val1 = 0;
-        int val2 = 0;
-        int val3 = 0;
-        int val4 = 0;
+        int val0 = 0; int val1 = 0;
+        int val2 = 0; int val3 = 0;
+        int val4 = 0; int val5 = 0;
+
         for (int i = 0; i < list.size(); i++) {
             int temp = list.get(i).price;
             if (list.get(i).lectypea.equals(leclist.get(0).lectypea))
@@ -156,12 +137,15 @@ public class ManagerController {
                 val3 += temp;
             else if (list.get(i).lectypea.equals(leclist.get(4).lectypea))
                 val4 += temp;
+            else if (list.get(i).lectypea.equals(leclist.get(5).lectypea))
+                val5 += temp;
         }
-        mview.addObject("val0", (val0 / 1000));
+        mview.addObject("val0", val0 / 1000);
         mview.addObject("val1", val1 / 1000);
         mview.addObject("val2", val2 / 1000);
         mview.addObject("val3", val3 / 1000);
         mview.addObject("val4", val4 / 1000);
+        mview.addObject("val5", val5 / 1000);
 //        System.out.println(leclist.get(0).lectypea);
         mview.setViewName("/manager/layoutManager/change");
         return mview;
@@ -176,11 +160,9 @@ public class ManagerController {
         List<LectureDto> leclist = lectureService.getLecTypeA();
 
         //과목별 총 매출 금액 구하기 (시간 되면 나중에는 자동형으로 변경해보자)
-        int va0 = 0;
-        int va1 = 0;
-        int va2 = 0;
-        int va3 = 0;
-        int va4 = 0;
+        int va0 = 0; int va1 = 0;
+        int va2 = 0; int va3 = 0;
+        int va4 = 0; int va5 = 0;
         for (int i = 0; i < list.size(); i++) {
             int temp = list.get(i).price;
             if (list.get(i).lectypea.equals(leclist.get(0).lectypea))
@@ -193,12 +175,15 @@ public class ManagerController {
                 va3 += temp;
             else if (list.get(i).lectypea.equals(leclist.get(4).lectypea))
                 va4 += temp;
+            else if (list.get(i).lectypea.equals(leclist.get(5).lectypea))
+                va5 += temp;
         }
         map.put("va0", va0);
         map.put("va1", va1);
         map.put("va2", va2);
         map.put("va3", va3);
         map.put("va4", va4);
+        map.put("va5", va5);
         return map;
     }
 

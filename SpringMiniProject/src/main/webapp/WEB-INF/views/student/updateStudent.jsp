@@ -188,8 +188,8 @@
                     </div>
                 </td>
                 <td>
-                <button type="button" class="basicbtn" style="margin-right: 20px;" onclick="location.href='${root}/student/timeTable'">취소하기</button>
-                <button type="submit" class="basicbtn" id="btn_submit">수정하기</button>
+                <button type="submit" class="basicbtn" id="btn_submit" style="margin-right: 20px;">수정하기</button>
+                    <button type="button" class="basicbtn" onclick="location.href='${root}/student/timeTable'">취소하기</button>
                 </td>
             </tr>
             <tr>
