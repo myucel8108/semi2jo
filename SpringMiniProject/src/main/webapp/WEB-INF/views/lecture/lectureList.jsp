@@ -288,6 +288,7 @@ a {
 </style>
 </head>
 <body >
+<c:set var="root" value="<%=request.getContextPath() %>"></c:set>
 <div class="container" style=" display: flex; min-height: 700px;">
     <div id="Accordion_wrap" style="width: 150px; margin-top: 50px; text-align: center;">
         <div>
@@ -427,15 +428,14 @@ a {
     </div>
 
     <div style="width:100%; height:100%; margin-top: 25px; margin-left: 150px; margin-bottom: 30px; ">
-        <c:forEach var="lecdto" items="${list}">
-        
+        <c:forEach var="lecdto" items="${list}">       
             <div style="float:left; padding: 30px;">
                 <a class="banner_img" href="lectureDetail?lecdenum=${lecdto.lecdenum}">
                     <img src="../upload/lecture/${lecdto.lecphoto}"
                          style=" width:240px ;height:320px;" id="showimg">                
                 <div class="review2 hover_text" style="margin-left: 50px; margin-top: 5px;">
                 	<p style="padding: 0 auto;">${lecdto.teaname} 강사<br><br> 개강: ${lecdto.lecmonth}월<br><br>${lecdto.lectypea}>${lecdto.lectypeb}</p>            	
-            		 <p style="font-size: 12px;">별점:${lecdto.avgstar}</p>
+            		 <p style="font-size: 15px;">별점:  ${lecdto.avgstar}</p>            	   
             		<div class="rating" data-rate="${lecdto.avgstar}">
 	            	<div class="star-wrap"><div class="star2"><i class="fas fa-star"></i></div></div>
 	            	<div class="star-wrap"><div class="star2"><i class="fas fa-star"></i></div></div>
@@ -454,8 +454,7 @@ a {
 
 <nav class="cuz">
     <ul id="main_menu">
-        <div class="btn_gotop"><a href="#"><img src="../image/tttt.png"
-                                                style="width: 70%; background-color:transparent; color: black;"></a>
+        <div class="btn_gotop"><a href="#"><img src="../image/tttt.png"  style="width: 70%; background-color:transparent; color: black;"></a>
         </div>
         <br>
         <br>
@@ -521,6 +520,7 @@ $(document).ready(function dos() {
 		});     
   
     });
+  
 </script>
 </body>
 </html>
