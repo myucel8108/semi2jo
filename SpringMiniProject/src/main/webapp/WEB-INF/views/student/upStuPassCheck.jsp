@@ -63,8 +63,8 @@
 
             <tr>
                 <td colspan="2" style="text-align: center;">
-                    <button type="button" class="basicbtn" style="margin-right: 60px;" onclick="location.href='${root}/student/timeTable'">취소</button>
-                    <button type="submit" class="basicbtn" id="btn_submit" style="margin-right: 30px;">확인</button>
+                    <button type="submit" class="basicbtn" id="btn_submit" style="margin-right: 60px;">확인</button>
+                    <button type="button" class="basicbtn" style="margin-right: 30px;" onclick="location.href='${root}/student/timeTable'">취소</button>
                 </td>
             </tr>
         </table>
