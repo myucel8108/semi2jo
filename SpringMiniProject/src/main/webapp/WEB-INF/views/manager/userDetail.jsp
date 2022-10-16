@@ -100,7 +100,7 @@
                                         temp += "<span>[일]</span>";
                                     }
                                 }
-                                var result = "${temp}";
+                                <%--var result = "${temp}";--%>
                                 $(".show-lecday${joinlist.mylecnum}").html(temp);
                             </script>
                         </div>
