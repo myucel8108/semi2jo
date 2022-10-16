@@ -309,8 +309,42 @@ position: relative;
             </td>
          </tr>
           <tr>
+            <th>개강</th>
+            <td>
+            ${dto.lecmonth}월
+            </td>  
+          </tr>
+          <tr>
             <th>강의요일</th>
-            <td>${dto.lecday}일                         
+            <td>  <div id="i_result2">                 
+                            <script>
+                                // DB에서 숫자로 가져오는 요일을 한글로 바꿔주기
+                                var temp = "";
+                                var lecday = "${dto.lecday}".split(',');
+                                console.log(lecday);
+                                for (var yoil = 0; yoil < lecday.length; yoil++) {
+                                    // console.log("lecday"+lecday[yoil]);
+                                    if (lecday[yoil] == "1") {
+                                        temp += "<span>[월]</span>";
+                                    } else if (lecday[yoil] == "2") {
+                                        temp += "<span>[화]</span>";
+                                    } else if (lecday[yoil] == "3") {
+                                        temp += "<span>[수]</span>";
+                                    } else if (lecday[yoil] == "4") {
+                                        temp += "<span>[목]</span>";
+                                    } else if (lecday[yoil] == "5") {
+                                        temp += "<span>[금]</span>";
+                                    } else if (lecday[yoil] == "6") {
+                                        temp += "<span>[토]</span>";
+                                    } else if (lecday[yoil] == "7") {
+                                        temp += "<span>[일]</span>";
+                                    }
+                                }
+                                const result3 = temp;
+                                console.log(result3);
+                                document.getElementById("i_result2").innerHTML=(result3);
+                            </script>                          
+                </div>                    
             </td>
          </tr>
          <tr>
@@ -323,8 +357,6 @@ position: relative;
    <button id="writecolor" class="btn btn-outline"  type="button" onclick="gocart(event)"> 장바구니</button>
       </div>      
    </div>   
-
-
 </div>
 
 <div style="margin: 0 auto;  display: inline-block; ">
@@ -535,8 +567,7 @@ position: relative;
    	   });    
       
       
-      $(document).ready(function($) {
-      
+      $(document).ready(function($) {     	  
         $(".scroll_move").click(function(event){         
 
                 event.preventDefault();
@@ -548,7 +579,6 @@ position: relative;
          const price = ${dto.price};
          const result = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
          document.getElementById("i_result").innerHTML=(result);
- 	
 
          //별 소수점까지 나타내기
          const rating =$('.rating');
@@ -572,6 +602,9 @@ position: relative;
 			
 		});     
 });      
+      
+      
+      
 </script>
 </body>
 </html>

@@ -318,8 +318,6 @@
                     <a href="lectureList?lectypeb=영어듣기" style="color: black; text-decoration:none;">영어듣기</a>
                 </div>
             </div>
-
-
             <div class="que">
                 <span> <i class='fas fa-balance-scale'></i>&nbsp;&nbsp;사회</span>
                 <div class="arrow-wrap">
@@ -402,22 +400,20 @@
                     <img src="../upload/lecture/${lecdto.lecphoto}"
                          style=" width:240px ;height:320px;" id="showimg">                
                 <div class="review2 hover_text" style="margin-left: 50px; margin-top: 5px;">
-                	<p class="" style="padding: 0 auto;">${lecdto.teaname} 강사 <br>${lecdto.lectypea}<br>${lecdto.lectypeb}
-            		 <p style="font-size: 12px;">별점:${lecdto.avgstar}</p></p>
+                	<p style="padding: 0 auto;">${lecdto.teaname} 강사<br><br> 개강 월:${lecdto.lecmonth}<br><br>${lecdto.lectypea}>${lecdto.lectypeb}</p>            	
+            		 <p style="font-size: 12px;">별점:${lecdto.avgstar}</p>
             		<div class="rating" data-rate="${lecdto.avgstar}">
 	            	<div class="star-wrap"><div class="star2"><i class="fas fa-star"></i></div></div>
 	            	<div class="star-wrap"><div class="star2"><i class="fas fa-star"></i></div></div>
 	            	<div class="star-wrap"><div class="star2"><i class="fas fa-star"></i></div></div>
 	            	<div class="star-wrap"><div class="star2"><i class="fas fa-star"></i></div></div>
-	            	<div class="star-wrap"><div class="star2"><i class="fas fa-star"></i></div></div>
-	            
+	            	<div class="star-wrap"><div class="star2"><i class="fas fa-star"></i></div></div>    
             	</div>           
-            </div>              
+            </div> 
+            
+                <p style="text-align: center; margin: 0 auto;">${lecdto.lecname}<br>₩${lecdto.price}</p>             
                 </a>
-                <div>
-                <p style="text-align: center; margin: 0 auto;">${lecdto.lecname}<br>₩${lecdto.price} </p>
-                </div>
-            </div>
+</div>
         </c:forEach>
     </div>
 </div>
@@ -434,9 +430,9 @@
         	
         	var position = $(window).scrollTop();
             $("#Accordion_wrap").stop().animate({"top": position + currentPosition + "px"}, 300);
-            
-            
         });
+   			   
+
         
         
         const rating =$('.rating');
@@ -459,11 +455,8 @@
        	}
 			
 		});     
-        
-        
+  
     });
-
-    
 </script>
 </body>
 </html>
