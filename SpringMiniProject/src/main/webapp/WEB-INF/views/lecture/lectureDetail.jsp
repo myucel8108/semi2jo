@@ -31,7 +31,7 @@
 }
 
 #btnmycart{
-       width: 200px;
+       width: 100%;
        height: 70px;
        font-size: 30px;
        color: #3b5a9b;
@@ -90,8 +90,8 @@
     -webkit-flex: 1;
     -ms-flex: 1;
     flex: 1;
-    -webkit-box-pack: space-around;
-    -ms-flex-pack: space-around;
+    /*-webkit-box-pack: space-around;*/
+    /*-ms-flex-pack: space-around;*/
     -webkit-justify-content: space-around;
     justify-content: space-around;
     display: -webkit-box;
@@ -139,7 +139,7 @@
 }
 .product_view table .length a {position: absolute; right: 0; width: 26px; height: 16px; color:transparent;
 }
-.product_view table select { width:100%; border:1px solid #c6c6c6; box-sizing: border-box; no-repeat right 11px center;appearance:none; -webkit-appearance:none; -moz-appearance:none;
+.product_view table select { width:100%; border:1px solid #c6c6c6; box-sizing: border-box; no-repeat: right 11px center;appearance:none; -webkit-appearance:none; -moz-appearance:none;
 }
 .product_view table select::-ms-expand { display: none;
 }
@@ -284,7 +284,7 @@ position: relative;
 </style>
 <body>
 <c:set var="root" value="<%=request.getContextPath() %>"></c:set>
-    <div class="container" style="width: 1000px;  margin: 0 auto; text-align: center;" id="div0">
+    <div class="container" style="width: 1000px; margin: 0 auto; text-align: center;" id="div0">
             <div class="type">
             <img src="../upload/lecture/${dto.lecphoto}" style=" width: 380px; height: 500px; margin-top: 50px; margin-bottom: 50px; margin-left: 100px;">                         
                 <div class="title">
@@ -298,7 +298,7 @@ position: relative;
          <tbody>
          <tr>
             <th>가격</th>
-            <td class="price"> <div id="i_result"> </div></td>
+            <td class="price"> ₩<span id="i_result"> </span></td>
          </tr>
          <tr>
             <th>카테고리</th>
@@ -369,7 +369,8 @@ position: relative;
          </tr>
          </tbody>
       </table>
-   <button id="btnmycart" class="btn btn-outline"  type="button" onclick="gocart(event)"><i class="fa fa-shopping-cart"></i>&nbsp;장바구니</button>
+              <br>
+   <button id="btnmycart" class="btn btn-outline" type="button" onclick="gocart(event)"><i class="fa fa-shopping-cart"></i>&nbsp;장바구니</button>
       </div>      
    </div>   
 </div>
@@ -482,8 +483,8 @@ position: relative;
          </c:forEach>
       </div>
 </div>
-<button  class="load btn btn-outline" type="button">더보기</button>
-<button  class="fold btn btn-outline" type="button" style="display: none;">접기</button>
+<button  class="load btn btn-outline" type="button" style="box-shadow: none;">더보기&nbsp;<i class='fas fa-angle-down'></i></button>
+<button  class="fold btn btn-outline" type="button" style="display: none; box-shadow: none;">접기&nbsp;<i class='fas fa-angle-up'></i></button>
 </div>
  
 <div style="float: left; width: 800px; margin-bottom: 100px;">
