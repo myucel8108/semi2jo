@@ -42,7 +42,7 @@
 </style>
 <body>
 <section class="ftco-section">
-    <p class="usertitle">매출 현황 </p>
+    <p class="usertitle">커뮤니티 관리 </p>
 <%--    자유 게시판--%>
     <div class="container">
 
