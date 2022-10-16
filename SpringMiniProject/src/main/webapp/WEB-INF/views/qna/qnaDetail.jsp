@@ -115,7 +115,7 @@
 </head>
 <body>
 
-
+<c:set var="root" value="<%=request.getContextPath() %>"/>
 <nav class="cuz">
     <ul id="main_menu">
         <div class="btn_gotop"><a href="#"><img src="../image/tttt.png"
