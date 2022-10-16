@@ -333,7 +333,7 @@
                 <h2 style="color: black;">TeachMe 인기강좌 TOP5</h2>
                 <ul>
                     <c:forEach var="hotdto" items="${hotlectures}">
-                        <li style="font-size: 18px;"><a href="lecture/lectureDetail?lecdenum=" id="chcol"><i class="fa fa-angle-right" aria-hidden="true"></i>${hotdto.lecname}</a>&nbsp;<b style="color: gold">${hotdto.avgstar}점</b> ${hotdto.teaname} 강사</li>
+                        <li style="font-size: 18px;"><a href="lecture/lectureDetail?lecdenum=${hotdto.lecdenum}" id="chcol"><i class="fa fa-angle-right" aria-hidden="true"></i>${hotdto.lecname}</a>&nbsp;<b style="color: gold">${hotdto.avgstar}점</b> ${hotdto.teaname} 강사</li>
                     </c:forEach>
                 </ul>
             </div>

@@ -31,7 +31,12 @@ public class ReadyPayService  implements ReadyPayServiceInter {
 		 
 			return ReadyPayDao.selectByCategori(lectypeb);
 	 }
-
+	@Override
+	public List<ReadyPayDto> selectBestLec(){
+		
+		return ReadyPayDao.selectBestLec();
+		
+	}
 	 
 
 }
