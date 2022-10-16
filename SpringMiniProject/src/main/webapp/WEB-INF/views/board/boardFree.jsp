@@ -13,8 +13,45 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">--%>
 <%--    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>--%>
-    <link rel="stylesheet" type="text/css" href="${root}/css/board/boardForm.css">
+<%--    <link rel="stylesheet" type="text/css" href="${root}/css/quick.css">--%>
     <style type="text/css">
+
+        #main_menu {
+            position: fixed;
+            width: 70px;
+            height: 210px;
+            right: 60px;
+            border-radius: 70px;
+            top: 35%;
+            text-align: center;
+
+        }
+        .cuz {
+            width: 100px;
+        }
+
+        ul {
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+            line-height: 34px;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            text-align: center;
+        }
+
+        .snd_menu {
+            background: #efefef;
+        }
+
+        .sub_menu {
+            display: none;
+        }
 
         #test_obj {
             position: fixed;
@@ -152,5 +189,40 @@
                     </ul>
                 </div>
         </div>
+
+<nav class="cuz">
+    <ul id="main_menu">
+        <div class="btn_gotop"><a href="#"><img src="../image/tttt.png"
+                                                style="width: 70%; background-color:transparent; color: black;"></a>
+        </div>
+        <br>
+        <br>
+        <li><a href="javascript:dos()" style="color: black;"><img src="../image/pointt.png"
+                                                                  style="width: 80%; background-color:transparent; color: black;"></a>
+            <ul class="snd_menu sub_menu" style=" background-color:transparent;">
+                <br>
+                <li><a href="${root}/lecture/lectureList"><img src="../image/yu.png"
+                                                               style="width: 100%; background-color:transparent; color: black;">강의</a>
+                </li>
+                <br>
+                <li><a href="${root}/board/boardFree"><img src="../image/cccb.png"
+                                                           style="width: 100%;padding-left:10px;">커뮤니티</a></li>
+                <br>
+                <li><a href="${root}/qna/qnaList"><img src="../image/1ask.png" style="width:130%; padding-right: 25px;">문의하기</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<script>
+    $(document).ready(function dos() {
+        $('#main_menu > li > a').click(function () {
+            $(this).next($('.snd_menu sub_menu')).slideToggle('fast');
+            // $(this).show($('.snd_menu sub_menu')("slide",{direction:'left'},1000));
+        })
+        // e.stopPropagation();
+    })
+</script>
     </body>
 </html>
