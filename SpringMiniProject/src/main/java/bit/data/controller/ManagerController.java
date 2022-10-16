@@ -558,7 +558,7 @@ public class ManagerController {
         //전체 갯수
         int totalCount = boardService.getTotalCount(sc, sw, boardtype);
         int perPage = 2;//한페이지당 보여질 글의 갯수
-        int perBlock = 3;//한블럭당 보여질 페이지의 갯수
+        int perBlock = 5;//한블럭당 보여질 페이지의 갯수
         int startNum;//db에서 가져올 글의 시작번호(mysql은 첫글이 0번,오라클은 1번)
         int startPage;//각블럭당 보여질 시작페이지
         int endPage;//각 블럭당 보여질 끝페이지

@@ -20,7 +20,9 @@
         cursor: pointer;
     }
 
-
+    .wrap-input200{
+        cursor: pointer;
+    }
 
 </style>
 <body style="background-color: white;">
