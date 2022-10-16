@@ -185,7 +185,7 @@
             <tr>
                 <th style="width: 100px; text-align: center; padding-top: 12px;" >비밀번호</th>
                 <td>
-                    <input type="password" name="pass" class="form-control" required="required" placeholder="숫자 4자리 입력" pattern="[0-9]+" maxlength="4"; style="border-color: white;">
+                    <input type="password" name="pass" class="form-control" required="required" placeholder="숫자 4자리 입력" pattern="[0-9]+" maxlength="4"; style="border-color: white; box-shadow: none;">
                 </td>
             </tr>
             </c:if>
@@ -240,12 +240,12 @@
                 </c:if>
 
                <textarea name="content" class="form-control" required="required"
-                         style="width: 500px; height: 400px;"></textarea>
+                         style="width: 500px; height: 400px; box-shadow: none;"></textarea>
 
 
                 <div style="text-align: center; margin-bottom: 10px;">
 
-
+                </div>
             </td>
         </tr>
 

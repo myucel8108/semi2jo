@@ -17,6 +17,43 @@
 
     <style type="text/css">
 
+        #main_menu {
+            position: fixed;
+            width: 70px;
+            height: 210px;
+            right: 60px;
+            border-radius: 70px;
+            top: 35%;
+            text-align: center;
+
+        }
+        .cuz {
+            width: 100px;
+        }
+
+        ul {
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+            line-height: 34px;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            text-align: center;
+        }
+
+        .snd_menu {
+            background: #efefef;
+        }
+
+        .sub_menu {
+            display: none;
+        }
+
         span.likes {
             cursor: pointer;
         }
@@ -177,11 +214,10 @@
                         }
                         s+="<b>"+elt.nickname+"</b>";
                         if (writeuser==elt.usernum){
-                            s+="<span class='writer'>(작성자)</span>";
+                            s+="<span class='writer'>(작성자)</span><br>";
                         }
-                        s+="<br><br>";
-                        s+="<pre>&nbsp;&nbsp;<span style='font-size: 15px; font-family: Noto Sans KR!important;'>"+elt.recontent+"&nbsp;&nbsp;";
-                        s+="</span><span class='day' style='color:gray; font-family: Noto Sans KR;!important;'>"+elt.writeday+"&nbsp;";
+                        s+="<pre>&nbsp;&nbsp;<p style='font-size: 15px; font-family: Noto Sans KR!important;'>"+elt.recontent+"&nbsp;&nbsp;";
+                        s+="</p><span class='day' style='color:gray; font-family: Noto Sans KR;!important;'>"+elt.writeday+"&nbsp;";
                         if(loginok=='yes' && usernum==elt.usernum){
                             s+='<i class="fa fa-close redelete" style="font-size:15px; color: black" reboardnum='+elt.reboardnum+'></i>';
                         }
@@ -194,6 +230,7 @@
     </script>
 </head>
 <body>
+<c:set var="root" value="<%=request.getContextPath() %>"/>
 <div class="container" style="width: 1000px; padding: 100px; font-family: Noto Sans KR;">
     <table class="table table-bordered" style="width: 100%;">
         <tr>
@@ -333,5 +370,39 @@
         });
     </script>
 </div>
+<nav class="cuz">
+    <ul id="main_menu">
+        <div class="btn_gotop"><a href="#"><img src="../image/tttt.png"
+                                                style="width: 70%; background-color:transparent; color: black;"></a>
+        </div>
+        <br>
+        <br>
+        <li><a href="javascript:dos()" style="color: black;"><img src="../image/pointt.png"
+                                                                  style="width: 80%; background-color:transparent; color: black;"></a>
+            <ul class="snd_menu sub_menu" style=" background-color:transparent;">
+                <br>
+                <li><a href="${root}/lecture/lectureList"><img src="../image/yu.png"
+                                                               style="width: 100%; background-color:transparent; color: black;">강의</a>
+                </li>
+                <br>
+                <li><a href="${root}/board/boardFree"><img src="../image/cccb.png"
+                                                           style="width: 100%;padding-left:10px;">커뮤니티</a></li>
+                <br>
+                <li><a href="${root}/qna/qnaList"><img src="../image/1ask.png" style="width:130%; padding-right: 25px;">문의하기</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<script>
+    $(document).ready(function dos() {
+        $('#main_menu > li > a').click(function () {
+            $(this).next($('.snd_menu sub_menu')).slideToggle('fast');
+            // $(this).show($('.snd_menu sub_menu')("slide",{direction:'left'},1000));
+        })
+        // e.stopPropagation();
+    })
+</script>
 </body>
 </html>
