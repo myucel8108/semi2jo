@@ -15,6 +15,10 @@
         div>div{
             width: 100%;
         }
+        .nav-item{
+            margin-top: 100px;
+            margin-left: 40px;
+        }
     </style>
     <script>
         $(function(){

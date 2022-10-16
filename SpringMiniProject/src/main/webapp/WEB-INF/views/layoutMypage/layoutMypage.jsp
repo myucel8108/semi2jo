@@ -56,7 +56,7 @@
             padding: 30px 0px 30px 30px; /* 상단, 우측, 하단, 좌측 */
             width: 200px;
             height: auto;
-            z-index: 1;
+            z-index: 10;
             float: left;
             clear: both;
         }
@@ -86,8 +86,8 @@
         <div class="side_menu">
             <tiles:insertAttribute name="a_sidemenu"/>
         </div>
-        <div class="change">
-            <tiles:insertAttribute name="change"/>
+        <div class="timeTable">
+            <tiles:insertAttribute name="timeTable"/>
         </div>
         <div class="footer">
             <tiles:insertAttribute name="footer"/>

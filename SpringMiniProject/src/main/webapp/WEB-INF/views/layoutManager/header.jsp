@@ -11,20 +11,35 @@
             rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <style type="text/css">
-        @font-face {
-            font-family: 'MICEGothic Bold';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic Bold.woff2') format('woff2');
-            font-weight: 700;
-            font-style: normal;
-        }
-
-        * {
-            font-family: 'MICEGothic Bold';
-        }
-
         #logoutbox{
             justify-content: right;
             padding-right: 123px;
+        }
+        .bt1{
+            width: 100px;
+            height: 35px;
+            /*font-size: 16px;*/
+            /*font-weight: 600;*/
+            color: #fff;
+            cursor: pointer;
+            /*margin: 20px;*/
+            /*height: 55px;*/
+            text-align:center;
+            border: none;
+            background-size: 300% 100%;
+            border-radius: 50px;
+
+        }
+
+
+        .bt1 {
+            background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+        }
+
+        .bt1:hover{
+            background-image: linear-gradient(to right, white,skyblue,blue,darkblue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
     <c:set var="root" value="<%=request.getContextPath() %>"></c:set>
@@ -33,8 +48,7 @@
         <div id="content">
     <!-- TopBar -->
     <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top" id="logoutbox">
-        <button type="button" class="btn btn-outline-primary" id="btn-logout-manager">Log Out</button>
-<%--        <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">--%>
+        <button type="button" id="btn-logout-manager" class="bt1" style=" margin-right: 0px; margin-left: 5px; margin-top: 10px;"><b>LOGOUT</b></button><%--        <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">--%>
 <%--            <i class="fa fa-bars"></i>--%>
 <%--        </button>--%>
 <%--        <ul class="navbar-nav ml-auto">--%>

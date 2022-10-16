@@ -13,9 +13,6 @@
   <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
 <style>
-  body{
-    font-family: Noto Sans KR;
-  }
   .boardbtn{
     width: 100px;
     height: 40px;
@@ -28,7 +25,7 @@
   }
 </style>
 <body>
-<div class="container" style="width: 800px; padding: 50px;">
+<div class="container" style="width: 800px; padding: 50px; font-family: Noto Sans KR;">
   <form action="update" method="post" enctype="multipart/form-data">
     <input type="hidden" name="boardnum" value="${dto.boardnum}">
     <input type="hidden" name="currentPage" value="${currentPage}">

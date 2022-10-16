@@ -27,14 +27,22 @@
         font-size: 40px;
         text-align: center;
         color: black;
+        margin-right: 2%;
     }
-    .container{
-        margin-left: 28px;
+    .pagination>span{
+        display: block;
+        border: 1px solid grey;
+        border-radius: 5px;
+        width: 40px;
+        margin-left: 5px;
+        margin-right: 5px;
+        text-align: center;
+        cursor: pointer;
     }
 </style>
 <body>
 <section class="ftco-section">
-    <p class="usertitle">매출 현황</p>
+    <p class="usertitle">매출 현황 </p>
 <%--    자유 게시판--%>
     <div class="container">
 
@@ -199,9 +207,9 @@
                 $.each(res.list,function (idx,ele) {
                     temp+="<tr class='alert' role='alert'>";
                     temp+="<td><a href='${root}/board/boardDetail?boardnum="+ele.boardnum+"' target='_blank'>"+ele.subject+"</a></td>";
-                    temp+="<td class='d-flex align-items-center'>";
-                    temp+="<div class='pl-3 email'>";
-                    temp+="<span>"+ele.nickname+"</span>"
+                    // temp+="<td class='d-flex align-items-center'>";
+                    // temp+="<div class='pl-3 email'>";
+                    temp+="<td>"+ele.nickname+"</td>"
                     temp+="<td>"+ele.writeday+"</td>";
                     temp+="<td>"+ele.readcount+"</td>";
                     temp+="</tr>";
@@ -229,9 +237,9 @@
                 $.each(res.list,function (idx,ele) {
                     temp+="<tr class='alert' role='alert'>";
                     temp+="<td><a href='${root}/board/boardDetail?boardnum="+ele.boardnum+"' target='_blank'>"+ele.subject+"</a></td>";
-                    temp+="<td class='d-flex align-items-center'>";
-                    temp+="<div class='pl-3 email'>";
-                    temp+="<span>"+ele.nickname+"</span>";
+                    // temp+="<td class='d-flex align-items-center'>";
+                    // temp+="<div class='pl-3 email'>";
+                    temp+="<td>"+ele.nickname+"</td>";
                     temp+="<td>"+ele.writeday+"</td>";
                     temp+="<td>"+ele.readcount+"</td>";
                     temp+="</tr>";
@@ -258,10 +266,10 @@
                 console.log("ajax-test2");
                 $.each(res.list,function (idx,ele) {
                     temp+="<tr class='alert' role='alert'>";
-                    temp+="<td>"+ele.boardtype+"</td>"
-                    temp+="<td><a href='${root}/board/boardDetail?boardnum="+ele.boardnum+"'>"+ele.subject+"</a></td>"
-                    temp+="<td>"+ele.nickname+"</td>"
-                    temp+="<td>"+ele.reportcount+"</td>"
+                    temp+="<td>"+ele.boardtype+"</td>";
+                    temp+="<td><a href='${root}/board/boardDetail?boardnum="+ele.boardnum+"'>"+ele.subject+"</a></td>";
+                    temp+="<td>"+ele.nickname+"</td>";
+                    temp+="<td>"+ele.reportcount+"</td>";
                     temp+="<td class='status'>";
                     temp+="<span class='active' id='btn-revert-reportboard' num='"+ele.boardnum+"'>Revert</span>";
                     temp+="<span class='waiting' id='btn-delete-reportboard' num='"+ele.boardnum+"'>Delete</span>";
@@ -283,16 +291,16 @@
         var page ="";
         page += '<div class="pagination">';
         if (startPage>1){
-            page += '<span ><a class="page-item" currentPage="'+(currentPage-1)+'" boardtype="'+boardtype+'">이전</a></span>';
+            page += '<span class="page-item" currentPage="'+(currentPage-1)+'" boardtype="'+boardtype+'">이전</span>';
         }
         for(var pp = startPage; pp<=endPage; pp++){
             if(pp==currentPage)
-                page += '<span class=" active"><a class="page-item" currentPage="'+pp+'" boardtype="'+boardtype+'" >'+pp+'</a></span>';
+                page += '<span class=" active page-item" currentPage="'+pp+'" boardtype="'+boardtype+'" >'+pp+'</span>';
             else
-                page += '<span><a class="page-item" currentPage="'+pp+'" boardtype="'+boardtype+'">'+pp+'</a></span>';
+                page += '<span class="page-item" currentPage="'+pp+'" boardtype="'+boardtype+'">'+pp+'</span>';
         }
         if(endPage<totalPage)
-            page += '<span><a class="page-item" currentPage="'+(endPage+1)+'" boardtype="'+boardtype+'">다음</a></span>';
+            page += '<span class="page-item" currentPage="'+(endPage+1)+'" boardtype="'+boardtype+'">다음</span>';
         page += '</div>';
         return page;
     }
