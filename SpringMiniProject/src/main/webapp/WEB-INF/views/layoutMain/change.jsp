@@ -156,6 +156,54 @@
         <!--container-fluid end-->
     </div>
 </section>
+
+
+<!--Section-5-->
+<section class="section-18" style="padding-bottom: 20px; padding-top: 50px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-sm-8">
+
+            </div>
+
+        </div>
+    </div>
+    <div class="container-fluid" style="height: 450px;">
+        <div class="row" data-aos="fade-up" data-aos-delay="300">
+            <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
+                <img src="image/mattt.jpg" class="img-fluid">
+                <div class="overlay">
+                    <img src="" alt="">
+                    <div class="inner-text"><h4>000강사<span>수강하기</span></h4></div>
+                </div>
+            </a>
+            <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
+                <img src="image/engg.jpg" class="img-fluid">
+                <div class="overlay">
+                    <img src="" alt="">
+                    <div class="inner-text"><h4>000강사<span>수강하기</span></h4></div>
+                </div>
+            </a>
+            <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
+                <img src="image/mh.jpg" class="img-fluid">
+                <div class="overlay">
+                    <img src="" alt="">
+                    <div class="inner-text"><h4>000강사<span>수강하기</span></h4></div>
+                </div>
+            </a>
+            <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
+                <img src="image/scc.jpg" class="img-fluid">
+                <div class="overlay">
+                    <img src="" alt="">
+                    <div class="inner-text"><h4>000강사<span>수강하기</span></h4></div>
+                </div>
+            </a>
+        </div>
+        <!--/row-->
+    </div>
+    <!--container-->
+</section>
+
 <!--Section-2-->
 <section class="section-2">
     <div class="container">
@@ -203,6 +251,51 @@
         </div>
     </div>
 </section>
+<h2 style="text-align: center;">FIND LECTURE BY KEYWORD</h2>
+<br>
+<h5 style="text-align: center;">키워드에 따라 원하는 강의를 발견해보세요</h5>
+<div class="container" style="width: 100%;">
+    <div class="myaskbox" style="margin-bottom: 5px;">
+        <button type="button" onclick="location.href='qnaList?'" class="myask2" style="width: 100px;"><b>수학강의</b></button>&nbsp;
+
+            <button type="button" onclick="location.href=''" class="myask" style="width: 100px;">
+                <b>국어강의</b>
+            </button>
+
+            <button type="button" onclick="location.href=''" class="myask" style="width: 100px;">
+                <b>사회강의</b>
+            </button>
+
+            <button type="button" onclick="location.href=''" class="myask" style="width: 100px;">
+                <b>과학강의</b>
+            </button>
+
+            <button type="button" onclick="location.href=''" class="myask" style="width: 100px;">
+                <b>제2외국어</b>
+            </button>
+
+            <button type="button" onclick="location.href=''" class="myask" style="width: 100px;">
+                <b>영어강의</b>
+            </button>
+
+            <button type="button" onclick="location.href='lecture/lectureList'" class="myask" style="width: 100px;">
+                <b>전체강의</b>
+            </button>
+
+    </div>
+</div>
+<br><br><br><br><br><br>
+
+
+
+
+
+
+
+
+
+
+
 <section class="section-3" style="border: 0; padding-bottom: 0;">
     <div class="container">
         <div class="row m-0">
@@ -241,51 +334,6 @@
 <%--    </div>--%>
 </section>
 
-<!--Section-5-->
-<section class="section-18" style="padding-bottom: 20px; padding-top: 50px;">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-7 col-sm-8">
-
-            </div>
-
-        </div>
-    </div>
-    <div class="container-fluid" style="height: 450px;">
-        <div class="row" data-aos="fade-up" data-aos-delay="300">
-            <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
-                <img src="image/mattt.jpg" class="img-fluid">
-                <div class="overlay">
-                    <img src="" alt="">
-                    <div class="inner-text"><h4>000강사<span>수강하기</span></h4></div>
-                </div>
-            </a>
-            <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
-                <img src="image/engg.jpg" class="img-fluid">
-                <div class="overlay">
-                    <img src="" alt="">
-                    <div class="inner-text"><h4>000강사<span>수강하기</span></h4></div>
-                </div>
-            </a>
-            <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
-                <img src="image/mh.jpg" class="img-fluid">
-                <div class="overlay">
-                    <img src="" alt="">
-                    <div class="inner-text"><h4>000강사<span>수강하기</span></h4></div>
-                </div>
-            </a>
-            <a href="" target="_blank" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 box">
-                <img src="image/scc.jpg" class="img-fluid">
-                <div class="overlay">
-                    <img src="" alt="">
-                    <div class="inner-text"><h4>000강사<span>수강하기</span></h4></div>
-                </div>
-            </a>
-        </div>
-        <!--/row-->
-    </div>
-    <!--container-->
-</section>
 
 <!-- 아래는 원래꺼 위는 새로 추가 -->
 
